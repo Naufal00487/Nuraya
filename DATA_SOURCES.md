@@ -35,8 +35,20 @@ dataset dan `app/src/main/assets/licenses/TANZIL_NOTICE.txt`. Pemberitahuan ini
 harus dipertahankan ketika teks disalin atau didistribusikan kembali. Kunjungi
 <https://tanzil.net> dan <https://tanzil.net/updates/> untuk pembaruan sumber.
 
-Penomoran mengikuti snapshot Hafs/Tanzil. Basmalah yang sudah ada pada teks
-sumber tidak ditambahkan lagi sebagai ayat buatan.
+Penomoran mengikuti snapshot Hafs/Tanzil. Ekspor ini menyimpan basmalah
+pembuka sebagai prefiks teks ayat pertama pada 112 surah. Pada versi 1.0.1,
+`QuranOpeningPolicy` memisahkan rentang pembuka tersebut untuk ditampilkan
+**tanpa nomor**, lalu menampilkan teks ayat pertama dengan nomor dan terjemahan
+yang sesuai. Data `quran.json` tetap byte-identik dengan hasil impor sebelumnya;
+pembuka + satu spasi + teks ayat dapat merekonstruksi string sumber tanpa
+perubahan. Dua variasi harakat pembuka dalam snapshot (termasuk surah 95 dan 97)
+dipertahankan. Al-Fatihah 1:1 tetap basmalah; At-Taubah tidak diberi pembuka;
+basmalah di dalam An-Naml 27:30 tetap bagian ayat. Pembaca surah/juz, pencarian,
+berbagi, dan rujukan belajar memakai pemisahan yang sama. Jumlah tetap 6.236 ayat.
+
+Tampilan tulisan memakai **Amiri Quran** yang dibundel offline; font dilisensikan
+SIL Open Font License 1.1 dan tidak mengubah karakter sumber. Detail versi,
+checksum, serta sumber font terdapat dalam [QURAN_FONT.md](QURAN_FONT.md).
 
 ## Terjemahan Bahasa Indonesia
 
@@ -84,7 +96,7 @@ Teks lisensi lengkap disertakan di
 
 Nuraya mengubah struktur penyimpanan JSON menjadi daftar surah dan ayat yang
 digabungkan, menambahkan nomor ayat global dan penanda juz dari indeks Tanzil,
-serta memilih tiga qari dari metadata audio. Teks sumber tidak diparafrasekan.
+serta memilih tiga qari dari metadata audio snapshot asli. Katalog aktif versi 1.0.1 berasal dari aset `reciters.json` terpisah yang diverifikasi terhadap manifest penyedia, sehingga snapshot korpus tetap dapat direproduksi. Teks sumber tidak diparafrasekan.
 Komponen kompilasi data turunan ini disediakan dengan CC BY-SA 4.0, sambil
 mempertahankan ketentuan tiap sumber. Lisensi kompilasi ini tidak menghapus
 ketentuan Tanzil, QuranEnc, atau hak pemilik rekaman, dan tidak secara otomatis
@@ -93,14 +105,23 @@ menentukan lisensi seluruh kode aplikasi.
 ## Murottal
 
 Sumber rekaman: **Islamic Network / Al Quran Cloud**, 128 kbps, per surah.
-Ketiga pilihan berikut tercantum dengan 114 surah pada snapshot manifest
-resmi `https://cdn.islamic.network/quran/info/by-surah/info.json`:
+Katalog aktif `app/src/main/assets/reciters.json` menyediakan 12 pilihan berikut,
+masing-masing dengan 114 surah pada snapshot manifest resmi `https://cdn.islamic.network/quran/info/by-surah/info.json`:
 
 | ID sumber | Qari |
 | --- | --- |
 | `ar.alafasy` | Mishary Rashid Alafasy |
 | `ar.abdulbasitmurattal` | Abdul Basit Abdus Samad |
 | `ar.saudalshuraim` | Saud Al-Shuraim |
+| `ar.muhammadsiddiqalminshawimujawwad` | Muhammad Siddiq Al-Minshawi (Mujawwad) |
+| `ar.ahmedalajmi` | Ahmed Al-Ajmi |
+| `ar.abdullahbasfar` | Abdullah Basfar |
+| `ar.aliabdurrahmanalhuthaify` | Ali Abdurrahman Al-Hudhaify |
+| `ar.faresabbad` | Fares Abbad |
+| `ar.muhammadayyub` | Muhammad Ayyub |
+| `ar.nasseralqatami` | Nasser Al-Qatami |
+| `ar.yasseraldossari` | Yasser Al-Dossari |
+| `ar.haniarrifai` | Hani Ar-Rifai |
 
 Pola URL: `https://cdn.islamic.network/quran/audio-surah/128/{id}/{surah}.mp3`.
 Nomor surah pada URL tidak diberi nol di depan.
@@ -121,8 +142,8 @@ menghasilkan **HTTP 200**, `Content-Type: audio/mpeg`, dan
 Penolakan proxy 403 pada pemeriksaan sebelumnya sudah tidak terjadi untuk
 permintaan tersebut. HEAD membuktikan ketersediaan metadata berkas saat diuji;
 hasil pemutaran, unduhan lengkap, dan pengujian Android dicatat terpisah dalam
-laporan build/pengujian. Tidak ada klaim bahwa semua 342 berkas telah diuji atau
-diunduh. Hanya unduhan yang selesai dan masih ada di penyimpanan aplikasi yang
+laporan build/pengujian. Tidak ada klaim bahwa seluruh 1.368 rekaman telah diuji atau diunduh.
+Hasil pemeriksaan katalog dan sampel versi 1.0.1 dicatat di [AUDIO_CATALOG.md](AUDIO_CATALOG.md). Hanya unduhan yang selesai dan masih ada di penyimpanan aplikasi yang
 dapat diputar offline.
 
 ## Tafsir, transliterasi, dan tajwid

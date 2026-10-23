@@ -1,0 +1,227 @@
+{
+  "checkedAt": "2026-10-23T17:52:27.642875+00:00",
+  "manifestUrl": "https://cdn.islamic.network/quran/info/by-surah/info.json",
+  "liveManifestSha256": "6f183510806ab226e3df8be6675cd222e35209123f5153f51aa1b8b08005e25a",
+  "pinnedManifestSha256": "6f183510806ab226e3df8be6675cd222e35209123f5153f51aa1b8b08005e25a",
+  "reciterCount": 12,
+  "surahsPerReciterInManifest": 114,
+  "samples": [
+    {
+      "id": "ar.alafasy",
+      "surah": 1,
+      "url": "https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/1.mp3",
+      "httpStatus": 200,
+      "bytes": 1420155,
+      "sha256": "7c2e67cbde506d25f7e181c3ce876c2a9943a5529ee24a753b2856075a4567fa",
+      "contentType": "audio/mpeg",
+      "durationSeconds": 51.913313,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "fullHostDecode": "passed"
+    },
+    {
+      "id": "ar.abdulbasitmurattal",
+      "surah": 1,
+      "url": "https://cdn.islamic.network/quran/audio-surah/128/ar.abdulbasitmurattal/1.mp3",
+      "httpStatus": 200,
+      "bytes": 1645693,
+      "sha256": "8ec0a7dcc334f7795cce70016d930da44b13724d2ab3a937c2b0c80a6f1d841e",
+      "contentType": "audio/mpeg",
+      "durationSeconds": 46.790667,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "fullHostDecode": "passed"
+    },
+    {
+      "id": "ar.saudalshuraim",
+      "surah": 1,
+      "url": "https://cdn.islamic.network/quran/audio-surah/128/ar.saudalshuraim/1.mp3",
+      "httpStatus": 200,
+      "bytes": 1274538,
+      "sha256": "72792caf13c579c1f259edb866ea966d53d91193a579cb54db319921661c74b2",
+      "contentType": "audio/mpeg",
+      "durationSeconds": 37.754938,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "fullHostDecode": "passed"
+    },
+    {
+      "id": "ar.muhammadsiddiqalminshawimujawwad",
+      "surah": 1,
+      "url": "https://cdn.islamic.network/quran/audio-surah/128/ar.muhammadsiddiqalminshawimujawwad/1.mp3",
+      "httpStatus": 200,
+      "bytes": 2939194,
+      "sha256": "1421d25e99bcfb505a057e2515c626d55ad856610f5d19589c103774ccd65b7c",
+      "contentType": "audio/mpeg",
+      "durationSeconds": 177.431625,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "fullHostDecode": "passed"
+    },
+    {
+      "id": "ar.ahmedalajmi",
+      "surah": 1,
+      "url": "https://cdn.islamic.network/quran/audio-surah/128/ar.ahmedalajmi/1.mp3",
+      "httpStatus": 200,
+      "bytes": 1405850,
+      "sha256": "30b1dc18357388b2d5a8b3e287c8d3249412592d7ab140715c4900dd09c5cbd6",
+      "contentType": "audio/mpeg",
+      "durationSeconds": 42.742756,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "fullHostDecode": "passed"
+    },
+    {
+      "id": "ar.abdullahbasfar",
+      "surah": 1,
+      "url": "https://cdn.islamic.network/quran/audio-surah/128/ar.abdullahbasfar/1.mp3",
+      "httpStatus": 200,
+      "bytes": 1423369,
+      "sha256": "2f62ff055e2ea38fc4d10f176bda978b1815f201030e00fb7304547bcbb30966",
+      "contentType": "audio/mpeg",
+      "durationSeconds": 49.431689,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "fullHostDecode": "passed"
+    },
+    {
+      "id": "ar.aliabdurrahmanalhuthaify",
+      "surah": 1,
+      "url": "https://cdn.islamic.network/quran/audio-surah/128/ar.aliabdurrahmanalhuthaify/1.mp3",
+      "httpStatus": 200,
+      "bytes": 2105596,
+      "sha256": "856d658cb424c20e3709e7de1c0a3ef6552ed993bbd7008f79c7977088f780e6",
+      "contentType": "audio/mpeg",
+      "durationSeconds": 60.426589,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "fullHostDecode": "passed"
+    },
+    {
+      "id": "ar.faresabbad",
+      "surah": 1,
+      "url": "https://cdn.islamic.network/quran/audio-surah/128/ar.faresabbad/1.mp3",
+      "httpStatus": 200,
+      "bytes": 1553761,
+      "sha256": "bfc1c8a6b2ad67d27475115cac0957f7501151887b229e3ff4dac76e95e4362a",
+      "contentType": "audio/mpeg",
+      "durationSeconds": 44.073922,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "fullHostDecode": "passed"
+    },
+    {
+      "id": "ar.muhammadayyub",
+      "surah": 1,
+      "url": "https://cdn.islamic.network/quran/audio-surah/128/ar.muhammadayyub/1.mp3",
+      "httpStatus": 200,
+      "bytes": 911449,
+      "sha256": "a6e899a26ed4f74e8acc9484972b090b5f3d095975693ac62278b2771086ffe2",
+      "contentType": "audio/mpeg",
+      "durationSeconds": 59.005833,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "22050",
+          "channels": 2
+        }
+      ],
+      "fullHostDecode": "passed"
+    },
+    {
+      "id": "ar.nasseralqatami",
+      "surah": 1,
+      "url": "https://cdn.islamic.network/quran/audio-surah/128/ar.nasseralqatami/1.mp3",
+      "httpStatus": 200,
+      "bytes": 1085091,
+      "sha256": "0d80aa56db4aecea2b0260d437fb18b3637445cffb878a67e2704e9d6ce02036",
+      "contentType": "audio/mpeg",
+      "durationSeconds": 39.716756,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "fullHostDecode": "passed"
+    },
+    {
+      "id": "ar.yasseraldossari",
+      "surah": 1,
+      "url": "https://cdn.islamic.network/quran/audio-surah/128/ar.yasseraldossari/1.mp3",
+      "httpStatus": 200,
+      "bytes": 1302438,
+      "sha256": "89e4bb35e1f0023cf4bd9afc9b0d9ed4a1869487fe0620485438772ee3dab16e",
+      "contentType": "audio/mpeg",
+      "durationSeconds": 47.994938,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "fullHostDecode": "passed"
+    },
+    {
+      "id": "ar.haniarrifai",
+      "surah": 1,
+      "url": "https://cdn.islamic.network/quran/audio-surah/128/ar.haniarrifai/1.mp3",
+      "httpStatus": 200,
+      "bytes": 1705816,
+      "sha256": "21bf2ab90cb9c89f6509a7a5a45f2b23ec2f474b764ddb5b3a11520ab9505436",
+      "contentType": "audio/mpeg",
+      "durationSeconds": 48.0445,
+      "streams": [
+        {
+          "codec_name": "mp3",
+          "sample_rate": "44100",
+          "channels": 2
+        }
+      ],
+      "fullHostDecode": "passed"
+    }
+  ],
+  "scope": "All selected reciters: provider manifest validation plus complete Al-Fatihah HTTP download and host MP3 decode. This is not Android playback validation and does not claim every recording was downloaded."
+}
