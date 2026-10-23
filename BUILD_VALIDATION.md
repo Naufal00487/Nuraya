@@ -1,68 +1,60 @@
-# Build dan validasi Nuraya
+# Build dan validasi Nuraya 1.0.1
 
-Validasi dilakukan pada checkout `/workspace/Nuraya`, 23 Oktober 2026. APK berasal dari proyek ini, bukan berkas contoh atau paket kosong.
+Pemeriksaan dilakukan pada checkout `/workspace/Nuraya`, 24 Oktober 2026 (Asia/Jakarta). Paket pengembangan ini memperbaiki tampilan ayat pertama dan basmalah, membundel font Quran offline, memperluas qari, dan menambahkan pernyataan nonkomersial.
 
-## Hasil build
+## Perubahan yang diverifikasi
 
-Perintah berikut selesai dengan **BUILD SUCCESSFUL**:
+- `QuranOpeningPolicy` memisahkan tepat 112 basmalah pembuka dari teks ayat pertama. Al-Fatihah 1:1 tetap basmalah; At-Taubah tidak mempunyai pembuka; An-Naml 27:30 tetap utuh. Seluruh nomor dan jumlah ayat tetap 6.236, terjemahan tidak bergeser, dan asset `quran.json` tetap byte-identik dengan snapshot sumber. Pembaca surah/juz, hasil pencarian, berbagi ayat, dan rujukan belajar menggunakan teks ayat yang sebenarnya.
+- Teks Tanzil Utsmani dirender dengan font offline Amiri Quran. Font resmi berlisensi SIL OFL 1.1, seluruh karakter Quran yang dibundel tercakup. Arabic menggunakan arah kanan-ke-kiri dan rata kanan pada teks ayat; basmalah pembuka ditempatkan terpisah di tengah.
+- Katalog aktif memuat 12 qari, masing-masing 114 surah pada manifest penyedia yang dipin. Ketiga ID qari lama dipertahankan.
+- Pernyataan penyusun tidak mengambil keuntungan finansial tersedia dalam Bahasa Indonesia dan Inggris di Pengaturan dan beranda. Aplikasi gratis, tanpa iklan, langganan, atau pembelian dalam aplikasi.
+
+## Build dan pengujian host
 
 ```sh
 bash scripts/gradle.sh assembleDebug testDebugUnitTest lintDebug assembleDebugAndroidTest --continue
+python3 scripts/import_quran.py --verify
+python3 -m unittest discover -s scripts/tests -v
+python3 -m unittest discover -s backend/tests -v
+python3 scripts/verify_audio_catalog.py --online
 ```
 
-- APK aplikasi: `app/build/outputs/apk/debug/app-debug.apk`.
-- APK pengujian: `app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk`.
-- Package: `com.nuraya.app`; versi `1.0.0` (kode 1).
-- Minimum Android 8.0 / API 26; target dan compile SDK 35.
-- ABI: `arm64-v8a`, `armeabi-v7a`, `x86`, `x86_64`.
-- JDK 17.0.14+7, Gradle 8.11.1, AGP 8.9.1, Kotlin 2.1.20.
-- Android Lint selesai tanpa error. Peringatan nonfatal menyangkut saran KTX, pemeriksaan ruang penyimpanan, dan sumber daya; laporan lengkap tersedia di `app/build/reports/lint-results-debug.html`.
-- `apksigner verify --verbose --print-certs` berhasil: tanda tangan APK v2 valid, sertifikat **Android Debug**.
-- `zipalign -c -P 16 4` berhasil.
+Build Gradle selesai dengan **BUILD SUCCESSFUL**. **34 test JVM lulus, 0 gagal, 0 error**:
 
-APK ini merupakan build pengembangan untuk pemasangan dan pengujian, bukan rilis Google Play. Tidak ada penerbitan toko, push Git, atau penggunaan kunci signing pribadi.
-
-## Unit test dan data
-
-**22 unit test lulus; 0 gagal, 0 error.**
-
-| Suite | Lulus | Yang diuji |
+| Suite | Jumlah | Cakupan |
 | --- | ---: | --- |
-| `QaQuranRepositoryTest` | 5 | Korpus lengkap, urutan, 30 juz, referensi valid/tidak valid, sumber qari HTTPS |
-| `QaLocalPersistenceTest` | 4 | Room ditutup/dibuka kembali, favorit, penanda, daftar putar, status unduhan, riwayat, DataStore |
-| `LearningValidationTest` | 6 | Kutipan diambil dari korpus, penolakan referensi palsu, batas respons, keadaan tidak dikonfigurasi |
-| `ContentPolicyTest` | 2 | Kebijakan URL dan izin katalog video |
-| `DownloadSafetyTest` | 5 | Identifier, URL, pengalihan, progres dan batas unduhan |
+| QaQuranRepositoryTest | 6 | Korpus lengkap, juz, 12 qari, integrasi teks bernomor pada baca/pencarian/rujukan |
+| QuranOpeningPolicyTest | 6 | Seluruh pembuka, semua ayat nonpembuka, varian sumber 95/97, Fatihah/Tawbah/Naml |
+| QuranReaderPresentationTest | 5 | Komposisi UI sebenarnya: Al-Baqarah, Al-Fatihah, At-Taubah, Juz 30, posisi tersimpan 2:255; pemakaian font Quran |
+| QaLocalPersistenceTest | 4 | Room, penanda, favorit, daftar putar, riwayat, unduhan dan DataStore |
+| LearningValidationTest | 6 | Rujukan sumber, validasi respons dan layanan belum aktif |
+| ContentPolicyTest | 2 | URL dan hak konten video |
+| DownloadSafetyTest | 5 | Identifier, URL, redirect dan batas unduhan |
 
-Robolectric memakai Android API 28 untuk pengujian lokal. Folder home khusus proses JVM pengujian berada di `app/build/test-home`; ini memperbaiki kegagalan awal akibat folder home mesin yang hanya bisa dibaca. Variabel shell `HOME` tidak diubah, dan verifikasi TLS tetap aktif.
+UI host memakai Robolectric API 28 dengan native graphics. Tangkapan yang dihasilkan dari komposisi pembaca nyata diperiksa untuk basmalah terpisah dan bentuk huruf Arab. Gambar ini merupakan hasil render host, bukan screenshot HP/emulator yang sedang menjalankan APK.
 
-`python3 scripts/import_quran.py --verify` lulus: **114 surah, 6.236 ayat Arab/Indonesia/Inggris yang sejajar, 30 juz**, dan SHA-256 aset sesuai sumber yang dipin.
+Validasi Python: **8 test pembuka Quran** dan **8 test backend** lulus. Corpus verifier memeriksa seluruh 114 pembuka, 112 rentang basmalah terpisah, 6.236 ayat sejajar pada tiga bahasa, 30 juz, dan checksum asset. Backend belajar opsional juga memakai kebijakan pemisahan yang sama; tidak ada permintaan model berbayar.
 
-`python3 -m unittest discover -s backend/tests -v` lulus: **7 test**. Pemeriksaan ini mencakup HTTP health/503 tanpa konfigurasi, pengambilan sumber lokal, validasi rujukan, dan respons penyedia tiruan yang berlabel sebagai fixture pengujian. Tidak ada permintaan AI berbayar atau kredensial sungguhan yang dipakai.
+Lint selesai tanpa error. Peringatan nonfatal dan laporan penuh berada di `app/build/reports/lint-results-debug.html`. APK test berhasil disusun; ini bukan klaim test perangkat lulus.
 
-## Pengujian Android
+## Audio
 
-APK aplikasi dan APK pengujian berhasil dipasang (`adb install`: **Success**) pada emulator Android 15 / API 35. Mesin cloud tidak menyediakan `/dev/kvm`; emulator menggunakan software emulation. System UI pada emulator tersebut mengalami ANR, dan satu peluncuran `am start -W` melewati timeout walaupun log Android kemudian mencatat Activity ditampilkan. Ini belum membuktikan bahwa seluruh navigasi atau pemutaran di perangkat lulus.
+`verify_audio_catalog.py --online` memverifikasi manifest HTTPS dan **12 unduhan Al-Fatihah lengkap beserta decode MP3 oleh ffmpeg pada host**. Detail tiap qari tersedia di [AUDIO_CATALOG.md](AUDIO_CATALOG.md); laporan mesin berada di `artifacts/validation/audio-catalog.json`. Beberapa MP3 memiliki gambar sampul terlampir, sehingga validasi codec memeriksa stream audio secara khusus.
 
-Percobaan kedua memakai Android 9 / API 28 x86, resolusi 480×800, dua inti dan RAM 2 GB. Boot selesai, kedua APK terpasang, dan log Android mencatat Activity Nuraya ditampilkan setelah sekitar 27 detik. Namun, System UI emulator kembali mengalami ANR. Runner akhirnya berhenti dengan **`INSTRUMENTATION_ABORTED: System has crashed`**. Pada API 35, proses runner sebelumnya juga dihentikan ketika startup melewati batas waktu dalam emulator yang mengalami ANR.
+Ini bukan pengujian pemutaran Android dan bukan klaim bahwa seluruh 1.368 rekaman telah diunduh. Streaming membutuhkan internet; hanya unduhan yang selesai dapat digunakan offline.
 
-**Tidak ada device test yang dinyatakan lulus.** Tiga tes navigasi dan dua tes audio telah dicoba melalui runner, tetapi eksekusi tidak menghasilkan hasil test yang selesai. Test live WorkManager/streaming tidak dijalankan setelah sistem emulator gagal. Pemasangan paket terbukti berhasil; kestabilan UI, kontrol layar kunci, pemutaran audio Android, dan unduhan jaringan ujung-ke-ujung masih perlu diperiksa pada HP Android atau emulator dengan akselerasi. Tidak ditemukan exception aplikasi yang dapat diisolasi dari gangguan sistem emulator dalam percobaan ini, tetapi hal itu bukan jaminan bebas crash.
+## Paket dan pembaruan
 
-Log diagnostik disertakan di `artifacts/validation/`. Gambar dalam `artifacts/screenshots/` merekam kegagalan emulator dan **bukan** tangkapan layar aplikasi yang berfungsi. Menyusun APK pengujian atau status install berhasil tidak dianggap sebagai pengujian UI/audio yang lulus.
+- Application ID `com.nuraya.app`, versi **1.0.1**, versionCode **2**.
+- Minimum Android 8.0 / API 26, target/compile API 35.
+- APK pengembangan ditandatangani dengan sertifikat debug yang sama dengan 1.0.0, sehingga dapat dipasang sebagai pembaruan. Schema Room dan kunci preferensi tidak berubah.
+- Verifikasi tanda tangan `apksigner` dan alignment `zipalign` dilakukan pada APK final. Ukuran/hash dicatat di `artifacts/build-info.json` dan `SHA256SUMS`.
+- APK dan source ZIP diunggah ke cabang unduhan GitHub yang terpisah setelah izin publikasi pengguna. Tautan immutable diperiksa dengan mengunduh ulang dan membandingkan SHA-256.
 
-## Audio dan layanan eksternal
+## Batas pengujian perangkat
 
-- Rekaman Al-Fatihah oleh Mishary Rashid Alafasy berhasil diambil melalui HTTPS dengan verifikasi TLS: 1.420.155 byte, MP3 44,1 kHz stereo, durasi sekitar 51,913 detik. SHA-256 dan sumber tercatat di `app/src/androidTest/assets/README.md`.
-- Fixture rekaman hanya berada dalam APK pengujian, **tidak** dibundel sebagai unduhan pengguna pada APK aplikasi.
-- Test perangkat offline memeriksa jalur produksi pemilihan berkas privat dan Media3. Test online terpisah memerlukan argumen `nuraya.online=true` serta koneksi HTTPS yang bekerja, dan memeriksa WorkManager → unduhan lengkap → pemutaran → penghapusan.
-- Kedua test tersebut tersedia sebagai source. Test offline dicoba tetapi tertahan kegagalan sistem emulator; test online belum dijalankan. Jangan mengubah status ini menjadi lulus berdasarkan validasi MP3 di mesin host.
-- Belum ada klaim bahwa seluruh 342 rekaman telah diunduh atau diputar.
-- AI belum dikonfigurasi; katalog video belum berisi materi berizin yang ditinjau. Pemutaran video nyata dan kualitas jawaban model live belum diuji.
+Mesin cloud ini tidak memiliki `/dev/kvm`. Percobaan emulator versi 1.0.0 sebelumnya mengalami System UI ANR sehingga test perangkat tidak selesai; rinciannya dipertahankan di [BUILD_VALIDATION_1.0.0.md](BUILD_VALIDATION_1.0.0.md). Pada pembaruan ini, test presentasi pembaca dijalankan melalui Robolectric sehingga teks, penomoran dan penggunaan font dapat diperiksa tanpa emulator tersebut.
 
-## Berkas penyerahan
+Belum ada hasil test versi 1.0.1 pada HP fisik. Dialog lompat ayat mengalami masalah idling pada host Robolectric; pengujian interaksi dialog dipindahkan ke `androidTest` dan baru dikompilasi, belum dieksekusi pada perangkat. Posisi buka ayat tersimpan 2:255 telah lulus pada host. Kontrol media, speaker/Bluetooth, background playback, unduhan WorkManager dan pemasangan pembaruan masih perlu diuji di HP Android/emulator berakselerasi. Tidak ada klaim bebas crash.
 
-`python3 scripts/package-artifacts.py` memeriksa struktur APK, kesamaan korpus dalam APK dan source, serta waktu build terhadap input source; lalu menghasilkan APK, ZIP source, manifest hash, dan `SHA256SUMS` di `artifacts/`. Ukuran dan SHA-256 final dicatat dalam `artifacts/build-info.json`.
-
-Instruksi setup dan startup cloud disimpan sebagai draft `install_script` dan `start_skill`. Penyimpanan draft tidak sama dengan publikasi lingkungan; pengguna dapat meninjau, menyimpan, lalu memublikasikannya melalui pengaturan lingkungan untuk pemakaian berikutnya.
-
-`bash scripts/setup-android.sh` juga telah dijalankan ulang dan berhasil tanpa menimpa source atau lockfile. Jalur pemakaian ulang emulator yang telah menyala pada `scripts/start-emulator.sh` diuji sampai pemeriksaan boot berhasil; hasil tersebut tidak menyatakan emulator stabil untuk tes aplikasi.
+AI dan akun masih belum aktif; katalog video masih kosong. Paket ini tetap edisi pengembangan.
