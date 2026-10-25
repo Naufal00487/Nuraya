@@ -96,7 +96,7 @@ Teks lisensi lengkap disertakan di
 
 Nuraya mengubah struktur penyimpanan JSON menjadi daftar surah dan ayat yang
 digabungkan, menambahkan nomor ayat global dan penanda juz dari indeks Tanzil,
-serta memilih tiga qari dari metadata audio snapshot asli. Katalog aktif versi 1.0.1 berasal dari aset `reciters.json` terpisah yang diverifikasi terhadap manifest penyedia, sehingga snapshot korpus tetap dapat direproduksi. Teks sumber tidak diparafrasekan.
+serta memilih tiga qari dari metadata audio snapshot asli. Katalog aktif berasal dari aset `reciters.json` terpisah yang diverifikasi terhadap manifest penyedia, sehingga snapshot korpus tetap dapat direproduksi. Teks sumber tidak diparafrasekan.
 Komponen kompilasi data turunan ini disediakan dengan CC BY-SA 4.0, sambil
 mempertahankan ketentuan tiap sumber. Lisensi kompilasi ini tidak menghapus
 ketentuan Tanzil, QuranEnc, atau hak pemilik rekaman, dan tidak secara otomatis
@@ -105,8 +105,9 @@ menentukan lisensi seluruh kode aplikasi.
 ## Murottal
 
 Sumber rekaman: **Islamic Network / Al Quran Cloud**, 128 kbps, per surah.
-Katalog aktif `app/src/main/assets/reciters.json` menyediakan 12 pilihan berikut,
-masing-masing dengan 114 surah pada snapshot manifest resmi `https://cdn.islamic.network/quran/info/by-surah/info.json`:
+Katalog aktif `app/src/main/assets/reciters.json` menyediakan 138 edisi rekaman,
+masing-masing dengan 114 surah pada snapshot manifest resmi `https://cdn.islamic.network/quran/info/by-surah/info.json`.
+Dua belas pilihan versi 1.0.1 berikut tetap dipertahankan:
 
 | ID sumber | Qari |
 | --- | --- |
@@ -136,26 +137,27 @@ pendidikan. Hak cipta tetap berada pada qari atau pemilik haknya. Nuraya versi
 ini gratis, tanpa iklan atau pembayaran. Jangan menganggap ketentuan ini memberi
 izin yang sama untuk setiap penggunaan komersial atau rekaman dari sumber lain.
 
-Pada pemeriksaan konektivitas terakhir, HTTPS HEAD untuk Alafasy, surah 1,
+Pada pemeriksaan konektivitas awal versi 1.0.0, HTTPS HEAD untuk Alafasy, surah 1,
 menghasilkan **HTTP 200**, `Content-Type: audio/mpeg`, dan
 `Content-Length: 1420155`. Pemeriksaan ini menggunakan verifikasi TLS biasa.
 Penolakan proxy 403 pada pemeriksaan sebelumnya sudah tidak terjadi untuk
 permintaan tersebut. HEAD membuktikan ketersediaan metadata berkas saat diuji;
 hasil pemutaran, unduhan lengkap, dan pengujian Android dicatat terpisah dalam
-laporan build/pengujian. Tidak ada klaim bahwa seluruh 1.368 rekaman telah diuji atau diunduh.
-Hasil pemeriksaan katalog dan sampel versi 1.0.1 dicatat di [AUDIO_CATALOG.md](AUDIO_CATALOG.md). Hanya unduhan yang selesai dan masih ada di penyimpanan aplikasi yang
+laporan build/pengujian. Tidak ada klaim bahwa seluruh rekaman telah diuji atau diunduh.
+Hasil pemeriksaan lengkap sampel dan katalog versi 1.1.0, termasuk 17 qari per ayat dan timestamp pasangan Quran.com/QuranicAudio untuk Alafasy, dicatat di [AUDIO_CATALOG.md](AUDIO_CATALOG.md). Hanya unduhan yang selesai dan masih ada di penyimpanan aplikasi yang
 dapat diputar offline.
 
 ## Tafsir, transliterasi, dan tajwid
 
-- Tafsir **tidak dibundel**. Tombol tafsir membuka Quran.com, dengan rujukan
+- Tafsir Kemenag Indonesia untuk seluruh 6.236 ayat dibundel dari EQuran.id API v2, bersama arti per kata Indonesia/Inggris dari Quran.com. Sumber, edisi, checksum dan ketentuannya dicatat di [STUDY_DATA.md](STUDY_DATA.md).
+- Tombol tafsir tambahan membuka Quran.com, dengan rujukan
   surah/ayat dan identitas **Ibn Kathir, edisi Bahasa Inggris**. Tautan ini
   membutuhkan browser dan jaringan; Nuraya tidak menyalin kontennya atau
   menganggapnya tersedia offline.
 - Transliterasi ayat tidak disertakan karena sumber yang tersedia mencatat
   hasil generasi yang belum diperiksa pembaca berkualifikasi. Nama surah Latin
   tetap menggunakan metadata sumber.
-- Penanda warna tajwid tidak dibuat tanpa data tajwid terverifikasi.
+- Warna tajwid menggunakan anotasi Colin P. Fair, CC BY 4.0, yang dipetakan hanya ke rentang teks yang sama persis. Seluruh 60.023 rentang dan pengabaian perbedaan sumber didokumentasikan di [STUDY_DATA.md](STUDY_DATA.md); teks Arab tidak diubah.
 - Video dan jawaban AI tidak ditambahkan sebagai sumber agama resmi. Lihat
   [integrasi AI dan video](AI_AND_VIDEO.md) untuk status dan mekanismenya.
 
