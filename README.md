@@ -1,25 +1,29 @@
-# Nuraya 1.0.1 — APK pengembangan
+# Nuraya 1.1.0 — unduhan Android
 
-Unduh **Nuraya-1.0.1.apk** dari daftar file, lalu pilih tombol **Download raw file** di GitHub. Source code ada dalam **Nuraya-1.0.1-source.zip**.
+**[Download Nuraya 1.1.0 APK](Nuraya-1.1.0.apk?raw=true)** · 32,7 MB
+[Source ZIP](Nuraya-1.1.0-source.zip?raw=true) · [Hasil validasi](BUILD_VALIDATION.md) · [SHA-256](SHA256SUMS)
 
-## Perubahan
+Pasang pada **Android 8.0 atau lebih baru** sebagai pembaruan versi Nuraya sebelumnya. Application ID `com.nuraya.app`, versionCode 3, sertifikat sama; tidak perlu menghapus aplikasi. APK ini edisi pengembangan yang ditandatangani dengan debug certificate, belum rilis Google Play.
 
-1. Tulisan Arab Tanzil Utsmani memakai font Amiri Quran yang dibundel offline.
-2. Pilihan suara qari bertambah dari 3 menjadi 12, masing-masing dengan katalog 114 surah. Sampel Al-Fatihah seluruh qari berhasil diunduh dan didekode pada host.
-3. Disclaimer: kami, penyusun Nuraya, tidak mengambil keuntungan finansial dari aplikasi ini. Nuraya gratis, tanpa iklan, langganan, atau pembelian dalam aplikasi.
-4. Basmalah pembuka 112 surah dipisahkan tanpa nomor ayat. Ayat 1 menampilkan teks ayat sebenarnya. Al-Fatihah tetap memiliki basmalah sebagai 1:1; At-Taubah tanpa pembuka; An-Naml 27:30 tetap utuh. Jumlah dan nomor ayat serta terjemahan tidak bergeser.
+## Pembaruan
 
-## Pemasangan
+- Tulisan Utsmani dengan **warna tajwid aktif secara default**, dapat dimatikan di Pengaturan. Pembetulan basmalah tetap dipertahankan.
+- **138 pilihan rekaman** lengkap, termasuk beberapa edisi qari yang sama; **17 qari untuk audio per ayat**. Sorotan kata mengikuti rekaman Alafasy pada 6.142 ayat yang memiliki timing aman, dengan sorotan per ayat untuk 94 ayat lainnya. Qari lain menggunakan sorotan per ayat.
+- Arti per kata Indonesia/Inggris, tafsir Kemenag Indonesia seluruh 6.236 ayat, dan panduan tajwid tersedia offline.
+- Mode hafalan, pengulangan rentang, 8 materi tajwid, 10 soal kuis, target serta progres lokal.
+- 12 rujukan video/Shorts belajar, pencarian terbatas materi Al-Qur’an, filter tingkat/format/topik, dan simpan untuk nanti. Tautan dibuka pada sumber aslinya.
+- Latihan mikrofon melalui pengenal suara Android untuk perkiraan kecocokan kata. Tidak menyimpan audio/transkrip. Penyedia online memerlukan persetujuan di aplikasi.
 
-- Gunakan HP Android 8.0 atau lebih baru. Jika diunduh di laptop, pindahkan APK ke HP.
-- Buka APK dan pilih **Perbarui/Instal**. Izinkan pemasangan dari aplikasi pembuka file jika diminta.
-- Package dan sertifikat signing sama dengan 1.0.0, versionCode meningkat menjadi 2.
-- Untuk audio, pilih **Murottal → qari → surah**. Streaming memerlukan internet. Gunakan tombol unduh untuk mendengarkan offline setelah unduhan selesai.
+**Batas fitur:** latihan mikrofon masih eksperimental; belum menilai tajwid, makhraj, harakat atau panjang mad. Ketersediaan pengenal Arab bergantung pada HP. YouTube dibatasi dari cloud sehingga tautan video baru diverifikasi melalui referensi publik; pemutaran dan isi lengkapnya belum diuji. Materi berbahasa Indonesia belum terverifikasi dalam katalog video ini. Tidak ada layanan AI berbayar yang diaktifkan.
 
-## Validasi dan batasan
+**Validasi:** 73 test JVM dan 21 test Python lulus; build, lint, verifikasi data, tanda tangan APK serta alignment lulus. Sampel 138 pilihan rekaman, 17 qari per ayat, dua ayat fallback dan dua rekaman pasangan Alafasy lolos unduh/decode audio pada host. Belum diuji pada HP fisik; ini bukan klaim seluruh rekaman sudah didengarkan. Lihat [laporan lengkap](BUILD_VALIDATION.md).
 
-Build APK, 34 test JVM, 8 test pembuka Quran Python, 8 test backend, lint, integritas sumber, signature/alignment APK, dan 12 sampel audio host telah diperiksa. Lihat **BUILD_VALIDATION.md**. Gambar dalam `reader-previews` adalah render komposisi UI asli melalui Robolectric, bukan screenshot HP.
+## Sumber dan privasi
 
-Pengujian fisik Android, pemutaran speaker/Bluetooth, dan unduhan Android menyeluruh belum selesai. Dialog lompat ayat tersedia sebagai test perangkat yang sudah dikompilasi; host memverifikasi posisi baca tersimpan. Ini edisi pengembangan; AI/akun belum aktif dan katalog video masih kosong.
+Gratis, tanpa iklan, akun wajib, langganan atau pembelian. Penyusun tidak mengambil keuntungan finansial. Data belajar/progres tersimpan lokal. Hak konten tetap milik sumber masing-masing.
 
-Sumber serta lisensi ada di **DATA_SOURCES.md**, **QURAN_FONT.md**, dan source ZIP. Rekaman tetap milik qari/pemegang hak masing-masing.
+[Data Quran](DATA_SOURCES.md) · [Data belajar](STUDY_DATA.md) · [Audio](AUDIO_CATALOG.md) · [Video](VIDEO_SOURCES.md) · [Latihan bacaan](RECITATION_ASSISTANT.md) · [Hafalan/kuis](PRACTICE.md)
+
+[Tampilan host](study-previews/) · [Bukti pemeriksaan](validation/1.1.0/)
+
+Berkas 1.0.1 dipertahankan untuk riwayat. Gunakan APK 1.1.0 di atas untuk pembaruan ini. Source ZIP memuat proyek Gradle dan bukti sumber/verifikasi; keystore pribadi tidak disertakan.
