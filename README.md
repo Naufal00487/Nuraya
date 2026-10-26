@@ -1,29 +1,24 @@
-# Nuraya 1.1.0 — unduhan Android
+# Nuraya 1.2.0 untuk Android
 
-**[Download Nuraya 1.1.0 APK](Nuraya-1.1.0.apk?raw=true)** · 32,7 MB
-[Source ZIP](Nuraya-1.1.0-source.zip?raw=true) · [Hasil validasi](BUILD_VALIDATION.md) · [SHA-256](SHA256SUMS)
+[Unduh APK Nuraya 1.2.0](Nuraya-1.2.0.apk?raw=1) · [Kode sumber](Nuraya-1.2.0-source.zip?raw=1)
 
-Pasang pada **Android 8.0 atau lebih baru** sebagai pembaruan versi Nuraya sebelumnya. Application ID `com.nuraya.app`, versionCode 3, sertifikat sama; tidak perlu menghapus aplikasi. APK ini edisi pengembangan yang ditandatangani dengan debug certificate, belum rilis Google Play.
+APK 44,8 MB, Android 8.0 atau lebih baru. Pasang sebagai pembaruan versi sebelumnya; application ID dan sertifikat sama. Tidak perlu menghapus aplikasi lama. Ini build pengembangan bertanda tangan, bukan rilis Play Store.
 
 ## Pembaruan
 
-- Tulisan Utsmani dengan **warna tajwid aktif secara default**, dapat dimatikan di Pengaturan. Pembetulan basmalah tetap dipertahankan.
-- **138 pilihan rekaman** lengkap, termasuk beberapa edisi qari yang sama; **17 qari untuk audio per ayat**. Sorotan kata mengikuti rekaman Alafasy pada 6.142 ayat yang memiliki timing aman, dengan sorotan per ayat untuk 94 ayat lainnya. Qari lain menggunakan sorotan per ayat.
-- Arti per kata Indonesia/Inggris, tafsir Kemenag Indonesia seluruh 6.236 ayat, dan panduan tajwid tersedia offline.
-- Mode hafalan, pengulangan rentang, 8 materi tajwid, 10 soal kuis, target serta progres lokal.
-- 12 rujukan video/Shorts belajar, pencarian terbatas materi Al-Qur’an, filter tingkat/format/topik, dan simpan untuk nanti. Tautan dibuka pada sumber aslinya.
-- Latihan mikrofon melalui pengenal suara Android untuk perkiraan kecocokan kata. Tidak menyimpan audio/transkrip. Penyedia online memerlukan persetujuan di aplikasi.
+- AI bacaan Al-Qur’an: **Beranda → AI bacaan Al-Qur’an → Unduh & aktifkan AI**. Model sekitar **59,7 MB** diunduh dan diverifikasi sekali, kemudian pengenalan kata berjalan offline di HP. Pilih ayat, tekan **Mulai membaca**, izinkan mikrofon, lalu **Selesai membaca**.
+- Pencarian video berdasarkan kebutuhan belajar, sinonim dan filter. Cakupannya **12 rujukan yang dikurasi**, bukan pencarian langsung seluruh YouTube.
+- Tombol **Tonton di aplikasi** memakai YouTube embed resmi untuk video/Shorts/playlist yang didukung. Internet diperlukan; sumber asli tetap bisa dibuka bila penerbit membatasi embed. Iklan platform YouTube dapat tampil.
+- Teman Belajar langsung mencari kutipan ayat, tafsir Kemenag lengkap dan pelajaran tajwid secara lokal. Pertanyaan tidak dikirim ke server; hasil berupa sumber, bukan jawaban generatif.
 
-**Batas fitur:** latihan mikrofon masih eksperimental; belum menilai tajwid, makhraj, harakat atau panjang mad. Ketersediaan pengenal Arab bergantung pada HP. YouTube dibatasi dari cloud sehingga tautan video baru diverifikasi melalui referensi publik; pemutaran dan isi lengkapnya belum diuji. Materi berbahasa Indonesia belum terverifikasi dalam katalog video ini. Tidak ada layanan AI berbayar yang diaktifkan.
+Hasil AI adalah perkiraan kecocokan kata: dapat salah mengenali, melewatkan, atau melengkapi kata. **Belum menilai tajwid/makhraj secara tervalidasi**, dan kecepatan pembaruan bergantung HP. Pengujian dengan rekaman nyata pada host lulus; mikrofon, performa AI, dan YouTube belum diuji pada HP fisik.
 
-**Validasi:** 73 test JVM dan 21 test Python lulus; build, lint, verifikasi data, tanda tangan APK serta alignment lulus. Sampel 138 pilihan rekaman, 17 qari per ayat, dua ayat fallback dan dua rekaman pasangan Alafasy lolos unduh/decode audio pada host. Belum diuji pada HP fisik; ini bukan klaim seluruh rekaman sudah didengarkan. Lihat [laporan lengkap](BUILD_VALIDATION.md).
+## Validasi
 
-## Sumber dan privasi
+105 tes JVM, 21 tes Python, 7 pemeriksaan native JNI dan 4 verifier offline lulus. Build APK/instrumentasi dan lint lulus (21 peringatan, tanpa error). Tanda tangan dan alignment 16 KB diverifikasi. [Laporan lengkap](BUILD_VALIDATION.md), [ringkasan mesin](validation/1.2.0/summary.json), [hasil model/probe](validation/1.2.0/model-inference.json), [asal/lisensi model](QURAN_AI_MODEL.md).
 
-Gratis, tanpa iklan, akun wajib, langganan atau pembelian. Penyusun tidak mengambil keuntungan finansial. Data belajar/progres tersimpan lokal. Hak konten tetap milik sumber masing-masing.
+[Metadata dan checksum sumber](build-info.json) · [SHA-256 berkas unduhan](SHA256SUMS)
 
-[Data Quran](DATA_SOURCES.md) · [Data belajar](STUDY_DATA.md) · [Audio](AUDIO_CATALOG.md) · [Video](VIDEO_SOURCES.md) · [Latihan bacaan](RECITATION_ASSISTANT.md) · [Hafalan/kuis](PRACTICE.md)
+Fitur Quran Utsmani, warna tajwid, arti kata, tafsir, qari, hafalan, kuis dan progres versi sebelumnya tetap tersedia. Nuraya gratis; penyusun tidak mengambil keuntungan finansial dan tidak memasang iklan sendiri.
 
-[Tampilan host](study-previews/) · [Bukti pemeriksaan](validation/1.1.0/)
-
-Berkas 1.0.1 dipertahankan untuk riwayat. Gunakan APK 1.1.0 di atas untuk pembaruan ini. Source ZIP memuat proyek Gradle dan bukti sumber/verifikasi; keystore pribadi tidak disertakan.
+Versi terdahulu tetap disimpan: [1.1.0](Nuraya-1.1.0.apk?raw=1), [1.0.1](Nuraya-1.0.1.apk?raw=1). Tautan immutable distribusi terdahulu tidak diubah.

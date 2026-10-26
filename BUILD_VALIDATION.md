@@ -1,6 +1,6 @@
-# Build dan validasi Nuraya 1.1.0
+# Build dan validasi Nuraya 1.2.0
 
-Diperiksa pada 25 Oktober 2026 (Asia/Jakarta), checkout `/workspace/Nuraya`. Ini adalah APK pengembangan Android native, application ID `com.nuraya.app`, versionCode **3**, minimum Android 8.0/API 26, target/compile API 35. Laporan versi lama dipertahankan di [BUILD_VALIDATION_1.0.1.md](BUILD_VALIDATION_1.0.1.md).
+Diperiksa pada 26 Oktober 2026 (Asia/Jakarta), checkout `/workspace/Nuraya`. APK pengembangan Android native: `com.nuraya.app`, versionCode **4**, minimum Android 8.0/API 26, target/compile API 35. Riwayat data/audio dan pengujian terdahulu dipertahankan dalam [laporan 1.1.0](BUILD_VALIDATION_1.1.0.md).
 
 ## Hasil build dan pengujian
 
@@ -9,67 +9,51 @@ bash scripts/gradle.sh assembleDebug testDebugUnitTest lintDebug assembleDebugAn
 python3 scripts/import_quran.py --verify
 python3 scripts/import_study.py --verify
 python3 scripts/import_audio_timing.py --verify
-python3 scripts/verify_audio_catalog.py
+python3 scripts/import_learning_index.py --verify
 python3 -m unittest discover -s scripts/tests -v
 python3 -m unittest discover -s scripts -p 'test_import_study.py' -v
 python3 -m unittest discover -s backend/tests -v
 ```
 
-Gradle **BUILD SUCCESSFUL**. **73 test JVM lulus; 0 gagal, 0 error, 0 dilewati**. Test Python **21 lulus**: 8 pembuka Quran, 5 pemetaan data belajar, dan 8 backend opsional. Semua verifier offline di atas lulus. Lint selesai tanpa error atau fatal; peringatan nonfatal dicatat dalam [laporan lint](validation/1.1.0/lint.txt). APK instrumentasi berhasil dibangun, tetapi test perangkat belum dijalankan.
+Gradle **BUILD SUCCESSFUL**; **105 test JVM lulus**, tanpa gagal, error, atau test dilewati. **21 test Python lulus** (8 pembuka Quran, 5 pemetaan belajar, 8 backend opsional). Empat verifier offline lulus. Lint selesai dengan **21 peringatan, tanpa error/fatal**. APK instrumentasi berhasil dibangun, tetapi test perangkat belum dijalankan.
 
-| Suite JVM | Test lulus |
-| --- | ---: |
-| ContentPolicyTest | 2 |
-| LearningValidationTest | 6 |
-| VideoCatalogueTest | 3 |
-| DownloadSafetyTest | 5 |
-| VerseAudioCatalogTest | 6 |
-| QaLocalPersistenceTest | 4 |
-| QaQuranRepositoryTest | 6 |
-| QuranOpeningPolicyTest | 6 |
-| QuranReaderPresentationTest | 5 |
-| QuranRecitationPresentationTest | 4 |
-| StudyFeaturePresentationTest | 3 |
-| StudyIntegrationTest | 7 |
-| RecitationMatcherTest | 11 |
-| PracticeRepositoryTest | 5 |
+Bukti: [ringkasan mesin](validation/1.2.0/summary.json), [log Gradle](validation/1.2.0/gradle-build.log), [lint](validation/1.2.0/lint.txt), dan [verifikasi offline/Python](validation/1.2.0/offline-validation.log). Suite mencakup pembuka surah, data/progres, pencocokan kata, unduhan model, pembatalan/lifecycle sesi AI, pencarian video, aturan embed, kutipan sumber lokal, dan UI Compose. Render UI menggunakan Robolectric API 28/native graphics pada host, bukan screenshot aplikasi di HP.
 
-Bukti mesin dan log tersedia di [validation/1.1.0/summary.json](validation/1.1.0/summary.json) serta [gradle-build.log](validation/1.1.0/gradle-build.log). UI diuji dengan Robolectric API 28/native graphics. Render pembaca, hafalan, dan filter Shorts diperiksa secara visual; ini render host, bukan screenshot APK pada HP. Tes regresi mencakup pergantian qari pada ayat yang sama, pembuka surah, preferensi warna/follow, pemetaan kata/tajwid, penyimpanan progres, filter video, dan batas pencocokan suara.
+## AI bacaan
 
-## Data Al-Qur’an dan materi belajar
+Mesin native `whisper.cpp` v1.7.6 dikompilasi dengan NDK 27.2.12479018/CMake 3.22.1 untuk **arm64-v8a, armeabi-v7a, x86_64**. Model diunduh sekali dan diverifikasi panjang/SHA-256, lalu inferensi berjalan lokal. Audio mikrofon berada di memori; rekaman/transkrip tidak disimpan atau dikirim ke server. Pengenal Android tersedia sebagai pilihan terpisah; pemrosesan online melalui penyedia Android membutuhkan persetujuan di UI.
 
-- Korpus tetap **114 surah, 6.236 ayat, 30 juz**, dengan teks Arab dan terjemahan Indonesia/Inggris sejajar. SHA-256 `quran.json` tetap `f41cef112e2efd581d3ea15ad7229a713d18122a6e0fbec4ddb0c00b7d1cae9c`.
-- Basmalah pembuka pada **112 surah** tampil terpisah tanpa nomor. Al-Fatihah 1:1 tetap basmalah; At-Taubah tidak mempunyai pembuka; An-Naml 27:30 tetap utuh. Semua 114 pembuka dan seluruh ayat diperiksa; nomor/terjemahan tidak digeser.
-- Font Utsmani Amiri Quran tersedia offline. Warna tajwid aktif secara default dan dapat dimatikan di Pengaturan. Hanya anotasi yang sesuai rentang teks kanonis digunakan.
-- **77.429 kata** mempunyai arti Indonesia/Inggris; **77.428** dapat dipetakan tepat ke rentang teks. Kata 11:13 posisi 3 tetap mempunyai arti, tetapi tidak diberi sorotan tebakan. **60.023 anotasi tajwid** pada 6.173 ayat lolos pemetaan; 34 anotasi sumber yang tidak cocok dihilangkan.
-- **6.236 tafsir Kemenag Indonesia** dibundel melalui EQuran.id. Ini satu edisi tafsir lengkap, bukan semua kitab tafsir. Sumber, checksum dan batas hak data dicatat di [STUDY_DATA.md](STUDY_DATA.md).
-- Hafalan rentang/pengulangan, penilaian sendiri, jadwal tinjauan, target harian, 8 materi tajwid dan 10 soal kuis tersedia dengan progres lokal. Penilaian hafalan bukan penilaian otomatis ketepatan bacaan.
+Model Tarteel `whisper-base-ar-quran` dikonversi ke Q5_1 dari revisi/bobot sumber yang dipin; ukuran **59.707.625 byte**, SHA-256 `1de4498dc16fdee2045e67a97d73cda4624017640dbe5ddf809f3130da7c234a`. [Model immutable](https://raw.githubusercontent.com/Naufal00487/Nuraya/1d5a31aa2e60dbb9af70981e606a9c06b1b18c3e/nuraya-quran-whisper-base-q5_1.bin) telah diunduh penuh kembali, HTTP 200, ukuran dan hash cocok ([bukti](validation/1.2.0/model-download.json)). Atribusi/lisensi Apache-2.0 dan MIT disertakan; lihat [QURAN_AI_MODEL.md](QURAN_AI_MODEL.md).
 
-## Audio dan sinkronisasi
+**7 pemeriksaan JNI native lulus** menggunakan wrapper C++ aplikasi dan model sebenarnya pada host: hening/nonfinite, pembatalan antrean/inferensi, penggunaan ulang konteks, inferensi bacaan, dan penutupan aman. [Log](validation/1.2.0/native-ai-jni.log) dan [probe terkontrol](validation/1.2.0/model-inference.json) mencatat:
 
-- Katalog akhir berisi **138 pilihan rekaman lengkap**, termasuk edisi berbeda dari qari yang sama. Manifest setiap pilihan mempunyai 114 surah. Seluruh 138 sampel Al-Fatihah yang dipertahankan telah diunduh penuh dan didekode sebagai audio oleh ffmpeg pada host. Tujuh pilihan yang gagal juga pada pemeriksaan ulang dikeluarkan. Laporan akhir diturunkan dari hasil pemeriksaan tersebut, bukan klaim pengunduhan ulang semua katalog.
-- Katalog per ayat berisi **17 qari**, masing-masing dengan manifest 6.236 ayat. Sampel Al-Fatihah 1:1 untuk 17 qari dan 2 ayat fallback telah berhasil diunduh penuh/didekode pada host.
-- Sorotan kata Alafasy memakai rekaman QuranicAudio pasangan timestamp Quran.com. Seluruh 114 berkas timing/6.236 ayat diperiksa, dengan **6.142 ayat** aman untuk sorotan kata dan **94 ayat** memakai audio/sorotan per ayat. Tidak ada timing buatan dari panjang tulisan. Qari lain memakai sorotan per ayat.
-- Rekaman pasangan Alafasy surah 1 dan 114 berhasil diunduh penuh/didekode. Ini bukan klaim bahwa seluruh 114 rekaman atau seluruh audio 138 pilihan sudah didengarkan/diunduh.
+- Basmalah lengkap dikenali sebagai empat kata; inferensi host sekitar 11,7–11,9 detik.
+- Klip dipotong sebelum kata terakhir menghasilkan tiga kata tanpa menambahkan kata terakhir.
+- Saat interval Ar-Rahman dibisukan, model juga kehilangan Ar-Rahim yang masih terdengar. **Kesalahan pengenalan tetap terjadi.**
+- Hening ditangani gerbang energi native; ini bukan pengukuran akurasi model.
 
-Bukti: [katalog 138](validation/1.1.0/audio-catalog-final-1.1.0.json), [pemeriksaan ulang yang gagal](validation/1.1.0/audio-catalog-recheck-1.1.0.json), [17 qari per ayat](validation/1.1.0/verse-audio-1.1.0.json), [rekaman pasangan Alafasy](validation/1.1.0/paired-audio-final-1.1.0.json). Rincian di [AUDIO_CATALOG.md](AUDIO_CATALOG.md). Validasi unduhan/decode host bukan pengujian pemutaran Android.
+Tidak ada prompt ayat target yang diberikan kepada ASR. Ini bukan benchmark akurasi dan **tidak membuktikan koreksi tajwid, makhraj, harakat, panjang mad, atau respons real-time di HP**. UI menampilkan perkiraan kecocokan kata dan membedakan hasil sementara/final. Penilaian guru tetap diperlukan.
 
-## Video dan latihan mikrofon
+## Video dan sumber belajar
 
-Katalog memuat **12 rujukan** (8 seri/kursus, 1 lokakarya, 3 Shorts), filter tingkat/format/topik dan pencarian terbatas pada katalog Al-Qur’an. Semua tautan berasal dari rujukan publik yang dipin; tidak ada ID buatan, stream palsu, atau klaim izin redistribusi. **YouTube langsung dibatasi HTTP 403 dari cloud**, sehingga pemutaran, judul terkini, dan keseluruhan isi video belum diverifikasi. Bahasa yang belum dikonfirmasi ditandai di aplikasi. Belum ada materi berbahasa Indonesia yang terverifikasi dalam katalog ini. Lihat [VIDEO_SOURCES.md](VIDEO_SOURCES.md).
+Pencarian cerdas lokal merangking **12 rujukan Quran yang dikurasi**, memahami kebutuhan belajar/sinonim dan menerapkan filter tingkat/format/bahasa. Ini bukan pencarian langsung seluruh YouTube. Bila hanya materi terkait tersedia, UI menjelaskannya. Bahasa yang belum diverifikasi tetap ditandai; belum ada video bahasa Indonesia terverifikasi di katalog.
 
-Latihan mikrofon menggunakan Android SpeechRecognizer untuk **perkiraan kecocokan kata**, mengutamakan mode di perangkat dan meminta persetujuan sebelum menggunakan penyedia yang dapat memproses online. Izin mikrofon hanya diminta saat memulai; sesi berhenti saat layar ditinggalkan. Rekaman/transkrip tidak disimpan. Hasil sementara ditandai sementara dan tidak dianggap kesalahan final.
+Sebelas URL mempunyai bentuk video/Shorts/playlist yang dapat memakai **YouTube IFrame resmi**; halaman kursus mempunyai tautan sumber asli. Pemutar dimuat setelah pengguna menekan tombol, tanpa autoplay, dengan kontrol YouTube dan fallback bila penerbit melarang embed. Percobaan muat ulang mengganti WebView yang tampil. Murottal dan video saling dijeda; riwayat dicatat setelah pemutar melaporkan pemutaran. YouTube dapat menampilkan iklan platform.
 
-**Fitur ini belum mengoreksi tajwid, makhraj, harakat, atau panjang mad.** Test matcher bukan uji kualitas pengenalan suara sebenarnya. Ketersediaan bahasa Arab, hasil parsial, dan kemampuan offline bergantung pada perangkat/penyedia. Tidak ada layanan AI berbayar atau endpoint gratis yang diklaim telah tersedia tanpa bukti. Asisten tanya-jawab terpisah tetap tidak aktif tanpa server. Riset model gratis dan batas fitur dijelaskan di [RECITATION_ASSISTANT.md](RECITATION_ASSISTANT.md).
+Pengujian mencakup parser URL, HTML embed, pencarian, dan layar sebelum pemutaran. **YouTube/oEmbed dari cloud memberi HTTP 403**, sehingga pemutaran aktual, izin embed tiap penerbit, dan judul terkini belum terverifikasi. Lihat [VIDEO_EMBED.md](VIDEO_EMBED.md), [VIDEO_SOURCES.md](VIDEO_SOURCES.md), dan [SMART_VIDEO_SEARCH.md](SMART_VIDEO_SEARCH.md).
 
-## Paket dan pembaruan
+Teman Belajar mencari **6.236 terjemahan dan tafsir Kemenag** beserta materi tajwid secara offline, mengembalikan kutipan sumber dengan tautan ayat. Ini bukan jawaban generatif atau layanan AI eksternal. Indeks deterministik lulus verifikasi. Backend opsional lama tidak dipanggil UI ini.
 
-APK final lolos `apksigner verify --verbose --print-certs` dan `zipalign -c -p 4`. Sertifikat SHA-256 tetap `e2aa60317632bc6aea65f83c2247e54111941d0e0725875a2c9db3ffb93ac264`, sama dengan APK terdahulu. VersionCode meningkat menjadi 3; paket ditujukan untuk dipasang sebagai pembaruan agar data lokal dipertahankan. Keystore pribadi tidak didistribusikan.
+## Regresi Quran dan media
 
-`scripts/package-artifacts.py` memeriksa bahwa APK berasal dari build terkini, seluruh asset sama persis dengan source, dan ZIP sumber utuh. Ukuran/hash final dicatat di `build-info.json`/`SHA256SUMS` pada distribusi. Publikasi memakai cabang unduhan terpisah sesuai izin pengguna; verifikasi unduhan HTTPS setelah unggah dicatat dalam kuitansi distribusi. Tidak ada reset atau penggantian checkout sumber asli.
+Teks kanonis tetap 114 surah/6.236 ayat; SHA-256 `quran.json` tetap `f41cef112e2efd581d3ea15ad7229a713d18122a6e0fbec4ddb0c00b7d1cae9c`. Basmalah pada 112 pembuka terpisah tanpa nomor, Al-Fatihah 1:1 tetap basmalah, At-Taubah tanpa pembuka, An-Naml 27:30 tetap utuh.
 
-## Batas pengujian perangkat
+Verifier mempertahankan 77.429 arti kata (77.428 rentang tepat), 60.023 anotasi tajwid, dan 6.236 tafsir. Timing Alafasy mempunyai 6.142 ayat aman untuk sorotan kata dan 94 fallback per ayat. Audio 138 pilihan rekaman lengkap dan 17 qari per ayat tidak diubah; bukti unduhan/decode terdahulu di [laporan 1.1.0](BUILD_VALIDATION_1.1.0.md), bukan klaim semua audio diunduh ulang pada versi ini.
 
-**Belum ada hasil uji 1.1.0 pada HP fisik.** Mesin cloud tidak memiliki `/dev/kvm`; percobaan emulator software terdahulu mengalami System UI ANR. Lihat laporan historis [1.0.0](BUILD_VALIDATION_1.0.0.md). Pengujian host dan kompilasi instrumentasi tidak diklaim sebagai pengujian perangkat yang lulus.
+## Paket dan batas perangkat
 
-Pemasangan sebagai pembaruan, speaker/Bluetooth, layanan audio latar belakang, WorkManager, dialog navigasi perangkat, mikrofon, dan pengenal suara Android perlu diuji pada HP/emulator berakselerasi. Tidak ada klaim bebas crash atau ketepatan bacaan agama otomatis. Aplikasi tetap gratis, tanpa iklan, akun wajib, atau keuntungan finansial bagi penyusun.
+APK lolos `apksigner verify --verbose --print-certs` dan `zipalign -c -P 16 4`. Sertifikat SHA-256 tetap `e2aa60317632bc6aea65f83c2247e54111941d0e0725875a2c9db3ffb93ac264`, sama dengan versi terdahulu. VersionCode meningkat agar dapat dipasang sebagai pembaruan. Keystore pribadi tidak didistribusikan. Sembilan pustaka native pada tiga ABI mempunyai alignment segmen ELF 16 KB; pemeriksaan ZIP bukan pengujian perangkat 16 KB.
+
+`scripts/package-artifacts.py` memastikan APK lebih baru dari sumber build, setiap asset sama persis, dan ZIP sumber utuh. Ukuran/hash tercatat pada `build-info.json`/`SHA256SUMS`. Distribusi memakai cabang unduhan GitHub terpisah yang telah diizinkan pengguna, mempertahankan tautan lama, dan diverifikasi dengan unduhan penuh/hash setelah unggah.
+
+**Belum diuji pada HP fisik atau emulator berakselerasi.** Host tidak mempunyai `/dev/kvm`. Update-install, izin/mikrofon nyata, RAM/baterai/latensi model, audio latar belakang/Bluetooth, WebView/YouTube aktual dan layar penuh masih memerlukan uji perangkat. Hasil host tidak diklaim sebagai hasil perangkat. Nuraya gratis dan penyusun tidak mengambil keuntungan; Nuraya tidak memasang iklan sendiri, sedangkan YouTube dapat menampilkan iklan platform.

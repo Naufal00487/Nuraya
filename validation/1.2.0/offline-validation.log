@@ -1,0 +1,55 @@
+$ python3 scripts/import_quran.py --verify
+Verified: 114 surahs, 6,236 aligned Arabic/Indonesian/English verses, 30 juz, all 114 first ayat and 112 separate opening spans, asset SHA-256
+$ python3 scripts/import_study.py --verify
+{
+  "mappedWords": 77428,
+  "verses": 6236,
+  "words": 77429,
+  "tajwidSpans": 60023,
+  "versesWithTajwid": 6173,
+  "tafsirVerses": 6236,
+  "wordsWithoutExactMapping": 1
+}
+$ python3 scripts/import_audio_timing.py --verify
+Verified exact paired audio/timing: 114 chapters, 6236 verses, 80288 source word segments; 6142 safe word-sync verses (Alafasy).
+$ python3 scripts/import_learning_index.py --verify
+Verified local learning index: 6236 verse/tafsir sources, deterministic binary and SHA-256
+$ python3 -m unittest discover -s scripts/tests -v
+test_112_openings_are_lossless_and_no_numbering_or_translation_changes (test_quran_openings.QuranOpeningTests.test_112_openings_are_lossless_and_no_numbering_or_translation_changes) ... ok
+test_all_114_source_openings_and_6236_verses_validate (test_quran_openings.QuranOpeningTests.test_all_114_source_openings_and_6236_verses_validate) ... ok
+test_already_separated_and_unrecognized_input_is_not_rewritten (test_quran_openings.QuranOpeningTests.test_already_separated_and_unrecognized_input_is_not_rewritten) ... ok
+test_duplicate_basmalah_is_rejected (test_quran_openings.QuranOpeningTests.test_duplicate_basmalah_is_rejected) ... ok
+test_fatiha_and_naml_remain_exact_and_tawbah_has_no_intro (test_quran_openings.QuranOpeningTests.test_fatiha_and_naml_remain_exact_and_tawbah_has_no_intro) ... ok
+test_known_first_verses_have_the_actual_text (test_quran_openings.QuranOpeningTests.test_known_first_verses_have_the_actual_text) ... ok
+test_replacing_actual_first_verse_with_only_basmalah_is_rejected (test_quran_openings.QuranOpeningTests.test_replacing_actual_first_verse_with_only_basmalah_is_rejected) ... ok
+test_tawbah_cannot_gain_an_intro (test_quran_openings.QuranOpeningTests.test_tawbah_cannot_gain_an_intro) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.280s
+
+OK
+$ python3 -m unittest discover -s scripts -p test_import_study.py -v
+test_changed_source_span_is_omitted_not_shifted (test_import_study.StudyMappingTests.test_changed_source_span_is_omitted_not_shifted) ... ok
+test_grouped_source_word_keeps_position_and_both_tokens (test_import_study.StudyMappingTests.test_grouped_source_word_keeps_position_and_both_tokens) ... ok
+test_opening_offset_and_utf16_conversion (test_import_study.StudyMappingTests.test_opening_offset_and_utf16_conversion) ... ok
+test_unmatched_word_cannot_highlight_and_later_word_does_not_shift (test_import_study.StudyMappingTests.test_unmatched_word_cannot_highlight_and_later_word_does_not_shift) ... ok
+test_wrong_language_is_not_silently_labeled_indonesian (test_import_study.StudyMappingTests.test_wrong_language_is_not_silently_labeled_indonesian) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+OK
+$ python3 -m unittest discover -s backend/tests -v
+test_answer_strips_untrusted_quotation_and_url_fields (test_server.LearningGatewayTest.test_answer_strips_untrusted_quotation_and_url_fields) ... ok
+test_corpus_and_explicit_source_retrieval (test_server.LearningGatewayTest.test_corpus_and_explicit_source_retrieval) ... ok
+test_enabled_mock_provider_receives_sources_but_key_stays_out_of_payload (test_server.LearningGatewayTest.test_enabled_mock_provider_receives_sources_but_key_stays_out_of_payload) ... ok
+test_first_verse_context_uses_numbered_text_without_chapter_opening (test_server.LearningGatewayTest.test_first_verse_context_uses_numbered_text_without_chapter_opening) ... ok
+test_http_health_and_unconfigured_response (test_server.LearningGatewayTest.test_http_health_and_unconfigured_response) ... ok
+test_invalid_question_does_not_call_provider (test_server.LearningGatewayTest.test_invalid_question_does_not_call_provider) ... ok
+test_reference_cannot_escape_supplied_verified_context (test_server.LearningGatewayTest.test_reference_cannot_escape_supplied_verified_context) ... ok
+test_unconfigured_never_calls_provider (test_server.LearningGatewayTest.test_unconfigured_never_calls_provider) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.676s
+
+OK
