@@ -1,4 +1,4 @@
-# Katalog video Nuraya 1.1.0
+# Katalog video Nuraya 1.2.0
 
 Katalog berisi 12 rujukan: 8 seri/kursus, 1 lokakarya, dan 3 Shorts yang dipetakan penerbit ke surah. Pencarian hanya mencari katalog belajar ini, dengan filter tingkat, format, topik, dan simpan untuk ditonton nanti. Tidak ada pencarian web umum atau feed hiburan.
 
@@ -30,7 +30,7 @@ Commit sumber, checksum referensi dan setiap URL disimpan di `docs/sources/video
 | Shorts: mengenal Surah Al-Kautsar | short | [Quran in Shorts · Zubair2524](https://www.youtube.com/shorts/srP9YLeLXWw) |
 | Shorts: mengenal Surah Al-Asr | short | [Quran in Shorts · Zubair2524](https://www.youtube.com/shorts/0OUTefkON3s) |
 
-Semua entri menggunakan `license: link-only` dan `streamUrl: null`. Nuraya membuka tautan asli dengan aplikasi/peramban pengguna; tidak mengunduh, menyalin, atau menyematkan ulang video. Hak cipta tetap pada penerbit. `link-only` bukan lisensi redistribusi video. Penyimpanan favorit bersifat lokal; membuka YouTube tidak dicatat sebagai bukti menonton selesai.
+Semua entri tetap menggunakan `license: link-only` dan `streamUrl: null`. Mulai 1.2.0, URL video/Shorts/playlist yang valid dapat dibuka melalui pemutar resmi YouTube IFrame di aplikasi, sesuai izin embed penerbit. Halaman kanal/kursus dan video yang tidak mengizinkan embed tetap memakai sumber asli. Nuraya tidak menyalin atau mengunduh video; `link-only` bukan lisensi redistribusi. Hak cipta tetap pada penerbit. Favorit bersifat lokal; riwayat embed hanya dicatat setelah pemutar melaporkan mulai bermain, bukan sebagai bukti menonton selesai. Rincian integrasi dan batas verifikasi ada di [VIDEO_EMBED.md](VIDEO_EMBED.md).
 
 ## Pengujian
 
