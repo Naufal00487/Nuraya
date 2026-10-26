@@ -1,0 +1,19 @@
+{
+  "sourceModel": "tarteel-ai/whisper-base-ar-quran",
+  "sourceRevision": "5c3c53fdf9272c4f6ee0bee09a1e5a4a615ee25c",
+  "sourceWeightSha256": "ec75894993a4570a237b2b1c19fd8a448f1e8f6e083cfab699574f7be53874fa",
+  "conversion": "GGML f16 with 448 text context; optional Q5_1",
+  "files": [
+    {
+      "file": "nuraya-quran-whisper-base-f16.bin",
+      "bytes": 147951465,
+      "sha256": "0a30efbd25c2464360809accb85d8492d48bce2945939405fb800b8281ff2f3c"
+    },
+    {
+      "file": "nuraya-quran-whisper-base-q5_1.bin",
+      "bytes": 59707625,
+      "sha256": "1de4498dc16fdee2045e67a97d73cda4624017640dbe5ddf809f3130da7c234a"
+    }
+  ],
+  "inferenceValidated": false
+}

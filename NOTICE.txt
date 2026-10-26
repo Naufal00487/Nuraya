@@ -1,0 +1,9 @@
+Planned model integration: Tarteel AI whisper-base-ar-quran
+Source revision: 5c3c53fdf9272c4f6ee0bee09a1e5a4a615ee25c
+https://huggingface.co/tarteel-ai/whisper-base-ar-quran
+The upstream model card declares Apache License 2.0 (included here).
+Based on OpenAI Whisper base; OpenAI Whisper and whisper.cpp runtime/conversion code are MIT licensed.
+Nuraya conversion modifications: pinned checksum verification, restricted tensor-only loading,
+448-token decoder context taken from positional tensors, FP32 preservation for small tensors,
+and optional Q5_1 quantization. Original model is not represented as authored by Nuraya.
+No converted weights have been produced or validated yet; see QURAN_AI_MODEL.md.

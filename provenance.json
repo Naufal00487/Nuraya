@@ -1,0 +1,38 @@
+{
+  "model": "tarteel-ai/whisper-base-ar-quran",
+  "revision": "5c3c53fdf9272c4f6ee0bee09a1e5a4a615ee25c",
+  "licenseDeclaredByModelCard": "Apache-2.0",
+  "weightFile": "pytorch_model.bin",
+  "weightBytes": 290458721,
+  "weightSha256": "ec75894993a4570a237b2b1c19fd8a448f1e8f6e083cfab699574f7be53874fa",
+  "whisperCppRevision": "a8d002cfd879315632a579e73f0148d06959de36",
+  "whisperCppVersion": "v1.7.6",
+  "files": {
+    "README.md": {
+      "sha256": "243246b49329ac0f33f5fa260d7bf60dcefa325542d4aa5bcf9637057e633aed",
+      "bytes": 2678
+    },
+    "config.json": {
+      "sha256": "31e690221f47d7505f9d14c807a241c941aef7815ba1132654f1b7feea2cdbae",
+      "bytes": 1000
+    },
+    "vocab.json": {
+      "sha256": "e2aa043ef015641d363d8288e7c241c85e36a5c761fb303598e0710233344387",
+      "bytes": 1036558
+    },
+    "added_tokens.json": {
+      "sha256": "5687ef031827f4c9fa3e7cbdd7fd915de0d6c7c6416463a28c63cbe1cf99a07a",
+      "bytes": 2108
+    },
+    "tokenizer_config.json": {
+      "sha256": "70e1ec9195ccd4baebf920c7e9f8cdd90f37a2b8aebcf305095c2dff074d1260",
+      "bytes": 827
+    }
+  },
+  "status": "Weights unavailable in this environment: official download redirects to us.aws.cdn.hf.co and the network proxy returns Tunnel 403. No converted model or inference result has been produced.",
+  "melFilters": {
+    "url": "https://raw.githubusercontent.com/openai/whisper/86098128c0b4f24f0e2aa2994de830614b474227/whisper/assets/mel_filters.npz",
+    "bytes": 4271,
+    "sha256": "7450ae70723a5ef9d341e3cee628c7cb0177f36ce42c44b7ed2bf3325f0f6d4c"
+  }
+}
