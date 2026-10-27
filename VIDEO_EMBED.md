@@ -1,13 +1,15 @@
-# Pemutar YouTube dan pencarian video 1.2.1
+# Pemutar YouTube dan pencarian video 1.2.2
 
 Nuraya memakai pemutar resmi **YouTube IFrame Player API** dalam Android WebView. Video tidak diekstrak menjadi MP4, diunduh, disalin, atau diputar melalui API tidak resmi. `license: link-only` pada katalog tetap berarti Nuraya tidak memperoleh izin redistribusi konten; penayangan tertanam mengikuti pengaturan penerbit dan platform YouTube.
+
+Katalog 1.2.2 berisi 4 URL video dan 3 URL playlist berbahasa Indonesia yang diberikan pengguna. Ketujuhnya mempunyai bentuk URL yang didukung embed. Ketersediaan dan izin embed penerbit belum diperiksa langsung dari cloud. Tidak ada Shorts dalam katalog pengganti ini.
 
 ## Alur pengguna
 
 - Pencarian memakai `VideoCatalog.searchWithGuidance`: kalimat kebutuhan belajar, sinonim, salah eja ringan, dan hasil berperingkat dari katalog lokal. Saran topik dapat diketuk; filter tingkat/format/topik tetap tersedia. Materi terkait diberi penjelasan ketika belum ada video khusus yang terverifikasi. Ini bukan pencarian seluruh YouTube.
-- **Shorts** membuka feed vertikal dalam aplikasi; hanya halaman aktif memiliki WebView. Pencarian/filter tetap berlaku, judul dan kontrol berikutnya/sebelumnya berada di luar pemutar. Saat halaman ditinggalkan, pemutar dihancurkan sehingga audio berhenti. Pembatasan video ditampilkan di dalam feed dengan pilihan lewati/coba lagi, tanpa mengharuskan pindah ke YouTube.
+- Implementasi **Shorts** membuka feed vertikal dalam aplikasi; pada katalog 1.2.2 tombol utama disembunyikan karena tidak ada entri Shorts, dan filter Shorts menampilkan keadaan kosong. Bila katalog kembali memiliki Shorts, hanya halaman aktif memiliki WebView. Pencarian/filter tetap berlaku, judul dan kontrol berikutnya/sebelumnya berada di luar pemutar. Saat halaman ditinggalkan, pemutar dihancurkan sehingga audio berhenti. Pembatasan video ditampilkan di dalam feed dengan pilihan lewati/coba lagi, tanpa mengharuskan pindah ke YouTube.
 - Detail video menyediakan **Tonton di aplikasi** untuk URL video, Shorts dan playlist yang valid. Pemutar baru dibuat setelah tombol dipilih. Tombol Putar di aplikasi atau kontrol resmi YouTube memulai video. Membuka Shorts adalah permintaan menonton: aplikasi mencoba pemutaran otomatis pada halaman aktif, dan menampilkan Putar bila YouTube menolaknya.
-- Halaman kanal/kursus seperti `@Arabic101/courses` tidak diklaim sebagai video; ia tetap dibuka melalui **Buka sumber asli**. Tidak ada ID/playlist pengganti yang ditebak.
+- Semua entri katalog saat ini berupa URL video atau playlist. Parser tetap menolak penyematan halaman kanal/kursus tanpa ID yang didukung; tidak ada ID/playlist pengganti yang ditebak.
 - Pemutar mempertahankan kontrol, branding, navigasi resmi, dukungan layar penuh, dan ukuran minimal 220 dp. `rel=0` hanya membatasi rekomendasi sesuai perilaku YouTube, bukan meniadakannya. Ikon/teks/kontrol Nuraya tidak menutupi konten atau iklan pemutar.
 - YouTube tetap membutuhkan internet dan dapat menampilkan iklan atau memproses data pemutaran. Pemberitahuan ini ada di detail. Domain `youtube-nocookie.com` dipakai sebagai host iframe dan cookie pihak ketiga dinonaktifkan di WebView; ini bukan klaim bebas pengumpulan data.
 
