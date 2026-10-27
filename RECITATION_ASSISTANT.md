@@ -52,3 +52,13 @@ Pengenal Android mempunyai timeout percobaan 90 detik dan batas menunggu hasil a
 Hasil build/test final dicatat di `BUILD_VALIDATION.md`, dan hasil inferensi rekaman host di dokumentasi model. Belum ada klaim evaluasi klinis/akademis ketepatan tajwid, pengujian mikrofon HP fisik, atau jaminan semua perangkat bekerja sama cepatnya. Uji host tidak menggantikan pengujian izin, interupsi telepon, pelepasan mikrofon, dan performa inferensi pada HP Android.
 
 Sumber platform: [SpeechRecognizer](https://developer.android.com/reference/android/speech/SpeechRecognizer), [RecognitionListener](https://developer.android.com/reference/android/speech/RecognitionListener), [RecognizerIntent](https://developer.android.com/reference/android/speech/RecognizerIntent), dan [AudioRecord](https://developer.android.com/reference/android/media/AudioRecord). Versi dokumentasi lama dipertahankan di [RECITATION_ASSISTANT_1.1.0.md](RECITATION_ASSISTANT_1.1.0.md).
+
+## Perbaikan mikrofon 1.2.1
+
+Laporan pengguna: layar terlihat merekam tetapi hasil bacaan tidak keluar. APK 1.2.0 menggunakan kernel native tanpa optimasi meskipun tes host memakai Release. Build Android kini memakai `-O3` untuk seluruh kernel/wrapper, tetap menjaga ABI dasar dan tanpa fast-math. Guard `verify-native-optimization.py` memeriksa perintah compiler aktual untuk ketiga ABI dan dijalankan sebelum pengemasan.
+
+Dengan model/input/host yang sama, probe 6,025 detik membutuhkan 77,058 detik tanpa optimasi dan 15,665 detik dengan optimasi; keduanya menghasilkan basmalah yang sama. Ini bukan pengukuran latensi HP atau jaminan real-time.
+
+Sesi baru menampilkan perekaman setelah AudioRecord benar-benar dimulai, memantau frame/level suara, membedakan audio hening dari perangkat yang tidak mengirim data, dan menangani akses mikrofon yang dibisukan Android. Inisialisasi mencoba MIC dan VOICE_RECOGNITION pada 16/48/44,1 kHz; PCM disesuaikan menjadi 16 kHz. Kegagalan setelah inisialisasi tetap menjadi error yang jelas, bukan klaim semua perangkat didukung.
+
+**Cek mikrofon · 5 detik** tidak membutuhkan model AI. Ucapkan beberapa kata untuk melihat indikator suara. Tes ini hanya menyatakan suara masuk, tidak menguji pengenalan kata. Audio berada di memori dan dihapus. Proses AI memiliki indikator waktu, pembatalan dan batas 120 detik per inferensi; hasil kosong atau timeout tidak dianggap bacaan benar. Saat selesai ditekan selama inferensi, hasil tidak dihitung ulang bila sudah mencakup seluruh sampel.

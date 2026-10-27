@@ -1,0 +1,6 @@
+10-27 03:43:13.432  4970  4970 I AndroidJUnitRunner: newApplication com.nuraya.app.NurayaApplication
+10-27 03:43:15.426  4970  4970 W com.nuraya.app: Verification of java.util.List kotlin.collections.CollectionsKt__ReversedViewsKt.asReversedMutable(java.util.List) took 180.905ms (71.86 bytecodes/s) (2424B approximate peak alloc)
+10-27 03:43:16.737   568  4985 E ActivityManager: ANR in com.nuraya.app
+10-27 03:43:16.737   568  4985 E ActivityManager: Reason: Process ProcessRecord{71cd098 4970:com.nuraya.app/u0a148} failed to complete startup
+10-27 03:43:16.777   568  4985 I ActivityManager: Killing 4970:com.nuraya.app/u0a148 (adj 0): bg anr
+10-27 03:43:16.982   568  3206 W ActivityManager: Crash of app com.nuraya.app running instrumentation ComponentInfo{com.nuraya.app.test/androidx.test.runner.AndroidJUnitRunner}

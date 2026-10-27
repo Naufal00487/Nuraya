@@ -1,11 +1,12 @@
-# Pemutar YouTube dan pencarian video 1.2.0
+# Pemutar YouTube dan pencarian video 1.2.1
 
 Nuraya memakai pemutar resmi **YouTube IFrame Player API** dalam Android WebView. Video tidak diekstrak menjadi MP4, diunduh, disalin, atau diputar melalui API tidak resmi. `license: link-only` pada katalog tetap berarti Nuraya tidak memperoleh izin redistribusi konten; penayangan tertanam mengikuti pengaturan penerbit dan platform YouTube.
 
 ## Alur pengguna
 
 - Pencarian memakai `VideoCatalog.searchWithGuidance`: kalimat kebutuhan belajar, sinonim, salah eja ringan, dan hasil berperingkat dari katalog lokal. Saran topik dapat diketuk; filter tingkat/format/topik tetap tersedia. Materi terkait diberi penjelasan ketika belum ada video khusus yang terverifikasi. Ini bukan pencarian seluruh YouTube.
-- Detail video menyediakan **Tonton di aplikasi** untuk URL video, Shorts dan playlist yang valid. Pemutar baru dibuat setelah tombol dipilih, tanpa autoplay. Pengguna menekan tombol putar resmi YouTube; tidak ada koneksi pemutar sebelum itu.
+- **Shorts** membuka feed vertikal dalam aplikasi; hanya halaman aktif memiliki WebView. Pencarian/filter tetap berlaku, judul dan kontrol berikutnya/sebelumnya berada di luar pemutar. Saat halaman ditinggalkan, pemutar dihancurkan sehingga audio berhenti. Pembatasan video ditampilkan di dalam feed dengan pilihan lewati/coba lagi, tanpa mengharuskan pindah ke YouTube.
+- Detail video menyediakan **Tonton di aplikasi** untuk URL video, Shorts dan playlist yang valid. Pemutar baru dibuat setelah tombol dipilih. Tombol Putar di aplikasi atau kontrol resmi YouTube memulai video. Membuka Shorts adalah permintaan menonton: aplikasi mencoba pemutaran otomatis pada halaman aktif, dan menampilkan Putar bila YouTube menolaknya.
 - Halaman kanal/kursus seperti `@Arabic101/courses` tidak diklaim sebagai video; ia tetap dibuka melalui **Buka sumber asli**. Tidak ada ID/playlist pengganti yang ditebak.
 - Pemutar mempertahankan kontrol, branding, navigasi resmi, dukungan layar penuh, dan ukuran minimal 220 dp. `rel=0` hanya membatasi rekomendasi sesuai perilaku YouTube, bukan meniadakannya. Ikon/teks/kontrol Nuraya tidak menutupi konten atau iklan pemutar.
 - YouTube tetap membutuhkan internet dan dapat menampilkan iklan atau memproses data pemutaran. Pemberitahuan ini ada di detail. Domain `youtube-nocookie.com` dipakai sebagai host iframe dan cookie pihak ketiga dinonaktifkan di WebView; ini bukan klaim bebas pengumpulan data.
@@ -31,3 +32,9 @@ Akses YouTube dan dokumentasi Google dibatasi HTTP 403 dari cloud. Upaya eskalas
 - https://developers.google.com/youtube/terms/required-minimum-functionality
 
 Pemutaran nyata, penerimaan origin/Referer, cookie/persetujuan, fullscreen, dan ketersediaan tiap video masih harus diuji pada perangkat dengan WebView terkini dan akses YouTube. Video yang pemiliknya melarang embedding tetap memerlukan sumber asli.
+
+## Perbaikan berdasarkan laporan pengguna 1.2.0
+
+Koneksi IFrame API (`onReady`) tidak lagi dianggap bukti bahwa video sudah siap. Wrapper memasang iframe berukuran viewport, memanggil `cuePlaylist`/`cueVideoById` secara eksplisit, dan menunggu perubahan state media. Pemutar yang berhenti saat memuat menampilkan pesan dan muat ulang; penolakan autoplay menyediakan tombol Putar di aplikasi. Seluruh kontrol resmi tetap terlihat dan tidak ditutup overlay.
+
+Test HTML dijalankan dengan layanan IFrame terkontrol: ini memeriksa ukuran/command/status dan bukan klaim streaming YouTube. Test feed host memakai pemutar terkontrol untuk memeriksa pergantian halaman/disposal. Sentuhan/geser tepat di atas WebView pada tiap vendor Android tetap perlu diuji; tombol berikutnya/sebelumnya dan area judul menyediakan navigasi native. Bukti yang berhasil dijalankan dicatat di BUILD_VALIDATION.md.

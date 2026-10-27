@@ -1,0 +1,5 @@
+--------- beginning of crash
+10-26 16:29:38.779  1088  1193 F libc    : Fatal signal 6 (SIGABRT), code -1 (SI_QUEUE) in tid 1193 (bt_stack_manage), pid 1088 (droid.bluetooth)
+10-26 16:31:02.120  1348  1542 F libc    : Fatal signal 6 (SIGABRT), code -1 (SI_QUEUE) in tid 1542 (bt_stack_manage), pid 1348 (droid.bluetooth)
+10-26 16:32:05.666  1770  1839 F libc    : Fatal signal 6 (SIGABRT), code -1 (SI_QUEUE) in tid 1839 (bt_stack_manage), pid 1770 (droid.bluetooth)
+10-26 16:33:11.150  2026  2106 F libc    : Fatal signal 6 (SIGABRT), code -1 (SI_QUEUE) in tid 2106 (bt_stack_manage), pid 2026 (droid.bluetooth)
