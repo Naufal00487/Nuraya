@@ -1,8 +1,10 @@
 # Pemeriksaan integrasi pembaruan 1.1.0
 
+Arsip versi 1.1.0. Video yang disebut di bawah telah dihapus pada 1.3.0. Perilaku terkini ada di [UPDATE_1.3.0.md](UPDATE_1.3.0.md); hasil arsip ini bukan bukti pengujian ulang versi terbaru.
+
 Dokumen ini mencatat pemeriksaan integrasi fitur belajar, bukan hasil pengujian
 perangkat yang belum dilakukan. Hasil build final dicatat terpisah di
-`BUILD_VALIDATION.md`.
+`BUILD_VALIDATION_1.1.0.md`.
 
 ## Kontrak yang diperiksa
 

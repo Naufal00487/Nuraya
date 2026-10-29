@@ -1,19 +1,19 @@
-# Nuraya 1.2.2 — video belajar berbahasa Indonesia
+# Nuraya 1.3.0
 
-[Unduh APK 1.2.2 — 41,5 MB](Nuraya-1.2.2.apk?raw=1) · [Kode sumber](Nuraya-1.2.2-source.zip?raw=1)
+[Unduh APK Android](Nuraya-1.3.0.apk?raw=1) · [Kode sumber](Nuraya-1.3.0-source.zip?raw=1)
 
-Android 8.0 atau lebih baru. Pasang sebagai pembaruan aplikasi lama; application ID dan sertifikat tetap sama, versionCode naik menjadi 6.
+Android 8.0 atau lebih baru. Pasang sebagai pembaruan; application ID dan sertifikat sama dengan versi sebelumnya, versionCode 7. Data aplikasi tetap dipertahankan.
 
-- Seluruh tautan video lama diganti dengan **7 referensi Indonesia dari pengguna**: 4 video dan 3 playlist. Materi mencakup Ngaji Bareng, Uda Ridwan, Tilawah Qur’an, Seni Tilawatil Qur’an, MQ Tilawatil Anshar, dan tutorial tiga maqam yang nama kanalnya belum diberikan.
-- Jalur **Pemula → Menengah → Lanjutan**: tajwid benar, pengucapan jelas, kelancaran, lalu keindahan suara/maqam. Dua playlist mendukung latihan menengah hingga lanjutan.
-- Pencarian disesuaikan untuk makhraj, sifat huruf, kelancaran, nama maqam, variasi ejaan dan bahasa audio. Pencarian hanya mencakup katalog pilihan ini.
-- Shorts lama dihapus. Daftar pengganti tidak berisi Shorts; video panjang tidak dijadikan Shorts. Entri video lama yang sudah tidak ada di katalog disembunyikan dari Koleksi.
-- Tujuh URL memakai embed resmi YouTube sesuai izin penerbit. Pilih **Tonton di aplikasi**, kemudian Putar. Perbaikan mikrofon/AI dan pemutar dari 1.2.1 dipertahankan.
+- Video dan Shorts dihapus seluruhnya. Navigasi baru: Beranda, Al-Qur’an, Murottal, Ibadah; tulisan dan tombol berlabel lebih besar.
+- Jam, tanggal Hijriah, hitung mundur salat dan arah kiblat. Buka **Ibadah → Lokasi** untuk memilih kota atau memasukkan koordinat/zona waktu.
+- Pilihan membaca per ayat, per kata/tajwid, Latin/tajwid, Indonesia, Madinah, hafalan delapan blok, Tikrar, waqaf/ibtida dan terjemah tematik. Latin Indonesia mencakup 6.236 ayat; warna tajwid diterapkan pada teks Arab.
+- 604 halaman Madinah asli, pembesaran dan pilihan halaman. Halaman 1, 2, 3 dan 604 disertakan; lainnya perlu internet saat pertama dibuka. Madinah/tajwid menyediakan tombol ke teks ayat berwarna.
+- Foto asli delapan qari, dengan inisial untuk qari yang fotonya belum tersedia. Audio, AI bacaan, tafsir, hafalan, kuis, koleksi dan progres tetap tersedia.
 
-**115 tes JVM lulus; lint tanpa error.** APK ditandatangani dan integritas paket diperiksa. Pemutaran YouTube nyata dan mikrofon fisik belum terverifikasi oleh pengembang. Judul, bahasa dan kanal mengikuti rekomendasi pengguna; akses YouTube dari cloud dibatasi HTTP 403. Ketersediaan dan izin embed tetap ditentukan penerbit.
+**Mushaf Bahriyah belum disertakan sebagai PDF bawaan.** Menu Bahriyah membuka PDF edisi milik pengguna di perangkat; berkas tidak diunggah. Hafalan delapan blok dan Tikrar adalah bantuan latihan, bukan reproduksi edisi cetak tertentu. Kalender Hijriah dapat dikoreksi, dan jadwal salat dihitung dari lokasi pilihan pengguna.
 
-[Laporan pengujian](BUILD_VALIDATION.md) · [Katalog dan sumber](VIDEO_SOURCES.md) · [Ringkasan mesin](validation/1.2.2/summary.json) · [SHA-256](SHA256SUMS) · [Metadata sumber](build-info.json)
+[Laporan pengujian](BUILD_VALIDATION.md) · [Perubahan lengkap](UPDATE_1.3.0.md) · [Sumber gambar](MUSHAF_IMAGES.md) · [Sumber foto qari](QARI_PORTRAITS.md) · [SHA-256](SHA256SUMS)
 
-Nuraya gratis; penyusun tidak mengambil keuntungan finansial. Nuraya tidak memasang iklan sendiri, sedangkan YouTube dapat menampilkan iklan platform. Model AI, Quran, tafsir, qari, hafalan/kuis serta data lain dipertahankan. AI memperkirakan kata yang dibaca, bukan penilaian tajwid/makhraj tervalidasi.
+Build, tes host, lint dan integritas APK diperiksa. Mikrofon, kompas dan pembuka PDF belum diuji di HP fisik pada versi ini. AI memperkirakan kata bacaan dan bisa keliru; bukan penilaian tajwid/makhraj tervalidasi. Nuraya gratis dan penyusun tidak mengambil keuntungan finansial dari aplikasi.
 
-Versi terdahulu tetap tersedia: [1.2.1](Nuraya-1.2.1.apk?raw=1), [1.2.0](Nuraya-1.2.0.apk?raw=1), [1.1.0](Nuraya-1.1.0.apk?raw=1), [1.0.1](Nuraya-1.0.1.apk?raw=1).
+Versi terdahulu tetap tersedia: [1.2.2](Nuraya-1.2.2.apk?raw=1), [1.2.1](Nuraya-1.2.1.apk?raw=1), [1.2.0](Nuraya-1.2.0.apk?raw=1), [1.1.0](Nuraya-1.1.0.apk?raw=1), [1.0.1](Nuraya-1.0.1.apk?raw=1).
