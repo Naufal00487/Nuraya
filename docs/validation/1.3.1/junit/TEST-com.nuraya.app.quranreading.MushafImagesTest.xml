@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.quranreading.MushafImagesTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-11-05T06:39:23" hostname="484a6eba10ca" time="0.552">
+  <properties/>
+  <testcase name="allCanonicalVersesHaveOneValidMadinahPageAndEveryPageIsAddressable" classname="com.nuraya.app.quranreading.MushafImagesTest" time="0.11"/>
+  <testcase name="bundledOriginalPagesMatchPinnedTreeAndCorruptionIsRejected" classname="com.nuraya.app.quranreading.MushafImagesTest" time="0.442"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

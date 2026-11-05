@@ -1,0 +1,33 @@
+Nuraya study data, snapshot 24 October 2026
+
+Arabic Quran text: Tanzil Project Uthmani. The separate existing Tanzil notice
+applies. Quran text is preserved verbatim; an unnumbered opening is displayed
+separately according to the established reader policy.
+
+Tajwid annotations: Colin P. Fair, quran-tajweed (Hafs), commit
+496f71cd191da00fa2a37ded79dbbddb033bb0ad.
+Source: https://github.com/cpfair/quran-tajweed
+License: Creative Commons Attribution 4.0 International.
+https://creativecommons.org/licenses/by/4.0/
+Adaptation: source offsets remapped only across identical text segments to the
+reader's existing edition and converted to UTF-16. 34 ranges crossing textual
+changes were omitted; no rule was fabricated. These annotations are a study aid.
+
+Indonesian and English word-by-word meanings: Quran.com developer API v4.
+https://api.quran.com/api/v4/
+https://quran.com/terms-and-conditions
+Provided for free, noncommercial informational learning. Quran.com and respective
+content rightsholders retain their rights. No MIT, CC or public-domain license for
+these meanings is asserted. Quran.com word positions are retained; displayed
+mapped Arabic words are exact portions of the unchanged Tanzil reader text.
+
+Tafsir: Kementerian Agama RI, Indonesian, supplied by EQuran.id API v2.
+https://equran.id/apidev/v2
+https://quran.kemenag.go.id
+Complete source tafsir text and paragraph breaks are retained for every verse.
+Rights remain with the respective source/rightsholders; Nuraya does not claim
+ownership or an invented open-source text license.
+
+All study-source snapshots, notices and hashes are included with the source
+release under docs/sources/study. Nuraya is free and ad-free; its creators do
+not earn financial profit from this application.

@@ -1,0 +1,1131 @@
+{
+  "schemaVersion": 1,
+  "metadata": {
+    "provider": "Islamic Network / Al Quran Cloud",
+    "manifestUrl": "https://cdn.islamic.network/quran/info/by-surah/info.json",
+    "manifestSha256": "6f183510806ab226e3df8be6675cd222e35209123f5153f51aa1b8b08005e25a",
+    "verifiedDate": "2026-10-24",
+    "bitrateKbps": 128,
+    "termsUrl": "https://alquran.cloud/terms-and-conditions",
+    "rights": "Noncommercial personal and educational streaming/downloads; copyright remains with reciters and rightsholders. Recordings are not bundled in the APK.",
+    "validationScope": "All selected editions have 114 surah files in the pinned provider manifest and a successful complete Al-Fatihah HTTP download/host MP3 decode. Seven new editions failing the sample and recheck are excluded. Device playback and all remaining files are not verified.",
+    "namesUrl": "https://api.alquran.cloud/v1/edition?format=audio",
+    "namesSha256": "8f53227df80805a0d5592c8db0ef41adf9b6d416cdc196c840b2c991def12c58",
+    "countMeaning": "Recording editions; multiple styles/riwayat can belong to the same reciter. Only editions named by the provider with all 114 surah files are included.",
+    "excludedSampleFailures": [
+      "ar.abdulbarimohammed",
+      "ar.abdulmohsenalharthy",
+      "ar.ezzatsabri",
+      "ar.khalifaaltunaiji",
+      "ar.mohamedabdelhakimsaadalabdullah",
+      "ar.saberabdulhakam",
+      "ar.yasseralmazroyee"
+    ]
+  },
+  "qaris": [
+    {
+      "id": "ar.alafasy",
+      "name": "Mishary Rashid Alafasy",
+      "description": "Murattal · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.abdulbasitmurattal",
+      "name": "Abdul Basit Abdus Samad",
+      "description": "Murattal · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.abdulbasitmurattal/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.saudalshuraim",
+      "name": "Saud Al-Shuraim",
+      "description": "Murattal · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.saudalshuraim/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.muhammadsiddiqalminshawimujawwad",
+      "name": "Muhammad Siddiq Al-Minshawi",
+      "description": "Mujawwad · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.muhammadsiddiqalminshawimujawwad/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.ahmedalajmi",
+      "name": "Ahmed Al-Ajmi",
+      "description": "Murattal · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.ahmedalajmi/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.abdullahbasfar",
+      "name": "Abdullah Basfar",
+      "description": "Murattal · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.abdullahbasfar/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.aliabdurrahmanalhuthaify",
+      "name": "Ali Abdurrahman Al-Hudhaify",
+      "description": "Murattal · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.aliabdurrahmanalhuthaify/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.faresabbad",
+      "name": "Fares Abbad",
+      "description": "Murattal · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.faresabbad/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.muhammadayyub",
+      "name": "Muhammad Ayyub",
+      "description": "Murattal · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.muhammadayyub/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.nasseralqatami",
+      "name": "Nasser Al-Qatami",
+      "description": "Murattal · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.nasseralqatami/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.yasseraldossari",
+      "name": "Yasser Al-Dossari",
+      "description": "Murattal · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.yasseraldossari/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.haniarrifai",
+      "name": "Hani Ar-Rifai",
+      "description": "Murattal · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.haniarrifai/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.abdulazizazzahrani",
+      "name": "Abdul Aziz az-Zahrani",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.abdulazizazzahrani/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.abdulbariaththubaity",
+      "name": "Abdul Bari ath-Thubaity",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.abdulbariaththubaity/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.abdulbasitmujawwad",
+      "name": "Abdul Basit Abdus-Samad (Mujawwad)",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.abdulbasitmujawwad/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.abdulkareemalhazmi",
+      "name": "Abdul Kareem al-Hazmi",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.abdulkareemalhazmi/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.abdullahalmatrood",
+      "name": "Abdullah al-Matrood",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.abdullahalmatrood/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.abdullahawadaljuhani",
+      "name": "Abdullah Awad al-Juhani",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.abdullahawadaljuhani/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.abdullahkhayat",
+      "name": "Abdullah Khayat",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.abdullahkhayat/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.abdullahkhulaifi",
+      "name": "Abdullah al-Khulaifi",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.abdullahkhulaifi/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.abdulmunimabdulmubdi",
+      "name": "Abdul Munim Abdul Mubdi",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.abdulmunimabdulmubdi/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.abdulwadoodhaneef",
+      "name": "Abdul Wadood Haneef",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.abdulwadoodhaneef/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.abdurrasheedsufiabialhaarithanalkasaaee",
+      "name": "Abdur-Rasheed Sufi (Abul-Harith from al-Kisa'i)",
+      "description": "Qiraat lain · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.abdurrasheedsufiabialhaarithanalkasaaee/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.abdurrasheedsufiaddoorianabiamr",
+      "name": "Abdur-Rasheed Sufi (ad-Doori from Abu Amr)",
+      "description": "Qiraat lain · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.abdurrasheedsufiaddoorianabiamr/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.abdurrasheedsufishubahanasim",
+      "name": "Abdur-Rasheed Sufi (Shu'bah from Asim)",
+      "description": "Qiraat lain · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.abdurrasheedsufishubahanasim/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.abdurrasheedsufisoosi",
+      "name": "Abdur-Rasheed Sufi (as-Soosi)",
+      "description": "Qiraat lain · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.abdurrasheedsufisoosi/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.abuabdullahmuniraltounsi",
+      "name": "Abu Abdullah Munir at-Tounsi",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.abuabdullahmuniraltounsi/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.abubakraldhabi",
+      "name": "Abu Bakr adh-Dhabi",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.abubakraldhabi/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.adilkalbani",
+      "name": "Adil al-Kalbani",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.adilkalbani/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.ahmadalhawashy",
+      "name": "Ahmad al-Hawashy",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.ahmadalhawashy/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.ahmadkhaderaltarabulsi",
+      "name": "Ahmad Khader at-Tarabulsi",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.ahmadkhaderaltarabulsi/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.ahmadsulaiman",
+      "name": "Ahmad Sulaiman",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.ahmadsulaiman/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.ahmedalhammad",
+      "name": "Ahmed al-Hammad",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.ahmedalhammad/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.ahmedalmisbahi",
+      "name": "Ahmed al-Misbahi",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.ahmedalmisbahi/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.ahmedamir",
+      "name": "Ahmed Amir",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.ahmedamir/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.ahmedmohamedsalama",
+      "name": "Ahmed Mohamed Salama",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.ahmedmohamedsalama/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.ahmedsaber",
+      "name": "Ahmed Saber",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.ahmedsaber/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.alashryomran",
+      "name": "al-Ashry Omran",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.alashryomran/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.alfatehmuhammadzubair",
+      "name": "al-Fateh Muhammad Zubair",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.alfatehmuhammadzubair/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.alhusaynialazazi",
+      "name": "al-Husayni al-Azazi",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.alhusaynialazazi/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.alhusaynialazazichildren",
+      "name": "al-Husayni al-Azazi (with children)",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.alhusaynialazazichildren/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.aliabdurrahmanalhuthaifyqaloon",
+      "name": "Ali Abdur-Rahman al-Huthaify (Qaloon)",
+      "description": "Riwayat Qaloon · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.aliabdurrahmanalhuthaifyqaloon/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.alihajjajsouissi",
+      "name": "Ali Hajjaj Souissi",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.alihajjajsouissi/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.alzainmohamedahmed",
+      "name": "al-Zain Mohamed Ahmed",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.alzainmohamedahmed/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.aymanswed",
+      "name": "Ayman Swed",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.aymanswed/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.azizalili",
+      "name": "Aziz Alili",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.azizalili/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.basselabdulrahmanraoui",
+      "name": "Bassel Abdul-Rahman ar-Raoui",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.basselabdulrahmanraoui/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.benkirane",
+      "name": "Benkirane",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.benkirane/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.darwishfarajdarwishalattar",
+      "name": "Darwish Faraj Darwish al-Attar",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.darwishfarajdarwishalattar/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.emadalmansary",
+      "name": "Emad al-Mansary",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.emadalmansary/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.fouadalkhamiri",
+      "name": "Fouad al-Khamiri",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.fouadalkhamiri/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.hamadsinan",
+      "name": "Hamad Sinan",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.hamadsinan/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.hamdyalsayedtolbasaad",
+      "name": "Hamdy al-Sayed Tolba Saad",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.hamdyalsayedtolbasaad/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.hasanhashem",
+      "name": "Hasan Hashem",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.hasanhashem/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.hassansaleh",
+      "name": "Hassan Saleh",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.hassansaleh/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.hatemfarid",
+      "name": "Hatem Farid",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.hatemfarid/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.ibrahimalakhdar",
+      "name": "Ibrahim al-Akhdar",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.ibrahimalakhdar/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.ibrahimaldossari",
+      "name": "Ibrahim ad-Dossari",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.ibrahimaldossari/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.ibrahimaljormy",
+      "name": "Ibrahim al-Jormy",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.ibrahimaljormy/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.ilhantok",
+      "name": "Ilhan Tok",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.ilhantok/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.imadzuhairhafez",
+      "name": "Imad Zuhair Hafez",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.imadzuhairhafez/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.jamaanalosaimi",
+      "name": "Jamaan al-Osaimi",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.jamaanalosaimi/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.jamalshakerabdullah",
+      "name": "Jamal Shaker Abdullah",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.jamalshakerabdullah/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.jazzaalswaileh",
+      "name": "Jazza al-Swaileh",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.jazzaalswaileh/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.kamel",
+      "name": "Kamel",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.kamel/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.khaledalqahtani",
+      "name": "Khaled al-Qahtani",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.khaledalqahtani/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.khaledbarakat",
+      "name": "Khaled Barakat",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.khaledbarakat/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.khalidabdulkafi",
+      "name": "Khalid Abdul-Kafi",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.khalidabdulkafi/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.khalidaljalil",
+      "name": "Khalid al-Jalil",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.khalidaljalil/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.khalidalmohanna",
+      "name": "Khalid al-Mohanna",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.khalidalmohanna/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.laayounelkouchi",
+      "name": "Laayoun el-Kouchi",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.laayounelkouchi/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.mahershakhashiro",
+      "name": "Maher Shakhashiro",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.mahershakhashiro/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.mahmoodalrifai",
+      "name": "Mahmood al-Rifai",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.mahmoodalrifai/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.mahmoudalialbanna",
+      "name": "Mahmoud Ali al-Banna",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.mahmoudalialbanna/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.mahmoudelsheimy",
+      "name": "Mahmoud el-Sheimy",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.mahmoudelsheimy/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.mahmoudsaaddarouich",
+      "name": "Mahmoud Saad Darouich",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.mahmoudsaaddarouich/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.mahmoudsayedeltayeb",
+      "name": "Mahmoud Sayed el-Tayeb",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.mahmoudsayedeltayeb/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.misharyrashidalafasy",
+      "name": "Mishary Rashid Alafasy",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.misharyrashidalafasy/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.moeedhalharthi",
+      "name": "Moeedh al-Harthi",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.moeedhalharthi/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.mohamedabdelaziz",
+      "name": "Mohamed Abdel-Aziz",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.mohamedabdelaziz/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.mohamedaljaberyalheyani",
+      "name": "Mohamed al-Jabery al-Heyani",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.mohamedaljaberyalheyani/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.mohamedalmohisni",
+      "name": "Mohamed al-Mohisni",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.mohamedalmohisni/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.mohamedelkantaoui",
+      "name": "Mohamed el-Kantaoui",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.mohamedelkantaoui/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.mohamedhassan",
+      "name": "Mohamed Hassan",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.mohamedhassan/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.mohamedmaabad",
+      "name": "Mohamed Maabad",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.mohamedmaabad/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.mohamedosmankhan",
+      "name": "Mohamed Osman Khan",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.mohamedosmankhan/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.mohamedshaabanabuqarn",
+      "name": "Mohamed Shaaban Abu Qarn",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.mohamedshaabanabuqarn/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.mohamedtablawi",
+      "name": "Mohamed at-Tablawi",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.mohamedtablawi/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.mohammadismaeelalmuqaddim",
+      "name": "Mohammad Ismaeel al-Muqaddim",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.mohammadismaeelalmuqaddim/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.mohammadrachadalshareef",
+      "name": "Mohammad Rachad al-Shareef",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.mohammadrachadalshareef/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.mohammedbinsalehabuzaid",
+      "name": "Mohammed bin Saleh Abu Zaid",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.mohammedbinsalehabuzaid/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.muftahalsaltany",
+      "name": "Muftah al-Saltany",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.muftahalsaltany/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.muhammadabdulkareem",
+      "name": "Muhammad Abdul-Kareem",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.muhammadabdulkareem/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.muhammadalaalimaldokali",
+      "name": "Muhammad al-Aalim ad-Dokali",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.muhammadalaalimaldokali/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.muhammadalluhaidan",
+      "name": "Muhammad al-Luhaidan",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.muhammadalluhaidan/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.muhammadalmehysni",
+      "name": "Muhammad al-Mehysni",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.muhammadalmehysni/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.muhammadalsubayyil",
+      "name": "Muhammad as-Subayyil",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.muhammadalsubayyil/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.muhammadanwarshahat",
+      "name": "Muhammad Anwar Shahat",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.muhammadanwarshahat/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.muhammadsalehalimshah",
+      "name": "Muhammad Saleh Alim Shah",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.muhammadsalehalimshah/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.muhammadsulaimanpatel",
+      "name": "Muhammad Sulaiman Patel",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.muhammadsulaimanpatel/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.musabilal",
+      "name": "Musa Bilal",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.musabilal/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.mustafaallahouni",
+      "name": "Mustafa al-Lahouni",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.mustafaallahouni/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.mustafaismail",
+      "name": "Mustafa Ismail",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.mustafaismail/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.mustafaraadalazzawi",
+      "name": "Mustafa Raad al-Azzawi",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.mustafaraadalazzawi/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.mustaphagharbi",
+      "name": "Mustapha Gharbi",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.mustaphagharbi/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.nabilarrifai",
+      "name": "Nabil ar-Rifai",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.nabilarrifai/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.neamahalhassan",
+      "name": "Neamah al-Hassan",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.neamahalhassan/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.obeikan",
+      "name": "al-Obeikan",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.obeikan/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.omaralkazabri",
+      "name": "Omar al-Kazabri",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.omaralkazabri/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.osamabinalialghanim",
+      "name": "Osama bin Ali al-Ghanim",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.osamabinalialghanim/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.rachidbelalia",
+      "name": "Rachid Belalia",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.rachidbelalia/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.sadaqatali",
+      "name": "Sadaqat Ali",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.sadaqatali/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.sahlyasin",
+      "name": "Sahl Yasin",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.sahlyasin/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.saidalshaalan",
+      "name": "Said ash-Shaalan",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.saidalshaalan/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.salahalbudair",
+      "name": "Salah al-Budair",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.salahalbudair/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.salahalhashem",
+      "name": "Salah al-Hashem",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.salahalhashem/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.salahbaothman",
+      "name": "Salah Ba-Othman",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.salahbaothman/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.samirbelaachya",
+      "name": "Samir Belaachya",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.samirbelaachya/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.sayedramadan",
+      "name": "Sayed Ramadan",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.sayedramadan/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.shahriarparhizgar",
+      "name": "Shahriar Parhizgar",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.shahriarparhizgar/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.tamerislam",
+      "name": "Tamer Islam",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.tamerislam/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.tareqabdulganidaawob",
+      "name": "Tareq Abdul-Gani Daawob",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.tareqabdulganidaawob/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.tawfeeqassayegh",
+      "name": "Tawfeeq as-Sayegh",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.tawfeeqassayegh/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.turkiebeidalmarri",
+      "name": "Turki Ebeid al-Marri",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.turkiebeidalmarri/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.waeldesouky",
+      "name": "Wael ad-Desouky",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.waeldesouky/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.waelradwanqureshi",
+      "name": "Wael Radwan Qureshi",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.waelradwanqureshi/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.waleedidreesalmaneese",
+      "name": "Waleed Idrees al-Maneese",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.waleedidreesalmaneese/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.waleednaehi",
+      "name": "Waleed an-Naehi",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.waleednaehi/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.waleedsamiraliabdulmajidsorour",
+      "name": "Waleed Samir Ali Abdul-Majid Sorour",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.waleedsamiraliabdulmajidsorour/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.walidalshatti",
+      "name": "Walid ash-Shatti",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.walidalshatti/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.walidfathibashta",
+      "name": "Walid Fathi Bashta",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.walidfathibashta/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.yahyahawwa",
+      "name": "Yahya Hawwa",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.yahyahawwa/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.yassenaljazairi",
+      "name": "Yassen al-Jazairi",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.yassenaljazairi/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.yasserqureshi",
+      "name": "Yasser Qureshi",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.yasserqureshi/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.yassersalama",
+      "name": "Yasser Salama",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.yassersalama/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.yassersarhaneldeeb",
+      "name": "Yasser Sarhan el-Deeb",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.yassersarhaneldeeb/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.yousufalshoaey",
+      "name": "Yousuf ash-Shoaey",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.yousufalshoaey/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.yousufbinnoahahmad",
+      "name": "Yousuf bin Noah Ahmad",
+      "description": "114 surah · 128 kbps",
+      "sourceUrl": "https://alquran.cloud/cdn",
+      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.yousufbinnoahahmad/",
+      "manifestSurahCount": 114
+    }
+  ]
+}

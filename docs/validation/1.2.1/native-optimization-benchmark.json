@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-10-26T16:24:29.367353+00:00",
+  "scope": "Same host CPU, JNI wrapper, model, input, 4 worker threads; Debug builds differ only O0/O3. Not an Android or phone latency benchmark. May be affected by shared-host load.",
+  "input": {
+    "file": "verse-1-1-complete.pcm",
+    "bytes": 385600,
+    "sha256": "ae3d146725f4d43d2dae1dc52ffae5438e487d35b0dc0635ae21e4f9a12706a4",
+    "durationSeconds": 6.025
+  },
+  "modelSha256": "1de4498dc16fdee2045e67a97d73cda4624017640dbe5ddf809f3130da7c234a",
+  "jniSourceSha256": "f520993f0718415239ac7dcbf17e964e01a2a222c8f373cd84a2864b0c0e7dc8",
+  "runs": [
+    {
+      "label": "unoptimized",
+      "flags": "-g -O0",
+      "nativeLibrarySha256": "28d0ec581f54f6e446f4d3b7e9df8b583c455cf7961cf7120819ee55d52dcffc",
+      "timeoutSeconds": 120,
+      "exitCode": 0,
+      "output": "PROBE\tverse-1-1-complete.pcm\t77.058\tبِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ",
+      "processSeconds": 77.473,
+      "timedOut": false,
+      "inferenceSeconds": 77.058,
+      "transcript": "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ"
+    },
+    {
+      "label": "optimized",
+      "flags": "-g -O3",
+      "nativeLibrarySha256": "b36199e494e898bef964542997f042e516d7264753b983593e456c26adff0e21",
+      "timeoutSeconds": 120,
+      "exitCode": 0,
+      "output": "PROBE\tverse-1-1-complete.pcm\t15.665\tبِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ",
+      "processSeconds": 15.853,
+      "timedOut": false,
+      "inferenceSeconds": 15.665,
+      "transcript": "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ"
+    }
+  ],
+  "unoptimizedOverOptimizedRatio": 4.92
+}

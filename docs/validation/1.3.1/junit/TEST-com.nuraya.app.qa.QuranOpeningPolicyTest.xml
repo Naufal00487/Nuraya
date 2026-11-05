@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.qa.QuranOpeningPolicyTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-05T06:39:13" hostname="484a6eba10ca" time="0.905">
+  <properties/>
+  <testcase name="all114OpeningsKeepExactSourceAndOnly112HaveUnnumberedIntros" classname="com.nuraya.app.qa.QuranOpeningPolicyTest" time="0.262"/>
+  <testcase name="alreadySeparatedTextAndUnknownVariantsAreNeverGuessed" classname="com.nuraya.app.qa.QuranOpeningPolicyTest" time="0.14"/>
+  <testcase name="exactSourceDiacriticsAtTinAndQadrArePreserved" classname="com.nuraya.app.qa.QuranOpeningPolicyTest" time="0.151"/>
+  <testcase name="everyOtherAyahIncludingNaml30IsUntouched" classname="com.nuraya.app.qa.QuranOpeningPolicyTest" time="0.124"/>
+  <testcase name="fatihaBasmalahRemainsNumberedVerseOneAndTawbahHasNoIntro" classname="com.nuraya.app.qa.QuranOpeningPolicyTest" time="0.119"/>
+  <testcase name="knownFirstAyatAreTheActualVerses" classname="com.nuraya.app.qa.QuranOpeningPolicyTest" time="0.109"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

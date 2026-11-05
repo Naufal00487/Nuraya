@@ -1,0 +1,39 @@
+[
+  {
+    "page": 3,
+    "url": "https://raw.githubusercontent.com/GovarJabbar/Quran-PNG/b189391148dfb4d7b44e7de40fe2cf942e7c84ac/003.png",
+    "httpStatus": 200,
+    "bytes": 4350701,
+    "width": 2600,
+    "height": 4206,
+    "gitBlobSha1": "094402fda76ba9d6c7bc738949f3d61855ff1375",
+    "status": "rejected: corrupted source PNG background; replaced with original JPG"
+  },
+  {
+    "page": 100,
+    "url": "https://raw.githubusercontent.com/GovarJabbar/Quran-PNG/b189391148dfb4d7b44e7de40fe2cf942e7c84ac/100.png",
+    "httpStatus": 200,
+    "bytes": 412754,
+    "width": 2600,
+    "height": 4206,
+    "gitBlobSha1": "8f7541489e58484ae8fd5deb50d7e672776197db"
+  },
+  {
+    "page": 302,
+    "url": "https://raw.githubusercontent.com/GovarJabbar/Quran-PNG/b189391148dfb4d7b44e7de40fe2cf942e7c84ac/302.png",
+    "httpStatus": 200,
+    "bytes": 407271,
+    "width": 2600,
+    "height": 4206,
+    "gitBlobSha1": "70a56a691b769f8521649bd2afdbb34b0efada94"
+  },
+  {
+    "page": 600,
+    "url": "https://raw.githubusercontent.com/GovarJabbar/Quran-PNG/b189391148dfb4d7b44e7de40fe2cf942e7c84ac/600.png",
+    "httpStatus": 200,
+    "bytes": 335566,
+    "width": 2600,
+    "height": 4206,
+    "gitBlobSha1": "01a27b4318e7f63deca20558426ad05721a0e8fd"
+  }
+]

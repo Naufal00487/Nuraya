@@ -1,0 +1,330 @@
+{
+  "versionName": "1.2.0",
+  "versionCode": 4,
+  "checkedAt": "2026-10-26T15:51:19.757238+00:00",
+  "gradleCommand": "bash scripts/gradle.sh assembleDebug testDebugUnitTest lintDebug assembleDebugAndroidTest --continue",
+  "gradleResult": "BUILD SUCCESSFUL",
+  "hostJvm": {
+    "totals": {
+      "tests": 105,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "suites": [
+      {
+        "name": "com.nuraya.app.learning.ContentPolicyTest",
+        "tests": "2",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-26T15:48:48",
+        "hostname": "92eac9c7989a",
+        "time": "0.042"
+      },
+      {
+        "name": "com.nuraya.app.learning.LearningValidationTest",
+        "tests": "6",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-26T15:48:48",
+        "hostname": "92eac9c7989a",
+        "time": "3.897"
+      },
+      {
+        "name": "com.nuraya.app.learning.LocalLearningRepositoryTest",
+        "tests": "6",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-26T15:48:52",
+        "hostname": "92eac9c7989a",
+        "time": "2.311"
+      },
+      {
+        "name": "com.nuraya.app.learning.VideoCatalogueTest",
+        "tests": "3",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-26T15:48:55",
+        "hostname": "92eac9c7989a",
+        "time": "0.256"
+      },
+      {
+        "name": "com.nuraya.app.learning.VideoSmartSearchTest",
+        "tests": "8",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-26T15:48:55",
+        "hostname": "92eac9c7989a",
+        "time": "0.548"
+      },
+      {
+        "name": "com.nuraya.app.learning.YouTubeEmbedTest",
+        "tests": "4",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-26T15:48:55",
+        "hostname": "92eac9c7989a",
+        "time": "0.026"
+      },
+      {
+        "name": "com.nuraya.app.media.DownloadSafetyTest",
+        "tests": "5",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-26T15:48:55",
+        "hostname": "92eac9c7989a",
+        "time": "0.003"
+      },
+      {
+        "name": "com.nuraya.app.media.VerseAudioCatalogTest",
+        "tests": "6",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-26T15:48:55",
+        "hostname": "92eac9c7989a",
+        "time": "0.427"
+      },
+      {
+        "name": "com.nuraya.app.qa.AiRecitationEntryPresentationTest",
+        "tests": "1",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-26T15:48:56",
+        "hostname": "92eac9c7989a",
+        "time": "7.978"
+      },
+      {
+        "name": "com.nuraya.app.qa.LocalLearningPresentationTest",
+        "tests": "1",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-26T15:49:04",
+        "hostname": "92eac9c7989a",
+        "time": "1.316"
+      },
+      {
+        "name": "com.nuraya.app.qa.QaLocalPersistenceTest",
+        "tests": "4",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-26T15:49:05",
+        "hostname": "92eac9c7989a",
+        "time": "3.006"
+      },
+      {
+        "name": "com.nuraya.app.qa.QaQuranRepositoryTest",
+        "tests": "6",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-26T15:49:08",
+        "hostname": "92eac9c7989a",
+        "time": "1.049"
+      },
+      {
+        "name": "com.nuraya.app.qa.QuranOpeningPolicyTest",
+        "tests": "6",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-26T15:49:09",
+        "hostname": "92eac9c7989a",
+        "time": "0.613"
+      },
+      {
+        "name": "com.nuraya.app.qa.QuranReaderPresentationTest",
+        "tests": "5",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-26T15:49:10",
+        "hostname": "92eac9c7989a",
+        "time": "1.429"
+      },
+      {
+        "name": "com.nuraya.app.qa.QuranRecitationPresentationTest",
+        "tests": "4",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-26T15:49:11",
+        "hostname": "92eac9c7989a",
+        "time": "1.561"
+      },
+      {
+        "name": "com.nuraya.app.qa.StudyFeaturePresentationTest",
+        "tests": "5",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-26T15:49:13",
+        "hostname": "92eac9c7989a",
+        "time": "2.113"
+      },
+      {
+        "name": "com.nuraya.app.qa.StudyIntegrationTest",
+        "tests": "7",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-26T15:49:15",
+        "hostname": "92eac9c7989a",
+        "time": "1.002"
+      },
+      {
+        "name": "com.nuraya.app.recitation.LocalQuranCaptureTest",
+        "tests": "4",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-26T15:49:16",
+        "hostname": "92eac9c7989a",
+        "time": "0.038"
+      },
+      {
+        "name": "com.nuraya.app.recitation.LocalQuranSessionLifecycleTest",
+        "tests": "2",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-26T15:49:16",
+        "hostname": "92eac9c7989a",
+        "time": "0.041"
+      },
+      {
+        "name": "com.nuraya.app.recitation.QuranModelStoreTest",
+        "tests": "4",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-26T15:49:16",
+        "hostname": "92eac9c7989a",
+        "time": "0.119"
+      },
+      {
+        "name": "com.nuraya.app.recitation.RecitationMatcherTest",
+        "tests": "11",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-26T15:49:16",
+        "hostname": "92eac9c7989a",
+        "time": "0.008"
+      },
+      {
+        "name": "com.nuraya.app.study.PracticeRepositoryTest",
+        "tests": "5",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-26T15:49:16",
+        "hostname": "92eac9c7989a",
+        "time": "0.24"
+      }
+    ]
+  },
+  "pythonTests": {
+    "quranOpenings": 8,
+    "studyMapping": 5,
+    "optionalBackend": 8,
+    "failures": 0
+  },
+  "offlineVerifiersPassed": [
+    "quran",
+    "study",
+    "audioTiming",
+    "learningIndex"
+  ],
+  "lint": {
+    "Warning": 21
+  },
+  "nativeJniChecksPassed": 7,
+  "modelControlledProbes": 4,
+  "deviceTestsExecuted": false,
+  "signingCertificateSha256": "e2aa60317632bc6aea65f83c2247e54111941d0e0725875a2c9db3ffb93ac264",
+  "signatureVerified": true,
+  "zip16KbAlignmentVerified": true,
+  "nativeLibraries": [
+    {
+      "entry": "lib/arm64-v8a/libandroidx.graphics.path.so",
+      "loadSegmentAlignments": [
+        16384,
+        16384,
+        16384
+      ]
+    },
+    {
+      "entry": "lib/arm64-v8a/libdatastore_shared_counter.so",
+      "loadSegmentAlignments": [
+        16384,
+        16384,
+        16384
+      ]
+    },
+    {
+      "entry": "lib/arm64-v8a/libnuraya_quran_ai.so",
+      "loadSegmentAlignments": [
+        16384,
+        16384,
+        16384
+      ]
+    },
+    {
+      "entry": "lib/armeabi-v7a/libandroidx.graphics.path.so",
+      "loadSegmentAlignments": [
+        16384,
+        16384,
+        16384
+      ]
+    },
+    {
+      "entry": "lib/armeabi-v7a/libdatastore_shared_counter.so",
+      "loadSegmentAlignments": [
+        16384,
+        16384
+      ]
+    },
+    {
+      "entry": "lib/armeabi-v7a/libnuraya_quran_ai.so",
+      "loadSegmentAlignments": [
+        16384,
+        16384,
+        16384
+      ]
+    },
+    {
+      "entry": "lib/x86_64/libandroidx.graphics.path.so",
+      "loadSegmentAlignments": [
+        16384,
+        16384,
+        16384
+      ]
+    },
+    {
+      "entry": "lib/x86_64/libdatastore_shared_counter.so",
+      "loadSegmentAlignments": [
+        16384,
+        16384
+      ]
+    },
+    {
+      "entry": "lib/x86_64/libnuraya_quran_ai.so",
+      "loadSegmentAlignments": [
+        16384,
+        16384,
+        16384
+      ]
+    }
+  ]
+}

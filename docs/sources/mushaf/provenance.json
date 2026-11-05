@@ -1,0 +1,38 @@
+{
+  "checkedAt": "2026-10-28",
+  "mappingSource": "https://api.alquran.cloud/v1/quran/quran-uthmani",
+  "mappingResponseSha256": "0df03e1d6da4fc8138208fec1688f2b416f0dd4ebbd514179f3e5e0fbaf4195f",
+  "mappingEntries": 6236,
+  "mappingPages": 604,
+  "imageRepository": "https://github.com/GovarJabbar/Quran-PNG",
+  "imageCommit": "b189391148dfb4d7b44e7de40fe2cf942e7c84ac",
+  "imagePathsVerifiedInTree": 604,
+  "sampledImageChecks": [
+    {
+      "page": 1,
+      "bytes": 106592,
+      "width": 2600,
+      "height": 4206,
+      "sha256": "37174a3dea463c0970a8261ef1cf37ada7d8616dfbb20d9bc5a67f843e810ac5"
+    },
+    {
+      "page": 2,
+      "bytes": 120535,
+      "width": 2600,
+      "height": 4206,
+      "sha256": "9ab4f28b8f8c186b5f6c3d9006158a2896278da59e70a52d84f7572b099a87df"
+    },
+    {
+      "page": 604,
+      "bytes": 268516,
+      "width": 2600,
+      "height": 4206,
+      "sha256": "b92122b94043b441275bcca3e643514f8986704f4c5c92923a55ffa28d8ac4e4"
+    }
+  ],
+  "limitations": [
+    "Only three source images visually/byte inspected; all604paths confirmed in immutable repository tree.",
+    "These are source-generated glyph pages, not photographs of a physical printed book.",
+    "Bahriyah exact edition images or page map not verified."
+  ]
+}

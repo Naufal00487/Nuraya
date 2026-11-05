@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "metadata": {
+    "manifestUrl": "https://cdn.islamic.network/quran/info/by-ayah/info.json",
+    "manifestSha256": "3269ae15618bcde89d259eefa2f12f576ed0db8f7b8e1c91f8e057e5273b7a1e",
+    "namesUrl": "https://api.alquran.cloud/v1/edition?format=audio",
+    "verifiedDate": "2026-10-24",
+    "countMeaning": "Complete6236 individualclips at listedbitrate, exceptwordtimingmode uses its exact separatelypairedQuran.com audio."
+  },
+  "reciters": [
+    {
+      "id": "ar.alafasy",
+      "name": "Alafasy",
+      "bitrateKbps": 128,
+      "supportsWordSync": true,
+      "timingFolder": "alafasy"
+    },
+    {
+      "id": "ar.abdulsamad",
+      "name": "Abdul Samad",
+      "bitrateKbps": 64,
+      "supportsWordSync": false,
+      "timingFolder": null
+    },
+    {
+      "id": "ar.abdullahbasfar",
+      "name": "Abdullah Basfar",
+      "bitrateKbps": 64,
+      "supportsWordSync": false,
+      "timingFolder": null
+    },
+    {
+      "id": "ar.abdurrahmaansudais",
+      "name": "Abdurrahmaan As-Sudais",
+      "bitrateKbps": 192,
+      "supportsWordSync": false,
+      "timingFolder": null
+    },
+    {
+      "id": "ar.shaatree",
+      "name": "Abu Bakr Ash-Shaatree",
+      "bitrateKbps": 128,
+      "supportsWordSync": false,
+      "timingFolder": null
+    },
+    {
+      "id": "ar.ahmedajamy",
+      "name": "Ahmed ibn Ali al-Ajamy",
+      "bitrateKbps": 128,
+      "supportsWordSync": false,
+      "timingFolder": null
+    },
+    {
+      "id": "ar.aymanswoaid",
+      "name": "Ayman Sowaid",
+      "bitrateKbps": 64,
+      "supportsWordSync": false,
+      "timingFolder": null
+    },
+    {
+      "id": "ar.hanirifai",
+      "name": "Hani Rifai",
+      "bitrateKbps": 192,
+      "supportsWordSync": false,
+      "timingFolder": null
+    },
+    {
+      "id": "ar.hudhaify",
+      "name": "Hudhaify",
+      "bitrateKbps": 128,
+      "supportsWordSync": false,
+      "timingFolder": null
+    },
+    {
+      "id": "ar.husary",
+      "name": "Husary",
+      "bitrateKbps": 64,
+      "supportsWordSync": false,
+      "timingFolder": null
+    },
+    {
+      "id": "ar.husarymujawwad",
+      "name": "Husary (Mujawwad)",
+      "bitrateKbps": 128,
+      "supportsWordSync": false,
+      "timingFolder": null
+    },
+    {
+      "id": "ar.ibrahimakhbar",
+      "name": "Ibrahim Akhdar",
+      "bitrateKbps": 32,
+      "supportsWordSync": false,
+      "timingFolder": null
+    },
+    {
+      "id": "ar.mahermuaiqly",
+      "name": "Maher Al Muaiqly",
+      "bitrateKbps": 128,
+      "supportsWordSync": false,
+      "timingFolder": null
+    },
+    {
+      "id": "ar.muhammadayyoub",
+      "name": "Muhammad Ayyoub",
+      "bitrateKbps": 128,
+      "supportsWordSync": false,
+      "timingFolder": null
+    },
+    {
+      "id": "ar.muhammadjibreel",
+      "name": "Muhammad Jibreel",
+      "bitrateKbps": 128,
+      "supportsWordSync": false,
+      "timingFolder": null
+    },
+    {
+      "id": "ar.parhizgar",
+      "name": "Parhizgar",
+      "bitrateKbps": 48,
+      "supportsWordSync": false,
+      "timingFolder": null
+    },
+    {
+      "id": "ar.saoodshuraym",
+      "name": "Saood bin Ibraaheem Ash-Shuraym",
+      "bitrateKbps": 64,
+      "supportsWordSync": false,
+      "timingFolder": null
+    }
+  ]
+}

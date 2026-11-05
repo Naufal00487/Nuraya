@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "retrievedAt": "2026-10-28",
+  "provider": "Quran.com official frontend repository",
+  "rightsNotice": "Small attributed profile images are used to identify the reciters whose audio is available in Nuraya. The source repository declares MIT for its project; this is not treated as an independent CC/public-domain grant for each photograph. Rights remain with their respective owners.",
+  "identityMapping": "Explicit Quran.com reciter profile IDs mapped to specific Nuraya edition IDs; names are not fuzzy-matched.",
+  "portraits": [
+    {
+      "id": "alafasy",
+      "name": "Mishary Rashid Alafasy",
+      "qariIds": [
+        "ar.alafasy",
+        "ar.misharyrashidalafasy"
+      ],
+      "asset": "portraits/alafasy.jpg",
+      "sourceName": "Quran.com",
+      "sourcePage": "https://quran.com/reciters/7",
+      "sourceUrl": "https://raw.githubusercontent.com/quran/quran.com-frontend-next/aff1a035b09b66f28047b3216edcae4c5c949a49/public/images/reciters/7.jpg",
+      "sourceCommit": "aff1a035b09b66f28047b3216edcae4c5c949a49",
+      "sourceReciterId": 7,
+      "bytes": 39285,
+      "sha256": "3243c2a7f871d7af5f7d19949c6b8f8992e14c969eb8031eeb1a0a020a3b894a",
+      "rights": "Public profile photograph from Quran.com; copyright remains with its respective photographer/rightsholder. No per-photo open license is asserted."
+    },
+    {
+      "id": "abdulbasit",
+      "name": "Abdul Basit Abdus Samad",
+      "qariIds": [
+        "ar.abdulbasitmurattal",
+        "ar.abdulbasitmujawwad",
+        "ar.abdulsamad"
+      ],
+      "asset": "portraits/abdulbasit.jpg",
+      "sourceName": "Quran.com",
+      "sourcePage": "https://quran.com/reciters/2",
+      "sourceUrl": "https://raw.githubusercontent.com/quran/quran.com-frontend-next/aff1a035b09b66f28047b3216edcae4c5c949a49/public/images/reciters/2.jpeg",
+      "sourceCommit": "aff1a035b09b66f28047b3216edcae4c5c949a49",
+      "sourceReciterId": 2,
+      "bytes": 7780,
+      "sha256": "ec4beb334d7faa8262f7bd1aa2dd0a4c78f5d04fc696717aa27df6c100000ad1",
+      "rights": "Public profile photograph from Quran.com; copyright remains with its respective photographer/rightsholder. No per-photo open license is asserted."
+    },
+    {
+      "id": "sudais",
+      "name": "Abdurrahman As-Sudais",
+      "qariIds": [
+        "ar.abdurrahmaansudais"
+      ],
+      "asset": "portraits/sudais.jpg",
+      "sourceName": "Quran.com",
+      "sourcePage": "https://quran.com/reciters/3",
+      "sourceUrl": "https://raw.githubusercontent.com/quran/quran.com-frontend-next/aff1a035b09b66f28047b3216edcae4c5c949a49/public/images/reciters/3.jpeg",
+      "sourceCommit": "aff1a035b09b66f28047b3216edcae4c5c949a49",
+      "sourceReciterId": 3,
+      "bytes": 33053,
+      "sha256": "2d74243722af92e904805c817e80431cfbb0879477a2158d181d483929a8661c",
+      "rights": "Public profile photograph from Quran.com; copyright remains with its respective photographer/rightsholder. No per-photo open license is asserted."
+    },
+    {
+      "id": "shatri",
+      "name": "Abu Bakr Ash-Shatri",
+      "qariIds": [
+        "ar.shaatree"
+      ],
+      "asset": "portraits/shatri.jpg",
+      "sourceName": "Quran.com",
+      "sourcePage": "https://quran.com/reciters/4",
+      "sourceUrl": "https://raw.githubusercontent.com/quran/quran.com-frontend-next/aff1a035b09b66f28047b3216edcae4c5c949a49/public/images/reciters/4.jpg",
+      "sourceCommit": "aff1a035b09b66f28047b3216edcae4c5c949a49",
+      "sourceReciterId": 4,
+      "bytes": 45657,
+      "sha256": "4b3d53ba9c1b058a2fdf191ce30928e5120310985828ba02c6d87d840f363649",
+      "rights": "Public profile photograph from Quran.com; copyright remains with its respective photographer/rightsholder. No per-photo open license is asserted."
+    },
+    {
+      "id": "rifai",
+      "name": "Hani Ar-Rifai",
+      "qariIds": [
+        "ar.haniarrifai",
+        "ar.hanirifai"
+      ],
+      "asset": "portraits/rifai.jpg",
+      "sourceName": "Quran.com",
+      "sourcePage": "https://quran.com/reciters/5",
+      "sourceUrl": "https://raw.githubusercontent.com/quran/quran.com-frontend-next/aff1a035b09b66f28047b3216edcae4c5c949a49/public/images/reciters/5.jpg",
+      "sourceCommit": "aff1a035b09b66f28047b3216edcae4c5c949a49",
+      "sourceReciterId": 5,
+      "bytes": 54658,
+      "sha256": "3640cb08b3873c4a7e65b5c0a6fc9ff23188dc1ab1eeff6e23b27576a50cdfce",
+      "rights": "Public profile photograph from Quran.com; copyright remains with its respective photographer/rightsholder. No per-photo open license is asserted."
+    },
+    {
+      "id": "husary",
+      "name": "Mahmoud Khalil Al-Husary",
+      "qariIds": [
+        "ar.husary",
+        "ar.husarymujawwad"
+      ],
+      "asset": "portraits/husary.jpg",
+      "sourceName": "Quran.com",
+      "sourcePage": "https://quran.com/reciters/6",
+      "sourceUrl": "https://raw.githubusercontent.com/quran/quran.com-frontend-next/aff1a035b09b66f28047b3216edcae4c5c949a49/public/images/reciters/6.jpg",
+      "sourceCommit": "aff1a035b09b66f28047b3216edcae4c5c949a49",
+      "sourceReciterId": 6,
+      "bytes": 50183,
+      "sha256": "293edc9a56353ccb962246c7d3cb609827a09c71117ce74a7e19d6da324598fe",
+      "rights": "Public profile photograph from Quran.com; copyright remains with its respective photographer/rightsholder. No per-photo open license is asserted."
+    },
+    {
+      "id": "minshawi",
+      "name": "Muhammad Siddiq Al-Minshawi",
+      "qariIds": [
+        "ar.muhammadsiddiqalminshawimujawwad"
+      ],
+      "asset": "portraits/minshawi.jpg",
+      "sourceName": "Quran.com",
+      "sourcePage": "https://quran.com/reciters/9",
+      "sourceUrl": "https://raw.githubusercontent.com/quran/quran.com-frontend-next/aff1a035b09b66f28047b3216edcae4c5c949a49/public/images/reciters/9.jpg",
+      "sourceCommit": "aff1a035b09b66f28047b3216edcae4c5c949a49",
+      "sourceReciterId": 9,
+      "bytes": 8766,
+      "sha256": "6d80392c9683e9aab4a88f83bf49cfd60cae5d6ed71a73375efb10d54fb3bd2a",
+      "rights": "Public profile photograph from Quran.com; copyright remains with its respective photographer/rightsholder. No per-photo open license is asserted."
+    },
+    {
+      "id": "shuraim",
+      "name": "Saud Al-Shuraim",
+      "qariIds": [
+        "ar.saudalshuraim",
+        "ar.saoodshuraym"
+      ],
+      "asset": "portraits/shuraim.jpg",
+      "sourceName": "Quran.com",
+      "sourcePage": "https://quran.com/reciters/10",
+      "sourceUrl": "https://raw.githubusercontent.com/quran/quran.com-frontend-next/aff1a035b09b66f28047b3216edcae4c5c949a49/public/images/reciters/10.jpg",
+      "sourceCommit": "aff1a035b09b66f28047b3216edcae4c5c949a49",
+      "sourceReciterId": 10,
+      "bytes": 39525,
+      "sha256": "4215efdab7c9981a2a716af6661cfd388bf81d580be11bcc88a7e6a3dce23f20",
+      "rights": "Public profile photograph from Quran.com; copyright remains with its respective photographer/rightsholder. No per-photo open license is asserted."
+    }
+  ]
+}

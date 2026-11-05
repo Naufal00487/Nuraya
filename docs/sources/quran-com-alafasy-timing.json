@@ -1,0 +1,1392 @@
+{
+  "provider": "Quran.com API v4 / QuranicAudio",
+  "reciter": "Mishari Rashid al-Afasy",
+  "recitationId": 7,
+  "retrieved": "2026-10-24",
+  "sourceUrl": "https://api.quran.com/api/v4/chapter_recitations/7/{surah}?segments=true",
+  "rights": "Audio remains with respective reciter/rightsholders; only source metadata and timing are bundled. Audio streams directly from its paired source.",
+  "chapters": [
+    {
+      "surah": 1,
+      "sha256": "8afb781bb3d4e2d881a21cdf97c33118c465292f57d834d7c196d234fe6460dc",
+      "sourceResponseSha256": "61ec38068dd7657d9f99134395cc3fafeec510fc5feeb54e29477bc44c0fb911",
+      "omittedMalformedSegments": 3,
+      "verseCount": 7,
+      "wordSegments": 29,
+      "safeWordSyncVerses": 7
+    },
+    {
+      "surah": 2,
+      "sha256": "2d66779d9578093bf7c59b6528f65732a7543fccd150465a84777db5cfe538aa",
+      "sourceResponseSha256": "7c4f6f6c7325917ba1fde68c33d8b766a89d0eae91021a18432ad6e5b9054788",
+      "omittedMalformedSegments": 3,
+      "verseCount": 286,
+      "wordSegments": 6272,
+      "safeWordSyncVerses": 286
+    },
+    {
+      "surah": 3,
+      "sha256": "0c2fb37b159f0bbbe205b267788c141c812643368d5ce02047dffe17844d084e",
+      "sourceResponseSha256": "19375d00ad632474550850a2dc20163244c81a3de3fcf6ae732d925ca2e31e85",
+      "omittedMalformedSegments": 15,
+      "verseCount": 200,
+      "wordSegments": 3624,
+      "safeWordSyncVerses": 194
+    },
+    {
+      "surah": 4,
+      "sha256": "766e1dda68ea7927503e560f0e3c4ef5982e4b53a1a56c11b735191213c751e1",
+      "sourceResponseSha256": "f460414df995e726c25b507944671ae9cd24506c33ab16ab54757b545f68ff8a",
+      "omittedMalformedSegments": 9,
+      "verseCount": 176,
+      "wordSegments": 4007,
+      "safeWordSyncVerses": 169
+    },
+    {
+      "surah": 5,
+      "sha256": "009aba4092e845c6096b278112856adc763ae4565ed78b98a7a460e41ad4e40b",
+      "sourceResponseSha256": "2357d9c97682e4e98f4f1f2bf1c6ec8e3b7bf0ebf74c6d630042b62f8ef172b6",
+      "omittedMalformedSegments": 3,
+      "verseCount": 120,
+      "wordSegments": 3001,
+      "safeWordSyncVerses": 119
+    },
+    {
+      "surah": 6,
+      "sha256": "379f1793cb228fef5d2cee9093dc374a1883efbbaeffad0905455da8864eaccc",
+      "sourceResponseSha256": "a6acc85d712e644ca1c31194d93ef02514abbde6b128985f1671debb961148cf",
+      "omittedMalformedSegments": 13,
+      "verseCount": 165,
+      "wordSegments": 3191,
+      "safeWordSyncVerses": 158
+    },
+    {
+      "surah": 7,
+      "sha256": "d3cbb59f29e64ddda134c1b16bcf5107d317d558c22db68e561aba8149efbb3c",
+      "sourceResponseSha256": "ff0a1f67322feb54919667f501744564d3d2d7455bdf3b5a6347ce3beae94617",
+      "omittedMalformedSegments": 14,
+      "verseCount": 206,
+      "wordSegments": 3475,
+      "safeWordSyncVerses": 205
+    },
+    {
+      "surah": 8,
+      "sha256": "34d1363b211deaf41071bcb19a9b08a8d478b313552a18e43df76f903e180168",
+      "sourceResponseSha256": "f4877623fadaf4bb5a08f70dbe3996cda40f2d99acd776281188dfa609a2f72d",
+      "omittedMalformedSegments": 2,
+      "verseCount": 75,
+      "wordSegments": 1290,
+      "safeWordSyncVerses": 75
+    },
+    {
+      "surah": 9,
+      "sha256": "7bd74a4cc105d91f9b4be7583e6956d406a8bac15b2b93318c621c8c3878f021",
+      "sourceResponseSha256": "234acf1118213e44c8411e32c844a3798f13cea2a18e754e38505d7f357bfac4",
+      "omittedMalformedSegments": 0,
+      "verseCount": 129,
+      "wordSegments": 2624,
+      "safeWordSyncVerses": 128
+    },
+    {
+      "surah": 10,
+      "sha256": "aeef5032c3226f6521ca6797253c374a0418688d532a95fc58cd5b6df223a4ce",
+      "sourceResponseSha256": "098720bf4eeb43635da353d8a96d4b8a65615911d67d7df84c026c24de9a8ed3",
+      "omittedMalformedSegments": 8,
+      "verseCount": 109,
+      "wordSegments": 1904,
+      "safeWordSyncVerses": 109
+    },
+    {
+      "surah": 11,
+      "sha256": "e506b8490105e6b0f32b720717cb751641b113e7a047909bde0b8fee4939dde4",
+      "sourceResponseSha256": "dd3b54442867b8fd6360a71af28d3fee340a7c3a6457281b151f2d8f43dceced",
+      "omittedMalformedSegments": 2,
+      "verseCount": 123,
+      "wordSegments": 2003,
+      "safeWordSyncVerses": 122
+    },
+    {
+      "surah": 12,
+      "sha256": "d9cdfc0005f91c67a4b174617de3ccd4acfa8d60f3201b3f8c77cd1964fe868d",
+      "sourceResponseSha256": "c94b4d4830ec9e16d4e27d6c53dcdffe77da9717d9e58774e44b3e953fadf2c7",
+      "omittedMalformedSegments": 0,
+      "verseCount": 111,
+      "wordSegments": 1830,
+      "safeWordSyncVerses": 111
+    },
+    {
+      "surah": 13,
+      "sha256": "9b6c6c4afa3cc687de19f904aa419b4553618756b557173865b6fb44477abbca",
+      "sourceResponseSha256": "fa53b494c8412cc2f18b833a896b6d826285f93de92e3b5813d9d368cc46248f",
+      "omittedMalformedSegments": 4,
+      "verseCount": 43,
+      "wordSegments": 893,
+      "safeWordSyncVerses": 40
+    },
+    {
+      "surah": 14,
+      "sha256": "10de085bca37d21d0135d28c46eaebadd5e35de2813ef27ebd0e5ed2fecbad1f",
+      "sourceResponseSha256": "600eba482d7d1644a66a31c48212c6ee7f653b85f44ecbf3d3167ce53b18f1e4",
+      "omittedMalformedSegments": 36,
+      "verseCount": 52,
+      "wordSegments": 857,
+      "safeWordSyncVerses": 27
+    },
+    {
+      "surah": 15,
+      "sha256": "82cae09a1b8b34f5acb822f4592bbc34cea1900d4ab53a4bb2a3de672f7d3a1e",
+      "sourceResponseSha256": "5276809997e12032726149d24ae5f4ae19365d7bbeb60068cd7068d65e214fc8",
+      "omittedMalformedSegments": 0,
+      "verseCount": 99,
+      "wordSegments": 664,
+      "safeWordSyncVerses": 99
+    },
+    {
+      "surah": 16,
+      "sha256": "b0ed1c295d514364e8275ce5bffcd0753e7c448eb3a4c30c674b678a51f2641a",
+      "sourceResponseSha256": "c559b61cff4e978f5129f793d490f370dcc5463edb0a65b4647e202b3138de98",
+      "omittedMalformedSegments": 2,
+      "verseCount": 128,
+      "wordSegments": 1923,
+      "safeWordSyncVerses": 128
+    },
+    {
+      "surah": 17,
+      "sha256": "500acea3bf90eb65e9b0d63cdcc25ebd14d736a67a0c260ac678aa09892da50e",
+      "sourceResponseSha256": "569aabe53576bec5c9f3841b92da6cf97532b2804ceb2224d4b545800b6f364d",
+      "omittedMalformedSegments": 2,
+      "verseCount": 111,
+      "wordSegments": 1636,
+      "safeWordSyncVerses": 111
+    },
+    {
+      "surah": 18,
+      "sha256": "7b180bda6124a5ddbedfa57b6f07b3890f4c92af0895e628fc071f018883177e",
+      "sourceResponseSha256": "3ef910cb52d22196a64014a533e03d4264b1ede70d054d6ea177d1237d136a3d",
+      "omittedMalformedSegments": 1,
+      "verseCount": 110,
+      "wordSegments": 1673,
+      "safeWordSyncVerses": 110
+    },
+    {
+      "surah": 19,
+      "sha256": "8152829802dab2fc1ccb64892745e8ea305a2458dae338cbb2a2bb8184573d70",
+      "sourceResponseSha256": "81ed5056e059b8a25118a646c86588830c0172280eef2149fdea4c8dd88db291",
+      "omittedMalformedSegments": 2,
+      "verseCount": 98,
+      "wordSegments": 989,
+      "safeWordSyncVerses": 98
+    },
+    {
+      "surah": 20,
+      "sha256": "47613d1fc39d8d1255a4a5558debc789c9f05208c7164c8655c4db4bb1086e4f",
+      "sourceResponseSha256": "6adc40e229ec7c2792c54a9ef9145d481e831af88b817b32cb0f451ba664ea32",
+      "omittedMalformedSegments": 6,
+      "verseCount": 135,
+      "wordSegments": 1367,
+      "safeWordSyncVerses": 133
+    },
+    {
+      "surah": 21,
+      "sha256": "3ec58f9351f3e49668bb40a2798f6ed0bf693917ba49e9d90561591f56f6df6e",
+      "sourceResponseSha256": "ef83acdf7257a85458ed0306ca9096032507d8e911cf1fc5ea2301a9b6105339",
+      "omittedMalformedSegments": 0,
+      "verseCount": 112,
+      "wordSegments": 1205,
+      "safeWordSyncVerses": 112
+    },
+    {
+      "surah": 22,
+      "sha256": "11676d8d93cfd66d6464c0fd0f2dff4c7dddea113dafb9e8eb450a1262b15ce1",
+      "sourceResponseSha256": "507b34b2a566d49d434fd867ef93642bd6772b8df97e7355cd0ae45aa052b318",
+      "omittedMalformedSegments": 4,
+      "verseCount": 78,
+      "wordSegments": 1354,
+      "safeWordSyncVerses": 77
+    },
+    {
+      "surah": 23,
+      "sha256": "c845d8758b012ebb5347ba2256d1a89839205d7d09896359524942bcdd1ef999",
+      "sourceResponseSha256": "71102a209284fceb289e885e576fe52157d48dbff2674263667926da923585b4",
+      "omittedMalformedSegments": 0,
+      "verseCount": 118,
+      "wordSegments": 1075,
+      "safeWordSyncVerses": 116
+    },
+    {
+      "surah": 24,
+      "sha256": "6688639e27bd3aca1d560f864e655eb730e91d37bd32a17ef147bc8ad7b3cef6",
+      "sourceResponseSha256": "1c2a6a6fc384bc58c9f0869a474892982878bf9928ef28234f0e1466005381ea",
+      "omittedMalformedSegments": 9,
+      "verseCount": 64,
+      "wordSegments": 1412,
+      "safeWordSyncVerses": 63
+    },
+    {
+      "surah": 25,
+      "sha256": "a2b32b635d240e511f49e7c4d53953aec55f2d0d50f5dcda4f6adf47cb041336",
+      "sourceResponseSha256": "c4d00918792d47accfb04957a14974c43ba693dc989f84810239b5099001a5bd",
+      "omittedMalformedSegments": 0,
+      "verseCount": 77,
+      "wordSegments": 929,
+      "safeWordSyncVerses": 77
+    },
+    {
+      "surah": 26,
+      "sha256": "3a26e6dccdae25f22fa625b73d72978d1e3bd473da89855ce6121b34930551e2",
+      "sourceResponseSha256": "3f125fe654866a84486370aeb6b2e9e3a76584835f8d6e89d495bc8ab4806eb1",
+      "omittedMalformedSegments": 1,
+      "verseCount": 227,
+      "wordSegments": 1320,
+      "safeWordSyncVerses": 225
+    },
+    {
+      "surah": 27,
+      "sha256": "725b0f20b68c48c4311bd0390c2d7e8a23a57bd3232aefb055965dc52d54dfe7",
+      "sourceResponseSha256": "8dd68015b433a257521acb9465a5cf5feb5285734331827e88000a51456be229",
+      "omittedMalformedSegments": 0,
+      "verseCount": 93,
+      "wordSegments": 1207,
+      "safeWordSyncVerses": 91
+    },
+    {
+      "surah": 28,
+      "sha256": "08031853402320d15c98e2413ce0aba7bcc162d197d45a1f87601d8f9544495e",
+      "sourceResponseSha256": "786b96fefc904eae9d2b7a42971c3a41a68eff822179ab9c3af4920e3bfd6479",
+      "omittedMalformedSegments": 0,
+      "verseCount": 88,
+      "wordSegments": 1522,
+      "safeWordSyncVerses": 88
+    },
+    {
+      "surah": 29,
+      "sha256": "0111d9bdeb51c72a19024cce9620284dbaff793f3f50916238791f0ebbac14c4",
+      "sourceResponseSha256": "3a5e1dd26a1cd8a6d0dd33ab7592b92d8e8599aeef4173b3db284036efbba146",
+      "omittedMalformedSegments": 2,
+      "verseCount": 69,
+      "wordSegments": 1006,
+      "safeWordSyncVerses": 67
+    },
+    {
+      "surah": 30,
+      "sha256": "22422aed6019fa86f478f780b212f519c4a6246db2ac0152146dff6b5c8f7b0b",
+      "sourceResponseSha256": "a2f39556cf643c66ab03993dd2501f3b32aa33159fad8bd159555bd392da9f07",
+      "omittedMalformedSegments": 0,
+      "verseCount": 60,
+      "wordSegments": 840,
+      "safeWordSyncVerses": 60
+    },
+    {
+      "surah": 31,
+      "sha256": "e77ab66e66f197c65c79b10418c91ffff1a7387010d157e9550c4daa991487c8",
+      "sourceResponseSha256": "dca69dae1748581fa904a58a9ad8d48138a1eb237364234b2af2ab0e8c110656",
+      "omittedMalformedSegments": 0,
+      "verseCount": 34,
+      "wordSegments": 570,
+      "safeWordSyncVerses": 34
+    },
+    {
+      "surah": 32,
+      "sha256": "76ed2d9b2e1a2479966237c72280c76b99c3334353b8af4ab53923b99554b57c",
+      "sourceResponseSha256": "3296bfe7e4f203ad7461dc6d0d796a46fff4f7ad2cc67c3b6d4fe929558f04f9",
+      "omittedMalformedSegments": 0,
+      "verseCount": 30,
+      "wordSegments": 390,
+      "safeWordSyncVerses": 30
+    },
+    {
+      "surah": 33,
+      "sha256": "f422310065d53789f4b9baee2241340c08db5911b3126e14ee0bef1b410a5d74",
+      "sourceResponseSha256": "a1776609b7612f38ff1084de2a8f749b3310075d9bdfcd26a5505ca9aedff8d2",
+      "omittedMalformedSegments": 3,
+      "verseCount": 73,
+      "wordSegments": 1371,
+      "safeWordSyncVerses": 71
+    },
+    {
+      "surah": 34,
+      "sha256": "5df1dca0f2c5eee11fcb937a91ede35cb25e5e0e41497d4af46af2e2855fa0d4",
+      "sourceResponseSha256": "6dbe297472054063114ac501fc46a5cf23844c7f7d68c5eacac8d88f4dec4a7a",
+      "omittedMalformedSegments": 4,
+      "verseCount": 54,
+      "wordSegments": 911,
+      "safeWordSyncVerses": 54
+    },
+    {
+      "surah": 35,
+      "sha256": "a85dc8605e42d4cac9adef245ad77fa96f91b7617e561c2baa75b13cf000c36b",
+      "sourceResponseSha256": "3dc13f9553816c6d834fb479faf270235c2470be558957f36aaf9de931eb924e",
+      "omittedMalformedSegments": 19,
+      "verseCount": 45,
+      "wordSegments": 754,
+      "safeWordSyncVerses": 44
+    },
+    {
+      "surah": 36,
+      "sha256": "a6279b6480e44e58ed67a7924ed3f542f37ad797f20a2a07a1c1da59b0631521",
+      "sourceResponseSha256": "33bb290b7b208e48de7f6b861cf03e9b83dd33bd567c06ed0f2833af029a3e4d",
+      "omittedMalformedSegments": 0,
+      "verseCount": 83,
+      "wordSegments": 732,
+      "safeWordSyncVerses": 83
+    },
+    {
+      "surah": 37,
+      "sha256": "b8169577ce7a9e4e39d1e956c3c61a7049f9cdd236cfe69952f483f119b719ac",
+      "sourceResponseSha256": "4300ea3a09e4589e3bf589492e4eb4e300b5c8df30c3e1c03a12692333a90ee7",
+      "omittedMalformedSegments": 10,
+      "verseCount": 182,
+      "wordSegments": 861,
+      "safeWordSyncVerses": 179
+    },
+    {
+      "surah": 38,
+      "sha256": "952414e7ae65e98b1f57a356a8831bb495eae19a6863212b21b1b7ecea88cd0e",
+      "sourceResponseSha256": "246eb75c59dd85dfb287f27003362088b63be5b2e3a55a658a2182e262e21b42",
+      "omittedMalformedSegments": 3,
+      "verseCount": 88,
+      "wordSegments": 742,
+      "safeWordSyncVerses": 87
+    },
+    {
+      "surah": 39,
+      "sha256": "c3b254ba3bdb8c609b6a7807da9b8a04460c5e43468bdece03673a8e38eb78ab",
+      "sourceResponseSha256": "bade93a08f19d70317c2b534bcdf8144069dfa1e5516f628b700eb7a8b9dcd80",
+      "omittedMalformedSegments": 0,
+      "verseCount": 75,
+      "wordSegments": 1224,
+      "safeWordSyncVerses": 75
+    },
+    {
+      "surah": 40,
+      "sha256": "447ae2ee12c09a184e4e4c7c971d598fb4b5b8d20a443d395bb7b68152aeb143",
+      "sourceResponseSha256": "bbf4361d0070ad892a79b8ab06da6d23a17b739c155148160e659687dc00156d",
+      "omittedMalformedSegments": 1,
+      "verseCount": 85,
+      "wordSegments": 1240,
+      "safeWordSyncVerses": 84
+    },
+    {
+      "surah": 41,
+      "sha256": "5b382833fa3971a7fcd024b9eb78b907be1b2f3fdaa4b4986969ae7c241cd4e2",
+      "sourceResponseSha256": "5e533fb2521d85542d5c1c4accb504280d5b3670f3504fe9cd70a2fc6146d36c",
+      "omittedMalformedSegments": 0,
+      "verseCount": 54,
+      "wordSegments": 830,
+      "safeWordSyncVerses": 54
+    },
+    {
+      "surah": 42,
+      "sha256": "cb748ac332516e24a180a245aee598b2ba3706d1bf90a7a3a680988fe693c9d8",
+      "sourceResponseSha256": "d29e16fd2d67d847e41d06b1f1a8e3f38d67d99b8455b88854d71101415415c2",
+      "omittedMalformedSegments": 1,
+      "verseCount": 53,
+      "wordSegments": 878,
+      "safeWordSyncVerses": 53
+    },
+    {
+      "surah": 43,
+      "sha256": "9772958f5d4a1cfba99480d1c179214109b9d20349dee9d0f275a43030ccab56",
+      "sourceResponseSha256": "88fc11ec98f80deb85c33e3df0fe36a3c3a8d5d2a64bf2e1a1157d60857e9870",
+      "omittedMalformedSegments": 0,
+      "verseCount": 89,
+      "wordSegments": 844,
+      "safeWordSyncVerses": 89
+    },
+    {
+      "surah": 44,
+      "sha256": "20b2012726301f668b464aba1cb8271e98ead89aa0c39593c02610bb88655c13",
+      "sourceResponseSha256": "47c2feb710e9a35565d9ebc3e8c780021c00f86a15e2fd0aff479187d42b7a66",
+      "omittedMalformedSegments": 0,
+      "verseCount": 59,
+      "wordSegments": 346,
+      "safeWordSyncVerses": 59
+    },
+    {
+      "surah": 45,
+      "sha256": "f72bcea8571c85080f2dcfe4cce81793219a3deb4737ff1f1b49d25ddc636046",
+      "sourceResponseSha256": "b2d336ae1c124f2cb2e20ac47d995bbaedc0c6874759c7deaa23da534f264eea",
+      "omittedMalformedSegments": 0,
+      "verseCount": 37,
+      "wordSegments": 510,
+      "safeWordSyncVerses": 37
+    },
+    {
+      "surah": 46,
+      "sha256": "0066a86b7d3789218b0b7ba51c96cced2822292769c525be07a5307c03a830e2",
+      "sourceResponseSha256": "6252ddb7c3681b69efccea404eac688a2455207b17c346620dd8639d83dd321b",
+      "omittedMalformedSegments": 2,
+      "verseCount": 35,
+      "wordSegments": 699,
+      "safeWordSyncVerses": 35
+    },
+    {
+      "surah": 47,
+      "sha256": "792f5971ed7f6c6abb96d76755f26f813842479ec8f16b38999d05d8a0ae52c0",
+      "sourceResponseSha256": "81bd647f2bc12e7efbe1b9db07e56403bfe9f956559dc4f8715e4d6c347106d4",
+      "omittedMalformedSegments": 0,
+      "verseCount": 38,
+      "wordSegments": 558,
+      "safeWordSyncVerses": 38
+    },
+    {
+      "surah": 48,
+      "sha256": "09d858fa751cdf4ff41c627a1b219265d156d59e4ea34acaa21aca87cd5b19d2",
+      "sourceResponseSha256": "d2407ed16746decbdbe00b7ecf2c1a9716ddfacdb05c7011f5a504e6c433b86b",
+      "omittedMalformedSegments": 1,
+      "verseCount": 29,
+      "wordSegments": 585,
+      "safeWordSyncVerses": 29
+    },
+    {
+      "surah": 49,
+      "sha256": "3976124bd04e6309f03a0c8a2cfa7c19bf0c9996046c25c98681521cc1ac2829",
+      "sourceResponseSha256": "c56ccbf1965e0c70616cc74d1512b74c706b5634e4cdab6b813ac150f34a79a8",
+      "omittedMalformedSegments": 0,
+      "verseCount": 18,
+      "wordSegments": 358,
+      "safeWordSyncVerses": 18
+    },
+    {
+      "surah": 50,
+      "sha256": "44d75d33bb243cee7a87696687d24faa7ed85b4577c7619222a58faddb489773",
+      "sourceResponseSha256": "07a0323bef040a5b42fcab51f5727d4c61d2f00657cca4917b5477e427e387ea",
+      "omittedMalformedSegments": 0,
+      "verseCount": 45,
+      "wordSegments": 373,
+      "safeWordSyncVerses": 45
+    },
+    {
+      "surah": 51,
+      "sha256": "9edb3c1de5a22e54770ceb54d313c230c456146f5d019f4e36bbf6c5bad911c6",
+      "sourceResponseSha256": "2f1141a2f973d8c845273daf7a9a2ebef9acc26ec674d803db5eb492115947b2",
+      "omittedMalformedSegments": 0,
+      "verseCount": 60,
+      "wordSegments": 362,
+      "safeWordSyncVerses": 60
+    },
+    {
+      "surah": 52,
+      "sha256": "adba1d3f5f8eb0070a3290f6ce2ecd2e6c56be5ca8a389370aa2ea1f62ec7c2a",
+      "sourceResponseSha256": "22182f369b1b8c6f5fcc37628b9e18ef83aefbe258f2e268679a3d4ea00e065f",
+      "omittedMalformedSegments": 0,
+      "verseCount": 49,
+      "wordSegments": 314,
+      "safeWordSyncVerses": 49
+    },
+    {
+      "surah": 53,
+      "sha256": "80ea9545d9d7c54f09dab3c6111c8f57d5e9df978d29802a3d32b2229a7bd5e3",
+      "sourceResponseSha256": "a1fcc86ce1fbcb96aff681b665554fd9a66933c6e39fa7c5c3422fe425b1fc29",
+      "omittedMalformedSegments": 5,
+      "verseCount": 62,
+      "wordSegments": 364,
+      "safeWordSyncVerses": 62
+    },
+    {
+      "surah": 54,
+      "sha256": "c1d426057fa43c39ab13ddee2ed8931e362224dab4d1b1d03cf10d0085a5d634",
+      "sourceResponseSha256": "e8ef1e4a9bfd4f70f272cc54ab59071a8718c40ab071af2cf6f34ee78ca66867",
+      "omittedMalformedSegments": 0,
+      "verseCount": 55,
+      "wordSegments": 343,
+      "safeWordSyncVerses": 54
+    },
+    {
+      "surah": 55,
+      "sha256": "eebfa31a4cc87b9c089a59549611ded9929830ff1194aa24ad4cd3781ff8dd4d",
+      "sourceResponseSha256": "a45cea37dcf3bbc00e8bf2e00e25bf8d1dbd874f32753c4dc360c11bf25b18f3",
+      "omittedMalformedSegments": 0,
+      "verseCount": 78,
+      "wordSegments": 352,
+      "safeWordSyncVerses": 78
+    },
+    {
+      "surah": 56,
+      "sha256": "a7181fa37f9a6553f2abdf7a572561b264bcdbc618c11b959a1a9c038e314f00",
+      "sourceResponseSha256": "15fff2f096bc883433b23148008c92c2ff6e832870343ff8cc7cb98273613d4d",
+      "omittedMalformedSegments": 1,
+      "verseCount": 96,
+      "wordSegments": 378,
+      "safeWordSyncVerses": 96
+    },
+    {
+      "surah": 57,
+      "sha256": "f646ba5798ef9f03d72882a492246d90ecd37f20f8ecde8833540d3d40dabf59",
+      "sourceResponseSha256": "f5836dddb84bb33e942450483d7fc5c569744d31d9650b9a7d1bc47b02de9724",
+      "omittedMalformedSegments": 8,
+      "verseCount": 29,
+      "wordSegments": 602,
+      "safeWordSyncVerses": 29
+    },
+    {
+      "surah": 58,
+      "sha256": "81d15ecf64b31ab57837c2e3219d103a5e280f62f9d19b5b2fdadd09a25fd947",
+      "sourceResponseSha256": "d1b3c50b89aa964a73f0e609a56b624258b3e9b221a6b7bfee367a36c3d9fffd",
+      "omittedMalformedSegments": 3,
+      "verseCount": 22,
+      "wordSegments": 477,
+      "safeWordSyncVerses": 21
+    },
+    {
+      "surah": 59,
+      "sha256": "8bb54f6d187fea483539dff9e0e17be3021d3b0a7a4480ead6d1cf77dc96b59b",
+      "sourceResponseSha256": "99e36b99ba62c66c8780090554a65bea15bec211f5250a7077586d9a6668a716",
+      "omittedMalformedSegments": 2,
+      "verseCount": 24,
+      "wordSegments": 480,
+      "safeWordSyncVerses": 22
+    },
+    {
+      "surah": 60,
+      "sha256": "643cd615fb5efc12f2f5fd540a745faf34d7db3cfe53eeac6abb88ea34f31ded",
+      "sourceResponseSha256": "845d1ed811a0294472320145d4126441d172d8a9c9504885b6df72bc8dcb967c",
+      "omittedMalformedSegments": 25,
+      "verseCount": 13,
+      "wordSegments": 330,
+      "safeWordSyncVerses": 10
+    },
+    {
+      "surah": 61,
+      "sha256": "27415290f95a70d9129da0ca5a5e403c21270d8a46d4116d1ba9f2f1a9fa970c",
+      "sourceResponseSha256": "a17cb24133fed3b7bafc6d360a3a7a2ddd00c003e730e330318d054d5fd9e6b3",
+      "omittedMalformedSegments": 0,
+      "verseCount": 14,
+      "wordSegments": 228,
+      "safeWordSyncVerses": 14
+    },
+    {
+      "surah": 62,
+      "sha256": "1946f6e405e67d18511a28173c06c0bdb56b94a2eeed735cef986ebd649b3757",
+      "sourceResponseSha256": "297dafe9f675c6082df1cc500a454c9d71892ac1e8d50d25950c8ce67dc9bf7a",
+      "omittedMalformedSegments": 0,
+      "verseCount": 11,
+      "wordSegments": 177,
+      "safeWordSyncVerses": 11
+    },
+    {
+      "surah": 63,
+      "sha256": "935071f0fce30c130652fde2b2c382901dc3f9ca26ec33d3fd8f2ff6433278b9",
+      "sourceResponseSha256": "e20f28438c5828e3e92fe9d95c4fb5e748da307a1082687f5680a358534831ea",
+      "omittedMalformedSegments": 1,
+      "verseCount": 11,
+      "wordSegments": 183,
+      "safeWordSyncVerses": 11
+    },
+    {
+      "surah": 64,
+      "sha256": "0fbd1214a5da0bf43336fcb9d7f02a278e4e58220e5696d366a4f80bcd53f19a",
+      "sourceResponseSha256": "a8513c3436cccb03c7701961cdcf80091f1d564ebf165ae0e8b3a15b9ffd6264",
+      "omittedMalformedSegments": 0,
+      "verseCount": 18,
+      "wordSegments": 245,
+      "safeWordSyncVerses": 18
+    },
+    {
+      "surah": 65,
+      "sha256": "18e5a959bcedb3a52b14e137b795a4e45161eaaeae18c9919aa86a8a6a56e2c4",
+      "sourceResponseSha256": "d15da0d659f83a2341a0dc1b8fab6f96c57fccd04f3a196e10f6a6150b2e327b",
+      "omittedMalformedSegments": 0,
+      "verseCount": 12,
+      "wordSegments": 305,
+      "safeWordSyncVerses": 12
+    },
+    {
+      "surah": 66,
+      "sha256": "b60fe40cbba0d24e4e0c41d46a01bb0861d526caa15fdc7cd398a8e39d8e1bfc",
+      "sourceResponseSha256": "f9bdf26c6505ce8c567b4c0139bc076635ef1eb2619fd87b6b663a8ced61c930",
+      "omittedMalformedSegments": 0,
+      "verseCount": 12,
+      "wordSegments": 270,
+      "safeWordSyncVerses": 10
+    },
+    {
+      "surah": 67,
+      "sha256": "b6acd8c2d9effd5eea163b72aed6a38223a9e2c4ac9b7450c88b01883ef03034",
+      "sourceResponseSha256": "d078dae5cea7f5c4638acf03ec5b8f90941bf651b8b7a7e635fc3c6c06d6f08a",
+      "omittedMalformedSegments": 0,
+      "verseCount": 30,
+      "wordSegments": 338,
+      "safeWordSyncVerses": 30
+    },
+    {
+      "surah": 68,
+      "sha256": "a57aa0627090cf763084a36f62cb78214c30ee4efadb3508d42fe953103019b8",
+      "sourceResponseSha256": "e7624b847dc4ca2678875b709c683aea2e89356c68f9aff65418c9e14dbdccd2",
+      "omittedMalformedSegments": 0,
+      "verseCount": 52,
+      "wordSegments": 302,
+      "safeWordSyncVerses": 52
+    },
+    {
+      "surah": 69,
+      "sha256": "a69be67b796897fbd29ad4e5b153d58d18b3bf11bc4c9e325f9777c757909548",
+      "sourceResponseSha256": "eefb2fdeff619f50df62c58e736ad69d401f8750188fed96761762a7c6269b3f",
+      "omittedMalformedSegments": 6,
+      "verseCount": 52,
+      "wordSegments": 246,
+      "safeWordSyncVerses": 51
+    },
+    {
+      "surah": 70,
+      "sha256": "6ea75149d38e2061b30352dc4263ce0c0bd660e889effca697589cd89a823dee",
+      "sourceResponseSha256": "2827effb0320dc4952025545aa7af92eea6aab69e9102ce844d189359303d355",
+      "omittedMalformedSegments": 0,
+      "verseCount": 44,
+      "wordSegments": 216,
+      "safeWordSyncVerses": 42
+    },
+    {
+      "surah": 71,
+      "sha256": "bec4e6fffc33b81de574a6c51f4dff77555a0e52111dfc0596341e6672f5f67e",
+      "sourceResponseSha256": "5785e4fcded067a9712006897fcad3649da7410ce669b7a0610834fdadfcca2c",
+      "omittedMalformedSegments": 0,
+      "verseCount": 28,
+      "wordSegments": 235,
+      "safeWordSyncVerses": 28
+    },
+    {
+      "surah": 72,
+      "sha256": "a2505fa976672a4fa7e0ff84b8340b5b16b22a04e352b8fafa7c9b9c67676496",
+      "sourceResponseSha256": "502b3cfbbc874ec5149993110ab41283452fac29d49672045fb503da58ea05e6",
+      "omittedMalformedSegments": 3,
+      "verseCount": 28,
+      "wordSegments": 286,
+      "safeWordSyncVerses": 28
+    },
+    {
+      "surah": 73,
+      "sha256": "3e52693a6fc257bb33c3daa4f3e67559de9b854525c63460146e8232756c44c2",
+      "sourceResponseSha256": "ddc5d87f99d49ca2f92f1dbea47df3332031dfe331ba2daf303dadff725db12c",
+      "omittedMalformedSegments": 0,
+      "verseCount": 20,
+      "wordSegments": 199,
+      "safeWordSyncVerses": 20
+    },
+    {
+      "surah": 74,
+      "sha256": "47a4d7c74d9a294220b275864ec8a56016c727b3cd838a02296948a1ec7f916f",
+      "sourceResponseSha256": "83df6d926a811b9d149b6ef1989023844a4bd00117e423b24f97bd30647e5d5d",
+      "omittedMalformedSegments": 0,
+      "verseCount": 56,
+      "wordSegments": 258,
+      "safeWordSyncVerses": 56
+    },
+    {
+      "surah": 75,
+      "sha256": "f917db2022d5d288f3d47298c47beb2d84fb16347cf6f2cce03cf29fbf4db471",
+      "sourceResponseSha256": "699e8026bc9f0a875b8ace702ff18e4dda94d5bcb738738e8c0de628fb82cb76",
+      "omittedMalformedSegments": 0,
+      "verseCount": 40,
+      "wordSegments": 164,
+      "safeWordSyncVerses": 40
+    },
+    {
+      "surah": 76,
+      "sha256": "582002a12e6d4bae07f3369ca502a25d5518bdf0b6d96eac1ac94d3c823dd6ab",
+      "sourceResponseSha256": "8d32cdfb8d192646a46071d52a0df020a376663c6d3efcc6e19b9b380a8aff32",
+      "omittedMalformedSegments": 0,
+      "verseCount": 31,
+      "wordSegments": 243,
+      "safeWordSyncVerses": 31
+    },
+    {
+      "surah": 77,
+      "sha256": "ffd46f6ed2526f8c499b90679e253013fff59bb0330012ef491fe23a4f3aad8e",
+      "sourceResponseSha256": "3ee1e20da2e5084fea0a483f5d16e9d21b1b5311ac20cd4e4b1dbbe44c73a483",
+      "omittedMalformedSegments": 0,
+      "verseCount": 50,
+      "wordSegments": 182,
+      "safeWordSyncVerses": 50
+    },
+    {
+      "surah": 78,
+      "sha256": "d6086f04767963b6c1f58652df2a5161dcdf51a393ab79f15e861e4e4dc4bc92",
+      "sourceResponseSha256": "5c588a24c50b7f18fe0d3965411680c064db7b6944617c054a99ff16721376bc",
+      "omittedMalformedSegments": 0,
+      "verseCount": 40,
+      "wordSegments": 181,
+      "safeWordSyncVerses": 40
+    },
+    {
+      "surah": 79,
+      "sha256": "38a79e776963a8a65fd4ea0248beee6b62acbd8e043fd9a948d31f3b5aa5ffde",
+      "sourceResponseSha256": "246b80844da649527711f4bd80fe323d2bea4dfe2b803ab73806d1b62d2c5e8e",
+      "omittedMalformedSegments": 1,
+      "verseCount": 46,
+      "wordSegments": 180,
+      "safeWordSyncVerses": 46
+    },
+    {
+      "surah": 80,
+      "sha256": "0ea0503a2388e394b65bcfdf3a05ce85c9604947c8aaf83a5f54e4fd82ef7315",
+      "sourceResponseSha256": "642fdf14c362d35a0d6d2717481edb5ab507836dde56e2ce86b82c9089262ab4",
+      "omittedMalformedSegments": 3,
+      "verseCount": 42,
+      "wordSegments": 131,
+      "safeWordSyncVerses": 42
+    },
+    {
+      "surah": 81,
+      "sha256": "019cacc74b09505769d7220a9573e3c1704a69de1bcdeb0c855eb5a7ab0c2acb",
+      "sourceResponseSha256": "279d164ef256b9a59ab845f4bebec0b4f1b755796ce1279af1e6065e574e881b",
+      "omittedMalformedSegments": 0,
+      "verseCount": 29,
+      "wordSegments": 104,
+      "safeWordSyncVerses": 29
+    },
+    {
+      "surah": 82,
+      "sha256": "2744dd8f9a195ee3f2ec3b639b9d84513d30744b2e96e8eb19fe18267670d3fb",
+      "sourceResponseSha256": "560527711239e38e26cf588cf873fd9b6bba911517eadfffc3f1bae3498665c0",
+      "omittedMalformedSegments": 0,
+      "verseCount": 19,
+      "wordSegments": 80,
+      "safeWordSyncVerses": 19
+    },
+    {
+      "surah": 83,
+      "sha256": "4fd03d82f35181a8b05615d9510dcfb5b1abf6ee57daf4dd388a7af1395b6d2f",
+      "sourceResponseSha256": "f6718e454981d99aba5d5262c1022a90d730df57ee95683ecfccbdb45f8834de",
+      "omittedMalformedSegments": 0,
+      "verseCount": 36,
+      "wordSegments": 170,
+      "safeWordSyncVerses": 36
+    },
+    {
+      "surah": 84,
+      "sha256": "36252e9332360d961e300fafe6679cf6bad954588fd871b334e312e4992c3d79",
+      "sourceResponseSha256": "b10e32c29367ed7259cd4ebbc0d21822c615a1e79ba1008863dacdac13f66804",
+      "omittedMalformedSegments": 0,
+      "verseCount": 25,
+      "wordSegments": 107,
+      "safeWordSyncVerses": 23
+    },
+    {
+      "surah": 85,
+      "sha256": "dfa6ecda44aa6abc650d10607e1483fb4d270e0ff23d76a99b382719fcf88203",
+      "sourceResponseSha256": "9d91cf30a12abf0e5b2c3dbeab9a5fe48c3d30b3d6b8e1c15b3d74aeb52abd19",
+      "omittedMalformedSegments": 0,
+      "verseCount": 22,
+      "wordSegments": 109,
+      "safeWordSyncVerses": 22
+    },
+    {
+      "surah": 86,
+      "sha256": "013cf8543e3123828f3bcd1833a9eddeafdc25ee2be8183b282efa7de1771b20",
+      "sourceResponseSha256": "95b57fc8e4b68a8b85b1763f0eea4760eae4747e5d9b917aa322680f56dabee3",
+      "omittedMalformedSegments": 0,
+      "verseCount": 17,
+      "wordSegments": 61,
+      "safeWordSyncVerses": 17
+    },
+    {
+      "surah": 87,
+      "sha256": "944435e24d3b78ad8e06782c84ff7d5999a3e3c76346635d6835807acc7d4bf1",
+      "sourceResponseSha256": "01193ae396600c7cf5bf4623e368298ffc76c21d392ad65edc1036e37fd5c032",
+      "omittedMalformedSegments": 2,
+      "verseCount": 19,
+      "wordSegments": 70,
+      "safeWordSyncVerses": 19
+    },
+    {
+      "surah": 88,
+      "sha256": "a2e1ccfb15cf8159ee16ed8784bdc0550c068ea457ab5e32eed06f07ec2a57bf",
+      "sourceResponseSha256": "95254db2bd1a06ebb124ba1c40d86e74a610318a4ee2e3d9f5649a66311dd775",
+      "omittedMalformedSegments": 0,
+      "verseCount": 26,
+      "wordSegments": 92,
+      "safeWordSyncVerses": 26
+    },
+    {
+      "surah": 89,
+      "sha256": "a9e80be4f2aa1478659fc9af08d7f86c85881b73a254ffdb8fe0ee6e3bb22591",
+      "sourceResponseSha256": "b60c4fbc5f30392617ab4013b58b6a821d1329e32a3a2e834eae2da918df8827",
+      "omittedMalformedSegments": 1,
+      "verseCount": 30,
+      "wordSegments": 136,
+      "safeWordSyncVerses": 30
+    },
+    {
+      "surah": 90,
+      "sha256": "917c40c7b4f04e6aebf39bf5cd8b2cbb9cd2b1c4d6f5c46fdfcdfadb9f662f99",
+      "sourceResponseSha256": "2976d5751935462a7340e83c793f8e58b9b1008b42e738dcaa32576c060630ee",
+      "omittedMalformedSegments": 0,
+      "verseCount": 20,
+      "wordSegments": 82,
+      "safeWordSyncVerses": 20
+    },
+    {
+      "surah": 91,
+      "sha256": "afc4c8ddc4a445a7925d0ecdf47d27b3813f47ca8d2c7d2833bbc2f55b4f8c80",
+      "sourceResponseSha256": "9edb6245f478f4653d0bb7baaf0d2fe561fdc33a3e1477877e2cf0ff6b76d7ff",
+      "omittedMalformedSegments": 1,
+      "verseCount": 15,
+      "wordSegments": 53,
+      "safeWordSyncVerses": 15
+    },
+    {
+      "surah": 92,
+      "sha256": "9187e3bb4effd7e11b1c7b315d6e2bd48f8693e8ca0722cf0df2a8d1acee9a8b",
+      "sourceResponseSha256": "cf27a8f34a2675439d31104d4e33daa9194f1335d4bfc3ad56da89d3db429da1",
+      "omittedMalformedSegments": 0,
+      "verseCount": 21,
+      "wordSegments": 71,
+      "safeWordSyncVerses": 21
+    },
+    {
+      "surah": 93,
+      "sha256": "d1d6d5634827658b689cce348be9f292158618e7a3b7e02407c5b18074066fd0",
+      "sourceResponseSha256": "d62c471e230defa2c75385f56dec5b511fdd661f7a1b3ba7dd44e47de51bc9cf",
+      "omittedMalformedSegments": 0,
+      "verseCount": 11,
+      "wordSegments": 40,
+      "safeWordSyncVerses": 9
+    },
+    {
+      "surah": 94,
+      "sha256": "ab9ca08acaf227c29d2aa3563f1ebeb79f23809002d0b1c1fc42fd97f2b2624f",
+      "sourceResponseSha256": "058cf290d37a061f6973777301126686f04919c0ffc4663dbfd714ac41f8b650",
+      "omittedMalformedSegments": 0,
+      "verseCount": 8,
+      "wordSegments": 27,
+      "safeWordSyncVerses": 8
+    },
+    {
+      "surah": 95,
+      "sha256": "4e5acd46bf026b2027a08297e4b5ea5a7e68a7681178c90b5aa5840c741f9fa7",
+      "sourceResponseSha256": "b8c29f3f9edbfd6e7a45344be1aa709eaacdd39c9c6ab956dc85b71d623383e6",
+      "omittedMalformedSegments": 1,
+      "verseCount": 8,
+      "wordSegments": 34,
+      "safeWordSyncVerses": 8
+    },
+    {
+      "surah": 96,
+      "sha256": "c79d28b804170f332ead171417ae39903491b8cf73cc6230340a4f069f78f219",
+      "sourceResponseSha256": "fffe9c6d703701647ee853622ee6f46c43cb31e753fa3460d39aba19902d2e7d",
+      "omittedMalformedSegments": 0,
+      "verseCount": 19,
+      "wordSegments": 72,
+      "safeWordSyncVerses": 19
+    },
+    {
+      "surah": 97,
+      "sha256": "b840e88846e89660fd0059ef045489e24efd2129857e24e7e524139bfc20f468",
+      "sourceResponseSha256": "58ce71616a232486d2c592a9ea3c0434c550959dc5667fb77af4008475fe48f3",
+      "omittedMalformedSegments": 0,
+      "verseCount": 5,
+      "wordSegments": 30,
+      "safeWordSyncVerses": 5
+    },
+    {
+      "surah": 98,
+      "sha256": "2aac01d69854a4a2a9daae491d498dbaac24860453037ea1f267409e713cb826",
+      "sourceResponseSha256": "e9e3dafec0d1f1e27a801910054e09c4bc40643ef2cc09b3bb14b54829bd14f2",
+      "omittedMalformedSegments": 0,
+      "verseCount": 8,
+      "wordSegments": 94,
+      "safeWordSyncVerses": 6
+    },
+    {
+      "surah": 99,
+      "sha256": "eb56055cbf961593257fba1611b561bcde6770caf37d75ce39c8e76196e18405",
+      "sourceResponseSha256": "9d777ab1dc0c3cc48243591d969f5a4e94930b70d456a2698dac319627a8f3a0",
+      "omittedMalformedSegments": 0,
+      "verseCount": 8,
+      "wordSegments": 36,
+      "safeWordSyncVerses": 8
+    },
+    {
+      "surah": 100,
+      "sha256": "c9518c75ef0eafa35db17a51c2152f8cfb7f26d947d80234c71b9c76a600e198",
+      "sourceResponseSha256": "90ab2b5c7b8894565c73067004b21c2dbddd9f35be6518bc882d6b4a45c42f82",
+      "omittedMalformedSegments": 0,
+      "verseCount": 11,
+      "wordSegments": 40,
+      "safeWordSyncVerses": 11
+    },
+    {
+      "surah": 101,
+      "sha256": "5ff5e39cf1d36d278615e4f9e959cdda4020625817cea84a5b47776045340049",
+      "sourceResponseSha256": "42180e19ff485fa0d9bec3d18e9d036898a20d8e8900a932ea1eb655ba710486",
+      "omittedMalformedSegments": 0,
+      "verseCount": 11,
+      "wordSegments": 36,
+      "safeWordSyncVerses": 9
+    },
+    {
+      "surah": 102,
+      "sha256": "39f7159400145f207dd589c0cddafb4dfa97f69d8643f391972b245a08a51cc9",
+      "sourceResponseSha256": "78ff72fecb5ced917eafa799b094ac11c9e7a4243637e1fbd5bce65e7a8a3f0f",
+      "omittedMalformedSegments": 0,
+      "verseCount": 8,
+      "wordSegments": 28,
+      "safeWordSyncVerses": 8
+    },
+    {
+      "surah": 103,
+      "sha256": "d03ca769ab4ca2555c169c512c2c190cc52423d6599631165eb7db641af2c1e2",
+      "sourceResponseSha256": "f3036ad86ac66199f3ef7055264fb788138d354cff9b3a77d9aa7d10e74c4646",
+      "omittedMalformedSegments": 0,
+      "verseCount": 3,
+      "wordSegments": 14,
+      "safeWordSyncVerses": 3
+    },
+    {
+      "surah": 104,
+      "sha256": "e9f4d49c45c49234d45ae65d7c2a461de95bcdcefd401d683763c3fd95e73b34",
+      "sourceResponseSha256": "5b4b1c53f595ca9244a4a4563d94a5f11ec789f331fd9e44bb1ec954be0a36f5",
+      "omittedMalformedSegments": 0,
+      "verseCount": 9,
+      "wordSegments": 33,
+      "safeWordSyncVerses": 9
+    },
+    {
+      "surah": 105,
+      "sha256": "409c2f3a16af303ce3e88d01b543dc53919d6f6d9735927974fcf2b006539a9a",
+      "sourceResponseSha256": "ab23f74de7c7d11d17f06bcc53b733a194f98b6b6b60c4281ebb01206fe3ea46",
+      "omittedMalformedSegments": 0,
+      "verseCount": 5,
+      "wordSegments": 23,
+      "safeWordSyncVerses": 5
+    },
+    {
+      "surah": 106,
+      "sha256": "6c16a736410b3191ad55f7559038d7a5fb9dd1d581150d04ee93801c05002aa0",
+      "sourceResponseSha256": "7f02f52d2daf595b311e02ced8c8b37588bf9eb5a386ae80f25e19ba43fd1f24",
+      "omittedMalformedSegments": 0,
+      "verseCount": 4,
+      "wordSegments": 17,
+      "safeWordSyncVerses": 4
+    },
+    {
+      "surah": 107,
+      "sha256": "5172e8c863e837c3b79aaf9767e413232cddb002c72761d7d85a44e0fcd51bca",
+      "sourceResponseSha256": "3dbeebfac83c412bb9448ca8b90b8f8703e1ac50d68dbe6e85dcd373255e9a92",
+      "omittedMalformedSegments": 0,
+      "verseCount": 7,
+      "wordSegments": 25,
+      "safeWordSyncVerses": 7
+    },
+    {
+      "surah": 108,
+      "sha256": "27af689b8e19f57e2186667be889119010dc13d9df3aae27b4bb5aa584c1520b",
+      "sourceResponseSha256": "ee6c62aedec0a5ac715f4a0a2d6f9195c1a661f287d0ca4b933b986cd8ed866e",
+      "omittedMalformedSegments": 0,
+      "verseCount": 3,
+      "wordSegments": 10,
+      "safeWordSyncVerses": 3
+    },
+    {
+      "surah": 109,
+      "sha256": "02003c858d9454d078b12f441c823ead4b3bb820038df5c12470c443ed8c0eda",
+      "sourceResponseSha256": "12c31ffafe1305380aa60f0072add45545eaacb477ceb124a0d10a13b58d9ee6",
+      "omittedMalformedSegments": 0,
+      "verseCount": 6,
+      "wordSegments": 26,
+      "safeWordSyncVerses": 6
+    },
+    {
+      "surah": 110,
+      "sha256": "802a783b7b60197b7dd2f4beb73afe16c6c2adcbdebfcafffc60521154e75036",
+      "sourceResponseSha256": "710665755ac8ea2685c8bdb8923a12aecc07c60c5359246f50b873dfcef99091",
+      "omittedMalformedSegments": 0,
+      "verseCount": 3,
+      "wordSegments": 19,
+      "safeWordSyncVerses": 3
+    },
+    {
+      "surah": 111,
+      "sha256": "9a8cc03fca441288d947ca9b83d43592ee28e9b0fa45095af6143910985c040d",
+      "sourceResponseSha256": "43dc3afac73d50433972e034bc1a60a0fbda0b58f4e91ecb3f9ccfd88d320637",
+      "omittedMalformedSegments": 1,
+      "verseCount": 5,
+      "wordSegments": 22,
+      "safeWordSyncVerses": 5
+    },
+    {
+      "surah": 112,
+      "sha256": "41f7e760492728ac3c38e9939f334cce9b64bb7d4dca0bdd0638ada45057b294",
+      "sourceResponseSha256": "eb147276840b1c8b1d8e6bf257926fdd3371de9e895373e3205d7108bde0c258",
+      "omittedMalformedSegments": 0,
+      "verseCount": 4,
+      "wordSegments": 15,
+      "safeWordSyncVerses": 4
+    },
+    {
+      "surah": 113,
+      "sha256": "adcc0aa11a9aee20a6f07377eb38e53aa901ece104a5eea07506ed5cfe8a9ea8",
+      "sourceResponseSha256": "c1a96d146b210a6a299d2598a521ad27fef657f529f574f52b2767b896ee0fda",
+      "omittedMalformedSegments": 0,
+      "verseCount": 5,
+      "wordSegments": 23,
+      "safeWordSyncVerses": 3
+    },
+    {
+      "surah": 114,
+      "sha256": "9860e4affc649b0b0844ae85b91b91105fda5e4e11cf6a2521f85f0edf00f5e2",
+      "sourceResponseSha256": "9eb121c0c8b55affa4fec5af37df333e5f5ba18ad4b84d67fd650c5a7fe7ba2c",
+      "omittedMalformedSegments": 0,
+      "verseCount": 6,
+      "wordSegments": 20,
+      "safeWordSyncVerses": 6
+    }
+  ],
+  "safetyPolicy": "Source word starts/ends must fit clip bounds, ordered and within 1 second of their source verse bounds; overlapping adjacent verses are rejected. Rejected verses use individual-ayah audio with no word timing. Word indices must also fit the paired Quran.com study words; 37:130 has inconsistent segmentation and falls back.",
+  "safeWordSyncVerses": 6148,
+  "fallbackVerses": [
+    [
+      3,
+      8
+    ],
+    [
+      3,
+      9
+    ],
+    [
+      3,
+      10
+    ],
+    [
+      3,
+      20
+    ],
+    [
+      3,
+      21
+    ],
+    [
+      4,
+      66
+    ],
+    [
+      4,
+      67
+    ],
+    [
+      4,
+      87
+    ],
+    [
+      4,
+      88
+    ],
+    [
+      4,
+      143
+    ],
+    [
+      4,
+      144
+    ],
+    [
+      5,
+      27
+    ],
+    [
+      6,
+      9
+    ],
+    [
+      6,
+      36
+    ],
+    [
+      6,
+      61
+    ],
+    [
+      6,
+      62
+    ],
+    [
+      6,
+      92
+    ],
+    [
+      6,
+      93
+    ],
+    [
+      7,
+      135
+    ],
+    [
+      9,
+      28
+    ],
+    [
+      11,
+      30
+    ],
+    [
+      13,
+      25
+    ],
+    [
+      13,
+      26
+    ],
+    [
+      13,
+      31
+    ],
+    [
+      14,
+      1
+    ],
+    [
+      14,
+      2
+    ],
+    [
+      14,
+      3
+    ],
+    [
+      14,
+      4
+    ],
+    [
+      14,
+      5
+    ],
+    [
+      14,
+      6
+    ],
+    [
+      14,
+      7
+    ],
+    [
+      14,
+      8
+    ],
+    [
+      14,
+      9
+    ],
+    [
+      14,
+      11
+    ],
+    [
+      14,
+      12
+    ],
+    [
+      14,
+      13
+    ],
+    [
+      14,
+      14
+    ],
+    [
+      14,
+      15
+    ],
+    [
+      14,
+      16
+    ],
+    [
+      14,
+      17
+    ],
+    [
+      14,
+      20
+    ],
+    [
+      14,
+      21
+    ],
+    [
+      14,
+      22
+    ],
+    [
+      14,
+      28
+    ],
+    [
+      14,
+      32
+    ],
+    [
+      14,
+      33
+    ],
+    [
+      20,
+      1
+    ],
+    [
+      20,
+      2
+    ],
+    [
+      22,
+      3
+    ],
+    [
+      23,
+      1
+    ],
+    [
+      23,
+      2
+    ],
+    [
+      24,
+      27
+    ],
+    [
+      26,
+      1
+    ],
+    [
+      26,
+      2
+    ],
+    [
+      27,
+      1
+    ],
+    [
+      27,
+      2
+    ],
+    [
+      29,
+      10
+    ],
+    [
+      29,
+      11
+    ],
+    [
+      33,
+      1
+    ],
+    [
+      33,
+      2
+    ],
+    [
+      35,
+      2
+    ],
+    [
+      37,
+      130
+    ],
+    [
+      37,
+      152
+    ],
+    [
+      37,
+      153
+    ],
+    [
+      38,
+      27
+    ],
+    [
+      40,
+      32
+    ],
+    [
+      54,
+      11
+    ],
+    [
+      58,
+      9
+    ],
+    [
+      59,
+      1
+    ],
+    [
+      59,
+      2
+    ],
+    [
+      60,
+      11
+    ],
+    [
+      60,
+      12
+    ],
+    [
+      60,
+      13
+    ],
+    [
+      66,
+      1
+    ],
+    [
+      66,
+      2
+    ],
+    [
+      69,
+      18
+    ],
+    [
+      70,
+      1
+    ],
+    [
+      70,
+      2
+    ],
+    [
+      84,
+      1
+    ],
+    [
+      84,
+      2
+    ],
+    [
+      93,
+      1
+    ],
+    [
+      93,
+      2
+    ],
+    [
+      98,
+      1
+    ],
+    [
+      98,
+      2
+    ],
+    [
+      101,
+      1
+    ],
+    [
+      101,
+      2
+    ],
+    [
+      113,
+      1
+    ],
+    [
+      113,
+      2
+    ]
+  ]
+}

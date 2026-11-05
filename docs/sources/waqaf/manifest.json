@@ -1,0 +1,14 @@
+{
+  "sourceUrl": "https://api.alquran.cloud/v1/quran/quran-uthmani",
+  "sourceSha256": "0df03e1d6da4fc8138208fec1688f2b416f0dd4ebbd514179f3e5e0fbaf4195f",
+  "rawBytes": 2109200,
+  "rawSnapshot": "quran-uthmani.json.gz",
+  "canonicalSha256": "f41cef112e2efd581d3ea15ad7229a713d18122a6e0fbec4ddb0c00b7d1cae9c",
+  "matchedVerses": 6234,
+  "omittedReferences": [
+    "12:39",
+    "12:41"
+  ],
+  "annotatedVerses": 2639,
+  "annotationCount": 4362
+}

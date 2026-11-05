@@ -1,0 +1,95 @@
+{
+  "checkedAt": "2026-10-25",
+  "verificationScope": "Public reference links and publisher-supplied surah mappings. YouTube direct metadata/playback blocked by cloud proxy (403), including approved escalation. No claim of full video review or current playback availability.",
+  "references": [
+    {
+      "url": "https://github.com/JobeEnterprise/awesome-islam/blob/75319473bddd10ea2a7268f5cadcf6d77f3c03e7/README.md",
+      "sha256": "a66c208051aaacb556e803a18297950912219959abfa444fd8cac69ca277b677",
+      "commit": "75319473bddd10ea2a7268f5cadcf6d77f3c03e7"
+    },
+    {
+      "url": "https://github.com/sajee05/Learn-Arabic-Speaking-Reading-and-Quran/blob/514c2625820b61ce06e490a2a904ba29f8706157/README.md",
+      "sha256": "323991db79aed00a7da0864c6478ae6b1f03d22c5e451e5b2b7abab020bc4252",
+      "commit": "514c2625820b61ce06e490a2a904ba29f8706157"
+    },
+    {
+      "url": "https://github.com/Zubair2524/quran-shorts/blob/e3cab1f6b0c6200ffd6842cf56604cbfc672ba6e/links.js",
+      "sha256": "e66229de97228fcfe8fcbc19d6ad63dacc5aa038345af92dab06ea0312d28184",
+      "commit": "e3cab1f6b0c6200ffd6842cf56604cbfc672ba6e"
+    }
+  ],
+  "entries": [
+    {
+      "id": "arabic101-courses",
+      "url": "https://www.youtube.com/@Arabic101/courses",
+      "reference": "https://github.com/sajee05/Learn-Arabic-Speaking-Reading-and-Quran/blob/514c2625820b61ce06e490a2a904ba29f8706157/README.md",
+      "referenceLabel": "Arabic101/courses"
+    },
+    {
+      "id": "tajweed-easy-yasir",
+      "url": "https://www.youtube.com/playlist?list=PLSzUb0TgsIYsxT5mMj1KSFDXUEJ3psMCU",
+      "reference": "https://github.com/JobeEnterprise/awesome-islam/blob/75319473bddd10ea2a7268f5cadcf6d77f3c03e7/README.md",
+      "referenceLabel": "Learn Tajweed Easy Step by Step - Yasir Qadhi"
+    },
+    {
+      "id": "tajweed-easy-fqe",
+      "url": "https://www.youtube.com/playlist?list=PLwNeHLk_z0aSekqYqJdRtuYS74rcGXoWF",
+      "reference": "https://github.com/JobeEnterprise/awesome-islam/blob/75319473bddd10ea2a7268f5cadcf6d77f3c03e7/README.md",
+      "referenceLabel": "Learn Tajweed The Easy Way - FreeQuranEducation"
+    },
+    {
+      "id": "tajwid-safina",
+      "url": "https://www.youtube.com/playlist?list=PLZ6keVEpgaQsQllF_6KYJ2EoQZaL4s7gJ",
+      "reference": "https://github.com/JobeEnterprise/awesome-islam/blob/75319473bddd10ea2a7268f5cadcf6d77f3c03e7/README.md",
+      "referenceLabel": "Introduction to Tajwid - SafinaSociety"
+    },
+    {
+      "id": "tajweed-sajjad",
+      "url": "https://www.youtube.com/playlist?list=PLYO6Oz7uwCSgOvNlQPSbd95_uAh4zb1NP",
+      "reference": "https://github.com/JobeEnterprise/awesome-islam/blob/75319473bddd10ea2a7268f5cadcf6d77f3c03e7/README.md",
+      "referenceLabel": "Tajweed Lessons with Shaykh Sajjad Gul"
+    },
+    {
+      "id": "quran-workshop",
+      "url": "https://www.youtube.com/watch?v=BKdYbwxKndU",
+      "reference": "https://github.com/JobeEnterprise/awesome-islam/blob/75319473bddd10ea2a7268f5cadcf6d77f3c03e7/README.md",
+      "referenceLabel": "Connect with the Qur’an: A Practical Workshop on How to Read and Memorize"
+    },
+    {
+      "id": "quran-recital-zakaullah",
+      "url": "https://www.youtube.com/playlist?list=PLYRXQljU5MiIlQb5NL0z4EIrlbwlTGoqQ",
+      "reference": "https://github.com/JobeEnterprise/awesome-islam/blob/75319473bddd10ea2a7268f5cadcf6d77f3c03e7/README.md",
+      "referenceLabel": "Qur'an Recital - Shaykh Zakaullah Saleem"
+    },
+    {
+      "id": "quranic-arabic-khalid",
+      "url": "https://www.youtube.com/playlist?list=PL8OYNJDeWEeHSbrInC4lBOstp3nNid-Yi",
+      "reference": "https://github.com/JobeEnterprise/awesome-islam/blob/75319473bddd10ea2a7268f5cadcf6d77f3c03e7/README.md",
+      "referenceLabel": "Learn Quranic Arabic - Dr. Khalid Zaheer"
+    },
+    {
+      "id": "fahm-quran-taimiyyah",
+      "url": "https://www.youtube.com/watch?v=dBCUsU71cIs&list=PL5YuxmQcBQgIBv1wi9ISZA1lAVMbOY7g3",
+      "reference": "https://github.com/JobeEnterprise/awesome-islam/blob/75319473bddd10ea2a7268f5cadcf6d77f3c03e7/README.md",
+      "referenceLabel": "Fahm al Qur'an Taught by Sr Taimiyyah Zubair"
+    },
+    {
+      "id": "short-surah-112",
+      "url": "https://www.youtube.com/shorts/uwuqUvJ0cAc",
+      "reference": "https://github.com/Zubair2524/quran-shorts/blob/e3cab1f6b0c6200ffd6842cf56604cbfc672ba6e/links.js",
+      "referenceLabel": "Publisher mapping: uwuqUvJ0cAc|112"
+    },
+    {
+      "id": "short-surah-108",
+      "url": "https://www.youtube.com/shorts/srP9YLeLXWw",
+      "reference": "https://github.com/Zubair2524/quran-shorts/blob/e3cab1f6b0c6200ffd6842cf56604cbfc672ba6e/links.js",
+      "referenceLabel": "Publisher mapping: srP9YLeLXWw|108"
+    },
+    {
+      "id": "short-surah-103",
+      "url": "https://www.youtube.com/shorts/0OUTefkON3s",
+      "reference": "https://github.com/Zubair2524/quran-shorts/blob/e3cab1f6b0c6200ffd6842cf56604cbfc672ba6e/links.js",
+      "referenceLabel": "Publisher mapping: 0OUTefkON3s|103"
+    }
+  ]
+}

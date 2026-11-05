@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.qa.AiRecitationEntryPresentationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-05T06:39:05" hostname="484a6eba10ca" time="0.624">
+  <properties/>
+  <testcase name="aiEntryIsVisibleWithoutScrollingAndFirstUseDoesNotActivateMicrophone" classname="com.nuraya.app.qa.AiRecitationEntryPresentationTest" time="0.624"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

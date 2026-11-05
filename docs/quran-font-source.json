@@ -1,0 +1,22 @@
+{
+  "family": "Amiri Quran",
+  "upstreamRepository": "https://github.com/aliftype/amiri",
+  "upstreamRelease": "1.003",
+  "upstreamCommit": "480bb746e99ea700bb0d6b4dbf96302d58192103",
+  "upstreamFile": "fonts/AmiriQuran.ttf",
+  "fontInternalVersion": "Version 1.002",
+  "fontSha256": "5594121cfcd33d05ea4635b7908d15c0eced0c91aa06469a95354b3369ca2949",
+  "fontBytes": 167984,
+  "license": "SIL Open Font License 1.1",
+  "licenseSha256": "72de68e5954f4fdd24702292ef5a32f003ca960ec9330dc86e5eefb5dffb9b22",
+  "modified": false,
+  "validation": {
+    "allQuranCorpusCharactersCovered": true,
+    "distinctQuranCorpusCharacters": 62,
+    "openTypeLayoutTables": [
+      "GDEF",
+      "GPOS",
+      "GSUB"
+    ]
+  }
+}

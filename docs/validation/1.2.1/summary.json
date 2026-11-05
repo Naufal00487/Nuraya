@@ -1,0 +1,271 @@
+{
+  "versionName": "1.2.1",
+  "versionCode": 5,
+  "checkedAt": "2026-10-27T03:46:54.086987+00:00",
+  "gradleResult": "BUILD SUCCESSFUL",
+  "hostJvm": {
+    "totals": {
+      "tests": 115,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "suites": [
+      {
+        "name": "com.nuraya.app.learning.ContentPolicyTest",
+        "tests": "2",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-27T03:41:02",
+        "hostname": "92eac9c7989a",
+        "time": "0.004"
+      },
+      {
+        "name": "com.nuraya.app.learning.LearningValidationTest",
+        "tests": "6",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-27T03:41:02",
+        "hostname": "92eac9c7989a",
+        "time": "0.968"
+      },
+      {
+        "name": "com.nuraya.app.learning.LocalLearningRepositoryTest",
+        "tests": "6",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-27T03:41:03",
+        "hostname": "92eac9c7989a",
+        "time": "3.398"
+      },
+      {
+        "name": "com.nuraya.app.learning.VideoCatalogueTest",
+        "tests": "3",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-27T03:41:06",
+        "hostname": "92eac9c7989a",
+        "time": "0.303"
+      },
+      {
+        "name": "com.nuraya.app.learning.VideoSmartSearchTest",
+        "tests": "8",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-27T03:41:06",
+        "hostname": "92eac9c7989a",
+        "time": "0.908"
+      },
+      {
+        "name": "com.nuraya.app.learning.YouTubeEmbedTest",
+        "tests": "5",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-27T03:41:07",
+        "hostname": "92eac9c7989a",
+        "time": "0.056"
+      },
+      {
+        "name": "com.nuraya.app.media.DownloadSafetyTest",
+        "tests": "5",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-27T03:41:07",
+        "hostname": "92eac9c7989a",
+        "time": "0.001"
+      },
+      {
+        "name": "com.nuraya.app.media.VerseAudioCatalogTest",
+        "tests": "6",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-27T03:41:07",
+        "hostname": "92eac9c7989a",
+        "time": "0.881"
+      },
+      {
+        "name": "com.nuraya.app.qa.AiRecitationEntryPresentationTest",
+        "tests": "1",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-27T03:41:08",
+        "hostname": "92eac9c7989a",
+        "time": "10.689"
+      },
+      {
+        "name": "com.nuraya.app.qa.LocalLearningPresentationTest",
+        "tests": "1",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-27T03:41:19",
+        "hostname": "92eac9c7989a",
+        "time": "1.288"
+      },
+      {
+        "name": "com.nuraya.app.qa.QaLocalPersistenceTest",
+        "tests": "4",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-27T03:41:20",
+        "hostname": "92eac9c7989a",
+        "time": "4.57"
+      },
+      {
+        "name": "com.nuraya.app.qa.QaQuranRepositoryTest",
+        "tests": "6",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-27T03:41:25",
+        "hostname": "92eac9c7989a",
+        "time": "1.365"
+      },
+      {
+        "name": "com.nuraya.app.qa.QuranOpeningPolicyTest",
+        "tests": "6",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-27T03:41:26",
+        "hostname": "92eac9c7989a",
+        "time": "0.675"
+      },
+      {
+        "name": "com.nuraya.app.qa.QuranReaderPresentationTest",
+        "tests": "5",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-27T03:41:27",
+        "hostname": "92eac9c7989a",
+        "time": "2.428"
+      },
+      {
+        "name": "com.nuraya.app.qa.QuranRecitationPresentationTest",
+        "tests": "4",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-27T03:41:29",
+        "hostname": "92eac9c7989a",
+        "time": "1.528"
+      },
+      {
+        "name": "com.nuraya.app.qa.ShortsFeedPresentationTest",
+        "tests": "1",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-27T03:41:31",
+        "hostname": "92eac9c7989a",
+        "time": "1.173"
+      },
+      {
+        "name": "com.nuraya.app.qa.StudyFeaturePresentationTest",
+        "tests": "5",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-27T03:41:32",
+        "hostname": "92eac9c7989a",
+        "time": "2.689"
+      },
+      {
+        "name": "com.nuraya.app.qa.StudyIntegrationTest",
+        "tests": "7",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-27T03:41:35",
+        "hostname": "92eac9c7989a",
+        "time": "1.848"
+      },
+      {
+        "name": "com.nuraya.app.recitation.LocalQuranCaptureTest",
+        "tests": "5",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-27T03:40:55",
+        "hostname": "92eac9c7989a",
+        "time": "0.265"
+      },
+      {
+        "name": "com.nuraya.app.recitation.LocalQuranSessionLifecycleTest",
+        "tests": "2",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-27T03:41:37",
+        "hostname": "92eac9c7989a",
+        "time": "0.094"
+      },
+      {
+        "name": "com.nuraya.app.recitation.QuranModelStoreTest",
+        "tests": "4",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-27T03:41:37",
+        "hostname": "92eac9c7989a",
+        "time": "0.201"
+      },
+      {
+        "name": "com.nuraya.app.recitation.RecitationMatcherTest",
+        "tests": "11",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-27T03:41:37",
+        "hostname": "92eac9c7989a",
+        "time": "0.017"
+      },
+      {
+        "name": "com.nuraya.app.recitation.RecitationMicrophoneSessionTest",
+        "tests": "7",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-27T03:40:56",
+        "hostname": "92eac9c7989a",
+        "time": "5.715"
+      },
+      {
+        "name": "com.nuraya.app.study.PracticeRepositoryTest",
+        "tests": "5",
+        "skipped": "0",
+        "failures": "0",
+        "errors": "0",
+        "timestamp": "2026-10-27T03:41:37",
+        "hostname": "92eac9c7989a",
+        "time": "0.354"
+      }
+    ]
+  },
+  "lint": {
+    "Warning": 21
+  },
+  "browserControlledWrapperScenariosPassed": 3,
+  "actualYouTubePlaybackVerified": false,
+  "androidRuntimeAttempt": {
+    "environment": "API35 x86_64 software emulator without KVM",
+    "installation": "APK and test APK installed successfully",
+    "result": "instrumentation process killed by startup ANR; zero completed tests",
+    "testsPassed": 0,
+    "physicalMicrophoneVerified": false
+  },
+  "signatureVerified": true,
+  "signingCertificateSha256": "e2aa60317632bc6aea65f83c2247e54111941d0e0725875a2c9db3ffb93ac264",
+  "zip16KbAlignmentVerified": true
+}

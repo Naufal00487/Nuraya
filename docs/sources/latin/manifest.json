@@ -1,0 +1,578 @@
+{
+  "schemaVersion": 1,
+  "source": "Transliterasi Latin Indonesia · EQuran.id API v2",
+  "fetchedAt": "2026-10-28T18:18:15.493341+00:00",
+  "canonicalQuranSha256": "f41cef112e2efd581d3ea15ad7229a713d18122a6e0fbec4ddb0c00b7d1cae9c",
+  "files": {
+    "1": {
+      "url": "https://equran.id/api/v2/surat/1",
+      "bytes": 6385,
+      "sha256": "78fa7447eacb2256a93e5cccf5ee362895ee0aa113e922601bcda2e488cd846f"
+    },
+    "2": {
+      "url": "https://equran.id/api/v2/surat/2",
+      "bytes": 396697,
+      "sha256": "316a3988710a7d3a22c2858a8a2d0263ea95346a1873905bdc609505ee00da97"
+    },
+    "3": {
+      "url": "https://equran.id/api/v2/surat/3",
+      "bytes": 246643,
+      "sha256": "c2470f4d3efbbc4161454a22c537e8235c01a98dd9760d9a4e9272823287125c"
+    },
+    "4": {
+      "url": "https://equran.id/api/v2/surat/4",
+      "bytes": 246502,
+      "sha256": "103cb93bd280f5af62e2a8ae5e1f84e6c24134b19c704b48061b3970bc88efa8"
+    },
+    "5": {
+      "url": "https://equran.id/api/v2/surat/5",
+      "bytes": 177849,
+      "sha256": "44a37201aab701d1e179691b14c3be7839f62048ef6984d605b9b7c946967eb9"
+    },
+    "6": {
+      "url": "https://equran.id/api/v2/surat/6",
+      "bytes": 211673,
+      "sha256": "80db52173f544d32f70805c31ddd51e3cbac5b86dee452731bc219f55f27a3b2"
+    },
+    "7": {
+      "url": "https://equran.id/api/v2/surat/7",
+      "bytes": 247461,
+      "sha256": "30d5e2fadfb38215a9f0e5c26f24ba703380563a4d20dc16cb3bf7ed8a77a2e8"
+    },
+    "8": {
+      "url": "https://equran.id/api/v2/surat/8",
+      "bytes": 93216,
+      "sha256": "5ea729732c5b9be6733eba32b1dcfa7855f34604ee4afb0cfbed68bdd2c8da64"
+    },
+    "9": {
+      "url": "https://equran.id/api/v2/surat/9",
+      "bytes": 174245,
+      "sha256": "0d8d05e907357cb803fd17ddb7f46ba37c86f0670456dca80a2dd2ba07f19083"
+    },
+    "10": {
+      "url": "https://equran.id/api/v2/surat/10",
+      "bytes": 131793,
+      "sha256": "099823f5f0f12faa9d36b1a0a1628c0a5171f3c2cef4f96b30a8f1d7ecd0b03e"
+    },
+    "11": {
+      "url": "https://equran.id/api/v2/surat/11",
+      "bytes": 142554,
+      "sha256": "d2e53b28c3b4837e5ddc8f916a65cffbbc0a9d2c72eecc49c31de149f7778e23"
+    },
+    "12": {
+      "url": "https://equran.id/api/v2/surat/12",
+      "bytes": 130861,
+      "sha256": "417d4c62d713f9ea75d83f22378c935dc1804ded6ca4fa6209bf85848e849515"
+    },
+    "13": {
+      "url": "https://equran.id/api/v2/surat/13",
+      "bytes": 58457,
+      "sha256": "83ecab7b7cf18dbccd8c952c5efdf6cafc52219777eb391243a5ecfaa4a17521"
+    },
+    "14": {
+      "url": "https://equran.id/api/v2/surat/14",
+      "bytes": 62947,
+      "sha256": "5d372f092d704a1295e0d978eea7b995ffe40dc8fdd130de1a2479bd2367ddb4"
+    },
+    "15": {
+      "url": "https://equran.id/api/v2/surat/15",
+      "bytes": 81807,
+      "sha256": "4f8da1d5a761a964a10921fe1ea3c9d171f039838ec7520cb5970467efc5e557"
+    },
+    "16": {
+      "url": "https://equran.id/api/v2/surat/16",
+      "bytes": 143618,
+      "sha256": "9902d825504674d72b5ab3b94707125f7d437bb7f5e81068f205968436d265b8"
+    },
+    "17": {
+      "url": "https://equran.id/api/v2/surat/17",
+      "bytes": 123863,
+      "sha256": "d709fcbd5d827329bf49eb892e12941760ebdbb14b7606cd6cd34c8cbd553617"
+    },
+    "18": {
+      "url": "https://equran.id/api/v2/surat/18",
+      "bytes": 123351,
+      "sha256": "bf9803244f5b435f796296c239edcfeb3a34b6d8d28ee3fffeca4f090536b333"
+    },
+    "19": {
+      "url": "https://equran.id/api/v2/surat/19",
+      "bytes": 92212,
+      "sha256": "c877247f72d66bf7f4c00e8bfab2288d09a27c69742d7890bc94cbdaecedafaa"
+    },
+    "20": {
+      "url": "https://equran.id/api/v2/surat/20",
+      "bytes": 126241,
+      "sha256": "13e39ec844c58d79915cb8fa0e12fa27a6d3444ee775b602361d6476f93300a6"
+    },
+    "21": {
+      "url": "https://equran.id/api/v2/surat/21",
+      "bytes": 109779,
+      "sha256": "07a81f921a8dcbf5cbff771b374f19bf1658b9f0da851b7dd45aae3c3b670fbe"
+    },
+    "22": {
+      "url": "https://equran.id/api/v2/surat/22",
+      "bytes": 92919,
+      "sha256": "c5882d8c107594c991bb7812ab29a10dd48965a4483c2119aff3255706d718a6"
+    },
+    "23": {
+      "url": "https://equran.id/api/v2/surat/23",
+      "bytes": 105901,
+      "sha256": "4425412ab76238c792c81d5f887b09e5f6c89aac092cbca31b06486ee84c393b"
+    },
+    "24": {
+      "url": "https://equran.id/api/v2/surat/24",
+      "bytes": 88759,
+      "sha256": "3a3ce4a49437bb49f6066991af8b6c0fb2bb9952851c2f0436d170b2c7656b08"
+    },
+    "25": {
+      "url": "https://equran.id/api/v2/surat/25",
+      "bytes": 78771,
+      "sha256": "0fcad44ce4c148cadfd2c76cd7281d6e8057a59cbe145a93b348f6dcd418c560"
+    },
+    "26": {
+      "url": "https://equran.id/api/v2/surat/26",
+      "bytes": 176079,
+      "sha256": "88496aee46e9d08c969de4f8c7e9fb3a66667cf1bbce328574ba21af75347f13"
+    },
+    "27": {
+      "url": "https://equran.id/api/v2/surat/27",
+      "bytes": 98549,
+      "sha256": "4917ace9874892ea335b17a9e5b11a67a898f95d5a86afacaff1e1115b8d1384"
+    },
+    "28": {
+      "url": "https://equran.id/api/v2/surat/28",
+      "bytes": 105705,
+      "sha256": "676996f49115774973a26b2d0df30e0658ace7fd85a0ede023d46a553b9ab3b9"
+    },
+    "29": {
+      "url": "https://equran.id/api/v2/surat/29",
+      "bytes": 78381,
+      "sha256": "d530e2e870edcc5699847109290a4a38a049e43ef9bf4eab6a3974b8b5533fb1"
+    },
+    "30": {
+      "url": "https://equran.id/api/v2/surat/30",
+      "bytes": 65884,
+      "sha256": "dffa909569086b7ae3fcaa6e44ae37b0202fff1140a6c9b35a5ea8af3291a777"
+    },
+    "31": {
+      "url": "https://equran.id/api/v2/surat/31",
+      "bytes": 39927,
+      "sha256": "cb3fb69f423dc1244682042a34a909632cf53f9390457bbf1be9d20933968305"
+    },
+    "32": {
+      "url": "https://equran.id/api/v2/surat/32",
+      "bytes": 31870,
+      "sha256": "c9df129fa20248dda14a22025ac996efedb41f160fa217d1d2afb737dab987c7"
+    },
+    "33": {
+      "url": "https://equran.id/api/v2/surat/33",
+      "bytes": 92552,
+      "sha256": "8485c21773b74b852b356cceb9756c38a9d0cc360fafce424fa7bccdbe3281f6"
+    },
+    "34": {
+      "url": "https://equran.id/api/v2/surat/34",
+      "bytes": 65061,
+      "sha256": "2e0e0f1a31100e7e64f85ca45e2c45dfac409ecc5c3ed51829bb03ae38bb2712"
+    },
+    "35": {
+      "url": "https://equran.id/api/v2/surat/35",
+      "bytes": 56029,
+      "sha256": "1a2035021193fe38ff7c545e86c20cb785fe0641286d02a5d7ddafc4ba1c8ca0"
+    },
+    "36": {
+      "url": "https://equran.id/api/v2/surat/36",
+      "bytes": 75108,
+      "sha256": "7107c805ef0325b6f78a2d824248b21fc01785ae91a025c866efd621c6a530db"
+    },
+    "37": {
+      "url": "https://equran.id/api/v2/surat/37",
+      "bytes": 135285,
+      "sha256": "d31bda25efac069be01f9501b467aa12a45d6f66542ab501f7f126d59cea0f6a"
+    },
+    "38": {
+      "url": "https://equran.id/api/v2/surat/38",
+      "bytes": 78084,
+      "sha256": "225a079a4eca0ead3e41afa14aaef0291bbe3452e27ff7a5134eab65d4d3da59"
+    },
+    "39": {
+      "url": "https://equran.id/api/v2/surat/39",
+      "bytes": 87132,
+      "sha256": "ad913d5ebbd96db45b1286a64606fd8c527c4cbdfe222691fc50cc830278bc12"
+    },
+    "40": {
+      "url": "https://equran.id/api/v2/surat/40",
+      "bytes": 94819,
+      "sha256": "c33c9da854537bc275b62ca8ec3a18decfd217eb66841f7cc97af528472b460e"
+    },
+    "41": {
+      "url": "https://equran.id/api/v2/surat/41",
+      "bytes": 62286,
+      "sha256": "60c839eccad4a5070d34b69e71221441b8c68a9d18771dfc2be66c5a09b5b694"
+    },
+    "42": {
+      "url": "https://equran.id/api/v2/surat/42",
+      "bytes": 63205,
+      "sha256": "39be60e1c2ad2732ad3b06452c3a5e87b25a4e6c891ac0f6526ade39a53f753b"
+    },
+    "43": {
+      "url": "https://equran.id/api/v2/surat/43",
+      "bytes": 83970,
+      "sha256": "cb5bd6f0ff77880a43f87882fabfdb9a3f6fa44926a871f76c350b81da25cea1"
+    },
+    "44": {
+      "url": "https://equran.id/api/v2/surat/44",
+      "bytes": 47474,
+      "sha256": "e8c324c88a91da25694ee61ee9caa7846905208aaa0a62fa9ba18ea032fc3ec8"
+    },
+    "45": {
+      "url": "https://equran.id/api/v2/surat/45",
+      "bytes": 40360,
+      "sha256": "328f0e1e8d875879579ce57d763b7b9c41e823245c99703095ece268887c876c"
+    },
+    "46": {
+      "url": "https://equran.id/api/v2/surat/46",
+      "bytes": 45510,
+      "sha256": "fe7a064260ae31bfd240cd5c2b89d4110d05385cd66749d644471d31b7f8e905"
+    },
+    "47": {
+      "url": "https://equran.id/api/v2/surat/47",
+      "bytes": 44547,
+      "sha256": "82741d15115c5daffdf89d7fde9237df180f5f846f5eefd95e726fbd519e13bc"
+    },
+    "48": {
+      "url": "https://equran.id/api/v2/surat/48",
+      "bytes": 40452,
+      "sha256": "84908649ee0301626b88ad9aba99164692d14f9519ebf676b5f36cd128b36ff3"
+    },
+    "49": {
+      "url": "https://equran.id/api/v2/surat/49",
+      "bytes": 24789,
+      "sha256": "1809f1aec8a0f22191961d8eb828108d0bfa5e6667a035438e5f9a60cbea0021"
+    },
+    "50": {
+      "url": "https://equran.id/api/v2/surat/50",
+      "bytes": 40235,
+      "sha256": "4f7e1dbe3cd7df112a5ab1f4c4a280fa0447876412c7d0fb89a3d7961cf2bb58"
+    },
+    "51": {
+      "url": "https://equran.id/api/v2/surat/51",
+      "bytes": 48261,
+      "sha256": "728937eeedd4be0a63b9a8b8f6ad8f30501958f5ca484375e25218e1b6864eed"
+    },
+    "52": {
+      "url": "https://equran.id/api/v2/surat/52",
+      "bytes": 40186,
+      "sha256": "825e0176aec2d15c1b0c4e5b430a9bea69d0cd88fe73a0caab8e885312b10145"
+    },
+    "53": {
+      "url": "https://equran.id/api/v2/surat/53",
+      "bytes": 48134,
+      "sha256": "21230a62e4e58266638a905de0df193529974ac4e82a6a6abc8533e5a6789a6b"
+    },
+    "54": {
+      "url": "https://equran.id/api/v2/surat/54",
+      "bytes": 45069,
+      "sha256": "5d98c663e3c20e05dc01941b78072a0a2a316a2c0fc40a3e0cf5eb3548c55b5a"
+    },
+    "55": {
+      "url": "https://equran.id/api/v2/surat/55",
+      "bytes": 58130,
+      "sha256": "ac215dd8dad1f5cab1f19bf4ef5dd0f3cba95d9d9c57a9480e23c44cd4a26ede"
+    },
+    "56": {
+      "url": "https://equran.id/api/v2/surat/56",
+      "bytes": 68215,
+      "sha256": "285917060fa8a20a04cbb29b0c1831abab5f2094697ca023dfdd919fba336e60"
+    },
+    "57": {
+      "url": "https://equran.id/api/v2/surat/57",
+      "bytes": 39674,
+      "sha256": "b956982f447746c31d8e0aac74a8e9b038a2ee921f771e6d5c3f486e4d9cdf5e"
+    },
+    "58": {
+      "url": "https://equran.id/api/v2/surat/58",
+      "bytes": 31842,
+      "sha256": "8ba237fec861a04118e7482d612b89f4b2f7e6cb560d49f6e3ea6a96ed5c3965"
+    },
+    "59": {
+      "url": "https://equran.id/api/v2/surat/59",
+      "bytes": 32016,
+      "sha256": "e0b3a3dc8c25d663a9053b3f4dfcb174a164bd2ae145bc907b2d9da4199e7573"
+    },
+    "60": {
+      "url": "https://equran.id/api/v2/surat/60",
+      "bytes": 22590,
+      "sha256": "bc2c6e56b065d5abd34c2f7cf02ea9f7986c3893281be9816999f4c634d4a995"
+    },
+    "61": {
+      "url": "https://equran.id/api/v2/surat/61",
+      "bytes": 17514,
+      "sha256": "258dc962c5d6af8df5aa8dccc735d4444e306a673b5d267770cf2d6655fdeb88"
+    },
+    "62": {
+      "url": "https://equran.id/api/v2/surat/62",
+      "bytes": 13753,
+      "sha256": "b5878926bac482f7988e64dbcf2e4d7275fa0dcd8b36b9e66c9d8275688dd7bb"
+    },
+    "63": {
+      "url": "https://equran.id/api/v2/surat/63",
+      "bytes": 14448,
+      "sha256": "13bfbacba102e6faa23987fdfb00b99216d97e7ff32c70c9e4a1a0629f4374b9"
+    },
+    "64": {
+      "url": "https://equran.id/api/v2/surat/64",
+      "bytes": 20615,
+      "sha256": "20c57c9b1dabeefcbeae4c5ef91cb6cbfe42aaf7d9135cc8bfca5570ad766cb3"
+    },
+    "65": {
+      "url": "https://equran.id/api/v2/surat/65",
+      "bytes": 19087,
+      "sha256": "defe472107833877140e687b1e53418de4bfffe62adff1180f58987f0e5014fc"
+    },
+    "66": {
+      "url": "https://equran.id/api/v2/surat/66",
+      "bytes": 17792,
+      "sha256": "58fb31a6839da4b5c37f129d3a4a280315227a41dbba8e0a4f4fb4149e78ddf9"
+    },
+    "67": {
+      "url": "https://equran.id/api/v2/surat/67",
+      "bytes": 30248,
+      "sha256": "a9f9b09bdf0b69e94e9d9c55a86403c89f2263c0f836108873561ae3c977f182"
+    },
+    "68": {
+      "url": "https://equran.id/api/v2/surat/68",
+      "bytes": 41342,
+      "sha256": "95bce03e037e46e1d6388ad9ebe662d0ea413c197d9eba3d8b8cc94371e026b6"
+    },
+    "69": {
+      "url": "https://equran.id/api/v2/surat/69",
+      "bytes": 39453,
+      "sha256": "c38bfc4d693c8e52b25d71f0aeb148853ff670ce868e3b9eb56a8e6d9e086aa7"
+    },
+    "70": {
+      "url": "https://equran.id/api/v2/surat/70",
+      "bytes": 33694,
+      "sha256": "4f4aa2e6eb0b686e777a397485491cfea365b61dd26e553081255e90ea0aa0a5"
+    },
+    "71": {
+      "url": "https://equran.id/api/v2/surat/71",
+      "bytes": 24715,
+      "sha256": "c4885be75e1585420bcdce656352e4c5d4c347348ed630fd33ada6a1d4a976a9"
+    },
+    "72": {
+      "url": "https://equran.id/api/v2/surat/72",
+      "bytes": 27134,
+      "sha256": "17e174ed4e3a3e5924016383336a975936cdd18e1cfc91072ff99cb9fd56399b"
+    },
+    "73": {
+      "url": "https://equran.id/api/v2/surat/73",
+      "bytes": 19714,
+      "sha256": "91a8de370905c73f4b5112b8c00aef3383e4f64a6d1c1e98c22da46cdbd2d05e"
+    },
+    "74": {
+      "url": "https://equran.id/api/v2/surat/74",
+      "bytes": 41061,
+      "sha256": "d7da9078c4e97daa400c6f3befbfe8b70633ab71c9128b958952e6d8e64b4fca"
+    },
+    "75": {
+      "url": "https://equran.id/api/v2/surat/75",
+      "bytes": 28703,
+      "sha256": "6d0e7433328944f87998a3e4305fa0cb76230b715f0293c525723f369e661767"
+    },
+    "76": {
+      "url": "https://equran.id/api/v2/surat/76",
+      "bytes": 27454,
+      "sha256": "f1fc938534bcd650d79514edc08c7a1dc4da45536aaf01ed7893387f520f16cc"
+    },
+    "77": {
+      "url": "https://equran.id/api/v2/surat/77",
+      "bytes": 35689,
+      "sha256": "cc559f44a7c838081de41cc8cc1dee969f29183a3f80ad557c5c2454d8f5ec78"
+    },
+    "78": {
+      "url": "https://equran.id/api/v2/surat/78",
+      "bytes": 29579,
+      "sha256": "320f73f057d01f2106a30de92fcad464382bb85e06010143c27c0eb1964f8406"
+    },
+    "79": {
+      "url": "https://equran.id/api/v2/surat/79",
+      "bytes": 33171,
+      "sha256": "3b159cb82f0e48f90d53abd003b15315e6c65b0f1d635aedf33df4035f5b6bbc"
+    },
+    "80": {
+      "url": "https://equran.id/api/v2/surat/80",
+      "bytes": 29360,
+      "sha256": "717004523803e5650f4a65ebc83d5ee1d191c00c7b721acf01f65ea96fd03226"
+    },
+    "81": {
+      "url": "https://equran.id/api/v2/surat/81",
+      "bytes": 20465,
+      "sha256": "47eae62232a81183522f6f6ddd3b5cfe1e823a5eacc6c0e87951d30f528a33a9"
+    },
+    "82": {
+      "url": "https://equran.id/api/v2/surat/82",
+      "bytes": 14264,
+      "sha256": "a071bc986a9dfe6bdaf8bbfb6d2408a7043030564dac088dece2be9c85636e07"
+    },
+    "83": {
+      "url": "https://equran.id/api/v2/surat/83",
+      "bytes": 27465,
+      "sha256": "76fd5014ea38f72b9da71852bd512be4be3ca10f2cc84c2c675192420d2562a6"
+    },
+    "84": {
+      "url": "https://equran.id/api/v2/surat/84",
+      "bytes": 18528,
+      "sha256": "e72d19f64ec1de49b5d32e23d378f883285e4e1d307605d2aec8b65b885fe9c7"
+    },
+    "85": {
+      "url": "https://equran.id/api/v2/surat/85",
+      "bytes": 16982,
+      "sha256": "e5909d280a6848137635f9c0ac4af21edec5e117b2801aef89d90d6e647f935e"
+    },
+    "86": {
+      "url": "https://equran.id/api/v2/surat/86",
+      "bytes": 12530,
+      "sha256": "dc581d107da783086b8471fd3d24dbcaff8c32153356b06bf1bc80aef048016a"
+    },
+    "87": {
+      "url": "https://equran.id/api/v2/surat/87",
+      "bytes": 14267,
+      "sha256": "13c07b6eb8fbbd0d0635c67236388a5265e4297058ee71c445c4a5c35d6e80c8"
+    },
+    "88": {
+      "url": "https://equran.id/api/v2/surat/88",
+      "bytes": 18684,
+      "sha256": "b75d9516ee1c133218117e30765c0a45c03d4eef8eff96cf5e20421e51e434b6"
+    },
+    "89": {
+      "url": "https://equran.id/api/v2/surat/89",
+      "bytes": 22433,
+      "sha256": "d8b6ad468773414455bbcf8655db897c77e68154086e47a934005ca281f972c1"
+    },
+    "90": {
+      "url": "https://equran.id/api/v2/surat/90",
+      "bytes": 14864,
+      "sha256": "7089b59228fae38bc9a51713eb6957cf6eeeb8d2ff017fc21fd84fab676e3678"
+    },
+    "91": {
+      "url": "https://equran.id/api/v2/surat/91",
+      "bytes": 11308,
+      "sha256": "72ecec51dff9df3acdfd3312dbf0e89ee73854153fea228788805df6cf2b410d"
+    },
+    "92": {
+      "url": "https://equran.id/api/v2/surat/92",
+      "bytes": 15179,
+      "sha256": "68ca80a09fd9858aced59789c9c37be733b6d405464ec244dea9f401f793b20c"
+    },
+    "93": {
+      "url": "https://equran.id/api/v2/surat/93",
+      "bytes": 8519,
+      "sha256": "89769c6f56f13276a1e174bee2f10734115c5738a36e7f6d494719b8a7efe5fe"
+    },
+    "94": {
+      "url": "https://equran.id/api/v2/surat/94",
+      "bytes": 6330,
+      "sha256": "aba3ff104922ba7a5cac6b301636351e12f76107f6ce3aeb9c4eb79b8fe0d0fc"
+    },
+    "95": {
+      "url": "https://equran.id/api/v2/surat/95",
+      "bytes": 6658,
+      "sha256": "7ced94e8d3c4d535b3565d84415392574e7eb8f2910262f574dd0da634f85be3"
+    },
+    "96": {
+      "url": "https://equran.id/api/v2/surat/96",
+      "bytes": 14112,
+      "sha256": "22872a9ccf5a0e9c22ba5cc541135e41495875afd1cb429090b7723d191a72d4"
+    },
+    "97": {
+      "url": "https://equran.id/api/v2/surat/97",
+      "bytes": 4682,
+      "sha256": "c5f848a235f8844da0a9461c3962865361fa3ead7246dbb9d8fdb7f0a19b83e5"
+    },
+    "98": {
+      "url": "https://equran.id/api/v2/surat/98",
+      "bytes": 8883,
+      "sha256": "910ab315590ba995b8d369ed1da69f3c7184bd1ec6dfecb8bd2e770c8772bd66"
+    },
+    "99": {
+      "url": "https://equran.id/api/v2/surat/99",
+      "bytes": 6830,
+      "sha256": "01e4f21a22e0eddb40bbd3c26ff6c89984862b2e243f2a502d18d93d3de7f7db"
+    },
+    "100": {
+      "url": "https://equran.id/api/v2/surat/100",
+      "bytes": 8584,
+      "sha256": "e168bfb52b914e655b80d3f8516d8669f2939cfec4fff438d0d32853cd957f92"
+    },
+    "101": {
+      "url": "https://equran.id/api/v2/surat/101",
+      "bytes": 8308,
+      "sha256": "8652c0b2014b11651b080bf6d38b9e37f4a4610acfdd1bdf15ea2ed46f544f2e"
+    },
+    "102": {
+      "url": "https://equran.id/api/v2/surat/102",
+      "bytes": 6638,
+      "sha256": "0af84a12dc2fc87eb4647732c516cfa7152bb99adbe793bac50ca39c5b8bd41c"
+    },
+    "103": {
+      "url": "https://equran.id/api/v2/surat/103",
+      "bytes": 3211,
+      "sha256": "f61732667e092821e656d2b444b32ccfce246ddb960688b98260b64941332154"
+    },
+    "104": {
+      "url": "https://equran.id/api/v2/surat/104",
+      "bytes": 7105,
+      "sha256": "72448b71175f4fb6e76ea245fa1531a6d2eabb1178be0c4b5a05418b6def9d41"
+    },
+    "105": {
+      "url": "https://equran.id/api/v2/surat/105",
+      "bytes": 4819,
+      "sha256": "3a3ab1dafd2d88da069c877ef33b2abe1e8e1d05a1bf9fab17438a02029fd7b8"
+    },
+    "106": {
+      "url": "https://equran.id/api/v2/surat/106",
+      "bytes": 3995,
+      "sha256": "615b002f5a7ec466efd9c181810e7b92d6a9bccbd47e9c7b361349d72b30121f"
+    },
+    "107": {
+      "url": "https://equran.id/api/v2/surat/107",
+      "bytes": 5712,
+      "sha256": "8b9938bac618dd747749154247386c36b038220607cd63b2f20848b01626c1e3"
+    },
+    "108": {
+      "url": "https://equran.id/api/v2/surat/108",
+      "bytes": 3178,
+      "sha256": "9394e0afc34117f66e8a5fb4a3b8c2be57bb2b914a378b0361bb2d189e0c3ef6"
+    },
+    "109": {
+      "url": "https://equran.id/api/v2/surat/109",
+      "bytes": 5133,
+      "sha256": "abc836fd23cb6789794c2ede620a1441f447165843d48c244fae7721f02227ed"
+    },
+    "110": {
+      "url": "https://equran.id/api/v2/surat/110",
+      "bytes": 3341,
+      "sha256": "ab5b28cd2bc33909420a958c9621cc9131777296a9ca6195822b6d5324f9b22c"
+    },
+    "111": {
+      "url": "https://equran.id/api/v2/surat/111",
+      "bytes": 4521,
+      "sha256": "e61a0804e8cdb4c622e0cd04b51a88e0e5063dabcc829f54416f993d0bc2fcb9"
+    },
+    "112": {
+      "url": "https://equran.id/api/v2/surat/112",
+      "bytes": 3599,
+      "sha256": "a69a6b0fb97a7ae0ee7ec6b330fa4df8846486f3a78fdd5ad8ac5d4990be8022"
+    },
+    "113": {
+      "url": "https://equran.id/api/v2/surat/113",
+      "bytes": 4627,
+      "sha256": "3635a884f115c03758ff12acb368caf264eb050fa2609fa215b905aa67fdd900"
+    },
+    "114": {
+      "url": "https://equran.id/api/v2/surat/114",
+      "bytes": 4781,
+      "sha256": "cf97bc483f99667a554a1bcecd5769013ba835a31a78afc3f6db7be0c404347f"
+    }
+  }
+}

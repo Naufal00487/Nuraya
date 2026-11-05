@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-10-25T08:06:50.543719+00:00",
+  "samples": [
+    {
+      "surah": 1,
+      "url": "https://download.quranicaudio.com/qdc/mishari_al_afasy/murattal/1.mp3",
+      "httpStatus": 200,
+      "bytes": 793327,
+      "sha256": "1e82007d1dc37fa879c217db756c379f348e8414a4749b07eddac14b007394d2",
+      "durationSeconds": 46.497959,
+      "fullHostDecode": "passed"
+    },
+    {
+      "surah": 114,
+      "url": "https://download.quranicaudio.com/qdc/mishari_al_afasy/murattal/114.mp3",
+      "httpStatus": 200,
+      "bytes": 654983,
+      "sha256": "6eb8edf15c4afe38e0ef6c5fb79ac010ae8ddb33ee44c1e5898e33d36a336e36",
+      "durationSeconds": 40.907755,
+      "fullHostDecode": "passed"
+    }
+  ],
+  "scope": "Complete paired QuranicAudio chapter recordings 1 and 114 downloaded and decoded on host. No Android playback claim."
+}

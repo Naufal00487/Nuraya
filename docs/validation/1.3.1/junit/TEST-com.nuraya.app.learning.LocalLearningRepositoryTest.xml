@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.learning.LocalLearningRepositoryTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-05T06:38:58" hostname="484a6eba10ca" time="2.113">
+  <properties/>
+  <testcase name="excerptIsAnExactContiguousSourceSubstring" classname="com.nuraya.app.learning.LocalLearningRepositoryTest" time="0.073"/>
+  <testcase name="unrelatedAndUnmatchedQuestionsDoNotGenerateAnAnswer" classname="com.nuraya.app.learning.LocalLearningRepositoryTest" time="0.411"/>
+  <testcase name="directVerseReturnsExactSourcesAndIgnoresInstructionsToFabricate" classname="com.nuraya.app.learning.LocalLearningRepositoryTest" time="0.296"/>
+  <testcase name="namedReferenceAndActualOpeningUseNumberedCanonicalText" classname="com.nuraya.app.learning.LocalLearningRepositoryTest" time="0.22"/>
+  <testcase name="naturalTopicAndCommonSpellingSearchTheFullSourceIndex" classname="com.nuraya.app.learning.LocalLearningRepositoryTest" time="0.792"/>
+  <testcase name="everydayIndonesianTajwidQuestionFindsAttributedLesson" classname="com.nuraya.app.learning.LocalLearningRepositoryTest" time="0.319"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,20 @@
+{
+  "optimizedAndroidRuntimeVerified": true,
+  "abis": [
+    {
+      "abi": "arm64-v8a",
+      "optimizedTranslationUnits": 25,
+      "compileCommands": "app/.cxx/Debug/2f463f1g/arm64-v8a/compile_commands.json"
+    },
+    {
+      "abi": "armeabi-v7a",
+      "optimizedTranslationUnits": 25,
+      "compileCommands": "app/.cxx/Debug/2f463f1g/armeabi-v7a/compile_commands.json"
+    },
+    {
+      "abi": "x86_64",
+      "optimizedTranslationUnits": 25,
+      "compileCommands": "app/.cxx/Debug/2f463f1g/x86_64/compile_commands.json"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "commit": "6523a9ad3b73bb7e8cb3a9cdf0ea774b8bab3123",
+  "files": {
+    "data/tanzil/uthmani.json": "adaebb377c60eba1bab6ef652959c7a0b4ccb4d0ca42145945c14ecdbeb4b761",
+    "data/tanzil/chapters.json": "5b18adae945fcb6f9fbb865dd7dc596f89a63607a4e6617ca9e37f7f10d3386b",
+    "data/quranenc/indonesian_affairs.json": "5990a1522965daef7fd721d21e4f9c3d7ac77404060cf1343a8fedc07cc72406",
+    "data/extra/english_pickthall.json": "f93ecb2a50578c9cc4e5b89630e79fa9bcdd1d289b1a858f2aedf5aa55e8194a",
+    "data/audio/islamic_network_by_surah.json": "f41562f8168182c83a9918cec7f7a509aee72a09414f18bf6fddfbab370506fb",
+    "data/quranenc/catalogue.json": "3090f1ab9e1765deb8f92aaf2884f1bb123ab528b23c6aa1dfc184a0fdb67c16",
+    "data/meta/sources.json": "117045528f8ab07e21f702d45437d1b7e8c9ed22ab580574df0b9b7db06c7723",
+    "LICENSE.txt": "7abe19ec9bb73b36141b999b861d24ad855e808bafe0f81e84cce28556f6c297"
+  }
+}

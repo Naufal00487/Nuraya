@@ -1,0 +1,70 @@
+{
+  "checkedAt": "2026-10-26T09:18:56.435110+00:00",
+  "modelFile": "nuraya-quran-whisper-base-q5_1.bin",
+  "modelBytes": 59707625,
+  "modelSha256": "1de4498dc16fdee2045e67a97d73cda4624017640dbe5ddf809f3130da7c234a",
+  "nativeJniChecksPassed": 7,
+  "correctSample": {
+    "source": "app/src/androidTest/assets/alafasy1.mp3",
+    "sourceSha256": "7c2e67cbde506d25f7e181c3ce876c2a9943a5529ee24a753b2856075a4567fa",
+    "clipSeconds": 12,
+    "hostInferenceSeconds": 11.856,
+    "transcript": "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ"
+  },
+  "controlledProbes": {
+    "inputs": {
+      "sourceUrl": "https://download.quranicaudio.com/qdc/mishari_al_afasy/murattal/1.mp3",
+      "sourceSha256": "1e82007d1dc37fa879c217db756c379f348e8414a4749b07eddac14b007394d2",
+      "timingSource": "app/src/main/assets/audio_timing/alafasy/1.json",
+      "scope": "Controlled host probes; muted interval uses source word metadata, not a claim of expert phonetic segmentation. No expected verse prompt passed to ASR.",
+      "cases": [
+        {
+          "file": "verse-1-1-complete.pcm",
+          "durationSeconds": 6.025,
+          "sha256": "ae3d146725f4d43d2dae1dc52ffae5438e487d35b0dc0635ae21e4f9a12706a4"
+        },
+        {
+          "file": "verse-1-1-rahman-interval-muted.pcm",
+          "durationSeconds": 6.025,
+          "sha256": "fe2c601408260f10ad6c17396f3b90f437e4670b25561cb7943e292a96b7b538"
+        },
+        {
+          "file": "verse-1-1-before-rahim-truncated.pcm",
+          "durationSeconds": 2.502,
+          "sha256": "4d9949ec5cc29ca2693321297257d5f7aa3e8f36995c5bcede2fcd18cab2e61f"
+        },
+        {
+          "file": "digital-silence.pcm",
+          "durationSeconds": 6.0,
+          "sha256": "fec9afb531a8e036eba1d81651896e1b2c1f78b0234dbadc8e7549563f09407b"
+        }
+      ]
+    },
+    "observations": [
+      {
+        "file": "verse-1-1-complete.pcm",
+        "hostInferenceSeconds": 11.736,
+        "transcript": "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ"
+      },
+      {
+        "file": "verse-1-1-rahman-interval-muted.pcm",
+        "hostInferenceSeconds": 11.523,
+        "transcript": "بِسْمِ اللَّهِ"
+      },
+      {
+        "file": "verse-1-1-before-rahim-truncated.pcm",
+        "hostInferenceSeconds": 11.98,
+        "transcript": "بِسْمِ اللَّهِ الرَّحْمَنِ"
+      },
+      {
+        "file": "digital-silence.pcm",
+        "hostInferenceSeconds": 0.0,
+        "transcript": ""
+      }
+    ]
+  },
+  "interpretation": "Full basmalah recognized; truncated clip did not invent final Rahim. Muting the annotated Rahman interval also caused the still-present final Rahim not to be recognized: false omissions remain possible. Silence is handled by the native energy gate, not a claimed model accuracy result.",
+  "accuracyClaim": false,
+  "deviceTestsRun": false,
+  "realTimeOnPhoneGuaranteed": false
+}

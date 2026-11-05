@@ -1,0 +1,315 @@
+{
+  "schemaVersion": 1,
+  "metadata": {
+    "scope": "Introductory Hafs tajwid; Indonesian and English editorial summaries, not quotations or a substitute for oral instruction.",
+    "sourceReviewedOn": "2026-10-24",
+    "arabicSource": "Exact substrings of the bundled Tanzil text, selected through verified study assets.",
+    "colorSource": "Existing quran-tajweed annotations by Colin P. Fair, CC BY 4.0; colors follow TajwidPalette."
+  },
+  "lessons": [
+    {
+      "id": "ghunnah",
+      "titleId": "Ghunnah pada nun dan mim bertasydid",
+      "titleEn": "Ghunnah on doubled nun and mim",
+      "explanationId": "Nun atau mim yang bertasydid dibaca dengan dengung yang ditahan. Pada contoh ini, perhatikan nun bertasydid di awal ayat. Dengung berasal dari rongga hidung; pelajari lama dan cara membacanya dengan guru, lalu dengarkan contoh qari.",
+      "explanationEn": "A nun or mim with shaddah is held with a nasal sound. In this example, notice the doubled nun at the start of the verse. Ghunnah comes from the nasal passage; learn its duration and articulation with a teacher, then listen to the reciter.",
+      "rule": "ghunnah",
+      "colorHex": "#28733F",
+      "surah": 108,
+      "ayah": 3,
+      "excerpt": "إِنَّ شَانِئَكَ",
+      "sourceTitle": "About Tajweed · The Ghunnah",
+      "sourceUrl": "https://www.abouttajweed.com/index.php/tajweed-rules/46-the-ghunnah-and-its-ranks/18-the-ghunnah"
+    },
+    {
+      "id": "madd_natural",
+      "titleId": "Mad asli: dua harakat",
+      "titleEn": "Natural madd: two vowel counts",
+      "explanationId": "Mad asli memanjangkan bunyi huruf mad selama dua harakat, tanpa sebab hamzah atau sukun yang menjadikannya mad lain. Pada contoh ini, alif kecil setelah mim menunjukkan bunyi panjang. Satu harakat mengikuti tempo bacaan, bukan jumlah detik yang tetap.",
+      "explanationEn": "Natural madd lengthens a madd vowel for two vowel counts, without a hamzah or sukun that would make it another kind of madd. Here, the small alif after mim marks the long vowel. One count follows the recitation pace; it is not a fixed number of seconds.",
+      "rule": "madd_2",
+      "colorHex": "#B03443",
+      "surah": 1,
+      "ayah": 4,
+      "excerpt": "مَٰلِكِ",
+      "sourceTitle": "About Tajweed · The Mudood (Lengthenings) Part 1",
+      "sourceUrl": "https://www.abouttajweed.com/index.php/tajweed-rules/49-the-mudood-the-lengthenings/101-the-mudood-lengthenings-part-1"
+    },
+    {
+      "id": "qalqalah",
+      "titleId": "Qalqalah: pantulan tanpa vokal tambahan",
+      "titleEn": "Qalqalah: a release without an added vowel",
+      "explanationId": "Qalqalah terdengar pada huruf qaf, ta (ط), ba, jim, atau dal ketika sukun, termasuk sukun karena berhenti. Dalam contoh ini, kedua dal bersukun. Lepaskan bunyinya dengan jelas tanpa menambah bunyi a, i, atau u; dengarkan perbedaannya dengan bimbingan guru.",
+      "explanationEn": "Qalqalah occurs on qaf, ta (ط), ba, jim, or dal when unvowelled, including when stopping makes the letter unvowelled. Both dal letters in this example have sukun. Release the sound clearly without adding an a, i, or u vowel; learn the distinction with a teacher.",
+      "rule": "qalqalah",
+      "colorHex": "#226C9C",
+      "surah": 112,
+      "ayah": 3,
+      "excerpt": "لَمْ يَلِدْ وَلَمْ يُولَدْ",
+      "sourceTitle": "About Tajweed · The Qalqalah Mechanism",
+      "sourceUrl": "https://www.abouttajweed.com/index.php/tajweed-rules/50-the-qalqalah/46-the-qalqalah-mechanism"
+    },
+    {
+      "id": "lam_shamsiyyah",
+      "titleId": "Alif lam syamsiyyah",
+      "titleEn": "Lam shamsiyyah",
+      "explanationId": "Lam pada kata sandang al- melebur ke huruf syamsiyyah sesudahnya. Huruf sesudah lam dibaca bertasydid, sementara lam tidak dibaca tersendiri. Dalam contoh ini, lam melebur ke ra. Perhatikan tasydid pada ra saat mendengarkan.",
+      "explanationEn": "The lam of the definite article al- merges into a following sun letter. The next letter is doubled, and lam is not pronounced separately. In this example, lam merges into ra. Notice the shaddah on ra while listening.",
+      "rule": "lam_shamsiyyah",
+      "colorHex": "#975418",
+      "surah": 1,
+      "ayah": 3,
+      "excerpt": "ٱلرَّحْمَٰنِ",
+      "sourceTitle": "About Tajweed · Laam saakinah rules, part 1",
+      "sourceUrl": "https://www.abouttajweed.com/index.php/tajweed-rules/48-the-laam-saakinah/44-laam-saakinah-rules-part-1-laam-of-the-definite-article-the"
+    },
+    {
+      "id": "idgham_ghunnah",
+      "titleId": "Idgham dengan dengung",
+      "titleEn": "Idgham with ghunnah",
+      "explanationId": "Dalam bacaan sambung, nun sukun atau tanwin di akhir kata umumnya melebur dengan dengung bila kata berikutnya dimulai dengan ya, nun, mim, atau waw. Dalam contoh ini, tanwin pada akhir kata pertama bertemu mim. Dengarkan peleburan dengan dengung; pelajari ketepatan bunyinya dari guru.",
+      "explanationEn": "In connected recitation, a final unvowelled nun or tanween generally merges with ghunnah when the next word begins with ya, nun, mim, or waw. Here, the first word ends in tanween followed by mim. Listen for the merging with a nasal sound, and learn its precise articulation with a teacher.",
+      "rule": "idghaam_ghunnah",
+      "colorHex": "#975418",
+      "surah": 105,
+      "ayah": 4,
+      "excerpt": "بِحِجَارَةٍ مِّن",
+      "sourceTitle": "About Tajweed · Merging of the noon saakinah and tanween part 2",
+      "sourceUrl": "https://www.abouttajweed.com/index.php/tajweed-rules/47-the-noon-saakinah-and-tanween/37-merging-of-the-noon-saakinah-and-tanween-part-2"
+    },
+    {
+      "id": "idgham_no_ghunnah",
+      "titleId": "Idgham tanpa dengung",
+      "titleEn": "Idgham without ghunnah",
+      "explanationId": "Dalam bacaan sambung, nun sukun atau tanwin di akhir kata melebur ke lam atau ra pada awal kata berikutnya tanpa dengung nun. Pada contoh ini, nun di akhir kata pertama bertemu lam. Langsung masuk ke lam yang bertasydid, tanpa menahan bunyi nun.",
+      "explanationEn": "In connected recitation, a final unvowelled nun or tanween merges into lam or ra at the start of the next word without the nasal sound of nun. Here, the nun at the end of the first word meets lam. Move into the doubled lam without holding a nun sound.",
+      "rule": "idghaam_no_ghunnah",
+      "colorHex": "#975418",
+      "surah": 112,
+      "ayah": 4,
+      "excerpt": "يَكُن لَّهُۥ",
+      "sourceTitle": "About Tajweed · Merging of the noon saakinah and tanween part 1",
+      "sourceUrl": "https://www.abouttajweed.com/index.php/tajweed-rules/47-the-noon-saakinah-and-tanween/36-merging-of-the-noon-saakinah-and-tanween-part-1"
+    },
+    {
+      "id": "iqlab",
+      "titleId": "Iqlab sebelum ba",
+      "titleEn": "Iqlab before ba",
+      "explanationId": "Bila nun sukun atau tanwin bertemu ba dalam bacaan sambung, bunyinya berubah menjadi mim yang disamarkan dengan dengung. Pada contoh ini, tanwin bertemu ba pada kata berikutnya. Mim kecil adalah petunjuk bacaan; perubahan ini pada pelafalan, bukan perubahan teks Al-Qur’an.",
+      "explanationEn": "When an unvowelled nun or tanween is followed by ba in connected recitation, its sound changes to a concealed mim with ghunnah. Here, tanween meets ba in the next word. The small mim is a reading cue; the change is in pronunciation, not in the Quran text.",
+      "rule": "iqlab",
+      "colorHex": "#794CA8",
+      "surah": 2,
+      "ayah": 10,
+      "excerpt": "أَلِيمٌۢ بِمَا",
+      "sourceTitle": "About Tajweed · Changing (iqlaab) rule of the noon saakinah and tanween",
+      "sourceUrl": "https://www.abouttajweed.com/index.php/tajweed-rules/47-the-noon-saakinah-and-tanween/39-changing-iqlaab-rule-of-the-noon-saakinah-and-tanween"
+    },
+    {
+      "id": "ikhfa",
+      "titleId": "Ikhfa pada nun sukun dan tanwin",
+      "titleEn": "Ikhfa of nun and tanween",
+      "explanationId": "Ikhfa menyamarkan bunyi nun sukun atau tanwin sebelum salah satu dari 15 huruf ikhfa, sambil mempertahankan dengung. Pada contoh ini, nun bertemu syin. Bunyi ini berada di antara bacaan nun yang jelas dan peleburan penuh; pelajari posisi lidah dan durasinya dengan guru.",
+      "explanationEn": "Ikhfa conceals an unvowelled nun or tanween before one of the 15 ikhfa letters while retaining ghunnah. In this example, nun meets shin. The sound is between a clear nun and a full merging; learn the tongue position and duration with a teacher.",
+      "rule": "ikhfa",
+      "colorHex": "#28733F",
+      "surah": 113,
+      "ayah": 2,
+      "excerpt": "مِن شَرِّ",
+      "sourceTitle": "About Tajweed · Concealment (ikhfa') rule of the noon saakinah and tanween",
+      "sourceUrl": "https://www.abouttajweed.com/index.php/tajweed-rules/47-the-noon-saakinah-and-tanween/40-hiding-ikhfa-rule-of-the-noon-saakinah-and-tanween"
+    }
+  ],
+  "questions": [
+    {
+      "id": "ghunnah_shaddah",
+      "lessonId": "ghunnah",
+      "questionId": "Bagaimana membaca nun atau mim yang bertasydid?",
+      "questionEn": "How is a nun or mim with shaddah recited?",
+      "optionsId": [
+        "Dengan dengung yang ditahan",
+        "Dengan menghilangkan hurufnya",
+        "Dengan pantulan qalqalah"
+      ],
+      "optionsEn": [
+        "With a sustained nasal sound",
+        "By omitting the letter",
+        "With a qalqalah release"
+      ],
+      "correctIndex": 0,
+      "explanationId": "Nun dan mim bertasydid memiliki ghunnah yang ditahan. Lama dan cara pengucapannya dipelajari melalui contoh guru.",
+      "explanationEn": "A doubled nun or mim has sustained ghunnah. Its duration and articulation are learned through a teacher’s example."
+    },
+    {
+      "id": "natural_madd_counts",
+      "lessonId": "madd_natural",
+      "questionId": "Berapa panjang mad asli?",
+      "questionEn": "How long is natural madd?",
+      "optionsId": [
+        "Enam harakat",
+        "Dua harakat",
+        "Selalu empat detik"
+      ],
+      "optionsEn": [
+        "Six vowel counts",
+        "Two vowel counts",
+        "Always four seconds"
+      ],
+      "correctIndex": 1,
+      "explanationId": "Mad asli dibaca dua harakat. Panjang satu harakat mengikuti tempo bacaan.",
+      "explanationEn": "Natural madd lasts two vowel counts. The duration of one count follows the recitation pace."
+    },
+    {
+      "id": "qalqalah_vowels",
+      "lessonId": "qalqalah",
+      "questionId": "Apa yang perlu dihindari saat membaca qalqalah?",
+      "questionEn": "What should you avoid when reciting qalqalah?",
+      "optionsId": [
+        "Mengenali huruf yang bersukun",
+        "Mendengarkan contoh qari",
+        "Menambahkan vokal a, i, atau u"
+      ],
+      "optionsEn": [
+        "Recognizing an unvowelled letter",
+        "Listening to a reciter’s example",
+        "Adding an a, i, or u vowel"
+      ],
+      "correctIndex": 2,
+      "explanationId": "Pantulan qalqalah bukan vokal tambahan. Bunyi dilepaskan tanpa mengubahnya menjadi fathah, kasrah, atau dammah.",
+      "explanationEn": "The qalqalah release is not an extra vowel. It should not become a fathah, kasrah, or dammah sound."
+    },
+    {
+      "id": "sun_lam_merge",
+      "lessonId": "lam_shamsiyyah",
+      "questionId": "Apa yang terjadi pada lam dalam alif lam syamsiyyah?",
+      "questionEn": "What happens to lam in lam shamsiyyah?",
+      "optionsId": [
+        "Melebur ke huruf syamsiyyah sesudahnya",
+        "Selalu dibaca jelas terpisah",
+        "Berubah menjadi mim"
+      ],
+      "optionsEn": [
+        "It merges into the following sun letter",
+        "It is always pronounced separately",
+        "It changes into mim"
+      ],
+      "correctIndex": 0,
+      "explanationId": "Lam tidak dibaca tersendiri. Huruf syamsiyyah sesudahnya menjadi bertasydid.",
+      "explanationEn": "Lam is not pronounced separately. The following sun letter is doubled."
+    },
+    {
+      "id": "idgham_mim",
+      "lessonId": "idgham_ghunnah",
+      "questionId": "Dalam contoh Al-Fil 105:4, tanwin yang diikuti mim dibaca bagaimana saat disambung?",
+      "questionEn": "In the Al-Fil 105:4 example, how is tanween followed by mim read when connected?",
+      "optionsId": [
+        "Dengan qalqalah",
+        "Melebur dengan dengung",
+        "Berhenti wajib di tanwin"
+      ],
+      "optionsEn": [
+        "With qalqalah",
+        "Merged with ghunnah",
+        "With a mandatory stop at the tanween"
+      ],
+      "correctIndex": 1,
+      "explanationId": "Mim termasuk huruf idgham dengan dengung. Tanwin pada kata sebelumnya melebur ke mim ketika bacaan disambung.",
+      "explanationEn": "Mim is a letter of idgham with ghunnah. The preceding tanween merges into mim when the words are connected."
+    },
+    {
+      "id": "idgham_lam",
+      "lessonId": "idgham_no_ghunnah",
+      "questionId": "Nun sukun di akhir kata yang bertemu lam pada kata berikutnya termasuk hukum apa?",
+      "questionEn": "Which rule applies when a final unvowelled nun meets lam in the next word?",
+      "optionsId": [
+        "Iqlab",
+        "Ikhfa",
+        "Idgham tanpa dengung"
+      ],
+      "optionsEn": [
+        "Iqlab",
+        "Ikhfa",
+        "Idgham without ghunnah"
+      ],
+      "correctIndex": 2,
+      "explanationId": "Nun melebur sepenuhnya ke lam tanpa dengung nun. Lam dibaca bertasydid.",
+      "explanationEn": "Nun merges fully into lam without the nasal sound of nun. Lam is doubled."
+    },
+    {
+      "id": "iqlab_trigger",
+      "lessonId": "iqlab",
+      "questionId": "Huruf apa yang memicu iqlab setelah nun sukun atau tanwin?",
+      "questionEn": "Which letter triggers iqlab after an unvowelled nun or tanween?",
+      "optionsId": [
+        "Ba",
+        "Lam",
+        "Syin"
+      ],
+      "optionsEn": [
+        "Ba",
+        "Lam",
+        "Shin"
+      ],
+      "correctIndex": 0,
+      "explanationId": "Ba memicu perubahan bunyi nun sukun atau tanwin menjadi mim yang disamarkan dengan dengung.",
+      "explanationEn": "Ba causes the sound of an unvowelled nun or tanween to become a concealed mim with ghunnah."
+    },
+    {
+      "id": "ikhfa_shin",
+      "lessonId": "ikhfa",
+      "questionId": "Pada contoh Al-Falaq 113:2, nun yang bertemu syin dibaca bagaimana?",
+      "questionEn": "In the Al-Falaq 113:2 example, how is nun followed by shin recited?",
+      "optionsId": [
+        "Sebagai qalqalah",
+        "Disamarkan dengan dengung",
+        "Dilebur tanpa dengung ke lam"
+      ],
+      "optionsEn": [
+        "With qalqalah",
+        "Concealed with ghunnah",
+        "Merged into lam without ghunnah"
+      ],
+      "correctIndex": 1,
+      "explanationId": "Syin termasuk huruf ikhfa. Bunyi nun disamarkan sambil mempertahankan dengung.",
+      "explanationEn": "Shin is one of the ikhfa letters. The nun sound is concealed while retaining ghunnah."
+    },
+    {
+      "id": "madd_pace",
+      "lessonId": "madd_natural",
+      "questionId": "Apakah satu harakat selalu sama dengan satu detik?",
+      "questionEn": "Is one vowel count always one second?",
+      "optionsId": [
+        "Ya, pada semua tempo",
+        "Ya, hanya di awal surah",
+        "Tidak, harakat mengikuti tempo bacaan"
+      ],
+      "optionsEn": [
+        "Yes, at every recitation pace",
+        "Yes, only at the start of a surah",
+        "No, a count follows the recitation pace"
+      ],
+      "correctIndex": 2,
+      "explanationId": "Harakat adalah ukuran relatif dalam bacaan. Pertahankan perbandingan panjang mad sesuai tempo yang dipelajari.",
+      "explanationEn": "A vowel count is a relative measure in recitation. Maintain the required length in relation to the pace you have learned."
+    },
+    {
+      "id": "iqlab_text",
+      "lessonId": "iqlab",
+      "questionId": "Dalam iqlab, apa yang berubah?",
+      "questionEn": "In iqlab, what changes?",
+      "optionsId": [
+        "Pelafalan nun sukun atau tanwin",
+        "Nomor ayat",
+        "Teks asli Al-Qur’an"
+      ],
+      "optionsEn": [
+        "The pronunciation of nun or tanween",
+        "The verse number",
+        "The original Quran text"
+      ],
+      "correctIndex": 0,
+      "explanationId": "Iqlab mengubah bunyi menjadi mim yang disamarkan. Teks Al-Qur’an tetap, dan mim kecil dapat menandai cara membacanya.",
+      "explanationEn": "Iqlab changes the sound to a concealed mim. The Quran text remains unchanged, and a small mim can indicate how to recite it."
+    }
+  ]
+}

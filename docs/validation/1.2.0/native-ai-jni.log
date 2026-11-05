@@ -1,0 +1,30 @@
+fatal: Needed a single revision
+fatal: ambiguous argument 'HEAD': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+-- Warning: ccache not found - consider installing it for faster compilation or disable this warning with GGML_CCACHE=OFF
+-- CMAKE_SYSTEM_PROCESSOR: x86_64
+-- GGML_SYSTEM_ARCH: x86
+-- Including CPU backend
+-- x86 detected
+-- Adding CPU backend variant ggml-cpu: -mbmi2 GGML_BMI2
+fatal: ambiguous argument 'HEAD': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+fatal: Needed a single revision
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /workspace/.tools/nuraya-native-host
+ninja: no work to do.
+Picked up JAVA_TOOL_OPTIONS:  -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080 -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080 -Dhttp.nonProxyHosts=localhost|127.* -Djavax.net.ssl.trustStore=/workspace/.tools/java-cacerts
+Picked up JAVA_TOOL_OPTIONS:  -Dhttps.proxyHost=proxy -Dhttps.proxyPort=8080 -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080 -Dhttp.nonProxyHosts=localhost|127.* -Djavax.net.ssl.trustStore=/workspace/.tools/java-cacerts
+PASS: silence produces no speech
+PASS: nonfinite audio rejected
+PASS: cancelled queued request rejected
+PASS: next request after cancellation succeeds
+TRANSCRIPT: بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
+HOST_INFERENCE_SECONDS: 11.856
+PASS: running inference is aborted without a stale result
+PASS: loaded context is reusable after running cancellation
+PASS: close is idempotent and closed context rejected
+NATIVE_JNI_CHECKS_PASSED: 7

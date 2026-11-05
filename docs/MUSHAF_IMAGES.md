@@ -1,0 +1,13 @@
+# Madinah page images
+
+Nuraya 1.3.0 displays original 604-page Madinah images rather than fabricating a cover or laying reflowed text out as a claimed printed edition. Source: [GovarJabbar/Quran-PNG](https://github.com/GovarJabbar/Quran-PNG), pinned commit `b189391148dfb4d7b44e7de40fe2cf942e7c84ac`, using Madinah page artwork of the same font family documented by [quran/quran.com-images](https://github.com/quran/quran.com-images). Quran glyph/page artwork belongs to the King Fahd Quran Complex. No independent Creative Commons license for these page images is asserted.
+
+`assets/mushaf/madinah-images.json` lists all 604 immutable URLs and Git blob SHA-1 values from the pinned tree. Every downloaded or cached page is checked against that value, including the Git blob header. The loader accepts only the pinned raw GitHub source, refuses redirects, bounds download size and caches up to 64 MiB of recent pages. Pages 1, 2, 3 and 604 are bundled for offline opening and validation. Other pages need an Internet connection the first time they are opened; the cache is not a promise that every downloaded page will remain offline forever.
+
+The complete 6,236 verse-to-page mapping in `madinah-pages.json` comes from `https://api.alquran.cloud/v1/quran/quran-uthmani`. This index is for the standard 604-page Madinah layout; it is not used to claim that another publisher's Bahriyah layout is equivalent. The normal canonical Arabic text remains unchanged.
+
+The reader opens the selected verse's page, offers page number selection, previous/next controls, enlargement from 100% to 300%, and scrolling in both directions. Original source page colors remain unchanged. **Madinah & tajwid** links to the existing colored Arabic verse reader at the first verse on the displayed page; it does not claim the monochrome source image itself has tajwid coloring. Preview art is a genuine Madinah page, not a physical book-cover photograph.
+
+Tests check all verse/page references, offline image decode, corruption rejection, page navigation and the verse-companion callback. The host-rendered screenshot is `app/build/test-home/ui-130/madinah-page.png`. These checks do not substitute for a physical Android device test.
+
+Page 3 uses the original JPG from the same publisher, [GovarJabbar/Quran-JPG](https://github.com/GovarJabbar/Quran-JPG), pinned to `9aa696d923843acef00a54e7c4c872414494c4ba`. The PNG version has a visibly corrupted background and is excluded. The source JPG is unchanged, independently hash-checked and bundled as `003.jpg`; the loader only permits this exact additional pinned URL. Source selection does not redraw, erase or generate Quran text.

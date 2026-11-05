@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.qa.QuranReaderPresentationTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-05T06:39:14" hostname="484a6eba10ca" time="1.497">
+  <properties/>
+  <testcase name="baqarahShowsUnnumberedOpeningBeforeActualFirstVerseUsingQuranFont" classname="com.nuraya.app.qa.QuranReaderPresentationTest" time="0.303"/>
+  <testcase name="openingAStoredVerseKeepsItsOriginalScrollPosition" classname="com.nuraya.app.qa.QuranReaderPresentationTest" time="0.359"/>
+  <testcase name="juzReaderSeparatesOpeningAndKeepsTheSurahVerseReference" classname="com.nuraya.app.qa.QuranReaderPresentationTest" time="0.173"/>
+  <testcase name="tawbahStartsWithItsOwnFirstVerseAndNoOpeningBasmalah" classname="com.nuraya.app.qa.QuranReaderPresentationTest" time="0.325"/>
+  <testcase name="fatihahKeepsBasmalahAsNumberedVerseOneWithoutDuplicateOpening" classname="com.nuraya.app.qa.QuranReaderPresentationTest" time="0.337"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

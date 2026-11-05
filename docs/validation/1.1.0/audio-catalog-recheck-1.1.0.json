@@ -1,0 +1,44 @@
+[
+  {
+    "id": "ar.abdulbarimohammed",
+    "surah": 1,
+    "url": "https://cdn.islamic.network/quran/audio-surah/128/ar.abdulbarimohammed/1.mp3",
+    "error": "[mp3float @ 0x560120046c00] Header missing\n[aist#0:0/mp3 @ 0x5601200561c0] [dec:mp3float @ 0x560120045cc0] Error submitting packet to decoder: Invalid data found when processing input\n[aist#0:0/mp3 @ 0x5601200561c0] [dec:mp3float @ 0x560120045cc0] Error processing packet in decoder: Invalid data found when processing input\n[aist#0:0/mp3 @ 0x5601200561c0] [dec:mp3float @ 0x560120045cc0] Task finished with error code: -1094995529 (Invalid data found when processing input)\n[aist#0:0/mp3 @ 0x5601200561c0] [dec:mp3float @ 0x560120045cc0] Terminating thread with return code -1094995529 (Invalid data found when processing input)\n"
+  },
+  {
+    "id": "ar.abdulmohsenalharthy",
+    "surah": 1,
+    "url": "https://cdn.islamic.network/quran/audio-surah/128/ar.abdulmohsenalharthy/1.mp3",
+    "error": "[mp3float @ 0x56283c4fda80] Header missing\n[aist#0:0/mp3 @ 0x56283c4fb340] [dec:mp3float @ 0x56283c4fd380] Error submitting packet to decoder: Invalid data found when processing input\n[aist#0:0/mp3 @ 0x56283c4fb340] [dec:mp3float @ 0x56283c4fd380] Error processing packet in decoder: Invalid data found when processing input\n[aist#0:0/mp3 @ 0x56283c4fb340] [dec:mp3float @ 0x56283c4fd380] Task finished with error code: -1094995529 (Invalid data found when processing input)\n[aist#0:0/mp3 @ 0x56283c4fb340] [dec:mp3float @ 0x56283c4fd380] Terminating thread with return code -1094995529 (Invalid data found when processing input)\n"
+  },
+  {
+    "id": "ar.ezzatsabri",
+    "surah": 1,
+    "url": "https://cdn.islamic.network/quran/audio-surah/128/ar.ezzatsabri/1.mp3",
+    "error": "Unexpected Al-Fatihah duration for ar.ezzatsabri"
+  },
+  {
+    "id": "ar.khalifaaltunaiji",
+    "surah": 1,
+    "url": "https://cdn.islamic.network/quran/audio-surah/128/ar.khalifaaltunaiji/1.mp3",
+    "error": "[mp3float @ 0x56220a160c00] Header missing\n[aist#0:0/mp3 @ 0x56220a1701c0] [dec:mp3float @ 0x56220a15fcc0] Error submitting packet to decoder: Invalid data found when processing input\n[aist#0:0/mp3 @ 0x56220a1701c0] [dec:mp3float @ 0x56220a15fcc0] Error processing packet in decoder: Invalid data found when processing input\n[aist#0:0/mp3 @ 0x56220a1701c0] [dec:mp3float @ 0x56220a15fcc0] Task finished with error code: -1094995529 (Invalid data found when processing input)\n[aist#0:0/mp3 @ 0x56220a1701c0] [dec:mp3float @ 0x56220a15fcc0] Terminating thread with return code -1094995529 (Invalid data found when processing input)\n"
+  },
+  {
+    "id": "ar.mohamedabdelhakimsaadalabdullah",
+    "surah": 1,
+    "url": "https://cdn.islamic.network/quran/audio-surah/128/ar.mohamedabdelhakimsaadalabdullah/1.mp3",
+    "error": "[mp3float @ 0x556e27fe7ac0] Header missing\n[aist#0:0/mp3 @ 0x556e27ff7000] [dec:mp3float @ 0x556e27fe6b80] Error submitting packet to decoder: Invalid data found when processing input\n[aist#0:0/mp3 @ 0x556e27ff7000] [dec:mp3float @ 0x556e27fe6b80] Error processing packet in decoder: Invalid data found when processing input\n[aist#0:0/mp3 @ 0x556e27ff7000] [dec:mp3float @ 0x556e27fe6b80] Task finished with error code: -1094995529 (Invalid data found when processing input)\n[aist#0:0/mp3 @ 0x556e27ff7000] [dec:mp3float @ 0x556e27fe6b80] Terminating thread with return code -1094995529 (Invalid data found when processing input)\n"
+  },
+  {
+    "id": "ar.saberabdulhakam",
+    "surah": 1,
+    "url": "https://cdn.islamic.network/quran/audio-surah/128/ar.saberabdulhakam/1.mp3",
+    "error": "[mp3float @ 0x55a44023ec00] Header missing\n[aist#0:0/mp3 @ 0x55a44024e440] [dec:mp3float @ 0x55a44023dcc0] Error submitting packet to decoder: Invalid data found when processing input\n[aist#0:0/mp3 @ 0x55a44024e440] [dec:mp3float @ 0x55a44023dcc0] Error processing packet in decoder: Invalid data found when processing input\n[aist#0:0/mp3 @ 0x55a44024e440] [dec:mp3float @ 0x55a44023dcc0] Task finished with error code: -1094995529 (Invalid data found when processing input)\n[aist#0:0/mp3 @ 0x55a44024e440] [dec:mp3float @ 0x55a44023dcc0] Terminating thread with return code -1094995529 (Invalid data found when processing input)\n"
+  },
+  {
+    "id": "ar.yasseralmazroyee",
+    "surah": 1,
+    "url": "https://cdn.islamic.network/quran/audio-surah/128/ar.yasseralmazroyee/1.mp3",
+    "error": "[mp3float @ 0x561a3ef5cc00] Header missing\n[aist#0:0/mp3 @ 0x561a3ef6c1c0] [dec:mp3float @ 0x561a3ef5bcc0] Error submitting packet to decoder: Invalid data found when processing input\n[aist#0:0/mp3 @ 0x561a3ef6c1c0] [dec:mp3float @ 0x561a3ef5bcc0] Error processing packet in decoder: Invalid data found when processing input\n[aist#0:0/mp3 @ 0x561a3ef6c1c0] [dec:mp3float @ 0x561a3ef5bcc0] Task finished with error code: -1094995529 (Invalid data found when processing input)\n[aist#0:0/mp3 @ 0x561a3ef6c1c0] [dec:mp3float @ 0x561a3ef5bcc0] Terminating thread with return code -1094995529 (Invalid data found when processing input)\n"
+  }
+]

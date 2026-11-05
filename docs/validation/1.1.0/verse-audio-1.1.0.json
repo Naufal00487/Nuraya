@@ -1,0 +1,266 @@
+{
+  "checkedAt": "2026-10-24T14:42:14.584351+00:00",
+  "reciterCount": 17,
+  "samples": [
+    {
+      "kind": "individual-ayah",
+      "reciter": "ar.alafasy",
+      "reference": "1:1",
+      "url": "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3",
+      "httpStatus": 200,
+      "bytes": 146830,
+      "sha256": "c0d5ba887523e64b5cf7db8f26a6ddd3936b1ac9286f133e258f0dd7f6b7353e",
+      "durationSeconds": 6.086531,
+      "fullHostDecode": "passed"
+    },
+    {
+      "kind": "individual-ayah",
+      "reciter": "ar.abdulsamad",
+      "reference": "1:1",
+      "url": "https://cdn.islamic.network/quran/audio/64/ar.abdulsamad/1.mp3",
+      "httpStatus": 200,
+      "bytes": 52552,
+      "sha256": "40a0f98e843cb28491d8ed8d1a7a5ef559db02ebb1d69ad68c468a4c15e0e52b",
+      "durationSeconds": 67.213061,
+      "fullHostDecode": "passed"
+    },
+    {
+      "kind": "individual-ayah",
+      "reciter": "ar.abdullahbasfar",
+      "reference": "1:1",
+      "url": "https://cdn.islamic.network/quran/audio/64/ar.abdullahbasfar/1.mp3",
+      "httpStatus": 200,
+      "bytes": 91119,
+      "sha256": "c0bc227e0f3e0b8b5ce453834af0f3d83300816224d1a8b9c7ee4d6984026780",
+      "durationSeconds": 11.31102,
+      "fullHostDecode": "passed"
+    },
+    {
+      "kind": "individual-ayah",
+      "reciter": "ar.abdurrahmaansudais",
+      "reference": "1:1",
+      "url": "https://cdn.islamic.network/quran/audio/192/ar.abdurrahmaansudais/1.mp3",
+      "httpStatus": 200,
+      "bytes": 75786,
+      "sha256": "6e93cc82084c4849c294fd0dde0cb79e885646ad558ebb27e6fc8ec01a77194c",
+      "durationSeconds": 3.082458,
+      "fullHostDecode": "passed"
+    },
+    {
+      "kind": "individual-ayah",
+      "reciter": "ar.shaatree",
+      "reference": "1:1",
+      "url": "https://cdn.islamic.network/quran/audio/128/ar.shaatree/1.mp3",
+      "httpStatus": 200,
+      "bytes": 104200,
+      "sha256": "b72b1275a8db14537557f668735b70a7280c1f7ec83532d159de978e8a3e7023",
+      "durationSeconds": 6.5125,
+      "fullHostDecode": "passed"
+    },
+    {
+      "kind": "individual-ayah",
+      "reciter": "ar.ahmedajamy",
+      "reference": "1:1",
+      "url": "https://cdn.islamic.network/quran/audio/128/ar.ahmedajamy/1.mp3",
+      "httpStatus": 200,
+      "bytes": 43673,
+      "sha256": "d396bff5abd123929bf3f40e4590454b7cfea555af5b6cc9be9e5bb2eacf7733",
+      "durationSeconds": 2.455438,
+      "fullHostDecode": "passed"
+    },
+    {
+      "kind": "individual-ayah",
+      "reciter": "ar.aymanswoaid",
+      "reference": "1:1",
+      "url": "https://cdn.islamic.network/quran/audio/64/ar.aymanswoaid/1.mp3",
+      "httpStatus": 200,
+      "bytes": 55104,
+      "sha256": "0346242d1ee0c6074ce625e4f81c393784d7bc6bc253f23cd609242b96d76aa9",
+      "durationSeconds": 6.76,
+      "fullHostDecode": "passed"
+    },
+    {
+      "kind": "individual-ayah",
+      "reciter": "ar.hanirifai",
+      "reference": "1:1",
+      "url": "https://cdn.islamic.network/quran/audio/192/ar.hanirifai/1.mp3",
+      "httpStatus": 200,
+      "bytes": 107335,
+      "sha256": "b3fbeb00f04bae2f211693442f833e0980a3d21808f6a7c24dd7b286d21540ba",
+      "durationSeconds": 4.472292,
+      "fullHostDecode": "passed"
+    },
+    {
+      "kind": "individual-ayah",
+      "reciter": "ar.hudhaify",
+      "reference": "1:1",
+      "url": "https://cdn.islamic.network/quran/audio/128/ar.hudhaify/1.mp3",
+      "httpStatus": 200,
+      "bytes": 113395,
+      "sha256": "56cb8bbf70979abc7101a33426ae34375706edcc92972958d6133134c41411cb",
+      "durationSeconds": 7.087188,
+      "fullHostDecode": "passed"
+    },
+    {
+      "kind": "individual-ayah",
+      "reciter": "ar.husary",
+      "reference": "1:1",
+      "url": "https://cdn.islamic.network/quran/audio/64/ar.husary/1.mp3",
+      "httpStatus": 200,
+      "bytes": 42417,
+      "sha256": "fedf4ecf35803282ab205a04400db2cfa10056033b4aaa139e7277611a045d8c",
+      "durationSeconds": 5.22449,
+      "fullHostDecode": "passed"
+    },
+    {
+      "kind": "individual-ayah",
+      "reciter": "ar.husarymujawwad",
+      "reference": "1:1",
+      "url": "https://cdn.islamic.network/quran/audio/128/ar.husarymujawwad/1.mp3",
+      "httpStatus": 200,
+      "bytes": 167946,
+      "sha256": "c61fc112a02fbb1f8ebb54ce48a1786d07519b372ca62bd5dd007af30dac5f5e",
+      "durationSeconds": 10.422813,
+      "fullHostDecode": "passed"
+    },
+    {
+      "kind": "individual-ayah",
+      "reciter": "ar.ibrahimakhbar",
+      "reference": "1:1",
+      "url": "https://cdn.islamic.network/quran/audio/32/ar.ibrahimakhbar/1.mp3",
+      "httpStatus": 200,
+      "bytes": 26624,
+      "sha256": "920eeac9e9cf2ac0b2697386cbb56c8b4b7d162fd36addfae7b1fb97f2587df7",
+      "durationSeconds": 6.656,
+      "fullHostDecode": "passed"
+    },
+    {
+      "kind": "individual-ayah",
+      "reciter": "ar.mahermuaiqly",
+      "reference": "1:1",
+      "url": "https://cdn.islamic.network/quran/audio/128/ar.mahermuaiqly/1.mp3",
+      "httpStatus": 200,
+      "bytes": 30913,
+      "sha256": "7056da4075ae78014ed2d3c530736b2b863d3d45c202e33019941ea7a84e1b2e",
+      "durationSeconds": 3.787755,
+      "fullHostDecode": "passed"
+    },
+    {
+      "kind": "individual-ayah",
+      "reciter": "ar.muhammadayyoub",
+      "reference": "1:1",
+      "url": "https://cdn.islamic.network/quran/audio/128/ar.muhammadayyoub/1.mp3",
+      "httpStatus": 200,
+      "bytes": 54317,
+      "sha256": "dc2850c2f4c6cb68e2b8cc5053e91c5b640fa911412be61e4fa0bacb23d847e8",
+      "durationSeconds": 6.713469,
+      "fullHostDecode": "passed"
+    },
+    {
+      "kind": "individual-ayah",
+      "reciter": "ar.muhammadjibreel",
+      "reference": "1:1",
+      "url": "https://cdn.islamic.network/quran/audio/128/ar.muhammadjibreel/1.mp3",
+      "httpStatus": 200,
+      "bytes": 38854,
+      "sha256": "f920c8259a4005e1a115bf9d893c6be950793f7eb657fc1f5d994e01bad9d692",
+      "durationSeconds": 4.780408,
+      "fullHostDecode": "passed"
+    },
+    {
+      "kind": "individual-ayah",
+      "reciter": "ar.parhizgar",
+      "reference": "1:1",
+      "url": "https://cdn.islamic.network/quran/audio/48/ar.parhizgar/1.mp3",
+      "httpStatus": 200,
+      "bytes": 67712,
+      "sha256": "2b2a58dcf018292cbc38edfd3b98dd5ff048ef3742f986f60e09762da481288f",
+      "durationSeconds": 9.791167,
+      "fullHostDecode": "passed"
+    },
+    {
+      "kind": "individual-ayah",
+      "reciter": "ar.saoodshuraym",
+      "reference": "1:1",
+      "url": "https://cdn.islamic.network/quran/audio/64/ar.saoodshuraym/1.mp3",
+      "httpStatus": 200,
+      "bytes": 85516,
+      "sha256": "7d500cd313aa37a571104da511ac5deda83a38a2d595a2b5cdd46bc18ea66512",
+      "durationSeconds": 5.302857,
+      "fullHostDecode": "passed"
+    },
+    {
+      "kind": "paired-timed-chapter",
+      "reciter": "ar.alafasy",
+      "surah": 1,
+      "url": "https://download.quranicaudio.com/qdc/mishari_al_afasy/murattal/1.mp3",
+      "lastClipMs": 46490,
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "kind": "paired-timed-chapter",
+      "reciter": "ar.alafasy",
+      "surah": 112,
+      "url": "https://download.quranicaudio.com/qdc/mishari_al_afasy/murattal/112.mp3",
+      "lastClipMs": 13350,
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "kind": "paired-timed-chapter",
+      "reciter": "ar.alafasy",
+      "surah": 114,
+      "url": "https://download.quranicaudio.com/qdc/mishari_al_afasy/murattal/114.mp3",
+      "lastClipMs": 40910,
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "kind": "timing-fallback-ayah",
+      "reciter": "ar.alafasy",
+      "reference": "14:17",
+      "url": "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1767.mp3",
+      "httpStatus": 200,
+      "bytes": 420594,
+      "sha256": "e47f1f2a16fbdc343d95bb8eed3266979a41d23dd396c57d3f629b2c9e5e761b",
+      "durationSeconds": 26.253061,
+      "fullHostDecode": "passed"
+    },
+    {
+      "kind": "timing-fallback-ayah",
+      "reciter": "ar.alafasy",
+      "reference": "37:130",
+      "url": "https://cdn.islamic.network/quran/audio/128/ar.alafasy/3918.mp3",
+      "httpStatus": 200,
+      "bytes": 107124,
+      "sha256": "f3b6f9d8d821de9dc331cc49c5f935d0938f572b28d69f7b10ecf00c94ff6c61",
+      "durationSeconds": 6.661224,
+      "fullHostDecode": "passed"
+    }
+  ],
+  "failedSamples": [
+    {
+      "kind": "paired-timed-chapter",
+      "reciter": "ar.alafasy",
+      "surah": 1,
+      "url": "https://download.quranicaudio.com/qdc/mishari_al_afasy/murattal/1.mp3",
+      "lastClipMs": 46490,
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "kind": "paired-timed-chapter",
+      "reciter": "ar.alafasy",
+      "surah": 112,
+      "url": "https://download.quranicaudio.com/qdc/mishari_al_afasy/murattal/112.mp3",
+      "lastClipMs": 13350,
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "kind": "paired-timed-chapter",
+      "reciter": "ar.alafasy",
+      "surah": 114,
+      "url": "https://download.quranicaudio.com/qdc/mishari_al_afasy/murattal/114.mp3",
+      "lastClipMs": 40910,
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    }
+  ],
+  "scope": "Complete HTTPS downloads and MP3 decode on host; not Android playback or every recording."
+}

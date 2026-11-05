@@ -1,0 +1,27 @@
+Nuraya study data attribution
+
+Canonical Quran text: Tanzil Project, Uthmani. See TANZIL_NOTICE.txt.
+The canonical text is unchanged; colors and word highlighting are a display layer.
+
+Tajwid annotations: Colin P. Fair, quran-tajweed (Hafs).
+https://github.com/cpfair/quran-tajweed
+Creative Commons Attribution 4.0 International:
+https://creativecommons.org/licenses/by/4.0/
+Snapshot commit: 496f71cd191da00fa2a37ded79dbbddb033bb0ad
+Adaptation: coordinates mapped from the author's exact 2017 text to unchanged
+canonical substrings, then converted to UTF-16 offsets. Uncertain spans omitted.
+No source letters or recitation rules are generated or rewritten.
+
+Indonesian and English word meanings: Quran.com official developer API v4.
+https://api.quran.com/api/v4/
+https://quran.com/terms-and-conditions
+Snapshot: 24 October 2026. Credited noncommercial educational use.
+No claim of MIT, Creative Commons, public-domain or commercial redistribution rights.
+
+Indonesian commentary: Tafsir Kementerian Agama RI, supplied by EQuran.id API v2.
+https://equran.id/apidev/v2
+Snapshot: 24 October 2026. Complete supplied edition, not all commentary editions.
+Rights remain with the respective sources and rightsholders.
+
+Full provenance, source checksums and mapping details are included in the source
+distribution at docs/STUDY_DATA.md. In-app sources are shown in Settings and the reader.
