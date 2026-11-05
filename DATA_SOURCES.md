@@ -154,9 +154,7 @@ dapat diputar offline.
   surah/ayat dan identitas **Ibn Kathir, edisi Bahasa Inggris**. Tautan ini
   membutuhkan browser dan jaringan; Nuraya tidak menyalin kontennya atau
   menganggapnya tersedia offline.
-- Transliterasi ayat tidak disertakan karena sumber yang tersedia mencatat
-  hasil generasi yang belum diperiksa pembaca berkualifikasi. Nama surah Latin
-  tetap menggunakan metadata sumber.
+- Sejak 1.3.0, Latin Indonesia untuk 6.236 ayat disertakan dari `teksLatin` eQuran.id API v2. Snapshot mentah dan checksum disimpan; audit 1.3.1 mencocokkan seluruh teks dengan sumber tersebut. Latin tidak menggantikan pembelajaran pelafalan dengan guru dan tidak diberi warna melalui pemetaan dugaan. Lihat [LATIN_READING.md](LATIN_READING.md).
 - Warna tajwid menggunakan anotasi Colin P. Fair, CC BY 4.0, yang dipetakan hanya ke rentang teks yang sama persis. Seluruh 60.023 rentang dan pengabaian perbedaan sumber didokumentasikan di [STUDY_DATA.md](STUDY_DATA.md); teks Arab tidak diubah.
 - Video dan jawaban AI tidak ditambahkan sebagai sumber agama resmi. Lihat
   [integrasi AI dan video](AI_AND_VIDEO.md) untuk status dan mekanismenya.

@@ -1,6 +1,8 @@
 # Jam, Hijriah, jadwal salat, dan kiblat
 
-Fitur Ibadah menggunakan perhitungan lokal. Tidak ada izin lokasi, pelacakan latar belakang, layanan geolokasi, atau pengiriman koordinat. Pada pemakaian pertama pengguna harus memilih kota atau mengisi koordinat dan zona waktu; aplikasi tidak menganggap pengguna berada di Jakarta. Lima belas kota mencakup WIB/WITA/WIT. Pencarian kota, isian manual, dan penghapusan lokasi tersimpan tersedia di tab Lokasi.
+Fitur Ibadah menggunakan perhitungan lokal. Sejak 1.3.1, saat pemakaian pertama Nuraya menjelaskan dan meminta izin lokasi Android untuk mengisi koordinat secara otomatis. Pilihan lokasi akurat atau perkiraan dihormati. Lokasi hanya diminta saat pengguna mengaktifkannya, tidak dilacak di latar belakang, dan tidak diunggah oleh Nuraya. Posisi tersimpan tidak diganti dengan koordinat tebakan. Jika izin ditolak, layanan Lokasi mati, atau koordinat tidak tersedia, aplikasi memberi tombol izin/pengaturan/coba lagi; Al-Qur’an tetap dapat dibaca. Lima belas kota serta koordinat manual tetap tersedia sebagai alternatif.
+
+Lokasi memakai layanan Android GPS/network, tanpa ketergantungan Google Play Services atau reverse geocoding. Hanya posisi berumur paling lama dua menit dengan perkiraan akurasi yang memenuhi batas yang diterima. Zona waktu mengikuti pengaturan HP dan ditampilkan saat posisi ditemukan; aplikasi tidak menebak zona dari bujur. Koreksi Hijriah/menit pengguna dipertahankan. Permintaan lokasi dihentikan setelah hasil, batas waktu, pembatalan atau layar berhenti. Pembaruan lokasi saat bepergian tersedia di Ibadah → Lokasi → Gunakan lokasi HP.
 
 ## Jam dan kalender
 
