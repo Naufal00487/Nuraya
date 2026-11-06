@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.nuraya.app.recitation.LocalQuranSessionLifecycleTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-11-05T06:39:24" hostname="484a6eba10ca" time="0.037">
-  <properties/>
-  <testcase name="destroyedSessionCannotReopenTheMicrophoneOrEmitAnotherResult" classname="com.nuraya.app.recitation.LocalQuranSessionLifecycleTest" time="0.022"/>
-  <testcase name="missingPermissionCannotStartModelLoadingOrMicrophone" classname="com.nuraya.app.recitation.LocalQuranSessionLifecycleTest" time="0.015"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

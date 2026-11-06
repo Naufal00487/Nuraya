@@ -1,6 +1,6 @@
-# Katalog audio Nuraya 1.1.0
+# Katalog audio Nuraya 1.3.1
 
-Aplikasi menyertakan **138 pilihan rekaman lengkap 114 surah**. Angka ini menghitung edisi rekaman; beberapa edisi berasal dari qari yang sama. Nama berasal dari metadata Islamic Network. Seluruh 12 ID versi 1.0.1 dipertahankan agar favorit, daftar putar, dan unduhan lama tetap dapat dibuka.
+Aplikasi mendukung **138 ID edisi rekaman lengkap 114 surah**. Daftar menampilkan **137 pilihan** karena dua alias Alafasy diringkas menjadi satu kartu, sementara seluruh ID tetap tersedia untuk favorit, daftar putar dan unduhan lama. Angka tersebut menghitung edisi rekaman, bukan jumlah orang; beberapa edisi berasal dari qari yang sama. Nama berasal dari metadata Islamic Network.
 
 ## Rekaman surah
 
@@ -8,10 +8,8 @@ Aplikasi menyertakan **138 pilihan rekaman lengkap 114 surah**. Angka ini menghi
 - Snapshot: `docs/sources/islamic-network-surah-manifest.json`, SHA-256 `6f183510806ab226e3df8be6675cd222e35209123f5153f51aa1b8b08005e25a`.
 - Nama edisi: `https://api.alquran.cloud/v1/edition?format=audio`, hash snapshot tercatat pada `reciters.json`.
 - Setiap edisi aktif mempunyai tepat `1.mp3` hingga `114.mp3` dalam manifest 128 kbps.
-- Pemeriksaan awal mencakup 145 unduhan Al-Fatihah dan decode MP3 lengkap pada host. Tujuh sampel gagal, kemudian gagal pula pada pemeriksaan ulang. Ketujuh edisi baru tersebut dikeluarkan; **seluruh 138 sampel edisi yang disertakan lulus**.
-- Hasil awal, pemeriksaan ulang, dan seleksi final dipertahankan dalam `artifacts/validation/audio-catalog-1.1.0.json`, `audio-catalog-recheck-1.1.0.json`, dan `audio-catalog-final-1.1.0.json`.
-
-Edisi yang dikeluarkan: `ar.abdulbarimohammed`, `ar.abdulmohsenalharthy`, `ar.ezzatsabri`, `ar.khalifaaltunaiji`, `ar.mohamedabdelhakimsaadalabdullah`, `ar.saberabdulhakam`, `ar.yasseralmazroyee`. Ini berdasarkan sampel yang gagal saat diperiksa, bukan klaim bahwa semua rekaman mereka salah.
+- Pada 4 November 2026, **138 sampel Al-Fatihah** dari seluruh edisi yang disertakan berhasil diunduh lengkap dan didekode. [Bukti sampel](audit/1.3.1/audio-full-samples.json).
+- [Audit identitas sumber](audit/1.3.1/audio-identity.md) mencatat pemetaan ID, ejaan nama, ragam riwayat dan sampel identik. Pemetaan metadata tidak membuktikan autentikasi setiap suara melalui pendengaran manusia.
 
 Rekaman tidak dibundel dalam APK. Streaming membutuhkan internet; rekaman surah tersedia offline setelah unduhan selesai. Sumber dan hak cipta tetap pada penerbit/pemegang hak.
 
@@ -32,8 +30,8 @@ Qari lainnya menggunakan pergantian file ayat yang nyata dan sorotan ayat. Antar
 
 ## Validasi dan batasnya
 
-- Seluruh 17 sampel file per ayat, serta dua sampel fallback anomali, berhasil diunduh dan didekode pada host (`verse-audio-1.1.0.json`).
-- Rekaman pasangan QuranicAudio Al-Fatihah dan An-Nas diperiksa terpisah dengan unduhan lengkap dan decode host (`paired-audio-final-1.1.0.json`). Beberapa percobaan awal dibatasi proxy; hasil pemeriksaan awal dipertahankan dan tidak disamakan dengan hasil final.
+- Pada 5 November 2026, **22 sampel audio** berhasil diunduh lengkap dan didekode: 17 ayat 1:1, tiga surah dengan timing pasangan, serta dua ayat fallback qari yang sama. [Bukti sampel ayat](audit/1.3.1/verse-audio-samples.json).
+- ID qari yang tidak tersedia ditolak tanpa memilih suara lain. Riwayat audio ayat mempertahankan qari, surah dan ayat yang tepat.
 - Integritas timestamp, posisi kata terhadap data studi, rentang klip, pengulangan antrean dan fallback diperiksa melalui script dan test JVM.
 - **Belum diuji pada speaker/perangkat Android.** Pemeriksaan sampel tidak membuktikan seluruh ribuan file tersedia atau seluruh timestamp akurat secara pendengaran. Layanan pihak ketiga dapat berubah.
 

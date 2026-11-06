@@ -1,4 +1,4 @@
-# AI bacaan Nuraya 1.2.0
+# AI bacaan Nuraya
 
 Menu **AI bacaan Al-Qur’an** berada dekat bagian atas Beranda. Mode utama memakai model pengenal suara Whisper melalui mesin native `whisper.cpp`, dijalankan pada HP. Mode **Pengenal Android** tetap tersedia sebagai pilihan terpisah. Ini adalah pengenalan suara dan pencocokan kata yang dapat keliru, **bukan penilai tajwid, makhraj, harakat, atau panjang mad**.
 
@@ -51,13 +51,13 @@ Pengenal Android mempunyai timeout percobaan 90 detik dan batas menunggu hasil a
 
 Hasil build/test final dicatat di `BUILD_VALIDATION.md`, dan hasil inferensi rekaman host di dokumentasi model. Belum ada klaim evaluasi klinis/akademis ketepatan tajwid, pengujian mikrofon HP fisik, atau jaminan semua perangkat bekerja sama cepatnya. Uji host tidak menggantikan pengujian izin, interupsi telepon, pelepasan mikrofon, dan performa inferensi pada HP Android.
 
-Sumber platform: [SpeechRecognizer](https://developer.android.com/reference/android/speech/SpeechRecognizer), [RecognitionListener](https://developer.android.com/reference/android/speech/RecognitionListener), [RecognizerIntent](https://developer.android.com/reference/android/speech/RecognizerIntent), dan [AudioRecord](https://developer.android.com/reference/android/media/AudioRecord). Versi dokumentasi lama dipertahankan di [RECITATION_ASSISTANT_1.1.0.md](RECITATION_ASSISTANT_1.1.0.md).
+Sumber platform: [SpeechRecognizer](https://developer.android.com/reference/android/speech/SpeechRecognizer), [RecognitionListener](https://developer.android.com/reference/android/speech/RecognitionListener), [RecognizerIntent](https://developer.android.com/reference/android/speech/RecognizerIntent), dan [AudioRecord](https://developer.android.com/reference/android/media/AudioRecord).
 
-## Perbaikan mikrofon 1.2.1
+## Pemeriksaan mikrofon dan optimasi native
 
-Laporan pengguna: layar terlihat merekam tetapi hasil bacaan tidak keluar. APK 1.2.0 menggunakan kernel native tanpa optimasi meskipun tes host memakai Release. Build Android kini memakai `-O3` untuk seluruh kernel/wrapper, tetap menjaga ABI dasar dan tanpa fast-math. Guard `verify-native-optimization.py` memeriksa perintah compiler aktual untuk ketiga ABI dan dijalankan sebelum pengemasan.
+Build Android memakai `-O3` untuk seluruh kernel/wrapper, tetap menjaga ABI dasar dan tanpa fast-math. Guard `verify-native-optimization.py` memeriksa perintah compiler aktual untuk ketiga ABI dan dijalankan sebelum pengemasan.
 
-Dengan model/input/host yang sama, probe 6,025 detik membutuhkan 77,058 detik tanpa optimasi dan 15,665 detik dengan optimasi; keduanya menghasilkan basmalah yang sama. Ini bukan pengukuran latensi HP atau jaminan real-time.
+Pada [probe host 27 Oktober 2026](validation/reference/ai-model/native-optimization-benchmark.json), model/input/host yang sama dengan rekaman 6,025 detik membutuhkan 77,058 detik tanpa optimasi dan 15,665 detik dengan optimasi; keduanya menghasilkan basmalah yang sama. Ini bukan pengukuran latensi HP atau jaminan real-time.
 
 Sesi baru menampilkan perekaman setelah AudioRecord benar-benar dimulai, memantau frame/level suara, membedakan audio hening dari perangkat yang tidak mengirim data, dan menangani akses mikrofon yang dibisukan Android. Inisialisasi mencoba MIC dan VOICE_RECOGNITION pada 16/48/44,1 kHz; PCM disesuaikan menjadi 16 kHz. Kegagalan setelah inisialisasi tetap menjadi error yang jelas, bukan klaim semua perangkat didukung.
 

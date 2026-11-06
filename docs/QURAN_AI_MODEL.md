@@ -1,4 +1,4 @@
-# Model AI bacaan Nuraya 1.2.0
+# Model AI bacaan Nuraya
 
 Nuraya memakai **Tarteel AI whisper-base-ar-quran**, dikonversi menjadi GGML Q5_1 dan dijalankan dengan whisper.cpp di perangkat. Bobot asli telah diunduh dan cocok dengan checksum penyedia. Model hasil konversi berhasil menjalankan inferensi melalui wrapper JNI yang sama dengan aplikasi pada host. Ini bukti model dapat dijalankan, **bukan jaminan akurasi bacaan atau kecepatan real-time pada HP**.
 
@@ -8,7 +8,7 @@ Nuraya memakai **Tarteel AI whisper-base-ar-quran**, dikonversi menjadi GGML Q5_
 - Revisi sumber: `5c3c53fdf9272c4f6ee0bee09a1e5a4a615ee25c`.
 - Bobot PyTorch asli: **290.458.721 byte**, SHA-256 terverifikasi **`ec75894993a4570a237b2b1c19fd8a448f1e8f6e083cfab699574f7be53874fa`**.
 - Model Q5_1: **59.707.625 byte** (sekitar 59,7 MB), SHA-256 **`1de4498dc16fdee2045e67a97d73cda4624017640dbe5ddf809f3130da7c234a`**.
-- [Unduhan model immutable](https://raw.githubusercontent.com/Naufal00487/Nuraya/1d5a31aa2e60dbb9af70981e606a9c06b1b18c3e/nuraya-quran-whisper-base-q5_1.bin). Seluruh berkas publik telah diunduh ulang melalui HTTP 200 dan cocok ukuran/SHA-256-nya; bukti ada di [model-download.json](validation/1.2.0/model-download.json). Unduhan satu kali dilakukan terpisah dari APK; aplikasi memeriksa ukuran dan checksum sebelum menggunakannya.
+- [Unduhan model immutable](https://raw.githubusercontent.com/Naufal00487/Nuraya/1d5a31aa2e60dbb9af70981e606a9c06b1b18c3e/nuraya-quran-whisper-base-q5_1.bin). Seluruh berkas publik telah diunduh ulang melalui HTTP 200 dan cocok ukuran/SHA-256-nya; bukti ada di [model-download.json](validation/reference/ai-model/model-download.json). Unduhan satu kali dilakukan terpisah dari APK; aplikasi memeriksa ukuran dan checksum sebelum menggunakannya.
 - Runtime: whisper.cpp **v1.7.6**, commit `a8d002cfd879315632a579e73f0148d06959de36`, MIT. Library Android dikompilasi untuk arm64-v8a, armeabi-v7a, dan x86_64.
 
 Model card menyatakan Apache-2.0. Snapshot kartu, Apache-2.0, MIT OpenAI Whisper, catatan perubahan, checksum, dan metadata konversi dipertahankan di `sources/quran-ai/`; pemberitahuan lisensi juga dibundel di asset aplikasi.
@@ -17,7 +17,7 @@ Kartu model melaporkan WER 5,7544 dari evaluasi pembuatnya, tetapi bagian data, 
 
 ## Pengujian yang benar-benar dilakukan
 
-Tanggal pemeriksaan: **26 Oktober 2026** (Asia/Jakarta). Bukti mesin di [model-inference.json](validation/1.2.0/model-inference.json), [log JNI](validation/1.2.0/native-ai-jni.log), dan [log probe](validation/1.2.0/native-ai-probes.log).
+Tanggal pemeriksaan: **26 Oktober 2026** (Asia/Jakarta). Bukti mesin di [model-inference.json](validation/reference/ai-model/model-inference.json), [log JNI](validation/reference/ai-model/native-ai-jni.log), dan [log probe](validation/reference/ai-model/native-ai-probes.log).
 
 **Tujuh pemeriksaan wrapper JNI host lulus:** senyap digital menghasilkan teks kosong, input nonfinite ditolak, pembatalan antrean, inferensi berikutnya setelah pembatalan, pembatalan saat inferensi berjalan, pemakaian ulang konteks setelah pembatalan aktif, serta pelepasan konteks yang aman/idempoten. Sampel nyata 12 detik menghasilkan basmalah; waktu inferensi host sekitar **11,856 detik** dengan empat thread CPU.
 

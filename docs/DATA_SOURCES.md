@@ -137,15 +137,7 @@ pendidikan. Hak cipta tetap berada pada qari atau pemilik haknya. Nuraya versi
 ini gratis, tanpa iklan atau pembayaran. Jangan menganggap ketentuan ini memberi
 izin yang sama untuk setiap penggunaan komersial atau rekaman dari sumber lain.
 
-Pada pemeriksaan konektivitas awal versi 1.0.0, HTTPS HEAD untuk Alafasy, surah 1,
-menghasilkan **HTTP 200**, `Content-Type: audio/mpeg`, dan
-`Content-Length: 1420155`. Pemeriksaan ini menggunakan verifikasi TLS biasa.
-Penolakan proxy 403 pada pemeriksaan sebelumnya sudah tidak terjadi untuk
-permintaan tersebut. HEAD membuktikan ketersediaan metadata berkas saat diuji;
-hasil pemutaran, unduhan lengkap, dan pengujian Android dicatat terpisah dalam
-laporan build/pengujian. Tidak ada klaim bahwa seluruh rekaman telah diuji atau diunduh.
-Hasil pemeriksaan lengkap sampel dan katalog versi 1.1.0, termasuk 17 qari per ayat dan timestamp pasangan Quran.com/QuranicAudio untuk Alafasy, dicatat di [AUDIO_CATALOG.md](AUDIO_CATALOG.md). Hanya unduhan yang selesai dan masih ada di penyimpanan aplikasi yang
-dapat diputar offline.
+Pemeriksaan terbaru mencocokkan ID edisi dan nama berkas dengan manifest penyedia. Seluruh 138 sampel Al-Fatihah lengkap berhasil diunduh dan didekode pada 4 November 2026; 22 sampel audio ayat/timing/fallback lulus pada 5 November 2026. Rincian serta batasnya tercatat di [AUDIO_CATALOG.md](AUDIO_CATALOG.md) dan [laporan identitas audio](audit/1.3.1/audio-identity.md). Ini bukan autentikasi suara oleh pendengar ahli atau pemeriksaan setiap rekaman. Hanya unduhan yang selesai dan masih ada di penyimpanan aplikasi yang dapat diputar offline.
 
 ## Tafsir, transliterasi, dan tajwid
 
@@ -154,10 +146,9 @@ dapat diputar offline.
   surah/ayat dan identitas **Ibn Kathir, edisi Bahasa Inggris**. Tautan ini
   membutuhkan browser dan jaringan; Nuraya tidak menyalin kontennya atau
   menganggapnya tersedia offline.
-- Sejak 1.3.0, Latin Indonesia untuk 6.236 ayat disertakan dari `teksLatin` eQuran.id API v2. Snapshot mentah dan checksum disimpan; audit 1.3.1 mencocokkan seluruh teks dengan sumber tersebut. Latin tidak menggantikan pembelajaran pelafalan dengan guru dan tidak diberi warna melalui pemetaan dugaan. Lihat [LATIN_READING.md](LATIN_READING.md).
+- Latin Indonesia untuk 6.236 ayat disertakan dari `teksLatin` eQuran.id API v2. Snapshot mentah dan checksum disimpan; audit 1.3.1 mencocokkan seluruh teks dengan sumber tersebut. Latin tidak menggantikan pembelajaran pelafalan dengan guru dan tidak diberi warna melalui pemetaan dugaan. Lihat [LATIN_READING.md](LATIN_READING.md).
 - Warna tajwid menggunakan anotasi Colin P. Fair, CC BY 4.0, yang dipetakan hanya ke rentang teks yang sama persis. Seluruh 60.023 rentang dan pengabaian perbedaan sumber didokumentasikan di [STUDY_DATA.md](STUDY_DATA.md); teks Arab tidak diubah.
-- Video dan jawaban AI tidak ditambahkan sebagai sumber agama resmi. Lihat
-  [integrasi AI dan video](AI_AND_VIDEO.md) untuk status dan mekanismenya.
+- AI bacaan tidak menjadi sumber agama resmi atau penilai tajwid/makhraj tervalidasi. Lihat [AI bacaan](RECITATION_ASSISTANT.md) untuk mekanisme dan batasnya.
 
 ## Menjalankan pemeriksaan kembali
 

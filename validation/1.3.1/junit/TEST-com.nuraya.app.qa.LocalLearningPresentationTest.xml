@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.nuraya.app.qa.LocalLearningPresentationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-05T06:39:06" hostname="484a6eba10ca" time="0.86">
-  <properties/>
-  <testcase name="everydayQuestionShowsSourcedLessonAndOpensItsActualVerse" classname="com.nuraya.app.qa.LocalLearningPresentationTest" time="0.86"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

@@ -1,6 +1,6 @@
 # Build dan validasi Nuraya 1.3.1
 
-Diperiksa 5 November 2026. Paket `com.nuraya.app`, versionCode **8**, minimum Android 8/API 26, target API 35. [Perubahan](UPDATE_1.3.1.md), [audit](AUDIT_1.3.1.md), [arsip validasi 1.3.0](BUILD_VALIDATION_1.3.0.md).
+Diperiksa 5 November 2026. Paket `com.nuraya.app`, versionCode **8**, minimum Android 8/API 26, target API 35. [Perubahan](UPDATE_1.3.1.md), [audit](AUDIT_1.3.1.md).
 
 ## Hasil akhir
 
@@ -31,7 +31,7 @@ Cuplikan Compose/Robolectric: [dialog lokasi pertama](validation/1.3.1/first-lau
 
 6.236 ayat Arab, terjemahan Indonesia/Inggris dan catatan Indonesia cocok persis sumber yang dipatok; tidak ada ID atau nomor ayat global ganda. Latin dan tafsir mencakup 6.236 ayat. Pengecualian ejaan lintas sumber, kata tanpa pemetaan dan rentang warna yang sengaja tidak ditebak dijelaskan dalam [laporan audit](AUDIT_1.3.1.md).
 
-138 sampel Al-Fatihah lengkap berhasil diunduh/dekode pada 4 November; 22 sampel audio ayat/timing/fallback lulus pada 5 November. Manifest seluruh ID dan nama berkas serta checksum foto diverifikasi. Ini bukan pemeriksaan setiap rekaman atau autentikasi seluruh suara oleh manusia. Pemeriksaan seluruh 604 unduhan gambar pada versi 1.3.0 tetap merupakan bukti historis; tidak diklaim diunduh ulang semuanya dalam rilis ini.
+138 sampel Al-Fatihah lengkap berhasil diunduh/dekode pada 4 November; 22 sampel audio ayat/timing/fallback lulus pada 5 November. Manifest seluruh ID dan nama berkas serta checksum foto diverifikasi. Ini bukan pemeriksaan setiap rekaman atau autentikasi seluruh suara oleh manusia. [Bukti unduhan 604 gambar](validation/reference/madinah/mushaf-all-pages-check.json) berasal dari pemeriksaan menjelang rilis 29 Oktober 2026; tidak diklaim diunduh ulang semuanya dalam rilis ini.
 
 ## Integritas paket
 

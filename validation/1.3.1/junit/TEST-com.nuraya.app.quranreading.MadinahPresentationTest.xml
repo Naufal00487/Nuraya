@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.nuraya.app.quranreading.MadinahPresentationTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-11-05T06:39:23" hostname="484a6eba10ca" time="0.712">
-  <properties/>
-  <testcase name="largeTextKeepsThePageVisibleAndCompanionButtonReachable" classname="com.nuraya.app.quranreading.MadinahPresentationTest" time="0.22"/>
-  <testcase name="genuineBundledPageLoadsAndNavigationKeepsVerseCompanionInSync" classname="com.nuraya.app.quranreading.MadinahPresentationTest" time="0.492"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

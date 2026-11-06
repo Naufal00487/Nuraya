@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.nuraya.app.qa.QariPortraitTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-11-05T06:39:12" hostname="484a6eba10ca" time="0.827">
-  <properties/>
-  <testcase name="aliasesBelongToRealAudioEditionIdsWithoutFuzzyNameMatching" classname="com.nuraya.app.qa.QariPortraitTest" time="0.085"/>
-  <testcase name="allBundledPhotographsMatchTheirRecordedSourceHashesAndDecode" classname="com.nuraya.app.qa.QariPortraitTest" time="0.741"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

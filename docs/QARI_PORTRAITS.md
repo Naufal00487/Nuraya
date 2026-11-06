@@ -1,4 +1,4 @@
-# Qari photographs in Nuraya 1.3.0
+# Qari photographs in Nuraya
 
 Eight real profile photographs are bundled offline: Mishary Rashid Alafasy, Abdul Basit Abdus Samad, Abdurrahman As-Sudais, Abu Bakr Ash-Shatri, Hani Ar-Rifai, Mahmoud Khalil Al-Husary, Muhammad Siddiq Al-Minshawi, and Saud Al-Shuraim. They cover 14 exact audio edition IDs across the surah and verse catalogs. A portrait is never selected using approximate name matching. Other reciters retain their initials, with an accessible explanation that their photograph is unavailable.
 
