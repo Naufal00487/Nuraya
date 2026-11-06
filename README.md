@@ -2,13 +2,13 @@
 
 Source aplikasi Android Nuraya **1.3.1** untuk dibuka dan direvisi langsung. Aplikasi gratis; penyusun tidak mengambil keuntungan finansial dari aplikasi.
 
-**[Unduh APK terbaru — 43,5 MB](https://raw.githubusercontent.com/Naufal00487/Nuraya/main/artifacts/Nuraya-1.3.1.apk)** · [Perubahan](docs/UPDATE_1.3.1.md) · [Audit Quran dan audio](docs/AUDIT_1.3.1.md) · [Validasi](docs/BUILD_VALIDATION.md)
+**[Unduh APK terbaru — 43,5 MB](https://raw.githubusercontent.com/Naufal00487/Nuraya/HEAD/artifacts/Nuraya-1.3.1.apk)** · [Perubahan](docs/UPDATE_1.3.1.md) · [Audit Quran dan audio](docs/AUDIT_1.3.1.md) · [Validasi](docs/BUILD_VALIDATION.md)
 
 Android 8.0 atau lebih baru. APK memakai paket dan sertifikat distribusi yang sama, sehingga dapat dipasang sebagai pembaruan. Folder `artifacts/` hanya menyediakan APK versi terbaru; source dapat diunduh melalui **Code → Download ZIP**.
 
 ## Revisi manual
 
-1. Clone repo dengan `git clone --branch main https://github.com/Naufal00487/Nuraya.git`, atau unduh ZIP source.
+1. Clone repo dengan `git clone https://github.com/Naufal00487/Nuraya.git`, atau unduh ZIP source.
 2. Buka folder proyek yang berisi `settings.gradle.kts` melalui Android Studio, lalu tunggu Gradle Sync.
 3. Ubah source, jalankan pengujian yang relevan, lalu build APK baru. APK yang disertakan adalah hasil rilis 1.3.1 dan tidak berubah otomatis ketika source diedit.
 
