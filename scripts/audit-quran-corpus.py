@@ -19,8 +19,8 @@ import sys
 import unicodedata
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "docs/audit/1.3.1"
-SNAPSHOTS = OUT / "sources"
+OUT = ROOT / "docs/audit/1.4.0"
+SNAPSHOTS = ROOT / "docs/audit/1.3.1/sources"
 
 
 def sha256(content: bytes) -> str:
@@ -51,7 +51,7 @@ def main() -> int:
         assert digest == module.FILES[name], f"Pinned source mismatch: {name}"
         sources[name] = json.loads(content)
         provenance.append({"url": module.BASE + name, "rawSha256": digest,
-                           "rawBytes": len(content), "snapshot": str(path.relative_to(OUT))})
+                           "rawBytes": len(content), "snapshot": str(path.relative_to(ROOT))})
 
     path = ROOT / "app/src/main/assets/quran.json"
     content = path.read_bytes()
@@ -177,11 +177,11 @@ def main() -> int:
     }
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "quran-corpus.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
-    summary = f'''# Audit corpus Al-Qur’an — Nuraya 1.3.1
+    summary = f'''# Audit corpus Al-Qur’an — Nuraya 1.4.0
 
 Audit otomatis tidak menemukan perbedaan impor terhadap sumber yang dipatok: **6.236 teks Arab, 6.236 terjemahan Indonesia, 6.236 terjemahan Inggris dan 6.236 entri catatan terjemahan cocok persis** dengan snapshot sumber. Jumlah 114 surah, 6.236 nomor ayat global dan 30 juz sesuai metadata. Duplikat ID ayat: {len(duplicate_refs)}; duplikat nomor global: {len(duplicate_numbers)}. Corpus tidak diubah.
 
-Sumber dipatok ke `risan/quran-json` commit `{module.COMMIT}`. Empat snapshot diunduh ulang, checksum SHA-256-nya cocok dengan pin importer dan disimpan terkompresi di `sources/`. Arab berasal dari Tanzil Uthmani; Indonesia dari QuranEnc/Kementerian Agama versi 1.0.1; Inggris dari Pickthall. [Hasil mesin dan checksum](quran-corpus.json).
+Sumber dipatok ke `risan/quran-json` commit `{module.COMMIT}`. Empat snapshot dari audit 1.3.1 diverifikasi ulang secara lokal; checksum SHA-256-nya cocok dengan pin importer. Snapshot tersimpan di `docs/audit/1.3.1/sources/`. Arab berasal dari Tanzil Uthmani; Indonesia dari QuranEnc/Kementerian Agama versi 1.0.1; Inggris dari Pickthall. [Hasil mesin dan checksum](quran-corpus.json).
 
 Kebijakan basmalah mempertahankan Al-Fatihah 1:1, tidak menambah pembuka At-Tawbah, dan memisahkan tepat **112 pembuka tanpa nomor** dari rentang tampilan ayat pertama surah lainnya. Pemisahan dapat digabungkan kembali byte-per-byte tanpa mengubah sumber. Basmalah dalam An-Naml 27:30 tetap berada dalam ayat. Nomor dan teks ayat tidak digeser.
 

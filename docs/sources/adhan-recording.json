@@ -1,0 +1,10 @@
+{
+  "source": "https://github.com/DBChoco/Muezzin",
+  "commit": "8c1bd109ffee5a06067e97383d7866bdca159849",
+  "path": "ressources/audio/Adhan - Mecca.mp3",
+  "nameAsPublished": "Adhan - Mecca",
+  "bytes": 3274796,
+  "sha256": "05aac15476008c5f1d43df81b57a7d009e4a4442182a6664e67f77b17bd2364f",
+  "sourceProjectLicense": "MIT; included in app assets/licenses/MUEZZIN_MIT.txt",
+  "notes": "Source identifies recording as Mecca; no personal muezzin identity is asserted."
+}

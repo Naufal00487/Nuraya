@@ -1,0 +1,3 @@
+TELEGRAM_TOKEN=replace_in_local_secret_file_only
+ADMIN_CHAT_ID=replace_with_owner_chat_id
+WEBHOOK_SECRET=replace_with_random_secret

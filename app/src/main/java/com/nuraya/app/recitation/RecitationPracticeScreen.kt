@@ -351,7 +351,7 @@ private fun QuranModelCard(language: String, state: QuranModelState, supported: 
     val checking = state.phase in setOf(ModelPhase.CHECKING, ModelPhase.VERIFYING)
     OutlinedCard(shape = RoundedCornerShape(20.dp), modifier = Modifier.testTag("quran_ai_model")) {
         Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            Text(label(language, "Model AI Quran · gratis dan offline", "Quran AI model · free and offline"), style = MaterialTheme.typography.titleMedium)
+            Text(label(language, "Model AI Quran · digunakan offline", "Quran AI model · on-device recognition"), style = MaterialTheme.typography.titleMedium)
             Text(label(language,
                 "Unduh model sekali (sekitar ${modelBytes / 1_000_000} MB). Setelah siap, suara diproses di HP tanpa dikirim ke server. Tidak perlu akun atau biaya layanan. Disarankan memakai Wi-Fi untuk unduhan awal.",
                 "Download the model once (about ${modelBytes / 1_000_000} MB). Once ready, audio is processed on your phone without uploading it. No account or service fee is required. Wi-Fi is recommended for the initial download."),

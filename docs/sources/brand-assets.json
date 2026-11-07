@@ -1,0 +1,61 @@
+{
+  "documents": [
+    {
+      "file": "Panduan aplikasi nuraya.docx",
+      "sha256": "6b9dab21a0c9c855946bef86ecc0dad509af2fb4b8b41324ee5898411ac3dacd"
+    },
+    {
+      "file": "Design.docx",
+      "sha256": "89faddab780fa83c3c17b85ef303156953fab685b317247694cd94fa0aa967c4"
+    }
+  ],
+  "assets": [
+    {
+      "path": "app/src/main/assets/brand/avatars.png",
+      "sha256": "e84ce3c92cb47c6ea3269b70788052f57f2969b088cb460b49b805a954fcf2a9",
+      "bytes": 1380875,
+      "source": "Original avatar illustrations generated for Nuraya"
+    },
+    {
+      "path": "app/src/main/assets/brand/day.jpg",
+      "sha256": "108c77b2e402b80a8d839f9cff8bd26b4ed9779b441a1829f71bf5e5d3765bd0",
+      "bytes": 79388,
+      "source": "Supplied Design.docx; original embedded image bytes"
+    },
+    {
+      "path": "app/src/main/assets/brand/evening.jpg",
+      "sha256": "fa5d57b298d106caf94669ec2f6ce187ef742dcbd721e361a45fdec9ed8914d5",
+      "bytes": 66783,
+      "source": "Supplied Design.docx; original embedded image bytes"
+    },
+    {
+      "path": "app/src/main/assets/brand/logo.jpg",
+      "sha256": "859b89240c435b6f83ecdbf2bc3f3ec5bde65b04b7b844b15369a24106979aad",
+      "bytes": 69456,
+      "source": "Supplied Design.docx; original embedded image bytes"
+    },
+    {
+      "path": "app/src/main/assets/brand/morning.jpg",
+      "sha256": "3887693d6826feb0a003c80b44d1b46535f9a0f111c7e8b54d1dc366e33afeda",
+      "bytes": 66785,
+      "source": "Supplied Design.docx; original embedded image bytes"
+    },
+    {
+      "path": "app/src/main/assets/brand/night.jpg",
+      "sha256": "ac93bb60819e19a24de4cade93bce64d4b8981886d0db61bf54aae38a2417ca5",
+      "bytes": 75239,
+      "source": "Supplied Design.docx; original embedded image bytes"
+    },
+    {
+      "path": "app/src/main/assets/brand/splash.jpg",
+      "sha256": "87d552c9249a50d4b9fd379892ab2c0c7c94d13540f4fc0d9b6b074adde1b04b",
+      "bytes": 66056,
+      "source": "Supplied Design.docx; original embedded image bytes"
+    }
+  ],
+  "notes": [
+    "Five generated avatars are profile illustrations, never qari portraits.",
+    "No Quran text or qari face was generated.",
+    "Compass is drawn with Compose Canvas; its arrow uses device sensor data."
+  ]
+}

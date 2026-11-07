@@ -1,0 +1,236 @@
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/prayer/AdhanReminder.kt:46: Warning: This argument is a new instance so stopService will not remove anything [ImplicitSamInstance]
+        if(!value)context.stopService(Intent(context,AdhanService::class.java))
+                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "ImplicitSamInstance":
+   Kotlin's support for SAM (single abstract method) interfaces lets you pass
+   a lambda to the interface. This will create a new instance on the fly even
+   though there is no explicit constructor call. If you pass one of these
+   lambdas or method references into a method which (for example) stores or
+   compares the object identity, unexpected results may happen.
+
+   In particular, passing a lambda variable in as a listener, and then later
+   attempting to remove the listener will not work because a different
+   instance is passed in.
+
+   https://kotlinlang.org/docs/fun-interfaces.html#sam-conversions
+
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/recitation/RecitationSpeechSession.kt:52: Warning: Unnecessary; SDK_INT is always >= 31 [ObsoleteSdkInt]
+            val service = if (local && Build.VERSION.SDK_INT >= 31) SpeechRecognizer.createOnDeviceSpeechRecognizer(context)
+                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/res/mipmap-anydpi-v26: Warning: This folder configuration (v26) is unnecessary; minSdkVersion is 26. Merge all the resources in this folder into mipmap-anydpi. [ObsoleteSdkInt]
+
+   Explanation for issues of type "ObsoleteSdkInt":
+   This check flags version checks that are not necessary, because the
+   minSdkVersion (or surrounding known API level) is already at least as high
+   as the version checked for.
+
+   Similarly, it also looks for resources in -vNN folders, such as values-v14
+   where the version qualifier is less than or equal to the minSdkVersion,
+   where the contents should be merged into the best folder.
+
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/quranreading/LatinRepository.kt:37: Warning: Do not place Android context classes in static fields; this is a memory leak [StaticFieldLeak]
+        private var owner: Context? = null
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/quranreading/LatinRepository.kt:38: Warning: Do not place Android context classes in static fields (static reference to LatinRepository which has field owner pointing to Context); this is a memory leak [StaticFieldLeak]
+        private var shared: LatinRepository? = null
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "StaticFieldLeak":
+   A static field will leak contexts.
+
+   Non-static inner classes have an implicit reference to their outer class.
+   If that outer class is for example a Fragment or Activity, then this
+   reference means that the long-running handler/loader/task will hold a
+   reference to the activity which prevents it from getting garbage
+   collected.
+
+   Similarly, direct field references to activities and fragments from these
+   longer running instances can cause leaks.
+
+   ViewModel classes should never point to Views or non-application Contexts.
+
+/workspace/nuraya-main/app/src/main/res/values/colors.xml:4: Warning: The resource R.color.nuraya_gold appears to be unused [UnusedResources]
+    <color name="nuraya_gold">#D4B778</color>
+           ~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedResources":
+   Unused resources make applications larger and slow down builds.
+
+
+   The unused resource check can ignore tests. If you want to include
+   resources that are only referenced from tests, consider packaging them in a
+   test source set instead.
+
+   You can include test sources in the unused resource check by setting the
+   system property lint.unused-resources.include-tests =true, and to exclude
+   them (usually for performance reasons), use
+   lint.unused-resources.exclude-tests =true.
+   ,
+
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/media/AudioDownloadWorker.kt:68: Warning: Consider also using StorageManager#getAllocatableBytes and allocateBytes which will consider clearable cached data [UsableSpace]
+            if (output.parentFile!!.usableSpace < DownloadSafety.SPACE_RESERVE_BYTES) {
+                                    ~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/media/AudioDownloadWorker.kt:76: Warning: Consider also using StorageManager#getAllocatableBytes and allocateBytes which will consider clearable cached data [UsableSpace]
+            if (length > 0 && length + DownloadSafety.SPACE_RESERVE_BYTES > output.parentFile!!.usableSpace) {
+                                                                                                ~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/media/AudioDownloadWorker.kt:96: Warning: Consider also using StorageManager#getAllocatableBytes and allocateBytes which will consider clearable cached data [UsableSpace]
+                            if (temp.parentFile!!.usableSpace < DownloadSafety.SPACE_RESERVE_BYTES) {
+                                                  ~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/recitation/QuranModelStore.kt:90: Warning: Consider also using StorageManager#getAllocatableBytes and allocateBytes which will consider clearable cached data [UsableSpace]
+                if (folder.usableSpace < spec.bytes - offset + 32L * 1024 * 1024) throw IOException("space")
+                           ~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/recitation/QuranModelStore.kt:104: Warning: Consider also using StorageManager#getAllocatableBytes and allocateBytes which will consider clearable cached data [UsableSpace]
+                    if (folder.usableSpace + partialFile.length() < spec.bytes + 32L * 1024 * 1024) throw IOException("space")
+                               ~~~~~~~~~~~
+
+   Explanation for issues of type "UsableSpace":
+   When you need to allocate disk space for large files, consider using the
+   new allocateBytes(FileDescriptor, long) API, which will automatically clear
+   cached files belonging to other apps (as needed) to meet your request.
+
+   When deciding if the device has enough disk space to hold your new data,
+   call getAllocatableBytes(UUID) instead of using getUsableSpace(), since the
+   former will consider any cached data that the system is willing to clear on
+   your behalf.
+
+   Note that these methods require API level 26. If your app is running on
+   older devices, you will probably need to use both APIs, conditionally
+   switching on Build.VERSION.SDK_INT. Lint only looks in the same compilation
+   unit to see if you are already using both APIs, so if it warns even though
+   you are already using the new API, consider moving the calls to the same
+   file or suppressing the warning.
+
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/prayer/AdhanReminder.kt:45: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        context.getSharedPreferences("nuraya_adhan",Context.MODE_PRIVATE).edit().putBoolean("enabled",value).apply()
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/prayer/AdhanReminder.kt:126: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+            !AdhanScheduler.exactAllowed(context) -> {message=label(language,"Izinkan alarm tepat waktu, lalu kembali dan tekan Aktifkan.","Allow exact alarms, return, then tap Enable.");runCatching{context.startActivity(Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM,android.net.Uri.parse("package:${context.packageName}")))}}
+                                                                                                                                                                                                                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/quranreading/BahriyahPdfScreen.kt:49: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        preferences.edit().putString("uri", document.uri).putString("name", document.name.take(160))
+        ~~~~~~~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/quranreading/BahriyahPdfScreen.kt:71: Warning: Use the KTX function createBitmap instead? [UseKtx]
+                    val bitmap = Bitmap.createBitmap((page.width * scale).roundToInt().coerceAtLeast(1),
+                                 ^
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/quranreading/BahriyahPdfScreen.kt:131: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+            val rendered = renderBahriyahPdf(context, Uri.parse(current.uri), page, zoom)
+                                                      ~~~~~~~~~~~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/banners/BannerCarousel.kt:69: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+            if(base.isBlank()){prefs.edit().remove("catalog").putLong("checked",System.currentTimeMillis()).apply();emptyList()}
+                               ~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/banners/BannerCarousel.kt:71: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+                prefs.edit().putString("catalog",text).putLong("checked",System.currentTimeMillis()).apply();list}
+                ~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/banners/BannerCarousel.kt:96: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+                else if(safeBannerUrl(banner.destination))runCatching{context.startActivity(Intent(Intent.ACTION_VIEW,Uri.parse(banner.destination)))}
+                                                                                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/prayer/DeviceLocation.kt:117: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+    fun markIntroduced() { preferences.edit().putBoolean("introduced", true).apply() }
+                           ~~~~~~~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/prayer/DeviceLocation.kt:118: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+    fun markPermissionRequested() { preferences.edit().putBoolean("requested", true).apply() }
+                                    ~~~~~~~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/prayer/LocationOnboarding.kt:119: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+        else Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:${context.packageName}"))
+                                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/media/PlaybackManager.kt:288: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+                            .setUri(local?.let { Uri.fromFile(it) } ?: Uri.parse(reciter.audioUrl(item.id)))
+                                                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/study/PracticeScreen.kt:246: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+                        TextButton(onClick = { runCatching { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(lesson.sourceUrl))) } }) {
+                                                                                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/prayer/PrayerPreferences.kt:30: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        preferences.edit().apply {
+        ~~~~~~~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/profile/ProfileScreen.kt:39: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        preferences.edit().putString("nickname", nickname.trim()).putInt("avatar", avatar).apply()
+        ~~~~~~~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/ui/QuranScreen.kt:442: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+                        try { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(app.quran.tafsirUrl(verse.surah,verse.ayah)))) }
+                                                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/quranreading/ReadingPractice.kt:23: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        prefs.edit().putInt(key(surah, ayah), it).apply()
+        ~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/quranreading/ReadingPractice.kt:25: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+    fun reset(surah: Int, ayah: Int) { prefs.edit().remove(key(surah, ayah)).apply() }
+                                       ~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/recitation/RecitationPracticeScreen.kt:72: Warning: Use the KTX extension function SharedPreferences.edit instead? [UseKtx]
+        preferences.edit().putInt("completed_attempts", attempts).putStringSet("practiced_verses", practicedVerses).apply()
+        ~~~~~~~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/recitation/RecitationPracticeScreen.kt:278: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+                TextButton(onClick = { runCatching { context.startActivity(Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:${context.packageName}"))) } }) {
+                                                                                                                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/ui/SettingsScreen.kt:106: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+                    TextButton(onClick={runCatching{context.startActivity(Intent(Intent.ACTION_VIEW,Uri.parse("https://huggingface.co/tarteel-ai/whisper-base-ar-quran")))}}){Text(label(language,"Sumber model AI & lisensi","AI model source & license"))}
+                                                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/ui/SettingsScreen.kt:107: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+                    TextButton(onClick={runCatching{context.startActivity(Intent(Intent.ACTION_VIEW,Uri.parse("https://tanzil.net/docs/text_license")))}}){Text("Tanzil · ${label(language,"ketentuan sumber","source terms")}")}
+                                                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/ui/SettingsScreen.kt:108: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+                    TextButton(onClick={runCatching{context.startActivity(Intent(Intent.ACTION_VIEW,Uri.parse("https://alquran.cloud/about")))}}){Text("Islamic Network · ${label(language,"sumber audio","audio source")}")}
+                                                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/ui/SettingsScreen.kt:109: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+                    TextButton(onClick={runCatching{context.startActivity(Intent(Intent.ACTION_VIEW,Uri.parse("https://github.com/cpfair/quran-tajweed")))}}){Text("cpfair · ${label(language,"anotasi tajwid · CC BY 4.0","tajwid annotations · CC BY 4.0")}")}
+                                                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/ui/SettingsScreen.kt:110: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+                    TextButton(onClick={runCatching{context.startActivity(Intent(Intent.ACTION_VIEW,Uri.parse("https://quran.com")))}}){Text("Quran.com · ${label(language,"arti per kata & waktu audio","word meanings & audio timing")}")}
+                                                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/workspace/nuraya-main/app/src/main/java/com/nuraya/app/ui/SettingsScreen.kt:111: Warning: Use the KTX extension function String.toUri instead? [UseKtx]
+                    TextButton(onClick={runCatching{context.startActivity(Intent(Intent.ACTION_VIEW,Uri.parse("https://equran.id/apidev/v2")))}}){Text("eQuran.id · ${label(language,"tafsir Kemenag","Kemenag commentary")}")}
+                                                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UseKtx":
+   The Android KTX libraries decorates the Android platform SDK as well as
+   various libraries with more convenient extension functions available from
+   Kotlin, allowing you to use default parameters, named parameters, and
+   more.
+
+   Available options:
+
+   **remove-defaults** (default is true):
+   Whether to skip arguments that match the defaults provided by the extension.
+
+   Extensions often provide default values for some of the parameters. For example:
+   ```kotlin
+   fun Path.readLines(charset: Charset = Charsets.UTF_8): List<String> { return Files.readAllLines(this, charset) }
+   ```
+   This lint check will by default automatically omit parameters that match the default, so if your code was calling ```kotlin
+   Files.readAllLines(file, Charset.UTF_8)
+   ```
+   lint would replace this with
+   ```kotlin
+   file.readLines()
+   ```
+   rather than
+   ```kotlin
+   file.readLines(Charset.UTF_8
+   ```
+   You can turn this behavior off using this option.
+
+   To configure this option, use a `lint.xml` file with an <option> like this:
+
+   ```xml
+   <lint>
+       <issue id="UseKtx">
+           <option name="remove-defaults" value="true" />
+       </issue>
+   </lint>
+   ```
+
+   **require-present** (default is true):
+   Whether to only offer extensions already available.
+
+   This option lets you only have lint suggest extension replacements if those extensions are already available on the class path (in other words, you're already depending on the library containing the extension method.)
+
+   To configure this option, use a `lint.xml` file with an <option> like this:
+
+   ```xml
+   <lint>
+       <issue id="UseKtx">
+           <option name="require-present" value="true" />
+       </issue>
+   </lint>
+   ```
+
+0 errors, 37 warnings

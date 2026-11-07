@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "auditedAtUtc": "2026-11-07T01:34:59.800711+00:00",
+  "auditType": "Read-only snapshot reproducibility, reference coverage, UTF-16 bounds, duplicate and displayed-guidance review",
+  "canonicalArabicUnchanged": true,
+  "canonicalSha256": "f41cef112e2efd581d3ea15ad7229a713d18122a6e0fbec4ddb0c00b7d1cae9c",
+  "structuralErrors": [],
+  "latin": {
+    "source": "EQuran.id API v2 frozen responses",
+    "snapshotManifestSha256": "c61270d49bac0fc36d4869d5ecc77475a224fb6783b22e5b8d00c4003025ff3f",
+    "chapters": 114,
+    "verses": 6236,
+    "duplicateReferences": 0,
+    "exactPublishedTextMatches": 6236,
+    "missingOrEmptyTexts": 0,
+    "latinColorsApplied": false
+  },
+  "study": {
+    "mappedWords": 77428,
+    "verses": 6236,
+    "words": 77429,
+    "tajwidSpans": 60023,
+    "versesWithTajwid": 6173,
+    "tafsirVerses": 6236,
+    "wordsWithoutExactMapping": 1,
+    "exactSourceChapters": 114,
+    "duplicateTajwidSpans": 0,
+    "unknownColorRules": [],
+    "changedSourceSpansDeliberatelyOmitted": 34,
+    "rules": {
+      "ghunnah": 4946,
+      "hamzat_wasl": 13252,
+      "idghaam_ghunnah": 3933,
+      "idghaam_mutajanisayn": 58,
+      "idghaam_mutaqaribayn": 13,
+      "idghaam_no_ghunnah": 1035,
+      "idghaam_shafawi": 832,
+      "ikhfa": 5301,
+      "ikhfa_shafawi": 496,
+      "iqlab": 562,
+      "lam_shamsiyyah": 2733,
+      "madd_2": 8994,
+      "madd_246": 4543,
+      "madd_6": 148,
+      "madd_munfasil": 3172,
+      "madd_muttasil": 1997,
+      "qalqalah": 3834,
+      "silent": 4174
+    },
+    "unmappedWords": [
+      {
+        "reference": "11:13",
+        "wordPosition": 3,
+        "sourceWord": "افْتَرَاهُ ۖ",
+        "reason": "Source spelling has no exact mapping to canonical word; no guessed highlight or color is applied."
+      }
+    ],
+    "snapshotManifestSha256": "bb5fd64e4b5e89eae14eca1c5d5ec3e8c417d217d115c56c711214507134c95f"
+  },
+  "waqaf": {
+    "source": "https://api.alquran.cloud/v1/quran/quran-uthmani",
+    "sourceSha256": "0df03e1d6da4fc8138208fec1688f2b416f0dd4ebbd514179f3e5e0fbaf4195f",
+    "matchedVerses": 6234,
+    "annotatedVerses": 2639,
+    "annotations": 4362,
+    "omittedReferences": [
+      "12:39",
+      "12:41"
+    ],
+    "duplicateAnnotations": 0,
+    "insideWordSeenExcluded": [
+      "2:245",
+      "7:69"
+    ],
+    "boundarySaktahIncluded": "75:27"
+  },
+  "guidanceCorrections": [
+    {
+      "file": "app/src/main/java/com/nuraya/app/ui/StudyVersePanel.kt",
+      "issue": "A shared Wasl / Silent label did not explain the initial-reading case.",
+      "correction": "Hamzat wasl is pronounced when beginning the word with its prescribed vowel, omitted when joining; gray also denotes source silent-letter annotations."
+    },
+    {
+      "file": "app/src/main/java/com/nuraya/app/quranreading/QuranReadingModes.kt",
+      "issue": "Muanaqah wording sounded as though a stop at one sign was compulsory.",
+      "correction": "Continuing past both signs is allowed; when stopping, stop at only one of the paired signs."
+    }
+  ],
+  "limits": [
+    "Source agreement and valid offsets do not certify tajwid or makhraj pedagogically.",
+    "Latin is a pronunciation aid, not a substitute for hearing qualified recitation; exact source reproduction does not validate every transliteration convention.",
+    "The 34 source tajwid spans crossing changed text are omitted rather than guessed; the single unmapped word and two waqaf exceptions remain explicit.",
+    "AI compares estimated recognized words; no phonetic/tajwid expert validation or guarantee of real-time correction was performed.",
+    "No manual review of every rendered glyph or human listening assessment of all recitations was performed."
+  ]
+}

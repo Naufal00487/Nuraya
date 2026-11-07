@@ -19,6 +19,9 @@ import com.nuraya.app.NurayaApplication
 import com.nuraya.app.learning.LearningScreen
 import com.nuraya.app.prayer.PrayerScreen
 import com.nuraya.app.prayer.LocationOnboarding
+import com.nuraya.app.prayer.QiblaScreen
+import com.nuraya.app.profile.ProfileScreen
+import com.nuraya.app.profile.AboutScreen
 import com.nuraya.app.quranreading.QuranModesScreen
 import com.nuraya.app.quranreading.QuranReadingModes
 import com.nuraya.app.quranreading.BahriyahPdfScreen
@@ -41,6 +44,7 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
     var qariId by rememberSaveable { mutableStateOf("") }
     var readingModeId by rememberSaveable { mutableStateOf("standard") }
     var settingsFrom by rememberSaveable { mutableStateOf("home") }
+    var aboutFrom by rememberSaveable { mutableStateOf("profile") }
     var playerVisible by rememberSaveable { mutableStateOf(false) }
     var loading by remember { mutableStateOf(true) }
     var loadError by remember { mutableStateOf(false) }
@@ -59,9 +63,11 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
     } }
     LaunchedEffect(retry) {
         loading = true
+        val started=android.os.SystemClock.elapsedRealtime()
         loadError = false
         try { withContext(Dispatchers.IO) { app.quran.surahs; app.quran.verses(1) } }
         catch (e: Exception) { if (e is kotlinx.coroutines.CancellationException) throw e; loadError = true }
+        kotlinx.coroutines.delay((700L-(android.os.SystemClock.elapsedRealtime()-started)).coerceAtLeast(0L))
         loading = false
     }
     val openVerse: (Int, Int) -> Unit = { surah, ayah ->
@@ -77,6 +83,8 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
             screen == "bahriyah" -> screen = "quran"
             screen == "surahs" -> screen = "quran"
             screen == "settings" -> screen = settingsFrom
+            screen == "about" -> screen = aboutFrom
+            screen == "progress" -> screen = "profile"
             screen == "murottal" && qariId.isNotEmpty() -> qariId = ""
             else -> screen = "home"
         }
@@ -84,6 +92,8 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
     BackHandler(screen != "home" && !playerVisible) { back() }
     val titles = mapOf("home" to "NURAYA", "quran" to "Al-Qur’an", "murottal" to "Murottal",
         "prayer" to label(language, "Salat & kiblat", "Prayer & qibla"),
+        "qibla" to label(language,"Kiblat","Qibla"), "location" to label(language,"Lokasi","Location"),
+        "profile" to label(language,"Profil saya","My profile"),"about" to label(language,"Tentang Nuraya","About Nuraya"),
         "surahs" to QuranReadingModes.find(readingModeId).title(language),
         "mushaf" to QuranReadingModes.find(readingModeId).title(language),
         "bahriyah" to QuranReadingModes.find("bahriyah").title(language),
@@ -91,12 +101,13 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
         "settings" to label(language, "Pengaturan", "Settings"),
         "learn" to label(language, "Teman belajar", "Learning companion"),
         "practice" to label(language, "Latihan & hafalan", "Practice & memorization"),
+        "progress" to label(language, "Progres belajarku", "My learning progress"),
         "recitation" to label(language, "AI bacaan", "Recitation AI"),
         "reader" to if (juzId > 0) "Juz $juzId" else if (!loading && !loadError) app.quran.surahs.firstOrNull { it.id == surahId }?.name.orEmpty() else "Al-Qur’an")
     Scaffold(
         snackbarHost = { SnackbarHost(snackbar) },
         topBar = {
-            TopAppBar(title = { Text(titles[screen].orEmpty(), style = MaterialTheme.typography.titleLarge, maxLines = 2, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis) },
+            if (screen != "home") TopAppBar(title = { Text(titles[screen].orEmpty(), style = MaterialTheme.typography.titleLarge, maxLines = 2, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis) },
                 navigationIcon = {
                     if (screen !in listOf("home", "quran", "murottal", "prayer") || screen == "murottal" && qariId.isNotEmpty()) {
                         TextButton(onClick = back, modifier = Modifier.testTag("back_button")) {
@@ -113,7 +124,7 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
         bottomBar = {
             Column {
                 if (playback.surahId > 0) MiniPlayer(playback, language, onOpen = { playerVisible = true }, onToggle = { app.playback.toggle() })
-                if (screen !in listOf("reader", "mushaf", "bahriyah", "learn", "practice", "recitation")) NavigationBar(containerColor = MaterialTheme.colorScheme.surface, tonalElevation = 0.dp) {
+                if (screen !in listOf("reader", "mushaf", "bahriyah", "learn", "practice", "progress", "recitation", "qibla")) NavigationBar(containerColor = MaterialTheme.colorScheme.surface, tonalElevation = 0.dp) {
                     val items = listOf(
                         Triple("home", label(language, "Beranda", "Home"), Icons.Outlined.Home),
                         Triple("quran", "Al-Qur’an", Icons.Outlined.MenuBook),
@@ -132,7 +143,10 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
         Box(Modifier.fillMaxSize().padding(insets), contentAlignment = Alignment.TopCenter) {
             Box(Modifier.widthIn(max = 840.dp).fillMaxSize()) {
                 when {
-                    loading -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { CircularProgressIndicator() }
+                    loading -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        BrandImage("splash",Modifier.fillMaxSize(),androidx.compose.ui.layout.ContentScale.Fit,"Nuraya")
+                        CircularProgressIndicator(Modifier.align(Alignment.BottomCenter).padding(bottom=24.dp))
+                    }
                     loadError -> Column(Modifier.align(Alignment.Center).padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
                         Text(label(language, "Data bacaan belum dapat dibuka.", "The reading data could not be opened."))
                         Button(onClick = { retry++ }) { Text(label(language, "Coba lagi", "Try again")) }
@@ -140,7 +154,10 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
                     else -> screenState.SaveableStateProvider(
                         if (screen in setOf("reader", "mushaf")) "$screen:$readingModeId:$surahId:$ayahId:$juzId" else screen
                     ) { when(screen) {
-                        "home" -> HomeScreen(app, language, entries, onRead = openVerse, onNavigate = { if (it == "settings") settingsFrom = "home"; screen = it })
+                        "home" -> HomeScreen(app, language, entries, onRead = openVerse, onNavigate = {
+                            if (it == "settings") settingsFrom = "home"
+                            if(it.startsWith("qari:")){qariId=it.removePrefix("qari:");screen="murottal"} else screen=it
+                        })
                         "quran" -> QuranModesScreen(app, language,
                             onMode = { readingModeId = it; screen = if (it == "bahriyah") "bahriyah" else "surahs" },
                             onRead = { surah, ayah -> readingModeId = "indonesia"; openVerse(surah, ayah) })
@@ -169,10 +186,14 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
                             wordSyncReciterIds = app.playback.verseReciters.filter { it.supportsWordSync }.map { it.id }.toSet())
                         "murottal" -> MurottalScreen(app, language, qariId, onQari = { qariId = it }, entries, downloads, playback, perform)
                         "prayer" -> PrayerScreen(language)
+                        "location" -> PrayerScreen(language,"location")
+                        "qibla" -> QiblaScreen(language)
+                        "profile" -> ProfileScreen(language) { if(it=="settings")settingsFrom="profile";if(it=="about")aboutFrom="profile";if(it=="progress")screenState.removeState("progress");screen=it }
+                        "about" -> AboutScreen(language)
                         "library" -> LibraryScreen(app, language, entries, downloads, perform, onRead = openVerse)
-                        "settings" -> SettingsScreen(app, settings, perform, onLearn = { screen = "learn" })
+                        "settings" -> SettingsScreen(app, settings, perform, onLearn = { screen = "learn" }, onAbout = { aboutFrom="settings";screen = "about" })
                         "learn" -> LearningScreen(language, onBack = back, onRead = openVerse)
-                        "practice" -> PracticeScreen(app, language, onRead = openVerse,
+                        "practice", "progress" -> PracticeScreen(app, language, onRead = openVerse, initialTab = if(screen=="progress")3 else 0,
                             onPracticeRange = { surah, start, end, repeats ->
                                 app.playback.playVerseRange(surah, start, end, settings.readerQariId, repeats)
                                 openVerse(surah, start)

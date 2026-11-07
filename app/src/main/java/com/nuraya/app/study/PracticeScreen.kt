@@ -30,6 +30,9 @@ import com.nuraya.app.ui.QuranArabicFont
 import com.nuraya.app.ui.TajwidPalette
 import com.nuraya.app.ui.annotatedQuranText
 import com.nuraya.app.ui.label
+import com.nuraya.app.profile.rememberProfile
+import com.nuraya.app.profile.ProfileAvatar
+import androidx.compose.ui.graphics.Color
 import java.time.LocalDate
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
@@ -39,13 +42,13 @@ import kotlinx.coroutines.withContext
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PracticeScreen(app: NurayaApplication, language: String, onRead: (Int, Int) -> Unit,
-    onPracticeRange: ((Int, Int, Int, Int) -> Unit)? = null) {
+    onPracticeRange: ((Int, Int, Int, Int) -> Unit)? = null, initialTab: Int = 0) {
     val repository = remember(app) { PracticeRepository(app, app.quran) }
     val progress by repository.progress.collectAsStateWithLifecycle(PracticeProgress())
     val settings by app.settings.settings.collectAsStateWithLifecycle(UserSettings())
     var content by remember { mutableStateOf<PracticeContent?>(null) }
     var loadFailed by remember { mutableStateOf(false) }
-    var tab by rememberSaveable { mutableIntStateOf(0) }
+    var tab by rememberSaveable { mutableIntStateOf(initialTab.coerceIn(0,3)) }
     val tabState = rememberSaveableStateHolder()
     val snackbar = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
@@ -96,6 +99,7 @@ private fun MemorizationTab(app: NurayaApplication, language: String, settings: 
     var endInput by rememberSaveable { mutableStateOf("3") }
     var currentAyah by rememberSaveable { mutableIntStateOf(1) }
     var repeats by rememberSaveable { mutableIntStateOf(3) }
+    var wholeRange by rememberSaveable { mutableStateOf(false) }
     var reveal by rememberSaveable { mutableStateOf(false) }
     var finished by rememberSaveable { mutableStateOf(false) }
     var busy by remember { mutableStateOf(false) }
@@ -141,12 +145,21 @@ private fun MemorizationTab(app: NurayaApplication, language: String, settings: 
                     }
                     if (!valid) Text(label(language, "Gunakan rentang berurutan antara 1 dan ${surah.ayahCount}.", "Use an ordered range between 1 and ${surah.ayahCount}."), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error)
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text(label(language, "Ulang tiap ayat", "Repeat each verse"), Modifier.weight(1f))
+                        Text(label(language, "Jumlah pengulangan", "Repeat count"), Modifier.weight(1f))
                         IconButton(onClick = { repeats-- }, enabled = repeats > 1) { Icon(Icons.Outlined.Remove, label(language, "Kurangi", "Decrease")) }
                         Text("${repeats}×")
-                        IconButton(onClick = { repeats++ }, enabled = repeats < 10) { Icon(Icons.Outlined.Add, label(language, "Tambah", "Increase")) }
+                        IconButton(onClick = { repeats++ }, enabled = repeats < 20) { Icon(Icons.Outlined.Add, label(language, "Tambah", "Increase")) }
                     }
-                    if (onPracticeRange != null) Button(onClick = { onPracticeRange(surahId, start!!, end!!, repeats) }, enabled = valid && !busy, modifier = Modifier.fillMaxWidth()) {
+                    Row(horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+                        FilterChip(selected=!wholeRange,onClick={wholeRange=false},label={Text(label(language,"Per ayat","Each verse"))},modifier=Modifier.testTag("repeat_each_mode"))
+                        FilterChip(selected=wholeRange,onClick={wholeRange=true},label={Text(label(language,"Seluruh rentang","Whole range"))},modifier=Modifier.testTag("repeat_range_mode"))
+                    }
+                    Text(label(language,if(wholeRange)"Ayat awal hingga akhir diputar, lalu rentang diulang. Berhenti setelah $repeats putaran." else "Setiap ayat diulang $repeats kali sebelum lanjut ke ayat berikutnya.",if(wholeRange)"Play the full range, repeat, then stop after $repeats passes." else "Repeat each verse $repeats times before moving on."),style=MaterialTheme.typography.bodySmall)
+                    TextButton(onClick={startInput="1";endInput=surah.ayahCount.toString();reset()}){Text(label(language,"Pilih satu surah penuh","Choose the entire surah"))}
+                    if (onPracticeRange != null) Button(onClick = {
+                        if(wholeRange){app.playback.playVerseRange(surahId,start!!,end!!,settings.readerQariId,rangeRepeats=repeats);onRead(surahId,start)}
+                        else onPracticeRange(surahId, start!!, end!!, repeats)
+                    }, enabled = valid && !busy, modifier = Modifier.fillMaxWidth()) {
                         Icon(Icons.Outlined.Headphones, null); Spacer(Modifier.width(8.dp)); Text(label(language, "Dengarkan rentang", "Listen to range"))
                     }
                 }
@@ -251,20 +264,40 @@ private fun QuizTab(language: String, content: PracticeContent, repository: Prac
     var busy by remember { mutableStateOf(false) }
     var score by rememberSaveable { mutableIntStateOf(0) }
     val question = content.questions.getOrNull(index)
+    val profile=rememberProfile()
     LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(20.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
         item {
+            Surface(color=MaterialTheme.colorScheme.primary,shape=RoundedCornerShape(26.dp),modifier=Modifier.fillMaxWidth()) {
+                Row(Modifier.padding(20.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(16.dp)) {
+                    ProfileAvatar(profile.avatar,Modifier.size(72.dp))
+                    Column { Text(profile.nickname,color=MaterialTheme.colorScheme.onPrimary,style=MaterialTheme.typography.titleLarge)
+                        Text(label(language,"Kuis pribadi · $score benar","Personal quiz · $score correct"),color=MaterialTheme.colorScheme.onPrimary,style=MaterialTheme.typography.bodyMedium) }
+                }
+            }
+            Spacer(Modifier.height(18.dp))
             Text(label(language, "Uji pemahaman tajwid", "Check your tajwid knowledge"), style = MaterialTheme.typography.headlineSmall)
             Text(label(language, "Kuis pengetahuan, bukan pengujian kualitas suara. Baca alasan jawaban untuk memperbaiki pemahaman.",
                 "A knowledge quiz, not a voice assessment. Read each explanation to improve your understanding."), style = MaterialTheme.typography.bodyMedium)
         }
         if (question == null) item {
-            Text(label(language, "Selesai: $score dari ${content.questions.size} jawaban benar.", "Complete: $score of ${content.questions.size} answers correct."), style = MaterialTheme.typography.titleLarge)
+            Card(shape=RoundedCornerShape(28.dp),colors=CardDefaults.cardColors(containerColor=MaterialTheme.colorScheme.primaryContainer),modifier=Modifier.fillMaxWidth()) {
+                Column(Modifier.fillMaxWidth().padding(28.dp),horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(18.dp)) {
+                    Icon(Icons.Outlined.EmojiEvents,null,Modifier.size(64.dp),tint=MaterialTheme.colorScheme.secondary)
+                    Text(label(language,"Latihan selesai!","Practice complete!"),style=MaterialTheme.typography.headlineSmall)
+                    ProfileAvatar(profile.avatar,Modifier.size(96.dp))
+                    Text(label(language, "Selesai: $score dari ${content.questions.size} jawaban benar.", "Complete: $score of ${content.questions.size} answers correct."), style = MaterialTheme.typography.titleLarge,textAlign=TextAlign.Center)
+                    Text(label(language,"Terus belajar dengan ritmemu sendiri.","Keep learning at your own pace."),textAlign=TextAlign.Center)
+                }
+            }
             Button(onClick = { index = 0; choice = -1; locked = false; score = 0 }) { Text(label(language, "Ulangi kuis", "Restart quiz")) }
         } else {
             item {
                 LinearProgressIndicator(progress = { index.toFloat() / content.questions.size.coerceAtLeast(1) }, modifier = Modifier.fillMaxWidth())
                 Text("${index + 1} / ${content.questions.size}", style = MaterialTheme.typography.labelMedium)
-                Text(if (language == "id") question.questionId else question.questionEn, style = MaterialTheme.typography.titleLarge)
+                Spacer(Modifier.height(12.dp))
+                Surface(shape=RoundedCornerShape(26.dp),color=MaterialTheme.colorScheme.primaryContainer,modifier=Modifier.fillMaxWidth()) {
+                    Text(if (language == "id") question.questionId else question.questionEn, style = MaterialTheme.typography.headlineSmall,modifier=Modifier.padding(24.dp))
+                }
             }
             items((if (language == "id") question.optionsId else question.optionsEn).withIndex().toList(), key = { it.index }) { option ->
                 OutlinedCard(onClick = { choice = option.index }, enabled = !locked && !busy, modifier = Modifier.fillMaxWidth().testTag("quiz_option_${option.index}")) {

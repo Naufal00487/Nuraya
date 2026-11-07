@@ -21,7 +21,7 @@ import com.nuraya.app.storage.UserSettings
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun SettingsScreen(app:NurayaApplication,settings:UserSettings,perform:(suspend ()->Unit)->Unit,onLearn:()->Unit){
+fun SettingsScreen(app:NurayaApplication,settings:UserSettings,perform:(suspend ()->Unit)->Unit,onLearn:()->Unit,onAbout:()->Unit = {}){
     val language=settings.language
     val context=LocalContext.current
     var textSize by remember(settings.arabicSize){mutableFloatStateOf(settings.arabicSize)}
@@ -82,22 +82,15 @@ fun SettingsScreen(app:NurayaApplication,settings:UserSettings,perform:(suspend 
             }
         }
         item { HorizontalDivider() }
-        item {
-            SectionTitle(label(language,"Pernyataan nonkomersial","Noncommercial disclaimer"))
-            Spacer(Modifier.height(12.dp))
-            Text(label(language,
-                "Kami, penyusun aplikasi Nuraya, tidak mengambil keuntungan finansial dari aplikasi ini. Nuraya disediakan gratis, tanpa iklan dari Nuraya, langganan, atau pembelian dalam aplikasi. Hak cipta teks, terjemahan, dan rekaman tetap milik sumber serta pemegang hak masing-masing.",
-                "We, the creators of Nuraya, do not earn financial profit from this application. Nuraya is provided free of charge, without Nuraya ads, subscriptions, or in-app purchases. Copyright in the texts, translations, and recordings remains with their respective sources and rightsholders."),
-                style=MaterialTheme.typography.bodyMedium,modifier=Modifier.testTag("noncommercial_disclaimer"))
-        }
+        item { OutlinedButton(onClick=onAbout,modifier=Modifier.fillMaxWidth()) { Icon(Icons.Outlined.Info,null);Spacer(Modifier.width(8.dp));Text(label(language,"Tentang Nuraya","About Nuraya")) } }
         item {
             SectionTitle(label(language,"Tentang ruang belajar ini","About this learning space"))
             Spacer(Modifier.height(12.dp))
-            Text(label(language,"Nuraya gratis dan tidak memasang iklan sendiri. Penanda, riwayat, pengaturan, dan unduhan disimpan di perangkat. Tidak ada akun atau sinkronisasi cloud yang aktif.","Nuraya is free and does not place its own ads. Bookmarks, history, settings, and downloads stay on this device. No account or cloud sync is active."),style=MaterialTheme.typography.bodyMedium)
+            Text(label(language,"Penanda, riwayat, pengaturan, dan unduhan disimpan di perangkat. Tidak ada akun atau sinkronisasi cloud yang aktif.","Bookmarks, history, settings, and downloads stay on this device. No account or cloud sync is active."),style=MaterialTheme.typography.bodyMedium)
             Spacer(Modifier.height(10.dp))
             Text(label(language,"Izin lokasi dipakai saat Anda mengaktifkan lokasi HP untuk jadwal salat dan kiblat. Nuraya menyimpan koordinat di perangkat tanpa mengunggah atau melacaknya di latar belakang. Anda dapat memperbarui lokasi lewat Ibadah → Lokasi.","Location permission is used when you enable device location for prayer times and Qibla. Nuraya stores coordinates on this device without uploading or tracking them in the background. Refresh your location under Prayer → Place."),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant)
             Spacer(Modifier.height(10.dp))
-            Text(label(language,"Streaming murottal dan pengunduhan gambar mushaf menghubungkan perangkat ke penyedia konten. AI bacaan memproses suara di HP setelah model diunduh; Nuraya tidak menyimpan atau mengunggah rekaman maupun transkrip. Pilihan pengenal Android dapat memproses online setelah persetujuan Anda. Teman Belajar mencari rujukan lokal; pertanyaan tidak dikirim ke server.","Recitation streaming and mushaf image downloads connect your device to content providers. Recitation AI processes audio on your phone after the model download; Nuraya neither stores nor uploads recordings or transcripts. The optional Android recognizer may process online after your consent. The learning companion searches local sources; questions are not sent to a server."),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(label(language,"Streaming murottal, pengunduhan gambar mushaf, dan pembaruan banner beranda menghubungkan perangkat ke penyedia konten. AI bacaan memproses suara di HP setelah model diunduh; Nuraya tidak menyimpan atau mengunggah rekaman maupun transkrip. Pilihan pengenal Android dapat memproses online setelah persetujuan Anda. Teman Belajar mencari rujukan lokal; pertanyaan tidak dikirim ke server.","Recitation streaming, mushaf image downloads, and home banner updates connect your device to content providers. Recitation AI processes audio on your phone after the model download; Nuraya neither stores nor uploads recordings or transcripts. The optional Android recognizer may process online after your consent. The learning companion searches local sources; questions are not sent to a server."),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant)
         }
         item {
             OutlinedButton(onClick={sourcesVisible=!sourcesVisible},modifier=Modifier.fillMaxWidth()) {Icon(Icons.Outlined.Verified,null);Spacer(Modifier.width(8.dp));Text(label(language,"Sumber & atribusi","Sources & attribution"))}
@@ -109,6 +102,7 @@ fun SettingsScreen(app:NurayaApplication,settings:UserSettings,perform:(suspend 
                     Text(label(language,"Teks Arab: Tanzil Utsmani. Warna tajwid memakai anotasi sumber; arti per kata dan tafsir mencantumkan edisinya di pembaca. Penjelasan belajar dan hasil pengenalan suara perlu diperiksa bersama guru.","Arabic: Tanzil Uthmani. Tajwid colors use source annotations; word meanings and tafsir identify their editions in the reader. Study explanations and speech recognition results should be reviewed with a teacher."),style=MaterialTheme.typography.bodySmall)
                     app.study.sources.forEach { source -> Text(source, style = MaterialTheme.typography.bodySmall) }
                     Text("AI bacaan: Tarteel AI · whisper-base-ar-quran (Apache-2.0), OpenAI Whisper / whisper.cpp (MIT).", style = MaterialTheme.typography.bodySmall)
+                    Text(label(language,"Foto qari: Quran.com dan berkas pilihan penyusun. Audio azan Makkah: proyek DBChoco/Muezzin (MIT). Ilustrasi lanskap dan logo: berkas desain Nuraya.","Reciter portraits: Quran.com and compiler-provided files. Mecca adhan audio: DBChoco/Muezzin (MIT). Landscapes and logo: Nuraya design files."),style=MaterialTheme.typography.bodySmall)
                     TextButton(onClick={runCatching{context.startActivity(Intent(Intent.ACTION_VIEW,Uri.parse("https://huggingface.co/tarteel-ai/whisper-base-ar-quran")))}}){Text(label(language,"Sumber model AI & lisensi","AI model source & license"))}
                     TextButton(onClick={runCatching{context.startActivity(Intent(Intent.ACTION_VIEW,Uri.parse("https://tanzil.net/docs/text_license")))}}){Text("Tanzil · ${label(language,"ketentuan sumber","source terms")}")}
                     TextButton(onClick={runCatching{context.startActivity(Intent(Intent.ACTION_VIEW,Uri.parse("https://alquran.cloud/about")))}}){Text("Islamic Network · ${label(language,"sumber audio","audio source")}")}

@@ -23,3 +23,11 @@ Panah baru ditampilkan setelah ada pembacaan sensor. Akurasi rendah menampilkan 
 ## Pemeriksaan
 
 `PrayerCalculatorTest` memeriksa jadwal rujukan Jakarta, zona/tanggal lokal, koreksi waktu, transisi tepat pada waktu salat, pergantian ke Subuh besok, pengabaian terbit dalam target salat, hitung mundur, kasus lintang kutub, arah kiblat, pembungkusan sudut, batas Ramadan/Syawal, serta penolakan masukan invalid. `PrayerPreferenceStoreTest` memeriksa pilihan lokasi yang kosong secara bawaan, persistensi, penghapusan koordinat, dan data tersimpan yang rusak. `PrayerPresentationTest` memeriksa alur pemilihan kota, munculnya hitung mundur, dan navigasi ke bearing kiblat melalui UI nyata yang dirender pada host. Hasil tes yang benar-benar dijalankan dicatat dalam laporan build utama.
+
+## Pengingat azan 1.4.0
+
+Ikon pengeras suara pada beranda awalnya nonaktif. Mengaktifkannya memerlukan lokasi tersimpan, izin notifikasi, dan izin alarm tepat waktu pada Android yang memerlukannya. Alarm menjadwalkan hanya salat berikutnya (bukan terbit), menjadwalkan ulang setelahnya, serta menyesuaikan setelah lokasi/koreksi waktu berubah, reboot, perubahan jam/zona, atau pembaruan aplikasi. Ketika izin dicabut, pengingat dibatalkan dan ditampilkan nonaktif saat aplikasi kembali dibuka.
+
+Suara memakai rekaman Makkah yang dibundel dari DBChoco/Muezzin pada commit yang dicatat di `docs/sources/adhan-recording.json`; lisensi proyek sumber ikut dibundel. Ini bukan klaim identitas personal muazin. Audio mengikuti volume alarm HP, memakai fokus audio dan foreground service dengan tombol Hentikan azan, lalu melepas pemutar ketika selesai. Jadwal tidak mengharuskan internet setelah lokasi dipilih. Pembatasan sistem/hemat baterai dan kondisi perangkat nyata tetap perlu diperiksa pada HP pengguna.
+
+`AdhanReminderTest` memeriksa keadaan awal nonaktif, satu alarm berikutnya, penggantian tanpa duplikasi, pembatalan, tidak memulai layanan tanpa lokasi/dengan alarm kedaluwarsa, serta pencabutan izin notifikasi. Tes ini tidak mengklaim pengeras suara HP nyata sudah diuji.

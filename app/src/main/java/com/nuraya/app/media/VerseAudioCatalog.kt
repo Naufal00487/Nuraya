@@ -75,3 +75,10 @@ fun repeatedAyahRange(startAyah: Int, endAyah: Int, repeatEach: Int, ayahCount: 
     require(repeatEach in 1..20)
     return (startAyah..endAyah).flatMap { ayah -> List(repeatEach) { ayah } }
 }
+
+/** Finite passes: [1,2,3,1,2,3], distinct from repeating each verse [1,1,2,2,3,3]. */
+fun repeatedVerseSequence(startAyah:Int,endAyah:Int,repeatEach:Int,rangeRepeats:Int,ayahCount:Int):List<Int>{
+    require(rangeRepeats in 1..20 && repeatEach in 1..20 && rangeRepeats*repeatEach<=20)
+    val pass=repeatedAyahRange(startAyah,endAyah,repeatEach,ayahCount)
+    return List(rangeRepeats){pass}.flatten()
+}

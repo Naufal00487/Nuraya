@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.prayer.DeviceLocationTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-07T01:45:17" hostname="484a6eba10ca" time="0.28">
+  <properties/>
+  <testcase name="turningProvidersOffDuringLookupReturnsDisabledAndRemovesListeners" classname="com.nuraya.app.prayer.DeviceLocationTest" time="0.112"/>
+  <testcase name="coarsePermissionUsesOnlyFreshNetworkCoordinatesAndThePhonesZone" classname="com.nuraya.app.prayer.DeviceLocationTest" time="0.03"/>
+  <testcase name="permissionDenialAndDisabledServicesReturnWithoutRegisteringListeners" classname="com.nuraya.app.prayer.DeviceLocationTest" time="0.027"/>
+  <testcase name="introductionIsOnceOnlyAndExistingManualLocationIsPreserved" classname="com.nuraya.app.prayer.DeviceLocationTest" time="0.025"/>
+  <testcase name="cachedFixSelectionRejectsFutureStaleAndUnreliableCoordinates" classname="com.nuraya.app.prayer.DeviceLocationTest" time="0.026"/>
+  <testcase name="timeoutAndCancellationReleaseEveryProviderListener" classname="com.nuraya.app.prayer.DeviceLocationTest" time="0.031"/>
+  <testcase name="staleOrInaccurateFirstCallbackDoesNotConsumeTheOnlyChanceToFindLocation" classname="com.nuraya.app.prayer.DeviceLocationTest" time="0.027"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Intent = Intent { act=android.location.PROVIDERS_CHANGED }; Matching wrappers: []
+Intent = Intent { act=android.location.PROVIDERS_CHANGED }; Matching wrappers: []
+Intent = Intent { act=android.location.PROVIDERS_CHANGED }; Matching wrappers: []
+Intent = Intent { act=android.location.PROVIDERS_CHANGED }; Matching wrappers: []
+Intent = Intent { act=android.location.PROVIDERS_CHANGED }; Matching wrappers: []
+Intent = Intent { act=android.location.PROVIDERS_CHANGED }; Matching wrappers: []
+Intent = Intent { act=android.location.PROVIDERS_CHANGED }; Matching wrappers: []
+Intent = Intent { act=android.location.PROVIDERS_CHANGED }; Matching wrappers: []
+Intent = Intent { act=android.location.PROVIDERS_CHANGED }; Matching wrappers: []
+Intent = Intent { act=android.location.PROVIDERS_CHANGED }; Matching wrappers: []
+Intent = Intent { act=android.location.PROVIDERS_CHANGED }; Matching wrappers: []
+]]></system-err>
+</testsuite>

@@ -19,7 +19,8 @@ class QariPortraitTest {
 
     @Test fun allBundledPhotographsMatchTheirRecordedSourceHashesAndDecode() {
         val catalog = QariPortraitCatalog(context)
-        assertEquals(8, catalog.entries.size)
+        assertEquals(134, catalog.entries.size)
+        assertEquals(8,catalog.entries.count{!it.id.startsWith("user_")})
         catalog.entries.forEach { entry ->
             val bytes = context.assets.open(entry.asset).use { it.readBytes() }
             assertEquals(entry.bytes, bytes.size.toLong())
@@ -28,7 +29,8 @@ class QariPortraitTest {
             val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
             BitmapFactory.decodeByteArray(bytes, 0, bytes.size, bounds)
             assertTrue(entry.id, bounds.outWidth > 0 && bounds.outHeight > 0)
-            assertTrue(entry.sourcePage.startsWith("https://quran.com/reciters/"))
+            if(entry.id.startsWith("user_"))assertEquals("Dokumen foto qari dari penyusun",entry.sourceName)
+            else assertTrue(entry.sourcePage.startsWith("https://quran.com/reciters/"))
         }
     }
 
@@ -47,8 +49,10 @@ class QariPortraitTest {
         } }
         assertEquals("minshawi", catalog.find("ar.muhammadsiddiqalminshawimujawwad")?.id)
         assertEquals("rifai", catalog.find("ar.haniarrifai")?.id)
-        assertNull(catalog.find("ar.nabilarrifai"))
-        assertNull(catalog.find("ar.mahmoodalrifai"))
+        assertEquals("user_099",catalog.find("ar.nabilarrifai")?.id)
+        assertEquals("user_067",catalog.find("ar.mahmoodalrifai")?.id)
+        assertNull(catalog.find("ar.mahmoudsayedeltayeb"))
+        assertNull(catalog.find("ar.muhammadsulaimanpatel"))
         assertNull(catalog.find("Hani Rifai"))
         assertNull(catalog.find(""))
     }

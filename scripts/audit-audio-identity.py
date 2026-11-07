@@ -15,7 +15,8 @@ from verify_audio_catalog import validate
 from verify_verse_audio import verify_catalog
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'docs/audit/1.3.1'
+OUT = ROOT / 'docs/audit/1.4.0'
+SAMPLE_EVIDENCE = ROOT / 'docs/audit/1.3.1'
 ASSETS = ROOT / 'app/src/main/assets'
 
 
@@ -62,7 +63,7 @@ def main():
     for identifier, reciter in verse_qaris.items():
         assert reciter['name'] == names[identifier]['englishName']
 
-    full_path = OUT / 'audio-full-samples.json'
+    full_path = SAMPLE_EVIDENCE / 'audio-full-samples.json'
     full = read(full_path)
     assert not full['failedSamples']
     assert full['liveManifestSha256'] == full['pinnedManifestSha256'] == sha(manifest_path)
@@ -79,7 +80,7 @@ def main():
                   for key, ids in hashes.items() if len(ids) > 1]
     assert [d['ids'] for d in duplicates] == [['ar.alafasy', 'ar.misharyrashidalafasy']]
 
-    verse_path = OUT / 'verse-audio-samples.json'
+    verse_path = SAMPLE_EVIDENCE / 'verse-audio-samples.json'
     verse = read(verse_path)
     assert not verse['failedSamples'] and verse['reciterCount'] == len(verse_qaris)
     samples = verse['samples']
@@ -106,19 +107,27 @@ def main():
     portraits = read(ASSETS / 'portraits/catalog.json')['portraits']
     expected_profiles = {'alafasy': 7, 'abdulbasit': 2, 'sudais': 3, 'shatri': 4,
                          'rifai': 5, 'husary': 6, 'minshawi': 9, 'shuraim': 10}
+    supplied = read(ROOT / "docs/sources/qari-user-images.json")
     mapped = []
     for portrait in portraits:
-        profile = expected_profiles[portrait['id']]
-        assert portrait['sourceReciterId'] == profile
-        assert portrait['sourceCommit'] == 'aff1a035b09b66f28047b3216edcae4c5c949a49'
-        assert portrait['sourcePage'] == f'https://quran.com/reciters/{profile}'
-        prefix = f"https://raw.githubusercontent.com/quran/quran.com-frontend-next/{portrait['sourceCommit']}/public/images/reciters/{profile}."
-        assert portrait['sourceUrl'].startswith(prefix)
+        if portrait['id'] in expected_profiles:
+            profile = expected_profiles[portrait['id']]
+            assert portrait['sourceReciterId'] == profile
+            assert portrait['sourceCommit'] == 'aff1a035b09b66f28047b3216edcae4c5c949a49'
+            assert portrait['sourcePage'] == f'https://quran.com/reciters/{profile}'
+            prefix = f"https://raw.githubusercontent.com/quran/quran.com-frontend-next/{portrait['sourceCommit']}/public/images/reciters/{profile}."
+            assert portrait['sourceUrl'].startswith(prefix)
+        else:
+            number = int(portrait['id'].removeprefix('user_'))
+            entry = next(e for e in supplied['entries'] if e['number'] == number)
+            assert entry['status'] == 'user_supplied'
+            assert portrait['qariIds'] == [entry['id']]
+            assert portrait['sourceName'] == 'Dokumen foto qari dari penyusun'
         photo = ASSETS / portrait['asset']
         assert photo.stat().st_size == portrait['bytes'] and sha(photo) == portrait['sha256']
         assert set(portrait['qariIds']) <= (qaris.keys() | verse_qaris.keys())
         mapped.extend(portrait['qariIds'])
-    assert len(portraits) == 8 and len(mapped) == len(set(mapped)) == 14
+    assert len(portraits) == 134 and len(mapped) == len(set(mapped)) == 140
 
     other_riwayat = [r for r in qaris.values() if r['description'].startswith(('Qiraat lain', 'Riwayat Qaloon'))]
     assert len(other_riwayat) == 5
@@ -129,7 +138,7 @@ def main():
         'surahSamples': {'checkedAt': full['checkedAt'], 'fullDownloadsAndHostDecodesPassed': len(full['samples']), 'failed': 0, 'sampledSurah': 1, 'identicalSampleGroups': duplicates},
         'verseCatalog': {'recordingEditionIds': len(verse_qaris), 'individualFilesPerEdition': 6236, 'allIdsMatchProviderMetadata': True, 'wordTimingEditionIds': [r['id'] for r in verse_qaris.values() if r['supportsWordSync']]},
         'verseSamples': {'checkedAt': verse['checkedAt'], 'fullDownloadsAndHostDecodesPassed': len(samples), 'failed': 0, 'individualAyahSamples': len(individual), 'timedChapterSamples': 3, 'sameQariFallbackSamples': 2, 'urlsMatchRequestedEditionsAndReferences': True},
-        'portraits': {'images': len(portraits), 'explicitMappedEditionIds': len(mapped), 'duplicateMappings': 0, 'bundledBytesMatchPinnedChecksums': True, 'mappings': [{'id': p['id'], 'quranComProfile': p['sourceReciterId'], 'editionIds': p['qariIds']} for p in portraits]},
+        'portraits': {'images': len(portraits), 'explicitMappedEditionIds': len(mapped), 'duplicateMappings': 0, 'bundledBytesMatchPinnedChecksums': True, 'mappings': [{'id': p['id'], 'quranComProfile': p.get('sourceReciterId'), 'editionIds': p['qariIds']} for p in portraits]},
         'appFixes': [
             {'finding': 'Two same-person Alafasy aliases have byte-identical Al-Fatihah samples.', 'fix': 'The visible qari list omits ar.misharyrashidalafasy when ar.alafasy exists: 137 visible choices. All 138 original IDs remain resolvable for saved content. This does not assert all 114 chapter files are identical.', 'regressionTest': 'QaQuranRepositoryTest.theKnownAlafasyAliasHasOneVisibleCardWhileExistingIdsStillResolve'},
             {'finding': 'An unavailable verse reciter ID previously fell back silently to Alafasy.', 'fix': 'PlaybackManager stops pending/current playback and reports an unavailable reciter instead of substituting another voice.', 'regressionTest': 'PlaybackIdentityTest'},
@@ -143,8 +152,9 @@ def main():
             'Portrait checks verify explicit profile mapping and stored image checksums, not an independent human face identification audit.',
         ],
     }
+    OUT.mkdir(parents=True,exist_ok=True)
     (OUT / 'audio-identity.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
-    markdown = f'''# Audit identitas sumber audio Nuraya 1.3.1
+    markdown = f'''# Audit identitas sumber audio Nuraya 1.4.0
 
 Audit dapat diulang dengan `python3 scripts/audit-audio-identity.py`. Script ini membaca snapshot sumber dan bukti unduhan yang sudah dilakukan, tanpa mengubah aset aplikasi atau mengklaim pemeriksaan suara oleh manusia.
 
@@ -154,7 +164,7 @@ Audit dapat diulang dengan `python3 scripts/audit-audio-identity.py`. Script ini
 | Sampel murottal | 138 Al-Fatihah diunduh lengkap, HTTP 200, MP3 berhasil didekode; 0 gagal |
 | Katalog audio per ayat | 17 ID edisi unik; masing-masing 6.236 nama berkas sesuai manifest |
 | Sampel audio per ayat/sinkronisasi | 22 unduhan lengkap dan decode berhasil: 17 ayat 1:1, 3 surah dengan timing, 2 ayat jalur fallback qari yang sama |
-| Foto qari | 8 foto, 14 pemetaan ID eksplisit ke profil Quran.com; checksum seluruh foto cocok; tidak ada pemetaan ID ganda |
+| Foto qari | 134 foto, 140 pemetaan ID; 8 foto dari Quran.com dan 126 dari dokumen penyusun; checksum seluruh foto cocok; tidak ada pemetaan ID ganda |
 | Nama tampilan | 129 sama persis dengan nama Inggris penyedia; 9 label ejaan/nama lengkap tercatat di JSON tanpa mengganti ID rekaman |
 
 Pemeriksaan 138 sampel surah dilakukan pada `{full['checkedAt']}`. Pemeriksaan 22 sampel ayat dilakukan pada `{verse['checkedAt']}`. Ini adalah bukti pemeriksaan pada waktu tersebut, bukan jaminan ketersediaan layanan selamanya.
@@ -170,10 +180,10 @@ Pemeriksaan 138 sampel surah dilakukan pada `{full['checkedAt']}`. Pemeriksaan 2
 
 Pemetaan nama → ID penyedia → URL rekaman telah diperiksa. Identitas suara setiap qari belum diautentikasi melalui pendengaran manusia. Pemeriksaan decode MP3 juga tidak menilai makhraj, tajwid, atau ketepatan semua bacaan. Yang diunduh lengkap adalah 138 Al-Fatihah dan 22 sampel tambahan, bukan seluruh 15.732 berkas surah atau seluruh klip ayat. Pemutaran pada HP fisik belum menjadi bagian audit ini.
 
-Detail ID, ejaan nama, pemetaan foto, hash masukan, dan kelompok sampel identik ada dalam [audio-identity.json](audio-identity.json). Bukti mentah: [audio-full-samples.json](audio-full-samples.json) dan [verse-audio-samples.json](verse-audio-samples.json).
+Detail ID, ejaan nama, pemetaan foto, hash masukan, dan kelompok sampel identik ada dalam [audio-identity.json](audio-identity.json). Bukti mentah: [audio-full-samples.json](../1.3.1/audio-full-samples.json) dan [verse-audio-samples.json](../1.3.1/verse-audio-samples.json).
 '''
     (OUT / 'audio-identity.md').write_text(markdown)
-    print('Audio identity audit passed: 138 chapter editions, 17 verse editions, 138 + 22 decoded sample records, 8 portraits / 14 explicit IDs, one duplicate Alafasy sample group.')
+    print('Audio identity audit passed: 138 chapter editions, 17 verse editions, 138 + 22 decoded sample records, 134 portraits / 140 explicit IDs, one duplicate Alafasy sample group.')
 
 
 if __name__ == '__main__':

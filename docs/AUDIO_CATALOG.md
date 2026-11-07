@@ -11,7 +11,7 @@ Aplikasi mendukung **138 ID edisi rekaman lengkap 114 surah**. Daftar menampilka
 - Pada 4 November 2026, **138 sampel Al-Fatihah** dari seluruh edisi yang disertakan berhasil diunduh lengkap dan didekode. [Bukti sampel](audit/1.3.1/audio-full-samples.json).
 - [Audit identitas sumber](audit/1.3.1/audio-identity.md) mencatat pemetaan ID, ejaan nama, ragam riwayat dan sampel identik. Pemetaan metadata tidak membuktikan autentikasi setiap suara melalui pendengaran manusia.
 
-Rekaman tidak dibundel dalam APK. Streaming membutuhkan internet; rekaman surah tersedia offline setelah unduhan selesai. Sumber dan hak cipta tetap pada penerbit/pemegang hak.
+Rekaman murottal tidak dibundel dalam APK. Rekaman azan pengingat 1.4.0 disertakan offline; lihat [PRAYER.md](PRAYER.md). Streaming membutuhkan internet; rekaman surah tersedia offline setelah unduhan selesai. Sumber dan hak cipta tetap pada penerbit/pemegang hak.
 
 ## Sinkronisasi ayat dan kata
 
@@ -43,3 +43,7 @@ python3 scripts/verify_audio_catalog.py --online --report artifacts/validation/a
 ```
 
 ffprobe memakai `-select_streams a` dan ffmpeg memakai `-map 0:a:0`; gambar sampul MP3 tidak dianggap stream audio. Data asli Quran tetap byte-identik, dan semua anotasi sorotan hanya diterapkan pada teks yang cocok persis.
+
+## Pengulangan hafalan 1.4.0
+
+Di Latihan → Hafalan, pengguna memilih rentang awal/akhir, jumlah 1–20 dan mode Per ayat atau Seluruh rentang. Pada Per ayat, 1–2 ×3 berarti `1,1,1,2,2,2`; pada Seluruh rentang, 1–5 ×3 berarti `1,2,3,4,5,1,2,3,4,5,1,2,3,4,5`. Antrean berakhir setelah jumlah tersebut, tanpa loop tak terbatas. Tombol seluruh surah memilih ayat 1 hingga ayat terakhir. Pemutar menampilkan putaran ketika rentang diulang, lalu menghapus status itu ketika beralih ke murottal surah.

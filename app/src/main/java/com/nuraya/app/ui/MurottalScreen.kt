@@ -54,6 +54,9 @@ fun MurottalScreen(app: NurayaApplication, language: String, qariId: String, onQ
                 shape = RoundedCornerShape(16.dp), leadingIcon = { Icon(Icons.Outlined.Search,null) },
                 label = { Text(if (qari == null) label(language,"Cari qari","Search reciters") else label(language,"Cari surah","Search surahs")) })
         }
+        if(qari!=null) item {
+            QariAboutCard(qari,language)
+        }
         if (qari != null) item {
             Surface(color = MaterialTheme.colorScheme.secondaryContainer, shape = RoundedCornerShape(16.dp)) {
                 Row(Modifier.padding(16.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -67,20 +70,21 @@ fun MurottalScreen(app: NurayaApplication, language: String, qariId: String, onQ
         }
         if (qari == null) {
             val qaris = choices.filter { it.name.contains(query,true) }
-            items(qaris, key = { it.id }) { item ->
-                OutlinedCard(onClick = { onQari(item.id) }, shape = RoundedCornerShape(22.dp), modifier = Modifier.fillMaxWidth().testTag("qari_${item.id}")) {
-                    Row(Modifier.padding(20.dp), verticalAlignment = Alignment.CenterVertically) {
-                        QariPortrait(item.id, item.name, language, Modifier.size(72.dp))
-                        Column(Modifier.weight(1f).padding(horizontal = 16.dp)) {
-                            Text(item.name, style = MaterialTheme.typography.titleMedium)
-                            Text("${item.description} · ${label(language,"114 surah","114 surahs")}", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            items(qaris.chunked(2), key = { it.first().id }) { row ->
+                Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(12.dp)) {
+                    row.forEach { item ->
+                        Card(onClick={onQari(item.id)},modifier=Modifier.weight(1f).testTag("qari_${item.id}"),shape=RoundedCornerShape(24.dp),colors=CardDefaults.cardColors(containerColor=MaterialTheme.colorScheme.surfaceContainerLow)) {
+                            Column(Modifier.fillMaxWidth().padding(vertical=20.dp,horizontal=12.dp),horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(12.dp)) {
+                                QariPortrait(item.id,item.name,language,Modifier.size(100.dp))
+                                Text(item.name,style=MaterialTheme.typography.titleSmall,textAlign=TextAlign.Center)
+                            }
                         }
-                        Icon(Icons.Outlined.ChevronRight, null)
                     }
+                    if(row.size==1)Spacer(Modifier.weight(1f))
                 }
             }
             if (qaris.isEmpty()) item { EmptyState(Icons.Outlined.SearchOff, label(language,"Qari tidak ditemukan","No reciters found"),label(language,"Coba kata pencarian lain.","Try a different search.")) }
-            item { Text(label(language,"Foto asli tersedia untuk sebagian qari, bersumber dari Quran.com. Qari lain ditampilkan dengan inisial.", "Original photographs are available for selected reciters, sourced from Quran.com. Other reciters use initials."), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
+            item { Text(label(language,"Foto berasal dari Quran.com dan dokumen penyusun. Foto yang belum tersedia atau perlu verifikasi ditampilkan dengan inisial.", "Photographs come from Quran.com and the maintainer’s document. Unavailable or unconfirmed photographs use initials."), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
             item { Text(label(language,"Sumber rekaman: Islamic Network. Internet diperlukan untuk streaming. Audio yang selesai diunduh dapat diputar offline.","Recordings from Islamic Network. Streaming requires internet. Completed downloads can be played offline."), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
         } else {
             items(matches, key = { it.id }) { surah ->
@@ -168,6 +172,7 @@ fun FullPlayer(app: NurayaApplication, language: String, state: PlaybackState, e
             if (!state.verseMode && download?.status=="complete") Text(label(language,"Audio tersimpan di perangkat","Audio saved on this device"),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.primary)
             if (state.verseMode) {
                 Text(label(language, "Ayat ${state.ayahId} · rentang ${state.rangeStart}–${state.rangeEnd}", "Verse ${state.ayahId} · range ${state.rangeStart}–${state.rangeEnd}"), style = MaterialTheme.typography.bodySmall)
+                if(state.verseMode&&state.rangePasses>1)Text(label(language,"Putaran ${state.rangePass} / ${state.rangePasses}","Pass ${state.rangePass} / ${state.rangePasses}"),style=MaterialTheme.typography.titleMedium)
                 TextButton(onClick = { onRead(state.surahId, state.ayahId.coerceAtLeast(1)) }) {
                     Icon(Icons.Outlined.MenuBook, null, Modifier.size(18.dp))
                     Spacer(Modifier.width(6.dp))
@@ -238,5 +243,25 @@ fun localizedError(message:String,language:String):String = message.split(" / ",
         Icon(icon,null,modifier=Modifier.size(44.dp),tint=MaterialTheme.colorScheme.primary)
         Text(title,style=MaterialTheme.typography.titleLarge,textAlign=TextAlign.Center)
         Text(description,style=MaterialTheme.typography.bodyMedium,textAlign=TextAlign.Center,color=MaterialTheme.colorScheme.onSurfaceVariant)
+    }
+}
+
+
+@Composable
+private fun QariAboutCard(qari:Qari,language:String){
+    var expanded by rememberSaveable(qari.id){mutableStateOf(true)}
+    OutlinedCard(shape=RoundedCornerShape(24.dp),modifier=Modifier.fillMaxWidth().testTag("qari_about")) {
+        Column(Modifier.padding(20.dp),verticalArrangement=Arrangement.spacedBy(10.dp)) {
+            Row(verticalAlignment=Alignment.CenterVertically){
+                Text(label(language,"Tentang qari & rekaman","About this reciter & recording"),Modifier.weight(1f),style=MaterialTheme.typography.titleMedium)
+                IconButton(onClick={expanded=!expanded}){Icon(if(expanded)Icons.Outlined.ExpandLess else Icons.Outlined.ExpandMore,label(language,"Rincian","Details"))}
+            }
+            if(expanded){
+                Text(qari.name,style=MaterialTheme.typography.titleLarge)
+                Text(qari.description,style=MaterialTheme.typography.bodyLarge)
+                Text(label(language,"Katalog rekaman Al-Qur’an berbahasa Arab dengan 114 surah. Pilih surah di bawah untuk mendengarkan lantunan atau menyimpannya di perangkat.","An Arabic Qur’an recording collection covering 114 surahs. Choose a surah below to listen or save it on your device."),style=MaterialTheme.typography.bodyMedium)
+                Text(label(language,"Sumber rekaman: Islamic Network · alquran.cloud. Keterangan edisi mengikuti metadata penyedia.","Recording source: Islamic Network · alquran.cloud. Edition descriptions follow provider metadata."),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant)
+            }
+        }
     }
 }

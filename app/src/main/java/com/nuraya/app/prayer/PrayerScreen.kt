@@ -26,7 +26,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 
 @Composable
-private fun rememberCurrentInstant(): Instant {
+internal fun rememberCurrentInstant(): Instant {
     val lifecycle = LocalLifecycleOwner.current.lifecycle
     var now by remember { mutableStateOf(Instant.now()) }
     LaunchedEffect(lifecycle) {
@@ -71,12 +71,12 @@ fun PrayerDashboardCard(language: String, onOpen: () -> Unit) {
 }
 
 @Composable
-fun PrayerScreen(language: String) {
+fun PrayerScreen(language: String, initialTab: String? = null) {
     val (preferences, save) = rememberPrayerPreferences()
     val now = rememberCurrentInstant()
     val zone = preferences.location?.zone ?: ZoneId.systemDefault()
     val localNow = now.atZone(zone)
-    var tab by rememberSaveable { mutableStateOf(if (preferences.location == null) "location" else "schedule") }
+    var tab by rememberSaveable { mutableStateOf(initialTab ?: if (preferences.location == null) "location" else "schedule") }
     var dayOffset by rememberSaveable { mutableIntStateOf(0) }
     var cityQuery by rememberSaveable { mutableStateOf("") }
     val date = localNow.toLocalDate().plusDays(dayOffset.toLong())

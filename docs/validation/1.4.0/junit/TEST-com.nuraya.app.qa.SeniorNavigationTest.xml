@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.qa.SeniorNavigationTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-07T01:44:45" hostname="484a6eba10ca" time="28.315">
+  <properties/>
+  <testcase name="localProfilePersistsAndHomeShortcutsOpenTheNewScreens" classname="com.nuraya.app.qa.SeniorNavigationTest" time="17.688"/>
+  <testcase name="largerTextStillLetsTheUserReachAiWithoutStartingRecording" classname="com.nuraya.app.qa.SeniorNavigationTest" time="2.321"/>
+  <testcase name="fourMainDestinationsKeepChosenReadingModeAndRemoveVideo" classname="com.nuraya.app.qa.SeniorNavigationTest" time="2.663"/>
+  <testcase name="reopeningAShortSurahDoesNotRestoreAnotherSurahsReadingRange" classname="com.nuraya.app.qa.SeniorNavigationTest" time="1.372"/>
+  <testcase name="madinahOpensActualPagesAndBahriyahClearlyRequiresItsOwnPdf" classname="com.nuraya.app.qa.SeniorNavigationTest" time="2.433"/>
+  <testcase name="memorizationOffersFiniteWholeRangeAndQuizUsesPersonalProfile" classname="com.nuraya.app.qa.SeniorNavigationTest" time="0.966"/>
+  <testcase name="firstLaunchRequestsLocationWithoutGuessingCoordinatesAndStillAllowsReading" classname="com.nuraya.app.qa.SeniorNavigationTest" time="0.872"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

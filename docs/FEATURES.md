@@ -1,6 +1,6 @@
-# Fitur Nuraya 1.3.1
+# Fitur Nuraya 1.4.0
 
-Versi 1.3.1, versionCode 8, memakai applicationId dan sertifikat yang sama agar dapat memperbarui pemasangan sebelumnya. Referensi kebutuhan pengguna adalah jam/tanggal Hijriah, waktu salat, kiblat, pilihan belajar Quran dan navigasi yang lebih mudah dibaca. Nuraya tidak mengklaim afiliasi, menyalin merek, atau menjadi edisi resmi aplikasi lain.
+Versi 1.4.0, versionCode 9, memakai applicationId dan sertifikat yang sama agar dapat memperbarui pemasangan sebelumnya. Referensi kebutuhan pengguna adalah jam/tanggal Hijriah, waktu salat, kiblat, pilihan belajar Quran dan navigasi yang lebih mudah dibaca. Nuraya tidak mengklaim afiliasi, menyalin merek, atau menjadi edisi resmi aplikasi lain.
 
 ## Navigasi dan aksesibilitas
 
@@ -49,10 +49,20 @@ Gambar Madinah berasal dari `GovarJabbar/Quran-PNG` pada commit `b189391148dfb4d
 
 PDF Bahriyah dibuka dari perangkat melalui pemilih berkas Android. Berkas tidak diunggah; susunan halaman mengikuti PDF yang dipilih. Pengguna harus mempunyai PDF edisi yang ingin dibaca. Penampil ini tidak mengklaim menyertakan atau menerbitkan ulang sebuah edisi Bahriyah tertentu.
 
-Delapan foto qari asli disertakan: Mishary Alafasy, Abdul Basit, Abdurrahman As-Sudais, Abu Bakr Ash-Shatri, Hani Ar-Rifai, Mahmoud Al-Husary, Muhammad Siddiq Al-Minshawi dan Saud Ash-Shuraim. Sumbernya repositori frontend resmi Quran.com pada commit `aff1a035b09b66f28047b3216edcae4c5c949a49`. `assets/portraits/catalog.json` mencatat profil sumber, identitas rekaman dan SHA-256 setiap foto. Qari tanpa pemetaan terverifikasi memakai inisial; foto tidak tersedia untuk setiap pilihan rekaman. Daftar murottal menampilkan 137 pilihan, sementara 138 ID rekaman tetap didukung untuk data lama; dua alias Alafasy tampil sebagai satu kartu. Hak foto tetap milik pemegangnya; lisensi MIT proyek sumber tidak dianggap lisensi terbuka terpisah untuk tiap foto.
+Delapan foto qari dari Quran.com tetap disertakan: Mishary Alafasy, Abdul Basit, Abdurrahman As-Sudais, Abu Bakr Ash-Shatri, Hani Ar-Rifai, Mahmoud Al-Husary, Muhammad Siddiq Al-Minshawi dan Saud Ash-Shuraim. Sumbernya repositori frontend resmi Quran.com pada commit `aff1a035b09b66f28047b3216edcae4c5c949a49`. `assets/portraits/catalog.json` mencatat profil sumber, identitas rekaman dan SHA-256 setiap foto. Sebanyak 126 foto tambahan dipasang dari dokumen penyusun berdasarkan nama yang dituliskan dan ID edisi penyedia, sehingga totalnya 134 foto/140 pemetaan ID. Lima entri dokumen tidak dipasang: empat placeholder dan satu label yang bertentangan dengan keterangan pada gambar. Identitas wajah tidak dinyatakan telah diautentikasi secara independen. Qari tanpa foto memakai inisial. Daftar murottal menampilkan 137 pilihan, sementara 138 ID rekaman tetap didukung untuk data lama; dua alias Alafasy tampil sebagai satu kartu. Hak foto tetap milik pemegangnya; lisensi MIT proyek sumber tidak dianggap lisensi terbuka terpisah untuk tiap foto.
 
 ## AI, audio dan validasi
 
 AI bacaan lokal, pemeriksaan mikrofon, Teman Belajar, tafsir, arti kata, warna tajwid, qari, sinkronisasi kata yang tersedia, kuis dan progres tetap dipertahankan. AI masih pengenal/perbandingan kata yang bisa keliru, bukan penilai tajwid/makhraj tervalidasi. Qari yang tidak tersedia meminta pengguna memilih ulang, tanpa mengganti diam-diam ke suara lain. Riwayat audio ayat mempertahankan qari dan referensi ayat yang tepat.
 
 Hasil build, tes JVM/Compose, lint, pemeriksaan APK dan batas perangkat dicatat di [BUILD_VALIDATION.md](BUILD_VALIDATION.md). Hasil audit ayat, bantuan baca, pemetaan audio dan duplikasi ada di [AUDIT_1.3.1.md](AUDIT_1.3.1.md). Rujukan sumber ada di [DATA_SOURCES.md](DATA_SOURCES.md), [STUDY_DATA.md](STUDY_DATA.md) dan [AUDIO_CATALOG.md](AUDIO_CATALOG.md).
+
+## Desain 1.4.0
+
+Beranda memakai empat lanskap dari berkas desain sesuai jam setempat (05–10 pagi, 11–14 siang, 15–17 sore, selebihnya malam), jam/Hijriah, jadwal dan hitung mundur, tombol lokasi, azan, kiblat, pengaturan dan profil. Profil berisi nama panggilan dan lima ilustrasi avatar internal; tidak ada unggahan galeri, akun atau papan peringkat. Kuis dan progres tetap lokal.
+
+Daftar qari berupa dua kolom foto/nama, dengan pilihan horizontal di beranda. Halaman qari menampilkan keterangan edisi rekaman yang bersumber dari penyedia. Biografi pribadi lengkap untuk semua qari belum tersedia; tanggal lahir/negara/riwayat pendidikan tidak diisi dengan dugaan.
+
+Latihan hafalan menyediakan dua urutan audio: setiap ayat diulang N kali sebelum maju, atau seluruh rentang ayat diputar lalu diulang N kali. Nilai N dapat dipilih 1–20, dan ada pilihan seluruh surah. Contoh Al-Mulk 1–5 sebanyak tiga putaran menghasilkan tepat 15 item sebelum berhenti. Penilaian hafalan tetap catatan pribadi pengguna.
+
+Banner beranda dapat digeser. Proyek backend Telegram tersedia di `backend/banner-bot`; belum deploy karena pengguna memilih menyiapkan proyek dahulu. Sebelum layanan diaktifkan, banner bawaan tetap berfungsi. Token bot hanya disimpan sebagai secret backend; tidak dimasukkan ke APK atau Git. Azan dijelaskan di [PRAYER.md](PRAYER.md).

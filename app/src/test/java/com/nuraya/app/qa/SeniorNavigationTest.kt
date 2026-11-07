@@ -6,9 +6,11 @@ import androidx.activity.ComponentActivity
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.assertIsNotEnabled
 import androidx.compose.ui.test.assertTextContains
 import androidx.compose.ui.test.hasTestTag
+import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
@@ -95,8 +97,9 @@ class SeniorNavigationTest {
         listOf("home", "quran", "murottal", "prayer").forEach { compose.onNodeWithTag("nav_$it").assertIsDisplayed() }
         compose.onNodeWithTag("nav_video").assertDoesNotExist()
         compose.onNodeWithText("Video").assertDoesNotExist()
-        compose.onNodeWithTag("home_recitation").assertIsDisplayed()
         saveHostImage("senior-home.png")
+        compose.onNodeWithTag("home_menu").performScrollToNode(hasTestTag("home_recitation"))
+        compose.onNodeWithTag("home_recitation").assertIsDisplayed()
 
         compose.onNodeWithTag("nav_quran").performClick()
         awaitTag("quran_modes")
@@ -133,6 +136,51 @@ class SeniorNavigationTest {
         awaitTag("home_menu")
         compose.onNodeWithTag("nav_prayer").assertIsDisplayed()
         compose.onNodeWithTag("nav_video").assertDoesNotExist()
+    }
+
+    @Test fun localProfilePersistsAndHomeShortcutsOpenTheNewScreens() {
+        val app=openApp()
+        com.nuraya.app.prayer.PrayerPreferenceStore(app).save(com.nuraya.app.prayer.PrayerPreferences(
+            com.nuraya.app.prayer.PrayerLocation("Jakarta",-6.2,106.8,"Asia/Jakarta")))
+        compose.onNodeWithTag("home_profile").performClick()
+        awaitTag("profile_screen")
+        compose.onNodeWithTag("profile_nickname").performTextClearance()
+        compose.onNodeWithTag("profile_nickname").performTextInput("Naufal")
+        compose.onNodeWithTag("profile_avatar_3").performScrollTo().performClick()
+        compose.onNodeWithTag("profile_save").performScrollTo().performClick()
+        assertEquals(com.nuraya.app.profile.LocalProfile("Naufal",3),com.nuraya.app.profile.ProfileStore(app).read())
+        saveHostImage("profile.png")
+        compose.onNodeWithTag("profile_screen").performScrollToNode(hasText("Progres belajarku"))
+        compose.onNodeWithText("Progres belajarku").performClick()
+        awaitTag("practice_tab_3")
+        compose.onNodeWithTag("practice_tab_3").assertIsSelected()
+        compose.onNodeWithTag("back_button").performClick()
+        awaitTag("profile_screen")
+        compose.onNodeWithTag("back_button").performClick()
+        awaitTag("home_menu")
+        compose.onNodeWithText("Naufal").assertIsDisplayed()
+        saveHostImage("home-with-location.png")
+        compose.onNodeWithTag("home_qibla").performClick()
+        awaitTag("qibla_panel")
+        compose.onNodeWithTag("qibla_bearing").performScrollTo().assertTextContains("295° dari utara sejati")
+        compose.onNodeWithTag("nav_home").assertDoesNotExist()
+        saveHostImage("compass.png")
+    }
+
+    @Test fun memorizationOffersFiniteWholeRangeAndQuizUsesPersonalProfile() {
+        val app=openApp(fontScale=1.3f)
+        com.nuraya.app.profile.ProfileStore(app).save("Naufal",2)
+        compose.onNodeWithTag("home_menu").performScrollToNode(hasTestTag("home_practice"))
+        compose.onNodeWithTag("home_practice").performClick()
+        awaitTag("practice_start")
+        compose.onNodeWithTag("practice_end").performScrollTo().performTextClearance()
+        compose.onNodeWithTag("practice_end").performTextInput("5")
+        compose.onNodeWithTag("repeat_range_mode").performScrollTo().performClick()
+        compose.onNodeWithText("Ayat awal hingga akhir diputar, lalu rentang diulang. Berhenti setelah 3 putaran.").performScrollTo().assertIsDisplayed()
+        saveHostImage("memorization-range-large-text.png")
+        compose.onNodeWithTag("practice_tab_2").performClick()
+        compose.onNodeWithText("Naufal").assertIsDisplayed()
+        saveHostImage("quiz-personal.png")
     }
 
     @Test fun madinahOpensActualPagesAndBahriyahClearlyRequiresItsOwnPdf() {
@@ -189,7 +237,7 @@ class SeniorNavigationTest {
     }
 
     private fun saveHostImage(name: String, dialog: Boolean = false) {
-        val folder = File(System.getProperty("user.home"), "ui-131").apply { mkdirs() }
+        val folder = File(System.getProperty("user.home"), "ui-140").apply { mkdirs() }
         compose.runOnIdle {
             // Compose dialogs have their own Window: drawing the Activity alone
             // would misleadingly show only the home screen behind the prompt.

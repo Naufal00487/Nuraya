@@ -1,48 +1,48 @@
-# Build dan validasi Nuraya 1.3.1
+# Build dan validasi Nuraya 1.4.0
 
-Diperiksa 5 November 2026. Paket `com.nuraya.app`, versionCode **8**, minimum Android 8/API 26, target API 35. [Perubahan](UPDATE_1.3.1.md), [audit](AUDIT_1.3.1.md).
+Diperiksa 7 November 2026. Paket `com.nuraya.app`, versionCode **9**, minimum Android 8/API 26, target API 35. [Perubahan](UPDATE_1.4.0.md).
 
 ## Hasil akhir
 
-**BUILD SUCCESSFUL. 152 tes JVM/Compose lulus, 0 gagal/error/dilewati.** Lint menghasilkan 31 peringatan, tanpa error/fatal. APK aplikasi dan APK instrumentasi berhasil dibangun. APK instrumentasi tidak dijalankan pada perangkat.
+**BUILD SUCCESSFUL. 162 tes JVM/Compose lulus, 0 gagal/error/dilewati.** Tujuh tes backend banner lulus. Lint tanpa error/fatal, dengan 37 peringatan. APK aplikasi dan APK instrumentasi berhasil dibangun. Instrumentasi belum dijalankan pada HP/emulator dalam rilis ini.
 
 ```sh
 bash scripts/gradle.sh assembleDebug testDebugUnitTest lintDebug assembleDebugAndroidTest --continue
+node --test backend/banner-bot/worker.test.mjs
 python3 scripts/audit-quran-corpus.py
 python3 scripts/audit-reading-guidance.py
 python3 scripts/audit-audio-identity.py
-python3 scripts/verify_audio_catalog.py
 python3 scripts/verify-native-optimization.py
 ```
 
-Bukti: [ringkasan semua suite](validation/1.3.1/summary.json), [XML JUnit](validation/1.3.1/junit), [log build final](validation/1.3.1/gradle-build.log), [lint](validation/1.3.1/lint.txt). Satu percobaan sebelumnya mengalami timeout saat memeriksa tampilan belajar yang dimuat asinkron. Tes disinkronkan dengan munculnya kontrol data belajar, tetap memeriksa teks Arab dan jumlah rentang warna persis; seluruh suite kemudian lulus.
+Bukti: [ringkasan suite](validation/1.4.0/summary.json), [JUnit](validation/1.4.0/junit), [log Gradle](validation/1.4.0/gradle-build.log), [lint](validation/1.4.0/lint.txt), [tes bot](validation/1.4.0/banner-tests.log). Percobaan awal terkena masalah pemuatan font native Robolectric (`FileSystemAlreadyExistsException`), diikuti error native terkait. Pengujian terfokus lalu seluruh suite diulang dalam JVM baru dan lulus; tidak ada tes yang dihapus/dilewati. Pemeriksaan pintasan Progres kemudian disesuaikan untuk menggulir LazyColumn hingga kartu yang belum dirender, lalu tetap memeriksa tab terpilih dan alur kembali. Peringatan lint mencakup saran KTX, kapasitas disk, resource/SDK, konteks aplikasi LatinRepository dan false positive `ImplicitSamInstance` pada `Context.stopService(Intent)`: API tersebut mencocokkan komponen layanan, bukan identitas objek Intent.
 
-## Perilaku yang diperiksa
+## Alur yang diperiksa
 
-- Pembukaan pertama menampilkan penjelasan lokasi, meminta izin fine/coarse melalui Android, dan tetap menyediakan akses membaca bila ditunda. Koordinat belum diisi sebelum ada hasil lokasi.
-- Izin ditolak, GPS mati, pilihan manual, cache lama/tidak valid, hanya izin perkiraan, posisi valid berikutnya setelah posisi buruk, timeout, pembatalan dan penghapusan listener. Penyimpanan lokasi mempertahankan koreksi Hijriah/menit salat. Lokasi manual lama tidak ditimpa otomatis.
-- Qari tidak dikenal ditolak tanpa memilih Alafasy; persiapan audio sebelumnya dibatalkan. Alias Alafasy hanya satu kartu pada daftar, sementara kedua ID tetap dapat dipakai oleh data lama dan ragam rekaman lain tetap terpisah.
-- Riwayat per ayat menyimpan dan membuka qari/surah/ayat yang tepat, menolak kunci rusak atau bertentangan, memperbarui satu entri saat disimpan 20 kali, bertahan setelah database dibuka ulang, dan tidak menghapus penanda/favorit ketika riwayat dibersihkan.
-- Suite regresi Quran, basmalah, tajwid/tafsir, Latin, hafalan/Tikrar, Madinah, Bahriyah lokal, foto qari, jadwal/kiblat, koleksi, AI lokal, izin dan sesi mikrofon tetap dijalankan. Tes host ini tidak membuktikan hasil mikrofon atau sensor HP nyata.
+- Profil nama/avatar disimpan lokal, ditampilkan kembali di beranda, dan dipakai kuis pribadi. Pintasan Progres langsung membuka tab Progres dan kembali ke profil. Tidak ada galeri, akun atau leaderboard.
+- Navigasi empat menu, lokasi pertama, pintasan AI dan kompas, bacaan/Madinah/Bahriyah, serta kontrol dengan skala teks 130%.
+- Urutan Al-Mulk 1–5 ×3 tepat 15 item; per-ayat menghasilkan urutan berbeda; seluruh surah mempertahankan ayat terakhir. Jumlah/rentang invalid ditolak.
+- Azan awalnya nonaktif; satu alarm salat berikutnya dijadwalkan tanpa terbit/duplikasi. Menonaktifkan atau mencabut izin membatalkan alarm; lokasi kosong/alarm kedaluwarsa tidak memulai layanan. Rekaman MP3 dibaca penuh oleh ffmpeg tanpa error (204,648 detik).
+- Quran, basmalah, Latin, tajwid, tafsir, riwayat, audio, izin dan sesi mikrofon/AI tetap menjalani regresi. Teks Quran dan katalog ID audio tidak berubah dari versi sebelumnya.
+- 134 foto: hash/ukuran/dekode serta pemetaan 140 ID tanpa duplikasi diperiksa. Foto tambahan mengikuti label dokumen pengguna, bukan identifikasi wajah independen.
+- Bot menolak secret salah, non-admin dan grup; memeriksa payload/tujuan, menolak pengiriman ulang foto, serta menguji unggah/edit/aktif/nonaktif/urutan/hapus memakai layanan tiruan. Wrangler **dry-run** berhasil; tidak ada deploy atau pesan Telegram nyata yang dikirim. [Bukti bundling](validation/1.4.0/worker-dry-run.log).
 
-Cuplikan Compose/Robolectric: [dialog lokasi pertama](validation/1.3.1/first-launch-location.png), [beranda](validation/1.3.1/senior-home.png), [jadwal](validation/1.3.1/prayer-schedule.png), [qari](validation/1.3.1/qari-portraits.png), [tajwid/per kata](validation/1.3.1/reader-tajwid-word-meanings.png), [AI](validation/1.3.1/ai-recitation-first-use.png).
+Cuplikan hasil render Compose/Robolectric yang diperiksa: [beranda](validation/1.4.0/home-with-location.png), [profil](validation/1.4.0/profile.png), [kompas tanpa sensor](validation/1.4.0/compass.png), [qari](validation/1.4.0/qari-portraits.png), [rentang hafalan/teks besar](validation/1.4.0/memorization-range-large-text.png), [kuis pribadi](validation/1.4.0/quiz-personal.png). Ini render host, bukan tangkapan layar HP fisik.
 
-## Audit data dan audio
+## Audit Quran dan sumber
 
-6.236 ayat Arab, terjemahan Indonesia/Inggris dan catatan Indonesia cocok persis sumber yang dipatok; tidak ada ID atau nomor ayat global ganda. Latin dan tafsir mencakup 6.236 ayat. Pengecualian ejaan lintas sumber, kata tanpa pemetaan dan rentang warna yang sengaja tidak ditebak dijelaskan dalam [laporan audit](AUDIT_1.3.1.md).
+Seluruh 6.236 ayat Arab, terjemahan Indonesia/Inggris dan catatan Indonesia cocok persis dengan snapshot sumber yang dipatok. Tidak ada ID ayat ganda. Latin dan tafsir mencakup 6.236 ayat. Warna tajwid/waqaf mempertahankan pengecualian pemetaan yang sudah dicatat; tidak diisi dengan tebakan. [Audit corpus](audit/1.4.0/quran-corpus.json), [bantuan baca](audit/1.4.0/reading-guidance.json), [audio/foto](audit/1.4.0/audio-identity.json).
 
-138 sampel Al-Fatihah lengkap berhasil diunduh/dekode pada 4 November; 22 sampel audio ayat/timing/fallback lulus pada 5 November. Manifest seluruh ID dan nama berkas serta checksum foto diverifikasi. Ini bukan pemeriksaan setiap rekaman atau autentikasi seluruh suara oleh manusia. [Bukti unduhan 604 gambar](validation/reference/madinah/mushaf-all-pages-check.json) berasal dari pemeriksaan menjelang rilis 29 Oktober 2026; tidak diklaim diunduh ulang semuanya dalam rilis ini.
+Verifikasi audio memakai metadata dan bukti unduhan sebelumnya: 138 Al-Fatihah lengkap pada 4 November, 22 sampel ayat/timing/fallback pada 5 November. Tidak diklaim seluruh rekaman diunduh atau suara masing-masing qari diautentikasi ulang. Teks kanonis SHA-256 tetap `f41cef112e2efd581d3ea15ad7229a713d18122a6e0fbec4ddb0c00b7d1cae9c`.
 
-## Integritas paket
+[Sumber desain](sources/brand-assets.json), [foto dokumen](sources/qari-user-images.json), dan [audio azan](sources/adhan-recording.json) mencatat asal serta hash. Lima entri foto ditahan karena placeholder/label bertentangan. Biografi pribadi lengkap semua qari belum terverifikasi; aplikasi menampilkan keterangan edisi rekaman dari penyedia.
 
-`apksigner verify --verbose --print-certs` dan `zipalign -c -v -P 16 4` lulus. Sertifikat tetap `e2aa60317632bc6aea65f83c2247e54111941d0e0725875a2c9db3ffb93ac264`, sehingga paket mendukung pembaruan dari versi distribusi sebelumnya. [Tanda tangan](validation/1.3.1/apk-signature.txt), [alignment](validation/1.3.1/apk-alignment.txt), [metadata](validation/1.3.1/apk-metadata.txt).
+## Integritas APK
 
-Guard native memeriksa 75 unit kompilasi teroptimasi pada arm64-v8a, armeabi-v7a dan x86_64: [bukti](validation/1.3.1/native-compile-optimization.json). Teks kanonis tetap ber-SHA-256 `f41cef112e2efd581d3ea15ad7229a713d18122a6e0fbec4ddb0c00b7d1cae9c`.
+`apksigner verify --verbose --print-certs` dan `zipalign -c -v -P 16 4` lulus. Sertifikat sama dengan distribusi sebelumnya: `e2aa60317632bc6aea65f83c2247e54111941d0e0725875a2c9db3ffb93ac264`. [Tanda tangan](validation/1.4.0/apk-signature.txt), [alignment](validation/1.4.0/apk-alignment.txt), [metadata](validation/1.4.0/apk-metadata.txt).
 
-`scripts/package-artifacts.py` memeriksa umur APK terhadap input build, kesamaan semua aset dengan sumber, optimasi native dan integritas ZIP. Keystore, cache build dan bobot model tidak masuk ZIP sumber. Ukuran dan SHA-256 APK/ZIP dicatat dalam metadata distribusi dan diperiksa kembali setelah unggah.
+Guard native memverifikasi optimasi runtime pada arm64-v8a, armeabi-v7a dan x86_64: [bukti](validation/1.4.0/native-compile-optimization.json). Pengemasan memeriksa kesamaan semua aset sumber dengan APK dan tidak menyertakan cache, keystore, token, node_modules atau model AI dalam ZIP source.
 
-## Batas validasi
+## Batas perangkat dan layanan
 
-Izin dan lifecycle lokasi diuji pada host; belum dilakukan perjalanan/GPS/kompas/mikrofon pada HP fisik. Jadwal adalah perhitungan astronomis dari lokasi dan zona waktu, bukan unduhan jadwal resmi Kemenag. AI masih memperkirakan kata, dapat keliru, dan belum menjadi penilai tajwid/makhraj tervalidasi.
-
-Bahriyah masih memakai PDF pengguna; edisi bawaan belum tersedia. Latin tidak diberi warna dugaan, gambar Madinah asli tetap tanpa pewarnaan ulang, dan foto hanya tersedia untuk delapan qari. Pembaruan ini tidak mengubah batas fitur tersebut.
+GPS, arah kompas, mikrofon dan pemutaran azan fisik belum diuji. Jadwal adalah perhitungan astronomis berdasarkan lokasi/zona waktu dan koreksi pengguna. AI tetap perkiraan kata yang dapat keliru, bukan penilai tajwid/makhraj tervalidasi. Bahriyah memakai PDF pengguna; halaman Madinah asli tidak diwarnai ulang. Banner remote belum diaktifkan sesuai pilihan pengguna; banner bawaan tetap berjalan. Token Telegram yang pernah dibagikan perlu diganti sebelum aktivasi layanan.

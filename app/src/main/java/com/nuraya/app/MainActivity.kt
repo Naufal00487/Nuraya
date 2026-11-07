@@ -11,6 +11,11 @@ import com.nuraya.app.ui.NurayaApp
 import com.nuraya.app.ui.NurayaTheme
 
 class MainActivity : ComponentActivity() {
+    override fun onResume() {
+        super.onResume()
+        com.nuraya.app.prayer.AdhanScheduler.reconcile(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

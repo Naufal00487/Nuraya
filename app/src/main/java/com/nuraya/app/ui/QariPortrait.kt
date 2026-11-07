@@ -49,7 +49,7 @@ class QariPortraitCatalog(context: Context) {
                 row.getString("sourceName"), row.getString("sourcePage"), row.getString("sha256"), row.getLong("bytes"))
         }.also { portraits ->
             require(portraits.flatMap { it.qariIds }.let { it.size == it.distinct().size })
-            require(portraits.all { it.asset.matches(Regex("portraits/[a-z]+\\.jpg")) })
+            require(portraits.all { it.asset.matches(Regex("portraits/[a-z0-9_]+\\.(jpg|jpeg|png)")) })
         }
     }
 

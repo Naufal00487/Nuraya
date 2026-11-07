@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.prayer.AdhanReminderTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-07T01:45:17" hostname="484a6eba10ca" time="0.172">
+  <properties/>
+  <testcase name="remindersAreOffByDefaultAndOnlyNextPrayerIsScheduledAfterOptIn" classname="com.nuraya.app.prayer.AdhanReminderTest" time="0.108"/>
+  <testcase name="missingLocationAndStaleAlarmNeverStartAdhanService" classname="com.nuraya.app.prayer.AdhanReminderTest" time="0.032"/>
+  <testcase name="revokingNotificationsDisablesAndCancelsPreviouslyEnabledReminders" classname="com.nuraya.app.prayer.AdhanReminderTest" time="0.032"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

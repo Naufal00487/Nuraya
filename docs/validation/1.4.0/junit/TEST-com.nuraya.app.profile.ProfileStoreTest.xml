@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.profile.ProfileStoreTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-07T01:45:18" hostname="484a6eba10ca" time="0.021">
+  <properties/>
+  <testcase name="localProfilePersistsWithoutAccountAndRejectsInvalidAvatarOrNickname" classname="com.nuraya.app.profile.ProfileStoreTest" time="0.021"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

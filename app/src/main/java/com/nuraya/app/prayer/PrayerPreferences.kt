@@ -11,7 +11,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 
 /** Local settings shared by manual selection and explicit one-shot device location. */
-class PrayerPreferenceStore(context: Context) {
+class PrayerPreferenceStore(private val context: Context) {
     internal val preferences: SharedPreferences = context.applicationContext.getSharedPreferences("nuraya_prayer", Context.MODE_PRIVATE)
     fun read(): PrayerPreferences {
         val location = runCatching {
@@ -38,6 +38,7 @@ class PrayerPreferenceStore(context: Context) {
             putInt("hijri_adjustment", value.hijriAdjustment)
             putInt("minute_adjustment", value.minuteAdjustment)
         }.apply()
+        AdhanScheduler.schedule(context)
     }
 }
 

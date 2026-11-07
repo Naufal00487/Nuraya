@@ -10,27 +10,27 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.dp
 
-val Emerald = Color(0xFF164F43)
-val Gold = Color(0xFFAC8748)
+val Emerald = Color(0xFF2C4066)
+val Gold = Color(0xFFBEA153)
 private val LightColors = lightColorScheme(
     primary = Emerald, onPrimary = Color.White,
-    primaryContainer = Color(0xFFDDEDE5), onPrimaryContainer = Color(0xFF163F35),
-    secondary = Color(0xFF77571F), secondaryContainer = Color(0xFFF2E8D4), onSecondaryContainer = Color(0xFF59421D),
-    background = Color(0xFFFAF9F5), surface = Color(0xFFFAF9F5),
-    surfaceContainer = Color(0xFFF0F1E9), surfaceContainerLow = Color(0xFFF4F4EE),
-    surfaceContainerHigh = Color(0xFFE9EEE6), surfaceVariant = Color(0xFFE9EEE6),
-    onSurface = Color(0xFF203B32), onSurfaceVariant = Color(0xFF4F6056),
-    outline = Color(0xFF94A397), outlineVariant = Color(0xFFDFE5DC)
+    primaryContainer = Color(0xFFE2EBFA), onPrimaryContainer = Color(0xFF25395B),
+    secondary = Color(0xFF74602C), secondaryContainer = Color(0xFFF2EBCD), onSecondaryContainer = Color(0xFF56451C),
+    background = Color(0xFFF6F8FC), surface = Color(0xFFF6F8FC),
+    surfaceContainer = Color(0xFFEDF1F8), surfaceContainerLow = Color(0xFFEEF3FB),
+    surfaceContainerHigh = Color(0xFFE4EBF6), surfaceVariant = Color(0xFFE4EBF6),
+    onSurface = Color(0xFF213352), onSurfaceVariant = Color(0xFF52617A),
+    outline = Color(0xFF94A4C0), outlineVariant = Color(0xFFD7E0EF)
 )
 private val DarkColors = darkColorScheme(
-    primary = Color(0xFFA2D6BC), onPrimary = Color(0xFF103A2E),
-    primaryContainer = Color(0xFF234F40), onPrimaryContainer = Color(0xFFD0ECD9),
-    secondary = Color(0xFFDFC28E), secondaryContainer = Color(0xFF51432B),
-    background = Color(0xFF101D18), surface = Color(0xFF101D18),
-    surfaceContainer = Color(0xFF1A2B23), surfaceContainerLow = Color(0xFF17271F),
-    surfaceContainerHigh = Color(0xFF27382E), surfaceVariant = Color(0xFF27382E),
-    onSurface = Color(0xFFE0E8DE), onSurfaceVariant = Color(0xFFB2BFB3),
-    outlineVariant = Color(0xFF34473B)
+    primary = Color(0xFFBACDF4), onPrimary = Color(0xFF122440),
+    primaryContainer = Color(0xFF2C4066), onPrimaryContainer = Color(0xFFE3ECFE),
+    secondary = Color(0xFFDEC77F), secondaryContainer = Color(0xFF51482C),
+    background = Color(0xFF111C30), surface = Color(0xFF111C30),
+    surfaceContainer = Color(0xFF1B2A43), surfaceContainerLow = Color(0xFF17253B),
+    surfaceContainerHigh = Color(0xFF293A55), surfaceVariant = Color(0xFF293A55),
+    onSurface = Color(0xFFE5ECF8), onSurfaceVariant = Color(0xFFB9C5DC),
+    outlineVariant = Color(0xFF384B69)
 )
 
 @Composable
