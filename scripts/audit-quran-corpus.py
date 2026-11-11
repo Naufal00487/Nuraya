@@ -19,7 +19,7 @@ import sys
 import unicodedata
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "docs/audit/1.4.0"
+OUT = ROOT / "docs/audit/1.5.0"
 SNAPSHOTS = ROOT / "docs/audit/1.3.1/sources"
 
 
@@ -177,7 +177,7 @@ def main() -> int:
     }
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "quran-corpus.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
-    summary = f'''# Audit corpus Al-Qur’an — Nuraya 1.4.0
+    summary = f'''# Audit corpus Al-Qur’an — Nuraya 1.5.0
 
 Audit otomatis tidak menemukan perbedaan impor terhadap sumber yang dipatok: **6.236 teks Arab, 6.236 terjemahan Indonesia, 6.236 terjemahan Inggris dan 6.236 entri catatan terjemahan cocok persis** dengan snapshot sumber. Jumlah 114 surah, 6.236 nomor ayat global dan 30 juz sesuai metadata. Duplikat ID ayat: {len(duplicate_refs)}; duplikat nomor global: {len(duplicate_numbers)}. Corpus tidak diubah.
 

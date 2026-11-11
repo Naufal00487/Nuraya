@@ -13,3 +13,12 @@ Tests check all verse/page references, offline image decode, corruption rejectio
 Page 3 uses the original JPG from the same publisher, [GovarJabbar/Quran-JPG](https://github.com/GovarJabbar/Quran-JPG), pinned to `9aa696d923843acef00a54e7c4c872414494c4ba`. The PNG version has a visibly corrupted background and is excluded. The source JPG is unchanged, independently hash-checked and bundled as `003.jpg`; the loader only permits this exact additional pinned URL. Source selection does not redraw, erase or generate Quran text.
 
 The unchanged [complete page-download evidence](validation/reference/madinah/mushaf-all-pages-check.json) and [source download details](validation/reference/madinah/mushaf-source-downloads.json) come from checks performed before the 29 October 2026 release. These historical source checks are not presented as a new download of every page.
+
+
+## Reader revision 1.5.0
+
+The original page is framed without redrawing or recoloring its Quran text. A single tap toggles controls; a double tap requests landscape. The menu also offers an accessible orientation action. Landscape uses a width-fitting scrollable page. Page/surah/ayah/juz navigation uses the existing 6,236-reference index. Other Quran modes offer a clearly labeled Madinah book-view button; this does not turn Madinah images into a different printed edition.
+
+The companion sheet shows the current verse, attributed Kemenag/QuranEnc translation, optional Latin, text size, word meanings, tafsir and source-mapped tajwid. Audio highlighting appears in this text panel, not at invented coordinates on the page image. The 17-reciter picker supports search, existing identity-mapped portraits, per-verse repeats, play and pause. Missing portraits retain labeled initials.
+
+Explicit **Simpan halaman offline** validates source bytes and writes them atomically to private persistent app storage. Saved pages survive eviction from the 64 MiB recent-page cache; they are removed with app data/uninstall. Unopened/unsaved pages still require a connection. User-provided book covers are navigation illustrations, recorded in `sources/revision-1.5.0-assets.json`; they do not establish the complete text of that photographed edition.

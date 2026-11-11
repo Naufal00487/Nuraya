@@ -32,7 +32,8 @@ def verify_catalog():
         assert files[(reciter['bitrateKbps'], reciter['id'])] == expected
         assert bool(reciter['timingFolder']) == reciter['supportsWordSync']
         if reciter['supportsWordSync']:
-            assert reciter['id'] == 'ar.alafasy' and reciter['timingFolder'] == 'alafasy'
+            from import_qud_timing import MAPPING
+            assert reciter['timingFolder'] == ({'ar.alafasy':'alafasy'} | MAPPING)[reciter['id']]
     print(f'Verified {len(entries)} ayah reciters, each with all 6,236 exact source filenames.', flush=True)
     return entries
 

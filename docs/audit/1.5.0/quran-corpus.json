@@ -1,0 +1,674 @@
+{
+  "schemaVersion": 1,
+  "auditedAtUtc": "2026-11-11T13:42:04.890207+00:00",
+  "scope": "Automated structure, exact source strings and published source cross-check. Not a scholarly certification of Quran recitation or source editions.",
+  "canonicalSha256": "f41cef112e2efd581d3ea15ad7229a713d18122a6e0fbec4ddb0c00b7d1cae9c",
+  "canonicalModifiedByAudit": false,
+  "primarySources": [
+    {
+      "url": "https://raw.githubusercontent.com/risan/quran-json/6523a9ad3b73bb7e8cb3a9cdf0ea774b8bab3123/data/tanzil/uthmani.json",
+      "rawSha256": "adaebb377c60eba1bab6ef652959c7a0b4ccb4d0ca42145945c14ecdbeb4b761",
+      "rawBytes": 1764243,
+      "snapshot": "docs/audit/1.3.1/sources/uthmani.json.gz"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/risan/quran-json/6523a9ad3b73bb7e8cb3a9cdf0ea774b8bab3123/data/tanzil/chapters.json",
+      "rawSha256": "5b18adae945fcb6f9fbb865dd7dc596f89a63607a4e6617ca9e37f7f10d3386b",
+      "rawBytes": 89238,
+      "snapshot": "docs/audit/1.3.1/sources/chapters.json.gz"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/risan/quran-json/6523a9ad3b73bb7e8cb3a9cdf0ea774b8bab3123/data/quranenc/indonesian_affairs.json",
+      "rawSha256": "5990a1522965daef7fd721d21e4f9c3d7ac77404060cf1343a8fedc07cc72406",
+      "rawBytes": 1465306,
+      "snapshot": "docs/audit/1.3.1/sources/indonesian_affairs.json.gz"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/risan/quran-json/6523a9ad3b73bb7e8cb3a9cdf0ea774b8bab3123/data/extra/english_pickthall.json",
+      "rawSha256": "f93ecb2a50578c9cc4e5b89630e79fa9bcdd1d289b1a858f2aedf5aa55e8194a",
+      "rawBytes": 1040215,
+      "snapshot": "docs/audit/1.3.1/sources/english_pickthall.json.gz"
+    }
+  ],
+  "sourceCommit": "6523a9ad3b73bb7e8cb3a9cdf0ea774b8bab3123",
+  "structure": {
+    "surahs": 114,
+    "verses": 6236,
+    "juzs": 30,
+    "duplicateVerseReferences": [],
+    "duplicateGlobalNumbers": [],
+    "missingReferences": [],
+    "extraReferences": [],
+    "chapterCountsAndJuzBoundariesMatch": true
+  },
+  "pinnedSourceExactMatches": {
+    "arabic": 6236,
+    "indonesian": 6236,
+    "english": 6236,
+    "indonesianFootnotes": 6236
+  },
+  "pinnedSourceDifferences": [],
+  "basmalahPresentation": {
+    "separateUnnumberedOpenings": 112,
+    "references": [
+      "2:1",
+      "3:1",
+      "4:1",
+      "5:1",
+      "6:1",
+      "7:1",
+      "8:1",
+      "10:1",
+      "11:1",
+      "12:1",
+      "13:1",
+      "14:1",
+      "15:1",
+      "16:1",
+      "17:1",
+      "18:1",
+      "19:1",
+      "20:1",
+      "21:1",
+      "22:1",
+      "23:1",
+      "24:1",
+      "25:1",
+      "26:1",
+      "27:1",
+      "28:1",
+      "29:1",
+      "30:1",
+      "31:1",
+      "32:1",
+      "33:1",
+      "34:1",
+      "35:1",
+      "36:1",
+      "37:1",
+      "38:1",
+      "39:1",
+      "40:1",
+      "41:1",
+      "42:1",
+      "43:1",
+      "44:1",
+      "45:1",
+      "46:1",
+      "47:1",
+      "48:1",
+      "49:1",
+      "50:1",
+      "51:1",
+      "52:1",
+      "53:1",
+      "54:1",
+      "55:1",
+      "56:1",
+      "57:1",
+      "58:1",
+      "59:1",
+      "60:1",
+      "61:1",
+      "62:1",
+      "63:1",
+      "64:1",
+      "65:1",
+      "66:1",
+      "67:1",
+      "68:1",
+      "69:1",
+      "70:1",
+      "71:1",
+      "72:1",
+      "73:1",
+      "74:1",
+      "75:1",
+      "76:1",
+      "77:1",
+      "78:1",
+      "79:1",
+      "80:1",
+      "81:1",
+      "82:1",
+      "83:1",
+      "84:1",
+      "85:1",
+      "86:1",
+      "87:1",
+      "88:1",
+      "89:1",
+      "90:1",
+      "91:1",
+      "92:1",
+      "93:1",
+      "94:1",
+      "95:1",
+      "96:1",
+      "97:1",
+      "98:1",
+      "99:1",
+      "100:1",
+      "101:1",
+      "102:1",
+      "103:1",
+      "104:1",
+      "105:1",
+      "106:1",
+      "107:1",
+      "108:1",
+      "109:1",
+      "110:1",
+      "111:1",
+      "112:1",
+      "113:1",
+      "114:1"
+    ],
+    "fatihahRemainsVerse1": true,
+    "tawbahHasNoOpeningBasmalah": true,
+    "internalNaml2730Preserved": true,
+    "note": "Importer validates all114 openings and the exact lossless split; Android policy regression tests run separately."
+  },
+  "madinahPageMapping": {
+    "verseReferences": 6236,
+    "pages": 604,
+    "sourceMismatches": [],
+    "assetSha256": "6fa9aec9dc0cac3ca9dc86c578de9afc2c5c6c0c3b7bdd09b51c9c894f360d9f"
+  },
+  "crossSource": {
+    "url": "https://api.alquran.cloud/v1/quran/quran-uthmani",
+    "sha256": "0df03e1d6da4fc8138208fec1688f2b416f0dd4ebbd514179f3e5e0fbaf4195f",
+    "codepointExactArabicMatches": 1876,
+    "comparisonNormalizedRasmMatches": 6234,
+    "normalization": "Comparison only: NFD, remove combining/spacing/control marks and Quran stop/ornament/tatweel marks; ignore hamza-carrier and superscript waw/ya variants. Application text is not normalized.",
+    "remainingDifferences": [
+      {
+        "reference": "12:39",
+        "canonicalArabic": "يَٰصَٰحِبَىِ ٱلسِّجْنِ ءَأَرْبَابٌ مُّتَفَرِّقُونَ خَيْرٌ أَمِ ٱللَّهُ ٱلْوَٰحِدُ ٱلْقَهَّارُ",
+        "comparisonArabic": "يَٰصَىٰحِبَىِ ٱلسِّجْنِ ءَأَرْبَابٌۭ مُّتَفَرِّقُونَ خَيْرٌ أَمِ ٱللَّهُ ٱلْوَٰحِدُ ٱلْقَهَّارُ",
+        "handling": "Canonical pinned text kept. No inferred stop annotation; not adjudicated as a text error."
+      },
+      {
+        "reference": "12:41",
+        "canonicalArabic": "يَٰصَٰحِبَىِ ٱلسِّجْنِ أَمَّآ أَحَدُكُمَا فَيَسْقِى رَبَّهُۥ خَمْرًا وَأَمَّا ٱلْـَٔاخَرُ فَيُصْلَبُ فَتَأْكُلُ ٱلطَّيْرُ مِن رَّأْسِهِۦ قُضِىَ ٱلْأَمْرُ ٱلَّذِى فِيهِ تَسْتَفْتِيَانِ",
+        "comparisonArabic": "يَٰصَىٰحِبَىِ ٱلسِّجْنِ أَمَّآ أَحَدُكُمَا فَيَسْقِى رَبَّهُۥ خَمْرًۭا ۖ وَأَمَّا ٱلْءَاخَرُ فَيُصْلَبُ فَتَأْكُلُ ٱلطَّيْرُ مِن رَّأْسِهِۦ ۚ قُضِىَ ٱلْأَمْرُ ٱلَّذِى فِيهِ تَسْتَفْتِيَانِ",
+        "handling": "Canonical pinned text kept. No inferred stop annotation; not adjudicated as a text error."
+      }
+    ],
+    "limitation": "Different distribution with related upstream text; differences are reported, not independently adjudicated."
+  },
+  "repeatedVerseText": {
+    "groups": 94,
+    "versesInGroups": 272,
+    "extraOccurrencesBeyondFirst": 178,
+    "referencesByGroup": [
+      [
+        "55:13",
+        "55:16",
+        "55:18",
+        "55:21",
+        "55:23",
+        "55:25",
+        "55:28",
+        "55:30",
+        "55:32",
+        "55:34",
+        "55:36",
+        "55:38",
+        "55:40",
+        "55:42",
+        "55:45",
+        "55:47",
+        "55:49",
+        "55:51",
+        "55:53",
+        "55:55",
+        "55:57",
+        "55:59",
+        "55:61",
+        "55:63",
+        "55:65",
+        "55:67",
+        "55:69",
+        "55:71",
+        "55:73",
+        "55:75",
+        "55:77"
+      ],
+      [
+        "77:15",
+        "77:19",
+        "77:24",
+        "77:28",
+        "77:34",
+        "77:37",
+        "77:40",
+        "77:45",
+        "77:47",
+        "77:49",
+        "83:10"
+      ],
+      [
+        "26:108",
+        "26:110",
+        "26:126",
+        "26:131",
+        "26:144",
+        "26:150",
+        "26:163",
+        "26:179"
+      ],
+      [
+        "26:9",
+        "26:68",
+        "26:104",
+        "26:122",
+        "26:140",
+        "26:159",
+        "26:175",
+        "26:191"
+      ],
+      [
+        "40:1",
+        "41:1",
+        "42:1",
+        "43:1",
+        "44:1",
+        "45:1",
+        "46:1"
+      ],
+      [
+        "10:48",
+        "21:38",
+        "27:71",
+        "34:29",
+        "36:48",
+        "67:25"
+      ],
+      [
+        "26:8",
+        "26:67",
+        "26:103",
+        "26:121",
+        "26:174",
+        "26:190"
+      ],
+      [
+        "2:1",
+        "3:1",
+        "29:1",
+        "30:1",
+        "31:1",
+        "32:1"
+      ],
+      [
+        "26:107",
+        "26:125",
+        "26:143",
+        "26:162",
+        "26:178"
+      ],
+      [
+        "26:109",
+        "26:127",
+        "26:145",
+        "26:164",
+        "26:180"
+      ],
+      [
+        "37:40",
+        "37:74",
+        "37:128",
+        "37:160"
+      ],
+      [
+        "37:80",
+        "37:121",
+        "37:131",
+        "77:44"
+      ],
+      [
+        "54:17",
+        "54:22",
+        "54:32",
+        "54:40"
+      ],
+      [
+        "37:78",
+        "37:108",
+        "37:129"
+      ],
+      [
+        "37:81",
+        "37:111",
+        "37:132"
+      ],
+      [
+        "39:1",
+        "45:2",
+        "46:2"
+      ],
+      [
+        "54:16",
+        "54:21",
+        "54:30"
+      ],
+      [
+        "56:74",
+        "56:96",
+        "69:52"
+      ],
+      [
+        "109:3",
+        "109:5"
+      ],
+      [
+        "11:110",
+        "41:45"
+      ],
+      [
+        "11:96",
+        "40:23"
+      ],
+      [
+        "14:20",
+        "35:17"
+      ],
+      [
+        "15:29",
+        "38:72"
+      ],
+      [
+        "15:30",
+        "38:73"
+      ],
+      [
+        "15:34",
+        "38:77"
+      ],
+      [
+        "15:36",
+        "38:79"
+      ],
+      [
+        "15:37",
+        "38:80"
+      ],
+      [
+        "15:38",
+        "38:81"
+      ],
+      [
+        "15:40",
+        "38:83"
+      ],
+      [
+        "15:45",
+        "51:15"
+      ],
+      [
+        "15:57",
+        "51:31"
+      ],
+      [
+        "15:58",
+        "51:32"
+      ],
+      [
+        "16:42",
+        "29:59"
+      ],
+      [
+        "16:55",
+        "30:34"
+      ],
+      [
+        "18:89",
+        "18:92"
+      ],
+      [
+        "20:24",
+        "79:17"
+      ],
+      [
+        "23:26",
+        "23:39"
+      ],
+      [
+        "23:5",
+        "70:29"
+      ],
+      [
+        "23:6",
+        "70:30"
+      ],
+      [
+        "23:7",
+        "70:31"
+      ],
+      [
+        "23:8",
+        "70:32"
+      ],
+      [
+        "26:1",
+        "28:1"
+      ],
+      [
+        "26:147",
+        "44:52"
+      ],
+      [
+        "26:153",
+        "26:185"
+      ],
+      [
+        "26:171",
+        "37:135"
+      ],
+      [
+        "26:172",
+        "37:136"
+      ],
+      [
+        "26:173",
+        "27:58"
+      ],
+      [
+        "26:2",
+        "28:2"
+      ],
+      [
+        "26:204",
+        "37:176"
+      ],
+      [
+        "26:66",
+        "37:82"
+      ],
+      [
+        "27:3",
+        "31:4"
+      ],
+      [
+        "28:62",
+        "28:74"
+      ],
+      [
+        "2:134",
+        "2:141"
+      ],
+      [
+        "2:162",
+        "3:88"
+      ],
+      [
+        "2:47",
+        "2:122"
+      ],
+      [
+        "2:5",
+        "31:5"
+      ],
+      [
+        "37:154",
+        "68:36"
+      ],
+      [
+        "37:17",
+        "56:48"
+      ],
+      [
+        "37:27",
+        "52:25"
+      ],
+      [
+        "37:43",
+        "56:12"
+      ],
+      [
+        "38:87",
+        "81:27"
+      ],
+      [
+        "3:89",
+        "24:5"
+      ],
+      [
+        "43:2",
+        "44:2"
+      ],
+      [
+        "43:83",
+        "70:42"
+      ],
+      [
+        "52:19",
+        "77:43"
+      ],
+      [
+        "52:40",
+        "68:46"
+      ],
+      [
+        "52:41",
+        "68:47"
+      ],
+      [
+        "56:13",
+        "56:39"
+      ],
+      [
+        "56:67",
+        "68:27"
+      ],
+      [
+        "56:80",
+        "69:43"
+      ],
+      [
+        "59:1",
+        "61:1"
+      ],
+      [
+        "5:10",
+        "5:86"
+      ],
+      [
+        "68:15",
+        "83:13"
+      ],
+      [
+        "69:21",
+        "101:7"
+      ],
+      [
+        "69:22",
+        "88:10"
+      ],
+      [
+        "69:34",
+        "107:3"
+      ],
+      [
+        "69:40",
+        "81:19"
+      ],
+      [
+        "6:10",
+        "21:41"
+      ],
+      [
+        "6:15",
+        "39:13"
+      ],
+      [
+        "6:4",
+        "36:46"
+      ],
+      [
+        "73:19",
+        "76:29"
+      ],
+      [
+        "74:55",
+        "80:12"
+      ],
+      [
+        "7:107",
+        "26:32"
+      ],
+      [
+        "7:108",
+        "26:33"
+      ],
+      [
+        "7:121",
+        "26:47"
+      ],
+      [
+        "7:122",
+        "26:48"
+      ],
+      [
+        "7:183",
+        "68:45"
+      ],
+      [
+        "7:78",
+        "7:91"
+      ],
+      [
+        "82:13",
+        "83:22"
+      ],
+      [
+        "83:23",
+        "83:35"
+      ],
+      [
+        "83:9",
+        "83:20"
+      ],
+      [
+        "84:2",
+        "84:5"
+      ],
+      [
+        "9:33",
+        "61:9"
+      ],
+      [
+        "9:73",
+        "66:9"
+      ]
+    ],
+    "interpretation": "Repeated wording at different valid verse references also occurs in the exact pinned source. It is not duplicate database identifiers and is not removed."
+  },
+  "errors": [],
+  "limitations": [
+    "No qualified human review is claimed by this automated audit.",
+    "Exact agreement proves import fidelity to named editions, not that every upstream editorial decision is independently correct.",
+    "Audio, pronunciation, Latin, per-word meaning, tajwid spans and waqaf teaching are covered by separate audits."
+  ]
+}

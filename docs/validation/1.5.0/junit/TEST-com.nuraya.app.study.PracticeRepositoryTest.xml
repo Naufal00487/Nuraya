@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.study.PracticeRepositoryTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-11T13:55:32" hostname="e55d74a2cc33" time="0.246">
+  <properties/>
+  <testcase name="bundledLessonsQuoteActualVersesAndEveryQuestionHasAnAttributedLesson" classname="com.nuraya.app.study.PracticeRepositoryTest" time="0.106"/>
+  <testcase name="goalsQuizLessonsAndReviewRecordsSurviveClosingDataStore" classname="com.nuraya.app.study.PracticeRepositoryTest" time="0.062"/>
+  <testcase name="invalidVerseOrGoalNeverWritesProgress" classname="com.nuraya.app.study.PracticeRepositoryTest" time="0.029"/>
+  <testcase name="dailyStreakUsesCalendarDaysAndAllowsTodayNotYetStarted" classname="com.nuraya.app.study.PracticeRepositoryTest" time="0.021"/>
+  <testcase name="reviewsScheduleFromActualReviewDateAndFinalVerseCompletesSessionAtomically" classname="com.nuraya.app.study.PracticeRepositoryTest" time="0.027"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

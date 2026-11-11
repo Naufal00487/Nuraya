@@ -20,7 +20,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.nuraya.app.NurayaApplication
 import com.nuraya.app.ui.label
-import com.nuraya.app.ui.QuranArtwork
+import com.nuraya.app.ui.BrandImage
+import com.nuraya.app.ui.SectionArtwork
 
 @Composable
 fun QuranModesScreen(app: NurayaApplication, language: String, onMode: (String) -> Unit, onRead: (Int, Int) -> Unit) {
@@ -35,6 +36,8 @@ fun QuranModesScreen(app: NurayaApplication, language: String, onMode: (String) 
         (it.titleId + " " + it.titleEn + " " + it.descriptionId).contains(query.trim(), ignoreCase = true) }
     LazyColumn(Modifier.fillMaxSize().testTag("quran_modes"), contentPadding = PaddingValues(20.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
         item {
+            SectionArtwork("quran","Al-Qur’an",label(language,"Baca, pahami, dan dekatkan hati.","Read, understand, and reconnect."))
+            Spacer(Modifier.height(18.dp))
             Text(label(language, "Pilih cara membaca", "Choose how to read"), style = MaterialTheme.typography.headlineMedium)
             Spacer(Modifier.height(8.dp))
             Text(label(language, "Mulai dengan Al-Qur’an per ayat, atau pilih bantuan belajar yang Anda perlukan.",
@@ -49,9 +52,7 @@ fun QuranModesScreen(app: NurayaApplication, language: String, onMode: (String) 
             OutlinedCard(onClick = { if (mode.id == "thematic") thematicOpen = true else onMode(mode.id) },
                 modifier = Modifier.fillMaxWidth().testTag("quran_mode_${mode.id}"), shape = RoundedCornerShape(20.dp)) {
                 Row(Modifier.padding(18.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                    if (mode.id in setOf("madinah", "madinah_tajwid")) {
-                        QuranArtwork(modifier = Modifier.width(64.dp).height(100.dp), page = if (mode.id == "madinah") 1 else 2)
-                    } else Icon(Icons.Outlined.MenuBook, null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.size(40.dp))
+                    BrandImage("covers/${mode.id}",Modifier.width(94.dp).height(132.dp),description=mode.title(language))
                     Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                         Text(mode.title(language), style = MaterialTheme.typography.titleLarge)
                         Text(mode.description(language), style = MaterialTheme.typography.bodyMedium)

@@ -1,6 +1,6 @@
-# Fitur Nuraya 1.4.0
+# Fitur Nuraya 1.5.0
 
-Versi 1.4.0, versionCode 9, memakai applicationId dan sertifikat yang sama agar dapat memperbarui pemasangan sebelumnya. Referensi kebutuhan pengguna adalah jam/tanggal Hijriah, waktu salat, kiblat, pilihan belajar Quran dan navigasi yang lebih mudah dibaca. Nuraya tidak mengklaim afiliasi, menyalin merek, atau menjadi edisi resmi aplikasi lain.
+Versi 1.5.0, versionCode 10, memakai applicationId dan sertifikat yang sama agar dapat memperbarui pemasangan sebelumnya. Referensi kebutuhan pengguna adalah jam/tanggal Hijriah, waktu salat, kiblat, pilihan belajar Quran dan navigasi yang lebih mudah dibaca. Nuraya tidak mengklaim afiliasi, menyalin merek, atau menjadi edisi resmi aplikasi lain.
 
 ## Navigasi dan aksesibilitas
 
@@ -30,7 +30,7 @@ Arah kiblat dihitung dari koordinat menuju Ka'bah. Kompas menyesuaikan orientasi
 | Al-Qur’an Indonesia | Arab dan terjemahan Kementerian Agama. |
 | Indonesia & tajwid | Terjemahan Indonesia bersama warna tajwid Arab. |
 | Al-Qur’an Madinah | Penampil gambar mushaf 604 halaman, dengan pencarian nomor halaman, pembesaran dan pemetaan surah/ayat ke halaman. Halaman 1, 2, 3 dan 604 disertakan offline; halaman lainnya diunduh saat dibuka dan disimpan di cache. |
-| Madinah & tajwid | Gambar halaman Madinah beserta tombol membuka bacaan ayat dengan warna tajwid. Gambar halaman asli tetap tanpa pewarnaan; ini bukan pindai edisi tajwid berwarna. |
+| Madinah & tajwid | Gambar halaman Madinah beserta panel pendamping arti/kata/tajwid dan tombol membuka bacaan per ayat. Gambar halaman asli tetap tanpa pewarnaan; ini bukan pindai edisi tajwid berwarna. |
 | Hafalan 8 blok | Bacaan dipisahkan menjadi hingga delapan kelompok ayat untuk latihan lihat/sembunyikan; bukan reproduksi blok berwarna edisi cetak tertentu. Bacaan dengan kurang dari delapan ayat mempunyai lebih sedikit kelompok. |
 | Al-Qur’an Tikrar | Pengulangan audio dan penghitung latihan mandiri; bukan klaim salinan mushaf Tikrar berlisensi tertentu. |
 | Waqaf & ibtida | Tanda waqaf dari Quran Uthmani/Islamic Network ditampilkan sebagai anotasi hanya bila rasm ayat lengkap dan batas katanya selaras. Teks kanonis tetap utuh; tanda tidak dibuat berdasarkan tebakan. Belajar menyambung makna tetap memerlukan bimbingan guru. |
@@ -57,7 +57,7 @@ AI bacaan lokal, pemeriksaan mikrofon, Teman Belajar, tafsir, arti kata, warna t
 
 Hasil build, tes JVM/Compose, lint, pemeriksaan APK dan batas perangkat dicatat di [BUILD_VALIDATION.md](BUILD_VALIDATION.md). Hasil audit ayat, bantuan baca, pemetaan audio dan duplikasi ada di [AUDIT_1.3.1.md](AUDIT_1.3.1.md). Rujukan sumber ada di [DATA_SOURCES.md](DATA_SOURCES.md), [STUDY_DATA.md](STUDY_DATA.md) dan [AUDIO_CATALOG.md](AUDIO_CATALOG.md).
 
-## Desain 1.4.0
+## Desain 1.5.0
 
 Beranda memakai empat lanskap dari berkas desain sesuai jam setempat (05–10 pagi, 11–14 siang, 15–17 sore, selebihnya malam), jam/Hijriah, jadwal dan hitung mundur, tombol lokasi, azan, kiblat, pengaturan dan profil. Profil berisi nama panggilan dan lima ilustrasi avatar internal; tidak ada unggahan galeri, akun atau papan peringkat. Kuis dan progres tetap lokal.
 

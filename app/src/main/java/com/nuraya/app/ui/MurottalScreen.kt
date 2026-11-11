@@ -45,7 +45,8 @@ fun MurottalScreen(app: NurayaApplication, language: String, qariId: String, onQ
                 QariPortraitCredit(qari.id, language)
                 Spacer(Modifier.height(12.dp))
             }
-            Text(if (qari == null) label(language,"Temukan lantunan\npilihan Anda.","Find your\nfavourite recitation.") else qari.name, style = MaterialTheme.typography.headlineMedium)
+            if(qari==null) SectionArtwork("murottal","Murottal",label(language,"Temukan lantunan pilihan Anda.","Find your favourite recitation."))
+            else Text(qari.name,style=MaterialTheme.typography.headlineMedium)
             Spacer(Modifier.height(8.dp))
             Text(if (qari == null) label(language,"${choices.size} pilihan rekaman · 114 surah per pilihan","${choices.size} recitation editions · 114 surahs each") else label(language,"114 surah · pilih untuk mendengarkan","114 surahs · choose one to listen"), color = MaterialTheme.colorScheme.onSurfaceVariant)
             if (qari != null) Text(qari.description, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)

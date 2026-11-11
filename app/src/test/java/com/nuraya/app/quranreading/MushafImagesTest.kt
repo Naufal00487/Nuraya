@@ -31,6 +31,17 @@ class MushafImagesTest {
         assertEquals(1, images.firstReference(2).ayah)
     }
 
+    @Test fun explicitlySavedPageRetainsTheExactVerifiedSourceBytes() = runBlocking {
+        val images = MushafImages(context)
+        images.saveOffline(2)
+        val saved = java.io.File(context.filesDir, "madinah-saved-v1/002.png")
+        assertTrue(saved.isFile)
+        assertTrue(images.verified(2, saved.readBytes()))
+        images.saveOffline(2)
+        assertEquals(1, saved.parentFile!!.listFiles()!!.count { it.name == "002.png" })
+        assertTrue(saved.parentFile!!.listFiles()!!.none { it.extension == "tmp" })
+    }
+
     @Test fun bundledOriginalPagesMatchPinnedTreeAndCorruptionIsRejected() = runBlocking {
         val images = MushafImages(context)
         for (page in listOf(1, 2, 3, 604)) {

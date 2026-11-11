@@ -24,7 +24,7 @@ data class VerseTiming(val ayah: Int, val startMs: Long, val endMs: Long, val wo
         absolutePositionMs >= it.startMs && absolutePositionMs < it.endMs
     }?.position ?: 0
 }
-data class TimedChapter(val surah: Int, val audioUrl: String, val verses: List<VerseTiming>)
+data class TimedChapter(val surah: Int, val audioUrl: String, val verses: List<VerseTiming>, val source: String = "Quran.com · QuranicAudio")
 
 /** Metadata is bundled offline; recordings stream from the source URL paired with the timing. */
 class VerseAudioCatalog(context: Context) {
@@ -49,8 +49,14 @@ class VerseAudioCatalog(context: Context) {
         val root = assets.open("audio_timing/$folder/$surah.json").bufferedReader().use { JSONObject(it.readText()) }
         require(root.getInt("surah") == surah)
         val url = root.getString("audioUrl")
-        require(reciter.id == "ar.alafasy" && root.getInt("recitationId") == 7)
-        require(url == "https://download.quranicaudio.com/qdc/mishari_al_afasy/murattal/$surah.mp3")
+        if (reciter.id == "ar.alafasy") {
+            require(root.getInt("recitationId") == 7)
+            require(url == "https://download.quranicaudio.com/qdc/mishari_al_afasy/murattal/$surah.mp3")
+        } else {
+            require(root.getString("reciterId") == reciter.id && root.getString("sourceSlug") == folder)
+            val uri = java.net.URI(url)
+            require(uri.scheme == "https" && uri.host in setOf("download.quranicaudio.com", "audio-cdn.tarteel.ai", "cdn.mp3quran.net") && uri.path.endsWith(".mp3"))
+        }
         val array = root.getJSONArray("verses")
         val verses = List(array.length()) { index ->
             val item = array.getJSONObject(index)
@@ -65,7 +71,7 @@ class VerseAudioCatalog(context: Context) {
                 }
             }, usable = item.getBoolean("usable"))
         }
-        return TimedChapter(surah, url, verses)
+        return TimedChapter(surah, url, verses, root.optString("source", "Quran.com · QuranicAudio"))
     }
 }
 

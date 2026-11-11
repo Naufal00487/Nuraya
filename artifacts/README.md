@@ -1,8 +1,8 @@
 # APK Nuraya terbaru
 
-[Nuraya 1.4.0 — 51,4 MB](Nuraya-1.4.0.apk?raw=1), Android 8.0+, versionCode 9. [SHA-256](SHA256SUMS).
+[Nuraya 1.5.0 — 65,7 MB](Nuraya-1.5.0.apk?raw=1), Android 8.0+, versionCode 10. [SHA-256](SHA256SUMS).
 
-APK memakai sertifikat distribusi yang sama dengan versi sebelumnya. [Perubahan](../docs/UPDATE_1.4.0.md) dan [hasil validasi](../docs/BUILD_VALIDATION.md).
+APK memakai sertifikat distribusi yang sama dengan versi sebelumnya. [Perubahan](../docs/UPDATE_1.5.0.md) dan [hasil validasi](../docs/BUILD_VALIDATION.md).
 
 Mengedit source tidak otomatis memperbarui APK; build ulang setelah revisi. Keystore distribusi tidak disertakan dalam repository. Hanya APK versi terbaru disediakan pada folder ini; versi lama tetap berada pada riwayat Git.
 

@@ -15,7 +15,7 @@ from verify_audio_catalog import validate
 from verify_verse_audio import verify_catalog
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'docs/audit/1.4.0'
+OUT = ROOT / 'docs/audit/1.5.0'
 SAMPLE_EVIDENCE = ROOT / 'docs/audit/1.3.1'
 ASSETS = ROOT / 'app/src/main/assets'
 
@@ -154,7 +154,7 @@ def main():
     }
     OUT.mkdir(parents=True,exist_ok=True)
     (OUT / 'audio-identity.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
-    markdown = f'''# Audit identitas sumber audio Nuraya 1.4.0
+    markdown = f'''# Audit identitas sumber audio Nuraya 1.5.0
 
 Audit dapat diulang dengan `python3 scripts/audit-audio-identity.py`. Script ini membaca snapshot sumber dan bukti unduhan yang sudah dilakukan, tanpa mengubah aset aplikasi atau mengklaim pemeriksaan suara oleh manusia.
 

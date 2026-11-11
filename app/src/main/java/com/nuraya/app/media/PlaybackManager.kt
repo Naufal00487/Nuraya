@@ -95,6 +95,16 @@ class PlaybackManager(
         }
 
         override fun onPlayerError(error: PlaybackException) {
+            val player = controller
+            val fallback = player?.currentMediaItem?.let { individualVerseFallback(it, verseCatalog, quran) }
+            if (player != null && fallback != null) {
+                val index = player.currentMediaItemIndex
+                player.replaceMediaItem(index, fallback)
+                player.seekTo(index, 0L)
+                mutableState.update { it.copy(error = null, loading = true, wordPosition = 0, wordTimingAvailable = false, source = "Islamic Network") }
+                player.prepare(); player.play()
+                return
+            }
             mutableState.update {
                 it.copy(
                     isPlaying = false,
@@ -227,7 +237,7 @@ class PlaybackManager(
                             putInt("rangePass",index/((verse.end-verse.start+1)*verse.repeatEach)+1);putInt("rangePasses",verse.rangeRepeats)
                             putBoolean("wordTiming", timing != null)
                             putLong("clipStartMs", timing?.startMs ?: 0L)
-                            putString("source", if (timing != null) "Quran.com · QuranicAudio" else "Islamic Network")
+                            putString("source", if (timing != null) requireNotNull(chapter).source else "Islamic Network")
                         }
                         MediaItem.Builder()
                             .setMediaId("verse:${verse.reciter.id}:${verse.surah}:$ayah:$index")
@@ -440,4 +450,16 @@ class PlaybackManager(
             )
         }
     }
+}
+
+/** One fallback attempt, preserving selected identity and finite queue order. */
+internal fun individualVerseFallback(item: MediaItem, catalog: VerseAudioCatalog, quran: QuranRepository): MediaItem? {
+    val extras = item.mediaMetadata.extras ?: return null
+    if (!extras.getBoolean("verseMode") || !extras.getBoolean("wordTiming")) return null
+    val reciter = catalog.reciters.firstOrNull { it.id == extras.getString("qariId") } ?: return null
+    val verse = quran.verse(extras.getInt("surahId"), extras.getInt("ayahId")) ?: return null
+    val fallbackExtras = Bundle(extras).apply { putBoolean("wordTiming", false); putLong("clipStartMs", 0); putString("source", "Islamic Network") }
+    return item.buildUpon().setUri(reciter.audioUrl(verse.number))
+        .setClippingConfiguration(MediaItem.ClippingConfiguration.Builder().build())
+        .setMediaMetadata(item.mediaMetadata.buildUpon().setExtras(fallbackExtras).build()).build()
 }

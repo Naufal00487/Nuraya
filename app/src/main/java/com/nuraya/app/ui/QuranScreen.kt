@@ -171,11 +171,7 @@ private fun SurahRow(surah: Surah, language: String, onClick: () -> Unit) {
 }
 
 @Composable
-private fun NumberTile(number: Int) {
-    Box(Modifier.size(42.dp).background(MaterialTheme.colorScheme.primaryContainer, RoundedCornerShape(14.dp)), contentAlignment = Alignment.Center) {
-        Text(number.toString(), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
-    }
-}
+private fun NumberTile(number: Int) { SurahNumberMedallion(number) }
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -189,6 +185,7 @@ fun ReaderScreen(
     wordSyncReciterIds: Set<String> = emptySet(),
     readingModeId: String = "standard",
     onPracticeRange: ((Int, Int, Int, Int) -> Unit)? = null,
+    onOpenMushaf: ((Int, Int) -> Unit)? = null,
 ) {
     val mode = QuranReadingModes.find(readingModeId)
     val displaySettings = QuranReadingModes.settings(mode.id, settings)
@@ -255,6 +252,7 @@ fun ReaderScreen(
         }
     }
     Column(Modifier.fillMaxSize().testTag("reader_screen")) {
+        if (onOpenMushaf != null) TextButton(onClick = { verses.firstOrNull { it.ayah == ayahId }?.let { onOpenMushaf(it.surah, it.ayah) } ?: verses.firstOrNull()?.let { onOpenMushaf(it.surah, it.ayah) } }, modifier = Modifier.fillMaxWidth().testTag("open_book_mushaf")) { Text(label(language, "Buka tampilan kitab Madinah", "Open Madinah book view")) }
         Surface(color = MaterialTheme.colorScheme.surfaceContainerLow) {
             Row(Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 10.dp), verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {

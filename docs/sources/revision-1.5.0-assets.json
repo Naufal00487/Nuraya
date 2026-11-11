@@ -1,0 +1,137 @@
+{
+  "document": "revisi nuraya.docx",
+  "documentSha256": "722c9d81ce9ca95dd23594d510270a47cae3266dfb2c2c614fa78e1fb1360baf",
+  "media": [
+    "image12.jpeg",
+    "image2.jpeg",
+    "image21.jpeg",
+    "image3.jpeg",
+    "image16.jpeg",
+    "image15.jpeg",
+    "image6.jpeg",
+    "image1.jpeg",
+    "image17.jpeg",
+    "image31.jpeg",
+    "image13.jpeg",
+    "image9.jpeg",
+    "image10.jpeg",
+    "image23.jpeg",
+    "image20.jpeg",
+    "image18.jpeg",
+    "image24.jpeg",
+    "image7.jpeg",
+    "image26.jpeg",
+    "image29.jpeg",
+    "image27.jpeg",
+    "image25.jpeg",
+    "image32.jpeg",
+    "image8.jpeg",
+    "image4.jpeg",
+    "media",
+    "image5.jpeg",
+    "image30.jpeg",
+    "image22.jpeg",
+    "image28.jpeg",
+    "image11.jpeg",
+    "image33.jpeg",
+    "image19.jpeg",
+    "image14.jpeg"
+  ],
+  "assets": [
+    {
+      "path": "app/src/main/assets/brand/prayer_landscape.jpg",
+      "documentImage": 2,
+      "sha256": "8b6c40344f916fa4c8ec2fbbf8769c5ea539c28c99de47c86982235982865cb1"
+    },
+    {
+      "path": "app/src/main/assets/brand/quran_dark.jpg",
+      "documentImage": 3,
+      "sha256": "69765a59c7b90764afa0ed7118d67c169f3589985da2cb3e847a1cd56cd125a0"
+    },
+    {
+      "path": "app/src/main/assets/brand/quran_light.jpg",
+      "documentImage": 4,
+      "sha256": "654fad9de43cf257726a04ca02aca38bbe5f1ff308477bdeb8fe2bbebba1600f"
+    },
+    {
+      "path": "app/src/main/assets/brand/murottal_dark.jpg",
+      "documentImage": 17,
+      "sha256": "88f7ba6970a164782632dbfdd0f81a68e89baeca8d3e3d47fd03813860473717"
+    },
+    {
+      "path": "app/src/main/assets/brand/murottal_light.jpg",
+      "documentImage": 18,
+      "sha256": "a5bb549e551f45ed3b1a61ddd42b3faf123b2001e495766fb5c012b1d25a03b1"
+    },
+    {
+      "path": "app/src/main/assets/brand/splash.jpg",
+      "documentImage": 21,
+      "sha256": "8017d89ed05cdbbe3c968e88cfbeabad53ca245aa9db5e44e727d1ff61eee2ac"
+    },
+    {
+      "path": "app/src/main/assets/brand/covers/standard.jpg",
+      "documentImage": 5,
+      "sha256": "e3adf161299e16c5a5ec0b474a0fb14240ad89c02fd78e4298a879f5a901b265"
+    },
+    {
+      "path": "app/src/main/assets/brand/covers/word_tajwid.jpg",
+      "documentImage": 6,
+      "sha256": "81739649244b561c908ca0272923bd35105f091591884333f1fc048f5957563b"
+    },
+    {
+      "path": "app/src/main/assets/brand/covers/latin_tajwid.jpg",
+      "documentImage": 7,
+      "sha256": "c9b937820b35003d2ea99445ac950995b122ea820f1f92048e65db28f1c9ed1e"
+    },
+    {
+      "path": "app/src/main/assets/brand/covers/indonesia.jpg",
+      "documentImage": 8,
+      "sha256": "01258eaf70d3268b30729cea85effb689b00dbb3e34f5300b24e83c58c006afe"
+    },
+    {
+      "path": "app/src/main/assets/brand/covers/indonesia_tajwid.jpg",
+      "documentImage": 9,
+      "sha256": "27e7ea29c5a7c3ff3436695421e73e64b479707924ddfbb5dc2e1a4092265d22"
+    },
+    {
+      "path": "app/src/main/assets/brand/covers/madinah.jpg",
+      "documentImage": 10,
+      "sha256": "e9663bf4c0c1322cc862699d729b616f4f7856000a6ff645fe4486608932ad21"
+    },
+    {
+      "path": "app/src/main/assets/brand/covers/madinah_tajwid.jpg",
+      "documentImage": 11,
+      "sha256": "c90f02d7b2fb716dc8abbfc6e51a42e88a38f84772cf961fccd9f60fb637e1f4"
+    },
+    {
+      "path": "app/src/main/assets/brand/covers/hafalan_8.jpg",
+      "documentImage": 12,
+      "sha256": "65520b950baf53f712ee7de93f007c93a6045c7c9649ee0c98f1e363801ec080"
+    },
+    {
+      "path": "app/src/main/assets/brand/covers/tikrar.jpg",
+      "documentImage": 13,
+      "sha256": "8b3bd61fcbe661960d62f5c925d47d70b8bbefe8968c45287aa63eadee32562b"
+    },
+    {
+      "path": "app/src/main/assets/brand/covers/waqaf.jpg",
+      "documentImage": 14,
+      "sha256": "eb044debe68bcded5e191d0d5ea7305e92a8f39dc5529e8c7a6f223fc61afdd7"
+    },
+    {
+      "path": "app/src/main/assets/brand/covers/bahriyah.jpg",
+      "documentImage": 15,
+      "sha256": "dabbd99ea8ea5af35e194bb6eb8f001ad8302048bcae1f55eddf8766663f259d"
+    },
+    {
+      "path": "app/src/main/assets/brand/covers/thematic.jpg",
+      "documentImage": 16,
+      "sha256": "895be534a64fb4a4d7b71ea27cc9bf176651d94ca1f8078b985bac7b934b00ef"
+    }
+  ],
+  "notes": [
+    "Image5 caption mentions Madinah, but the supplied cover says Al-Quran per ayat; it is assigned to standard mode. Image10 is assigned to Madinah.",
+    "Cover illustrations are navigation artwork, not claims that every mode reproduces a particular printed edition.",
+    "Original extracted image bytes are retained."
+  ]
+}

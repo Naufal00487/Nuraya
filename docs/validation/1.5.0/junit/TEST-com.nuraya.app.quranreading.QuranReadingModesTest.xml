@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.quranreading.QuranReadingModesTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-11T13:55:30" hostname="e55d74a2cc33" time="0.721">
+  <properties/>
+  <testcase name="wordColorsAreClippedOnlyToExactSourceWordAndHonorDisabledColors" classname="com.nuraya.app.quranreading.QuranReadingModesTest" time="0.07"/>
+  <testcase name="stopAnnotationsPreserveCanonicalLettersAndExcludeSeenInsideWords" classname="com.nuraya.app.quranreading.QuranReadingModesTest" time="0.351"/>
+  <testcase name="learningBlocksPreserveEverySelectedVerseOnceAndInOrder" classname="com.nuraya.app.quranreading.QuranReadingModesTest" time="0.128"/>
+  <testcase name="thematicIndexContainsOnlyRealReferencesWithIndonesianTranslations" classname="com.nuraya.app.quranreading.QuranReadingModesTest" time="0.114"/>
+  <testcase name="tikrarCountsPersistAndStaySeparateForEachVerse" classname="com.nuraya.app.quranreading.QuranReadingModesTest" time="0.035"/>
+  <testcase name="readingModesDoNotOverwritePersonalPreferencesOrIgnoreColorOptOut" classname="com.nuraya.app.quranreading.QuranReadingModesTest" time="0.023"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

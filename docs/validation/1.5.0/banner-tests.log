@@ -1,0 +1,15 @@
+✔ only safe explicit destinations and bounded captions are accepted (3.47924ms)
+✔ webhook rejects missing/incorrect secret before any bot activity (78.797587ms)
+✔ non-admin private messages and admin messages from groups cannot mutate banners (0.480216ms)
+✔ public feed omits inactive banners, never exposes bot secrets and honors order (3.970169ms)
+✔ authenticated webhook rejects malformed and oversized payloads (2.314081ms)
+✔ duplicate photo delivery is idempotent without downloading again (0.214031ms)
+✔ authorized photo can be published, edited, disabled, reordered and deleted (9.307174ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 278.705102

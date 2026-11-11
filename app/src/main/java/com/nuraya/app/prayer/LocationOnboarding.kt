@@ -80,7 +80,10 @@ private fun LocationSetupFlow(
                     is DeviceLocationResult.Found -> {
                         found = result
                         // Read current preferences now, so Hijri and minute corrections survive the lookup.
-                        store.save(store.read().copy(location = result.location.copy(name = label(language, "Lokasi HP", "Device location"))))
+                        val name=DistrictNameResolver(context).resolve(result.location) ?: label(language,"Lokasi tersimpan","Saved location")
+                        val named=result.location.copy(name=name)
+                        found=result.copy(location=named)
+                        store.save(store.read().copy(location = named))
                         stage = LocationStage.FOUND
                     }
                     is DeviceLocationResult.Failed -> {

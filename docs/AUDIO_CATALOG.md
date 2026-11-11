@@ -26,7 +26,9 @@ Alafasy memakai data resmi Quran.com, recitation ID 7, dengan **URL rekaman Qura
 - Batas klip mencakup awal/akhir segmen sumber yang valid, sehingga kata pertama tidak terpotong oleh perbedaan puluhan milidetik pada metadata ayat.
 - Kasus sumber bermasalah termasuk 14:17, ketidakcocokan posisi 37:130, overlap antarayat, dan overlap posisi kata berbeda. Pemeriksaan menolak kasus ini secara konservatif.
 
-Qari lainnya menggunakan pergantian file ayat yang nyata dan sorotan ayat. Antarmuka menunjukkan kemampuan qari dan jenis sorotan pada ayat yang sedang diputar. Mode sinkron membutuhkan internet dan tidak memakai unduhan surah lama sebagai pengganti file pasangan timestamp.
+Sejak 1.5.0, sebelas qari tambahan mempunyai waktu kata dari QUD Technologies v4.0.0 (CC BY 4.0), dengan URL rekaman pasangannya. Sembilan qari lolos 6.230 ayat; Ahmed al-Ajmi dan Hani ar-Rifai lolos 6.229. Enam ketidakcocokan pemetaan kata serta ayat yang hilang pada sumber tetap memakai file individual/sorotan ayat. Pemetaan dibandingkan dengan kata kanonis, tanpa mengubah tulisan Quran atau menginterpolasi waktu.
+
+Lima qari masih per ayat: Ayman Sowaid, Ibrahim Akhdar, Muhammad Ayyoub, Muhammad Jibreel dan Parhizgar. Pasangan waktu/rekaman yang dapat diintegrasikan belum terverifikasi. Jika sumber rekaman bertanda waktu gagal diputar, aplikasi mencoba satu kali file ayat qari yang sama, menghapus sorotan kata yang tidak cocok, dan mempertahankan identitas serta urutan antrean. Antarmuka menunjukkan kemampuan qari dan jenis sorotan pada ayat yang sedang diputar. Mode sinkron membutuhkan internet dan tidak memakai unduhan surah lama sebagai pengganti file pasangan timestamp.
 
 ## Validasi dan batasnya
 
@@ -47,3 +49,6 @@ ffprobe memakai `-select_streams a` dan ffmpeg memakai `-map 0:a:0`; gambar samp
 ## Pengulangan hafalan 1.4.0
 
 Di Latihan → Hafalan, pengguna memilih rentang awal/akhir, jumlah 1–20 dan mode Per ayat atau Seluruh rentang. Pada Per ayat, 1–2 ×3 berarti `1,1,1,2,2,2`; pada Seluruh rentang, 1–5 ×3 berarti `1,2,3,4,5,1,2,3,4,5,1,2,3,4,5`. Antrean berakhir setelah jumlah tersebut, tanpa loop tak terbatas. Tombol seluruh surah memilih ayat 1 hingga ayat terakhir. Pemutar menampilkan putaran ketika rentang diulang, lalu menghapus status itu ketika beralih ke murottal surah.
+
+
+Sumber tambahan: [Quranic Universal Audio v4.0.0](https://github.com/QUD-Technologies/quranic-universal-audio/releases/tag/v4.0.0), [manifest](sources/qud-word-timing.json), [audit interval](audit/1.5.0/word-timing.json). Data waktu CC BY 4.0; rekaman tetap mengikuti hak penyedia/qari. Empat rekaman Al-Fatihah baru berhasil diunduh/didekode di host. Tujuh host lainnya dibatasi proxy cloud, termasuk setelah percobaan dengan akses tambahan; hasil ini tidak diklaim sebagai uji pemutaran Android. [Bukti sampel](audit/1.5.0/paired-audio-samples.json).

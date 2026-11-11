@@ -1,0 +1,67 @@
+{
+  "scope": "Source hashes, identity mapping, canonical word indices and boundaries; not human listening to every word.",
+  "additionalReciters": [
+    {
+      "reciterId": "ar.abdulsamad",
+      "usableVerses": 6230,
+      "fallbackVerses": 6
+    },
+    {
+      "reciterId": "ar.abdullahbasfar",
+      "usableVerses": 6230,
+      "fallbackVerses": 6
+    },
+    {
+      "reciterId": "ar.abdurrahmaansudais",
+      "usableVerses": 6230,
+      "fallbackVerses": 6
+    },
+    {
+      "reciterId": "ar.shaatree",
+      "usableVerses": 6230,
+      "fallbackVerses": 6
+    },
+    {
+      "reciterId": "ar.ahmedajamy",
+      "usableVerses": 6229,
+      "fallbackVerses": 7
+    },
+    {
+      "reciterId": "ar.hanirifai",
+      "usableVerses": 6229,
+      "fallbackVerses": 7
+    },
+    {
+      "reciterId": "ar.hudhaify",
+      "usableVerses": 6230,
+      "fallbackVerses": 6
+    },
+    {
+      "reciterId": "ar.husary",
+      "usableVerses": 6230,
+      "fallbackVerses": 6
+    },
+    {
+      "reciterId": "ar.husarymujawwad",
+      "usableVerses": 6230,
+      "fallbackVerses": 6
+    },
+    {
+      "reciterId": "ar.mahermuaiqly",
+      "usableVerses": 6230,
+      "fallbackVerses": 6
+    },
+    {
+      "reciterId": "ar.saoodshuraym",
+      "usableVerses": 6230,
+      "fallbackVerses": 6
+    }
+  ],
+  "unsupportedPerWord": [
+    "ar.aymanswoaid",
+    "ar.ibrahimakhbar",
+    "ar.muhammadayyoub",
+    "ar.muhammadjibreel",
+    "ar.parhizgar"
+  ]
+}

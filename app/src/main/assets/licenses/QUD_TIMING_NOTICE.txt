@@ -1,0 +1,17 @@
+Additional word timing data: QUD Technologies — Quranic Universal Audio v4.0.0.
+https://github.com/QUD-Technologies/quranic-universal-audio/releases/tag/v4.0.0
+Licensed under Creative Commons Attribution 4.0 International:
+https://creativecommons.org/licenses/by/4.0/
+
+DigitalKhatt v2 word script via QUL/Tarteel was used only to validate canonical
+word correspondence; Nuraya's Arabic Quran text is not replaced or altered.
+
+Changes: converted chapter data to Nuraya's verse clip/word interval format;
+retained only canonical occurrences; rejected mismatched word segmentation,
+missing verses, invalid or overlapping intervals; kept exact paired audio URLs.
+Source archive and chapter hashes are in docs/sources/qud-word-timing.json.
+No endorsement by QUD, QUL, the reciters or recording providers is implied.
+
+Audio recordings are not relicensed by this dataset and remain the property
+of their upstream sources and reciters. Their URLs are used for streaming;
+the recordings are not bundled in Nuraya's APK.

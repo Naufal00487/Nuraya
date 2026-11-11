@@ -1,0 +1,1109 @@
+{
+  "scope": "Offline verification of pinned provider metadata, exact URLs and previously completed HTTP/decode evidence; no human voice identification or certification of pronunciation.",
+  "inputs": {
+    "app/src/main/assets/reciters.json": "ef151d8de9f285718f877e0217a4b056b525b7f22274ed2ba5579f24cd3d901c",
+    "app/src/main/assets/verse_reciters.json": "913cbd99054b2510079a7cd19945315c6223eee03723f9ba7865196f53b9a5bd",
+    "docs/sources/islamic-network-surah-manifest.json": "6f183510806ab226e3df8be6675cd222e35209123f5153f51aa1b8b08005e25a",
+    "docs/sources/islamic-network-audio-editions.json": "8f53227df80805a0d5592c8db0ef41adf9b6d416cdc196c840b2c991def12c58",
+    "docs/audit/1.3.1/audio-full-samples.json": "4724edfc64fea7158ff6caf294c4dcdb326cb9a7e188e5e1aea1465914b10d68",
+    "docs/audit/1.3.1/verse-audio-samples.json": "032fbb13597697d18800ec7d61c15aae43f8df8e0b06dc9ee2bdcb8fa5736195",
+    "app/src/main/assets/portraits/catalog.json": "ca44b22469637b7929375639b99306fdae9117a7deb66eeb89dba00f10f0771b"
+  },
+  "surahCatalog": {
+    "recordingEditionIds": 138,
+    "uniqueIds": 138,
+    "surahsPerEdition": 114,
+    "manifestFiles": 15732,
+    "allIdsMatchProviderMetadata": true,
+    "curatedDisplayNames": [
+      {
+        "id": "ar.alafasy",
+        "appName": "Mishary Rashid Alafasy",
+        "providerName": "Alafasy"
+      },
+      {
+        "id": "ar.abdulbasitmurattal",
+        "appName": "Abdul Basit Abdus Samad",
+        "providerName": "Abdul Basit"
+      },
+      {
+        "id": "ar.saudalshuraim",
+        "appName": "Saud Al-Shuraim",
+        "providerName": "Saud ash-Shuraim"
+      },
+      {
+        "id": "ar.muhammadsiddiqalminshawimujawwad",
+        "appName": "Muhammad Siddiq Al-Minshawi",
+        "providerName": "Muhammad Siddiq al-Minshawi (Mujawwad)"
+      },
+      {
+        "id": "ar.ahmedalajmi",
+        "appName": "Ahmed Al-Ajmi",
+        "providerName": "Ahmed al-Ajmi"
+      },
+      {
+        "id": "ar.aliabdurrahmanalhuthaify",
+        "appName": "Ali Abdurrahman Al-Hudhaify",
+        "providerName": "Ali Abdur-Rahman al-Huthaify"
+      },
+      {
+        "id": "ar.nasseralqatami",
+        "appName": "Nasser Al-Qatami",
+        "providerName": "Nasser al-Qatami"
+      },
+      {
+        "id": "ar.yasseraldossari",
+        "appName": "Yasser Al-Dossari",
+        "providerName": "Yasser ad-Dossari"
+      },
+      {
+        "id": "ar.haniarrifai",
+        "appName": "Hani Ar-Rifai",
+        "providerName": "Hani ar-Rifai"
+      }
+    ],
+    "otherRiwayatExplicitlyLabeled": [
+      {
+        "id": "ar.abdurrasheedsufiabialhaarithanalkasaaee",
+        "name": "Abdur-Rasheed Sufi (Abul-Harith from al-Kisa'i)",
+        "description": "Qiraat lain · 128 kbps"
+      },
+      {
+        "id": "ar.abdurrasheedsufiaddoorianabiamr",
+        "name": "Abdur-Rasheed Sufi (ad-Doori from Abu Amr)",
+        "description": "Qiraat lain · 128 kbps"
+      },
+      {
+        "id": "ar.abdurrasheedsufishubahanasim",
+        "name": "Abdur-Rasheed Sufi (Shu'bah from Asim)",
+        "description": "Qiraat lain · 128 kbps"
+      },
+      {
+        "id": "ar.abdurrasheedsufisoosi",
+        "name": "Abdur-Rasheed Sufi (as-Soosi)",
+        "description": "Qiraat lain · 128 kbps"
+      },
+      {
+        "id": "ar.aliabdurrahmanalhuthaifyqaloon",
+        "name": "Ali Abdur-Rahman al-Huthaify (Qaloon)",
+        "description": "Riwayat Qaloon · 128 kbps"
+      }
+    ]
+  },
+  "surahSamples": {
+    "checkedAt": "2026-11-04T11:55:26.354674+00:00",
+    "fullDownloadsAndHostDecodesPassed": 138,
+    "failed": 0,
+    "sampledSurah": 1,
+    "identicalSampleGroups": [
+      {
+        "sha256": "7c2e67cbde506d25f7e181c3ce876c2a9943a5529ee24a753b2856075a4567fa",
+        "ids": [
+          "ar.alafasy",
+          "ar.misharyrashidalafasy"
+        ],
+        "scope": "Complete Al-Fatihah MP3 bytes only"
+      }
+    ]
+  },
+  "verseCatalog": {
+    "recordingEditionIds": 17,
+    "individualFilesPerEdition": 6236,
+    "allIdsMatchProviderMetadata": true,
+    "wordTimingEditionIds": [
+      "ar.alafasy",
+      "ar.abdulsamad",
+      "ar.abdullahbasfar",
+      "ar.abdurrahmaansudais",
+      "ar.shaatree",
+      "ar.ahmedajamy",
+      "ar.hanirifai",
+      "ar.hudhaify",
+      "ar.husary",
+      "ar.husarymujawwad",
+      "ar.mahermuaiqly",
+      "ar.saoodshuraym"
+    ]
+  },
+  "verseSamples": {
+    "checkedAt": "2026-11-05T06:30:25.354540+00:00",
+    "fullDownloadsAndHostDecodesPassed": 22,
+    "failed": 0,
+    "individualAyahSamples": 17,
+    "timedChapterSamples": 3,
+    "sameQariFallbackSamples": 2,
+    "urlsMatchRequestedEditionsAndReferences": true
+  },
+  "portraits": {
+    "images": 134,
+    "explicitMappedEditionIds": 140,
+    "duplicateMappings": 0,
+    "bundledBytesMatchPinnedChecksums": true,
+    "mappings": [
+      {
+        "id": "alafasy",
+        "quranComProfile": 7,
+        "editionIds": [
+          "ar.alafasy",
+          "ar.misharyrashidalafasy"
+        ]
+      },
+      {
+        "id": "abdulbasit",
+        "quranComProfile": 2,
+        "editionIds": [
+          "ar.abdulbasitmurattal",
+          "ar.abdulbasitmujawwad",
+          "ar.abdulsamad"
+        ]
+      },
+      {
+        "id": "sudais",
+        "quranComProfile": 3,
+        "editionIds": [
+          "ar.abdurrahmaansudais"
+        ]
+      },
+      {
+        "id": "shatri",
+        "quranComProfile": 4,
+        "editionIds": [
+          "ar.shaatree"
+        ]
+      },
+      {
+        "id": "rifai",
+        "quranComProfile": 5,
+        "editionIds": [
+          "ar.haniarrifai",
+          "ar.hanirifai"
+        ]
+      },
+      {
+        "id": "husary",
+        "quranComProfile": 6,
+        "editionIds": [
+          "ar.husary",
+          "ar.husarymujawwad"
+        ]
+      },
+      {
+        "id": "minshawi",
+        "quranComProfile": 9,
+        "editionIds": [
+          "ar.muhammadsiddiqalminshawimujawwad"
+        ]
+      },
+      {
+        "id": "shuraim",
+        "quranComProfile": 10,
+        "editionIds": [
+          "ar.saudalshuraim",
+          "ar.saoodshuraym"
+        ]
+      },
+      {
+        "id": "user_001",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.ahmedalajmi"
+        ]
+      },
+      {
+        "id": "user_002",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.abdullahbasfar"
+        ]
+      },
+      {
+        "id": "user_003",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.aliabdurrahmanalhuthaify"
+        ]
+      },
+      {
+        "id": "user_004",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.faresabbad"
+        ]
+      },
+      {
+        "id": "user_005",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.muhammadayyub"
+        ]
+      },
+      {
+        "id": "user_006",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.nasseralqatami"
+        ]
+      },
+      {
+        "id": "user_007",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.yasseraldossari"
+        ]
+      },
+      {
+        "id": "user_008",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.abdulazizazzahrani"
+        ]
+      },
+      {
+        "id": "user_009",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.abdulbariaththubaity"
+        ]
+      },
+      {
+        "id": "user_010",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.abdulkareemalhazmi"
+        ]
+      },
+      {
+        "id": "user_011",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.abdullahalmatrood"
+        ]
+      },
+      {
+        "id": "user_012",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.abdullahawadaljuhani"
+        ]
+      },
+      {
+        "id": "user_013",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.abdullahkhayat"
+        ]
+      },
+      {
+        "id": "user_014",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.abdullahkhulaifi"
+        ]
+      },
+      {
+        "id": "user_015",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.abdulmunimabdulmubdi"
+        ]
+      },
+      {
+        "id": "user_016",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.abdulwadoodhaneef"
+        ]
+      },
+      {
+        "id": "user_017",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.abdurrasheedsufiabialhaarithanalkasaaee"
+        ]
+      },
+      {
+        "id": "user_018",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.abdurrasheedsufiaddoorianabiamr"
+        ]
+      },
+      {
+        "id": "user_019",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.abdurrasheedsufishubahanasim"
+        ]
+      },
+      {
+        "id": "user_020",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.abdurrasheedsufisoosi"
+        ]
+      },
+      {
+        "id": "user_021",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.abuabdullahmuniraltounsi"
+        ]
+      },
+      {
+        "id": "user_022",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.abubakraldhabi"
+        ]
+      },
+      {
+        "id": "user_023",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.adilkalbani"
+        ]
+      },
+      {
+        "id": "user_024",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.ahmadalhawashy"
+        ]
+      },
+      {
+        "id": "user_025",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.ahmadkhaderaltarabulsi"
+        ]
+      },
+      {
+        "id": "user_026",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.ahmadsulaiman"
+        ]
+      },
+      {
+        "id": "user_027",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.ahmedalhammad"
+        ]
+      },
+      {
+        "id": "user_028",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.ahmedalmisbahi"
+        ]
+      },
+      {
+        "id": "user_029",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.ahmedamir"
+        ]
+      },
+      {
+        "id": "user_030",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.ahmedmohamedsalama"
+        ]
+      },
+      {
+        "id": "user_031",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.ahmedsaber"
+        ]
+      },
+      {
+        "id": "user_032",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.alashryomran"
+        ]
+      },
+      {
+        "id": "user_033",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.alfatehmuhammadzubair"
+        ]
+      },
+      {
+        "id": "user_034",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.alhusaynialazazi"
+        ]
+      },
+      {
+        "id": "user_035",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.alhusaynialazazichildren"
+        ]
+      },
+      {
+        "id": "user_036",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.aliabdurrahmanalhuthaifyqaloon"
+        ]
+      },
+      {
+        "id": "user_037",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.alihajjajsouissi"
+        ]
+      },
+      {
+        "id": "user_038",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.alzainmohamedahmed"
+        ]
+      },
+      {
+        "id": "user_039",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.aymanswed"
+        ]
+      },
+      {
+        "id": "user_040",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.azizalili"
+        ]
+      },
+      {
+        "id": "user_041",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.basselabdulrahmanraoui"
+        ]
+      },
+      {
+        "id": "user_042",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.benkirane"
+        ]
+      },
+      {
+        "id": "user_043",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.darwishfarajdarwishalattar"
+        ]
+      },
+      {
+        "id": "user_044",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.emadalmansary"
+        ]
+      },
+      {
+        "id": "user_045",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.fouadalkhamiri"
+        ]
+      },
+      {
+        "id": "user_046",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.hamadsinan"
+        ]
+      },
+      {
+        "id": "user_047",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.hamdyalsayedtolbasaad"
+        ]
+      },
+      {
+        "id": "user_048",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.hasanhashem"
+        ]
+      },
+      {
+        "id": "user_049",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.hassansaleh"
+        ]
+      },
+      {
+        "id": "user_050",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.hatemfarid"
+        ]
+      },
+      {
+        "id": "user_051",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.ibrahimalakhdar"
+        ]
+      },
+      {
+        "id": "user_052",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.ibrahimaldossari"
+        ]
+      },
+      {
+        "id": "user_053",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.ibrahimaljormy"
+        ]
+      },
+      {
+        "id": "user_054",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.ilhantok"
+        ]
+      },
+      {
+        "id": "user_055",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.imadzuhairhafez"
+        ]
+      },
+      {
+        "id": "user_056",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.jamaanalosaimi"
+        ]
+      },
+      {
+        "id": "user_057",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.jamalshakerabdullah"
+        ]
+      },
+      {
+        "id": "user_058",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.jazzaalswaileh"
+        ]
+      },
+      {
+        "id": "user_059",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.kamel"
+        ]
+      },
+      {
+        "id": "user_060",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.khaledalqahtani"
+        ]
+      },
+      {
+        "id": "user_061",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.khaledbarakat"
+        ]
+      },
+      {
+        "id": "user_062",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.khalidabdulkafi"
+        ]
+      },
+      {
+        "id": "user_063",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.khalidaljalil"
+        ]
+      },
+      {
+        "id": "user_064",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.khalidalmohanna"
+        ]
+      },
+      {
+        "id": "user_065",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.laayounelkouchi"
+        ]
+      },
+      {
+        "id": "user_066",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.mahershakhashiro"
+        ]
+      },
+      {
+        "id": "user_067",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.mahmoodalrifai"
+        ]
+      },
+      {
+        "id": "user_068",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.mahmoudalialbanna"
+        ]
+      },
+      {
+        "id": "user_069",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.mahmoudelsheimy"
+        ]
+      },
+      {
+        "id": "user_070",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.mahmoudsaaddarouich"
+        ]
+      },
+      {
+        "id": "user_072",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.moeedhalharthi"
+        ]
+      },
+      {
+        "id": "user_073",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.mohamedabdelaziz"
+        ]
+      },
+      {
+        "id": "user_074",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.mohamedaljaberyalheyani"
+        ]
+      },
+      {
+        "id": "user_075",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.mohamedalmohisni"
+        ]
+      },
+      {
+        "id": "user_076",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.mohamedelkantaoui"
+        ]
+      },
+      {
+        "id": "user_077",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.mohamedhassan"
+        ]
+      },
+      {
+        "id": "user_078",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.mohamedmaabad"
+        ]
+      },
+      {
+        "id": "user_079",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.mohamedosmankhan"
+        ]
+      },
+      {
+        "id": "user_080",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.mohamedshaabanabuqarn"
+        ]
+      },
+      {
+        "id": "user_081",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.mohamedtablawi"
+        ]
+      },
+      {
+        "id": "user_082",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.mohammadismaeelalmuqaddim"
+        ]
+      },
+      {
+        "id": "user_083",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.mohammadrachadalshareef"
+        ]
+      },
+      {
+        "id": "user_084",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.mohammedbinsalehabuzaid"
+        ]
+      },
+      {
+        "id": "user_085",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.muftahalsaltany"
+        ]
+      },
+      {
+        "id": "user_086",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.muhammadabdulkareem"
+        ]
+      },
+      {
+        "id": "user_087",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.muhammadalaalimaldokali"
+        ]
+      },
+      {
+        "id": "user_088",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.muhammadalluhaidan"
+        ]
+      },
+      {
+        "id": "user_089",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.muhammadalmehysni"
+        ]
+      },
+      {
+        "id": "user_090",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.muhammadalsubayyil"
+        ]
+      },
+      {
+        "id": "user_091",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.muhammadanwarshahat"
+        ]
+      },
+      {
+        "id": "user_092",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.muhammadsalehalimshah"
+        ]
+      },
+      {
+        "id": "user_094",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.musabilal"
+        ]
+      },
+      {
+        "id": "user_095",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.mustafaallahouni"
+        ]
+      },
+      {
+        "id": "user_096",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.mustafaismail"
+        ]
+      },
+      {
+        "id": "user_097",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.mustafaraadalazzawi"
+        ]
+      },
+      {
+        "id": "user_098",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.mustaphagharbi"
+        ]
+      },
+      {
+        "id": "user_099",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.nabilarrifai"
+        ]
+      },
+      {
+        "id": "user_100",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.neamahalhassan"
+        ]
+      },
+      {
+        "id": "user_101",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.obeikan"
+        ]
+      },
+      {
+        "id": "user_102",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.omaralkazabri"
+        ]
+      },
+      {
+        "id": "user_103",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.osamabinalialghanim"
+        ]
+      },
+      {
+        "id": "user_104",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.rachidbelalia"
+        ]
+      },
+      {
+        "id": "user_105",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.sadaqatali"
+        ]
+      },
+      {
+        "id": "user_106",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.sahlyasin"
+        ]
+      },
+      {
+        "id": "user_107",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.saidalshaalan"
+        ]
+      },
+      {
+        "id": "user_108",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.salahalbudair"
+        ]
+      },
+      {
+        "id": "user_109",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.salahalhashem"
+        ]
+      },
+      {
+        "id": "user_110",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.salahbaothman"
+        ]
+      },
+      {
+        "id": "user_111",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.samirbelaachya"
+        ]
+      },
+      {
+        "id": "user_112",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.sayedramadan"
+        ]
+      },
+      {
+        "id": "user_113",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.shahriarparhizgar"
+        ]
+      },
+      {
+        "id": "user_114",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.tamerislam"
+        ]
+      },
+      {
+        "id": "user_115",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.tareqabdulganidaawob"
+        ]
+      },
+      {
+        "id": "user_116",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.tawfeeqassayegh"
+        ]
+      },
+      {
+        "id": "user_117",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.turkiebeidalmarri"
+        ]
+      },
+      {
+        "id": "user_120",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.waleedidreesalmaneese"
+        ]
+      },
+      {
+        "id": "user_121",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.waleednaehi"
+        ]
+      },
+      {
+        "id": "user_122",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.waleedsamiraliabdulmajidsorour"
+        ]
+      },
+      {
+        "id": "user_123",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.walidalshatti"
+        ]
+      },
+      {
+        "id": "user_125",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.yahyahawwa"
+        ]
+      },
+      {
+        "id": "user_126",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.yassenaljazairi"
+        ]
+      },
+      {
+        "id": "user_127",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.yasserqureshi"
+        ]
+      },
+      {
+        "id": "user_128",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.yassersalama"
+        ]
+      },
+      {
+        "id": "user_129",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.yassersarhaneldeeb"
+        ]
+      },
+      {
+        "id": "user_130",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.yousufalshoaey"
+        ]
+      },
+      {
+        "id": "user_131",
+        "quranComProfile": null,
+        "editionIds": [
+          "ar.yousufbinnoahahmad"
+        ]
+      }
+    ]
+  },
+  "appFixes": [
+    {
+      "finding": "Two same-person Alafasy aliases have byte-identical Al-Fatihah samples.",
+      "fix": "The visible qari list omits ar.misharyrashidalafasy when ar.alafasy exists: 137 visible choices. All 138 original IDs remain resolvable for saved content. This does not assert all 114 chapter files are identical.",
+      "regressionTest": "QaQuranRepositoryTest.theKnownAlafasyAliasHasOneVisibleCardWhileExistingIdsStillResolve"
+    },
+    {
+      "finding": "An unavailable verse reciter ID previously fell back silently to Alafasy.",
+      "fix": "PlaybackManager stops pending/current playback and reports an unavailable reciter instead of substituting another voice.",
+      "regressionTest": "PlaybackIdentityTest"
+    }
+  ],
+  "limitations": [
+    "A matching provider edition ID and successful MP3 decode do not establish the speaker identity by listening.",
+    "138 complete Al-Fatihah files were tested, not all 15,732 chapter files; availability can change after the recorded check.",
+    "22 individual/timed/fallback audio samples were tested, not every clip from the 17 verse editions.",
+    "Host decode is not real Android device playback testing.",
+    "The 137 visible choices are recording editions, not necessarily 137 different people. Legitimate murattal/mujawwad and riwayat editions are retained.",
+    "Portrait checks verify explicit profile mapping and stored image checksums, not an independent human face identification audit."
+  ]
+}

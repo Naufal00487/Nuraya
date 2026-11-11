@@ -39,6 +39,52 @@ class VerseAudioCatalogTest {
         assertTrue(segments > 77000)
     }
 
+    @Test fun addedQarisUseTheirOwnPinnedSourcesAndCanonicalWordPositions() {
+        val catalog = VerseAudioCatalog(context)
+        val quran = QuranRepository(context)
+        val study = com.nuraya.app.study.StudyRepository(context)
+        val added = catalog.reciters.filter { it.supportsWordSync && it.id != "ar.alafasy" }
+        assertEquals(11, added.size)
+        val urls = mutableSetOf<String>()
+        for (reciter in added) {
+            var safe = 0
+            for (surah in quran.surahs) {
+                val chapter = requireNotNull(catalog.timing(reciter, surah.id))
+                assertEquals(surah.ayahCount, chapter.verses.size)
+                assertFalse(chapter.audioUrl.contains("mishari_al_afasy"))
+                if (surah.id == 1) assertTrue(urls.add(chapter.audioUrl))
+                val words = study.chapter(surah.id)
+                for (v in chapter.verses.filter { it.usable }) {
+                    assertEquals(words[v.ayah - 1].words.map { it.position }.toSet(), v.words.map { it.position }.toSet())
+                    assertTrue(v.words.all { it.startMs >= v.startMs && it.endMs <= v.endMs })
+                    assertTrue(v.words.zipWithNext().all { (a, b) -> a.endMs <= b.startMs })
+                    safe++
+                }
+            }
+            assertTrue("${reciter.id} must have extensive validated coverage", safe > 6200)
+        }
+    }
+
+    @Test fun pairedSourceFailureKeepsReciterAndDropsIncompatibleTimingExactlyOnce() {
+        val catalog = VerseAudioCatalog(context)
+        val quran = QuranRepository(context)
+        val extras = android.os.Bundle().apply {
+            putBoolean("verseMode", true); putBoolean("wordTiming", true)
+            putString("qariId", "ar.abdullahbasfar"); putInt("surahId", 2); putInt("ayahId", 255)
+            putInt("rangePass", 2); putInt("rangePasses", 3)
+        }
+        val original = androidx.media3.common.MediaItem.Builder().setMediaId("chosen-verse")
+            .setUri("https://download.quranicaudio.com/quran/abdullaah_basfar/002.mp3")
+            .setClippingConfiguration(androidx.media3.common.MediaItem.ClippingConfiguration.Builder().setStartPositionMs(5000).setEndPositionMs(9000).build())
+            .setMediaMetadata(androidx.media3.common.MediaMetadata.Builder().setExtras(extras).build()).build()
+        val fallback = requireNotNull(individualVerseFallback(original, catalog, quran))
+        assertTrue(fallback.localConfiguration!!.uri.toString().contains("/ar.abdullahbasfar/262.mp3"))
+        assertEquals(0L, fallback.clippingConfiguration.startPositionMs)
+        assertEquals(2, fallback.mediaMetadata.extras!!.getInt("rangePass"))
+        assertFalse(fallback.mediaMetadata.extras!!.getBoolean("wordTiming"))
+        assertNull(individualVerseFallback(fallback, catalog, quran))
+    }
+
     @Test fun silenceAndUnmappedTimesDoNotInventWordHighlights() {
         val timing = VerseTiming(1, 100, 500, listOf(WordTiming(1, 120, 190), WordTiming(2, 230, 380)))
         assertEquals(0, timing.wordAt(119))

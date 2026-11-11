@@ -46,6 +46,12 @@ class MushafImages(private val context: Context) {
         val name = "%03d".format(java.util.Locale.US, page) + if (pages[page - 1].url.endsWith(".jpg")) ".jpg" else ".png"
         val bundled = try { context.assets.open("mushaf/$name").use { it.readBytes() } } catch (_: java.io.FileNotFoundException) { null }
         if (bundled != null && verified(page, bundled)) return@withContext decode(bundled)
+        val saved = File(context.filesDir, "madinah-saved-v1/$name")
+        if (saved.isFile) {
+            val bytes = saved.readBytes()
+            if (verified(page, bytes)) return@withContext decode(bytes)
+            saved.delete()
+        }
         val directory = File(context.cacheDir, "madinah-v1").apply { mkdirs() }
         val file = File(directory, name)
         if (file.exists()) {
@@ -94,6 +100,22 @@ class MushafImages(private val context: Context) {
             if (old.delete()) total -= length
         }
         bitmap
+    }
+
+    /** Explicitly saved pages survive the bounded recent-page cache. */
+    suspend fun saveOffline(page: Int) = withContext(Dispatchers.IO) {
+        require(page in 1..604)
+        val name = "%03d".format(java.util.Locale.US, page) + if (pages[page - 1].url.endsWith(".jpg")) ".jpg" else ".png"
+        val directory = File(context.filesDir, "madinah-saved-v1").apply { check(mkdirs() || isDirectory) }
+        val target = File(directory, name)
+        if (target.isFile && verified(page, target.readBytes())) return@withContext
+        load(page).recycle()
+        val bytes = try { context.assets.open("mushaf/$name").use { it.readBytes() } }
+            catch (_: java.io.FileNotFoundException) { File(context.cacheDir, "madinah-v1/$name").readBytes() }
+        check(verified(page, bytes))
+        val temp = File.createTempFile("save-", ".tmp", directory)
+        try { temp.writeBytes(bytes); check(temp.renameTo(target)) }
+        finally { temp.delete() }
     }
 
     private fun decode(bytes: ByteArray): Bitmap {

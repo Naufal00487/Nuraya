@@ -4,6 +4,9 @@ import android.graphics.BitmapFactory
 import android.graphics.Bitmap
 import android.util.LruCache
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.platform.testTag
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
@@ -24,7 +27,13 @@ fun rememberAssetBitmap(path: String): ImageBitmap? {
         value = withContext(Dispatchers.IO) {
             synchronized(brandCache) {
                 runCatching {
-                    val bitmap=brandCache.get(path) ?: context.assets.open(path).use { BitmapFactory.decodeStream(it) }?.also{brandCache.put(path,it)}
+                    val bitmap=brandCache.get(path) ?: context.assets.open(path).use { input ->
+                        val bytes=input.readBytes()
+                        val bounds=BitmapFactory.Options().apply{inJustDecodeBounds=true}
+                        BitmapFactory.decodeByteArray(bytes,0,bytes.size,bounds)
+                        val options=BitmapFactory.Options().apply{while(bounds.outWidth/inSampleSize.coerceAtLeast(1)>1600)inSampleSize=inSampleSize.coerceAtLeast(1)*2}
+                        BitmapFactory.decodeByteArray(bytes,0,bytes.size,options)
+                    }?.also{brandCache.put(path,it)}
                     bitmap?.asImageBitmap()
                 }.getOrNull()
             }
@@ -35,7 +44,8 @@ fun rememberAssetBitmap(path: String): ImageBitmap? {
 
 @Composable
 fun BrandImage(name: String, modifier: Modifier = Modifier, scale: ContentScale = ContentScale.Crop, description: String? = null) {
-    rememberAssetBitmap("brand/$name.jpg")?.let { Image(it, description, modifier, contentScale = scale) }
+    val bitmap = rememberAssetBitmap("brand/$name.jpg")
+    Box(modifier) { bitmap?.let { Image(it, description, Modifier.fillMaxSize().testTag("brand_image_$name"), contentScale = scale) } }
 }
 
 fun landscapeForHour(hour: Int): String = when (hour) {

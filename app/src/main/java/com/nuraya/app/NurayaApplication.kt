@@ -16,6 +16,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.CancellationException
 
 class NurayaApplication : Application() {
+    // Show the launch scene once per process, not again on a reader rotation.
+    internal var launchArtworkShown = false
     private val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     val quran by lazy { QuranRepository(this) }
     val study by lazy { StudyRepository(this) }

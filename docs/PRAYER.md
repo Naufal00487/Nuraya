@@ -2,7 +2,7 @@
 
 Fitur Ibadah menggunakan perhitungan lokal. Sejak 1.3.1, saat pemakaian pertama Nuraya menjelaskan dan meminta izin lokasi Android untuk mengisi koordinat secara otomatis. Pilihan lokasi akurat atau perkiraan dihormati. Lokasi hanya diminta saat pengguna mengaktifkannya, tidak dilacak di latar belakang, dan tidak diunggah oleh Nuraya. Posisi tersimpan tidak diganti dengan koordinat tebakan. Jika izin ditolak, layanan Lokasi mati, atau koordinat tidak tersedia, aplikasi memberi tombol izin/pengaturan/coba lagi; Al-Qur’an tetap dapat dibaca. Lima belas kota serta koordinat manual tetap tersedia sebagai alternatif.
 
-Lokasi memakai layanan Android GPS/network, tanpa ketergantungan Google Play Services atau reverse geocoding. Hanya posisi berumur paling lama dua menit dengan perkiraan akurasi yang memenuhi batas yang diterima. Zona waktu mengikuti pengaturan HP dan ditampilkan saat posisi ditemukan; aplikasi tidak menebak zona dari bujur. Koreksi Hijriah/menit pengguna dipertahankan. Permintaan lokasi dihentikan setelah hasil, batas waktu, pembatalan atau layar berhenti. Pembaruan lokasi saat bepergian tersedia di Ibadah → Lokasi → Gunakan lokasi HP.
+Lokasi memakai layanan Android GPS/network, tanpa ketergantungan Google Play Services. Sejak 1.5.0, Android Geocoder mencari nama kecamatan dari koordinat, dengan batas waktu enam detik. Layanan Android dapat menggunakan internet untuk pencarian alamat. Nama disimpan lokal; tidak ada server lokasi Nuraya. Jika nama tidak tersedia, koordinat yang valid tetap dipakai dengan label “Lokasi tersimpan”, tanpa nama tebakan. Hanya posisi berumur paling lama dua menit dengan perkiraan akurasi yang memenuhi batas yang diterima. Zona waktu mengikuti pengaturan HP dan ditampilkan saat posisi ditemukan; aplikasi tidak menebak zona dari bujur. Koreksi Hijriah/menit pengguna dipertahankan. Permintaan lokasi dihentikan setelah hasil, batas waktu, pembatalan atau layar berhenti. Pembaruan lokasi saat bepergian tersedia di Ibadah → Lokasi → Gunakan lokasi HP.
 
 ## Jam dan kalender
 
@@ -31,3 +31,10 @@ Ikon pengeras suara pada beranda awalnya nonaktif. Mengaktifkannya memerlukan lo
 Suara memakai rekaman Makkah yang dibundel dari DBChoco/Muezzin pada commit yang dicatat di `docs/sources/adhan-recording.json`; lisensi proyek sumber ikut dibundel. Ini bukan klaim identitas personal muazin. Audio mengikuti volume alarm HP, memakai fokus audio dan foreground service dengan tombol Hentikan azan, lalu melepas pemutar ketika selesai. Jadwal tidak mengharuskan internet setelah lokasi dipilih. Pembatasan sistem/hemat baterai dan kondisi perangkat nyata tetap perlu diperiksa pada HP pengguna.
 
 `AdhanReminderTest` memeriksa keadaan awal nonaktif, satu alarm berikutnya, penggantian tanpa duplikasi, pembatalan, tidak memulai layanan tanpa lokasi/dengan alarm kedaluwarsa, serta pencabutan izin notifikasi. Tes ini tidak mengklaim pengeras suara HP nyata sudah diuji.
+
+
+## Revisi pengingat 1.5.0
+
+Lima sakelar Subuh, Zuhur, Asar, Magrib dan Isya mengatur pengingat masing-masing. Setiap pilihan menjadwalkan pengingat 10 menit sebelumnya dan tepat saat waktu salat. Satu alarm terdekat aktif pada satu waktu; penerima memeriksa kunci jadwal dan batas keterlambatan dua menit, menjadwalkan acara berikutnya, lalu mengganti notifikasi awal dengan notifikasi masuk waktu. Tidak ada notifikasi Terbit. Mematikan suara azan mempertahankan pilihan notifikasi. Mematikan seluruh pilihan membatalkan alarm dan suara. Izin notifikasi/alarm tepat waktu tetap mengikuti Android; pencabutan izin menonaktifkan pengingat.
+
+Tes juga mencakup pilihan salat terpisah, peralihan pengingat-awal ke masuk-waktu, jadwal hari berikutnya, replay yang tidak menambah notifikasi, dan penghormatan koreksi dua menit. Uji host bukan bukti pengantaran alarm saat HP nyata berada dalam mode hemat baterai.

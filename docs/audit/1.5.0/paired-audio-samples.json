@@ -1,0 +1,73 @@
+{
+  "scope": "Surah 1 only. Four sources downloaded and decoded; seven other source hosts blocked by the cloud proxy even with elevated retry. Not device playback or full voice identity verification.",
+  "samples": [
+    {
+      "slug": "maher_al_muaiqly_tarteel",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "slug": "hani_al_rifai_qdc_128k",
+      "url": "https://download.quranicaudio.com/qdc/hani_ar_rifai/murattal/1.mp3",
+      "bytes": 608383,
+      "duration": "38.008163",
+      "error": "",
+      "fullHostDecode": "passed",
+      "sha256": "c420173faed0a1734b586c5f7883c56e75d3eb820508a86dd3eafd9b7fa25654",
+      "lastClipMs": 38000
+    },
+    {
+      "slug": "mahmoud_khalil_al_husary_mujawwad_tarteel",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "slug": "abu_bakr_al_shatri_tarteel",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "slug": "saud_al_shuraim_mp3quran",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "slug": "abdulrahman_al_sudais_tarteel",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "slug": "mahmoud_khalil_al_husary_qdc_128k",
+      "url": "https://download.quranicaudio.com/quran/mahmood_khaleel_al-husaree_iza3a/001.mp3",
+      "bytes": 558266,
+      "duration": "34.280625",
+      "error": "",
+      "fullHostDecode": "passed",
+      "sha256": "7a1bba4e59f04052c786a6f832cb4b8a2d062d8e209d771ad34410d182ff3607",
+      "lastClipMs": 33620
+    },
+    {
+      "slug": "ali_al_huthaifi_mp3quran",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "slug": "abdullah_basfar_qdc",
+      "url": "https://download.quranicaudio.com/quran/abdullaah_basfar/001.mp3",
+      "bytes": 800896,
+      "duration": "49.431689",
+      "error": "",
+      "fullHostDecode": "passed",
+      "sha256": "d630c4420f315ab315c05a059864ac581b2fbcfc5eae277f18a212e5c02ee3df",
+      "lastClipMs": 48760
+    },
+    {
+      "slug": "ahmed_al_ajmi_qdc",
+      "url": "https://download.quranicaudio.com/quran/ahmed_ibn_3ali_al-3ajamy/001.mp3",
+      "bytes": 864384,
+      "duration": "42.742756",
+      "error": "",
+      "fullHostDecode": "passed",
+      "sha256": "1ef6bc44ec2621f22430629b69a088f2b2b83c708ebdc3c33c7aad39f238de61",
+      "lastClipMs": 37180
+    },
+    {
+      "slug": "abdulbasit_abdulsamad_tarteel",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    }
+  ]
+}

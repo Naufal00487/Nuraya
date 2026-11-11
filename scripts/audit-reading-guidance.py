@@ -13,7 +13,7 @@ from import_quran import split_opening_basmalah
 from import_waqaf import normalized, MARKS
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'docs/audit/1.4.0'
+OUT = ROOT / 'docs/audit/1.5.0'
 
 def sha(raw): return hashlib.sha256(raw).hexdigest()
 def read_json(path): return json.loads(path.read_text())
