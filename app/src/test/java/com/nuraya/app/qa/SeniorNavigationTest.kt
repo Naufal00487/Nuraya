@@ -16,6 +16,9 @@ import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performTouchInput
+import androidx.compose.ui.test.click
+import androidx.compose.ui.test.swipeRight
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performScrollToNode
@@ -88,6 +91,10 @@ class SeniorNavigationTest {
         compose.onNodeWithTag("quran_mode_standard").performClick()
         awaitTag("surah_1")
         compose.onNodeWithTag("surah_1").performClick()
+        awaitTag("indonesia_screen")
+        showBookControls()
+        compose.onNodeWithContentDescription("Menu mushaf").performClick()
+        compose.onNodeWithText("Baca per ayat & fitur hafalan").performClick()
         awaitTag("verse_text_1_1")
         compose.onNodeWithTag("verse_text_1_1").assertIsDisplayed()
         assertTrue(!com.nuraya.app.prayer.LocationPromptStore(app).shouldIntroduce(false))
@@ -112,16 +119,18 @@ class SeniorNavigationTest {
         awaitTag("indonesia_screen")
         awaitTag("mushaf_page_image")
         compose.onNodeWithContentDescription("Mushaf Indonesia halaman 1").assertIsDisplayed()
+        showBookControls()
         compose.onNodeWithTag("mushaf_translation").performClick()
         compose.onNodeWithText("Kementerian Agama RI · QuranEnc v1.0.1").assertExists()
         compose.onNodeWithContentDescription("Tutup panel arti").performClick()
+        showBookControls()
         compose.onNodeWithContentDescription("Menu mushaf").performClick()
         compose.onNodeWithText("Baca per ayat & fitur hafalan").performClick()
         awaitTag("reader_mode")
         compose.onNodeWithTag("reader_mode").assertTextContains("Al-Qur’an Indonesia")
-        compose.onNodeWithTag("back_button").performClick()
+        goBack()
         awaitTag("indonesia_screen")
-        compose.onNodeWithTag("back_button").performClick()
+        goBack()
         awaitTag("quran_search")
         compose.onNodeWithTag("nav_prayer").performClick()
         awaitTag("prayer_screen")
@@ -143,7 +152,7 @@ class SeniorNavigationTest {
         compose.onNodeWithTag("recitation_microphone").assertIsNotEnabled()
         compose.onNodeWithText("Selesai membaca").assertDoesNotExist()
         assertEquals(attempts, preferences.getInt("completed_attempts", 0))
-        compose.onNodeWithTag("back_button").performClick()
+        goBack()
         awaitTag("home_menu")
         compose.onNodeWithTag("nav_prayer").assertIsDisplayed()
         compose.onNodeWithTag("nav_video").assertDoesNotExist()
@@ -165,9 +174,9 @@ class SeniorNavigationTest {
         compose.onNodeWithText("Progres belajarku").performClick()
         awaitTag("practice_tab_3")
         compose.onNodeWithTag("practice_tab_3").assertIsSelected()
-        compose.onNodeWithTag("back_button").performClick()
+        goBack()
         awaitTag("profile_screen")
-        compose.onNodeWithTag("back_button").performClick()
+        goBack()
         awaitTag("home_menu")
         compose.onNodeWithText("Naufal").assertIsDisplayed()
         saveHostImage("home-with-location.png")
@@ -195,7 +204,9 @@ class SeniorNavigationTest {
     }
 
     @Test fun madinahOpensActualPagesAndBahriyahClearlyRequiresItsOwnPdf() {
-        openApp()
+        val app = openApp()
+        compose.runOnIdle { app.playback.play(app.quran.surahs.first(), app.quran.qaris.first()) }
+        awaitTag("mini_player_toggle")
         compose.onNodeWithTag("nav_quran").performClick()
         awaitTag("quran_modes")
         compose.onNodeWithTag("quran_modes").performScrollToNode(hasTestTag("quran_mode_madinah_tajwid"))
@@ -203,6 +214,8 @@ class SeniorNavigationTest {
         awaitTag("surah_1")
         compose.onNodeWithTag("surah_1").performClick()
         awaitTag("mushaf_page_image")
+        compose.onNodeWithTag("mini_player_toggle").assertDoesNotExist()
+        showBookControls()
         compose.onNodeWithTag("mushaf_page_number").assertTextContains("Halaman 1 / 604")
         compose.onNodeWithTag("mushaf_next").performClick()
         awaitTag("mushaf_page_image")
@@ -211,10 +224,16 @@ class SeniorNavigationTest {
         compose.onNodeWithText("Baca per ayat & fitur hafalan").performClick()
         awaitTag("reader_mode")
         compose.onNodeWithTag("reader_mode").assertTextContains("Madinah & tajwid")
-        compose.onNodeWithTag("back_button").performClick()
+        goBack()
         awaitTag("mushaf_page_image")
+        showBookControls()
         compose.onNodeWithTag("mushaf_page_number").assertTextContains("Halaman 2 / 604")
-        compose.onNodeWithTag("back_button").performClick()
+        compose.onNodeWithContentDescription("Menu mushaf").performClick()
+        compose.onNodeWithText("Baca per ayat & fitur hafalan").performClick()
+        awaitTag("open_book_mushaf")
+        compose.onNodeWithTag("open_book_mushaf").performClick()
+        awaitTag("mushaf_page_image")
+        goBack()
         awaitTag("quran_search")
         compose.onNodeWithTag("change_reading_mode").performClick()
         awaitTag("quran_modes")
@@ -222,6 +241,7 @@ class SeniorNavigationTest {
         compose.onNodeWithTag("quran_mode_bahriyah").performClick()
         awaitTag("bahriyah_pdf_screen")
         compose.onNodeWithTag("madinah_screen").assertDoesNotExist()
+        compose.onNodeWithTag("mini_player_toggle").assertDoesNotExist()
         saveHostImage("bahriyah-import.png")
     }
 
@@ -234,14 +254,96 @@ class SeniorNavigationTest {
         compose.onNodeWithTag("quran_search").performTextInput("2:255")
         awaitTag("search_verse_2_255")
         compose.onNodeWithTag("search_verse_2_255").performClick()
+        awaitTag("indonesia_screen")
+        showBookControls()
+        compose.onNodeWithContentDescription("Menu mushaf").performClick()
+        compose.onNodeWithText("Baca per ayat & fitur hafalan").performClick()
         awaitTag("reader_screen")
-        compose.onNodeWithTag("back_button").performClick()
+        goBack()
+        awaitTag("indonesia_screen")
+        goBack()
         awaitTag("quran_search")
         compose.onNodeWithTag("quran_search").performTextClearance()
         awaitTag("surah_1")
         compose.onNodeWithTag("surah_1").performClick()
+        awaitTag("indonesia_screen")
+        showBookControls()
+        compose.onNodeWithContentDescription("Menu mushaf").performClick()
+        compose.onNodeWithText("Baca per ayat & fitur hafalan").performClick()
         awaitTag("verse_text_1_1")
         compose.onNodeWithTag("verse_text_1_1").assertIsDisplayed()
+    }
+
+    @Test fun allTenDirectReadingChoicesOpenFullScreenBooksWithToolsHidden() {
+        openApp()
+        compose.onNodeWithTag("nav_quran").performClick()
+        for (mode in com.nuraya.app.quranreading.QuranReadingModes.all.filter { it.id !in setOf("bahriyah", "thematic") }) {
+            awaitTag("quran_modes")
+            compose.onNodeWithTag("quran_modes").performScrollToNode(hasTestTag("quran_mode_${mode.id}"))
+            compose.onNodeWithTag("quran_mode_${mode.id}").performClick()
+            awaitTag("surah_1")
+            compose.onNodeWithTag("surah_1").performClick()
+            awaitTag("mushaf_page_image")
+            compose.onNodeWithTag("reader_screen").assertDoesNotExist()
+            compose.onNodeWithTag("mushaf_controls").assertDoesNotExist()
+            compose.onNodeWithTag("nav_quran").assertDoesNotExist()
+            showBookControls()
+            goBack()
+            awaitTag("quran_search")
+            compose.onNodeWithTag("change_reading_mode").performClick()
+        }
+    }
+
+    @Test fun thematicReferenceOpensItsActualPageAndReturnsToTheChosenTheme() {
+        openApp()
+        compose.onNodeWithTag("nav_quran").performClick()
+        compose.onNodeWithTag("quran_modes").performScrollToNode(hasTestTag("quran_mode_thematic"))
+        compose.onNodeWithTag("quran_mode_thematic").performClick()
+        compose.onNodeWithTag("quran_theme_faith").performClick()
+        compose.onNodeWithTag("quran_thematic").performScrollToNode(hasTestTag("theme_verse_112_1"))
+        compose.onNodeWithTag("theme_verse_112_1").performClick()
+        awaitTag("mushaf_page_image")
+        compose.onNodeWithContentDescription("Mushaf Indonesia halaman 604").assertIsDisplayed()
+        compose.onNodeWithTag("mushaf_controls").assertDoesNotExist()
+        showBookControls()
+        goBack()
+        awaitTag("quran_thematic")
+        compose.onNodeWithTag("theme_verse_112_1").assertExists()
+    }
+
+    @Test fun homeContinueReturnsToTheSavedBookPage() {
+        openApp()
+        compose.onNodeWithTag("nav_quran").performClick()
+        compose.onNodeWithTag("quran_mode_standard").performClick()
+        compose.onNodeWithTag("surah_1").performClick()
+        awaitTag("mushaf_page_image")
+        compose.onNodeWithTag("mushaf_page_viewport").performTouchInput { swipeRight() }
+        compose.waitUntil(30_000) { runCatching { compose.onNodeWithContentDescription("Mushaf Indonesia halaman 2").fetchSemanticsNode() }.isSuccess }
+        compose.mainClock.advanceTimeBy(1000)
+        showBookControls()
+        goBack()
+        compose.onNodeWithTag("nav_home").performClick()
+        compose.onNodeWithTag("home_menu").performScrollToNode(hasTestTag("home_continue"))
+        compose.onNodeWithTag("home_continue").performClick()
+        awaitTag("mushaf_page_image")
+        compose.onNodeWithContentDescription("Mushaf Indonesia halaman 2").assertIsDisplayed()
+        compose.onNodeWithTag("mushaf_controls").assertDoesNotExist()
+        showBookControls()
+        goBack()
+        awaitTag("home_menu")
+    }
+
+    private fun goBack() {
+        if (compose.onAllNodesWithTag("back_button").fetchSemanticsNodes().isEmpty()) showBookControls()
+        compose.onNodeWithTag("back_button").performClick()
+    }
+
+    private fun showBookControls() {
+        if (compose.onAllNodesWithTag("mushaf_controls").fetchSemanticsNodes().isNotEmpty()) return
+        compose.onNodeWithTag("mushaf_page_viewport").performTouchInput { click(center) }
+        compose.mainClock.advanceTimeBy(350)
+        compose.waitForIdle()
+        compose.onNodeWithTag("mushaf_controls").assertExists()
     }
 
     private fun awaitTag(tag: String) {

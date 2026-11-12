@@ -1,7 +1,18 @@
 package com.nuraya.app.ui
 
 import android.graphics.Bitmap
-import androidx.compose.foundation.border
+import androidx.activity.compose.BackHandler
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.gestures.detectHorizontalDragGestures
+import androidx.compose.ui.semantics.CustomAccessibilityAction
+import androidx.compose.ui.semantics.customActions
+import androidx.compose.ui.semantics.onClick
+import androidx.compose.ui.semantics.semantics
+import com.nuraya.app.quranreading.QuranReadingModes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.lazy.items
@@ -63,6 +74,7 @@ fun MadinahScreen(
     settings: com.nuraya.app.storage.UserSettings = com.nuraya.app.storage.UserSettings(),
     onBack: () -> Unit = {},
     edition: MushafEdition = MushafEdition.MADINAH,
+    readingModeId: String = "standard",
     onReadVerses: (Int, Int) -> Unit,
 ) {
     val context = LocalContext.current
@@ -73,11 +85,9 @@ fun MadinahScreen(
     fun tr(id: String, en: String) = if (english) en else id
     var page by rememberSaveable(edition, initialSurah, initialAyah) { mutableIntStateOf(repository.pageFor(initialSurah, initialAyah)) }
     var zoom by rememberSaveable { mutableFloatStateOf(1f) }
-    var controls by rememberSaveable { mutableStateOf(true) }
+    var controls by rememberSaveable { mutableStateOf(false) }
     var landscape by rememberSaveable { mutableStateOf(false) }
-    var retry by remember { mutableIntStateOf(0) }
-    var bitmap by remember(edition, page) { mutableStateOf<Bitmap?>(null) }
-    var error by remember { mutableStateOf(false) }
+    var loadedPage by remember { mutableIntStateOf(0) }
     var jump by remember { mutableStateOf(false) }
     var menu by remember { mutableStateOf(false) }
     var panel by rememberSaveable { mutableStateOf(false) }
@@ -87,8 +97,8 @@ fun MadinahScreen(
     var downloading by remember { mutableStateOf(false) }
     var selectedSurah by rememberSaveable { mutableIntStateOf(initialSurah) }
     var selectedAyah by rememberSaveable { mutableIntStateOf(initialAyah) }
-    var showLatin by rememberSaveable { mutableStateOf(false) }
-    var repeats by rememberSaveable { mutableIntStateOf(1) }
+    var showLatin by rememberSaveable { mutableStateOf(readingModeId == "latin_tajwid") }
+    var repeats by rememberSaveable { mutableIntStateOf(if (readingModeId == "tikrar") 3 else 1) }
     val playback = if (app != null) app.playback.state.collectAsState().value else com.nuraya.app.media.PlaybackState()
     val selected = app?.quran?.verse(selectedSurah, selectedAyah)
     var study by remember(selectedSurah, selectedAyah) { mutableStateOf<com.nuraya.app.study.StudyVerse?>(null) }
@@ -97,13 +107,19 @@ fun MadinahScreen(
         study = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) { app?.study?.verse(selectedSurah, selectedAyah) }
         latin = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) { com.nuraya.app.quranreading.LatinRepository.shared(context).verse(selectedSurah, selectedAyah)?.latin }
     }
-    LaunchedEffect(edition, page, retry) {
-        bitmap = null; error = false; downloadMessage = ""
+    LaunchedEffect(edition, page) {
+        loadedPage = 0; downloadMessage = ""
         val reference = repository.firstReference(page)
         if (repository.pageFor(selectedSurah, selectedAyah) != page) { selectedSurah = reference.surah; selectedAyah = reference.ayah }
-        try { bitmap = repository.load(page) }
-        catch (cancelled: CancellationException) { throw cancelled }
-        catch (_: Exception) { error = true }
+    }
+    LaunchedEffect(loadedPage, selectedSurah, selectedAyah) {
+        if (loadedPage == page && app != null) {
+            kotlinx.coroutines.delay(600)
+            try { app.library.save("read_history", "$selectedSurah:$selectedAyah",
+                app.quran.surahs[selectedSurah - 1].name, "${tr("Ayat", "Verse")} $selectedAyah", "mushaf:$readingModeId") }
+            catch (cancelled: CancellationException) { throw cancelled }
+            catch (_: Exception) { /* Reading remains available if history storage fails. */ }
+        }
     }
     LaunchedEffect(playback.surahId, playback.ayahId, settings.followRecitation) {
         if (settings.followRecitation && playback.verseMode && playback.surahId > 0 && playback.ayahId > 0) {
@@ -118,9 +134,38 @@ fun MadinahScreen(
         activity?.requestedOrientation = if (landscape) android.content.pm.ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE else android.content.pm.ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
     }
     fun rotate() { landscape = !landscape }
-    Column(Modifier.fillMaxSize().background(Color(0xFFF7F0DB)).testTag("${edition.id}_screen")) {
-        if (controls) Row(Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.surface).padding(horizontal = 4.dp), verticalAlignment = Alignment.CenterVertically) {
-            IconButton(onClick = onBack, modifier = Modifier.testTag("back_button")) { Icon(Icons.AutoMirrored.Outlined.ArrowBack, tr("Kembali", "Back")) }
+    fun openVerseTools() { controls = false; onReadVerses(selectedSurah, selectedAyah) }
+    BackHandler(controls && !panel && !qaris && !jump && !sourceVisible) { controls = false }
+    val swipeThreshold = with(LocalDensity.current) { 64.dp.toPx() }
+    Box(Modifier.fillMaxSize().background(Color.White).testTag("${edition.id}_screen")) {
+        Box(Modifier.fillMaxSize().testTag("mushaf_page_viewport")
+            .semantics {
+                onClick(tr("Tampilkan menu baca", "Show reading menu")) { controls = true; true }
+                customActions = listOf(
+                    CustomAccessibilityAction(tr("Halaman berikutnya", "Next page")) { if (page < 604) { page++; true } else false },
+                    CustomAccessibilityAction(tr("Halaman sebelumnya", "Previous page")) { if (page > 1) { page--; true } else false },
+                )
+            }
+            .pointerInput(page, zoom) {
+                if (zoom == 1f) {
+                    var drag = 0f
+                    detectHorizontalDragGestures(onDragStart = { drag = 0f }, onDragEnd = {
+                        if (drag > swipeThreshold && page < 604) page++
+                        else if (drag < -swipeThreshold && page > 1) page--
+                    }, onHorizontalDrag = { change, amount -> change.consume(); drag += amount })
+                }
+            }
+            .pointerInput(Unit) { detectTapGestures(onTap = { controls = !controls }, onDoubleTap = { rotate() }) }) {
+            AnimatedContent(targetState = page, modifier = Modifier.fillMaxSize(), label = "Mushaf page turn",
+                transitionSpec = {
+                    val direction = if (targetState > initialState) 1 else -1
+                    slideInHorizontally(tween(220)) { -direction * it } togetherWith slideOutHorizontally(tween(220)) { direction * it }
+                }) { visiblePage ->
+                MushafPageImage(repository, visiblePage, zoom, language, onReady = { if (page == visiblePage) loadedPage = visiblePage })
+            }
+        }
+        if (controls) Row(Modifier.align(Alignment.TopCenter).fillMaxWidth().background(MaterialTheme.colorScheme.surface).padding(horizontal = 4.dp), verticalAlignment = Alignment.CenterVertically) {
+            IconButton(onClick = { controls = false; onBack() }, modifier = Modifier.testTag("back_button")) { Icon(Icons.AutoMirrored.Outlined.ArrowBack, tr("Kembali", "Back")) }
             Column(Modifier.weight(1f)) {
                 Text(edition.title(language), style = MaterialTheme.typography.titleMedium)
                 Text(tr("Halaman $page / 604", "Page $page / 604"), style = MaterialTheme.typography.labelMedium, modifier = Modifier.testTag("mushaf_page_number"))
@@ -141,36 +186,16 @@ fun MadinahScreen(
                         }
                     })
                     DropdownMenuItem(text = { Text(tr("Info tajwid & sumber", "Tajwid & sources")) }, onClick = { menu = false; sourceVisible = true })
-                    DropdownMenuItem(text = { Text(tr("Baca per ayat & fitur hafalan", "Verse reader & memorization")) }, onClick = { menu = false; onReadVerses(selectedSurah, selectedAyah) })
+                    DropdownMenuItem(text = { Text(tr("Baca per ayat & fitur hafalan", "Verse reader & memorization")) }, onClick = { menu = false; openVerseTools() })
                 }
             }
         }
-        BoxWithConstraints(Modifier.fillMaxWidth().weight(1f).padding(8.dp)
-            .border(2.dp, Color(0xFFB19453), androidx.compose.foundation.shape.RoundedCornerShape(4.dp))
-            .padding(5.dp).testTag("mushaf_page_viewport")
-            .pointerInput(Unit) { detectTapGestures(onTap = { controls = !controls }, onDoubleTap = { rotate() }) }, contentAlignment = Alignment.Center) {
-            val current = bitmap
-            when {
-                error -> Column(Modifier.padding(16.dp).verticalScroll(rememberScrollState()), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text(tr("Halaman belum berhasil dimuat. Periksa koneksi lalu coba lagi.", "Page unavailable. Check your connection and retry."), color = Color(0xFF202020))
-                    Button(onClick = { retry++ }) { Text(tr("Coba lagi", "Retry")) }
-                }
-                current == null -> CircularProgressIndicator()
-                else -> key(edition, page) {
-                    if (zoom == 1f && androidx.compose.ui.platform.LocalConfiguration.current.orientation != android.content.res.Configuration.ORIENTATION_LANDSCAPE) Image(current.asImageBitmap(), edition.title(language) + tr(" halaman $page", " page $page"), Modifier.fillMaxSize().testTag("mushaf_page_image"), contentScale = ContentScale.Fit)
-                    else {
-                        val pageWidth = maxWidth * zoom
-                        Box(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).horizontalScroll(rememberScrollState())) {
-                            Image(current.asImageBitmap(), edition.title(language) + tr(" halaman $page", " page $page"), Modifier.width(pageWidth).height(pageWidth * current.height.toFloat() / current.width).testTag("mushaf_page_image"), contentScale = ContentScale.Fit)
-                        }
-                    }
-                }
-            }
-        }
-        if (controls) Column(Modifier.fillMaxWidth().heightIn(max = 240.dp).background(MaterialTheme.colorScheme.surface).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        if (controls) Column(Modifier.align(Alignment.BottomCenter).fillMaxWidth().heightIn(max = 280.dp).testTag("mushaf_controls").background(MaterialTheme.colorScheme.surface).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
             if (downloadMessage.isNotEmpty()) Text(downloadMessage, style = MaterialTheme.typography.bodySmall)
-            if (edition == MushafEdition.INDONESIA) Text(tr("Arti per kata & tajwid: buka panel di bawah", "Word meanings & tajwid: open the panel below"), style = MaterialTheme.typography.labelSmall)
-            Text(tr("Ketuk: tampil/sembunyikan tombol · Ketuk 2×: lanskap", "Tap: show/hide controls · Double tap: landscape"), style = MaterialTheme.typography.labelSmall)
+            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                Text(QuranReadingModes.find(readingModeId).title(language), Modifier.weight(1f), style = MaterialTheme.typography.titleSmall)
+                IconButton(onClick = { controls = false }) { Icon(Icons.Outlined.Close, tr("Tutup menu baca", "Close reading menu")) }
+            }
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
                 IconButton(onClick = { page-- }, enabled = page > 1, modifier = Modifier.testTag("mushaf_previous")) { Icon(Icons.AutoMirrored.Outlined.ArrowBack, tr("Halaman sebelumnya", "Previous page")) }
                 TextButton(onClick = { zoom = (zoom - .5f).coerceAtLeast(1f) }, enabled = zoom > 1f) { Text(tr("− Kecilkan", "− Smaller")) }
@@ -178,13 +203,21 @@ fun MadinahScreen(
                 IconButton(onClick = { page++ }, enabled = page < 604, modifier = Modifier.testTag("mushaf_next")) { Icon(Icons.AutoMirrored.Outlined.ArrowForward, tr("Halaman berikutnya", "Next page")) }
             }
             if (app != null) FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Button(onClick = { panel = true }, modifier = Modifier.testTag("mushaf_translation")) { Text(tr("Arti & tajwid", "Meaning & tajwid")) }
-                OutlinedButton(onClick = { qaris = true }) { Text(tr("Qari & audio", "Reciter & audio")) }
+                Button(onClick = { controls = false; panel = true }, modifier = Modifier.testTag("mushaf_translation")) { Text(tr("Arti & tajwid", "Meaning & tajwid")) }
+                OutlinedButton(onClick = { controls = false; qaris = true }) { Text(tr("Qari & audio", "Reciter & audio")) }
+                if (readingModeId in setOf("hafalan_8", "tikrar", "waqaf", "standard")) OutlinedButton(onClick = { openVerseTools() }, modifier = Modifier.testTag("mushaf_mode_tools")) {
+                    Text(when (readingModeId) {
+                        "hafalan_8" -> tr("Latihan 8 blok", "Eight-block practice")
+                        "tikrar" -> tr("Latihan Tikrar", "Repetition practice")
+                        "waqaf" -> tr("Panduan waqaf", "Stopping guide")
+                        else -> tr("Belajar per ayat", "Study by verse")
+                    })
+                }
                 FilledTonalButton(onClick = {
                     if (playback.verseMode && playback.surahId == selectedSurah && playback.isPlaying) app.playback.toggle()
                     else app.playback.playVerseRange(selectedSurah, selectedAyah, app.quran.surahs[selectedSurah - 1].ayahCount, settings.readerQariId, repeats)
                 }) { Text(if (playback.isPlaying) tr("Jeda", "Pause") else tr("Dengarkan", "Listen")) }
-            } else Button(onClick = { onReadVerses(selectedSurah, selectedAyah) }) { Text(if (showTajwidCompanion) tr("Baca dengan tajwid berwarna", "Read with colored tajwid") else tr("Baca per ayat & dengarkan", "Read verses & listen")) }
+            } else Button(onClick = { openVerseTools() }) { Text(if (showTajwidCompanion) tr("Baca dengan tajwid berwarna", "Read with colored tajwid") else tr("Baca per ayat & dengarkan", "Read verses & listen")) }
         }
     }
     if (jump) MushafJumpDialog(language, page, selectedSurah, selectedAyah, app, onDismiss = { jump = false }) { surah, ayah, target ->
@@ -249,7 +282,43 @@ fun MadinahScreen(
             FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Button(onClick = { app.playback.playVerseRange(selectedSurah, selectedAyah, selectedAyah, settings.readerQariId, repeats) }) { Text(tr("Putar ayat ini", "Play this verse")) }
                 if (playback.isPlaying) OutlinedButton(onClick = { app.playback.toggle() }) { Text(tr("Jeda", "Pause")) }
-                OutlinedButton(onClick = { onReadVerses(selectedSurah, selectedAyah); panel = false }) { Text(tr("Baca per ayat", "Verse reader")) }
+                OutlinedButton(onClick = { openVerseTools(); panel = false }) { Text(tr("Baca per ayat", "Verse reader")) }
+            }
+        }
+    }
+}
+
+/** Page geometry never depends on whether its overlay controls are visible. */
+@Composable
+private fun MushafPageImage(repository: MushafImages, page: Int, zoom: Float, language: String, onReady: () -> Unit) {
+    var bitmap by remember(repository, page) { mutableStateOf<Bitmap?>(null) }
+    var error by remember { mutableStateOf(false) }
+    var retry by remember { mutableIntStateOf(0) }
+    val ready by rememberUpdatedState(onReady)
+    LaunchedEffect(repository, page, retry) {
+        error = false
+        try { bitmap = repository.load(page); ready() }
+        catch (cancelled: CancellationException) { throw cancelled }
+        catch (_: Exception) { error = true }
+    }
+    BoxWithConstraints(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        val current = bitmap
+        when {
+            error -> Column(Modifier.padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(label(language, "Halaman belum berhasil dimuat. Periksa koneksi lalu coba lagi.", "Page unavailable. Check your connection and retry."), color = Color.Black)
+                Button(onClick = { retry++ }) { Text(label(language, "Coba lagi", "Retry")) }
+            }
+            current == null -> CircularProgressIndicator()
+            else -> {
+                val description = repository.edition.title(language) + label(language, " halaman $page", " page $page")
+                if (zoom == 1f && androidx.compose.ui.platform.LocalConfiguration.current.orientation != android.content.res.Configuration.ORIENTATION_LANDSCAPE) {
+                    Image(current.asImageBitmap(), description, Modifier.fillMaxSize().testTag("mushaf_page_image"), contentScale = ContentScale.Fit)
+                } else {
+                    val width = maxWidth * zoom
+                    Box(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).horizontalScroll(rememberScrollState())) {
+                        Image(current.asImageBitmap(), description, Modifier.width(width).height(width * current.height.toFloat() / current.width).testTag("mushaf_page_image"), contentScale = ContentScale.Fit)
+                    }
+                }
             }
         }
     }

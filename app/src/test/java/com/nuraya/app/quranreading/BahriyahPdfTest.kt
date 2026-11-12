@@ -49,6 +49,31 @@ class BahriyahPdfTest {
         compose.onNodeWithTag("bahriyah_pdf_page").assertDoesNotExist()
     }
 
+    @Test fun savedPdfPresentationFillsTheReaderAndControlsOnlyOverlayAfterATap() {
+        // Robolectric 28 has no native PDF renderer. Exercise the stored-document/UI flow
+        // with a rendered fixture; this does not claim to validate Android's PDF decoding.
+        val bitmap = android.graphics.Bitmap.createBitmap(641, 917, android.graphics.Bitmap.Config.ARGB_8888)
+        bitmap.eraseColor(android.graphics.Color.WHITE)
+        BahriyahPdfStore(context).save(BahriyahDocument("content://documents/bahriyah", "Test document.pdf", 1))
+        compose.setContent { NurayaTheme { Surface {
+            BahriyahPdfScreen("id", loadPage = { _, uri, page, zoom ->
+                assertEquals("content://documents/bahriyah", uri.toString())
+                assertEquals(1, page)
+                assertEquals(1f, zoom)
+                PdfFrame(bitmap, 1, 1)
+            })
+        } } }
+        compose.waitUntil(30_000) { compose.onAllNodesWithTag("bahriyah_pdf_page").fetchSemanticsNodes().isNotEmpty() }
+        compose.onNodeWithTag("bahriyah_pdf_controls").assertDoesNotExist()
+        val pageBounds = compose.onNodeWithTag("bahriyah_pdf_viewport").getUnclippedBoundsInRoot()
+        assertEquals(compose.onNodeWithTag("bahriyah_pdf_screen").getUnclippedBoundsInRoot(), pageBounds)
+        compose.onNodeWithTag("bahriyah_pdf_viewport").performTouchInput { click(center) }
+        compose.onNodeWithTag("bahriyah_pdf_controls").assertIsDisplayed()
+        assertEquals(pageBounds, compose.onNodeWithTag("bahriyah_pdf_viewport").getUnclippedBoundsInRoot())
+        compose.onNodeWithText("Tutup menu baca").performClick()
+        compose.onNodeWithTag("bahriyah_pdf_controls").assertDoesNotExist()
+    }
+
     @Test fun inaccessibleSavedDocumentOffersRetryAndReplacementInsteadOfAnotherEdition() {
         BahriyahPdfStore(context).save(BahriyahDocument("content://missing.provider/bahriyah", "Mushaf.pdf", 1))
         compose.setContent { NurayaTheme { Surface { BahriyahPdfScreen("id") } } }

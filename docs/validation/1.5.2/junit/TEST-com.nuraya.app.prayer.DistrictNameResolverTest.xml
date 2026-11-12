@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.prayer.DistrictNameResolverTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-12T13:04:12" hostname="26c38cafc86b" time="0.244">
+  <properties/>
+  <testcase name="emptyAddressNeverFabricatesAnAreaName" classname="com.nuraya.app.prayer.DistrictNameResolverTest" time="0.069"/>
+  <testcase name="explicitDistrictWinsOverVillageOrRegency" classname="com.nuraya.app.prayer.DistrictNameResolverTest" time="0.063"/>
+  <testcase name="missingGeocoderKeepsCoordinatesAndProvidesNoInventedName" classname="com.nuraya.app.prayer.DistrictNameResolverTest" time="0.111"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

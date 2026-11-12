@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.qa.SeniorNavigationTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-11-12T13:04:51" hostname="26c38cafc86b" time="16.893">
+  <properties/>
+  <testcase name="localProfilePersistsAndHomeShortcutsOpenTheNewScreens" classname="com.nuraya.app.qa.SeniorNavigationTest" time="1.958"/>
+  <testcase name="largerTextStillLetsTheUserReachAiWithoutStartingRecording" classname="com.nuraya.app.qa.SeniorNavigationTest" time="1.076"/>
+  <testcase name="homeContinueReturnsToTheSavedBookPage" classname="com.nuraya.app.qa.SeniorNavigationTest" time="2.086"/>
+  <testcase name="fourMainDestinationsKeepChosenReadingModeAndRemoveVideo" classname="com.nuraya.app.qa.SeniorNavigationTest" time="1.967"/>
+  <testcase name="reopeningAShortSurahDoesNotRestoreAnotherSurahsReadingRange" classname="com.nuraya.app.qa.SeniorNavigationTest" time="1.597"/>
+  <testcase name="madinahOpensActualPagesAndBahriyahClearlyRequiresItsOwnPdf" classname="com.nuraya.app.qa.SeniorNavigationTest" time="1.917"/>
+  <testcase name="memorizationOffersFiniteWholeRangeAndQuizUsesPersonalProfile" classname="com.nuraya.app.qa.SeniorNavigationTest" time="1.335"/>
+  <testcase name="firstLaunchRequestsLocationWithoutGuessingCoordinatesAndStillAllowsReading" classname="com.nuraya.app.qa.SeniorNavigationTest" time="0.886"/>
+  <testcase name="allTenDirectReadingChoicesOpenFullScreenBooksWithToolsHidden" classname="com.nuraya.app.qa.SeniorNavigationTest" time="3.077"/>
+  <testcase name="thematicReferenceOpensItsActualPageAndReturnsToTheChosenTheme" classname="com.nuraya.app.qa.SeniorNavigationTest" time="0.99"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

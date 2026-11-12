@@ -41,3 +41,12 @@ python3 scripts/verify-indonesia-pages.py /path/to/pages --output /path/to/check
 ```
 
 The optional contact sheets support a separate visual review; running the script does not certify image text or automatically mark visual checks as passed. Runtime/UI checks cover source separation, corruption rejection, page-to-verse navigation and returning from the companion verse reader. Screenshots in `validation/1.5.1` are Compose/Robolectric host renders, not physical-device captures.
+
+
+## Full-screen reader — 1.5.2
+
+The original image fills the reading viewport. No extra frame, permanent tool panel or app toolbar is laid out beside the page. Controls are hidden on entry and appear as overlays after a tap; viewport bounds stay unchanged. Right/left swipes advance/reverse with a horizontal transition. Zoomed pages keep panning gestures. Double tap requests landscape. TalkBack exposes menu/next/previous actions without requiring gesture discovery.
+
+All 11 built-in modes now enter this page reader, including verse study, word meanings, Latin, memorization, repetition, waqaf and thematic references. Their existing study tools remain explicitly accessible from the reading menu. Bahriyah still imports a user's actual edition and has the same full-screen/overlay presentation for successfully opened PDFs.
+
+Book reading records the actual visible page's selected verse and mode. Home continuation and thematic navigation preserve the intended book route and return destination. No source image, Quran text, or page map was changed in this UI update.

@@ -1,0 +1,26 @@
+{
+  "version": "1.5.2",
+  "versionCode": 12,
+  "date": "2026-11-12",
+  "jvmComposeTests": {
+    "tests": 185,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 44,
+    "Information": 0
+  },
+  "gradle": "BUILD SUCCESSFUL",
+  "instrumentationApkBuilt": true,
+  "instrumentationRunOnDevice": false,
+  "physicalDeviceTested": false,
+  "bahriyahPresentationTest": "Stored document flow with rendered bitmap fixture; native PDF decoding is not exercised by Robolectric 28.",
+  "apk": {
+    "bytes": 66522456,
+    "sha256": "01faa4e920cddc7bbf9b4a396dcf11345f859e4e2b321963968cb07d6eff9b3c"
+  }
+}

@@ -18,8 +18,8 @@ data class QuranReadingMode(
 object QuranReadingModes {
     val all = listOf(
         QuranReadingMode("standard", "Al-Qur’an per ayat", "Qur’an by verse", "Baca ayat, dengarkan qari, dan simpan penanda.", "Read, listen and bookmark individual verses."),
-        QuranReadingMode("word_tajwid", "Per kata & tajwid", "Word meanings & tajwid", "Arti tiap kata terbuka langsung, dengan warna tajwid pada teks Arab.", "Open word meanings with tajwid colors on the Arabic text."),
-        QuranReadingMode("latin_tajwid", "Latin & tajwid", "Transliteration & tajwid", "Bantuan Latin di samping teks Arab berwarna dan panduan hukum bacaan.", "Transliteration alongside colored Arabic and pronunciation guidance."),
+        QuranReadingMode("word_tajwid", "Per kata & tajwid", "Word meanings & tajwid", "Halaman kitab dengan arti tiap kata dan tajwid berwarna di menu Arti & tajwid.", "Book pages with word meanings and colored tajwid in the Meaning & tajwid menu."),
+        QuranReadingMode("latin_tajwid", "Latin & tajwid", "Transliteration & tajwid", "Halaman kitab dengan bantuan Latin dan teks Arab berwarna di menu Arti & tajwid.", "Book pages with transliteration and colored Arabic in the Meaning & tajwid menu."),
         QuranReadingMode("indonesia", "Al-Qur’an Indonesia", "Indonesian Qur’an", "604 halaman berbingkai, dengan terjemahan Indonesia dan arti per kata di panel pendamping.", "604 ornamental pages, with Indonesian translation and word meanings in a companion panel."),
         QuranReadingMode("indonesia_tajwid", "Indonesia & tajwid", "Indonesian & tajwid", "Halaman berbingkai dengan arti per kata dan tajwid berwarna di panel pendamping.", "Ornamental pages with word meanings and colored tajwid in a companion panel."),
         QuranReadingMode("madinah", "Al-Qur’an Madinah", "Madinah Qur’an", "604 gambar halaman asli, dapat diperbesar. Halaman baru diunduh saat dibuka.", "604 genuine page images with zoom. New pages download when opened."),
@@ -32,8 +32,8 @@ object QuranReadingModes {
     )
 
     fun find(id: String): QuranReadingMode = all.firstOrNull { it.id == id } ?: all.first()
-    fun opensPageReader(id: String) = id in setOf("indonesia", "indonesia_tajwid", "madinah", "madinah_tajwid")
-    fun pageEdition(id: String) = if (id in setOf("indonesia", "indonesia_tajwid", "word_tajwid", "latin_tajwid")) MushafEdition.INDONESIA else MushafEdition.MADINAH
+    fun opensPageReader(id: String) = all.any { it.id == id && it.id != "bahriyah" }
+    fun pageEdition(id: String) = if (id in setOf("madinah", "madinah_tajwid")) MushafEdition.MADINAH else MushafEdition.INDONESIA
     fun usesTajwid(id: String) = id in setOf("word_tajwid", "latin_tajwid", "indonesia_tajwid", "madinah_tajwid", "waqaf")
     fun settings(id: String, original: UserSettings): UserSettings = original.copy(
         translation = when (id) {

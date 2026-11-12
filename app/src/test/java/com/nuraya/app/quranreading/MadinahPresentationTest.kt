@@ -39,11 +39,13 @@ class MadinahPresentationTest {
         compose.onNodeWithTag("indonesia_screen").assertIsDisplayed()
         compose.onNodeWithContentDescription("Mushaf Indonesia halaman 2").assertIsDisplayed()
         saveScreenshot("indonesia-page-two.png")
+        showControls()
         compose.onNodeWithTag("mushaf_next").performClick()
         compose.waitUntil(30_000) { runCatching { compose.onNodeWithContentDescription("Mushaf Indonesia halaman 3").fetchSemanticsNode() }.isSuccess }
         compose.onNodeWithText("Baca dengan tajwid berwarna").performClick()
         assertEquals(2 to 6, opened)
         saveScreenshot("indonesia-page-three.png")
+        showControls()
         compose.onNodeWithContentDescription("Menu mushaf").performClick()
         compose.onNodeWithText("Info tajwid & sumber").performClick()
         compose.onNodeWithText("Ini bukan edisi terjemah per kata Islampedia", substring = true).assertExists()
@@ -56,6 +58,7 @@ class MadinahPresentationTest {
         } } }
         compose.waitUntil(30_000) { runCatching { compose.onNodeWithTag("mushaf_page_image").fetchSemanticsNode() }.isSuccess }
         saveScreenshot("madinah-initial.png")
+        showControls()
         compose.onNodeWithTag("mushaf_page_number").assertTextEquals("Halaman 2 / 604")
         compose.onNodeWithTag("mushaf_page_image").assertIsDisplayed()
         val initialWidth = compose.onNodeWithTag("mushaf_page_image").getUnclippedBoundsInRoot().let { it.right.value - it.left.value }
@@ -72,6 +75,7 @@ class MadinahPresentationTest {
             screenshot.outputStream().use { assertTrue(image.compress(Bitmap.CompressFormat.PNG, 100, it)) }
             image.recycle()
         }
+        showControls()
         compose.onNodeWithTag("mushaf_previous").performClick()
         compose.waitUntil(30_000) { runCatching { compose.onNodeWithTag("mushaf_page_image").fetchSemanticsNode() }.isSuccess }
         saveScreenshot("madinah-page-one.png")
@@ -93,6 +97,7 @@ class MadinahPresentationTest {
         compose.waitUntil(30_000) { runCatching { compose.onNodeWithTag("mushaf_page_image").fetchSemanticsNode() }.isSuccess }
         compose.onNodeWithTag("mushaf_page_image").assertIsDisplayed()
         saveScreenshot("madinah-large-text.png")
+        showControls()
         compose.onNodeWithTag("mushaf_page_image").assertIsDisplayed()
         compose.onNodeWithText("Baca dengan tajwid berwarna").performScrollTo().performClick()
         assertTrue(opened)
@@ -101,14 +106,12 @@ class MadinahPresentationTest {
     @Test fun pageTapHidesControlsAndDoubleTapRequestsLandscape() {
         compose.setContent { NurayaTheme { Surface { MadinahScreen("id") { _, _ -> } } } }
         compose.waitUntil(30_000) { runCatching { compose.onNodeWithTag("mushaf_page_image").fetchSemanticsNode() }.isSuccess }
+        compose.onNodeWithTag("mushaf_controls").assertDoesNotExist()
+        showControls()
         compose.onNodeWithTag("mushaf_page_viewport").performTouchInput { click(center) }
         compose.mainClock.advanceTimeBy(500)
         compose.waitForIdle()
         compose.onNodeWithTag("mushaf_previous").assertDoesNotExist()
-        compose.onNodeWithTag("mushaf_page_viewport").performTouchInput { click(center) }
-        compose.mainClock.advanceTimeBy(500)
-        compose.waitForIdle()
-        compose.onNodeWithTag("mushaf_previous").assertIsDisplayed()
         compose.onNodeWithTag("mushaf_page_viewport").performTouchInput { doubleClick(center) }
         compose.runOnIdle { assertEquals(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE, compose.activity.requestedOrientation) }
         saveScreenshot("madinah-controls.png")
@@ -116,6 +119,7 @@ class MadinahPresentationTest {
 
     @Test fun jumpRejectsInvalidPagesAndOpensAnExactBundledPage() {
         compose.setContent { NurayaTheme { Surface { MadinahScreen("id") { _, _ -> } } } }
+        showControls()
         compose.onNodeWithContentDescription("Pilih halaman, surah atau juz").performClick()
         compose.onNodeWithTag("mushaf_jump_number").performTextReplacement("605")
         compose.onNodeWithText("Buka").assertIsNotEnabled()
@@ -132,12 +136,14 @@ class MadinahPresentationTest {
         org.robolectric.Shadows.shadowOf(app).setComponentNameAndServiceForBindService(android.content.ComponentName(app, com.nuraya.app.media.PlaybackService::class.java), android.os.Binder())
         app.quran.surahs
         compose.setContent { NurayaTheme { Surface { MadinahScreen("id", app = app) { _, _ -> } } } }
+        showControls()
         compose.onNodeWithTag("mushaf_translation").performClick()
         compose.onNodeWithText("Kementerian Agama RI · QuranEnc v1.0.1").assertExists()
         saveScreenshot("madinah-translation.png")
         compose.onNodeWithText("Ayat berikutnya").performClick()
         compose.onNodeWithText("Al-Faatiha · 2").assertExists()
         compose.onNodeWithContentDescription("Tutup panel arti").performClick()
+        showControls()
         compose.onNodeWithText("Qari & audio").performClick()
         compose.onNodeWithText("Cari nama qari").performTextInput("Basfar")
         compose.onNodeWithText("Abdullah Basfar").assertIsDisplayed()
@@ -153,8 +159,44 @@ class MadinahPresentationTest {
         val image = compose.onNodeWithTag("mushaf_page_image").getUnclippedBoundsInRoot()
         val viewport = compose.onNodeWithTag("mushaf_page_viewport").getUnclippedBoundsInRoot()
         assertTrue(image.bottom.value - image.top.value > viewport.bottom.value - viewport.top.value)
+        showControls()
         compose.onNodeWithTag("mushaf_next").assertIsDisplayed()
         saveScreenshot("madinah-landscape.png")
+    }
+
+    @Test fun bookFillsScreenAndOverlayNeverShrinksItWhileSwipesPreservePageOrder() {
+        val app = androidx.test.core.app.ApplicationProvider.getApplicationContext<NurayaApplication>()
+        if (runCatching { androidx.work.WorkManager.getInstance(app) }.isFailure) androidx.work.WorkManager.initialize(app, androidx.work.Configuration.Builder().build())
+        org.robolectric.Shadows.shadowOf(app).setComponentNameAndServiceForBindService(android.content.ComponentName(app, com.nuraya.app.media.PlaybackService::class.java), android.os.Binder())
+        app.quran.surahs
+        compose.setContent { NurayaTheme { Surface { MadinahScreen("id", app = app, edition = MushafEdition.INDONESIA, readingModeId = "indonesia_tajwid") { _, _ -> } } } }
+        compose.waitUntil(30_000) { runCatching { compose.onNodeWithContentDescription("Mushaf Indonesia halaman 1").fetchSemanticsNode() }.isSuccess }
+        compose.onNodeWithTag("mushaf_controls").assertDoesNotExist()
+        compose.onNodeWithTag("back_button").assertDoesNotExist()
+        val fullPage = compose.onNodeWithTag("mushaf_page_viewport").getUnclippedBoundsInRoot()
+        assertEquals(compose.onNodeWithTag("indonesia_screen").getUnclippedBoundsInRoot(), fullPage)
+        saveScreenshot("indonesia-fullscreen.png")
+        showControls()
+        assertEquals(fullPage, compose.onNodeWithTag("mushaf_page_viewport").getUnclippedBoundsInRoot())
+        compose.onNodeWithTag("mushaf_translation").assertIsDisplayed()
+        saveScreenshot("indonesia-overlay.png")
+        compose.onNodeWithContentDescription("Tutup menu baca").performClick()
+        compose.onNodeWithTag("mushaf_page_viewport").performTouchInput { swipeLeft() }
+        compose.onNodeWithContentDescription("Mushaf Indonesia halaman 1").assertIsDisplayed()
+        compose.onNodeWithTag("mushaf_page_viewport").performTouchInput { swipeRight() }
+        compose.waitUntil(30_000) { runCatching { compose.onNodeWithContentDescription("Mushaf Indonesia halaman 2").fetchSemanticsNode() }.isSuccess }
+        compose.onNodeWithTag("mushaf_controls").assertDoesNotExist()
+        saveScreenshot("indonesia-fullscreen-page-two.png")
+        compose.onNodeWithTag("mushaf_page_viewport").performTouchInput { swipeLeft() }
+        compose.waitUntil(30_000) { runCatching { compose.onNodeWithContentDescription("Mushaf Indonesia halaman 1").fetchSemanticsNode() }.isSuccess }
+    }
+
+    private fun showControls() {
+        if (compose.onAllNodesWithTag("mushaf_controls").fetchSemanticsNodes().isNotEmpty()) return
+        compose.onNodeWithTag("mushaf_page_viewport").performTouchInput { click(center) }
+        compose.mainClock.advanceTimeBy(350)
+        compose.waitForIdle()
+        compose.onNodeWithTag("mushaf_controls").assertExists()
     }
 
     private fun saveScreenshot(name: String) {

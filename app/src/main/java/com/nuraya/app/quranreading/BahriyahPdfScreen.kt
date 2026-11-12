@@ -7,6 +7,17 @@ import android.graphics.Color
 import android.graphics.pdf.PdfRenderer
 import android.net.Uri
 import android.provider.OpenableColumns
+import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.gestures.detectHorizontalDragGestures
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.onClick
+import androidx.compose.ui.semantics.customActions
+import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
@@ -53,7 +64,7 @@ internal class BahriyahPdfStore(context: Context) {
 
 internal fun boundedPdfPage(requested: Int, count: Int): Int = requested.coerceIn(1, count.coerceAtLeast(1))
 
-private data class PdfFrame(val bitmap: Bitmap, val page: Int, val pageCount: Int)
+internal data class PdfFrame(val bitmap: Bitmap, val page: Int, val pageCount: Int)
 
 private suspend fun renderBahriyahPdf(context: Context, uri: Uri, requestedPage: Int, zoom: Float): PdfFrame =
     withContext(Dispatchers.IO) {
@@ -86,7 +97,11 @@ private suspend fun renderBahriyahPdf(context: Context, uri: Uri, requestedPage:
 /** User supplies the actual Bahriyah/pojok PDF; the file is read on the device, never uploaded. */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun BahriyahPdfScreen(language: String) {
+internal fun BahriyahPdfScreen(
+    language: String,
+    onBack: () -> Unit = {},
+    loadPage: suspend (Context, Uri, Int, Float) -> PdfFrame = ::renderBahriyahPdf,
+) {
     val context = LocalContext.current
     val store = remember(context) { BahriyahPdfStore(context) }
     var document by remember { mutableStateOf(store.read()) }
@@ -98,6 +113,7 @@ fun BahriyahPdfScreen(language: String) {
     var loading by remember { mutableStateOf(false) }
     var error by remember { mutableStateOf(false) }
     var importError by remember { mutableStateOf(false) }
+    var controls by rememberSaveable { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
         if (uri != null) scope.launch {
@@ -128,7 +144,7 @@ fun BahriyahPdfScreen(language: String) {
         error = false
         frame = null
         try {
-            val rendered = renderBahriyahPdf(context, Uri.parse(current.uri), page, zoom)
+            val rendered = loadPage(context, Uri.parse(current.uri), page, zoom)
             frame = rendered
             pageInput = rendered.page.toString()
             store.save(current.copy(page = rendered.page))
@@ -140,9 +156,70 @@ fun BahriyahPdfScreen(language: String) {
             loading = false
         }
     }
+    val currentDocument = document
+    BackHandler(controls) { controls = false }
+    if (currentDocument != null && !error) {
+        val threshold = with(LocalDensity.current) { 64.dp.toPx() }
+        BoxWithConstraints(Modifier.fillMaxSize().background(androidx.compose.ui.graphics.Color.White).testTag("bahriyah_pdf_screen")) {
+            val availableWidth = maxWidth
+            Box(Modifier.fillMaxSize().testTag("bahriyah_pdf_viewport")
+                .semantics {
+                    onClick(label(language, "Tampilkan menu baca", "Show reading menu")) { controls = true; true }
+                    customActions = listOf(
+                        CustomAccessibilityAction(label(language, "Halaman berikutnya", "Next page")) { if (page < (frame?.pageCount ?: page)) { page++; true } else false },
+                        CustomAccessibilityAction(label(language, "Halaman sebelumnya", "Previous page")) { if (page > 1) { page--; true } else false },
+                    )
+                }
+                .pointerInput(Unit) { detectTapGestures(onTap = { controls = !controls }) }
+                .pointerInput(page, zoom, frame?.pageCount) {
+                    if (zoom == 1f) {
+                        var drag = 0f
+                        detectHorizontalDragGestures(onDragStart = { drag = 0f }, onDragEnd = {
+                            if (drag > threshold && page < (frame?.pageCount ?: page)) page++
+                            else if (drag < -threshold && page > 1) page--
+                        }, onHorizontalDrag = { change, amount -> change.consume(); drag += amount })
+                    }
+                }, contentAlignment = Alignment.Center) {
+                val visible = frame
+                if (visible == null || loading) CircularProgressIndicator()
+                else if (zoom == 1f) Image(visible.bitmap.asImageBitmap(),
+                    label(language, "Halaman PDF ${visible.page}, ${currentDocument.name}", "PDF page ${visible.page}, ${currentDocument.name}"),
+                    Modifier.fillMaxSize().testTag("bahriyah_pdf_page"), contentScale = ContentScale.Fit)
+                else {
+                    val width = availableWidth * zoom
+                    Box(Modifier.fillMaxSize().horizontalScroll(rememberScrollState()).verticalScroll(rememberScrollState())) {
+                        Image(visible.bitmap.asImageBitmap(), label(language, "Halaman PDF $page", "PDF page $page"),
+                            Modifier.width(width).height(width * visible.bitmap.height.toFloat() / visible.bitmap.width).testTag("bahriyah_pdf_page"), contentScale = ContentScale.Fit)
+                    }
+                }
+            }
+            if (controls) {
+                Row(Modifier.align(Alignment.TopCenter).fillMaxWidth().background(MaterialTheme.colorScheme.surface), verticalAlignment = Alignment.CenterVertically) {
+                    TextButton(onClick = { controls = false; onBack() }, modifier = Modifier.testTag("back_button")) { Text(label(language, "Kembali", "Back")) }
+                    Text(currentDocument.name, Modifier.weight(1f), maxLines = 1, style = MaterialTheme.typography.titleSmall)
+                }
+                Column(Modifier.align(Alignment.BottomCenter).fillMaxWidth().heightIn(max = 300.dp).background(MaterialTheme.colorScheme.surface)
+                    .verticalScroll(rememberScrollState()).padding(12.dp).testTag("bahriyah_pdf_controls")) {
+                    TextButton(onClick = { controls = false }, modifier = Modifier.align(Alignment.End)) { Text(label(language, "Tutup menu baca", "Close reading menu")) }
+                    Text(label(language, "Halaman PDF $page / ${frame?.pageCount ?: "…"}", "PDF page $page / ${frame?.pageCount ?: "…"}"))
+                    FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        OutlinedButton(onClick = { page-- }, enabled = page > 1) { Text(label(language, "Sebelumnya", "Previous")) }
+                        OutlinedButton(onClick = { page++ }, enabled = page < (frame?.pageCount ?: page)) { Text(label(language, "Berikutnya", "Next")) }
+                        TextButton(onClick = { zoom = (zoom - .5f).coerceAtLeast(1f) }, enabled = zoom > 1f) { Text("−") }
+                        TextButton(onClick = { zoom = (zoom + .5f).coerceAtMost(3f) }, enabled = zoom < 3f) { Text("+") }
+                    }
+                    OutlinedTextField(pageInput, { pageInput = it.filter(Char::isDigit).take(6) }, label = { Text(label(language, "Nomor halaman PDF", "PDF page number")) }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), singleLine = true)
+                    TextButton(onClick = { page = boundedPdfPage(pageInput.toIntOrNull() ?: page, frame?.pageCount ?: page); controls = false }) { Text(label(language, "Buka halaman", "Go to page")) }
+                    TextButton(onClick = { launcher.launch(arrayOf("application/pdf")) }, modifier = Modifier.testTag("bahriyah_choose_pdf")) { Text(label(language, "Pilih PDF lain", "Choose another PDF")) }
+                }
+            }
+        }
+        return
+    }
     LazyColumn(Modifier.fillMaxSize().testTag("bahriyah_pdf_screen"), contentPadding = PaddingValues(20.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)) {
         item {
+            TextButton(onClick = { controls = false; onBack() }, modifier = Modifier.testTag("back_button")) { Text(label(language, "Kembali", "Back")) }
             Text(label(language, "Mushaf Bahriyah / Al-Qur’an pojok", "Bahriyah / corner-verse mushaf"),
                 style = MaterialTheme.typography.headlineMedium)
             Spacer(Modifier.height(8.dp))
@@ -176,54 +253,6 @@ fun BahriyahPdfScreen(language: String) {
                     color = MaterialTheme.colorScheme.error)
                 OutlinedButton(onClick = { reload++ }, modifier = Modifier.heightIn(min = 56.dp)) {
                     Text(label(language, "Coba lagi", "Retry"))
-                }
-            }
-            frame?.let { visible ->
-                item {
-                    Text(label(language, "Halaman PDF ${visible.page} dari ${visible.pageCount}",
-                        "PDF page ${visible.page} of ${visible.pageCount}"), style = MaterialTheme.typography.titleLarge)
-                    Text(label(language, "Nomor ini mengikuti halaman PDF, termasuk sampul jika ada.",
-                        "This number follows PDF pages, including covers when present."), style = MaterialTheme.typography.bodySmall)
-                    Spacer(Modifier.height(8.dp))
-                    FlowRow(horizontalArrangement = Arrangement.spacedBy(10.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                        OutlinedButton(onClick = { page = visible.page - 1 }, enabled = visible.page > 1,
-                            modifier = Modifier.heightIn(min = 56.dp)) { Text(label(language, "Sebelumnya", "Previous")) }
-                        Button(onClick = { page = visible.page + 1 }, enabled = visible.page < visible.pageCount,
-                            modifier = Modifier.heightIn(min = 56.dp)) { Text(label(language, "Berikutnya", "Next")) }
-                    }
-                    Spacer(Modifier.height(8.dp))
-                    OutlinedTextField(pageInput, onValueChange = { input -> pageInput = input.filter(Char::isDigit).take(6) },
-                        label = { Text(label(language, "Nomor halaman PDF", "PDF page number")) },
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number), singleLine = true,
-                        modifier = Modifier.fillMaxWidth())
-                    OutlinedButton(onClick = {
-                        val selectedPage = boundedPdfPage(pageInput.toIntOrNull() ?: visible.page, visible.pageCount)
-                        pageInput = selectedPage.toString()
-                        page = selectedPage
-                    },
-                        modifier = Modifier.heightIn(min = 56.dp)) { Text(label(language, "Buka halaman", "Go to page")) }
-                    FlowRow(horizontalArrangement = Arrangement.spacedBy(10.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                        OutlinedButton(onClick = { zoom = (zoom - .5f).coerceAtLeast(1f) }, enabled = zoom > 1f,
-                            modifier = Modifier.heightIn(min = 56.dp)) { Text(label(language, "− Kecilkan", "− Zoom out")) }
-                        OutlinedButton(onClick = { zoom = (zoom + .5f).coerceAtMost(3f) }, enabled = zoom < 3f,
-                            modifier = Modifier.heightIn(min = 56.dp)) { Text(label(language, "+ Besarkan", "+ Zoom in")) }
-                    }
-                    Text(label(language, "Geser gambar ke atas, bawah, atau samping saat diperbesar.",
-                        "Scroll the image up, down, or sideways when enlarged."), style = MaterialTheme.typography.bodySmall)
-                }
-                item {
-                    BoxWithConstraints(Modifier.fillMaxWidth().height(560.dp).testTag("bahriyah_pdf_page")) {
-                        val width = maxWidth * zoom
-                        val horizontal = rememberScrollState()
-                        val vertical = rememberScrollState()
-                        LaunchedEffect(visible.page) { horizontal.scrollTo(0); vertical.scrollTo(0) }
-                        Box(Modifier.fillMaxSize().horizontalScroll(horizontal).verticalScroll(vertical)) {
-                            Image(visible.bitmap.asImageBitmap(),
-                                contentDescription = label(language, "Halaman PDF ${visible.page}, ${selected.name}",
-                                    "PDF page ${visible.page}, ${selected.name}"),
-                                modifier = Modifier.width(width), contentScale = ContentScale.FillWidth)
-                        }
-                    }
                 }
             }
         }

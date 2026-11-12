@@ -17,7 +17,7 @@ import org.robolectric.annotation.Config
 class QuranReadingModesTest {
     private val context get() = ApplicationProvider.getApplicationContext<Application>()
 
-    @Test fun pageReadersKeepEditionsSeparateAndPracticeModesKeepTheirOwnReader() {
+    @Test fun everyBundledQuranModeOpensPagesWithoutSubstitutingTheBahriyahEdition() {
         for (id in listOf("indonesia", "indonesia_tajwid")) {
             assertTrue(QuranReadingModes.opensPageReader(id))
             assertEquals(MushafEdition.INDONESIA, QuranReadingModes.pageEdition(id))
@@ -26,8 +26,9 @@ class QuranReadingModesTest {
             assertTrue(QuranReadingModes.opensPageReader(id))
             assertEquals(MushafEdition.MADINAH, QuranReadingModes.pageEdition(id))
         }
-        for (id in listOf("standard", "word_tajwid", "latin_tajwid", "hafalan_8", "tikrar", "waqaf", "bahriyah", "thematic")) {
-            assertFalse(QuranReadingModes.opensPageReader(id))
+        for (id in listOf("standard", "word_tajwid", "latin_tajwid", "hafalan_8", "tikrar", "waqaf", "thematic")) {
+            assertTrue(QuranReadingModes.opensPageReader(id))
+            assertEquals(MushafEdition.INDONESIA, QuranReadingModes.pageEdition(id))
         }
     }
 
@@ -46,6 +47,7 @@ class QuranReadingModesTest {
     @Test fun readingModesDoNotOverwritePersonalPreferencesOrIgnoreColorOptOut() {
         assertEquals(12, QuranReadingModes.all.size)
         assertEquals(12, QuranReadingModes.all.map { it.id }.toSet().size)
+        assertFalse(QuranReadingModes.opensPageReader("bahriyah"))
         val preferences = UserSettings(translation = "en", arabicSize = 42f, tajwidColors = false)
         for (mode in QuranReadingModes.all) {
             val result = QuranReadingModes.settings(mode.id, preferences)

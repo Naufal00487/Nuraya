@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.qa.QaQuranRepositoryTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-12T13:04:34" hostname="26c38cafc86b" time="3.65">
+  <properties/>
+  <testcase name="everyVerseHasArabicAndBothAttributedTranslationLanguages" classname="com.nuraya.app.qa.QaQuranRepositoryTest" time="0.811"/>
+  <testcase name="allChaptersAndVersesArePresentAndOrdered" classname="com.nuraya.app.qa.QaQuranRepositoryTest" time="0.491"/>
+  <testcase name="validLookupReturnsExactVerseAndInvalidLookupDoesNotInventContent" classname="com.nuraya.app.qa.QaQuranRepositoryTest" time="0.334"/>
+  <testcase name="recitersHaveDistinctIdsAndSecureSurahUrls" classname="com.nuraya.app.qa.QaQuranRepositoryTest" time="0.051"/>
+  <testcase name="theKnownAlafasyAliasHasOneVisibleCardWhileExistingIdsStillResolve" classname="com.nuraya.app.qa.QaQuranRepositoryTest" time="0.047"/>
+  <testcase name="readingSearchAndCitationsUseActualNumberedVerses" classname="com.nuraya.app.qa.QaQuranRepositoryTest" time="1.548"/>
+  <testcase name="thirtyJuzCoverCorpusExactlyOnceWithKnownBoundaries" classname="com.nuraya.app.qa.QaQuranRepositoryTest" time="0.365"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

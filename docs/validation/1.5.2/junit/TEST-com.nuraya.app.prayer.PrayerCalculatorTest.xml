@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.prayer.PrayerCalculatorTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-11-12T13:04:25" hostname="26c38cafc86b" time="0.058">
+  <properties/>
+  <testcase name="invalidLocationAndAdjustmentInputsAreRejected" classname="com.nuraya.app.prayer.PrayerCalculatorTest" time="0.013"/>
+  <testcase name="qiblaUsesTheGreatCircleTrueNorthBearingAndShortestTurn" classname="com.nuraya.app.prayer.PrayerCalculatorTest" time="0.001"/>
+  <testcase name="hijriAdjustmentCrossesTheRamadanBoundaryWithoutChangingCivilDate" classname="com.nuraya.app.prayer.PrayerCalculatorTest" time="0.023"/>
+  <testcase name="jakartaScheduleUsesLocalCivilDateAndTheSelectedAngles" classname="com.nuraya.app.prayer.PrayerCalculatorTest" time="0.008"/>
+  <testcase name="sunriseIsDisplayedButNotSelectedAsTheNextPrayer" classname="com.nuraya.app.prayer.PrayerCalculatorTest" time="0.004"/>
+  <testcase name="timeCorrectionChangesPrayersButNeverSunriseOrDeviceClock" classname="com.nuraya.app.prayer.PrayerCalculatorTest" time="0.001"/>
+  <testcase name="countdownClampsExpiredTimesAndSupportsAnOvernightInterval" classname="com.nuraya.app.prayer.PrayerCalculatorTest" time="0.001"/>
+  <testcase name="polarSummerDoesNotInventSunriseOrPrayerTimes" classname="com.nuraya.app.prayer.PrayerCalculatorTest" time="0.003"/>
+  <testcase name="afterIshaTheNextPrayerIsTomorrowsFajr" classname="com.nuraya.app.prayer.PrayerCalculatorTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
