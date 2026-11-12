@@ -30,6 +30,25 @@ import org.robolectric.annotation.LooperMode
 class MadinahPresentationTest {
     @get:Rule val compose = createAndroidComposeRule<ComponentActivity>()
 
+    @Test fun ornamentalIndonesiaPagesNavigateToTheCorrectVerseAndIdentifyTheirEdition() {
+        var opened: Pair<Int, Int>? = null
+        compose.setContent { NurayaTheme { Surface {
+            MadinahScreen("id", 2, 1, true, edition = MushafEdition.INDONESIA) { surah, ayah -> opened = surah to ayah }
+        } } }
+        compose.waitUntil(30_000) { runCatching { compose.onNodeWithTag("mushaf_page_image").fetchSemanticsNode() }.isSuccess }
+        compose.onNodeWithTag("indonesia_screen").assertIsDisplayed()
+        compose.onNodeWithContentDescription("Mushaf Indonesia halaman 2").assertIsDisplayed()
+        saveScreenshot("indonesia-page-two.png")
+        compose.onNodeWithTag("mushaf_next").performClick()
+        compose.waitUntil(30_000) { runCatching { compose.onNodeWithContentDescription("Mushaf Indonesia halaman 3").fetchSemanticsNode() }.isSuccess }
+        compose.onNodeWithText("Baca dengan tajwid berwarna").performClick()
+        assertEquals(2 to 6, opened)
+        saveScreenshot("indonesia-page-three.png")
+        compose.onNodeWithContentDescription("Menu mushaf").performClick()
+        compose.onNodeWithText("Info tajwid & sumber").performClick()
+        compose.onNodeWithText("Ini bukan edisi terjemah per kata Islampedia", substring = true).assertExists()
+    }
+
     @Test fun genuineBundledPageLoadsAndNavigationKeepsVerseCompanionInSync() {
         var opened: Pair<Int, Int>? = null
         compose.setContent { NurayaTheme { Surface {

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.quranreading.LatinRepositoryTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-12T04:30:32" hostname="26c38cafc86b" time="0.162">
+  <properties/>
+  <testcase name="everyCanonicalReferenceHasOnePublishedNonemptyTransliteration" classname="com.nuraya.app.quranreading.LatinRepositoryTest" time="0.136"/>
+  <testcase name="invalidReferencesNeverFallBackToAnotherVerse" classname="com.nuraya.app.quranreading.LatinRepositoryTest" time="0.013"/>
+  <testcase name="latinOpeningsKeepTheOriginalNumberedVersePolicy" classname="com.nuraya.app.quranreading.LatinRepositoryTest" time="0.012"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

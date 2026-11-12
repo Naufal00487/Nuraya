@@ -17,6 +17,20 @@ import org.robolectric.annotation.Config
 class QuranReadingModesTest {
     private val context get() = ApplicationProvider.getApplicationContext<Application>()
 
+    @Test fun pageReadersKeepEditionsSeparateAndPracticeModesKeepTheirOwnReader() {
+        for (id in listOf("indonesia", "indonesia_tajwid")) {
+            assertTrue(QuranReadingModes.opensPageReader(id))
+            assertEquals(MushafEdition.INDONESIA, QuranReadingModes.pageEdition(id))
+        }
+        for (id in listOf("madinah", "madinah_tajwid")) {
+            assertTrue(QuranReadingModes.opensPageReader(id))
+            assertEquals(MushafEdition.MADINAH, QuranReadingModes.pageEdition(id))
+        }
+        for (id in listOf("standard", "word_tajwid", "latin_tajwid", "hafalan_8", "tikrar", "waqaf", "bahriyah", "thematic")) {
+            assertFalse(QuranReadingModes.opensPageReader(id))
+        }
+    }
+
     @Test fun learningBlocksPreserveEverySelectedVerseOnceAndInOrder() {
         val repo = QuranRepository(context)
         for (verses in listOf(repo.verses(1), repo.verses(2).subList(4, 20), repo.juz(30), emptyList())) {

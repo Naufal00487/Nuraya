@@ -20,8 +20,8 @@ object QuranReadingModes {
         QuranReadingMode("standard", "Al-Qur’an per ayat", "Qur’an by verse", "Baca ayat, dengarkan qari, dan simpan penanda.", "Read, listen and bookmark individual verses."),
         QuranReadingMode("word_tajwid", "Per kata & tajwid", "Word meanings & tajwid", "Arti tiap kata terbuka langsung, dengan warna tajwid pada teks Arab.", "Open word meanings with tajwid colors on the Arabic text."),
         QuranReadingMode("latin_tajwid", "Latin & tajwid", "Transliteration & tajwid", "Bantuan Latin di samping teks Arab berwarna dan panduan hukum bacaan.", "Transliteration alongside colored Arabic and pronunciation guidance."),
-        QuranReadingMode("indonesia", "Al-Qur’an Indonesia", "Indonesian Qur’an", "Teks Arab dan terjemahan Indonesia Kementerian Agama.", "Arabic with the Indonesian Ministry of Religious Affairs translation."),
-        QuranReadingMode("indonesia_tajwid", "Indonesia & tajwid", "Indonesian & tajwid", "Terjemahan Indonesia dan warna hukum tajwid pada huruf Arab.", "Indonesian translation with tajwid colors on Arabic letters."),
+        QuranReadingMode("indonesia", "Al-Qur’an Indonesia", "Indonesian Qur’an", "604 halaman berbingkai, dengan terjemahan Indonesia dan arti per kata di panel pendamping.", "604 ornamental pages, with Indonesian translation and word meanings in a companion panel."),
+        QuranReadingMode("indonesia_tajwid", "Indonesia & tajwid", "Indonesian & tajwid", "Halaman berbingkai dengan arti per kata dan tajwid berwarna di panel pendamping.", "Ornamental pages with word meanings and colored tajwid in a companion panel."),
         QuranReadingMode("madinah", "Al-Qur’an Madinah", "Madinah Qur’an", "604 gambar halaman asli, dapat diperbesar. Halaman baru diunduh saat dibuka.", "604 genuine page images with zoom. New pages download when opened."),
         QuranReadingMode("madinah_tajwid", "Madinah & tajwid", "Madinah & tajwid", "Gambar halaman Madinah, dengan tombol membuka teks ayat bertajwid warna.", "Madinah page images with a button to open colored tajwid verse text."),
         QuranReadingMode("hafalan_8", "Hafalan 8 blok", "Eight-block memorization", "Bagi bacaan menjadi delapan kelompok latihan dan uji hafalan tanpa melihat.", "Split reading into eight practice groups and practise recall."),
@@ -32,6 +32,8 @@ object QuranReadingModes {
     )
 
     fun find(id: String): QuranReadingMode = all.firstOrNull { it.id == id } ?: all.first()
+    fun opensPageReader(id: String) = id in setOf("indonesia", "indonesia_tajwid", "madinah", "madinah_tajwid")
+    fun pageEdition(id: String) = if (id in setOf("indonesia", "indonesia_tajwid", "word_tajwid", "latin_tajwid")) MushafEdition.INDONESIA else MushafEdition.MADINAH
     fun usesTajwid(id: String) = id in setOf("word_tajwid", "latin_tajwid", "indonesia_tajwid", "madinah_tajwid", "waqaf")
     fun settings(id: String, original: UserSettings): UserSettings = original.copy(
         translation = when (id) {

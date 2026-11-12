@@ -79,7 +79,7 @@ fun QuranScreen(repo: QuranRepository, language: String, onRead: (Int, Int) -> U
                 Text(label(language, "Ganti cara membaca", "Change reading mode"))
             }
             Spacer(Modifier.height(6.dp))
-            Text(if (readingModeId in setOf("madinah", "madinah_tajwid"))
+            Text(if (QuranReadingModes.opensPageReader(readingModeId))
                 label(language, "Pilih surah atau juz untuk membuka halaman mushaf. Halaman baru memerlukan internet.", "Choose a surah or juz to open its mushaf page. New pages need internet.")
                 else label(language, "114 surah · 30 juz · tersedia offline", "114 surahs · 30 juz · available offline"),
                 style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
@@ -252,7 +252,7 @@ fun ReaderScreen(
         }
     }
     Column(Modifier.fillMaxSize().testTag("reader_screen")) {
-        if (onOpenMushaf != null) TextButton(onClick = { verses.firstOrNull { it.ayah == ayahId }?.let { onOpenMushaf(it.surah, it.ayah) } ?: verses.firstOrNull()?.let { onOpenMushaf(it.surah, it.ayah) } }, modifier = Modifier.fillMaxWidth().testTag("open_book_mushaf")) { Text(label(language, "Buka tampilan kitab Madinah", "Open Madinah book view")) }
+        if (onOpenMushaf != null) TextButton(onClick = { verses.firstOrNull { it.ayah == ayahId }?.let { onOpenMushaf(it.surah, it.ayah) } ?: verses.firstOrNull()?.let { onOpenMushaf(it.surah, it.ayah) } }, modifier = Modifier.fillMaxWidth().testTag("open_book_mushaf")) { Text(label(language, "Buka tampilan kitab", "Open book view") + " · " + QuranReadingModes.pageEdition(readingModeId).title(language)) }
         Surface(color = MaterialTheme.colorScheme.surfaceContainerLow) {
             Row(Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 10.dp), verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {

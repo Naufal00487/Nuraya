@@ -17,6 +17,38 @@ import org.robolectric.annotation.GraphicsMode
 class MushafImagesTest {
     private val context get() = ApplicationProvider.getApplicationContext<Application>()
 
+    @Test fun indonesiaPagesKeepTheirSourceIdentityAndNeverOverwriteSavedMadinahPages() = runBlocking {
+        val indonesia = MushafImages(context, MushafEdition.INDONESIA)
+        val madinah = MushafImages(context)
+        assertEquals(6236, indonesia.references.map { it.surah to it.ayah }.distinct().size)
+        assertEquals((1..604).toList(), indonesia.references.map { it.page }.distinct())
+        val quran = QuranRepository(context)
+        indonesia.references.forEach { assertNotNull(quran.verse(it.surah, it.ayah)) }
+        for (page in listOf(1, 2, 3, 604)) {
+            val bytes = context.assets.open("mushaf/indonesia/%03d.png".format(java.util.Locale.US, page)).use { it.readBytes() }
+            assertTrue(indonesia.verified(page, bytes))
+            assertFalse(madinah.verified(page, bytes))
+            val bitmap = indonesia.load(page)
+            assertEquals(641, bitmap.width)
+            assertEquals(917, bitmap.height)
+            bitmap.recycle()
+            bytes[0] = (bytes[0].toInt() xor 1).toByte()
+            assertFalse(indonesia.verified(page, bytes))
+        }
+        madinah.saveOffline(2)
+        val oldPage = java.io.File(context.filesDir, "madinah-saved-v1/002.png")
+        val original = oldPage.readBytes()
+        indonesia.saveOffline(2)
+        val newPage = java.io.File(context.filesDir, "indonesia-saved-v1/002.png")
+        assertTrue(indonesia.verified(2, newPage.readBytes()))
+        assertArrayEquals(original, oldPage.readBytes())
+        for (entry in indonesia.pages) {
+            assertTrue(MushafEdition.INDONESIA.accepts(java.net.URL(entry.url)))
+            assertFalse(MushafEdition.MADINAH.accepts(java.net.URL(entry.url)))
+        }
+        assertFalse(MushafEdition.INDONESIA.accepts(java.net.URL(indonesia.pages.first().url.replace("https:", "http:"))))
+    }
+
     @Test fun allCanonicalVersesHaveOneValidMadinahPageAndEveryPageIsAddressable() {
         val images = MushafImages(context)
         val quran = QuranRepository(context)

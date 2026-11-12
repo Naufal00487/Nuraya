@@ -1,0 +1,25 @@
+{
+  "version": "1.5.1",
+  "versionCode": 11,
+  "date": "2026-11-12",
+  "jvmComposeTests": {
+    "tests": 180,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 44,
+    "Information": 0
+  },
+  "gradle": "BUILD SUCCESSFUL",
+  "instrumentationApkBuilt": true,
+  "instrumentationRunOnDevice": false,
+  "physicalDeviceTested": false,
+  "apk": {
+    "bytes": 66506072,
+    "sha256": "a352eb1ffab8132452917c27c6dc503bde158d6d5f190e0f37ce777c3f790766"
+  }
+}

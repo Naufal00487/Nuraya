@@ -14,17 +14,33 @@ import java.security.MessageDigest
 data class MushafPage(val number: Int, val url: String, val gitBlobSha1: String)
 data class MushafReference(val surah: Int, val ayah: Int, val page: Int)
 
-/** Original Madinah page images; this index does not describe Bahriyah editions. */
-class MushafImages(private val context: Context) {
+enum class MushafEdition(val id: String, val assetDirectory: String) {
+    MADINAH("madinah", "mushaf"),
+    INDONESIA("indonesia", "mushaf/indonesia");
+
+    fun title(language: String) = when (this) {
+        MADINAH -> if (language == "en") "Madinah mushaf" else "Mushaf Madinah"
+        INDONESIA -> if (language == "en") "Indonesian mushaf" else "Mushaf Indonesia"
+    }
+
+    fun accepts(address: URL): Boolean = address.protocol == "https" && address.host == "raw.githubusercontent.com" && when (this) {
+        MADINAH -> address.path.startsWith("/GovarJabbar/Quran-PNG/b189391148dfb4d7b44e7de40fe2cf942e7c84ac/") ||
+            address.path == "/GovarJabbar/Quran-JPG/9aa696d923843acef00a54e7c4c872414494c4ba/003.jpg"
+        INDONESIA -> address.path.startsWith("/siar08888000077/mushaf-indonesia/76abbcd2ebc88433ee8b530e1611a7219919d574/")
+    }
+}
+
+/** Pinned source artwork, with a separate index and storage namespace for each edition. */
+class MushafImages(private val context: Context, val edition: MushafEdition = MushafEdition.MADINAH) {
     val pages: List<MushafPage> by lazy {
-        val root = context.assets.open("mushaf/madinah-images.json").bufferedReader().use { JSONObject(it.readText()) }
+        val root = context.assets.open("mushaf/${edition.id}-images.json").bufferedReader().use { JSONObject(it.readText()) }
         val rows = root.getJSONArray("pages")
         (0 until rows.length()).map { i -> rows.getJSONObject(i).let {
             MushafPage(it.getInt("page"), it.getString("url"), it.getString("gitBlobSha1"))
         } }.also { require(it.map(MushafPage::number) == (1..604).toList()) }
     }
     val references: List<MushafReference> by lazy {
-        val root = context.assets.open("mushaf/madinah-pages.json").bufferedReader().use { JSONObject(it.readText()) }
+        val root = context.assets.open("mushaf/${edition.id}-pages.json").bufferedReader().use { JSONObject(it.readText()) }
         val rows = root.getJSONArray("verses")
         (0 until rows.length()).map { i -> rows.getJSONObject(i).let {
             MushafReference(it.getInt("surah"), it.getInt("ayah"), it.getInt("page"))
@@ -44,15 +60,15 @@ class MushafImages(private val context: Context) {
     suspend fun load(page: Int): Bitmap = withContext(Dispatchers.IO) {
         require(page in 1..604)
         val name = "%03d".format(java.util.Locale.US, page) + if (pages[page - 1].url.endsWith(".jpg")) ".jpg" else ".png"
-        val bundled = try { context.assets.open("mushaf/$name").use { it.readBytes() } } catch (_: java.io.FileNotFoundException) { null }
+        val bundled = try { context.assets.open("${edition.assetDirectory}/$name").use { it.readBytes() } } catch (_: java.io.FileNotFoundException) { null }
         if (bundled != null && verified(page, bundled)) return@withContext decode(bundled)
-        val saved = File(context.filesDir, "madinah-saved-v1/$name")
+        val saved = File(context.filesDir, "${edition.id}-saved-v1/$name")
         if (saved.isFile) {
             val bytes = saved.readBytes()
             if (verified(page, bytes)) return@withContext decode(bytes)
             saved.delete()
         }
-        val directory = File(context.cacheDir, "madinah-v1").apply { mkdirs() }
+        val directory = File(context.cacheDir, "${edition.id}-v1").apply { mkdirs() }
         val file = File(directory, name)
         if (file.exists()) {
             val bytes = file.readBytes()
@@ -63,9 +79,7 @@ class MushafImages(private val context: Context) {
             file.delete()
         }
         val address = URL(pages[page - 1].url)
-        require(address.protocol == "https" && address.host == "raw.githubusercontent.com" &&
-            (address.path.startsWith("/GovarJabbar/Quran-PNG/b189391148dfb4d7b44e7de40fe2cf942e7c84ac/") ||
-                address.path == "/GovarJabbar/Quran-JPG/9aa696d923843acef00a54e7c4c872414494c4ba/003.jpg"))
+        require(edition.accepts(address))
         val connection = (address.openConnection() as HttpURLConnection).apply {
             connectTimeout = 15000
             readTimeout = 20000
@@ -106,12 +120,12 @@ class MushafImages(private val context: Context) {
     suspend fun saveOffline(page: Int) = withContext(Dispatchers.IO) {
         require(page in 1..604)
         val name = "%03d".format(java.util.Locale.US, page) + if (pages[page - 1].url.endsWith(".jpg")) ".jpg" else ".png"
-        val directory = File(context.filesDir, "madinah-saved-v1").apply { check(mkdirs() || isDirectory) }
+        val directory = File(context.filesDir, "${edition.id}-saved-v1").apply { check(mkdirs() || isDirectory) }
         val target = File(directory, name)
         if (target.isFile && verified(page, target.readBytes())) return@withContext
         load(page).recycle()
-        val bytes = try { context.assets.open("mushaf/$name").use { it.readBytes() } }
-            catch (_: java.io.FileNotFoundException) { File(context.cacheDir, "madinah-v1/$name").readBytes() }
+        val bytes = try { context.assets.open("${edition.assetDirectory}/$name").use { it.readBytes() } }
+            catch (_: java.io.FileNotFoundException) { File(context.cacheDir, "${edition.id}-v1/$name").readBytes() }
         check(verified(page, bytes))
         val temp = File.createTempFile("save-", ".tmp", directory)
         try { temp.writeBytes(bytes); check(temp.renameTo(target)) }

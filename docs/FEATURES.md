@@ -27,8 +27,8 @@ Arah kiblat dihitung dari koordinat menuju Ka'bah. Kompas menyesuaikan orientasi
 | Al-Qur’an per ayat | Ayat berurutan dengan audio, penanda dan bantuan belajar. |
 | Per kata & tajwid | Arti kata ditampilkan langsung; warna hukum bacaan memakai anotasi pada teks Arab. |
 | Latin & tajwid | Latin Indonesia untuk 6.236 ayat dari eQuran.id, tersedia offline, di samping teks Arab bertajwid. Latin tetap tanpa warna; warna Arab tidak dipetakan secara dugaan ke Latin. |
-| Al-Qur’an Indonesia | Arab dan terjemahan Kementerian Agama. |
-| Indonesia & tajwid | Terjemahan Indonesia bersama warna tajwid Arab. |
+| Al-Qur’an Indonesia | 604 gambar Arab berbingkai; terjemahan Kementerian Agama dan arti per kata di panel pendamping. |
+| Indonesia & tajwid | Gambar berbingkai yang sama, dengan tajwid berwarna dan arti per kata di panel pendamping. Warna tidak digambar ulang pada gambar halaman. |
 | Al-Qur’an Madinah | Penampil gambar mushaf 604 halaman, dengan pencarian nomor halaman, pembesaran dan pemetaan surah/ayat ke halaman. Halaman 1, 2, 3 dan 604 disertakan offline; halaman lainnya diunduh saat dibuka dan disimpan di cache. |
 | Madinah & tajwid | Gambar halaman Madinah beserta panel pendamping arti/kata/tajwid dan tombol membuka bacaan per ayat. Gambar halaman asli tetap tanpa pewarnaan; ini bukan pindai edisi tajwid berwarna. |
 | Hafalan 8 blok | Bacaan dipisahkan menjadi hingga delapan kelompok ayat untuk latihan lihat/sembunyikan; bukan reproduksi blok berwarna edisi cetak tertentu. Bacaan dengan kurang dari delapan ayat mempunyai lebih sedikit kelompok. |
@@ -66,3 +66,5 @@ Daftar qari berupa dua kolom foto/nama, dengan pilihan horizontal di beranda. Ha
 Latihan hafalan menyediakan dua urutan audio: setiap ayat diulang N kali sebelum maju, atau seluruh rentang ayat diputar lalu diulang N kali. Nilai N dapat dipilih 1–20, dan ada pilihan seluruh surah. Contoh Al-Mulk 1–5 sebanyak tiga putaran menghasilkan tepat 15 item sebelum berhenti. Penilaian hafalan tetap catatan pribadi pengguna.
 
 Banner beranda dapat digeser. Proyek backend Telegram tersedia di `backend/banner-bot`; belum deploy karena pengguna memilih menyiapkan proyek dahulu. Sebelum layanan diaktifkan, banner bawaan tetap berfungsi. Token bot hanya disimpan sebagai secret backend; tidak dimasukkan ke APK atau Git. Azan dijelaskan di [PRAYER.md](PRAYER.md).
+
+Sejak 1.5.1, sumber gambar Quran Indonesia dipisahkan dari Madinah, termasuk indeks, cache dan halaman simpanan offline. Mode Per kata & tajwid serta Latin & tajwid menawarkan tombol membuka kitab Indonesia; latihan hafalan, Tikrar, waqaf dan tema tetap memakai pembaca khususnya. [Sumber dan batas gambar](MUSHAF_IMAGES.md#indonesia-ornamental-pages--151).

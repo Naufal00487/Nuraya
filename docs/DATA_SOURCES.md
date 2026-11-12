@@ -178,3 +178,7 @@ dahulu. Pengambilan langsung laman Tanzil dan QuranEnc dari mesin cloud masih
 ditolak proxy saat audit ini; dokumentasi ketentuannya didasarkan pada snapshot
 provenance yang dipin. Laman ketentuan Al Quran Cloud dapat diakses dan dibaca
 langsung dengan HTTP 200.
+
+## Gambar Quran Indonesia (1.5.1)
+
+604 gambar Arab berbingkai dari `siar08888000077/mushaf-indonesia`, commit `76abbcd2ebc88433ee8b530e1611a7219919d574`. Semua berkas diperiksa hash dan decoding; batas akhir ayat dicocokkan secara visual dengan indeks 604 halaman. Gambar tidak berisi terjemahan per kata Islampedia. Terjemahan, tajwid dan sorotan audio ditampilkan di panel pendamping. Lihat [sumber, cakupan audit dan batas edisi](MUSHAF_IMAGES.md#indonesia-ornamental-pages--151).

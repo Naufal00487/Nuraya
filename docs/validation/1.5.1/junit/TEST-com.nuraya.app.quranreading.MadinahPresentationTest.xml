@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.quranreading.MadinahPresentationTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-12T04:30:32" hostname="26c38cafc86b" time="2.348">
+  <properties/>
+  <testcase name="largeTextKeepsThePageVisibleAndCompanionButtonReachable" classname="com.nuraya.app.quranreading.MadinahPresentationTest" time="0.309"/>
+  <testcase name="jumpRejectsInvalidPagesAndOpensAnExactBundledPage" classname="com.nuraya.app.quranreading.MadinahPresentationTest" time="0.358"/>
+  <testcase name="companionTranslationAndSearchableQariPickerStayInsideMushaf" classname="com.nuraya.app.quranreading.MadinahPresentationTest" time="0.367"/>
+  <testcase name="genuineBundledPageLoadsAndNavigationKeepsVerseCompanionInSync" classname="com.nuraya.app.quranreading.MadinahPresentationTest" time="0.501"/>
+  <testcase name="pageTapHidesControlsAndDoubleTapRequestsLandscape" classname="com.nuraya.app.quranreading.MadinahPresentationTest" time="0.272"/>
+  <testcase name="ornamentalIndonesiaPagesNavigateToTheCorrectVerseAndIdentifyTheirEdition" classname="com.nuraya.app.quranreading.MadinahPresentationTest" time="0.267"/>
+  <testcase name="landscapeKeepsThePageReadableWithScrollableHeight" classname="com.nuraya.app.quranreading.MadinahPresentationTest" time="0.272"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

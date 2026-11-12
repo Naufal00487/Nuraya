@@ -89,7 +89,7 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
         if (screen != "reader") readerFrom = screen
         if (screen !in listOf("reader", "surahs", "quran")) readingModeId = "standard"
         surahId = surah; ayahId = ayah; juzId = 0
-        screen = if (screen == "surahs" && readingModeId in setOf("madinah", "madinah_tajwid")) "mushaf" else "reader"
+        screen = if (screen == "surahs" && QuranReadingModes.opensPageReader(readingModeId)) "mushaf" else "reader"
     }
     val back: () -> Unit = {
         when {
@@ -175,14 +175,15 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
                             onRead = { surah, ayah -> readingModeId = "indonesia"; openVerse(surah, ayah) })
                         "surahs" -> QuranScreen(app.quran, language, onRead = openVerse, onJuz = {
                             readerFrom = "surahs"
-                            if (readingModeId in setOf("madinah", "madinah_tajwid")) {
+                            if (QuranReadingModes.opensPageReader(readingModeId)) {
                                 val first = app.quran.juz(it).first()
                                 surahId = first.surah; ayahId = first.ayah; juzId = 0; screen = "mushaf"
                             } else { juzId = it; ayahId = 1; screen = "reader" }
                         }, readingModeId = readingModeId, onChooseMode = { screen = "quran" })
                         "mushaf" -> MadinahScreen(language, surahId, ayahId,
-                            showTajwidCompanion = readingModeId == "madinah_tajwid",
-                            app = app, settings = settings, onBack = back,
+                            showTajwidCompanion = QuranReadingModes.usesTajwid(readingModeId),
+                            edition = QuranReadingModes.pageEdition(readingModeId),
+                            app = app, settings = QuranReadingModes.settings(readingModeId, settings), onBack = back,
                             onReadVerses = { surah, ayah ->
                                 readerFrom = "mushaf"; surahId = surah; ayahId = ayah; juzId = 0; screen = "reader"
                             })

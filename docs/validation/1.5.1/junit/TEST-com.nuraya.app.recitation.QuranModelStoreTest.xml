@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.recitation.QuranModelStoreTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-12T04:30:36" hostname="26c38cafc86b" time="0.095">
+  <properties/>
+  <testcase name="modelsRequireImmutableHttpsSourceChecksumAndBoundedSafeFilename" classname="com.nuraya.app.recitation.QuranModelStoreTest" time="0.023"/>
+  <testcase name="existingModelMustMatchContentsNotOnlySizeBeforeReady" classname="com.nuraya.app.recitation.QuranModelStoreTest" time="0.039"/>
+  <testcase name="publishedBuildHasAConfiguredImmutableModel" classname="com.nuraya.app.recitation.QuranModelStoreTest" time="0.014"/>
+  <testcase name="interruptedModelIsNeverExposedAsReady" classname="com.nuraya.app.recitation.QuranModelStoreTest" time="0.019"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

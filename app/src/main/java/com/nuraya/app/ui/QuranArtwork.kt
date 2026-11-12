@@ -36,6 +36,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.nuraya.app.quranreading.MushafImages
+import com.nuraya.app.quranreading.MushafEdition
 import kotlinx.coroutines.CancellationException
 
 /** A genuine source page preview, not a generated cover or a different printed edition. */
@@ -61,20 +62,21 @@ fun MadinahScreen(
     app: com.nuraya.app.NurayaApplication? = null,
     settings: com.nuraya.app.storage.UserSettings = com.nuraya.app.storage.UserSettings(),
     onBack: () -> Unit = {},
+    edition: MushafEdition = MushafEdition.MADINAH,
     onReadVerses: (Int, Int) -> Unit,
 ) {
     val context = LocalContext.current
     val activity = context.findMushafActivity()
-    val repository = remember(context) { MushafImages(context.applicationContext) }
+    val repository = remember(context, edition) { MushafImages(context.applicationContext, edition) }
     val scope = rememberCoroutineScope()
     val english = language == "en"
     fun tr(id: String, en: String) = if (english) en else id
-    var page by rememberSaveable(initialSurah, initialAyah) { mutableIntStateOf(repository.pageFor(initialSurah, initialAyah)) }
+    var page by rememberSaveable(edition, initialSurah, initialAyah) { mutableIntStateOf(repository.pageFor(initialSurah, initialAyah)) }
     var zoom by rememberSaveable { mutableFloatStateOf(1f) }
     var controls by rememberSaveable { mutableStateOf(true) }
     var landscape by rememberSaveable { mutableStateOf(false) }
     var retry by remember { mutableIntStateOf(0) }
-    var bitmap by remember(page) { mutableStateOf<Bitmap?>(null) }
+    var bitmap by remember(edition, page) { mutableStateOf<Bitmap?>(null) }
     var error by remember { mutableStateOf(false) }
     var jump by remember { mutableStateOf(false) }
     var menu by remember { mutableStateOf(false) }
@@ -95,7 +97,7 @@ fun MadinahScreen(
         study = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) { app?.study?.verse(selectedSurah, selectedAyah) }
         latin = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) { com.nuraya.app.quranreading.LatinRepository.shared(context).verse(selectedSurah, selectedAyah)?.latin }
     }
-    LaunchedEffect(page, retry) {
+    LaunchedEffect(edition, page, retry) {
         bitmap = null; error = false; downloadMessage = ""
         val reference = repository.firstReference(page)
         if (repository.pageFor(selectedSurah, selectedAyah) != page) { selectedSurah = reference.surah; selectedAyah = reference.ayah }
@@ -116,11 +118,11 @@ fun MadinahScreen(
         activity?.requestedOrientation = if (landscape) android.content.pm.ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE else android.content.pm.ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
     }
     fun rotate() { landscape = !landscape }
-    Column(Modifier.fillMaxSize().background(Color(0xFFF7F0DB)).testTag("madinah_screen")) {
+    Column(Modifier.fillMaxSize().background(Color(0xFFF7F0DB)).testTag("${edition.id}_screen")) {
         if (controls) Row(Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.surface).padding(horizontal = 4.dp), verticalAlignment = Alignment.CenterVertically) {
             IconButton(onClick = onBack, modifier = Modifier.testTag("back_button")) { Icon(Icons.AutoMirrored.Outlined.ArrowBack, tr("Kembali", "Back")) }
             Column(Modifier.weight(1f)) {
-                Text(tr("Mushaf Madinah", "Madinah mushaf"), style = MaterialTheme.typography.titleMedium)
+                Text(edition.title(language), style = MaterialTheme.typography.titleMedium)
                 Text(tr("Halaman $page / 604", "Page $page / 604"), style = MaterialTheme.typography.labelMedium, modifier = Modifier.testTag("mushaf_page_number"))
             }
             IconButton(onClick = { jump = true }) { Icon(Icons.Outlined.Search, tr("Pilih halaman, surah atau juz", "Choose page, chapter or juz")) }
@@ -154,12 +156,12 @@ fun MadinahScreen(
                     Button(onClick = { retry++ }) { Text(tr("Coba lagi", "Retry")) }
                 }
                 current == null -> CircularProgressIndicator()
-                else -> key(page) {
-                    if (zoom == 1f && androidx.compose.ui.platform.LocalConfiguration.current.orientation != android.content.res.Configuration.ORIENTATION_LANDSCAPE) Image(current.asImageBitmap(), tr("Mushaf Madinah halaman $page", "Madinah page $page"), Modifier.fillMaxSize().testTag("mushaf_page_image"), contentScale = ContentScale.Fit)
+                else -> key(edition, page) {
+                    if (zoom == 1f && androidx.compose.ui.platform.LocalConfiguration.current.orientation != android.content.res.Configuration.ORIENTATION_LANDSCAPE) Image(current.asImageBitmap(), edition.title(language) + tr(" halaman $page", " page $page"), Modifier.fillMaxSize().testTag("mushaf_page_image"), contentScale = ContentScale.Fit)
                     else {
                         val pageWidth = maxWidth * zoom
                         Box(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).horizontalScroll(rememberScrollState())) {
-                            Image(current.asImageBitmap(), tr("Mushaf Madinah halaman $page", "Madinah page $page"), Modifier.width(pageWidth).height(pageWidth * current.height.toFloat() / current.width).testTag("mushaf_page_image"), contentScale = ContentScale.Fit)
+                            Image(current.asImageBitmap(), edition.title(language) + tr(" halaman $page", " page $page"), Modifier.width(pageWidth).height(pageWidth * current.height.toFloat() / current.width).testTag("mushaf_page_image"), contentScale = ContentScale.Fit)
                         }
                     }
                 }
@@ -167,6 +169,7 @@ fun MadinahScreen(
         }
         if (controls) Column(Modifier.fillMaxWidth().heightIn(max = 240.dp).background(MaterialTheme.colorScheme.surface).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
             if (downloadMessage.isNotEmpty()) Text(downloadMessage, style = MaterialTheme.typography.bodySmall)
+            if (edition == MushafEdition.INDONESIA) Text(tr("Arti per kata & tajwid: buka panel di bawah", "Word meanings & tajwid: open the panel below"), style = MaterialTheme.typography.labelSmall)
             Text(tr("Ketuk: tampil/sembunyikan tombol · Ketuk 2×: lanskap", "Tap: show/hide controls · Double tap: landscape"), style = MaterialTheme.typography.labelSmall)
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
                 IconButton(onClick = { page-- }, enabled = page > 1, modifier = Modifier.testTag("mushaf_previous")) { Icon(Icons.AutoMirrored.Outlined.ArrowBack, tr("Halaman sebelumnya", "Previous page")) }
@@ -191,7 +194,8 @@ fun MadinahScreen(
     if (sourceVisible) AlertDialog(onDismissRequest = { sourceVisible = false }, title = { Text(tr("Tajwid & sumber mushaf", "Tajwid & page sources")) }, text = {
         Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             TajwidLegend(language, settings.darkMode)
-            Text(tr("Gambar asli Madinah: King Fahd Quran Complex melalui GovarJabbar Quran-PNG/Quran-JPG, diperiksa terhadap checksum sumber. Warna tajwid, arti per kata, dan sorotan audio tersedia di panel pendamping; gambar halaman tidak diubah. Halaman 1, 2, 3, 604 tersedia langsung; simpan halaman lain untuk membacanya offline.", "Original Madinah pages: King Fahd Quran Complex via GovarJabbar Quran-PNG/Quran-JPG, checked against source hashes. Tajwid, word meanings and audio highlights appear in the companion panel; page images remain unchanged. Pages 1, 2, 3, 604 are bundled; save other pages for offline reading."))
+            if (edition == MushafEdition.INDONESIA) Text(tr("Gambar Arab berbingkai: siar08888000077/mushaf-indonesia, diperiksa terhadap checksum sumber. Ini bukan edisi terjemah per kata Islampedia. Terjemahan Indonesia, arti per kata, tajwid berwarna, dan sorotan audio tersedia di panel pendamping. Gambar tidak diubah. Halaman 1, 2, 3, 604 tersedia langsung; simpan halaman lain untuk membaca offline.", "Ornamental Arabic pages: siar08888000077/mushaf-indonesia, checked against source hashes. These are not the Islampedia word-translation edition. Indonesian translation, word meanings, colored tajwid and audio highlights appear in the companion panel. Images are unchanged. Pages 1, 2, 3, 604 are bundled; save other pages for offline reading."))
+            else Text(tr("Gambar asli Madinah: King Fahd Quran Complex melalui GovarJabbar Quran-PNG/Quran-JPG, diperiksa terhadap checksum sumber. Warna tajwid, arti per kata, dan sorotan audio tersedia di panel pendamping; gambar halaman tidak diubah. Halaman 1, 2, 3, 604 tersedia langsung; simpan halaman lain untuk membacanya offline.", "Original Madinah pages: King Fahd Quran Complex via GovarJabbar Quran-PNG/Quran-JPG, checked against source hashes. Tajwid, word meanings and audio highlights appear in the companion panel; page images remain unchanged. Pages 1, 2, 3, 604 are bundled; save other pages for offline reading."))
         }
     }, confirmButton = { TextButton(onClick = { sourceVisible = false }) { Text(tr("Tutup", "Close")) } })
     if (qaris && app != null) ModalBottomSheet(onDismissRequest = { qaris = false }, sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)) {
@@ -241,7 +245,7 @@ fun MadinahScreen(
             }
             Text(tr("Ukuran tulisan Arab", "Arabic text size"))
             Slider(value = settings.arabicSize, onValueChange = { value -> scope.launch { app.settings.setArabicSize(value) } }, valueRange = 22f..48f)
-            StudyVersePanel(study, language, initiallyShowWords = showTajwidCompanion, tajwidColors = settings.tajwidColors, dark = settings.darkMode)
+            StudyVersePanel(study, language, initiallyShowWords = showTajwidCompanion || edition == MushafEdition.INDONESIA, tajwidColors = settings.tajwidColors, dark = settings.darkMode)
             FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Button(onClick = { app.playback.playVerseRange(selectedSurah, selectedAyah, selectedAyah, settings.readerQariId, repeats) }) { Text(tr("Putar ayat ini", "Play this verse")) }
                 if (playback.isPlaying) OutlinedButton(onClick = { app.playback.toggle() }) { Text(tr("Jeda", "Pause")) }

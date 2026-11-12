@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.quranreading.BahriyahPdfTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-12T04:30:32" hostname="26c38cafc86b" time="0.193">
+  <properties/>
+  <testcase name="emptyScreenExplainsLocalEditionAndOffersRealPdfImport" classname="com.nuraya.app.quranreading.BahriyahPdfTest" time="0.06"/>
+  <testcase name="documentAndLastPagePersistWithoutMixingWithQuranVerseNumbers" classname="com.nuraya.app.quranreading.BahriyahPdfTest" time="0.039"/>
+  <testcase name="inaccessibleSavedDocumentOffersRetryAndReplacementInsteadOfAnotherEdition" classname="com.nuraya.app.quranreading.BahriyahPdfTest" time="0.094"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

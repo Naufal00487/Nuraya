@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.recitation.RecitationMicrophoneSessionTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-12T04:30:36" hostname="26c38cafc86b" time="0.218">
+  <properties/>
+  <testcase name="stalledDecoderTimesOutAndReleasesMicrophoneWithNoFalseResult" classname="com.nuraya.app.recitation.RecitationMicrophoneSessionTest" time="0.047"/>
+  <testcase name="mutedInputStopsBeforeSubmittingAnyAudioToAi" classname="com.nuraya.app.recitation.RecitationMicrophoneSessionTest" time="0.021"/>
+  <testcase name="finishedCaptureProducesResultAndShowsProcessingTimeWhileDecoderWorks" classname="com.nuraya.app.recitation.RecitationMicrophoneSessionTest" time="0.023"/>
+  <testcase name="zeroReadDeviceEndsWithSpecificFailureInsteadOfPretendingToRecord" classname="com.nuraya.app.recitation.RecitationMicrophoneSessionTest" time="0.035"/>
+  <testcase name="actualSilenceIsDifferentFromAMicrophoneThatSendsNoFrames" classname="com.nuraya.app.recitation.RecitationMicrophoneSessionTest" time="0.042"/>
+  <testcase name="cancellationClearsAudioAndPreventsDelayedDecoderResult" classname="com.nuraya.app.recitation.RecitationMicrophoneSessionTest" time="0.024"/>
+  <testcase name="microphoneCheckReceivesSoundWithoutLoadingAnyAiModel" classname="com.nuraya.app.recitation.RecitationMicrophoneSessionTest" time="0.026"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

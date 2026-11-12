@@ -22,3 +22,22 @@ The original page is framed without redrawing or recoloring its Quran text. A si
 The companion sheet shows the current verse, attributed Kemenag/QuranEnc translation, optional Latin, text size, word meanings, tafsir and source-mapped tajwid. Audio highlighting appears in this text panel, not at invented coordinates on the page image. The 17-reciter picker supports search, existing identity-mapped portraits, per-verse repeats, play and pause. Missing portraits retain labeled initials.
 
 Explicit **Simpan halaman offline** validates source bytes and writes them atomically to private persistent app storage. Saved pages survive eviction from the 64 MiB recent-page cache; they are removed with app data/uninstall. Unopened/unsaved pages still require a connection. User-provided book covers are navigation illustrations, recorded in `sources/revision-1.5.0-assets.json`; they do not establish the complete text of that photographed edition.
+
+
+## Indonesia ornamental pages — 1.5.1
+
+**Al-Qur’an Indonesia** and **Indonesia & tajwid** now open the 604 original ornamental Arabic page images from [siar08888000077/mushaf-indonesia](https://github.com/siar08888000077/mushaf-indonesia), pinned to `76abbcd2ebc88433ee8b530e1611a7219919d574`. The files are 641 × 917 pixels. They are not the Islampedia edition with printed Indonesian word meanings and are not represented as an officially certified Kemenag print edition. The source repository does not declare a publisher or a separate image license; no independent license is asserted.
+
+All 604 files were downloaded, decoded and checked against the pinned Git blob hashes on 12 November 2026. There are no identical duplicate page files. [Download evidence](audit/1.5.1/mushaf-indonesia-files.json) records each URL, hash, dimensions and indexed boundaries. Final printed ayah markers on all 604 pages were visually compared against the standard 604-page index; no page-boundary discrepancy was found. [Visual review scope](audit/1.5.1/mushaf-indonesia.json) explicitly distinguishes this pagination check from expert proofreading of every glyph, harakat or waqaf sign. The complete 6,236-reference index is stored separately in `indonesia-pages.json`.
+
+The app checks downloaded, cached and saved bytes before decoding them. Storage namespaces and bundled paths are separate for Indonesia and Madinah; saving either edition never overwrites the other. Four unchanged images (1, 2, 3, 604) are bundled. The remaining pages download individually when opened, avoiding an additional whole-book download in the APK. A 64 MiB recent-page cache applies per edition; explicit saved pages remain in private storage until app data is removed.
+
+Indonesian translation, per-word meanings, optional Latin, tafsir, colored tajwid and audio word highlights remain in the companion sheet. The source image is not redrawn, recolored or overlaid with guessed word positions. The word-meaning panel is expanded when opened in the Indonesia edition. Audio retains the existing 17-reciter selection and timing coverage. Madinah retains its own source. Bahriyah remains a local PDF reader; these images are not substituted as a Bahriyah print edition.
+
+To repeat integrity checks after downloading the files as `001.png` through `604.png`:
+
+```sh
+python3 scripts/verify-indonesia-pages.py /path/to/pages --output /path/to/check.json --review-dir /path/to/review
+```
+
+The optional contact sheets support a separate visual review; running the script does not certify image text or automatically mark visual checks as passed. Runtime/UI checks cover source separation, corruption rejection, page-to-verse navigation and returning from the companion verse reader. Screenshots in `validation/1.5.1` are Compose/Robolectric host renders, not physical-device captures.
