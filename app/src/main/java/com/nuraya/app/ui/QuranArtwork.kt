@@ -121,11 +121,13 @@ fun MadinahScreen(
             catch (_: Exception) { /* Reading remains available if history storage fails. */ }
         }
     }
-    LaunchedEffect(playback.surahId, playback.ayahId, settings.followRecitation) {
-        if (settings.followRecitation && playback.verseMode && playback.surahId > 0 && playback.ayahId > 0) {
-            selectedSurah = playback.surahId; selectedAyah = playback.ayahId
+    var previousAudio by remember(initialSurah, initialAyah) { mutableStateOf(playback) }
+    LaunchedEffect(playback.surahId, playback.ayahId, playback.isPlaying, settings.followRecitation) {
+        if (com.nuraya.app.quranreading.shouldFollowBookAudio(selectedSurah, previousAudio, playback, settings.followRecitation)) {
+            selectedAyah = playback.ayahId
             page = repository.pageFor(selectedSurah, selectedAyah)
         }
+        previousAudio = playback
     }
     DisposableEffect(activity) {
         onDispose { activity?.requestedOrientation = android.content.pm.ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED }
@@ -192,6 +194,7 @@ fun MadinahScreen(
         }
         if (controls) Column(Modifier.align(Alignment.BottomCenter).fillMaxWidth().heightIn(max = 280.dp).testTag("mushaf_controls").background(MaterialTheme.colorScheme.surface).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
             if (downloadMessage.isNotEmpty()) Text(downloadMessage, style = MaterialTheme.typography.bodySmall)
+            playback.error?.let { Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error) }
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                 Text(QuranReadingModes.find(readingModeId).title(language), Modifier.weight(1f), style = MaterialTheme.typography.titleSmall)
                 IconButton(onClick = { controls = false }) { Icon(Icons.Outlined.Close, tr("Tutup menu baca", "Close reading menu")) }

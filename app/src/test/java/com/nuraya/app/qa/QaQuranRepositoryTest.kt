@@ -112,10 +112,10 @@ class QaQuranRepositoryTest {
         assertTrue("ar.alafasy" in visibleIds)
         assertTrue("ar.misharyrashidalafasy" in allIds)
         assertFalse("ar.misharyrashidalafasy" in visibleIds)
-        assertEquals(setOf("ar.misharyrashidalafasy"), allIds - visibleIds)
+        assertEquals(com.nuraya.app.media.CuratedReciters.chapterIds.toSet(), visibleIds)
         assertEquals(quran.qariChoices.size, visibleIds.size)
-        // Other genuine editions, including different styles, must remain separate.
+        // One visible edition per selected person; old identifiers still resolve for saved data.
         assertTrue("ar.abdulbasitmurattal" in visibleIds)
-        assertTrue("ar.abdulbasitmujawwad" in visibleIds)
+        assertFalse("ar.abdulbasitmujawwad" in visibleIds)
     }
 }

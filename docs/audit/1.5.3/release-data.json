@@ -1,0 +1,77 @@
+{
+  "version": "1.5.3",
+  "date": "2026-11-13",
+  "canonicalQuranSha256": "f41cef112e2efd581d3ea15ad7229a713d18122a6e0fbec4ddb0c00b7d1cae9c",
+  "canonicalTextChanged": false,
+  "pageImagesChanged": false,
+  "audioSourceUrlsAndTimingsChanged": false,
+  "chapterChoices": [
+    "ar.alafasy",
+    "ar.abdulbasitmurattal",
+    "ar.haniarrifai",
+    "ar.muhammadsiddiqalminshawimujawwad",
+    "ar.saudalshuraim"
+  ],
+  "verseChoices": [
+    "ar.alafasy",
+    "ar.abdulsamad",
+    "ar.abdurrahmaansudais",
+    "ar.shaatree",
+    "ar.hanirifai",
+    "ar.husary",
+    "ar.saoodshuraym"
+  ],
+  "retainedPortraits": [
+    {
+      "id": "alafasy",
+      "name": "Mishary Rashid Alafasy",
+      "sourcePage": "https://quran.com/reciters/7",
+      "sha256": "3243c2a7f871d7af5f7d19949c6b8f8992e14c969eb8031eeb1a0a020a3b894a"
+    },
+    {
+      "id": "abdulbasit",
+      "name": "Abdul Basit Abdus Samad",
+      "sourcePage": "https://quran.com/reciters/2",
+      "sha256": "ec4beb334d7faa8262f7bd1aa2dd0a4c78f5d04fc696717aa27df6c100000ad1"
+    },
+    {
+      "id": "sudais",
+      "name": "Abdurrahman As-Sudais",
+      "sourcePage": "https://quran.com/reciters/3",
+      "sha256": "2d74243722af92e904805c817e80431cfbb0879477a2158d181d483929a8661c"
+    },
+    {
+      "id": "shatri",
+      "name": "Abu Bakr Ash-Shatri",
+      "sourcePage": "https://quran.com/reciters/4",
+      "sha256": "4b3d53ba9c1b058a2fdf191ce30928e5120310985828ba02c6d87d840f363649"
+    },
+    {
+      "id": "rifai",
+      "name": "Hani Ar-Rifai",
+      "sourcePage": "https://quran.com/reciters/5",
+      "sha256": "3640cb08b3873c4a7e65b5c0a6fc9ff23188dc1ab1eeff6e23b27576a50cdfce"
+    },
+    {
+      "id": "husary",
+      "name": "Mahmoud Khalil Al-Husary",
+      "sourcePage": "https://quran.com/reciters/6",
+      "sha256": "293edc9a56353ccb962246c7d3cb609827a09c71117ce74a7e19d6da324598fe"
+    },
+    {
+      "id": "minshawi",
+      "name": "Muhammad Siddiq Al-Minshawi",
+      "sourcePage": "https://quran.com/reciters/9",
+      "sha256": "6d80392c9683e9aab4a88f83bf49cfd60cae5d6ed71a73375efb10d54fb3bd2a"
+    },
+    {
+      "id": "shuraim",
+      "name": "Saud Al-Shuraim",
+      "sourcePage": "https://quran.com/reciters/10",
+      "sha256": "4215efdab7c9981a2a716af6661cfd388bf81d580be11bcc88a7e6a3dce23f20"
+    }
+  ],
+  "removedCompilerPortraitCount": 126,
+  "bahriyahRemovedFromCodeAndApk": true,
+  "identityCheck": "Explicit source profile/edition mapping; no facial inference or independent expert voice authentication."
+}

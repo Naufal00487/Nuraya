@@ -1,3 +1,5 @@
+> Pembaruan 1.5.3: Bahriyah/pojok dan penampil PDF telah dihapus. Indonesia/Madinah biasa memakai gambar; mode belajar lainnya memakai teks digital dan fungsi khusus. Lihat [perubahan terkini](UPDATE_1.5.3.md). Keterangan versi sebelumnya di bawah adalah riwayat sumber.
+
 # Madinah page images
 
 Nuraya displays original 604-page Madinah images rather than fabricating a cover or laying reflowed text out as a claimed printed edition. Source: [GovarJabbar/Quran-PNG](https://github.com/GovarJabbar/Quran-PNG), pinned commit `b189391148dfb4d7b44e7de40fe2cf942e7c84ac`, using Madinah page artwork of the same font family documented by [quran/quran.com-images](https://github.com/quran/quran.com-images). Quran glyph/page artwork belongs to the King Fahd Quran Complex. No independent Creative Commons license for these page images is asserted.

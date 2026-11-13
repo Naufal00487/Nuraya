@@ -8,6 +8,7 @@ import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import kotlinx.coroutines.flow.first
@@ -30,6 +31,14 @@ class QaNavigationTest {
     @Before fun resetLanguage() {
         val app = compose.activity.application as NurayaApplication
         runBlocking { app.settings.setLanguage("id") }
+        compose.waitUntil(timeoutMillis = 15_000) {
+            compose.onAllNodesWithTag("nav_home").fetchSemanticsNodes().isNotEmpty() ||
+                compose.onAllNodesWithTag("profile_onboarding").fetchSemanticsNodes().isNotEmpty()
+        }
+        if (compose.onAllNodesWithTag("profile_onboarding").fetchSemanticsNodes().isNotEmpty()) {
+            compose.onNodeWithTag("onboarding_name").performTextInput("Penguji")
+            compose.onNodeWithTag("onboarding_continue").performScrollTo().performClick()
+        }
         awaitTag("nav_home")
         if (compose.onAllNodesWithTag("location_setup_dialog").fetchSemanticsNodes().isNotEmpty()) {
             compose.onNodeWithTag("device_location_later").performClick()
@@ -57,8 +66,8 @@ class QaNavigationTest {
         compose.onNodeWithTag("quran_mode_standard").performClick()
         awaitTag("surah_1")
         compose.onNodeWithTag("surah_1").performClick()
-        awaitTag("reader_screen")
-        compose.onNodeWithTag("reader_screen").assertIsDisplayed()
+        awaitTag("study_book_screen")
+        compose.onNodeWithTag("study_book_screen").assertIsDisplayed()
     }
 
     @Test fun baqarahOpeningAndJumpKeepCorrectVerseNumbers() {
@@ -69,11 +78,12 @@ class QaNavigationTest {
         compose.onNodeWithTag("surah_2").performClick()
         awaitTag("verse_text_2_1")
         compose.onNodeWithTag("verse_text_2_1").assertTextEquals("الٓمٓ")
-        compose.onNodeWithTag("surah_basmalah_2").assertIsDisplayed()
-        compose.onNodeWithContentDescription("Lompat ke ayat").performClick()
+        compose.onNodeWithTag("basmalah_text_2").assertIsDisplayed()
+        compose.onNodeWithTag("study_open_menu").performScrollTo().performClick()
+        compose.onNodeWithText("Ke ayat").performScrollTo().performClick()
         compose.onNode(hasSetTextAction()).performTextInput("255")
         compose.onNodeWithText("Buka").performClick()
-        awaitTag("verse_2_255")
+        awaitTag("study_verse_2_255")
         compose.onNodeWithText("2:255").assertIsDisplayed()
     }
 

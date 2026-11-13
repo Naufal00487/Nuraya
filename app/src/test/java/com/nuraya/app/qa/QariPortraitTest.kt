@@ -19,7 +19,7 @@ class QariPortraitTest {
 
     @Test fun allBundledPhotographsMatchTheirRecordedSourceHashesAndDecode() {
         val catalog = QariPortraitCatalog(context)
-        assertEquals(134, catalog.entries.size)
+        assertEquals(8, catalog.entries.size)
         assertEquals(8,catalog.entries.count{!it.id.startsWith("user_")})
         catalog.entries.forEach { entry ->
             val bytes = context.assets.open(entry.asset).use { it.readBytes() }
@@ -49,8 +49,8 @@ class QariPortraitTest {
         } }
         assertEquals("minshawi", catalog.find("ar.muhammadsiddiqalminshawimujawwad")?.id)
         assertEquals("rifai", catalog.find("ar.haniarrifai")?.id)
-        assertEquals("user_099",catalog.find("ar.nabilarrifai")?.id)
-        assertEquals("user_067",catalog.find("ar.mahmoodalrifai")?.id)
+        assertNull(catalog.find("ar.nabilarrifai"))
+        assertNull(catalog.find("ar.mahmoodalrifai"))
         assertNull(catalog.find("ar.mahmoudsayedeltayeb"))
         assertNull(catalog.find("ar.muhammadsulaimanpatel"))
         assertNull(catalog.find("Hani Rifai"))

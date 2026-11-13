@@ -1,45 +1,46 @@
-# Build dan validasi Nuraya 1.5.2
+# Build dan validasi Nuraya 1.5.3
 
-Diperiksa 12 November 2026. Paket `com.nuraya.app`, versionCode **12**, minimum Android 8/API 26, target API 35. [Perubahan](UPDATE_1.5.2.md).
+Diperiksa 13 November 2026 (Asia/Jakarta). Paket `com.nuraya.app`, versionCode **13**, minimum Android 8/API 26, target API 35. [Perubahan](UPDATE_1.5.3.md).
 
 ## Hasil
 
-**BUILD SUCCESSFUL. 185 tes JVM/Compose lulus, 0 gagal/error/dilewati.** Lint: 0 error/fatal, 44 peringatan. APK aplikasi dan APK instrumentasi berhasil dibangun. Instrumentasi belum dijalankan pada HP atau emulator.
+**BUILD SUCCESSFUL. 189 tes JVM/Compose lulus, 0 gagal/error/dilewati.** Lint: 0 error/fatal, 41 peringatan. APK aplikasi dan APK instrumentasi berhasil dibangun. Instrumentasi belum dijalankan pada HP atau emulator.
 
 ```sh
 bash scripts/gradle.sh assembleDebug testDebugUnitTest lintDebug assembleDebugAndroidTest --continue
 python3 scripts/verify-native-optimization.py
 ```
 
-Bukti: [ringkasan](validation/1.5.2/summary.json), [JUnit](validation/1.5.2/junit), [build](validation/1.5.2/gradle-build.log), [lint](validation/1.5.2/lint.txt). Tes AI, audio, lokasi/salat, hafalan, profil dan navigasi yang sudah ada ikut lulus. Backend banner tidak berubah dan tidak diuji ulang dalam pembaruan ini.
+Bukti: [ringkasan](validation/1.5.3/summary.json), [JUnit](validation/1.5.3/junit), [build](validation/1.5.3/gradle-build.log), [lint](validation/1.5.3/lint.txt).
 
-## Audit seluruh jalur pembaca
+## Regresi yang diperiksa
 
-| Jalur | Hasil pemeriksaan |
+| Bagian | Bukti pengujian |
 | --- | --- |
-| Per ayat, per kata/tajwid, Latin/tajwid, Indonesia, Indonesia/tajwid, Madinah, Madinah/tajwid, hafalan 8 blok, Tikrar, waqaf/ibtida | Kesepuluh pilihan dibuka dari menu aplikasi dalam tes navigasi. Masing-masing memuat gambar halaman; tidak langsung membuka daftar ayat. Toolbar/menu baca dan navigasi utama tidak muncul pada pembukaan awal. |
-| Terjemah tematik | Rujukan 112:1 membuka halaman Indonesia 604, lalu kembali ke tema yang dipilih. |
-| Lanjutkan bacaan di beranda | Setelah berpindah ke halaman 2, riwayat memulihkan halaman kitab tersebut dengan menu tersembunyi. |
-| Ukuran halaman dan menu | Batas viewport sama dengan seluruh layar komponen; sebelum/sesudah menu dibuka ukurannya identik. Geser kanan 1→2, kiri 2→1, serta batas halaman pertama diuji. |
-| Latihan/per ayat → Buka tampilan kitab | Kembali menuju daftar surah tanpa berputar terus antara kitab dan latihan. |
-| Audio yang sudah dipilih | Pemutar mini muncul pada layar biasa, tetapi tidak mengambil ruang pembaca kitab ataupun Bahriyah. Tes ini memeriksa state/tampilan; tidak mengklaim keluaran suara fisik. |
-| Bahriyah | Tidak diganti dengan edisi lain. Tes pilihan berkas tersimpan dan kegagalan akses tetap lulus. Alur presentasi dokumen tersimpan diuji memakai fixture bitmap hasil render untuk memeriksa layar penuh dan overlay. Robolectric API 28 tidak menyediakan renderer PDF native, sehingga decoding PDF Android belum diuji pada perangkat. |
-| Bantuan baca | Panel arti/tafsir, pencarian qari, pembesaran, font sistem 1,6×, lompat halaman, permintaan lanskap dan gulir lanskap lulus. |
+| Seluruh surah | Pembaca digital benar-benar dirender untuk 114 surah, masing-masing menampilkan teks kanonis ayat pertamanya, dengan posisi audio lama 2:6 tersimpan. |
+| Gambar mushaf | Pemetaan kedua edisi diperiksa terhadap seluruh 6.236 ayat. Al-Kahf, Yasin, Al-Mulk, Al-Ikhlas dan An-Nas membuka nomor halaman dan ayat pendamping yang diminta meskipun posisi audio lama 2:6 masih ada. Tes ini tidak mengunduh ulang seluruh 604 gambar. |
+| Mengikuti audio | Posisi jeda tidak mengubah pilihan surah. Audio surah lain ditolak oleh pengikut halaman; perubahan ayat aktif pada surah yang sama tetap diikuti jika pengaturannya aktif. |
+| Mode membaca | Semua pilihan menu dibuka. Mode gambar tetap layar penuh; mode belajar menampilkan fungsi khusus. Arti kata, Latin, warna sumber, blok hafalan, Tikrar, panduan waqaf dan rujukan tema/tafsir diperiksa. |
+| Hafalan & Tikrar | Memilih blok kedua Al-Mulk menampilkan ayat blok itu dan mengirim rentang audio yang sama. Sembunyikan/tampilkan tidak mengganti teks. Penghitung Tikrar disimpan per ayat dan tidak bertambah karena audio. |
+| Profil wajib | Nama kosong/spasi tidak diterima, tombol Kembali tidak melewati pengisian, dan nama yang disimpan membuka beranda serta tersimpan lokal. Profil lama berisi nama tetap dipakai. |
+| Ibadah/Pengaturan | Batas geometri judul, gambar, kalender dan pilihan diperiksa agar tidak bertumpuk, pada skala font 1,5×/1,6×. Kota dapat dicari/dipilih; hitung mundur dan kiblat tetap dapat diakses. |
+| Qari | Lima pilihan surah lengkap dan tujuh pilihan per ayat mempunyai pemetaan foto Quran.com yang eksplisit, tanpa dua pilihan untuk orang yang sama dalam satu daftar. Nama tampilan tidak mengubah ID atau URL rekaman. |
+| Fitur lain | Tes AI, mikrofon simulasi, audio, lokasi, salat, profil, kuis, penyimpanan dan navigasi yang sudah ada ikut lulus. Ini bukan pengujian hardware atau autentikasi suara oleh ahli. |
 
-[Halaman Indonesia tanpa menu](validation/1.5.2/indonesia-fullscreen.png), [halaman 2](validation/1.5.2/indonesia-fullscreen-page-two.png), [menu sebagai overlay](validation/1.5.2/indonesia-overlay.png), [Madinah](validation/1.5.2/madinah-page.png), dan [lanskap dengan menu](validation/1.5.2/madinah-landscape.png) diperiksa secara visual. Ini render Compose/Robolectric di host, bukan tangkapan HP fisik. Rasio asli halaman dipertahankan; layar yang lebih tinggi dapat menyisakan ruang putih. Pembesaran tersedia melalui menu.
+[Per kata](validation/1.5.3/mode-word_tajwid.png), [Latin](validation/1.5.3/mode-latin_tajwid.png), [hafalan](validation/1.5.3/mode-hafalan_8.png), [Tikrar](validation/1.5.3/mode-tikrar.png), [profil wajib](validation/1.5.3/profile-required.png), [Ibadah tulisan besar](validation/1.5.3/prayer-large-text.png), [Pengaturan tulisan besar](validation/1.5.3/settings-large-text.png), dan [sakelar Pengaturan](validation/1.5.3/settings-toggles-large-text.png) diperiksa secara visual. Gambar ini render Compose/Robolectric di host, bukan tangkapan HP fisik.
 
-## Data dan gambar
+## Data dan sumber
 
-Tidak ada perubahan berkas dalam `app/src/main/assets` pada 1.5.2. Gambar, manifest/hash, indeks ayat, teks Arab, terjemahan, Latin, waqaf, tajwid, qari, foto dan timing audio sama dengan 1.5.1. SHA-256 `quran.json` tetap `f41cef112e2efd581d3ea15ad7229a713d18122a6e0fbec4ddb0c00b7d1cae9c`. Pengemasan membandingkan setiap asset APK dengan source secara byte.
+SHA-256 `quran.json` tetap `f41cef112e2efd581d3ea15ad7229a713d18122a6e0fbec4ddb0c00b7d1cae9c`. Teks Arab, nomor ayat, basmalah, terjemahan, Latin, waqaf, anotasi tajwid, gambar/indeks halaman dan URL/timing rekaman tidak diubah. Pengemasan membandingkan setiap asset APK dengan source secara byte.
 
-Audit sumber 1.5.1 tetap relevan: [604 berkas gambar unik dan checksum](audit/1.5.1/mushaf-indonesia-files.json), [pemeriksaan batas halaman](audit/1.5.1/mushaf-indonesia.json), serta [audit corpus](audit/1.5.0/quran-corpus.json). Sumber tidak diunduh ulang untuk pembaruan UI ini. Pemeriksaan tidak mengklaim semua huruf/harakat telah ditashih oleh ahli.
+126 foto dari dokumen penyusun dan sampul Bahriyah dihapus dari APK. Delapan foto beratribusi Quran.com cocok dengan hash sumber. Menu dan penampil PDF Bahriyah dihapus. [Audit data/kurasi rilis](audit/1.5.3/release-data.json).
 
-Gambar berbingkai **bukan** edisi Islampedia dengan arti per kata tercetak. Arti per kata, terjemahan, Latin opsional, tajwid, tafsir dan sorotan audio tetap berada di panel pendamping. Sumber dan batas tiap edisi dijelaskan di [MUSHAF_IMAGES.md](MUSHAF_IMAGES.md). Sorotan kata tersedia untuk 12 dari 17 qari; lima lainnya per ayat.
+Audit gambar sebelumnya tetap relevan terhadap berkas yang sama: [604 gambar dan checksum](audit/1.5.1/mushaf-indonesia-files.json), [batas halaman](audit/1.5.1/mushaf-indonesia.json), [corpus](audit/1.5.0/quran-corpus.json). Tidak ada klaim setiap huruf/harakat telah ditashih ulang oleh ahli. Madinah & tajwid adalah tata letak teks digital menurut batas halaman, bukan pindai edisi cetak tajwid. [Sumber/batas mode](UPDATE_1.5.3.md).
 
 ## APK
 
-Ukuran **66.522.456 byte**. SHA-256: `01faa4e920cddc7bbf9b4a396dcf11345f859e4e2b321963968cb07d6eff9b3c`.
+Ukuran **63.771.254 byte**. SHA-256: `a46713876ff263fc9a0efa65b1dcc1493e998077fa460f105862f6eac4278e1a`.
 
-`apksigner verify --verbose --print-certs` dan `zipalign -c -v -P 16 4` lulus. Sertifikat distribusi tetap `e2aa60317632bc6aea65f83c2247e54111941d0e0725875a2c9db3ffb93ac264`. Optimasi native tiga ABI lulus. [Tanda tangan](validation/1.5.2/apk-signature.txt), [alignment](validation/1.5.2/apk-alignment.txt), [metadata](validation/1.5.2/apk-metadata.txt), [optimasi native](validation/1.5.2/native-optimization.json).
+`apksigner verify --verbose --print-certs` dan `zipalign -c -v -P 16 4` lulus. Sertifikat tetap `e2aa60317632bc6aea65f83c2247e54111941d0e0725875a2c9db3ffb93ac264`. Optimasi native tiga ABI lulus. [Tanda tangan](validation/1.5.3/apk-signature.txt), [alignment](validation/1.5.3/apk-alignment.txt), [metadata](validation/1.5.3/apk-metadata.txt), [optimasi native](validation/1.5.3/native-optimization.json).
 
-Pengujian pada HP fisik, GPS, mikrofon, kompas, suara azan dan streaming audio tidak dilakukan dalam pembaruan ini. AI lokal tetap perkiraan kata, bukan penilaian tajwid/makhraj tersertifikasi. Bot banner belum di-deploy dan tidak ada pesan Telegram yang dikirim.
+HP fisik, GPS, kompas, suara azan dan streaming audio tidak diuji pada perangkat dalam pembaruan ini. AI tetap perkiraan kata lokal, bukan penilaian tajwid/makhraj tersertifikasi. Backend banner tidak berubah, tidak di-deploy, dan tidak ada pesan Telegram yang dikirim.

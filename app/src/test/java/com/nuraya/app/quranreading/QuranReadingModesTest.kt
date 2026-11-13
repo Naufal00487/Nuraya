@@ -17,19 +17,11 @@ import org.robolectric.annotation.Config
 class QuranReadingModesTest {
     private val context get() = ApplicationProvider.getApplicationContext<Application>()
 
-    @Test fun everyBundledQuranModeOpensPagesWithoutSubstitutingTheBahriyahEdition() {
-        for (id in listOf("indonesia", "indonesia_tajwid")) {
-            assertTrue(QuranReadingModes.opensPageReader(id))
-            assertEquals(MushafEdition.INDONESIA, QuranReadingModes.pageEdition(id))
-        }
-        for (id in listOf("madinah", "madinah_tajwid")) {
-            assertTrue(QuranReadingModes.opensPageReader(id))
-            assertEquals(MushafEdition.MADINAH, QuranReadingModes.pageEdition(id))
-        }
-        for (id in listOf("standard", "word_tajwid", "latin_tajwid", "hafalan_8", "tikrar", "waqaf", "thematic")) {
-            assertTrue(QuranReadingModes.opensPageReader(id))
-            assertEquals(MushafEdition.INDONESIA, QuranReadingModes.pageEdition(id))
-        }
+    @Test fun imageModesAndFunctionalStudyModesHaveDistinctRoutesAndBahriyahIsRemoved() {
+        assertEquals(setOf("indonesia", "madinah"), QuranReadingModes.all.filter { QuranReadingModes.opensPageReader(it.id) }.map { it.id }.toSet())
+        assertFalse(QuranReadingModes.all.any { it.id == "bahriyah" })
+        assertEquals(MushafEdition.MADINAH, QuranReadingModes.pageEdition("madinah_tajwid"))
+        assertEquals(MushafEdition.INDONESIA, QuranReadingModes.pageEdition("word_tajwid"))
     }
 
     @Test fun learningBlocksPreserveEverySelectedVerseOnceAndInOrder() {
@@ -45,8 +37,8 @@ class QuranReadingModesTest {
     }
 
     @Test fun readingModesDoNotOverwritePersonalPreferencesOrIgnoreColorOptOut() {
-        assertEquals(12, QuranReadingModes.all.size)
-        assertEquals(12, QuranReadingModes.all.map { it.id }.toSet().size)
+        assertEquals(11, QuranReadingModes.all.size)
+        assertEquals(11, QuranReadingModes.all.map { it.id }.toSet().size)
         assertFalse(QuranReadingModes.opensPageReader("bahriyah"))
         val preferences = UserSettings(translation = "en", arabicSize = 42f, tajwidColors = false)
         for (mode in QuranReadingModes.all) {

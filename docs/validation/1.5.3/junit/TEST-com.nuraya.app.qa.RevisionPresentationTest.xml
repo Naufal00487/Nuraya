@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.qa.RevisionPresentationTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-12T23:08:39" hostname="26c38cafc86b" time="3.697">
+  <properties/>
+  <testcase name="splashIsAStandaloneSceneWithoutApplicationNavigation" classname="com.nuraya.app.qa.RevisionPresentationTest" time="0.187"/>
+  <testcase name="darkArtworkUsesTheSuppliedDarkThemeImages" classname="com.nuraya.app.qa.RevisionPresentationTest" time="1.431"/>
+  <testcase name="coversPrayerSwitchesAndSettingsGearRemainReachableAboveThreeButtonInset" classname="com.nuraya.app.qa.RevisionPresentationTest" time="2.078"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

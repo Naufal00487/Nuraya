@@ -42,6 +42,7 @@ class RevisionPresentationTest {
     @get:Rule val compose=createAndroidComposeRule<ComponentActivity>()
     private fun openApp(dark:Boolean=false){
         val app=ApplicationProvider.getApplicationContext<NurayaApplication>()
+        com.nuraya.app.profile.ProfileStore(app).save("Penguji", 0)
         if(runCatching{androidx.work.WorkManager.getInstance(app)}.isFailure)androidx.work.WorkManager.initialize(app,androidx.work.Configuration.Builder().build())
         Shadows.shadowOf(app).setComponentNameAndServiceForBindService(ComponentName(app,PlaybackService::class.java),Binder())
         LocationPromptStore(app).markIntroduced()

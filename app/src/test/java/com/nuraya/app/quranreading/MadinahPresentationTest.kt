@@ -145,8 +145,8 @@ class MadinahPresentationTest {
         compose.onNodeWithContentDescription("Tutup panel arti").performClick()
         showControls()
         compose.onNodeWithText("Qari & audio").performClick()
-        compose.onNodeWithText("Cari nama qari").performTextInput("Basfar")
-        compose.onNodeWithText("Abdullah Basfar").assertIsDisplayed()
+        compose.onNodeWithText("Cari nama qari").performTextInput("Sudais")
+        compose.onNodeWithText("Abdurrahman As-Sudais").assertIsDisplayed()
         compose.onNodeWithText("Alafasy").assertDoesNotExist()
         saveScreenshot("madinah-qari.png")
     }

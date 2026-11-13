@@ -40,8 +40,8 @@ fun QuranModesScreen(app: NurayaApplication, language: String, onMode: (String) 
             Spacer(Modifier.height(18.dp))
             Text(label(language, "Pilih cara membaca", "Choose how to read"), style = MaterialTheme.typography.headlineMedium)
             Spacer(Modifier.height(8.dp))
-            Text(label(language, "Halaman kitab memenuhi layar. Ketuk halaman untuk membuka menu baca; geser ke kanan untuk halaman berikutnya.",
-                "Read full-screen pages. Tap a page for reading tools; swipe right for the next page."), style = MaterialTheme.typography.bodyLarge)
+            Text(label(language, "Pilih halaman mushaf atau bantuan belajar. Per kata, Latin, tajwid, hafalan, dan Tikrar langsung menampilkan fungsinya.",
+                "Choose mushaf pages or a learning aid. Word meanings, transliteration, tajwid and memorization each open their own reading tools."), style = MaterialTheme.typography.bodyLarge)
         }
         item {
             OutlinedTextField(value = query, onValueChange = { query = it.take(100) }, singleLine = true,

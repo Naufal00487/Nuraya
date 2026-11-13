@@ -68,7 +68,7 @@ class PlaybackManager(
     val state: StateFlow<PlaybackState> = mutableState.asStateFlow()
     private var controller: MediaController? = null
     private val verseCatalog = VerseAudioCatalog(appContext)
-    val verseReciters: List<VerseReciter> get() = verseCatalog.reciters
+    val verseReciters: List<VerseReciter> get() = CuratedReciters.verseIds.mapNotNull { id -> verseCatalog.reciters.firstOrNull { it.id == id }?.let { it.copy(name = CuratedReciters.names[id] ?: it.name) } }
     private var timedChapter: TimedChapter? = null
     private data class VerseRequest(val surah: Int, val start: Int, val end: Int,
         val reciter: VerseReciter, val repeatEach: Int, val repeatRange: Boolean, val rangeRepeats: Int = 1)

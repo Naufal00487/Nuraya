@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.quranreading.ReadingRegression153Test" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-12T23:09:04" hostname="26c38cafc86b" time="3.108">
+  <properties/>
+  <testcase name="everyVisibleReciterHasAnExplicitSourcePortraitAndNoDuplicatePerson" classname="com.nuraya.app.quranreading.ReadingRegression153Test" time="0.115"/>
+  <testcase name="pausedBaqarahSixCannotOverrideAnyOfThe114SelectedSurahsOrAnyPageMapping" classname="com.nuraya.app.quranreading.ReadingRegression153Test" time="0.34"/>
+  <testcase name="everySurahActuallyRendersItsOwnFirstVerseWithOldAudioSelected" classname="com.nuraya.app.quranreading.ReadingRegression153Test" time="2.097"/>
+  <testcase name="farSurahInImageReaderKeepsItsPageAndCompanionInsteadOfOldAudio" classname="com.nuraya.app.quranreading.ReadingRegression153Test" time="0.332"/>
+  <testcase name="memorizationPlaysTheChosenBlockAndTikrarKeepsItsOwnCounter" classname="com.nuraya.app.quranreading.ReadingRegression153Test" time="0.224"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

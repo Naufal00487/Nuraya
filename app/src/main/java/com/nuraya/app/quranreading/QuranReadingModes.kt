@@ -18,30 +18,29 @@ data class QuranReadingMode(
 object QuranReadingModes {
     val all = listOf(
         QuranReadingMode("standard", "Al-Qur’an per ayat", "Qur’an by verse", "Baca ayat, dengarkan qari, dan simpan penanda.", "Read, listen and bookmark individual verses."),
-        QuranReadingMode("word_tajwid", "Per kata & tajwid", "Word meanings & tajwid", "Halaman kitab dengan arti tiap kata dan tajwid berwarna di menu Arti & tajwid.", "Book pages with word meanings and colored tajwid in the Meaning & tajwid menu."),
-        QuranReadingMode("latin_tajwid", "Latin & tajwid", "Transliteration & tajwid", "Halaman kitab dengan bantuan Latin dan teks Arab berwarna di menu Arti & tajwid.", "Book pages with transliteration and colored Arabic in the Meaning & tajwid menu."),
+        QuranReadingMode("word_tajwid", "Per kata & tajwid", "Word meanings & tajwid", "Arti tiap kata langsung terlihat bersama teks Arab bertajwid.", "Word meanings shown directly with colored Arabic tajwid."),
+        QuranReadingMode("latin_tajwid", "Latin & tajwid", "Transliteration & tajwid", "Latin langsung tampil di bawah ayat, dengan tajwid berwarna pada teks Arab.", "Transliteration directly below each verse, with colored Arabic tajwid."),
         QuranReadingMode("indonesia", "Al-Qur’an Indonesia", "Indonesian Qur’an", "604 halaman berbingkai, dengan terjemahan Indonesia dan arti per kata di panel pendamping.", "604 ornamental pages, with Indonesian translation and word meanings in a companion panel."),
-        QuranReadingMode("indonesia_tajwid", "Indonesia & tajwid", "Indonesian & tajwid", "Halaman berbingkai dengan arti per kata dan tajwid berwarna di panel pendamping.", "Ornamental pages with word meanings and colored tajwid in a companion panel."),
+        QuranReadingMode("indonesia_tajwid", "Indonesia & tajwid", "Indonesian & tajwid", "Ayat bertajwid berwarna dengan terjemahan Indonesia langsung di bawahnya.", "Colored Arabic verses with Indonesian translation directly below."),
         QuranReadingMode("madinah", "Al-Qur’an Madinah", "Madinah Qur’an", "604 gambar halaman asli, dapat diperbesar. Halaman baru diunduh saat dibuka.", "604 genuine page images with zoom. New pages download when opened."),
-        QuranReadingMode("madinah_tajwid", "Madinah & tajwid", "Madinah & tajwid", "Gambar halaman Madinah, dengan tombol membuka teks ayat bertajwid warna.", "Madinah page images with a button to open colored tajwid verse text."),
+        QuranReadingMode("madinah_tajwid", "Madinah & tajwid", "Madinah & tajwid", "Teks tajwid berwarna menurut batas halaman Madinah, tanpa terjemahan.", "Colored Arabic text grouped by Madinah page boundaries, without translation."),
         QuranReadingMode("hafalan_8", "Hafalan 8 blok", "Eight-block memorization", "Bagi bacaan menjadi delapan kelompok latihan dan uji hafalan tanpa melihat.", "Split reading into eight practice groups and practise recall."),
         QuranReadingMode("tikrar", "Al-Qur’an Tikrar", "Qur’an repetition", "Ulangi audio ayat 3–20 kali dan catat pengulangan mandiri.", "Repeat verse audio 3–20 times and count your own repetitions."),
         QuranReadingMode("waqaf", "Waqaf & ibtida", "Stopping & resuming", "Kenali tanda berhenti dari teks dan pelajari cara menyambung bacaan.", "Recognize source stop signs and learn how to resume recitation."),
-        QuranReadingMode("bahriyah", "Mushaf Bahriyah / pojok", "Bahriyah / corner mushaf", "Buka PDF Mushaf Bahriyah milik Anda. Edisi cetak belum disertakan.", "Open your own Bahriyah mushaf PDF. A printed edition is not bundled."),
         QuranReadingMode("thematic", "Terjemah tematik", "Thematic translations", "Jelajahi ayat tentang salat, sabar, keluarga, ilmu, dan tema lainnya.", "Browse prayer, patience, family, knowledge and other themes."),
     )
 
     fun find(id: String): QuranReadingMode = all.firstOrNull { it.id == id } ?: all.first()
-    fun opensPageReader(id: String) = all.any { it.id == id && it.id != "bahriyah" }
+    fun opensPageReader(id: String) = id in setOf("indonesia", "madinah")
     fun pageEdition(id: String) = if (id in setOf("madinah", "madinah_tajwid")) MushafEdition.MADINAH else MushafEdition.INDONESIA
     fun usesTajwid(id: String) = id in setOf("word_tajwid", "latin_tajwid", "indonesia_tajwid", "madinah_tajwid", "waqaf")
     fun settings(id: String, original: UserSettings): UserSettings = original.copy(
         translation = when (id) {
             "indonesia", "indonesia_tajwid", "thematic" -> "id"
-            "madinah", "madinah_tajwid", "bahriyah" -> "none"
+            "madinah", "madinah_tajwid" -> "none"
             else -> original.translation
         },
-        tajwidColors = if (usesTajwid(id)) original.tajwidColors else if (id in setOf("indonesia", "madinah", "bahriyah")) false else original.tajwidColors,
+        tajwidColors = if (usesTajwid(id)) original.tajwidColors else if (id in setOf("indonesia", "madinah")) false else original.tajwidColors,
     )
 }
 

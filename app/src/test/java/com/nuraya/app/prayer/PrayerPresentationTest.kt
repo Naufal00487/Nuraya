@@ -11,6 +11,8 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
+import androidx.compose.ui.test.performScrollToNode
+import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.performTextReplacement
 import androidx.test.core.app.ApplicationProvider
 import com.nuraya.app.ui.NurayaTheme
@@ -41,7 +43,8 @@ class PrayerPresentationTest {
         compose.setContent { NurayaTheme { Surface { PrayerScreen("id") } } }
         compose.onNodeWithTag("prayer_countdown").assertDoesNotExist()
         compose.onNodeWithTag("prayer_city_search").performScrollTo().performTextReplacement("Jakarta")
-        compose.onNodeWithTag("prayer_city_Jakarta").performScrollTo().performClick()
+        compose.onNodeWithTag("prayer_screen").performScrollToNode(hasTestTag("prayer_city_Jakarta"))
+        compose.onNodeWithTag("prayer_city_Jakarta").performClick()
         compose.onNodeWithTag("prayer_countdown").performScrollTo().assertIsDisplayed()
         saveImage("prayer-schedule.png")
         compose.onNodeWithTag("prayer_tab_qibla").performScrollTo().performClick()

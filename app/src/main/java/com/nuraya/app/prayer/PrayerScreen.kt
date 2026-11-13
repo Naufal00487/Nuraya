@@ -2,6 +2,7 @@ package com.nuraya.app.prayer
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
@@ -87,12 +88,14 @@ fun PrayerScreen(language: String, initialTab: String? = null) {
     val minute = now.epochSecond / 60
     val next = remember(preferences, minute) { preferences.location?.let { PrayerCalculator.next(now, it, preferences.minuteAdjustment) } }
     val locale = if (language == "en") Locale.ENGLISH else Locale.forLanguageTag("id-ID")
-    LazyColumn(Modifier.fillMaxSize().testTag("prayer_screen"), contentPadding = PaddingValues(20.dp), verticalArrangement = Arrangement.spacedBy(18.dp)) {
-        item {
+    val listState = rememberLazyListState()
+    LaunchedEffect(tab) { listState.scrollToItem(0) }
+    LazyColumn(Modifier.fillMaxSize().testTag("prayer_screen"), state = listState, contentPadding = PaddingValues(20.dp), verticalArrangement = Arrangement.spacedBy(18.dp)) {
+        item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             SectionArtwork("prayer",next?.let{"${it.name(language)} · ${it.instant.atZone(zone).format(DateTimeFormatter.ofPattern("HH:mm"))}"}
                 ?: label(language,"Jadwal salat","Prayer times"),preferences.location?.name ?: label(language,"Pilih lokasi Anda","Choose your location"))
             Spacer(Modifier.height(14.dp))
-            Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(12.dp)) {
+            Row(Modifier.fillMaxWidth().testTag("prayer_calendar"),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(12.dp)) {
                 Column(Modifier.weight(1f)) {
                     Text(displayHijri(localNow.toLocalDate(),preferences,language),style=MaterialTheme.typography.titleMedium)
                     Text(localNow.format(DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy",locale)),style=MaterialTheme.typography.bodySmall)
@@ -100,8 +103,8 @@ fun PrayerScreen(language: String, initialTab: String? = null) {
                 }
                 AdhanToggle(language)
             }
-        }
-        item {
+        } }
+        item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                 listOf("schedule" to label(language, "Jadwal", "Times"), "qibla" to label(language, "Kiblat", "Qibla"), "location" to label(language, "Lokasi", "Place")).forEach { (id, title) ->
                     FilledTonalButton(onClick = { tab = id }, modifier = Modifier.weight(1f).heightIn(min = 56.dp).testTag("prayer_tab_$id"),
@@ -110,18 +113,18 @@ fun PrayerScreen(language: String, initialTab: String? = null) {
                             contentColor = if (tab == id) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface)) { Text(title) }
                 }
             }
-        }
+        } }
         when (tab) {
             "location" -> {
-                item {
+                item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     Text(label(language, "Lokasi untuk salat & kiblat", "Location for prayer & Qibla"), style = MaterialTheme.typography.headlineSmall)
                     Text(label(language, "Gunakan lokasi HP agar koordinat terisi otomatis. Lokasi disimpan di HP dan tidak dilacak di latar belakang. Layanan Android dapat memakai internet untuk mencari nama kecamatan. Pilihan kota tetap tersedia jika lokasi HP belum dapat digunakan.",
                         "Use your phone’s location to fill coordinates automatically. The selection stays on this phone, without background tracking. You can still choose a city if device location is unavailable."), style = MaterialTheme.typography.bodyLarge)
-                }
-                item {
+                } }
+                item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     DeviceLocationButton(language, onLocated = { tab = "schedule"; dayOffset = 0 })
-                }
-                item {
+                } }
+                item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     OutlinedTextField(cityQuery, { cityQuery = it.take(80) }, singleLine = true,
                         label = { Text(label(language, "Cari kota", "Search cities")) },
                         modifier = Modifier.fillMaxWidth().testTag("prayer_city_search"))
@@ -129,10 +132,10 @@ fun PrayerScreen(language: String, initialTab: String? = null) {
                     ManualLocation(preferences.location, language) { location ->
                         save(preferences.copy(location = location)); tab = "schedule"; dayOffset = 0
                     }
-                }
+                } }
                 val cities = PrayerCities.all.filter { cityQuery.isBlank() || it.name.contains(cityQuery.trim(), ignoreCase = true) }
-                if (cities.isEmpty()) item { Text(label(language, "Kota belum ada dalam daftar. Pilih Isi lokasi lain / koordinat di atas.",
-                    "This city is not listed. Use Enter another place / coordinates above.")) }
+                if (cities.isEmpty()) item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) { Text(label(language, "Kota belum ada dalam daftar. Pilih Isi lokasi lain / koordinat di atas.",
+                    "This city is not listed. Use Enter another place / coordinates above.")) } }
                 items(cities, key = { it.name }) { city ->
                     OutlinedButton(onClick = { save(preferences.copy(location = city)); tab = "schedule"; dayOffset = 0 },
                         modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp).testTag("prayer_city_${city.name}")) {
@@ -140,27 +143,27 @@ fun PrayerScreen(language: String, initialTab: String? = null) {
                         Text(when (city.zoneId) { "Asia/Makassar" -> "WITA"; "Asia/Jayapura" -> "WIT"; else -> "WIB" })
                     }
                 }
-                item { PreferenceAdjustments(preferences, save, language) }
-                if (preferences.location != null) item {
+                item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) { PreferenceAdjustments(preferences, save, language) } }
+                if (preferences.location != null) item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     OutlinedButton(onClick = { save(preferences.copy(location = null)); dayOffset = 0 },
                         modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)) {
                         Text(label(language, "Hapus lokasi tersimpan", "Clear saved location"))
                     }
-                }
+                } }
             }
             "qibla" -> {
                 val location = preferences.location
-                if (location == null) item { SelectLocationPrompt(language) { tab = "location" } }
-                else item { QiblaPanel(location, language) }
+                if (location == null) item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) { SelectLocationPrompt(language) { tab = "location" } } }
+                else item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) { QiblaPanel(location, language) } }
             }
             else -> {
-                if (preferences.location == null) item { SelectLocationPrompt(language) { tab = "location" } }
+                if (preferences.location == null) item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) { SelectLocationPrompt(language) { tab = "location" } } }
                 else {
-                    item {
+                    item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                         Text(label(language,"Pengingat salat harian","Daily prayer reminders"),style=MaterialTheme.typography.titleLarge)
                         Text(label(language,"Aktifkan salat yang ingin diingatkan: 10 menit sebelum dan saat waktunya. Suara azan dapat diatur melalui ikon pengeras suara.","Choose prayers to receive reminders ten minutes before and at their time. Control adhan sound with the speaker icon."),style=MaterialTheme.typography.bodyMedium)
-                    }
-                    item {
+                    } }
+                    item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                         Text(date.format(DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy", locale)), style = MaterialTheme.typography.titleLarge)
                         Text(displayHijri(date, preferences, language), style = MaterialTheme.typography.bodyLarge)
                         Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -171,7 +174,7 @@ fun PrayerScreen(language: String, initialTab: String? = null) {
                             OutlinedButton(onClick = { dayOffset++ }, modifier = Modifier.weight(1f).heightIn(min = 56.dp), enabled = dayOffset < 366,
                                 contentPadding = PaddingValues(horizontal = 6.dp)) { Text(label(language, "Besok", "Next")) }
                         }
-                    }
+                    } }
                     if (day?.available == true) items(day.moments.filter { it.isPrayer }, key = { it.id }) { moment ->
                         Surface(color = if (dayOffset == 0 && next != null && moment.instant == next.instant) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surfaceContainerLow,
                             shape = MaterialTheme.shapes.large) {
@@ -184,17 +187,17 @@ fun PrayerScreen(language: String, initialTab: String? = null) {
                                 PrayerReminderSwitch(moment.id,moment.name(language),language)
                             }
                         }
-                    } else item { Text(label(language, "Perhitungan tidak tersedia untuk lokasi/tanggal ini. Periksa jadwal otoritas setempat; aplikasi tidak membuat waktu pengganti.",
-                        "Calculation is unavailable for this location/date. Consult your local authority; the app does not invent replacement times."), style = MaterialTheme.typography.bodyLarge) }
-                    if (day?.highLatitude == true) item { Text(label(language, "Lintang tinggi: Subuh dan Isya memakai batas porsi malam berbasis sudut. Cocokkan dengan pedoman wilayah Anda.",
-                        "High latitude: Fajr and Isha use twilight-angle night limits. Check the guidance for your region."), style = MaterialTheme.typography.bodyLarge) }
-                    item {
+                    } else item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) { Text(label(language, "Perhitungan tidak tersedia untuk lokasi/tanggal ini. Periksa jadwal otoritas setempat; aplikasi tidak membuat waktu pengganti.",
+                        "Calculation is unavailable for this location/date. Consult your local authority; the app does not invent replacement times."), style = MaterialTheme.typography.bodyLarge) } }
+                    if (day?.highLatitude == true) item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) { Text(label(language, "Lintang tinggi: Subuh dan Isya memakai batas porsi malam berbasis sudut. Cocokkan dengan pedoman wilayah Anda.",
+                        "High latitude: Fajr and Isha use twilight-angle night limits. Check the guidance for your region."), style = MaterialTheme.typography.bodyLarge) } }
+                    item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                         Text(label(language, "Perhitungan offline: Subuh 20°, Isya 18°, Asar Syafii. Koreksi waktu ${preferences.minuteAdjustment} menit (terbit tanpa koreksi). Ini bukan jadwal resmi Kemenag; cocokkan dengan jadwal masjid setempat.",
                             "Offline calculation: Fajr 20°, Isha 18°, Shafi Asr. Time correction: ${preferences.minuteAdjustment} minutes (sunrise unchanged). This is not an official ministry timetable; compare with your local mosque."), style = MaterialTheme.typography.bodySmall)
                         Text(label(language, "Kalender Hijriah memakai Umm al-Qura berdasarkan tanggal sipil dan dapat berbeda dari keputusan rukyat setempat. Koreksi hari tersedia di Lokasi.",
                             "The Hijri calendar uses Umm al-Qura for the civil date and may differ from local moon-sighting decisions. Day adjustment is available under Place."), style = MaterialTheme.typography.bodySmall)
                         TextButton(onClick = { tab = "location" }, modifier = Modifier.heightIn(min = 56.dp)) { Text(label(language, "Ubah lokasi & koreksi waktu", "Change location & corrections")) }
-                    }
+                    } }
                 }
             }
         }

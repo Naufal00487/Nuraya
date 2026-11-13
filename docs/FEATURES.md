@@ -1,6 +1,6 @@
-# Fitur Nuraya 1.5.2
+# Fitur Nuraya 1.5.3
 
-Versi 1.5.2, versionCode 12, memakai applicationId dan sertifikat yang sama agar dapat memperbarui pemasangan sebelumnya. Referensi kebutuhan pengguna adalah jam/tanggal Hijriah, waktu salat, kiblat, pilihan belajar Quran dan navigasi yang lebih mudah dibaca. Nuraya tidak mengklaim afiliasi, menyalin merek, atau menjadi edisi resmi aplikasi lain.
+Versi 1.5.3, versionCode 13, memakai applicationId dan sertifikat yang sama agar dapat memperbarui pemasangan sebelumnya. Referensi kebutuhan pengguna adalah jam/tanggal Hijriah, waktu salat, kiblat, pilihan belajar Quran dan navigasi yang lebih mudah dibaca. Nuraya tidak mengklaim afiliasi, menyalin merek, atau menjadi edisi resmi aplikasi lain.
 
 ## Navigasi dan aksesibilitas
 
@@ -22,24 +22,22 @@ Arah kiblat dihitung dari koordinat menuju Ka'bah. Kompas menyesuaikan orientasi
 
 ## Pilihan membaca Quran
 
-Sebelas pilihan bawaan membuka halaman kitab layar penuh, termasuk rujukan dari tema dan tombol Lanjutkan bacaan. Toolbar, navigasi aplikasi dan pemutar mini tidak mengambil ruang halaman. Ketuk halaman untuk membuka menu sebagai lapisan di atas gambar; ketuk lagi atau tekan Tutup menu baca untuk menyembunyikannya. Geser kanan ke halaman berikutnya, kiri ke sebelumnya; ketuk dua kali untuk lanskap. Rasio gambar sumber dipertahankan tanpa memotong tulisan sehingga ruang putih dapat tersisa pada layar yang lebih tinggi. Pada pembesaran, geseran dipakai untuk melihat bagian gambar.
+Mode gambar dan mode belajar sekarang mempunyai tampilan berbeda. Indonesia dan Madinah biasa membuka gambar halaman; mode lain langsung membuka fungsi belajarnya. Toolbar/navigasi/pemutar mini permanen disembunyikan saat membaca. Ketuk bacaan atau tombol Menu bacaan untuk mengakses bantuan tambahan; geser kanan untuk ayat/halaman berikutnya. Bahriyah/pojok telah dihapus.
 
-Dua mode Madinah memakai sumber Madinah; sembilan mode bawaan lainnya memakai sumber Indonesia. Bantuan belajar tersedia melalui menu; ini bukan sebelas edisi cetak berbeda.
-
-| Pilihan | Perilaku dan batas |
+| Pilihan | Yang terbuka |
 | --- | --- |
-| Al-Qur’an per ayat | Halaman kitab Indonesia; menu Belajar per ayat membuka ayat berurutan, audio, penanda dan bantuan belajar. |
-| Per kata & tajwid | Halaman kitab Indonesia; menu Arti & tajwid menampilkan arti kata dan anotasi warna pada teks Arab pendamping. |
-| Latin & tajwid | Halaman kitab Indonesia; Latin aktif pada panel Arti & tajwid. Latin Indonesia untuk 6.236 ayat dari eQuran.id, tersedia offline, di samping teks Arab bertajwid. Latin tetap tanpa warna; warna Arab tidak dipetakan secara dugaan ke Latin. |
-| Al-Qur’an Indonesia | 604 gambar Arab berbingkai; terjemahan Kementerian Agama dan arti per kata di panel pendamping. |
-| Indonesia & tajwid | Gambar berbingkai yang sama, dengan tajwid berwarna dan arti per kata di panel pendamping. Warna tidak digambar ulang pada gambar halaman. |
-| Al-Qur’an Madinah | Penampil gambar mushaf 604 halaman, dengan pencarian nomor halaman, pembesaran dan pemetaan surah/ayat ke halaman. Halaman 1, 2, 3 dan 604 disertakan offline; halaman lainnya diunduh saat dibuka dan disimpan di cache. |
-| Madinah & tajwid | Gambar halaman Madinah beserta panel pendamping arti/kata/tajwid dan tombol membuka bacaan per ayat. Gambar halaman asli tetap tanpa pewarnaan; ini bukan pindai edisi tajwid berwarna. |
-| Hafalan 8 blok | Halaman kitab Indonesia dengan tombol Latihan 8 blok. Di latihan, bacaan dipisahkan menjadi hingga delapan kelompok ayat untuk latihan lihat/sembunyikan; bukan reproduksi blok berwarna edisi cetak tertentu. Bacaan dengan kurang dari delapan ayat mempunyai lebih sedikit kelompok. |
-| Al-Qur’an Tikrar | Halaman kitab Indonesia, audio awal tiga kali, dan tombol Latihan Tikrar. Pengulangan audio dan penghitung latihan mandiri; bukan klaim salinan mushaf Tikrar berlisensi tertentu. |
-| Waqaf & ibtida | Halaman kitab Indonesia dengan tombol Panduan waqaf. Tanda waqaf dari Quran Uthmani/Islamic Network ditampilkan sebagai anotasi hanya bila rasm ayat lengkap dan batas katanya selaras. Teks kanonis tetap utuh; tanda tidak dibuat berdasarkan tebakan. Belajar menyambung makna tetap memerlukan bimbingan guru. |
-| Mushaf Bahriyah/pojok | Penampil PDF lokal untuk edisi Bahriyah milik pengguna, dengan pilihan berkas, pembesaran dan navigasi halaman. Setelah PDF dipilih, halaman tampil penuh dan kontrol muncul dengan mengetuk halaman. PDF Bahriyah belum disertakan karena belum ada sumber edisi yang terverifikasi. Halaman Madinah tidak dipakai sebagai pengganti. |
-| Terjemah tematik | Indeks rujukan tema dengan kutipan terjemahan dari corpus yang sama dan tombol membuka halaman kitab ayat tersebut. Tafsir tersedia dari menu bacaan. Indeks bukan tafsir baru atau daftar seluruh ayat setiap tema. |
+| Al-Qur’an per ayat | Satu ayat, nomor yang tepat, dan terjemahan sesuai pengaturan. Geser untuk ayat berikutnya. |
+| Per kata & tajwid | Teks Arab bertajwid dan arti setiap kata yang langsung terbuka. |
+| Latin & tajwid | Teks Arab bertajwid dan Latin langsung di bawahnya. Latin tidak diberi warna secara dugaan. |
+| Al-Qur’an Indonesia | Gambar asli mushaf Indonesia berbingkai, layar penuh. |
+| Indonesia & tajwid | Ayat Arab berwarna dan terjemahan Indonesia langsung terlihat. |
+| Al-Qur’an Madinah | Gambar asli halaman Madinah, layar penuh. |
+| Madinah & tajwid | Teks Arab berwarna dikelompokkan menurut batas halaman Madinah, tanpa terjemahan. Ini tata letak teks digital, bukan gambar edisi cetak tajwid. Nama surah ditampilkan pada pergantian surah di halaman yang sama. |
+| Hafalan 8 blok | Rentang surah dibagi hingga delapan kelompok; pilih blok, sembunyikan/tampilkan bacaan, atau dengarkan blok tersebut. Rentang pendek dapat menghasilkan kurang dari delapan kelompok. |
+| Al-Qur’an Tikrar | Pilihan 3/5/7/10/20 pengulangan audio per ayat dan penghitung latihan mandiri. |
+| Waqaf & ibtida | Anotasi tanda waqaf beserta penjelasan tanda pada ayat dan panduan menyambung bacaan. |
+| Terjemah tematik | Pilih tema, lalu baca ayat, terjemahan dan tafsir yang langsung terbuka. |
+
 
 Seluruh bantuan membaca mempertahankan teks kanonis, nomor ayat dan kebijakan basmalah. Warna tajwid mengikuti pilihan pengaturan pengguna. Terjemahan dan tafsir tetap mencantumkan sumber.
 
@@ -51,9 +49,7 @@ Anotasi waqaf berasal dari `https://api.alquran.cloud/v1/quran/quran-uthmani`, d
 
 Gambar Madinah berasal dari `GovarJabbar/Quran-PNG` pada commit `b189391148dfb4d7b44e7de40fe2cf942e7c84ac`, yang merujuk gambar Quran.com dan karya halaman/glyph King Fahd Quran Complex. Manifest 604 URL beserta hash Git blob tersedia dalam `assets/mushaf/madinah-images.json`; pemetaan 6.236 ayat ke halaman bersumber dari Quran Uthmani Islamic Network. Aplikasi memeriksa integritas gambar unduhan sebelum memakainya. Pratinjau pada pilihan Madinah merupakan halaman Quran yang nyata, bukan foto sampul semua edisi. Tidak ada teks Quran atau wajah qari yang dibuat menggunakan generator gambar. Tidak ada klaim lisensi CC terpisah untuk gambar tersebut.
 
-PDF Bahriyah dibuka dari perangkat melalui pemilih berkas Android. Berkas tidak diunggah; susunan halaman mengikuti PDF yang dipilih. Pengguna harus mempunyai PDF edisi yang ingin dibaca. Penampil ini tidak mengklaim menyertakan atau menerbitkan ulang sebuah edisi Bahriyah tertentu.
-
-Delapan foto qari dari Quran.com tetap disertakan: Mishary Alafasy, Abdul Basit, Abdurrahman As-Sudais, Abu Bakr Ash-Shatri, Hani Ar-Rifai, Mahmoud Al-Husary, Muhammad Siddiq Al-Minshawi dan Saud Ash-Shuraim. Sumbernya repositori frontend resmi Quran.com pada commit `aff1a035b09b66f28047b3216edcae4c5c949a49`. `assets/portraits/catalog.json` mencatat profil sumber, identitas rekaman dan SHA-256 setiap foto. Sebanyak 126 foto tambahan dipasang dari dokumen penyusun berdasarkan nama yang dituliskan dan ID edisi penyedia, sehingga totalnya 134 foto/140 pemetaan ID. Lima entri dokumen tidak dipasang: empat placeholder dan satu label yang bertentangan dengan keterangan pada gambar. Identitas wajah tidak dinyatakan telah diautentikasi secara independen. Qari tanpa foto memakai inisial. Daftar murottal menampilkan 137 pilihan, sementara 138 ID rekaman tetap didukung untuk data lama; dua alias Alafasy tampil sebagai satu kartu. Hak foto tetap milik pemegangnya; lisensi MIT proyek sumber tidak dianggap lisensi terbuka terpisah untuk tiap foto.
+Delapan foto qari dari Quran.com dipertahankan dengan pemetaan ID rekaman yang eksplisit. Sebanyak 126 foto dari dokumen penyusun dihapus dari APK. Daftar utama menampilkan lima qari surah lengkap; audio per ayat menampilkan tujuh qari dengan timing kata yang dipasangkan pada sumber rekaman. Rincian nama dan batasnya ada di [catatan rilis](UPDATE_1.5.3.md#qari-dan-profil). Identitas tidak disimpulkan dari kemiripan wajah/nama. Hak foto tetap milik pemegangnya.
 
 ## AI, audio dan validasi
 
@@ -71,4 +67,4 @@ Latihan hafalan menyediakan dua urutan audio: setiap ayat diulang N kali sebelum
 
 Banner beranda dapat digeser. Proyek backend Telegram tersedia di `backend/banner-bot`; belum deploy karena pengguna memilih menyiapkan proyek dahulu. Sebelum layanan diaktifkan, banner bawaan tetap berfungsi. Token bot hanya disimpan sebagai secret backend; tidak dimasukkan ke APK atau Git. Azan dijelaskan di [PRAYER.md](PRAYER.md).
 
-Sejak 1.5.1, sumber gambar Quran Indonesia dipisahkan dari Madinah, termasuk indeks, cache dan halaman simpanan offline. Sejak 1.5.2 semua pilihan bawaan langsung membuka kitab; bantuan belajar dan latihan khusus tetap dapat dibuka dari menu. Bahriyah tetap memerlukan PDF edisi pengguna. [Sumber dan batas gambar](MUSHAF_IMAGES.md#indonesia-ornamental-pages--151).
+Sumber gambar Indonesia dan Madinah tetap dipisahkan, termasuk indeks, cache dan halaman offline. Sejak 1.5.3 bantuan belajar langsung tampil menurut mode, tanpa harus membuka panel tambahan dahulu. Pengisian nama wajib dilakukan sebelum masuk beranda; profil yang sudah berisi nama dipertahankan. [Sumber dan batas gambar](MUSHAF_IMAGES.md).

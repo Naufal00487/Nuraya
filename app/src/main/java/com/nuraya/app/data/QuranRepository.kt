@@ -37,7 +37,7 @@ class QuranRepository(context: Context) {
 
     /** One visible card for a confirmed same-person alias; stored IDs still resolve in qaris. */
     val qariChoices: List<Qari> by lazy {
-        qaris.filterNot { it.id == "ar.misharyrashidalafasy" && qaris.any { qari -> qari.id == "ar.alafasy" } }
+        com.nuraya.app.media.CuratedReciters.chapterIds.mapNotNull { id -> qaris.firstOrNull { it.id == id } }
     }
 
     private val bySurah: Map<Int, List<Verse>> by lazy { allVerses.groupBy(Verse::surah) }

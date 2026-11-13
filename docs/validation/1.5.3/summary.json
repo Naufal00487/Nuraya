@@ -1,0 +1,34 @@
+{
+  "version": "1.5.3",
+  "versionCode": 13,
+  "date": "2026-11-13",
+  "jvmComposeTests": {
+    "tests": 189,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "Error": 0,
+    "Fatal": 0,
+    "Warning": 41,
+    "Information": 0
+  },
+  "gradle": "BUILD SUCCESSFUL",
+  "instrumentationApkBuilt": true,
+  "instrumentationRunOnDevice": false,
+  "physicalDeviceTested": false,
+  "coverage": [
+    "All 114 surahs render their requested first verse with old 2:6 audio selected",
+    "Both 604-page indexes cover all 6236 verses",
+    "Image reader retains requested page/companion for surahs 18,36,67,112,114",
+    "Every current menu route and its distinct function",
+    "Selected memorization block playback and Tikrar counter",
+    "Required local profile and non-overlapping large-text layouts",
+    "Curated qari and portrait identity mapping"
+  ],
+  "apk": {
+    "bytes": 63771254,
+    "sha256": "a46713876ff263fc9a0efa65b1dcc1493e998077fa460f105862f6eac4278e1a"
+  }
+}
