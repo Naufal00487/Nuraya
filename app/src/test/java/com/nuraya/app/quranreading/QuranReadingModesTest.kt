@@ -18,7 +18,7 @@ class QuranReadingModesTest {
     private val context get() = ApplicationProvider.getApplicationContext<Application>()
 
     @Test fun imageModesAndFunctionalStudyModesHaveDistinctRoutesAndBahriyahIsRemoved() {
-        assertEquals(setOf("indonesia", "madinah"), QuranReadingModes.all.filter { QuranReadingModes.opensPageReader(it.id) }.map { it.id }.toSet())
+        assertEquals(setOf("word_tajwid", "latin_tajwid", "indonesia", "indonesia_tajwid", "madinah", "madinah_tajwid", "hafalan_8", "tikrar", "waqaf"), QuranReadingModes.all.filter { QuranReadingModes.opensPageReader(it.id) }.map { it.id }.toSet())
         assertFalse(QuranReadingModes.all.any { it.id == "bahriyah" })
         assertEquals(MushafEdition.MADINAH, QuranReadingModes.pageEdition("madinah_tajwid"))
         assertEquals(MushafEdition.INDONESIA, QuranReadingModes.pageEdition("word_tajwid"))

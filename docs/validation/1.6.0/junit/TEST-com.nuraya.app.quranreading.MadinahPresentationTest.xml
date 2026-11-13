@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.quranreading.MadinahPresentationTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-11-13T12:37:02" hostname="69a9441dece0" time="3.595">
+  <properties/>
+  <testcase name="largeTextKeepsThePageVisibleAndCompanionButtonReachable" classname="com.nuraya.app.quranreading.MadinahPresentationTest" time="0.265"/>
+  <testcase name="translationControlsRemainSeparateAtLargeTextSizeOnSmallPhone" classname="com.nuraya.app.quranreading.MadinahPresentationTest" time="0.357"/>
+  <testcase name="jumpRejectsInvalidPagesAndOpensAnExactBundledPage" classname="com.nuraya.app.quranreading.MadinahPresentationTest" time="0.494"/>
+  <testcase name="companionTranslationAndSearchableQariPickerStayInsideMushaf" classname="com.nuraya.app.quranreading.MadinahPresentationTest" time="0.441"/>
+  <testcase name="genuineBundledPageLoadsAndNavigationKeepsVerseCompanionInSync" classname="com.nuraya.app.quranreading.MadinahPresentationTest" time="0.484"/>
+  <testcase name="pageTapHidesControlsAndDoubleTapRequestsLandscape" classname="com.nuraya.app.quranreading.MadinahPresentationTest" time="0.214"/>
+  <testcase name="compactAudioAndInlineTranslationPreserveThePrintedPageAndSelectTheCorrectVerse" classname="com.nuraya.app.quranreading.MadinahPresentationTest" time="0.351"/>
+  <testcase name="ornamentalIndonesiaPagesNavigateToTheCorrectVerseAndIdentifyTheirEdition" classname="com.nuraya.app.quranreading.MadinahPresentationTest" time="0.3"/>
+  <testcase name="landscapeKeepsThePageReadableWithScrollableHeight" classname="com.nuraya.app.quranreading.MadinahPresentationTest" time="0.242"/>
+  <testcase name="bookFillsScreenAndOverlayNeverShrinksItWhileSwipesPreservePageOrder" classname="com.nuraya.app.quranreading.MadinahPresentationTest" time="0.441"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

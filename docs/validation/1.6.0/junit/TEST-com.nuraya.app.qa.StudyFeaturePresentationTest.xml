@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.qa.StudyFeaturePresentationTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-11-13T12:37:01" hostname="69a9441dece0" time="0.403">
+  <properties/>
+  <testcase name="memorizationRangeAndRevealedVerseSurviveVisitingProgress" classname="com.nuraya.app.qa.StudyFeaturePresentationTest" time="0.252"/>
+  <testcase name="readerShowsSourceColorsWordMeaningsAndTheFullProvidedTafsir" classname="com.nuraya.app.qa.StudyFeaturePresentationTest" time="0.151"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

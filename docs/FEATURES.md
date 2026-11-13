@@ -22,21 +22,23 @@ Arah kiblat dihitung dari koordinat menuju Ka'bah. Kompas menyesuaikan orientasi
 
 ## Pilihan membaca Quran
 
-Mode gambar dan mode belajar sekarang mempunyai tampilan berbeda. Indonesia dan Madinah biasa membuka gambar halaman; mode lain langsung membuka fungsi belajarnya. Toolbar/navigasi/pemutar mini permanen disembunyikan saat membaca. Ketuk bacaan atau tombol Menu bacaan untuk mengakses bantuan tambahan; geser kanan untuk ayat/halaman berikutnya. Bahriyah/pojok telah dihapus.
+Tujuh pilihan membuka edisi gambar asli yang berbeda, masing-masing 604 halaman. Pembaca dimulai layar penuh. Ketuk untuk kontrol tipis, tekan lama untuk tindakan ayat pada edisi berpeta, dan geser untuk berpindah halaman. Bahriyah/pojok telah dihapus.
 
 | Pilihan | Yang terbuka |
 | --- | --- |
-| Al-Qur’an per ayat | Satu ayat, nomor yang tepat, dan terjemahan sesuai pengaturan. Geser untuk ayat berikutnya. |
-| Per kata & tajwid | Teks Arab bertajwid dan arti setiap kata yang langsung terbuka. |
-| Latin & tajwid | Teks Arab bertajwid dan Latin langsung di bawahnya. Latin tidak diberi warna secara dugaan. |
-| Al-Qur’an Indonesia | Gambar asli mushaf Indonesia berbingkai, layar penuh. |
-| Indonesia & tajwid | Ayat Arab berwarna dan terjemahan Indonesia langsung terlihat. |
-| Al-Qur’an Madinah | Gambar asli halaman Madinah, layar penuh. |
-| Madinah & tajwid | Teks Arab berwarna dikelompokkan menurut batas halaman Madinah, tanpa terjemahan. Ini tata letak teks digital, bukan gambar edisi cetak tajwid. Nama surah ditampilkan pada pergantian surah di halaman yang sama. |
-| Hafalan 8 blok | Rentang surah dibagi hingga delapan kelompok; pilih blok, sembunyikan/tampilkan bacaan, atau dengarkan blok tersebut. Rentang pendek dapat menghasilkan kurang dari delapan kelompok. |
-| Al-Qur’an Tikrar | Pilihan 3/5/7/10/20 pengulangan audio per ayat dan penghitung latihan mandiri. |
-| Waqaf & ibtida | Anotasi tanda waqaf beserta penjelasan tanda pada ayat dan panduan menyambung bacaan. |
-| Terjemah tematik | Pilih tema, lalu baca ayat, terjemahan dan tafsir yang langsung terbuka. |
+| Al-Qur’an per ayat | Teks ayat dan terjemahan sesuai pengaturan, dengan navigasi per ayat. |
+| Per kata & tajwid | Gambar Per Kata Tajwid, terjemahan Indonesia tercetak langsung di bawah kata. |
+| Latin & tajwid | Gambar Latin Tajwid dengan transliterasi tercetak menurut edisi sumber. |
+| Al-Qur’an Indonesia | 604 gambar Indonesia berbingkai. |
+| Indonesia & tajwid | 604 gambar Indonesia dengan warna tajwid asli. |
+| Al-Qur’an Madinah | 604 gambar Madinah dengan indeks halaman yang sesuai edisi ini. |
+| Madinah & tajwid | 604 gambar cetak Madinah Tajwid, bukan tata letak teks digital. |
+| Hafalan 8 blok | 604 gambar Hafalan dengan blok warna cetaknya; uji hafalan dengan menyembunyikan halaman. Belum ada peta sorotan ayat untuk gambar Hafalan. |
+| Al-Qur’an Tikrar | Halaman Indonesia Tajwid dengan pengaturan audio berulang dan penghitung latihan mandiri melalui menu Latihan Tikrar. |
+| Waqaf & ibtida | Halaman Indonesia Tajwid dengan panduan tanda dan ibtida melalui menu pembaca. |
+| Terjemah tematik | Rujukan ayat per tema, terjemahan dan tafsir. |
+
+Arti/Latin panel dapat dibuka tanpa mengubah ukuran halaman. Audio dapat dimulai dan diakhiri pada surah/ayat berbeda, dengan ulang tiap ayat, putaran rentang dan loop hingga dijeda. Sorotan gambar mengikuti ayat pada enam edisi berpeta; sorotan kata tersedia pada panel teks dan rekaman yang memiliki timing. Detail sumber, koreksi peta dan cakupan pemeriksaan: [PRINTED_MUSHAF.md](PRINTED_MUSHAF.md).
 
 
 Seluruh bantuan membaca mempertahankan teks kanonis, nomor ayat dan kebijakan basmalah. Warna tajwid mengikuti pilihan pengaturan pengguna. Terjemahan dan tafsir tetap mencantumkan sumber.
@@ -47,7 +49,7 @@ Anotasi waqaf berasal dari `https://api.alquran.cloud/v1/quran/quran-uthmani`, d
 
 ## Gambar dan foto
 
-Gambar Madinah berasal dari `GovarJabbar/Quran-PNG` pada commit `b189391148dfb4d7b44e7de40fe2cf942e7c84ac`, yang merujuk gambar Quran.com dan karya halaman/glyph King Fahd Quran Complex. Manifest 604 URL beserta hash Git blob tersedia dalam `assets/mushaf/madinah-images.json`; pemetaan 6.236 ayat ke halaman bersumber dari Quran Uthmani Islamic Network. Aplikasi memeriksa integritas gambar unduhan sebelum memakainya. Pratinjau pada pilihan Madinah merupakan halaman Quran yang nyata, bukan foto sampul semua edisi. Tidak ada teks Quran atau wajah qari yang dibuat menggunakan generator gambar. Tidak ada klaim lisensi CC terpisah untuk gambar tersebut.
+Tujuh edisi gambar berasal dari sumber publik `agusibrahim/quran-image` pada commit tetap. Manifest mencatat 4.228 PNG dan hash sumber; setiap unduhan diperiksa sebelum digunakan. Halaman bundel tersedia langsung, halaman lain diunduh saat dibuka atau melalui unduhan satu edisi penuh. Gambar dan indeks edisi lama dipertahankan sebagai sumber historis/kompatibilitas, bukan ditampilkan di menu tujuh edisi baru. Tidak ada gambar Quran atau wajah qari yang dibuat menggunakan generator gambar. [Sumber dan batas pemeriksaan](PRINTED_MUSHAF.md).
 
 Delapan foto qari dari Quran.com dipertahankan dengan pemetaan ID rekaman yang eksplisit. Sebanyak 126 foto dari dokumen penyusun dihapus dari APK. Daftar utama menampilkan lima qari surah lengkap; audio per ayat menampilkan tujuh qari dengan timing kata yang dipasangkan pada sumber rekaman. Rincian nama dan batasnya ada di [catatan rilis](UPDATE_1.5.3.md#qari-dan-profil). Identitas tidak disimpulkan dari kemiripan wajah/nama. Hak foto tetap milik pemegangnya.
 
@@ -67,4 +69,4 @@ Latihan hafalan menyediakan dua urutan audio: setiap ayat diulang N kali sebelum
 
 Banner beranda dapat digeser. Proyek backend Telegram tersedia di `backend/banner-bot`; belum deploy karena pengguna memilih menyiapkan proyek dahulu. Sebelum layanan diaktifkan, banner bawaan tetap berfungsi. Token bot hanya disimpan sebagai secret backend; tidak dimasukkan ke APK atau Git. Azan dijelaskan di [PRAYER.md](PRAYER.md).
 
-Sumber gambar Indonesia dan Madinah tetap dipisahkan, termasuk indeks, cache dan halaman offline. Sejak 1.5.3 bantuan belajar langsung tampil menurut mode, tanpa harus membuka panel tambahan dahulu. Pengisian nama wajib dilakukan sebelum masuk beranda; profil yang sudah berisi nama dipertahankan. [Sumber dan batas gambar](MUSHAF_IMAGES.md).
+Setiap edisi mempunyai gambar, indeks, cache dan penyimpanan offline yang sesuai. Panel bantuan melengkapi halaman asli tanpa menggantinya. Pengisian nama wajib dilakukan sebelum masuk beranda; profil yang sudah berisi nama dipertahankan. [Sumber dan batas gambar](MUSHAF_IMAGES.md).

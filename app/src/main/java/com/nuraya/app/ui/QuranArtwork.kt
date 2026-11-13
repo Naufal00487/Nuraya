@@ -22,6 +22,13 @@ import androidx.compose.material.icons.automirrored.outlined.ArrowForward
 import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.Close
+import androidx.compose.material.icons.outlined.BookmarkBorder
+import androidx.compose.material.icons.outlined.Bookmark
+import androidx.compose.material.icons.outlined.ExpandMore
+import androidx.compose.material.icons.outlined.PauseCircleOutline
+import androidx.compose.material.icons.outlined.PlayCircleOutline
+import androidx.compose.material.icons.outlined.Translate
+import androidx.compose.material.icons.outlined.Tune
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
@@ -75,15 +82,16 @@ fun MadinahScreen(
     onBack: () -> Unit = {},
     edition: MushafEdition = MushafEdition.MADINAH,
     readingModeId: String = "standard",
+    printedEdition: com.nuraya.app.quranreading.PrintedMushafEdition? = null,
     onReadVerses: (Int, Int) -> Unit,
 ) {
     val context = LocalContext.current
     val activity = context.findMushafActivity()
-    val repository = remember(context, edition) { MushafImages(context.applicationContext, edition) }
+    val repository = remember(context, edition, printedEdition) { MushafImages(context.applicationContext, edition, printedEdition) }
     val scope = rememberCoroutineScope()
     val english = language == "en"
     fun tr(id: String, en: String) = if (english) en else id
-    var page by rememberSaveable(edition, initialSurah, initialAyah) { mutableIntStateOf(repository.pageFor(initialSurah, initialAyah)) }
+    var page by rememberSaveable(edition, printedEdition, initialSurah, initialAyah) { mutableIntStateOf(repository.pageFor(initialSurah, initialAyah)) }
     var zoom by rememberSaveable { mutableFloatStateOf(1f) }
     var controls by rememberSaveable { mutableStateOf(false) }
     var landscape by rememberSaveable { mutableStateOf(false) }
@@ -91,6 +99,14 @@ fun MadinahScreen(
     var jump by remember { mutableStateOf(false) }
     var menu by remember { mutableStateOf(false) }
     var panel by rememberSaveable { mutableStateOf(false) }
+    var details by remember { mutableStateOf(false) }
+    var verseActions by remember { mutableStateOf(false) }
+    var practice by remember { mutableStateOf(false) }
+    var waqafGuide by remember { mutableStateOf(false) }
+    var recallHidden by remember { mutableStateOf(false) }
+    var downloadBook by remember { mutableStateOf(false) }
+    var followingAudio by remember { mutableStateOf(false) }
+    var selectionVisible by rememberSaveable { mutableStateOf(initialAyah > 1) }
     var qaris by remember { mutableStateOf(false) }
     var sourceVisible by remember { mutableStateOf(false) }
     var downloadMessage by remember { mutableStateOf("") }
@@ -100,14 +116,18 @@ fun MadinahScreen(
     var showLatin by rememberSaveable { mutableStateOf(readingModeId == "latin_tajwid") }
     var repeats by rememberSaveable { mutableIntStateOf(if (readingModeId == "tikrar") 3 else 1) }
     val playback = if (app != null) app.playback.state.collectAsState().value else com.nuraya.app.media.PlaybackState()
+    val entries = if (app != null) app.library.entries.collectAsState(initial = emptyList()).value else emptyList()
     val selected = app?.quran?.verse(selectedSurah, selectedAyah)
+    val pageVerses = remember(app, repository, page) {
+        repository.references.filter { it.page == page }.mapNotNull { app?.quran?.verse(it.surah, it.ayah) }
+    }
     var study by remember(selectedSurah, selectedAyah) { mutableStateOf<com.nuraya.app.study.StudyVerse?>(null) }
     var latin by remember(selectedSurah, selectedAyah) { mutableStateOf<String?>(null) }
     LaunchedEffect(selectedSurah, selectedAyah) {
         study = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) { app?.study?.verse(selectedSurah, selectedAyah) }
         latin = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) { com.nuraya.app.quranreading.LatinRepository.shared(context).verse(selectedSurah, selectedAyah)?.latin }
     }
-    LaunchedEffect(edition, page) {
+    LaunchedEffect(repository, page) {
         loadedPage = 0; downloadMessage = ""
         val reference = repository.firstReference(page)
         if (repository.pageFor(selectedSurah, selectedAyah) != page) { selectedSurah = reference.surah; selectedAyah = reference.ayah }
@@ -123,7 +143,8 @@ fun MadinahScreen(
     }
     var previousAudio by remember(initialSurah, initialAyah) { mutableStateOf(playback) }
     LaunchedEffect(playback.surahId, playback.ayahId, playback.isPlaying, settings.followRecitation) {
-        if (com.nuraya.app.quranreading.shouldFollowBookAudio(selectedSurah, previousAudio, playback, settings.followRecitation)) {
+        if (!verseActions && !jump && !details && !practice && !qaris && com.nuraya.app.quranreading.shouldFollowBookAudio(selectedSurah, previousAudio, playback, settings.followRecitation, followingAudio)) {
+            selectedSurah = playback.surahId
             selectedAyah = playback.ayahId
             page = repository.pageFor(selectedSurah, selectedAyah)
         }
@@ -137,9 +158,16 @@ fun MadinahScreen(
     }
     fun rotate() { landscape = !landscape }
     fun openVerseTools() { controls = false; onReadVerses(selectedSurah, selectedAyah) }
-    BackHandler(controls && !panel && !qaris && !jump && !sourceVisible) { controls = false }
+    fun listen() {
+        if (app == null) { openVerseTools(); return }
+        if (playback.verseMode && playback.surahId == selectedSurah && playback.isPlaying) app.playback.toggle()
+        else { followingAudio = true; app.playback.playVerseRange(selectedSurah, selectedAyah, app.quran.surahs[selectedSurah - 1].ayahCount, settings.readerQariId, repeats) }
+    }
+    BackHandler(controls && !panel && !details && !qaris && !jump && !sourceVisible) { controls = false }
+    BackHandler(panel && !details && !qaris && !jump && !sourceVisible) { panel = false }
     val swipeThreshold = with(LocalDensity.current) { 64.dp.toPx() }
-    Box(Modifier.fillMaxSize().background(Color.White).testTag("${edition.id}_screen")) {
+    BoxWithConstraints(Modifier.fillMaxSize().background(if (printedEdition != null) Color(0xFFFFFCF3) else Color.White).testTag("${edition.id}_screen")) {
+        val translationPanelHeight = (maxHeight * .48f).coerceAtMost(440.dp)
         Box(Modifier.fillMaxSize().testTag("mushaf_page_viewport")
             .semantics {
                 onClick(tr("Tampilkan menu baca", "Show reading menu")) { controls = true; true }
@@ -152,31 +180,60 @@ fun MadinahScreen(
                 if (zoom == 1f) {
                     var drag = 0f
                     detectHorizontalDragGestures(onDragStart = { drag = 0f }, onDragEnd = {
+                        followingAudio = false; recallHidden = false
                         if (drag > swipeThreshold && page < 604) page++
                         else if (drag < -swipeThreshold && page > 1) page--
                     }, onHorizontalDrag = { change, amount -> change.consume(); drag += amount })
                 }
-            }
-            .pointerInput(Unit) { detectTapGestures(onTap = { controls = !controls }, onDoubleTap = { rotate() }) }) {
+            }) {
             AnimatedContent(targetState = page, modifier = Modifier.fillMaxSize(), label = "Mushaf page turn",
                 transitionSpec = {
                     val direction = if (targetState > initialState) 1 else -1
                     slideInHorizontally(tween(220)) { -direction * it } togetherWith slideOutHorizontally(tween(220)) { direction * it }
                 }) { visiblePage ->
-                MushafPageImage(repository, visiblePage, zoom, language, onReady = { if (page == visiblePage) loadedPage = visiblePage })
+                val audioReference = if (playback.verseMode && playback.isPlaying && repository.pageFor(playback.surahId, playback.ayahId) == visiblePage)
+                    playback.surahId to playback.ayahId else null
+                MushafPageImage(repository, visiblePage, zoom, language,
+                    highlight = audioReference ?: if (selectionVisible) selectedSurah to selectedAyah else null,
+                    grayscale = printedEdition?.colored == true && !settings.tajwidColors,
+                    onTap = { controls = !controls; if (!controls) panel = false }, onDoubleTap = { rotate() },
+                    onVerse = { surah, ayah -> selectedSurah = surah; selectedAyah = ayah; selectionVisible = true; verseActions = true },
+                    onReady = { if (page == visiblePage) loadedPage = visiblePage })
             }
         }
-        if (controls) Row(Modifier.align(Alignment.TopCenter).fillMaxWidth().background(MaterialTheme.colorScheme.surface).padding(horizontal = 4.dp), verticalAlignment = Alignment.CenterVertically) {
+        if (recallHidden) Surface(Modifier.fillMaxSize().testTag("mushaf_recall_hidden"), color = Color(0xFFFFFCF3)) {
+            Column(Modifier.fillMaxSize().padding(24.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(tr("Baca dari ingatan, lalu tampilkan halaman untuk memeriksa.", "Recite from memory, then reveal the page to check."))
+                Button(onClick = { recallHidden = false }) { Text(tr("Tampilkan halaman", "Reveal page")) }
+            }
+        }
+        if (controls) Row(Modifier.align(Alignment.TopCenter).fillMaxWidth().background(MaterialTheme.colorScheme.surface).padding(horizontal = 4.dp, vertical = 4.dp).testTag("mushaf_header"), verticalAlignment = Alignment.CenterVertically) {
             IconButton(onClick = { controls = false; onBack() }, modifier = Modifier.testTag("back_button")) { Icon(Icons.AutoMirrored.Outlined.ArrowBack, tr("Kembali", "Back")) }
             Column(Modifier.weight(1f)) {
-                Text(edition.title(language), style = MaterialTheme.typography.titleMedium)
-                Text(tr("Halaman $page / 604", "Page $page / 604"), style = MaterialTheme.typography.labelMedium, modifier = Modifier.testTag("mushaf_page_number"))
+                Text(if (readingModeId == "standard") edition.title(language) else QuranReadingModes.find(readingModeId).title(language), style = MaterialTheme.typography.titleSmall,
+                    maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis, modifier = Modifier.testTag("reader_mode"))
+                Text(tr("Halaman $page / 604", "Page $page / 604"), style = MaterialTheme.typography.labelSmall, modifier = Modifier.testTag("mushaf_page_number"))
+            }
+            if (app != null) IconButton(onClick = { panel = !panel }, modifier = Modifier.testTag("mushaf_translation")) {
+                Icon(Icons.Outlined.Translate, tr("Terjemahan & latin", "Translation & transliteration"))
             }
             IconButton(onClick = { jump = true }) { Icon(Icons.Outlined.Search, tr("Pilih halaman, surah atau juz", "Choose page, chapter or juz")) }
             Box {
                 IconButton(onClick = { menu = true }) { Icon(Icons.Outlined.MoreVert, tr("Menu mushaf", "Mushaf menu")) }
                 DropdownMenu(expanded = menu, onDismissRequest = { menu = false }) {
+                    if (readingModeId in setOf("tikrar", "waqaf") && app != null) DropdownMenuItem(
+                        text = { Text(if (readingModeId == "tikrar") tr("Latihan Tikrar", "Repetition practice") else tr("Panduan waqaf & ibtida", "Stopping & resuming guide")) },
+                        onClick = { menu = false; practice = true })
+                    if (readingModeId == "hafalan_8") DropdownMenuItem(text = { Text(tr("Uji hafalan tanpa melihat", "Practise recall without looking")) }, onClick = { menu = false; controls = false; recallHidden = true })
+                    if (printedEdition != null) DropdownMenuItem(text = { Text(tr("Unduh 604 halaman edisi ini", "Download all 604 pages")) }, onClick = { menu = false; downloadBook = true })
+                    DropdownMenuItem(text = { Text(tr("Layar baca penuh", "Full reading view")) }, onClick = { menu = false; panel = false; controls = false })
                     DropdownMenuItem(text = { Text(tr("Lanskap / potret", "Landscape / portrait")) }, onClick = { menu = false; rotate() })
+                    DropdownMenuItem(text = { Text(tr("Perbesar halaman", "Enlarge page")) }, enabled = zoom < 3f, onClick = { menu = false; zoom = (zoom + .5f).coerceAtMost(3f) })
+                    DropdownMenuItem(text = { Text(tr("Ukuran halaman semula", "Original page size")) }, enabled = zoom > 1f, onClick = { menu = false; zoom = 1f })
+                    DropdownMenuItem(text = { Text(tr("Halaman sebelumnya", "Previous page")) }, enabled = page > 1,
+                        modifier = Modifier.testTag("mushaf_previous"), onClick = { menu = false; followingAudio = false; page-- })
+                    DropdownMenuItem(text = { Text(tr("Halaman berikutnya", "Next page")) }, enabled = page < 604,
+                        modifier = Modifier.testTag("mushaf_next"), onClick = { menu = false; followingAudio = false; page++ })
                     DropdownMenuItem(text = { Text(tr("Simpan halaman offline", "Save page offline")) }, enabled = !downloading, onClick = {
                         menu = false; downloading = true
                         val savedPage = page
@@ -188,79 +245,117 @@ fun MadinahScreen(
                         }
                     })
                     DropdownMenuItem(text = { Text(tr("Info tajwid & sumber", "Tajwid & sources")) }, onClick = { menu = false; sourceVisible = true })
+                    if (app != null) DropdownMenuItem(text = { Text(tr("Arti per kata & tafsir ayat", "Word meanings & verse tafsir")) }, onClick = { menu = false; details = true })
                     DropdownMenuItem(text = { Text(tr("Baca per ayat & fitur hafalan", "Verse reader & memorization")) }, onClick = { menu = false; openVerseTools() })
                 }
             }
         }
-        if (controls) Column(Modifier.align(Alignment.BottomCenter).fillMaxWidth().heightIn(max = 280.dp).testTag("mushaf_controls").background(MaterialTheme.colorScheme.surface).verticalScroll(rememberScrollState()).padding(horizontal = 12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-            if (downloadMessage.isNotEmpty()) Text(downloadMessage, style = MaterialTheme.typography.bodySmall)
-            playback.error?.let { Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error) }
-            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                Text(QuranReadingModes.find(readingModeId).title(language), Modifier.weight(1f), style = MaterialTheme.typography.titleSmall)
-                IconButton(onClick = { controls = false }) { Icon(Icons.Outlined.Close, tr("Tutup menu baca", "Close reading menu")) }
+        if (controls) Column(Modifier.align(Alignment.BottomCenter).fillMaxWidth()) {
+            if (panel && selected != null) com.nuraya.app.quranreading.MushafTranslationPanel(
+                verses = pageVerses, selected = selected, surahName = app.quran.surahs[selectedSurah - 1].name,
+                language = language, showLatin = showLatin, onLatinChange = { showLatin = it },
+                onSelect = { selectedSurah = it.surah; selectedAyah = it.ayah; selectionVisible = true }, onClose = { panel = false },
+                modifier = Modifier.fillMaxWidth().height(translationPanelHeight),
+            )
+            if (downloadMessage.isNotEmpty() || playback.error != null) Surface {
+                Text(playback.error ?: downloadMessage, style = MaterialTheme.typography.bodySmall, modifier = Modifier.fillMaxWidth().padding(8.dp))
             }
-            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
-                IconButton(onClick = { page-- }, enabled = page > 1, modifier = Modifier.testTag("mushaf_previous")) { Icon(Icons.AutoMirrored.Outlined.ArrowBack, tr("Halaman sebelumnya", "Previous page")) }
-                TextButton(onClick = { zoom = (zoom - .5f).coerceAtLeast(1f) }, enabled = zoom > 1f) { Text(tr("− Kecilkan", "− Smaller")) }
-                TextButton(onClick = { zoom = (zoom + .5f).coerceAtMost(3f) }, enabled = zoom < 3f) { Text(tr("+ Besarkan", "+ Larger")) }
-                IconButton(onClick = { page++ }, enabled = page < 604, modifier = Modifier.testTag("mushaf_next")) { Icon(Icons.AutoMirrored.Outlined.ArrowForward, tr("Halaman berikutnya", "Next page")) }
-            }
-            if (app != null) FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Button(onClick = { controls = false; panel = true }, modifier = Modifier.testTag("mushaf_translation")) { Text(tr("Arti & tajwid", "Meaning & tajwid")) }
-                OutlinedButton(onClick = { controls = false; qaris = true }) { Text(tr("Qari & audio", "Reciter & audio")) }
-                if (readingModeId in setOf("hafalan_8", "tikrar", "waqaf", "standard")) OutlinedButton(onClick = { openVerseTools() }, modifier = Modifier.testTag("mushaf_mode_tools")) {
-                    Text(when (readingModeId) {
-                        "hafalan_8" -> tr("Latihan 8 blok", "Eight-block practice")
-                        "tikrar" -> tr("Latihan Tikrar", "Repetition practice")
-                        "waqaf" -> tr("Panduan waqaf", "Stopping guide")
-                        else -> tr("Belajar per ayat", "Study by verse")
-                    })
+            Surface(Modifier.fillMaxWidth().testTag("mushaf_controls"), tonalElevation = 2.dp) {
+                Row(Modifier.fillMaxWidth().heightIn(min = 56.dp).padding(horizontal = 4.dp), verticalAlignment = Alignment.CenterVertically) {
+                    val playingHere = playback.verseMode && playback.surahId == selectedSurah && playback.isPlaying
+                    IconButton(onClick = { listen() }, modifier = Modifier.testTag("mushaf_play")) {
+                        Icon(if (playingHere) Icons.Outlined.PauseCircleOutline else Icons.Outlined.PlayCircleOutline, if (playingHere) tr("Jeda audio", "Pause audio") else tr("Putar bacaan", "Play recitation"))
+                    }
+                    if (app != null) {
+                        val saved = entries.any { it.type == "bookmark" && it.key == "$selectedSurah:$selectedAyah" }
+                        IconButton(onClick = { scope.launch { app.library.toggle("bookmark", "$selectedSurah:$selectedAyah", app.quran.surahs[selectedSurah - 1].name, "Ayat $selectedAyah") } }) {
+                            Icon(if (saved) Icons.Outlined.Bookmark else Icons.Outlined.BookmarkBorder, tr(if (saved) "Hapus penanda ayat" else "Tandai ayat", if (saved) "Remove verse bookmark" else "Bookmark verse"))
+                        }
+                        IconButton(onClick = { qaris = true }) { Icon(Icons.Outlined.Tune, tr("Pengaturan murottal", "Recitation settings")) }
+                        Row(Modifier.weight(1f).heightIn(min = 48.dp).clickable { qaris = true }.testTag("mushaf_qari"), verticalAlignment = Alignment.CenterVertically) {
+                            val displayedQari = if (playingHere) playback.qariId else settings.readerQariId
+                            Text(app.playback.verseReciters.firstOrNull { it.id == displayedQari }?.name ?: tr("Pilih qari", "Choose reciter"),
+                                Modifier.weight(1f), style = MaterialTheme.typography.labelMedium, maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
+                            Icon(Icons.Outlined.ExpandMore, tr("Pilih qari", "Choose reciter"))
+                        }
+                    }
                 }
-                FilledTonalButton(onClick = {
-                    if (playback.verseMode && playback.surahId == selectedSurah && playback.isPlaying) app.playback.toggle()
-                    else app.playback.playVerseRange(selectedSurah, selectedAyah, app.quran.surahs[selectedSurah - 1].ayahCount, settings.readerQariId, repeats)
-                }) { Text(if (playback.isPlaying) tr("Jeda", "Pause") else tr("Dengarkan", "Listen")) }
-            } else Button(onClick = { openVerseTools() }) { Text(if (showTajwidCompanion) tr("Baca dengan tajwid berwarna", "Read with colored tajwid") else tr("Baca per ayat & dengarkan", "Read verses & listen")) }
+            }
         }
     }
     if (jump) MushafJumpDialog(language, page, selectedSurah, selectedAyah, app, onDismiss = { jump = false }) { surah, ayah, target ->
-        if (surah != null && ayah != null) { selectedSurah = surah; selectedAyah = ayah }
+        followingAudio = false; recallHidden = false
+        if (surah != null && ayah != null) { selectedSurah = surah; selectedAyah = ayah; selectionVisible = true }
         page = target ?: repository.pageFor(selectedSurah, selectedAyah); jump = false
+    }
+    if (verseActions && selected != null) ModalBottomSheet(onDismissRequest = { verseActions = false }) {
+        Column(Modifier.fillMaxWidth().padding(20.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            Text("${app.quran.surahs[selectedSurah - 1].name} · $selectedAyah", style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier.testTag("mushaf_selected_verse"))
+            TextButton(onClick = { verseActions = false; app.playback.playVerseRange(selectedSurah, selectedAyah, selectedAyah, settings.readerQariId, repeats) }) {
+                Text(tr("Putar ayat ini", "Play this verse"))
+            }
+            TextButton(onClick = { scope.launch { app.library.toggle("bookmark", "$selectedSurah:$selectedAyah", app.quran.surahs[selectedSurah - 1].name, "Ayat $selectedAyah") }; verseActions = false }) {
+                Text(tr("Tandai ayat", "Bookmark verse"))
+            }
+            TextButton(onClick = {
+                val clipboard = context.getSystemService(android.content.Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
+                clipboard.setPrimaryClip(android.content.ClipData.newPlainText("$selectedSurah:$selectedAyah", "${selected.arabic}\n\n${selected.indonesian}\n($selectedSurah:$selectedAyah)"))
+                verseActions = false
+            }) { Text(tr("Salin ayat", "Copy verse")) }
+            TextButton(onClick = {
+                val text = "${selected.arabic}\n\n${selected.indonesian}\n(${app.quran.surahs[selectedSurah - 1].name} $selectedSurah:$selectedAyah)"
+                context.startActivity(android.content.Intent.createChooser(android.content.Intent(android.content.Intent.ACTION_SEND)
+                    .setType("text/plain").putExtra(android.content.Intent.EXTRA_TEXT, text), tr("Bagikan ayat", "Share verse")))
+                verseActions = false
+            }) { Text(tr("Bagikan ayat", "Share verse")) }
+            TextButton(onClick = { verseActions = false; controls = true; panel = true }) { Text(tr("Terjemahan & latin", "Translation & transliteration")) }
+            TextButton(onClick = { verseActions = false; details = true }) { Text(tr("Arti per kata & tafsir ayat", "Word meanings & verse tafsir")) }
+            TextButton(onClick = { verseActions = false }) { Text(tr("Tutup", "Close")) }
+        }
     }
     if (sourceVisible) AlertDialog(onDismissRequest = { sourceVisible = false }, title = { Text(tr("Tajwid & sumber mushaf", "Tajwid & page sources")) }, text = {
         Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            Text(tr("Panduan warna pada teks digital Nuraya", "Color guide for Nuraya digital text"), style = MaterialTheme.typography.titleSmall)
             TajwidLegend(language, settings.darkMode)
-            if (edition == MushafEdition.INDONESIA) Text(tr("Gambar Arab berbingkai: siar08888000077/mushaf-indonesia, diperiksa terhadap checksum sumber. Ini bukan edisi terjemah per kata Islampedia. Terjemahan Indonesia, arti per kata, tajwid berwarna, dan sorotan audio tersedia di panel pendamping. Gambar tidak diubah. Halaman 1, 2, 3, 604 tersedia langsung; simpan halaman lain untuk membaca offline.", "Ornamental Arabic pages: siar08888000077/mushaf-indonesia, checked against source hashes. These are not the Islampedia word-translation edition. Indonesian translation, word meanings, colored tajwid and audio highlights appear in the companion panel. Images are unchanged. Pages 1, 2, 3, 604 are bundled; save other pages for offline reading."))
+            if (printedEdition != null) Text(tr("Warna pada gambar cetak mengikuti edisi sumbernya; legenda di atas digunakan pada panel teks digital.", "Printed image colors follow their source edition; the legend above applies to the digital text panel."))
+            if (printedEdition == com.nuraya.app.quranreading.PrintedMushafEdition.HAFALAN_8) Text(tr("Edisi Hafalan belum memiliki peta sorotan ayat. Pilih surah/ayat melalui tombol pencarian untuk memutar atau melihat artinya.", "The Hafalan edition has no verse highlight map. Use the search control to choose a verse for audio or translation."))
+            if (printedEdition != null) Text(tr("Halaman ${printedEdition.title(language)}: Quran Image Assets, agusibrahim/quran-image. Gambar asli dipertahankan. Terjemahan pada panel: Kementerian Agama RI melalui QuranEnc; latin panel: EQuran.id. Sorotan tersedia pada enam edisi berpeta (belum pada Hafalan); arti per kata dan latin tercetak mengikuti edisi yang dipilih.", "${printedEdition.title(language)} pages: Quran Image Assets, agusibrahim/quran-image. Original images are preserved. Panel translations: QuranEnc / Pickthall; panel transliteration: EQuran.id. Verse highlighting is available for six mapped editions (not yet Hafalan); printed word meanings and transliteration belong to the selected edition."))
+            else if (edition == MushafEdition.INDONESIA) Text(tr("Gambar Arab berbingkai: siar08888000077/mushaf-indonesia, diperiksa terhadap checksum sumber. Ini bukan edisi terjemah per kata Islampedia. Terjemahan Indonesia, arti per kata, tajwid berwarna, dan sorotan audio tersedia di panel pendamping. Gambar tidak diubah. Halaman 1, 2, 3, 604 tersedia langsung; simpan halaman lain untuk membaca offline.", "Ornamental Arabic pages: siar08888000077/mushaf-indonesia, checked against source hashes. These are not the Islampedia word-translation edition. Indonesian translation, word meanings, colored tajwid and audio highlights appear in the companion panel. Images are unchanged. Pages 1, 2, 3, 604 are bundled; save other pages for offline reading."))
             else Text(tr("Gambar asli Madinah: King Fahd Quran Complex melalui GovarJabbar Quran-PNG/Quran-JPG, diperiksa terhadap checksum sumber. Warna tajwid, arti per kata, dan sorotan audio tersedia di panel pendamping; gambar halaman tidak diubah. Halaman 1, 2, 3, 604 tersedia langsung; simpan halaman lain untuk membacanya offline.", "Original Madinah pages: King Fahd Quran Complex via GovarJabbar Quran-PNG/Quran-JPG, checked against source hashes. Tajwid, word meanings and audio highlights appear in the companion panel; page images remain unchanged. Pages 1, 2, 3, 604 are bundled; save other pages for offline reading."))
         }
     }, confirmButton = { TextButton(onClick = { sourceVisible = false }) { Text(tr("Tutup", "Close")) } })
-    if (qaris && app != null) ModalBottomSheet(onDismissRequest = { qaris = false }, sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)) {
-        var search by remember { mutableStateOf("") }
-        Column(Modifier.fillMaxWidth().padding(16.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(tr("Qari & pengulangan", "Reciter & repeats"), style = MaterialTheme.typography.titleLarge, modifier = Modifier.weight(1f))
-                IconButton(onClick = { qaris = false }) { Icon(Icons.Outlined.Close, tr("Tutup pilihan qari", "Close reciter picker")) }
+    if (downloadBook) com.nuraya.app.quranreading.MushafDownloadDialog(repository, language) { downloadBook = false }
+    if (qaris && app != null) com.nuraya.app.quranreading.MushafAudioSheet(app, settings, selectedSurah, selectedAyah, repeats,
+        onDismiss = { qaris = false }) { startSurah, startAyah, endSurah, endAyah, qari, each, passes, loop ->
+            selectedSurah = startSurah; selectedAyah = startAyah; page = repository.pageFor(startSurah, startAyah)
+            repeats = each; followingAudio = true; selectionVisible = true; qaris = false
+            app.playback.playVerseSpan(startSurah, startAyah, endSurah, endAyah, qari, each, loop, passes)
+        }
+    if (waqafGuide) com.nuraya.app.quranreading.WaqafLearningGuide(language) { waqafGuide = false }
+    if (practice && selected != null) ModalBottomSheet(onDismissRequest = { practice = false }, sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)) {
+        Column(Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            Text("${app.quran.surahs[selectedSurah - 1].name} · $selectedAyah", style = MaterialTheme.typography.titleLarge)
+            TextButton(onClick = { practice = false; jump = true }) { Text(tr("Pilih ayat", "Choose verse")) }
+            if (readingModeId == "tikrar") {
+                com.nuraya.app.quranreading.TikrarCounter(selected, language, repeats)
+                Button(onClick = { practice = false; qaris = true }) { Text(tr("Atur pengulangan audio", "Set audio repetitions")) }
+            } else {
+                val waqaf = remember { com.nuraya.app.quranreading.WaqafAnnotations(context) }
+                com.nuraya.app.quranreading.WaqafVerseGuide(selected, language, waqaf.forVerse(selected), waqaf.verified(selected))
+                Text(tr("Letak tanda pada edisi cetak dapat berbeda. Saat ibtida, mulai dari rangkaian kata yang maknanya utuh.", "Printed editions may place signs differently. Resume from words that preserve the complete meaning."))
+                Button(onClick = { practice = false; waqafGuide = true }) { Text(tr("Panduan semua tanda", "Guide to all signs")) }
             }
-            OutlinedTextField(search, { search = it }, label = { Text(tr("Cari nama qari", "Search reciters")) }, modifier = Modifier.fillMaxWidth(), singleLine = true)
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(tr("Ulang tiap ayat: $repeats×", "Repeat each verse: $repeats×"), Modifier.weight(1f))
-                TextButton(onClick = { repeats-- }, enabled = repeats > 1) { Text("−") }
-                TextButton(onClick = { repeats++ }, enabled = repeats < 20) { Text("+") }
-            }
-            androidx.compose.foundation.lazy.LazyColumn(Modifier.heightIn(max = 450.dp)) {
-                items(app.playback.verseReciters.filter { it.name.contains(search, ignoreCase = true) }, key = { it.id }) { qari ->
-                    ListItem(headlineContent = { Text(qari.name) }, leadingContent = { QariPortrait(qari.id, qari.name, language, Modifier.size(52.dp)) }, supportingContent = { Text(if (qari.supportsWordSync) tr("Sorotan per kata tersedia", "Word highlighting available") else tr("Sorotan per ayat", "Verse highlighting")) }, trailingContent = { RadioButton(selected = settings.readerQariId == qari.id, onClick = null) }, modifier = Modifier.clickable { scope.launch { app.settings.setReaderQari(qari.id); qaris = false } })
-                }
-            }
+            TextButton(onClick = { practice = false }) { Text(tr("Tutup", "Close")) }
         }
     }
-    if (panel && selected != null && app != null) ModalBottomSheet(onDismissRequest = { panel = false }, sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)) {
+    if (details && selected != null) ModalBottomSheet(onDismissRequest = { details = false }, sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)) {
         Column(Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text("${app.quran.surahs[selectedSurah - 1].name} · $selectedAyah", style = MaterialTheme.typography.titleLarge, modifier = Modifier.weight(1f))
-                IconButton(onClick = { panel = false }) { Icon(Icons.Outlined.Close, tr("Tutup panel arti", "Close meaning panel")) }
+                IconButton(onClick = { details = false }) { Icon(Icons.Outlined.Close, tr("Tutup rincian ayat", "Close verse details")) }
             }
-            TextButton(onClick = { panel = false; jump = true }) { Text(tr("Pilih ayat", "Choose verse")) }
+            TextButton(onClick = { details = false; jump = true }) { Text(tr("Pilih ayat", "Choose verse")) }
             Text(annotatedQuranText(selected.arabic, study, settings.tajwidColors, settings.darkMode, if (playback.verseMode && playback.surahId == selectedSurah && playback.ayahId == selectedAyah) playback.wordPosition else 0), fontFamily = QuranArabicFont, fontSize = settings.arabicSize.sp, lineHeight = (settings.arabicSize * 1.8f).sp, textAlign = androidx.compose.ui.text.style.TextAlign.Right, modifier = Modifier.fillMaxWidth())
             FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 OutlinedButton(onClick = {
@@ -285,7 +380,7 @@ fun MadinahScreen(
             FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Button(onClick = { app.playback.playVerseRange(selectedSurah, selectedAyah, selectedAyah, settings.readerQariId, repeats) }) { Text(tr("Putar ayat ini", "Play this verse")) }
                 if (playback.isPlaying) OutlinedButton(onClick = { app.playback.toggle() }) { Text(tr("Jeda", "Pause")) }
-                OutlinedButton(onClick = { openVerseTools(); panel = false }) { Text(tr("Baca per ayat", "Verse reader")) }
+                OutlinedButton(onClick = { openVerseTools(); details = false }) { Text(tr("Baca per ayat", "Verse reader")) }
             }
         }
     }
@@ -293,18 +388,25 @@ fun MadinahScreen(
 
 /** Page geometry never depends on whether its overlay controls are visible. */
 @Composable
-private fun MushafPageImage(repository: MushafImages, page: Int, zoom: Float, language: String, onReady: () -> Unit) {
+private fun MushafPageImage(repository: MushafImages, page: Int, zoom: Float, language: String,
+                            highlight: Pair<Int, Int>?, grayscale: Boolean, onTap: () -> Unit, onDoubleTap: () -> Unit,
+                            onVerse: (Int, Int) -> Unit, onReady: () -> Unit) {
     var bitmap by remember(repository, page) { mutableStateOf<Bitmap?>(null) }
     var error by remember { mutableStateOf(false) }
     var retry by remember { mutableIntStateOf(0) }
     val ready by rememberUpdatedState(onReady)
+    val tap by rememberUpdatedState(onTap)
+    val doubleTap by rememberUpdatedState(onDoubleTap)
+    val regions = remember(repository, page) { repository.regionsFor(page) }
     LaunchedEffect(repository, page, retry) {
         error = false
         try { bitmap = repository.load(page); ready() }
         catch (cancelled: CancellationException) { throw cancelled }
         catch (_: Exception) { error = true }
     }
-    BoxWithConstraints(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+    BoxWithConstraints(Modifier.fillMaxSize().then(if (bitmap == null) Modifier.pointerInput(Unit) {
+        detectTapGestures(onTap = { tap() }, onDoubleTap = { doubleTap() })
+    } else Modifier), contentAlignment = Alignment.Center) {
         val current = bitmap
         when {
             error -> Column(Modifier.padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
@@ -313,13 +415,14 @@ private fun MushafPageImage(repository: MushafImages, page: Int, zoom: Float, la
             }
             current == null -> CircularProgressIndicator()
             else -> {
-                val description = repository.edition.title(language) + label(language, " halaman $page", " page $page")
+                val description = repository.title(language) + label(language, " halaman $page", " page $page")
                 if (zoom == 1f && androidx.compose.ui.platform.LocalConfiguration.current.orientation != android.content.res.Configuration.ORIENTATION_LANDSCAPE) {
-                    Image(current.asImageBitmap(), description, Modifier.fillMaxSize().testTag("mushaf_page_image"), contentScale = ContentScale.Fit)
+                    com.nuraya.app.quranreading.MushafImageLayer(current, description, regions, highlight, grayscale, onTap, onDoubleTap, onVerse, Modifier.fillMaxSize())
                 } else {
                     val width = maxWidth * zoom
                     Box(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).horizontalScroll(rememberScrollState())) {
-                        Image(current.asImageBitmap(), description, Modifier.width(width).height(width * current.height.toFloat() / current.width).testTag("mushaf_page_image"), contentScale = ContentScale.Fit)
+                        com.nuraya.app.quranreading.MushafImageLayer(current, description, regions, highlight, grayscale, onTap, onDoubleTap, onVerse,
+                            Modifier.width(width).height(width * current.height.toFloat() / current.width))
                     }
                 }
             }

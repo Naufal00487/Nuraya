@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.media.FiniteRepeatTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-13T12:36:02" hostname="69a9441dece0" time="0.001">
+  <properties/>
+  <testcase name="eachVerseModeHasDifferentOrderAndWholeSurahKeepsFinalVerse" classname="com.nuraya.app.media.FiniteRepeatTest" time="0.0"/>
+  <testcase name="alMulkOneToFiveRepeatsTheWholeRangeThreeTimesThenStops" classname="com.nuraya.app.media.FiniteRepeatTest" time="0.0"/>
+  <testcase name="invalidRangesAndExcessiveQueueSizesAreRejected" classname="com.nuraya.app.media.FiniteRepeatTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

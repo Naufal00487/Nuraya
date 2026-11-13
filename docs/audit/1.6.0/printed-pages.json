@@ -1,0 +1,104 @@
+{
+  "source": "https://github.com/agusibrahim/quran-image",
+  "commit": "df1ca931ca6e83f8ff6b2d3a9308406e11994d00",
+  "date": "2026-11-13",
+  "checkedFiles": 4228,
+  "bytes": 937239789,
+  "failures": 0,
+  "method": "Downloaded all PNGs, verified pinned Git blob SHA-1, calculated SHA-256, decoded every image with Pillow.",
+  "limits": "Integrity and dimensions, not expert proofreading of every glyph/harakat/translation.",
+  "manifest": "app/src/main/assets/printed_mushaf/catalog.json",
+  "editions": [
+    {
+      "id": "hafalan",
+      "files": 604,
+      "uniqueHashes": 604,
+      "bytes": 114916481,
+      "dimensions": [
+        [
+          1080,
+          1745
+        ]
+      ],
+      "transparentCorners": 604
+    },
+    {
+      "id": "id",
+      "files": 604,
+      "uniqueHashes": 604,
+      "bytes": 113738030,
+      "dimensions": [
+        [
+          1080,
+          1745
+        ]
+      ],
+      "transparentCorners": 604
+    },
+    {
+      "id": "id-tajwid",
+      "files": 604,
+      "uniqueHashes": 604,
+      "bytes": 119207817,
+      "dimensions": [
+        [
+          1080,
+          1745
+        ]
+      ],
+      "transparentCorners": 604
+    },
+    {
+      "id": "kata-tajwid",
+      "files": 604,
+      "uniqueHashes": 604,
+      "bytes": 158352953,
+      "dimensions": [
+        [
+          1080,
+          2202
+        ]
+      ],
+      "transparentCorners": 604
+    },
+    {
+      "id": "latin-tajwid",
+      "files": 604,
+      "uniqueHashes": 604,
+      "bytes": 171726827,
+      "dimensions": [
+        [
+          1080,
+          2202
+        ]
+      ],
+      "transparentCorners": 604
+    },
+    {
+      "id": "md",
+      "files": 604,
+      "uniqueHashes": 604,
+      "bytes": 126981186,
+      "dimensions": [
+        [
+          1080,
+          1745
+        ]
+      ],
+      "transparentCorners": 604
+    },
+    {
+      "id": "md-tajwid",
+      "files": 604,
+      "uniqueHashes": 604,
+      "bytes": 132316495,
+      "dimensions": [
+        [
+          1080,
+          1745
+        ]
+      ],
+      "transparentCorners": 604
+    }
+  ]
+}

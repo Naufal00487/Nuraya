@@ -117,6 +117,9 @@ fun StudyBookScreen(
                     else "${current.surah}:${current.ayah}", modifier = Modifier.testTag("study_reference"), style = MaterialTheme.typography.labelMedium)
             }
             if (modeId == "hafalan_8") {
+                Text(label(language, "Kelompok latihan ini dibagi dari rentang pilihan Anda, berbeda dari blok warna pada halaman cetak Hafalan.",
+                    "These practice groups divide your selected range; they differ from the colored blocks on printed Hafalan pages."),
+                    style = MaterialTheme.typography.bodySmall, modifier = Modifier.testTag("manual_memorization_groups"))
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) { blocks.forEach { choice ->
                     FilterChip(selected = block.number == choice.number, onClick = { blockIndex = choice.number - 1; hidden = false },
                         label = { Text("${choice.number}") }, modifier = Modifier.testTag("memorization_block_${choice.number}"))

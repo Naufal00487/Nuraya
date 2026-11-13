@@ -195,6 +195,7 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
                         "mushaf" -> MadinahScreen(language, surahId, ayahId,
                             showTajwidCompanion = QuranReadingModes.usesTajwid(readingModeId),
                             edition = QuranReadingModes.pageEdition(readingModeId), readingModeId = readingModeId,
+                            printedEdition = com.nuraya.app.quranreading.PrintedMushafEdition.forMode(readingModeId),
                             app = app, settings = QuranReadingModes.settings(readingModeId, settings), onBack = back,
                             onReadVerses = { surah, ayah ->
                                 if (mushafFrom != "reader") readerFrom = "mushaf"; surahId = surah; ayahId = ayah; juzId = 0; screen = "reader"

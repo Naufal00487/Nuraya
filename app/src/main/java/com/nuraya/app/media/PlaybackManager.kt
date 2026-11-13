@@ -49,6 +49,8 @@ data class PlaybackState(
     val wordPosition: Int = 0,
     val rangeStart: Int = 0,
     val rangeEnd: Int = 0,
+    val rangeStartSurah: Int = 0,
+    val rangeEndSurah: Int = 0,
     val rangePass: Int = 1,
     val rangePasses: Int = 1,
     val wordTimingAvailable: Boolean = false,
@@ -69,9 +71,9 @@ class PlaybackManager(
     private var controller: MediaController? = null
     private val verseCatalog = VerseAudioCatalog(appContext)
     val verseReciters: List<VerseReciter> get() = CuratedReciters.verseIds.mapNotNull { id -> verseCatalog.reciters.firstOrNull { it.id == id }?.let { it.copy(name = CuratedReciters.names[id] ?: it.name) } }
-    private var timedChapter: TimedChapter? = null
+    private var timedChapters: Map<Int, TimedChapter> = emptyMap()
     private data class VerseRequest(val surah: Int, val start: Int, val end: Int,
-        val reciter: VerseReciter, val repeatEach: Int, val repeatRange: Boolean, val rangeRepeats: Int = 1)
+        val reciter: VerseReciter, val repeatEach: Int, val repeatRange: Boolean, val rangeRepeats: Int = 1, val endSurah: Int = surah)
     private data class QueueRequest(val tracks: List<Pair<Surah, Qari>> = emptyList(), val index: Int = 0,
         val verse: VerseRequest? = null)
     private var pending: QueueRequest? = null
@@ -192,8 +194,13 @@ class PlaybackManager(
 
     fun playVerseRange(surahId: Int, startAyah: Int, endAyah: Int, qariId: String,
         repeatEach: Int = 1, repeatRange: Boolean = false, rangeRepeats: Int = 1) {
-        val surah = quran.surahs.firstOrNull { it.id == surahId } ?: return
-        if (startAyah !in 1..surah.ayahCount || endAyah !in startAyah..surah.ayahCount || repeatEach !in 1..20 || rangeRepeats !in 1..20 || repeatEach*rangeRepeats>20) return
+        playVerseSpan(surahId, startAyah, surahId, endAyah, qariId, repeatEach, repeatRange, rangeRepeats)
+    }
+
+    fun playVerseSpan(surahId: Int, startAyah: Int, endSurah: Int, endAyah: Int, qariId: String,
+        repeatEach: Int = 1, repeatRange: Boolean = false, rangeRepeats: Int = 1) {
+        if (!validVerseSpan(quran, surahId, startAyah, endSurah, endAyah, repeatEach, rangeRepeats)) return
+        val surah = quran.surahs[surahId - 1]
         val reciter = verseReciters.firstOrNull { it.id == qariId }
         if (reciter == null) {
             // A stale saved ID must never select a different person's voice.
@@ -202,12 +209,12 @@ class PlaybackManager(
             mutableState.value = PlaybackState(
                 title = "${surah.name} · $startAyah", qariId = qariId,
                 surahId = surahId, ayahId = startAyah, verseMode = true,
-                rangeStart = startAyah, rangeEnd = endAyah,
+                rangeStart = startAyah, rangeEnd = endAyah, rangeStartSurah = surahId, rangeEndSurah = endSurah,
                 error = "Qari pilihan tidak tersedia. Pilih ulang qari di pengaturan bacaan. / Selected reciter is unavailable. Choose a reciter again in reading settings.",
             )
             return
         }
-        startQueue(QueueRequest(verse = VerseRequest(surahId, startAyah, endAyah, reciter, repeatEach, repeatRange, rangeRepeats)))
+        startQueue(QueueRequest(verse = VerseRequest(surahId, startAyah, endAyah, reciter, repeatEach, repeatRange, rangeRepeats, endSurah)))
     }
 
     private fun startVerseQueue(queue: QueueRequest) {
@@ -215,44 +222,49 @@ class PlaybackManager(
         val surah = quran.surahs[verse.surah - 1]
         val request = ++generation
         preparingQueue = true
-        timedChapter = null
+        timedChapters = emptyMap()
         mutableState.update { it.copy(title = "${surah.name} · ${verse.start}", qari = verse.reciter.name,
             qariId = verse.reciter.id, surahId = verse.surah, ayahId = verse.start, verseMode = true,
-            rangeStart = verse.start, rangeEnd = verse.end, rangePass = 1, rangePasses = verse.rangeRepeats, wordPosition = 0, wordTimingAvailable = false,
+            rangeStart = verse.start, rangeEnd = verse.end, rangeStartSurah = verse.surah, rangeEndSurah = verse.endSurah, rangePass = 1, rangePasses = verse.rangeRepeats, wordPosition = 0, wordTimingAvailable = false,
             loading = true, isPlaying = false, positionMs = 0, durationMs = 0, error = null) }
         val player = controller
         if (player == null) { pending = queue; connect(); return }
         player.pause()
         scope.launch {
             try {
-                val (chapter, items) = withContext(Dispatchers.IO) {
-                    val chapter = verseCatalog.timing(verse.reciter, verse.surah)
-                    require(chapter == null || chapter.verses.size == surah.ayahCount)
-                    val items = repeatedVerseSequence(verse.start, verse.end, verse.repeatEach, verse.rangeRepeats, surah.ayahCount).mapIndexed { index, ayah ->
-                        val timing = chapter?.verses?.getOrNull(ayah - 1)?.takeIf { it.usable }
+                val (chapters, items) = withContext(Dispatchers.IO) {
+                    val chapters = (verse.surah..verse.endSurah).mapNotNull { id ->
+                        verseCatalog.timing(verse.reciter, id)?.also { require(it.verses.size == quran.surahs[id - 1].ayahCount) }?.let { id to it }
+                    }.toMap()
+                    val sequence = verseSpanSequence(quran, verse.surah, verse.start, verse.endSurah, verse.end, verse.repeatEach, verse.rangeRepeats)
+                    val passSize = sequence.size / verse.rangeRepeats
+                    val items = sequence.mapIndexed { index, selected ->
+                        val chapter = chapters[selected.surah]
+                        val timing = chapter?.verses?.getOrNull(selected.ayah - 1)?.takeIf { it.usable }
                         val extras = Bundle().apply {
-                            putString("qariId", verse.reciter.id); putInt("surahId", verse.surah)
-                            putInt("ayahId", ayah); putBoolean("verseMode", true)
+                            putString("qariId", verse.reciter.id); putInt("surahId", selected.surah)
+                            putInt("ayahId", selected.ayah); putBoolean("verseMode", true)
                             putInt("rangeStart", verse.start); putInt("rangeEnd", verse.end)
-                            putInt("rangePass",index/((verse.end-verse.start+1)*verse.repeatEach)+1);putInt("rangePasses",verse.rangeRepeats)
+                            putInt("rangeStartSurah", verse.surah); putInt("rangeEndSurah", verse.endSurah)
+                            putInt("rangePass", index / passSize + 1); putInt("rangePasses", verse.rangeRepeats)
                             putBoolean("wordTiming", timing != null)
                             putLong("clipStartMs", timing?.startMs ?: 0L)
                             putString("source", if (timing != null) requireNotNull(chapter).source else "Islamic Network")
                         }
                         MediaItem.Builder()
-                            .setMediaId("verse:${verse.reciter.id}:${verse.surah}:$ayah:$index")
-                            .setUri(if (timing != null) requireNotNull(chapter).audioUrl else verse.reciter.audioUrl(requireNotNull(quran.verse(verse.surah, ayah)).number))
-                            .setMediaMetadata(MediaMetadata.Builder().setTitle("${surah.name} · $ayah")
+                            .setMediaId("verse:${verse.reciter.id}:${selected.surah}:${selected.ayah}:$index")
+                            .setUri(if (timing != null) requireNotNull(chapter).audioUrl else verse.reciter.audioUrl(selected.number))
+                            .setMediaMetadata(MediaMetadata.Builder().setTitle("${quran.surahs[selected.surah - 1].name} · ${selected.ayah}")
                                 .setArtist(verse.reciter.name).setAlbumTitle("Nuraya · Al-Qur'an")
                                 .setIsPlayable(true).setExtras(extras).build())
                             .apply { if (timing != null) setClippingConfiguration(MediaItem.ClippingConfiguration.Builder()
                                 .setStartPositionMs(timing.startMs).setEndPositionMs(timing.endMs).build()) }
                             .build()
                     }
-                    chapter to items
+                    chapters to items
                 }
                 if (request != generation) return@launch
-                timedChapter = chapter
+                timedChapters = chapters
                 preparingQueue = false
                 player.repeatMode = if (verse.repeatRange) Player.REPEAT_MODE_ALL else Player.REPEAT_MODE_OFF
                 player.setMediaItems(items, 0, 0L)
@@ -271,14 +283,14 @@ class PlaybackManager(
 
     private fun startQueue(queue: QueueRequest) {
         if (queue.verse != null) { startVerseQueue(queue); return }
-        timedChapter = null
+        timedChapters = emptyMap()
         val (surah, qari) = queue.tracks[queue.index]
         val request = ++generation
         preparingQueue = true
         mutableState.update {
             it.copy(title = surah.name, qari = qari.name, qariId = qari.id, surahId = surah.id,
                 loading = true, isPlaying = false, positionMs = 0, durationMs = 0, error = null,
-                verseMode = false, ayahId = 0, wordPosition = 0, rangeStart = 0, rangeEnd = 0, rangePass = 1, rangePasses = 1,
+                verseMode = false, ayahId = 0, wordPosition = 0, rangeStart = 0, rangeEnd = 0, rangeStartSurah = 0, rangeEndSurah = 0, rangePass = 1, rangePasses = 1,
                 wordTimingAvailable = false, source = "Islamic Network")
         }
         val player = controller
@@ -391,7 +403,7 @@ class PlaybackManager(
         pending = null
         controller?.stop()
         controller?.clearMediaItems()
-        timedChapter = null
+        timedChapters = emptyMap()
         mutableState.value = PlaybackState()
     }
 
@@ -423,7 +435,8 @@ class PlaybackManager(
         val extras = item?.mediaMetadata?.extras
         val verseMode = extras?.getBoolean("verseMode") == true
         val ayah = if (verseMode) extras?.getInt("ayahId") ?: 0 else 0
-        val hasTiming = verseMode && extras?.getBoolean("wordTiming") == true && timedChapter?.surah == extras.getInt("surahId")
+        val timedChapter = timedChapters[extras?.getInt("surahId")]
+        val hasTiming = verseMode && extras?.getBoolean("wordTiming") == true && timedChapter != null
         val word = if (hasTiming && player.isPlaying) timedChapter?.verses?.getOrNull(ayah - 1)
             ?.wordAt(player.currentPosition + (extras?.getLong("clipStartMs") ?: 0L)) ?: 0 else 0
         mutableState.update { old ->
@@ -443,6 +456,8 @@ class PlaybackManager(
                 wordPosition = word,
                 rangeStart = if (verseMode) extras?.getInt("rangeStart") ?: 0 else 0,
                 rangeEnd = if (verseMode) extras?.getInt("rangeEnd") ?: 0 else 0,
+                rangeStartSurah = if (verseMode) extras?.getInt("rangeStartSurah", extras.getInt("surahId")) ?: 0 else 0,
+                rangeEndSurah = if (verseMode) extras?.getInt("rangeEndSurah", extras.getInt("surahId")) ?: 0 else 0,
                 wordTimingAvailable = hasTiming,
                 rangePass = if(verseMode) extras?.getInt("rangePass",1) ?: 1 else 1,
                 rangePasses = if(verseMode) extras?.getInt("rangePasses",1) ?: 1 else 1,

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.recitation.LocalQuranCaptureTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-13T12:37:14" hostname="69a9441dece0" time="0.049">
+  <properties/>
+  <testcase name="fallbackMicrophoneRatesKeepDurationAmplitudeAndReadBoundaries" classname="com.nuraya.app.recitation.LocalQuranCaptureTest" time="0.04"/>
+  <testcase name="snapshotsDoNotExposeRecordingStorageAndClearRemovesPreviousAttempt" classname="com.nuraya.app.recitation.LocalQuranCaptureTest" time="0.004"/>
+  <testcase name="failedAudioReadCannotAdvanceRecordingBuffer" classname="com.nuraya.app.recitation.LocalQuranCaptureTest" time="0.001"/>
+  <testcase name="silenceAndSingleClickCannotBeSubmittedAsRecitation" classname="com.nuraya.app.recitation.LocalQuranCaptureTest" time="0.001"/>
+  <testcase name="longInputStopsAtTheRecordingLimitAndConvertsPcmWithoutOverflow" classname="com.nuraya.app.recitation.LocalQuranCaptureTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

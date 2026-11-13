@@ -1,3 +1,5 @@
+> Pembaruan: pembaca utama kini memakai tujuh edisi asli, masing-masing 604 halaman. Lihat [sumber dan cakupan terbaru](PRINTED_MUSHAF.md). Bagian di bawah merupakan riwayat sumber versi lama.
+
 > Pembaruan 1.5.3: Bahriyah/pojok dan penampil PDF telah dihapus. Indonesia/Madinah biasa memakai gambar; mode belajar lainnya memakai teks digital dan fungsi khusus. Lihat [perubahan terkini](UPDATE_1.5.3.md). Keterangan versi sebelumnya di bawah adalah riwayat sumber.
 
 # Madinah page images

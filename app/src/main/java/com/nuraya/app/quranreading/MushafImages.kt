@@ -31,16 +31,30 @@ enum class MushafEdition(val id: String, val assetDirectory: String) {
 }
 
 /** Pinned source artwork, with a separate index and storage namespace for each edition. */
-class MushafImages(private val context: Context, val edition: MushafEdition = MushafEdition.MADINAH) {
+class MushafImages(private val context: Context, val edition: MushafEdition = MushafEdition.MADINAH,
+                   val printedEdition: PrintedMushafEdition? = null) {
+    private val assetDirectory = printedEdition?.let { "printed_mushaf/${it.id}" } ?: edition.assetDirectory
+    private val namespace = printedEdition?.let { "printed-${it.id}" } ?: edition.id
+    fun title(language: String) = printedEdition?.title(language) ?: edition.title(language)
+    val totalBytes get() = printedManifest?.getJSONArray("pages")?.let { rows -> (0 until rows.length()).sumOf { rows.getJSONObject(it).getLong("bytes") } } ?: 0L
+    private val printedManifest: JSONObject? by lazy {
+        printedEdition?.let { selected ->
+            val root = context.assets.open("printed_mushaf/catalog.json").bufferedReader().use { JSONObject(it.readText()) }
+            require(root.getString("commit") == PrintedMushafEdition.COMMIT)
+            val rows = root.getJSONArray("editions")
+            (0 until rows.length()).map { rows.getJSONObject(it) }.single { it.getString("id") == selected.id }
+        }
+    }
     val pages: List<MushafPage> by lazy {
-        val root = context.assets.open("mushaf/${edition.id}-images.json").bufferedReader().use { JSONObject(it.readText()) }
+        val root = printedManifest ?: context.assets.open("mushaf/${edition.id}-images.json").bufferedReader().use { JSONObject(it.readText()) }
         val rows = root.getJSONArray("pages")
         (0 until rows.length()).map { i -> rows.getJSONObject(i).let {
             MushafPage(it.getInt("page"), it.getString("url"), it.getString("gitBlobSha1"))
         } }.also { require(it.map(MushafPage::number) == (1..604).toList()) }
     }
     val references: List<MushafReference> by lazy {
-        val root = context.assets.open("mushaf/${edition.id}-pages.json").bufferedReader().use { JSONObject(it.readText()) }
+        val path = printedEdition?.let { "printed_mushaf/${it.index}-index.json" } ?: "mushaf/${edition.id}-pages.json"
+        val root = context.assets.open(path).bufferedReader().use { JSONObject(it.readText()) }
         val rows = root.getJSONArray("verses")
         (0 until rows.length()).map { i -> rows.getJSONObject(i).let {
             MushafReference(it.getInt("surah"), it.getInt("ayah"), it.getInt("page"))
@@ -48,6 +62,29 @@ class MushafImages(private val context: Context, val edition: MushafEdition = Mu
     }
     fun pageFor(surah: Int, ayah: Int): Int = references.firstOrNull { it.surah == surah && it.ayah == ayah }?.page ?: 1
     fun firstReference(page: Int): MushafReference = references.first { it.page == page }
+
+    private val regions: Map<Int, List<MushafRegion>> by lazy {
+        val group = printedEdition?.mapping
+        if (group == null) emptyMap() else {
+            val root = context.assets.open("printed_mushaf/$group-map.json").bufferedReader().use { JSONObject(it.readText()) }
+            require(root.getInt("width") == printedEdition.width && root.getInt("height") == printedEdition.height)
+            val pages = root.getJSONArray("pages")
+            (0 until pages.length()).associate { p ->
+                val row = pages.getJSONObject(p)
+                val verses = row.getJSONArray("verses")
+                row.getInt("page") to (0 until verses.length()).map { v ->
+                    val verse = verses.getJSONObject(v)
+                    val rectangles = verse.getJSONArray("rects")
+                    MushafRegion(verse.getInt("surah"), verse.getInt("ayah"), (0 until rectangles.length()).map { r ->
+                        val box = rectangles.getJSONArray(r)
+                        MushafRect(box.getInt(0), box.getInt(1), box.getInt(2), box.getInt(3))
+                    })
+                }
+            }
+        }
+    }
+
+    fun regionsFor(page: Int): List<MushafRegion> = regions[page].orEmpty()
 
     /** Hash includes Git's blob header, so downloaded bytes must match the pinned source tree. */
     fun verified(page: Int, bytes: ByteArray): Boolean {
@@ -60,15 +97,15 @@ class MushafImages(private val context: Context, val edition: MushafEdition = Mu
     suspend fun load(page: Int): Bitmap = withContext(Dispatchers.IO) {
         require(page in 1..604)
         val name = "%03d".format(java.util.Locale.US, page) + if (pages[page - 1].url.endsWith(".jpg")) ".jpg" else ".png"
-        val bundled = try { context.assets.open("${edition.assetDirectory}/$name").use { it.readBytes() } } catch (_: java.io.FileNotFoundException) { null }
+        val bundled = try { context.assets.open("$assetDirectory/$name").use { it.readBytes() } } catch (_: java.io.FileNotFoundException) { null }
         if (bundled != null && verified(page, bundled)) return@withContext decode(bundled)
-        val saved = File(context.filesDir, "${edition.id}-saved-v1/$name")
+        val saved = File(context.filesDir, "$namespace-saved-v1/$name")
         if (saved.isFile) {
             val bytes = saved.readBytes()
             if (verified(page, bytes)) return@withContext decode(bytes)
             saved.delete()
         }
-        val directory = File(context.cacheDir, "${edition.id}-v1").apply { mkdirs() }
+        val directory = File(context.cacheDir, "$namespace-v1").apply { mkdirs() }
         val file = File(directory, name)
         if (file.exists()) {
             val bytes = file.readBytes()
@@ -79,7 +116,7 @@ class MushafImages(private val context: Context, val edition: MushafEdition = Mu
             file.delete()
         }
         val address = URL(pages[page - 1].url)
-        require(edition.accepts(address))
+        require(if (printedEdition != null) address.toString().startsWith(PrintedMushafEdition.BASE_URL + printedEdition.id + "/") else edition.accepts(address))
         val connection = (address.openConnection() as HttpURLConnection).apply {
             connectTimeout = 15000
             readTimeout = 20000
@@ -120,12 +157,12 @@ class MushafImages(private val context: Context, val edition: MushafEdition = Mu
     suspend fun saveOffline(page: Int) = withContext(Dispatchers.IO) {
         require(page in 1..604)
         val name = "%03d".format(java.util.Locale.US, page) + if (pages[page - 1].url.endsWith(".jpg")) ".jpg" else ".png"
-        val directory = File(context.filesDir, "${edition.id}-saved-v1").apply { check(mkdirs() || isDirectory) }
+        val directory = File(context.filesDir, "$namespace-saved-v1").apply { check(mkdirs() || isDirectory) }
         val target = File(directory, name)
         if (target.isFile && verified(page, target.readBytes())) return@withContext
         load(page).recycle()
-        val bytes = try { context.assets.open("${edition.assetDirectory}/$name").use { it.readBytes() } }
-            catch (_: java.io.FileNotFoundException) { File(context.cacheDir, "${edition.id}-v1/$name").readBytes() }
+        val bytes = try { context.assets.open("$assetDirectory/$name").use { it.readBytes() } }
+            catch (_: java.io.FileNotFoundException) { File(context.cacheDir, "$namespace-v1/$name").readBytes() }
         check(verified(page, bytes))
         val temp = File.createTempFile("save-", ".tmp", directory)
         try { temp.writeBytes(bytes); check(temp.renameTo(target)) }
@@ -139,6 +176,6 @@ class MushafImages(private val context: Context, val edition: MushafEdition = Mu
         var sample = 1
         while (bounds.outWidth / sample > 1600) sample *= 2
         return checkNotNull(BitmapFactory.decodeByteArray(bytes, 0, bytes.size,
-            BitmapFactory.Options().apply { inSampleSize = sample; inPreferredConfig = Bitmap.Config.RGB_565 })) { "Unable to decode page" }
+            BitmapFactory.Options().apply { inSampleSize = sample; inPreferredConfig = if (printedEdition != null) Bitmap.Config.ARGB_8888 else Bitmap.Config.RGB_565 })) { "Unable to decode page" }
     }
 }

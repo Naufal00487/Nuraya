@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.learning.ContentPolicyTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-13T12:35:58" hostname="69a9441dece0" time="0.005">
+  <properties/>
+  <testcase name="urlsRequirePublicHttpsWithoutEmbeddedCredentials" classname="com.nuraya.app.learning.ContentPolicyTest" time="0.005"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

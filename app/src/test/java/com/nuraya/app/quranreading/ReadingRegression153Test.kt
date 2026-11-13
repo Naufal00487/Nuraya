@@ -77,6 +77,7 @@ class ReadingRegression153Test {
         compose.setContent { NurayaTheme { Surface { key(mode) {
             StudyBookScreen(app, UserSettings(), 67, 1, modeId = mode, onBack = {}, onOpenMushaf = { _, _ -> })
         } } } }
+        compose.onNodeWithTag("manual_memorization_groups").assertExists()
         compose.onNodeWithTag("memorization_block_2").performClick()
         val block = memorizationBlocks(app.quran.verses(67))[1]
         compose.onNodeWithTag("study_reference").assertTextEquals("Blok 2 / 8 · ${block.reference}")

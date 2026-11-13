@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.quranreading.PrintedMushafPresentationTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-13T12:38:43" hostname="69a9441dece0" time="15.227">
+  <properties/>
+  <testcase name="tikrarMenuCountsTheSelectedVerseWithoutChangingPrintedEdition" classname="com.nuraya.app.quranreading.PrintedMushafPresentationTest" time="9.804"/>
+  <testcase name="audioSettingsValidateCrossSurahRangeAndKeepTheChosenReciter" classname="com.nuraya.app.quranreading.PrintedMushafPresentationTest" time="1.584"/>
+  <testcase name="waqafMenuShowsTheGuideEvenForAVerseWithoutAnInternalStop" classname="com.nuraya.app.quranreading.PrintedMushafPresentationTest" time="0.899"/>
+  <testcase name="farSurahDoesNotJumpToStaleBaqarahAudioAndCanPlayItsOwnVerse" classname="com.nuraya.app.quranreading.PrintedMushafPresentationTest" time="0.462"/>
+  <testcase name="hafalanUsesItsOwnPageAndRecallHidesTheEntirePage" classname="com.nuraya.app.quranreading.PrintedMushafPresentationTest" time="0.786"/>
+  <testcase name="perKataOriginalPageIsFullScreenAndLongPressSelectsThePrintedVerse" classname="com.nuraya.app.quranreading.PrintedMushafPresentationTest" time="1.075"/>
+  <testcase name="madinahTajwidUsesTheActualColoredPageAndKeepsTheImageUnderItsControls" classname="com.nuraya.app.quranreading.PrintedMushafPresentationTest" time="0.615"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

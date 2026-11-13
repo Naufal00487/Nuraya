@@ -1,0 +1,32 @@
+{
+  "version": "1.6.0",
+  "versionCode": 14,
+  "checkedDate": "2026-11-14",
+  "timezone": "Asia/Jakarta",
+  "tests": {
+    "tests": 205,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "Warning": 61
+  },
+  "testScope": "Full 205-test suite plus targeted reruns after disambiguating the Waqaf dialog selector and clarifying manual memorization groups; JUnit retains latest result per class.",
+  "build": "assembleDebug and assembleDebugAndroidTest passed; instrumentation APK not executed",
+  "physicalDeviceTest": false,
+  "apk": {
+    "bytes": 75126455,
+    "sha256": "ddbff089cde81d1c454990cc245e4f394d0b08e265f4f5357f8aa0dd3ea21824",
+    "certificateSha256": "e2aa60317632bc6aea65f83c2247e54111941d0e0725875a2c9db3ffb93ac264"
+  },
+  "printedPages": {
+    "editions": 7,
+    "pagesPerEdition": 604,
+    "downloadedAndHashDecoded": 4228,
+    "bundledImages": 42,
+    "mappedEditions": 6,
+    "hafalanMappingAvailable": false
+  },
+  "canonicalQuranSha256": "f41cef112e2efd581d3ea15ad7229a713d18122a6e0fbec4ddb0c00b7d1cae9c"
+}

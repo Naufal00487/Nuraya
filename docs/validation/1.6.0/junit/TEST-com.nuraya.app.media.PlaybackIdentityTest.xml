@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.media.PlaybackIdentityTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-11-13T12:36:02" hostname="69a9441dece0" time="1.119">
+  <properties/>
+  <testcase name="unknownSavedReciterIsRejectedRatherThanSubstitutingAlafasy" classname="com.nuraya.app.media.PlaybackIdentityTest" time="0.879"/>
+  <testcase name="rejectingASelectionCancelsThePreviousRequestAndAllowsAnExplicitNewOne" classname="com.nuraya.app.media.PlaybackIdentityTest" time="0.24"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

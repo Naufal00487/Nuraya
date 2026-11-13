@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.storage.VerseAudioHistoryTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-13T12:37:14" hostname="69a9441dece0" time="0.142">
+  <properties/>
+  <testcase name="explicitHistoryClearIncludesVerseAudioAndPreservesCollections" classname="com.nuraya.app.storage.VerseAudioHistoryTest" time="0.029"/>
+  <testcase name="repeatedPlaybackUpdatesOneRowAndVerseHistorySurvivesReopening" classname="com.nuraya.app.storage.VerseAudioHistoryTest" time="0.053"/>
+  <testcase name="historyResolutionKeepsTheExactQariAndVerseAndRejectsConflicts" classname="com.nuraya.app.storage.VerseAudioHistoryTest" time="0.059"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

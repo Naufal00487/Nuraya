@@ -172,7 +172,9 @@ fun FullPlayer(app: NurayaApplication, language: String, state: PlaybackState, e
             Text(state.qari,color=MaterialTheme.colorScheme.onSurfaceVariant,textAlign=TextAlign.Center)
             if (!state.verseMode && download?.status=="complete") Text(label(language,"Audio tersimpan di perangkat","Audio saved on this device"),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.primary)
             if (state.verseMode) {
-                Text(label(language, "Ayat ${state.ayahId} · rentang ${state.rangeStart}–${state.rangeEnd}", "Verse ${state.ayahId} · range ${state.rangeStart}–${state.rangeEnd}"), style = MaterialTheme.typography.bodySmall)
+                val range = if (state.rangeStartSurah > 0 && state.rangeStartSurah != state.rangeEndSurah)
+                    "${state.rangeStartSurah}:${state.rangeStart}–${state.rangeEndSurah}:${state.rangeEnd}" else "${state.rangeStart}–${state.rangeEnd}"
+                Text(label(language, "Ayat ${state.ayahId} · rentang $range", "Verse ${state.ayahId} · range $range"), style = MaterialTheme.typography.bodySmall)
                 if(state.verseMode&&state.rangePasses>1)Text(label(language,"Putaran ${state.rangePass} / ${state.rangePasses}","Pass ${state.rangePass} / ${state.rangePasses}"),style=MaterialTheme.typography.titleMedium)
                 TextButton(onClick = { onRead(state.surahId, state.ayahId.coerceAtLeast(1)) }) {
                     Icon(Icons.Outlined.MenuBook, null, Modifier.size(18.dp))
@@ -185,7 +187,7 @@ fun FullPlayer(app: NurayaApplication, language: String, state: PlaybackState, e
             Column(Modifier.padding(12.dp)) {
                 Text(localizedError(state.error,language),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onErrorContainer)
                 if (state.verseMode) TextButton(onClick = {
-                    app.playback.playVerseRange(state.surahId, state.ayahId.coerceAtLeast(1), state.rangeEnd.coerceAtLeast(state.ayahId), state.qariId)
+                    app.playback.playVerseSpan(state.surahId, state.ayahId.coerceAtLeast(1), state.rangeEndSurah.takeIf { it > 0 } ?: state.surahId, state.rangeEnd.coerceAtLeast(1), state.qariId)
                 }) { Text(label(language, "Coba lagi", "Try again")) }
                 else if(surah!=null && qari!=null) TextButton(onClick={app.playback.play(surah,qari)}) { Text(label(language,"Coba lagi","Try again")) }
             }

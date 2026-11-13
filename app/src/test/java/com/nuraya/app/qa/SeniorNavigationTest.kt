@@ -214,6 +214,7 @@ class SeniorNavigationTest {
         compose.onNodeWithTag("mini_player_toggle").assertDoesNotExist()
         showBookControls()
         compose.onNodeWithTag("mushaf_page_number").assertTextContains("Halaman 1 / 604")
+        compose.onNodeWithContentDescription("Menu mushaf").performClick()
         compose.onNodeWithTag("mushaf_next").performClick()
         awaitTag("mushaf_page_image")
         compose.onNodeWithTag("mushaf_page_number").assertTextContains("Halaman 2 / 604")

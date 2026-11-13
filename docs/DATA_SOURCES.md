@@ -182,3 +182,7 @@ langsung dengan HTTP 200.
 ## Gambar Quran Indonesia (1.5.1)
 
 604 gambar Arab berbingkai dari `siar08888000077/mushaf-indonesia`, commit `76abbcd2ebc88433ee8b530e1611a7219919d574`. Semua berkas diperiksa hash dan decoding; batas akhir ayat dicocokkan secara visual dengan indeks 604 halaman. Gambar tidak berisi terjemahan per kata Islampedia. Terjemahan, tajwid dan sorotan audio ditampilkan di panel pendamping. Lihat [sumber, cakupan audit dan batas edisi](MUSHAF_IMAGES.md#indonesia-ornamental-pages--151).
+
+## Tujuh edisi cetak
+
+Sumber publik `agusibrahim/quran-image`, commit `df1ca931ca6e83f8ff6b2d3a9308406e11994d00`: 4.228 PNG asli. Indeks dan koordinat mengikuti edisi gambar. [Provenance, koreksi koordinat dan batas pemeriksaan](PRINTED_MUSHAF.md).

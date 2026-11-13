@@ -21,17 +21,17 @@ object QuranReadingModes {
         QuranReadingMode("word_tajwid", "Per kata & tajwid", "Word meanings & tajwid", "Arti tiap kata langsung terlihat bersama teks Arab bertajwid.", "Word meanings shown directly with colored Arabic tajwid."),
         QuranReadingMode("latin_tajwid", "Latin & tajwid", "Transliteration & tajwid", "Latin langsung tampil di bawah ayat, dengan tajwid berwarna pada teks Arab.", "Transliteration directly below each verse, with colored Arabic tajwid."),
         QuranReadingMode("indonesia", "Al-Qur’an Indonesia", "Indonesian Qur’an", "604 halaman berbingkai, dengan terjemahan Indonesia dan arti per kata di panel pendamping.", "604 ornamental pages, with Indonesian translation and word meanings in a companion panel."),
-        QuranReadingMode("indonesia_tajwid", "Indonesia & tajwid", "Indonesian & tajwid", "Ayat bertajwid berwarna dengan terjemahan Indonesia langsung di bawahnya.", "Colored Arabic verses with Indonesian translation directly below."),
+        QuranReadingMode("indonesia_tajwid", "Indonesia & tajwid", "Indonesian & tajwid", "604 halaman Indonesia dengan warna tajwid asli. Buka arti ayat melalui panel terjemahan.", "604 original Indonesian tajwid pages, with verse meanings in the translation panel."),
         QuranReadingMode("madinah", "Al-Qur’an Madinah", "Madinah Qur’an", "604 gambar halaman asli, dapat diperbesar. Halaman baru diunduh saat dibuka.", "604 genuine page images with zoom. New pages download when opened."),
-        QuranReadingMode("madinah_tajwid", "Madinah & tajwid", "Madinah & tajwid", "Teks tajwid berwarna menurut batas halaman Madinah, tanpa terjemahan.", "Colored Arabic text grouped by Madinah page boundaries, without translation."),
-        QuranReadingMode("hafalan_8", "Hafalan 8 blok", "Eight-block memorization", "Bagi bacaan menjadi delapan kelompok latihan dan uji hafalan tanpa melihat.", "Split reading into eight practice groups and practise recall."),
-        QuranReadingMode("tikrar", "Al-Qur’an Tikrar", "Qur’an repetition", "Ulangi audio ayat 3–20 kali dan catat pengulangan mandiri.", "Repeat verse audio 3–20 times and count your own repetitions."),
-        QuranReadingMode("waqaf", "Waqaf & ibtida", "Stopping & resuming", "Kenali tanda berhenti dari teks dan pelajari cara menyambung bacaan.", "Recognize source stop signs and learn how to resume recitation."),
+        QuranReadingMode("madinah_tajwid", "Madinah & tajwid", "Madinah & tajwid", "604 gambar asli Madinah bertajwid warna, dengan sorotan ayat saat murottal.", "604 original Madinah tajwid images with verse highlighting during recitation."),
+        QuranReadingMode("hafalan_8", "Hafalan 8 blok", "Eight-block memorization", "604 halaman edisi Hafalan dengan pembagian blok warna asli untuk mengulang bacaan.", "604 Hafalan pages with their original colored memorization blocks."),
+        QuranReadingMode("tikrar", "Al-Qur’an Tikrar", "Qur’an repetition", "Latihan pengulangan di mushaf Indonesia Tajwid; atur audio dan catat pengulangan.", "Repeat verse audio 3–20 times and count your own repetitions."),
+        QuranReadingMode("waqaf", "Waqaf & ibtida", "Stopping & resuming", "Baca mushaf Indonesia Tajwid dan buka panduan tanda waqaf serta ibtida.", "Recognize source stop signs and learn how to resume recitation."),
         QuranReadingMode("thematic", "Terjemah tematik", "Thematic translations", "Jelajahi ayat tentang salat, sabar, keluarga, ilmu, dan tema lainnya.", "Browse prayer, patience, family, knowledge and other themes."),
     )
 
     fun find(id: String): QuranReadingMode = all.firstOrNull { it.id == id } ?: all.first()
-    fun opensPageReader(id: String) = id in setOf("indonesia", "madinah")
+    fun opensPageReader(id: String) = PrintedMushafEdition.forMode(id) != null
     fun pageEdition(id: String) = if (id in setOf("madinah", "madinah_tajwid")) MushafEdition.MADINAH else MushafEdition.INDONESIA
     fun usesTajwid(id: String) = id in setOf("word_tajwid", "latin_tajwid", "indonesia_tajwid", "madinah_tajwid", "waqaf")
     fun settings(id: String, original: UserSettings): UserSettings = original.copy(
