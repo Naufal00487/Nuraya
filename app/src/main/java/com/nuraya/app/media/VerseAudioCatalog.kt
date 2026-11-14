@@ -3,6 +3,10 @@ package com.nuraya.app.media
 import android.content.Context
 import org.json.JSONObject
 
+private val canonicalAyahCounts = intArrayOf(7, 286, 200, 176, 120, 165, 206, 75, 129, 109, 123, 111, 43, 52, 99, 128, 111, 110, 98, 135, 112, 78, 118, 64, 77, 227, 93, 88, 69, 60, 34, 30, 73, 54, 45, 83, 182, 88, 75, 85, 54, 53, 89, 59, 37, 35, 38, 29, 18, 45, 60, 49, 62, 55, 78, 96, 29, 22, 24, 13, 14, 11, 11, 18, 12, 12, 30, 52, 52, 44, 28, 28, 20, 56, 40, 31, 50, 40, 46, 42, 29, 19, 36, 25, 22, 17, 19, 26, 30, 20, 15, 21, 11, 8, 8, 19, 5, 8, 8, 11, 11, 8, 3, 9, 5, 4, 7, 3, 6, 3, 5, 4, 5, 6)
+
+private val canonicalAyahEnds = canonicalAyahCounts.runningFold(0, Int::plus).drop(1)
+
 /** A verified edition with all 6,236 individual ayah files at [bitrateKbps]. */
 data class VerseReciter(
     val id: String,
@@ -10,9 +14,17 @@ data class VerseReciter(
     val bitrateKbps: Int,
     val supportsWordSync: Boolean = false,
     val timingFolder: String? = null,
+    val ayahBaseUrl: String? = null,
 ) {
+    val source: String get() = if (ayahBaseUrl == null) "Islamic Network" else "EveryAyah"
     fun audioUrl(globalAyah: Int): String {
         require(globalAyah in 1..6236)
+        ayahBaseUrl?.let { base ->
+            require(base.startsWith("https://everyayah.com/data/"))
+            val chapter = canonicalAyahEnds.indexOfFirst { globalAyah <= it }
+            val ayah = globalAyah - (if (chapter == 0) 0 else canonicalAyahEnds[chapter - 1])
+            return "${base.trimEnd('/')}/${(chapter + 1).toString().padStart(3, '0')}${ayah.toString().padStart(3, '0')}.mp3"
+        }
         return "https://cdn.islamic.network/quran/audio/$bitrateKbps/$id/$globalAyah.mp3"
     }
 }
@@ -37,7 +49,8 @@ class VerseAudioCatalog(context: Context) {
             val item = array.getJSONObject(index)
             VerseReciter(item.getString("id"), item.getString("name"), item.getInt("bitrateKbps"),
                 item.optBoolean("supportsWordSync", false),
-                if (item.isNull("timingFolder")) null else item.getString("timingFolder"))
+                if (item.isNull("timingFolder")) null else item.getString("timingFolder"),
+                item.optString("ayahBaseUrl").takeIf { it.isNotBlank() })
         }.also { list -> require(list.map { it.id }.distinct().size == list.size) }
     }
 

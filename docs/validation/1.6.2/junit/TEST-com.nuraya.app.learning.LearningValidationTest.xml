@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.learning.LearningValidationTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-14T21:50:25" hostname="fdb9ea6ea168" time="0.79">
+  <properties/>
+  <testcase name="citationsMustExistInActualCorpus" classname="com.nuraya.app.learning.LearningValidationTest" time="0.39"/>
+  <testcase name="boundedInputRejectsOversizedResponse" classname="com.nuraya.app.learning.LearningValidationTest" time="0.061"/>
+  <testcase name="unconfiguredBuildCannotSendQuestions" classname="com.nuraya.app.learning.LearningValidationTest" time="0.041"/>
+  <testcase name="citationsRejectCoercedNumericTypes" classname="com.nuraya.app.learning.LearningValidationTest" time="0.057"/>
+  <testcase name="generatedQuotationAndUrlAreNotUsedAsQuranSource" classname="com.nuraya.app.learning.LearningValidationTest" time="0.239"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

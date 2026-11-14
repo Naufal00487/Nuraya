@@ -1,5 +1,6 @@
 package com.nuraya.app.ui
 
+import com.nuraya.app.ui.icons.AppIcons as Icons
 import android.graphics.Bitmap
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
@@ -16,19 +17,6 @@ import com.nuraya.app.quranreading.QuranReadingModes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.ArrowBack
-import androidx.compose.material.icons.automirrored.outlined.ArrowForward
-import androidx.compose.material.icons.outlined.MoreVert
-import androidx.compose.material.icons.outlined.Search
-import androidx.compose.material.icons.outlined.Close
-import androidx.compose.material.icons.outlined.BookmarkBorder
-import androidx.compose.material.icons.outlined.Bookmark
-import androidx.compose.material.icons.outlined.ExpandMore
-import androidx.compose.material.icons.outlined.PauseCircleOutline
-import androidx.compose.material.icons.outlined.PlayCircleOutline
-import androidx.compose.material.icons.outlined.Translate
-import androidx.compose.material.icons.outlined.Tune
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch

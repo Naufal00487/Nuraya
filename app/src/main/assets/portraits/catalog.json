@@ -110,7 +110,8 @@
       "id": "minshawi",
       "name": "Muhammad Siddiq Al-Minshawi",
       "qariIds": [
-        "ar.muhammadsiddiqalminshawimujawwad"
+        "ar.muhammadsiddiqalminshawimujawwad",
+        "ar.minshawimujawwad"
       ],
       "asset": "portraits/minshawi.jpg",
       "sourceName": "Quran.com",

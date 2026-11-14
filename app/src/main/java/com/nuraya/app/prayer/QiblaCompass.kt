@@ -1,5 +1,6 @@
 package com.nuraya.app.prayer
 
+import com.nuraya.app.ui.icons.AppIcons as Icons
 import android.content.Context
 import android.hardware.GeomagneticField
 import android.hardware.Sensor
@@ -14,8 +15,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Info
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.nativeCanvas

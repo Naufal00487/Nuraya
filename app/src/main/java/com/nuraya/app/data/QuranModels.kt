@@ -29,11 +29,12 @@ data class Qari(
     val description: String,
     val sourceUrl: String,
     val baseUrl: String,
+    val numberPadding: Int = 0,
 ) {
     /** Islamic Network's whole-surah files use an unpadded surah number. */
     fun audioUrl(surah: Int): String {
         require(surah in 1..114) { "Surah must be between 1 and 114" }
         require(baseUrl.startsWith("https://")) { "Audio requires HTTPS" }
-        return "${baseUrl.trimEnd('/')}/$surah.mp3"
+        return "${baseUrl.trimEnd('/')}/${surah.toString().padStart(numberPadding, '0')}.mp3"
     }
 }

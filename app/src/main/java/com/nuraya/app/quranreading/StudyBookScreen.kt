@@ -189,12 +189,22 @@ fun StudyBookScreen(
             }
             Button(onClick = { listen() }, modifier = Modifier.fillMaxWidth().testTag("study_play")) { Text(label(language, if (playback.isPlaying) "Jeda audio" else "Dengarkan ayat", if (playback.isPlaying) "Pause" else "Listen")) }
             playback.error?.let { Text(it, color = MaterialTheme.colorScheme.error) }
-            Text(label(language, "Qari", "Reciter"), style = MaterialTheme.typography.titleMedium)
-            app.playback.verseReciters.forEach { qari ->
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    RadioButton(selected = settings.readerQariId == qari.id, onClick = { scope.launch { app.settings.setReaderQari(qari.id) } })
-                    QariPortrait(qari.id, qari.name, language, Modifier.size(48.dp))
-                    Text(qari.name, Modifier.weight(1f).padding(start = 12.dp))
+            var choosingQari by remember { mutableStateOf(false) }
+            var qariQuery by remember { mutableStateOf("") }
+            OutlinedButton(onClick = { choosingQari = !choosingQari }, modifier = Modifier.fillMaxWidth().testTag("study_qari_choose")) {
+                Text(app.playback.verseReciters.firstOrNull { it.id == settings.readerQariId }?.name ?: label(language,"Pilih qari","Choose reciter"), Modifier.weight(1f))
+                Icon(if (choosingQari) com.nuraya.app.ui.icons.AppIcons.Outlined.ExpandLess else com.nuraya.app.ui.icons.AppIcons.Outlined.ExpandMore, null)
+            }
+            if (choosingQari) {
+                OutlinedTextField(qariQuery, { qariQuery = it.take(80) }, label = { Text(label(language,"Cari qari","Search reciters")) }, modifier = Modifier.fillMaxWidth().testTag("study_qari_search"), singleLine = true)
+                app.playback.verseReciters.filter { it.name.contains(qariQuery, true) }.forEach { qari ->
+                    Surface(onClick = { scope.launch { app.settings.setReaderQari(qari.id) }; choosingQari = false }, modifier = Modifier.fillMaxWidth().testTag("study_qari_${qari.id}")) {
+                        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(vertical = 8.dp)) {
+                            RadioButton(selected = settings.readerQariId == qari.id, onClick = null)
+                            QariPortrait(qari.id, qari.name, language, Modifier.size(48.dp))
+                            Text(qari.name, Modifier.weight(1f).padding(start = 12.dp))
+                        }
+                    }
                 }
             }
             TextButton(onClick = { controls = false; jump = true }) { Text(label(language, "Ke ayat", "Go to verse")) }

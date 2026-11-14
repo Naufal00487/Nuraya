@@ -103,7 +103,7 @@ class PlaybackManager(
                 val index = player.currentMediaItemIndex
                 player.replaceMediaItem(index, fallback)
                 player.seekTo(index, 0L)
-                mutableState.update { it.copy(error = null, loading = true, wordPosition = 0, wordTimingAvailable = false, source = "Islamic Network") }
+                mutableState.update { it.copy(error = null, loading = true, wordPosition = 0, wordTimingAvailable = false, source = fallback.mediaMetadata.extras?.getString("source").orEmpty()) }
                 player.prepare(); player.play()
                 return
             }
@@ -249,7 +249,7 @@ class PlaybackManager(
                             putInt("rangePass", index / passSize + 1); putInt("rangePasses", verse.rangeRepeats)
                             putBoolean("wordTiming", timing != null)
                             putLong("clipStartMs", timing?.startMs ?: 0L)
-                            putString("source", if (timing != null) requireNotNull(chapter).source else "Islamic Network")
+                            putString("source", if (timing != null) requireNotNull(chapter).source else verse.reciter.source)
                         }
                         MediaItem.Builder()
                             .setMediaId("verse:${verse.reciter.id}:${selected.surah}:${selected.ayah}:$index")
@@ -291,7 +291,7 @@ class PlaybackManager(
             it.copy(title = surah.name, qari = qari.name, qariId = qari.id, surahId = surah.id,
                 loading = true, isPlaying = false, positionMs = 0, durationMs = 0, error = null,
                 verseMode = false, ayahId = 0, wordPosition = 0, rangeStart = 0, rangeEnd = 0, rangeStartSurah = 0, rangeEndSurah = 0, rangePass = 1, rangePasses = 1,
-                wordTimingAvailable = false, source = "Islamic Network")
+                wordTimingAvailable = false, source = if (qari.numberPadding == 3) "MP3Quran" else "Islamic Network")
         }
         val player = controller
         if (player == null) { pending = queue; connect(); return }
@@ -304,6 +304,7 @@ class PlaybackManager(
                         val extras = Bundle().apply {
                             putString("qariId", reciter.id)
                             putInt("surahId", item.id)
+                            putString("source", if (reciter.numberPadding == 3) "MP3Quran" else "Islamic Network")
                         }
                         MediaItem.Builder()
                             .setMediaId("${reciter.id}:${item.id}")
@@ -473,7 +474,7 @@ internal fun individualVerseFallback(item: MediaItem, catalog: VerseAudioCatalog
     if (!extras.getBoolean("verseMode") || !extras.getBoolean("wordTiming")) return null
     val reciter = catalog.reciters.firstOrNull { it.id == extras.getString("qariId") } ?: return null
     val verse = quran.verse(extras.getInt("surahId"), extras.getInt("ayahId")) ?: return null
-    val fallbackExtras = Bundle(extras).apply { putBoolean("wordTiming", false); putLong("clipStartMs", 0); putString("source", "Islamic Network") }
+    val fallbackExtras = Bundle(extras).apply { putBoolean("wordTiming", false); putLong("clipStartMs", 0); putString("source", reciter.source) }
     return item.buildUpon().setUri(reciter.audioUrl(verse.number))
         .setClippingConfiguration(MediaItem.ClippingConfiguration.Builder().build())
         .setMediaMetadata(item.mediaMetadata.buildUpon().setExtras(fallbackExtras).build()).build()

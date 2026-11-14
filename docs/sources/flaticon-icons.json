@@ -1,0 +1,425 @@
+{
+  "provider": "Flaticon UIcons",
+  "version": "3.3.1",
+  "website": "https://www.flaticon.com/uicons",
+  "requestedCategory": "https://www.flaticon.com/free-icons/ui",
+  "fontSource": "https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@3.3.1/css/uicons-regular-rounded-KDJ23353.woff",
+  "fontSha256": "c9e3358cf771c721cd813ba8eafacf328e15f593570d8152176e5609f0da5efe",
+  "license": "Flaticon free license with attribution",
+  "icons": [
+    {
+      "property": "Add",
+      "icon": "plus",
+      "codepoint": "0xfaac",
+      "outlineSha256": "77ae30cbd4d349a0d8f035dcd94775a4d4de11acecd626a29ecf247dd0d1b906"
+    },
+    {
+      "property": "ArrowBack",
+      "icon": "arrow-left",
+      "codepoint": "0xf197",
+      "outlineSha256": "4553e869c85d1571232ba38572e07204e5470aa7648360bd825aa1cfc837d358"
+    },
+    {
+      "property": "ArrowForward",
+      "icon": "arrow-right",
+      "codepoint": "0xf19b",
+      "outlineSha256": "0e37adc8c3c58ac26bf3242cb2c0578e519c0d470931d245d2bf869849607e2e"
+    },
+    {
+      "property": "AutoStories",
+      "icon": "book-open-cover",
+      "codepoint": "0xf280",
+      "outlineSha256": "17c3acf47e4de6bb32f411f73c811563f9a45e886da1a4b193cace97e8294bae"
+    },
+    {
+      "property": "Bookmark",
+      "icon": "bookmark",
+      "codepoint": "0xf28b",
+      "outlineSha256": "cd0735106f5eef7032cd273d66e852f09fece17b67775e0b91a0836e26b5c0d8"
+    },
+    {
+      "property": "BookmarkAdded",
+      "icon": "bookmark",
+      "codepoint": "0xf28b",
+      "outlineSha256": "cd0735106f5eef7032cd273d66e852f09fece17b67775e0b91a0836e26b5c0d8"
+    },
+    {
+      "property": "BookmarkBorder",
+      "icon": "bookmark",
+      "codepoint": "0xf28b",
+      "outlineSha256": "cd0735106f5eef7032cd273d66e852f09fece17b67775e0b91a0836e26b5c0d8"
+    },
+    {
+      "property": "Bookmarks",
+      "icon": "books",
+      "codepoint": "0xf28d",
+      "outlineSha256": "588c413d429aa82f806605d8f9b5bbc3bd4213e3709e99d463b4f14c2471056b"
+    },
+    {
+      "property": "CheckCircle",
+      "icon": "check-circle",
+      "codepoint": "0xf3c4",
+      "outlineSha256": "b3284433a8bdeb9acb2c0aaba8637e8dcaf06905893b41cf0ee195bdd1055b4d"
+    },
+    {
+      "property": "ChevronRight",
+      "icon": "angle-right",
+      "codepoint": "0xf152",
+      "outlineSha256": "04dc8347fdc711059a2ff2d6b55e2c6aa48be9c26aa5f348989461308e644d6e"
+    },
+    {
+      "property": "Close",
+      "icon": "cross",
+      "codepoint": "0xf4f7",
+      "outlineSha256": "2f3cdfd04bff01fe61033f18af51471d8e07a18dbb17d7c01a7fde1c43d0f5a3"
+    },
+    {
+      "property": "DarkMode",
+      "icon": "moon",
+      "codepoint": "0xf972",
+      "outlineSha256": "1b36b3fcd8d49bfb31073cab9a606960598e62ce997e36fe2258a61d9f3d8f54"
+    },
+    {
+      "property": "DeleteOutline",
+      "icon": "trash",
+      "codepoint": "0xfe17",
+      "outlineSha256": "d847836bc575b96ef01218ddc3078c38a7b501888db98cec2daea0f06a9936c5"
+    },
+    {
+      "property": "Download",
+      "icon": "download",
+      "codepoint": "0xf591",
+      "outlineSha256": "fd1b348a7d02935e01dea11089a4b487aa50098988d5786832cc404da42186ef"
+    },
+    {
+      "property": "DownloadDone",
+      "icon": "download",
+      "codepoint": "0xf591",
+      "outlineSha256": "fd1b348a7d02935e01dea11089a4b487aa50098988d5786832cc404da42186ef"
+    },
+    {
+      "property": "EmojiEvents",
+      "icon": "trophy",
+      "codepoint": "0xfe39",
+      "outlineSha256": "eb0f7ee9af4f9a9470891d665bef6602666a8ffd3ebdee676d2f64c7cdd2c570"
+    },
+    {
+      "property": "ExpandLess",
+      "icon": "angle-up",
+      "codepoint": "0xf15b",
+      "outlineSha256": "4e18d07fcc8236410176b721f46c10f628d8bef0a5f17f2e16ebb0016ace76d1"
+    },
+    {
+      "property": "ExpandMore",
+      "icon": "angle-down",
+      "codepoint": "0xf150",
+      "outlineSha256": "7e0ce1fa896c8d8c1e37421a27e8f015a51825b3cca0afff9733446c9e82dff9"
+    },
+    {
+      "property": "Explore",
+      "icon": "compass-alt",
+      "codepoint": "0xf4bd",
+      "outlineSha256": "ae96f58ff9b54607f2d1b502d2a8348b58f323358bdb981e7ef880d9af5bca4e"
+    },
+    {
+      "property": "Favorite",
+      "icon": "heart",
+      "codepoint": "0xf7a0",
+      "outlineSha256": "2d08dd3fb5a582730016b02aff71eb9028bdce0ad1b0a7294c0b2c108b1166dd"
+    },
+    {
+      "property": "FavoriteBorder",
+      "icon": "heart",
+      "codepoint": "0xf7a0",
+      "outlineSha256": "2d08dd3fb5a582730016b02aff71eb9028bdce0ad1b0a7294c0b2c108b1166dd"
+    },
+    {
+      "property": "GraphicEq",
+      "icon": "waveform-path",
+      "codepoint": "0xfef0",
+      "outlineSha256": "8eac5c2240cdc1bddb293480791062da60efab168faaf5df967972978bd1ac8e"
+    },
+    {
+      "property": "Headphones",
+      "icon": "headphones",
+      "codepoint": "0xf793",
+      "outlineSha256": "019831aef00dca04ba308cab59752a203d14c86cdf1443eded75981b808f7e47"
+    },
+    {
+      "property": "Home",
+      "icon": "home",
+      "codepoint": "0xf7b8",
+      "outlineSha256": "bba956fd89a4c5fc13a75ebc080ae2ef569251d41ee1bd8edebd67cb58b43a17"
+    },
+    {
+      "property": "Info",
+      "icon": "info",
+      "codepoint": "0xf80b",
+      "outlineSha256": "85d842a24ed226c28d47bb1fd28d7799b45518dec98300765e313ee94017cf1d"
+    },
+    {
+      "property": "KeyboardArrowUp",
+      "icon": "angle-up",
+      "codepoint": "0xf15b",
+      "outlineSha256": "4e18d07fcc8236410176b721f46c10f628d8bef0a5f17f2e16ebb0016ace76d1"
+    },
+    {
+      "property": "LightMode",
+      "icon": "sun",
+      "codepoint": "0xfd17",
+      "outlineSha256": "cedf78a06b839702b1c3cd5f1c1c9a96b1643843855cc9b0f0500b44b6fd9abf"
+    },
+    {
+      "property": "LocationOn",
+      "icon": "marker",
+      "codepoint": "0xf8fd",
+      "outlineSha256": "d73bf2e4d2df0129aa54d2f399572cc08b0f2c13f38db4d0efc63ecada636c5a"
+    },
+    {
+      "property": "MenuBook",
+      "icon": "book-quran",
+      "codepoint": "0xf283",
+      "outlineSha256": "79b3a9cd2bf3a1bc668055d3ccc97236469e691cfd20b2f4b8aa9281d28dd3f9"
+    },
+    {
+      "property": "Mic",
+      "icon": "microphone",
+      "codepoint": "0xf944",
+      "outlineSha256": "7b247a4a3339f3307409a7905bc2e9affd236da3eab4b985f9dc15c47f585d60"
+    },
+    {
+      "property": "MoreVert",
+      "icon": "menu-dots-vertical",
+      "codepoint": "0xf926",
+      "outlineSha256": "9c89d152fb454077a503dd2e725b4638f375934ec9761fd1fe15d49965f9cfaf"
+    },
+    {
+      "property": "OpenInNew",
+      "icon": "arrow-up-right-from-square",
+      "codepoint": "0xf1b3",
+      "outlineSha256": "344426dec32f70952cc62985ebd934b0b59fd34be89367ee6a5dd2859ef84b43"
+    },
+    {
+      "property": "Palette",
+      "icon": "palette",
+      "codepoint": "0xf9ed",
+      "outlineSha256": "189d8c7008b7ed00aa5d9e48933e05aa6a56d7ba540a44f561c63b48773df58a"
+    },
+    {
+      "property": "Pause",
+      "icon": "pause",
+      "codepoint": "0xfa0c",
+      "outlineSha256": "5959250cc061795dae04cbf9bcceb01bf6632301fb25c9d89ae664f6a56b3698"
+    },
+    {
+      "property": "PauseCircleOutline",
+      "icon": "pause-circle",
+      "codepoint": "0xfa0a",
+      "outlineSha256": "8cce3d705b10008a514481ff782dd3bd5fbb0fae96a264bc45177241eee7aa5e"
+    },
+    {
+      "property": "Person",
+      "icon": "user",
+      "codepoint": "0xfea0",
+      "outlineSha256": "04731a8332da814fcfe8ae95febca3555eca84cc1f234989ab08c76aebb4cbb5"
+    },
+    {
+      "property": "PlayArrow",
+      "icon": "play",
+      "codepoint": "0xfa9e",
+      "outlineSha256": "27d98c3cf666827516acd7f7b7b41a592fe11f605f01d395dc0f7ee732eb03c9"
+    },
+    {
+      "property": "PlayCircleOutline",
+      "icon": "play-circle",
+      "codepoint": "0xfa9b",
+      "outlineSha256": "ac9a064f9f56b411ebb2e945454a04150c2206037d1f4c1c729625e6dfebb19c"
+    },
+    {
+      "property": "PlaylistAdd",
+      "icon": "list-music",
+      "codepoint": "0xf8c2",
+      "outlineSha256": "54a4333450c50f56d08c6e92b417933ceb1fd14666310e0f2b19221ed2c37737"
+    },
+    {
+      "property": "PlaylistAddCheck",
+      "icon": "list-check",
+      "codepoint": "0xf8c0",
+      "outlineSha256": "74ca5ef4f87f27699bd38ca67c88cf1cf05e32b391d46c62cd416758bb5dee2f"
+    },
+    {
+      "property": "RecordVoiceOver",
+      "icon": "circle-microphone-lines",
+      "codepoint": "0xf40e",
+      "outlineSha256": "6d1312cf4eae77ef9fd6a47d24c7f614c7599d5bf32ddb21f6ee3b97dcdacfa4"
+    },
+    {
+      "property": "Remove",
+      "icon": "minus",
+      "codepoint": "0xf94e",
+      "outlineSha256": "9a72f42925ae50c90b01c2e5036eb11324cced55cb0c914a9370baf20d3fc98e"
+    },
+    {
+      "property": "RepeatOne",
+      "icon": "arrows-repeat-1",
+      "codepoint": "0xf1c3",
+      "outlineSha256": "c87b0945ccaedb83d5c0951db3c8b5fe226d2ce090d75bda793c0d00d3091b81"
+    },
+    {
+      "property": "School",
+      "icon": "graduation-cap",
+      "codepoint": "0xf70f",
+      "outlineSha256": "77e0e5e4ff3bce7c8b90e0601af5ac609b1ab4e18bc83a8b1ec6122e4a0fa0ea"
+    },
+    {
+      "property": "Search",
+      "icon": "search",
+      "codepoint": "0xfbba",
+      "outlineSha256": "df818d0345c7c5783725f7e788206f9109863fe100ed0be90bd5bcb5ffcb9cab"
+    },
+    {
+      "property": "SearchOff",
+      "icon": "search",
+      "codepoint": "0xfbba",
+      "outlineSha256": "df818d0345c7c5783725f7e788206f9109863fe100ed0be90bd5bcb5ffcb9cab"
+    },
+    {
+      "property": "Settings",
+      "icon": "settings",
+      "codepoint": "0xfbd2",
+      "outlineSha256": "2c0263d91ef8ad8bfd4c8947fda722906824e29224dda7d2859dddfa6f12778f"
+    },
+    {
+      "property": "Share",
+      "icon": "share",
+      "codepoint": "0xfbd5",
+      "outlineSha256": "e85e49284c84f46d35529eeacf7c217c529f0b185712ddc4618ba9b79164dda3"
+    },
+    {
+      "property": "SkipNext",
+      "icon": "step-forward",
+      "codepoint": "0xfcf2",
+      "outlineSha256": "ffb9fd8b532f2d84cef85ee813e7da3723fd9dfd7a254f3f93511534532e8898"
+    },
+    {
+      "property": "SkipPrevious",
+      "icon": "step-backward",
+      "codepoint": "0xfcf1",
+      "outlineSha256": "8d4ad14b7c6b5bdeed59644dc2df49caa2f0caa2fe7ade04ba53c7abacbfc9d0"
+    },
+    {
+      "property": "Speed",
+      "icon": "tachometer-fast",
+      "codepoint": "0xfd4b",
+      "outlineSha256": "fe95e6342d042290311aa1f5300c0e9371bcbe468575e80e3cb5ffa20f2a49e6"
+    },
+    {
+      "property": "Stop",
+      "icon": "stop",
+      "codepoint": "0xfcfa",
+      "outlineSha256": "88154075d97b439da171f7989b4d997716e75afecf30026ad3a9b46f05b24403"
+    },
+    {
+      "property": "Translate",
+      "icon": "language",
+      "codepoint": "0xf868",
+      "outlineSha256": "85a08f4aaff8bbab5770b8b471aebce39dbc2679c4c5c56e1e2e3b21d84a7639"
+    },
+    {
+      "property": "Tune",
+      "icon": "settings-sliders",
+      "codepoint": "0xfbd1",
+      "outlineSha256": "d2ad367b0d3a3b20150e4cc5af8415b6d129883091b83583b921ce1470fd8cec"
+    },
+    {
+      "property": "Verified",
+      "icon": "badge-check",
+      "codepoint": "0xf1eb",
+      "outlineSha256": "66b868d6ecc5bd6130e4c279c6621d930340191a043b63dc30b1ca9a4b06163e"
+    },
+    {
+      "property": "Visibility",
+      "icon": "eye",
+      "codepoint": "0xf5f8",
+      "outlineSha256": "aed3c26d6eef4715c9e29bf7264b8a27d0be4c37d5335b0eb547c29320e5151f"
+    },
+    {
+      "property": "VisibilityOff",
+      "icon": "eye-crossed",
+      "codepoint": "0xf5f5",
+      "outlineSha256": "ee2fa769cc63c81c0e15d89ad13e2d73fc2ca1f43b10b3f1416d5a85da032c70"
+    },
+    {
+      "property": "VolumeOff",
+      "icon": "volume-slash",
+      "codepoint": "0xfecf",
+      "outlineSha256": "f1ee31c964a07293dff0a016b3aa21c69fac2bd60ad487cd5c63e445449c6f63"
+    },
+    {
+      "property": "VolumeUp",
+      "icon": "volume",
+      "codepoint": "0xfed0",
+      "outlineSha256": "dbbc0cbfca9ee33fcba4e6cc42c10a2623813ea9f0957180ce8cbd2e6263edce"
+    },
+    {
+      "property": "WbSunny",
+      "icon": "sun",
+      "codepoint": "0xfd17",
+      "outlineSha256": "cedf78a06b839702b1c3cd5f1c1c9a96b1643843855cc9b0f0500b44b6fd9abf"
+    },
+    {
+      "property": "WbTwilight",
+      "icon": "sunrise",
+      "codepoint": "0xfd1c",
+      "outlineSha256": "f93d53ed84e92d577b1b70a04a6b0ca3f6cc244b9919f650351deffcfed7874d"
+    },
+    {
+      "property": "Calendar",
+      "icon": "calendar",
+      "codepoint": "0xf339",
+      "outlineSha256": "3cc04e1d97290c2d9a17a087f2f0dc33a5176529d53e5c7da9a6fbcdf9834b49"
+    },
+    {
+      "property": "Clock",
+      "icon": "clock",
+      "codepoint": "0xf45a",
+      "outlineSha256": "8f5693738d4b7f645bf4a0f845f943c28ad9f397d95de086b0004d22fcbc5032"
+    },
+    {
+      "property": "Shield",
+      "icon": "shield-check",
+      "codepoint": "0xfbdb",
+      "outlineSha256": "c9b6756fee8b2e475b0d184bce5c2d15399b7fe9dc0cf5df1f10ea9eb1e85f43"
+    },
+    {
+      "property": "Globe",
+      "icon": "globe",
+      "codepoint": "0xf705",
+      "outlineSha256": "078147c2f438fed5d807d09bd9ee8c63f48237e5803cc617c28512bece758577"
+    },
+    {
+      "property": "Accessibility",
+      "icon": "universal-access",
+      "codepoint": "0xfe6e",
+      "outlineSha256": "c31d1e78c3fdc58f461821d7608a1caa6f8d99d723ad7eaccbbd3dd177613f37"
+    },
+    {
+      "property": "Qibla",
+      "icon": "kaaba",
+      "codepoint": "0xf842",
+      "outlineSha256": "02bdfb99c6edabbf89dc119c4c29b334aa73e3448a2aba0409f285c5715c5bd4"
+    },
+    {
+      "property": "Hadith",
+      "icon": "book-alt",
+      "codepoint": "0xf274",
+      "outlineSha256": "07621c63446b5ba25a463f15354d1286da38482c04b0aa05d69d5d65f2bf35bb"
+    },
+    {
+      "property": "Quran",
+      "icon": "book-quran",
+      "codepoint": "0xf283",
+      "outlineSha256": "79b3a9cd2bf3a1bc668055d3ccc97236469e691cfd20b2f4b8aa9281d28dd3f9"
+    }
+  ]
+}

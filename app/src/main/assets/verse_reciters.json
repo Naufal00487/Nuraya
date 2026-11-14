@@ -5,19 +5,21 @@
     "manifestSha256": "3269ae15618bcde89d259eefa2f12f576ed0db8f7b8e1c91f8e057e5273b7a1e",
     "namesUrl": "https://api.alquran.cloud/v1/edition?format=audio",
     "verifiedDate": "2026-10-24",
-    "countMeaning": "Complete 6236 individual clips at listed bitrate. Word timing uses its exact separately paired Quran.com or QUD source recording."
+    "countMeaning": "Complete 6236 individual clips at listed bitrate. Word timing uses its exact separately paired Quran.com or QUD source recording.",
+    "selectedCount": 30,
+    "additionalProvider": "EveryAyah; each selected folder lists all 6,236 canonical verse files. Word timing remains limited to exact paired source recordings."
   },
   "reciters": [
     {
       "id": "ar.alafasy",
-      "name": "Alafasy",
+      "name": "Mishary Rashid Alafasy",
       "bitrateKbps": 128,
       "supportsWordSync": true,
       "timingFolder": "alafasy"
     },
     {
       "id": "ar.abdulsamad",
-      "name": "Abdul Samad",
+      "name": "Abdul Basit Abdus Samad",
       "bitrateKbps": 64,
       "supportsWordSync": true,
       "timingFolder": "abdulbasit_abdulsamad_tarteel"
@@ -31,21 +33,21 @@
     },
     {
       "id": "ar.abdurrahmaansudais",
-      "name": "Abdurrahmaan As-Sudais",
+      "name": "Abdurrahman As-Sudais",
       "bitrateKbps": 192,
       "supportsWordSync": true,
       "timingFolder": "abdulrahman_al_sudais_tarteel"
     },
     {
       "id": "ar.shaatree",
-      "name": "Abu Bakr Ash-Shaatree",
+      "name": "Abu Bakr Ash-Shatri",
       "bitrateKbps": 128,
       "supportsWordSync": true,
       "timingFolder": "abu_bakr_al_shatri_tarteel"
     },
     {
       "id": "ar.ahmedajamy",
-      "name": "Ahmed ibn Ali al-Ajamy",
+      "name": "Ahmed Al-Ajmi",
       "bitrateKbps": 128,
       "supportsWordSync": true,
       "timingFolder": "ahmed_al_ajmi_qdc"
@@ -59,21 +61,21 @@
     },
     {
       "id": "ar.hanirifai",
-      "name": "Hani Rifai",
+      "name": "Hani Ar-Rifai",
       "bitrateKbps": 192,
       "supportsWordSync": true,
       "timingFolder": "hani_al_rifai_qdc_128k"
     },
     {
       "id": "ar.hudhaify",
-      "name": "Hudhaify",
+      "name": "Ali Abdurrahman Al-Hudhaify",
       "bitrateKbps": 128,
       "supportsWordSync": true,
       "timingFolder": "ali_al_huthaifi_mp3quran"
     },
     {
       "id": "ar.husary",
-      "name": "Husary",
+      "name": "Mahmoud Khalil Al-Husary",
       "bitrateKbps": 64,
       "supportsWordSync": true,
       "timingFolder": "mahmoud_khalil_al_husary_qdc_128k"
@@ -94,14 +96,14 @@
     },
     {
       "id": "ar.mahermuaiqly",
-      "name": "Maher Al Muaiqly",
+      "name": "Maher Al-Muaiqly",
       "bitrateKbps": 128,
       "supportsWordSync": true,
       "timingFolder": "maher_al_muaiqly_tarteel"
     },
     {
       "id": "ar.muhammadayyoub",
-      "name": "Muhammad Ayyoub",
+      "name": "Muhammad Ayyub",
       "bitrateKbps": 128,
       "supportsWordSync": false,
       "timingFolder": null
@@ -122,10 +124,130 @@
     },
     {
       "id": "ar.saoodshuraym",
-      "name": "Saood bin Ibraaheem Ash-Shuraym",
+      "name": "Saud Al-Shuraim",
       "bitrateKbps": 64,
       "supportsWordSync": true,
       "timingFolder": "saud_al_shuraim_mp3quran"
+    },
+    {
+      "id": "ar.minshawimujawwad",
+      "name": "Muhammad Siddiq Al-Minshawi",
+      "bitrateKbps": 192,
+      "supportsWordSync": false,
+      "timingFolder": null,
+      "ayahBaseUrl": "https://everyayah.com/data/Minshawy_Mujawwad_192kbps/"
+    },
+    {
+      "id": "ar.saadalghamdi",
+      "name": "Saad Al-Ghamdi",
+      "bitrateKbps": 40,
+      "supportsWordSync": false,
+      "timingFolder": null,
+      "ayahBaseUrl": "https://everyayah.com/data/Ghamadi_40kbps/"
+    },
+    {
+      "id": "ar.yasseraldossari",
+      "name": "Yasser Al-Dossari",
+      "bitrateKbps": 128,
+      "supportsWordSync": false,
+      "timingFolder": null,
+      "ayahBaseUrl": "https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/"
+    },
+    {
+      "id": "ar.nasseralqatami",
+      "name": "Nasser Al-Qatami",
+      "bitrateKbps": 128,
+      "supportsWordSync": false,
+      "timingFolder": null,
+      "ayahBaseUrl": "https://everyayah.com/data/Nasser_Alqatami_128kbps/"
+    },
+    {
+      "id": "ar.faresabbad",
+      "name": "Fares Abbad",
+      "bitrateKbps": 64,
+      "supportsWordSync": false,
+      "timingFolder": null,
+      "ayahBaseUrl": "https://everyayah.com/data/Fares_Abbad_64kbps/"
+    },
+    {
+      "id": "ar.alijaber",
+      "name": "Ali Jaber",
+      "bitrateKbps": 64,
+      "supportsWordSync": false,
+      "timingFolder": null,
+      "ayahBaseUrl": "https://everyayah.com/data/Ali_Jaber_64kbps/"
+    },
+    {
+      "id": "ar.abdullahawadaljuhani",
+      "name": "Abdullah Awad Al-Juhani",
+      "bitrateKbps": 128,
+      "supportsWordSync": false,
+      "timingFolder": null,
+      "ayahBaseUrl": "https://everyayah.com/data/Abdullaah_3awwaad_Al-Juhaynee_128kbps/"
+    },
+    {
+      "id": "ar.abdulmohsenalqasim",
+      "name": "Abdul Muhsin Al-Qasim",
+      "bitrateKbps": 192,
+      "supportsWordSync": false,
+      "timingFolder": null,
+      "ayahBaseUrl": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/"
+    },
+    {
+      "id": "ar.salahalbudair",
+      "name": "Salah Al-Budair",
+      "bitrateKbps": 128,
+      "supportsWordSync": false,
+      "timingFolder": null,
+      "ayahBaseUrl": "https://everyayah.com/data/Salah_Al_Budair_128kbps/"
+    },
+    {
+      "id": "ar.mahmoudalialbanna",
+      "name": "Mahmoud Ali Al-Banna",
+      "bitrateKbps": 32,
+      "supportsWordSync": false,
+      "timingFolder": null,
+      "ayahBaseUrl": "https://everyayah.com/data/mahmoud_ali_al_banna_32kbps/"
+    },
+    {
+      "id": "ar.khalifaaltunaiji",
+      "name": "Khalifa Al-Tunaiji",
+      "bitrateKbps": 64,
+      "supportsWordSync": false,
+      "timingFolder": null,
+      "ayahBaseUrl": "https://everyayah.com/data/khalefa_al_tunaiji_64kbps/"
+    },
+    {
+      "id": "ar.mohamedtablawi",
+      "name": "Muhammad At-Tablawi",
+      "bitrateKbps": 128,
+      "supportsWordSync": false,
+      "timingFolder": null,
+      "ayahBaseUrl": "https://everyayah.com/data/Mohammad_al_Tablaway_128kbps/"
+    },
+    {
+      "id": "ar.salahbukhatir",
+      "name": "Salah Bukhatir",
+      "bitrateKbps": 128,
+      "supportsWordSync": false,
+      "timingFolder": null,
+      "ayahBaseUrl": "https://everyayah.com/data/Salaah_AbdulRahman_Bukhatir_128kbps/"
+    },
+    {
+      "id": "ar.khaledalqahtani",
+      "name": "Khalid Al-Qahtani",
+      "bitrateKbps": 192,
+      "supportsWordSync": false,
+      "timingFolder": null,
+      "ayahBaseUrl": "https://everyayah.com/data/Khaalid_Abdullaah_al-Qahtaanee_192kbps/"
+    },
+    {
+      "id": "ar.abdullahalmatrood",
+      "name": "Abdullah Al-Matrood",
+      "bitrateKbps": 128,
+      "supportsWordSync": false,
+      "timingFolder": null,
+      "ayahBaseUrl": "https://everyayah.com/data/Abdullah_Matroud_128kbps/"
     }
   ]
 }

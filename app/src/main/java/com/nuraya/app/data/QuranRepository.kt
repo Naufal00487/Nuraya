@@ -37,7 +37,7 @@ class QuranRepository(context: Context) {
 
     /** One visible card for a confirmed same-person alias; stored IDs still resolve in qaris. */
     val qariChoices: List<Qari> by lazy {
-        com.nuraya.app.media.CuratedReciters.chapterIds.mapNotNull { id -> qaris.firstOrNull { it.id == id } }
+        com.nuraya.app.media.CuratedReciters.chapterIds.mapNotNull { id -> qaris.firstOrNull { it.id == id }?.let { it.copy(name = com.nuraya.app.media.CuratedReciters.names[id] ?: it.name) } }
     }
 
     private val bySurah: Map<Int, List<Verse>> by lazy { allVerses.groupBy(Verse::surah) }
@@ -50,7 +50,7 @@ class QuranRepository(context: Context) {
         List(array.length()) { index ->
             val item = array.getJSONObject(index)
             Qari(item.getString("id"), item.getString("name"), item.getString("description"),
-                item.getString("sourceUrl"), item.getString("baseUrl"))
+                item.getString("sourceUrl"), item.getString("baseUrl"), item.optInt("numberPadding", 0))
         }
     }
 

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.quranreading.PrintedMushafTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-14T21:52:05" hostname="fdb9ea6ea168" time="1.757">
+  <properties/>
+  <testcase name="bundledArtworksRetainTheirOriginalBytesDimensionsAndTransparency" classname="com.nuraya.app.quranreading.PrintedMushafTest" time="0.795"/>
+  <testcase name="geometryCoversEveryVerseAndUsesTheMatchingPrintedIndex" classname="com.nuraya.app.quranreading.PrintedMushafTest" time="0.378"/>
+  <testcase name="imageCoordinatesSurviveLetterboxingLandscapeAndZoomWithoutSelectingMargins" classname="com.nuraya.app.quranreading.PrintedMushafTest" time="0.026"/>
+  <testcase name="sevenEditionsHave604PinnedPagesAndCorrectDestinationsForEveryVerse" classname="com.nuraya.app.quranreading.PrintedMushafTest" time="0.558"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

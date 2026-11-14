@@ -1,5 +1,6 @@
 package com.nuraya.app.prayer
 
+import com.nuraya.app.ui.icons.AppIcons as Icons
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -19,8 +20,6 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.repeatOnLifecycle
 import com.nuraya.app.ui.label
 import com.nuraya.app.ui.SectionArtwork
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.*
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
@@ -91,19 +90,7 @@ fun PrayerScreen(language: String, initialTab: String? = null) {
     val listState = rememberLazyListState()
     LaunchedEffect(tab) { listState.scrollToItem(0) }
     LazyColumn(Modifier.fillMaxSize().testTag("prayer_screen"), state = listState, contentPadding = PaddingValues(20.dp), verticalArrangement = Arrangement.spacedBy(18.dp)) {
-        item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            SectionArtwork("prayer",next?.let{"${it.name(language)} · ${it.instant.atZone(zone).format(DateTimeFormatter.ofPattern("HH:mm"))}"}
-                ?: label(language,"Jadwal salat","Prayer times"),preferences.location?.name ?: label(language,"Pilih lokasi Anda","Choose your location"))
-            Spacer(Modifier.height(14.dp))
-            Row(Modifier.fillMaxWidth().testTag("prayer_calendar"),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(12.dp)) {
-                Column(Modifier.weight(1f)) {
-                    Text(displayHijri(localNow.toLocalDate(),preferences,language),style=MaterialTheme.typography.titleMedium)
-                    Text(localNow.format(DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy",locale)),style=MaterialTheme.typography.bodySmall)
-                    if(next!=null)Text(PrayerCalculator.countdown(now,next.instant)+label(language," menuju salat"," until prayer"),modifier=Modifier.testTag("prayer_countdown"),style=MaterialTheme.typography.bodyMedium)
-                }
-                AdhanToggle(language)
-            }
-        } }
+        item { PrayerOverview(language,onNavigate={ destination -> tab=when(destination){"qibla"->"qibla";"location"->"location";else->"schedule"} }) }
         item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                 listOf("schedule" to label(language, "Jadwal", "Times"), "qibla" to label(language, "Kiblat", "Qibla"), "location" to label(language, "Lokasi", "Place")).forEach { (id, title) ->
@@ -161,11 +148,13 @@ fun PrayerScreen(language: String, initialTab: String? = null) {
                 else {
                     item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                         Text(label(language,"Pengingat salat harian","Daily prayer reminders"),style=MaterialTheme.typography.titleLarge)
-                        Text(label(language,"Aktifkan salat yang ingin diingatkan: 10 menit sebelum dan saat waktunya. Suara azan dapat diatur melalui ikon pengeras suara.","Choose prayers to receive reminders ten minutes before and at their time. Control adhan sound with the speaker icon."),style=MaterialTheme.typography.bodyMedium)
+                        Text(label(language,"Pilih waktu salat yang ingin diingatkan.","Choose which prayer times to receive reminders for."),style=MaterialTheme.typography.bodyMedium)
                     } }
                     item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                        Text(date.format(DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy", locale)), style = MaterialTheme.typography.titleLarge)
-                        Text(displayHijri(date, preferences, language), style = MaterialTheme.typography.bodyLarge)
+                        if (dayOffset != 0) {
+                            Text(date.format(DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy", locale)), style = MaterialTheme.typography.titleLarge)
+                            Text(displayHijri(date, preferences, language), style = MaterialTheme.typography.bodyLarge)
+                        }
                         Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                             OutlinedButton(onClick = { dayOffset-- }, modifier = Modifier.weight(1f).heightIn(min = 56.dp), enabled = dayOffset > -366,
                                 contentPadding = PaddingValues(horizontal = 6.dp)) { Text(label(language, "Kemarin", "Previous")) }

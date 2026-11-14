@@ -1,5 +1,6 @@
 package com.nuraya.app.prayer
 
+import com.nuraya.app.ui.icons.AppIcons as Icons
 import android.Manifest
 import android.app.*
 import android.content.*
@@ -10,9 +11,6 @@ import android.provider.Settings
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.VolumeOff
-import androidx.compose.material.icons.automirrored.outlined.VolumeUp
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier

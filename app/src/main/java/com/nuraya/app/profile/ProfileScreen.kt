@@ -1,5 +1,6 @@
 package com.nuraya.app.profile
 
+import com.nuraya.app.ui.icons.AppIcons as Icons
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.compose.foundation.Image
@@ -10,8 +11,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -87,15 +86,16 @@ class ProfileStore(context: Context) {
             if(saved)Text(label(language,"Profil tersimpan di HP ini","Profile saved on this phone"),color=MaterialTheme.colorScheme.primary)
         } }
         item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) { HorizontalDivider() } }
-        items(4){i -> val target=listOf("library","progress","settings","about")[i]
-            OutlinedCard(onClick={onNavigate(target)},modifier=Modifier.fillMaxWidth(),shape=RoundedCornerShape(20.dp)) {
-                Row(Modifier.padding(18.dp),verticalAlignment=Alignment.CenterVertically){
-                    Icon(listOf(Icons.Outlined.Bookmarks,Icons.Outlined.School,Icons.Outlined.Settings,Icons.Outlined.Info)[i],null)
-                    Text(listOf(label(language,"Koleksi & unduhan","Collection & downloads"),label(language,"Progres belajarku","My learning progress"),label(language,"Pengaturan","Settings"),label(language,"Tentang Nuraya","About Nuraya"))[i],Modifier.weight(1f).padding(start=12.dp))
-                    Icon(Icons.Outlined.ChevronRight,null)
-                }
+        item { SettingsGroup(label(language,"Ruang pribadi","Your space")) {
+            val destinations = listOf("library", "progress", "settings", "about")
+            val titles = listOf(label(language,"Koleksi & unduhan","Collection & downloads"), label(language,"Progres belajarku","My learning progress"), label(language,"Pengaturan","Settings"), label(language,"Tentang Nuraya","About Nuraya"))
+            val descriptions = listOf(label(language,"Bacaan dan audio yang disimpan","Your saved readings and audio"), label(language,"Lihat catatan hafalan dan latihan","Review memorization and practice"), label(language,"Atur bacaan, qari, dan tampilan","Reading, reciter and appearance preferences"), label(language,"Aplikasi dan penyusunnya","About the app and its team"))
+            val icons = listOf(Icons.Outlined.Bookmarks, Icons.Outlined.School, Icons.Outlined.Settings, Icons.Outlined.Info)
+            destinations.forEachIndexed { index, destination ->
+                if (index > 0) SettingsSeparator()
+                SettingsMenuRow(icons[index], titles[index], descriptions[index], "profile_$destination") { onNavigate(destination) }
             }
-        }
+        } }
         item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) { Text(label(language,"Nama, avatar, dan progres tersimpan di perangkat ini. Tidak ada akun atau peringkat online.","Your name, avatar, and progress stay on this device. No account or online rankings."),style=MaterialTheme.typography.bodySmall) } }
     }
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.qa.QaLocalPersistenceTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-14T21:51:14" hostname="fdb9ea6ea168" time="2.121">
+  <properties/>
+  <testcase name="favoriteToggleIsReversibleAndHistoryClearPreservesCollections" classname="com.nuraya.app.qa.QaLocalPersistenceTest" time="0.169"/>
+  <testcase name="bookmarksFavoritesAndDownloadsSurviveDatabaseCloseAndReopen" classname="com.nuraya.app.qa.QaLocalPersistenceTest" time="0.133"/>
+  <testcase name="settingsPersistAcrossRepositoryInstancesAndValidateValues" classname="com.nuraya.app.qa.QaLocalPersistenceTest" time="0.508"/>
+  <testcase name="historyIsBoundedAndInvalidCollectionInputIsRejected" classname="com.nuraya.app.qa.QaLocalPersistenceTest" time="1.31"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

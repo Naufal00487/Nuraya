@@ -1,6 +1,6 @@
-# Fitur Nuraya 1.6.1
+# Fitur Nuraya 1.6.2
 
-Versi 1.6.1, versionCode 15, memakai applicationId dan sertifikat yang sama agar dapat memperbarui pemasangan sebelumnya. Referensi kebutuhan pengguna adalah jam/tanggal Hijriah, waktu salat, kiblat, pilihan belajar Quran dan navigasi yang lebih mudah dibaca. Nuraya tidak mengklaim afiliasi, menyalin merek, atau menjadi edisi resmi aplikasi lain.
+Versi 1.6.2, versionCode 16, memakai applicationId dan sertifikat yang sama agar dapat memperbarui pemasangan sebelumnya. Referensi kebutuhan pengguna adalah jam/tanggal Hijriah, waktu salat, kiblat, pilihan belajar Quran dan navigasi yang lebih mudah dibaca. Nuraya tidak mengklaim afiliasi, menyalin merek, atau menjadi edisi resmi aplikasi lain.
 
 ## Navigasi dan aksesibilitas
 
@@ -51,7 +51,7 @@ Anotasi waqaf berasal dari `https://api.alquran.cloud/v1/quran/quran-uthmani`, d
 
 Tujuh edisi gambar berasal dari sumber publik `agusibrahim/quran-image` pada commit tetap. Manifest mencatat 4.228 PNG dan hash sumber; setiap unduhan diperiksa sebelum digunakan. Halaman bundel tersedia langsung, halaman lain diunduh saat dibuka atau melalui unduhan satu edisi penuh. Gambar dan indeks edisi lama dipertahankan sebagai sumber historis/kompatibilitas, bukan ditampilkan di menu tujuh edisi baru. Tidak ada gambar Quran atau wajah qari yang dibuat menggunakan generator gambar. [Sumber dan batas pemeriksaan](PRINTED_MUSHAF.md).
 
-Delapan foto qari dari Quran.com dipertahankan dengan pemetaan ID rekaman yang eksplisit. Sebanyak 126 foto dari dokumen penyusun dihapus dari APK. Daftar utama menampilkan lima qari surah lengkap; audio per ayat menampilkan tujuh qari dengan timing kata yang dipasangkan pada sumber rekaman. Rincian nama dan batasnya ada di [catatan rilis](UPDATE_1.5.3.md#qari-dan-profil). Identitas tidak disimpulkan dari kemiripan wajah/nama. Hak foto tetap milik pemegangnya.
+Delapan foto qari dari Quran.com dipertahankan dengan pemetaan ID rekaman yang eksplisit. Sebanyak 126 foto dari dokumen penyusun dihapus dari APK. Daftar utama dan audio per ayat menampilkan 30 qari; sebelas mempunyai timing kata yang dipasangkan pada sumber rekamannya. Rincian nama dan batasnya ada di [katalog audio](AUDIO_CATALOG.md). Identitas tidak disimpulkan dari kemiripan wajah/nama. Hak foto tetap milik pemegangnya.
 
 ## AI, audio dan validasi
 
@@ -71,6 +71,14 @@ Banner beranda dapat digeser. Proyek backend Telegram tersedia di `backend/banne
 
 Setiap edisi mempunyai gambar, indeks, cache dan penyimpanan offline yang sesuai. Panel bantuan melengkapi halaman asli tanpa menggantinya. Pengisian nama wajib dilakukan sebelum masuk beranda; profil yang sudah berisi nama dipertahankan. [Sumber dan batas gambar](MUSHAF_IMAGES.md).
 
-## Revisi 1.6.1
+## Revisi 1.6.2
 
-Sampul, banner, dan avatar memakai aset dari dokumen revisi penyusun. Madinah & Tajwid menggunakan sampul Madinah hijau sesuai persetujuan. Kontrol mushaf memakai warna krem solid dan sistem bar transparan mengikuti layar. Beranda dan menu Quran terhubung ke pencarian makna serta pencarian potongan ayat lewat suara. Pencarian mengembalikan kutipan database dengan rujukan; chatbot generatif belum ditambahkan. [Cara kerja, privasi, dan batas pencarian](SEMANTIC_SEARCH.md) · [Perubahan lengkap](UPDATE_1.6.1.md).
+Sampul, banner, dan avatar memakai aset dari dokumen revisi penyusun. Madinah & Tajwid menggunakan sampul Madinah hijau sesuai persetujuan. Kontrol mushaf memakai warna krem solid dan sistem bar transparan mengikuti layar. Beranda dan menu Quran terhubung ke pencarian makna serta pencarian potongan ayat lewat suara. Pencarian mengembalikan kutipan database dengan rujukan; chatbot generatif belum ditambahkan. [Cara kerja, privasi, dan batas pencarian](SEMANTIC_SEARCH.md) · [Perubahan lengkap](UPDATE_1.6.2.md).
+
+## Pembaruan 1.6.2
+
+Beranda menyediakan Cari Ayat dan Cari Hadis. Cari Hadis mencari kata/frasa Arab atau Indonesia serta nomor seperti `Bukhari 1` / `Muslim 1`, dengan filter kitab, halaman hasil, dan pembaca teks lengkap. Korpus offline mencakup 15.152 entri sumber; 11.785 mempunyai terjemahan Indonesia. Angka menghitung entri/riwayat sumber, bukan jumlah ajaran unik. Tidak ada terjemahan rekaan untuk entri kosong. [Sumber hadis](HADITH.md).
+
+Daftar aktif terdiri dari 30 orang qari, masing-masing satu pilihan Hafs. Pilihan Murottal disimpan juga sebagai qari Quran/hafalan; pembaca memakai suara dengan ID penyedia yang dipasangkan secara eksplisit. Tombol pada pemutar surah dapat memulai bacaan sinkron dari ayat 1; posisi rekaman surah tidak ditebak menjadi posisi ayat. Sebelas qari mempunyai data waktu kata; sisanya mengikuti ayat. [Katalog terbaru](AUDIO_CATALOG.md).
+
+Pengaturan dan menu Profil memakai grup kartu, ikon, judul/subjudul serta pemisah. Ibadah/Beranda menampilkan jam dan dua kalender dalam kolom, dengan strip lima waktu salat. Semua ikon Compose memakai UIcons Regular Rounded dari Flaticon; atribusi tersedia di Pengaturan → Sumber & atribusi.

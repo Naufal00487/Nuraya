@@ -64,12 +64,9 @@ class OnboardingLayout153Test {
                 NurayaTheme { Surface { SettingsScreen(app, UserSettings(), {}, {}) } }
             }
         }
-        val title = compose.onNodeWithText("Atur kenyamanan membaca").getUnclippedBoundsInRoot()
-        val subtitle = compose.onNodeWithText("Profil pribadi · tersimpan di HP ini").getUnclippedBoundsInRoot()
-        assertTrue(title.bottom <= subtitle.top)
-        val language = compose.onNodeWithText("Bahasa antarmuka").getUnclippedBoundsInRoot()
-        val choice = compose.onNodeWithTag("language_id").getUnclippedBoundsInRoot()
-        assertTrue(language.bottom <= choice.top)
+        val qari = compose.onNodeWithTag("settings_qari").getUnclippedBoundsInRoot()
+        val translation = compose.onNodeWithTag("settings_translation").getUnclippedBoundsInRoot()
+        assertTrue(qari.bottom <= translation.top)
         screenshot("settings-large-text.png")
         compose.onNodeWithTag("settings_screen").performScrollToNode(hasTestTag("tajwid_colors_switch"))
         compose.onNodeWithTag("tajwid_colors_switch").assertIsDisplayed()
@@ -81,9 +78,9 @@ class OnboardingLayout153Test {
         compose.setContent { val density = LocalDensity.current.density
             CompositionLocalProvider(LocalDensity provides Density(density, 1.5f)) { NurayaTheme { Surface { PrayerScreen("id") } } }
         }
-        val artwork = compose.onNodeWithTag("artwork_prayer").getUnclippedBoundsInRoot()
-        val calendar = compose.onNodeWithTag("prayer_calendar").getUnclippedBoundsInRoot()
-        assertTrue(artwork.bottom <= calendar.top)
+        val hijri = compose.onNodeWithTag("prayer_hijri_date").getUnclippedBoundsInRoot()
+        val strip = compose.onNodeWithTag("prayer_times_strip").getUnclippedBoundsInRoot()
+        assertTrue(hijri.bottom <= strip.top)
         screenshot("prayer-large-text.png")
         compose.onNodeWithTag("prayer_screen").performScrollToNode(hasTestTag("reminder_fajr"))
         compose.onNodeWithTag("reminder_fajr").assertIsDisplayed()

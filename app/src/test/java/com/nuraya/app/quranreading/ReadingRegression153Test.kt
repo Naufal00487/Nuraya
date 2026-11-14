@@ -105,15 +105,15 @@ class ReadingRegression153Test {
         }
     }
 
-    @Test fun everyVisibleReciterHasAnExplicitSourcePortraitAndNoDuplicatePerson() {
+    @Test fun everyVisibleReciterHasDistinctIdentityAndOnlyAttributedPortraits() {
         val app = app()
         val portraits = QariPortraitCatalog(app)
         val chapters = app.quran.qariChoices
         val verses = app.playback.verseReciters
-        assertEquals(5, chapters.size)
-        assertEquals(7, verses.size)
+        assertEquals(30, chapters.size)
+        assertEquals(30, verses.size)
         for (ids in listOf(chapters.map { it.id }, verses.map { it.id })) {
-            val mapped = ids.map { id -> requireNotNull(portraits.find(id)) }
+            val mapped = ids.mapNotNull { id -> portraits.find(id) }
             assertTrue(mapped.all { it.sourceName == "Quran.com" })
             assertEquals(mapped.size, mapped.map { it.id }.toSet().size)
         }

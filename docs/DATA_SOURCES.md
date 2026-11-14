@@ -104,8 +104,10 @@ menentukan lisensi seluruh kode aplikasi.
 
 ## Murottal
 
+Mulai 1.6.2, daftar aktif memakai 30 orang berbeda dengan rekaman surah MP3Quran, klip ayat EveryAyah/Islamic Network serta timing yang tetap berpasangan dengan sumber QuranicAudio. [Pemetaan sumber terbaru](sources/curated-reciters.json) dan [katalog audio](AUDIO_CATALOG.md). Rincian di bawah merupakan snapshot historis 1.3.1 yang masih dipertahankan untuk ID lama.
+
 Sumber rekaman: **Islamic Network / Al Quran Cloud**, 128 kbps, per surah.
-Katalog aktif `app/src/main/assets/reciters.json` menyediakan 138 edisi rekaman,
+Katalog historis `app/src/main/assets/reciters.json` menyediakan 138 edisi rekaman,
 masing-masing dengan 114 surah pada snapshot manifest resmi `https://cdn.islamic.network/quran/info/by-surah/info.json`.
 Dua belas pilihan versi 1.0.1 berikut tetap dipertahankan:
 

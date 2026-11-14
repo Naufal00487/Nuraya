@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.prayer.PrayerPreferenceStoreTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-11-14T21:51:06" hostname="fdb9ea6ea168" time="0.135">
+  <properties/>
+  <testcase name="noLocationIsAssumedAndExplicitChoiceSurvivesReopening" classname="com.nuraya.app.prayer.PrayerPreferenceStoreTest" time="0.086"/>
+  <testcase name="malformedStoredLocationIsNotSilentlyReplacedWithJakarta" classname="com.nuraya.app.prayer.PrayerPreferenceStoreTest" time="0.048"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

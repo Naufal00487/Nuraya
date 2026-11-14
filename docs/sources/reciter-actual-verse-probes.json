@@ -1,0 +1,452 @@
+[
+  {
+    "qari": "Mishary Rashid Alafasy",
+    "id": "ar.alafasy",
+    "kind": "verse_1_1",
+    "url": "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3",
+    "bytes": 146830,
+    "sha256": "c0d5ba887523e64b5cf7db8f26a6ddd3936b1ac9286f133e258f0dd7f6b7353e",
+    "durationSeconds": 6.086531,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Mishary Rashid Alafasy",
+    "id": "ar.alafasy",
+    "kind": "verse_9_1",
+    "url": "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1236.mp3",
+    "bytes": 242125,
+    "sha256": "b4d5ad3b60d11c7927d6c4839afdddbc17a6e0e7bd25b905f22fc6c08e172b23",
+    "durationSeconds": 15.098776,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Mishary Rashid Alafasy",
+    "id": "ar.alafasy",
+    "kind": "verse_114_6",
+    "url": "https://cdn.islamic.network/quran/audio/128/ar.alafasy/6236.mp3",
+    "bytes": 132620,
+    "sha256": "fc9430b5eb4b40eb96fa8c99ea1e3b44daae4030f2106d3fcfa603493b2ea77a",
+    "durationSeconds": 8.254694,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdul Basit Abdus Samad",
+    "id": "ar.abdulsamad",
+    "kind": "verse_1_1",
+    "url": "https://cdn.islamic.network/quran/audio/64/ar.abdulsamad/1.mp3",
+    "bytes": 52552,
+    "sha256": "40a0f98e843cb28491d8ed8d1a7a5ef559db02ebb1d69ad68c468a4c15e0e52b",
+    "durationSeconds": 67.213061,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdul Basit Abdus Samad",
+    "id": "ar.abdulsamad",
+    "kind": "verse_9_1",
+    "url": "https://cdn.islamic.network/quran/audio/64/ar.abdulsamad/1236.mp3",
+    "bytes": 201226,
+    "sha256": "8738862a671191dea68faea8a876ebf30576d017a52d97e177d42219f748574f",
+    "durationSeconds": 307.435102,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdul Basit Abdus Samad",
+    "id": "ar.abdulsamad",
+    "kind": "verse_114_6",
+    "url": "https://cdn.islamic.network/quran/audio/64/ar.abdulsamad/6236.mp3",
+    "bytes": 107577,
+    "sha256": "67292d4de6e30fe3d8069dff0b054a51f2a3224bea7281dd56834f561a8aa743",
+    "durationSeconds": 13.37475,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Mahmoud Khalil Al-Husary",
+    "id": "ar.husary",
+    "kind": "verse_1_1",
+    "url": "https://cdn.islamic.network/quran/audio/64/ar.husary/1.mp3",
+    "bytes": 42417,
+    "sha256": "fedf4ecf35803282ab205a04400db2cfa10056033b4aaa139e7277611a045d8c",
+    "durationSeconds": 5.22449,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Mahmoud Khalil Al-Husary",
+    "id": "ar.husary",
+    "kind": "verse_9_1",
+    "url": "https://cdn.islamic.network/quran/audio/64/ar.husary/1236.mp3",
+    "bytes": 158190,
+    "sha256": "8dc734118d8abc8d0c90f90ddac533e542130769ad99722d93b578f0a21fd31f",
+    "durationSeconds": 19.696327,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Mahmoud Khalil Al-Husary",
+    "id": "ar.husary",
+    "kind": "verse_114_6",
+    "url": "https://cdn.islamic.network/quran/audio/64/ar.husary/6236.mp3",
+    "bytes": 69166,
+    "sha256": "1c1b7f24325339e24441bdd3a1af0a2ca49a28679a28193096af2467776893f3",
+    "durationSeconds": 8.568163,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdurrahman As-Sudais",
+    "id": "ar.abdurrahmaansudais",
+    "kind": "verse_1_1",
+    "url": "https://cdn.islamic.network/quran/audio/192/ar.abdurrahmaansudais/1.mp3",
+    "bytes": 75786,
+    "sha256": "6e93cc82084c4849c294fd0dde0cb79e885646ad558ebb27e6fc8ec01a77194c",
+    "durationSeconds": 3.082458,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdurrahman As-Sudais",
+    "id": "ar.abdurrahmaansudais",
+    "kind": "verse_9_1",
+    "url": "https://cdn.islamic.network/quran/audio/192/ar.abdurrahmaansudais/1236.mp3",
+    "bytes": 249866,
+    "sha256": "65632aab98865862ca9999836490d8a74278a7ebb1f40ffeac9c99281a759c00",
+    "durationSeconds": 10.39675,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdurrahman As-Sudais",
+    "id": "ar.abdurrahmaansudais",
+    "kind": "verse_114_6",
+    "url": "https://cdn.islamic.network/quran/audio/192/ar.abdurrahmaansudais/6236.mp3",
+    "bytes": 145418,
+    "sha256": "e3081b63f7007809dec13478a2e6cd17c0723f72b1cad505675f760f5200c512",
+    "durationSeconds": 5.982042,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Saud Al-Shuraim",
+    "id": "ar.saoodshuraym",
+    "kind": "verse_1_1",
+    "url": "https://cdn.islamic.network/quran/audio/64/ar.saoodshuraym/1.mp3",
+    "bytes": 85516,
+    "sha256": "7d500cd313aa37a571104da511ac5deda83a38a2d595a2b5cdd46bc18ea66512",
+    "durationSeconds": 5.302857,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Saud Al-Shuraim",
+    "id": "ar.saoodshuraym",
+    "kind": "verse_9_1",
+    "url": "https://cdn.islamic.network/quran/audio/64/ar.saoodshuraym/1236.mp3",
+    "bytes": 135669,
+    "sha256": "b7f32b1c3851452d4f8e71da6f59aeba4be968d787a15d689aa443a6280063f8",
+    "durationSeconds": 8.437551,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Saud Al-Shuraim",
+    "id": "ar.saoodshuraym",
+    "kind": "verse_114_6",
+    "url": "https://cdn.islamic.network/quran/audio/64/ar.saoodshuraym/6236.mp3",
+    "bytes": 62110,
+    "sha256": "3febbda53ddb4ee9a2b7299f0dbe3c3be20beacbeb2e76cdf72d892ef1de28fa",
+    "durationSeconds": 3.84,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Maher Al-Muaiqly",
+    "id": "ar.mahermuaiqly",
+    "kind": "verse_1_1",
+    "url": "https://cdn.islamic.network/quran/audio/128/ar.mahermuaiqly/1.mp3",
+    "bytes": 30913,
+    "sha256": "7056da4075ae78014ed2d3c530736b2b863d3d45c202e33019941ea7a84e1b2e",
+    "durationSeconds": 3.787755,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Maher Al-Muaiqly",
+    "id": "ar.mahermuaiqly",
+    "kind": "verse_9_1",
+    "url": "https://cdn.islamic.network/quran/audio/128/ar.mahermuaiqly/1236.mp3",
+    "bytes": 113875,
+    "sha256": "1a2012acb8a642c30b25063de64435093231bd6a34fd7fd1f79ce22622e9dc50",
+    "durationSeconds": 14.158367,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Maher Al-Muaiqly",
+    "id": "ar.mahermuaiqly",
+    "kind": "verse_114_6",
+    "url": "https://cdn.islamic.network/quran/audio/128/ar.mahermuaiqly/6236.mp3",
+    "bytes": 33419,
+    "sha256": "fb1d16e845a00d5e37f30884330c745bc4672e6de139b36d2cb56f05ef56eec7",
+    "durationSeconds": 4.101224,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abu Bakr Ash-Shatri",
+    "id": "ar.shaatree",
+    "kind": "verse_1_1",
+    "url": "https://cdn.islamic.network/quran/audio/128/ar.shaatree/1.mp3",
+    "bytes": 104200,
+    "sha256": "b72b1275a8db14537557f668735b70a7280c1f7ec83532d159de978e8a3e7023",
+    "durationSeconds": 6.5125,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abu Bakr Ash-Shatri",
+    "id": "ar.shaatree",
+    "kind": "verse_9_1",
+    "url": "https://cdn.islamic.network/quran/audio/128/ar.shaatree/1236.mp3",
+    "bytes": 225826,
+    "sha256": "ba9210470282f2bbd5de4da34d43962e39ed1848a80cd1401def079fd9b6f598",
+    "durationSeconds": 14.114125,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abu Bakr Ash-Shatri",
+    "id": "ar.shaatree",
+    "kind": "verse_114_6",
+    "url": "https://cdn.islamic.network/quran/audio/128/ar.shaatree/6236.mp3",
+    "bytes": 81212,
+    "sha256": "e4d867500a666b64e5c173c44e7b201d83470d000b36689ea824f240785308f0",
+    "durationSeconds": 5.07575,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ahmed Al-Ajmi",
+    "id": "ar.ahmedajamy",
+    "kind": "verse_1_1",
+    "url": "https://cdn.islamic.network/quran/audio/128/ar.ahmedajamy/1.mp3",
+    "bytes": 43673,
+    "sha256": "d396bff5abd123929bf3f40e4590454b7cfea555af5b6cc9be9e5bb2eacf7733",
+    "durationSeconds": 2.455438,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ahmed Al-Ajmi",
+    "id": "ar.ahmedajamy",
+    "kind": "verse_9_1",
+    "url": "https://cdn.islamic.network/quran/audio/128/ar.ahmedajamy/1236.mp3",
+    "bytes": 178465,
+    "sha256": "f9f260965cee44dc12c69b6460ab27bac23133c02a4d1842550282ee36828a92",
+    "durationSeconds": 11.616703,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ahmed Al-Ajmi",
+    "id": "ar.ahmedajamy",
+    "kind": "verse_114_6",
+    "url": "https://cdn.islamic.network/quran/audio/128/ar.ahmedajamy/6236.mp3",
+    "bytes": 82126,
+    "sha256": "758055c219b82d7732c4c127c2882ece8b8eeac91b51cca9ad8fbfaa09afb884",
+    "durationSeconds": 4.858688,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ali Abdurrahman Al-Hudhaify",
+    "id": "ar.hudhaify",
+    "kind": "verse_1_1",
+    "url": "https://cdn.islamic.network/quran/audio/128/ar.hudhaify/1.mp3",
+    "bytes": 113395,
+    "sha256": "56cb8bbf70979abc7101a33426ae34375706edcc92972958d6133134c41411cb",
+    "durationSeconds": 7.087188,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ali Abdurrahman Al-Hudhaify",
+    "id": "ar.hudhaify",
+    "kind": "verse_9_1",
+    "url": "https://cdn.islamic.network/quran/audio/128/ar.hudhaify/1236.mp3",
+    "bytes": 242545,
+    "sha256": "24cf6c17865cabf13052d2fd2a877813c06b2daee051bf9996f8b41f2fd3d318",
+    "durationSeconds": 15.159063,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ali Abdurrahman Al-Hudhaify",
+    "id": "ar.hudhaify",
+    "kind": "verse_114_6",
+    "url": "https://cdn.islamic.network/quran/audio/128/ar.hudhaify/6236.mp3",
+    "bytes": 111305,
+    "sha256": "f21fc868d51620692f2db8a91e993761fa80dba117de039141a5f98d54bf482d",
+    "durationSeconds": 6.956563,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdullah Basfar",
+    "id": "ar.abdullahbasfar",
+    "kind": "verse_1_1",
+    "url": "https://cdn.islamic.network/quran/audio/64/ar.abdullahbasfar/1.mp3",
+    "bytes": 91119,
+    "sha256": "c0bc227e0f3e0b8b5ce453834af0f3d83300816224d1a8b9c7ee4d6984026780",
+    "durationSeconds": 11.31102,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdullah Basfar",
+    "id": "ar.abdullahbasfar",
+    "kind": "verse_9_1",
+    "url": "https://cdn.islamic.network/quran/audio/64/ar.abdullahbasfar/1236.mp3",
+    "bytes": 111597,
+    "sha256": "104dc5aa436493cfe1610e641222f948d6e98c2359e8d30724e781bf5ab75165",
+    "durationSeconds": 13.87102,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdullah Basfar",
+    "id": "ar.abdullahbasfar",
+    "kind": "verse_114_6",
+    "url": "https://cdn.islamic.network/quran/audio/64/ar.abdullahbasfar/6236.mp3",
+    "bytes": 52038,
+    "sha256": "5df7f046f00acedbeab1eb9a19a5799b76ab81bd226530241ac9e920187cf7de",
+    "durationSeconds": 6.426122,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Hani Ar-Rifai",
+    "id": "ar.hanirifai",
+    "kind": "verse_1_1",
+    "url": "https://cdn.islamic.network/quran/audio/192/ar.hanirifai/1.mp3",
+    "bytes": 107335,
+    "sha256": "b3fbeb00f04bae2f211693442f833e0980a3d21808f6a7c24dd7b286d21540ba",
+    "durationSeconds": 4.472292,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Hani Ar-Rifai",
+    "id": "ar.hanirifai",
+    "kind": "verse_9_1",
+    "url": "https://cdn.islamic.network/quran/audio/192/ar.hanirifai/1236.mp3",
+    "bytes": 321121,
+    "sha256": "4b296eb571be696f18ae77a49b65733c58a3ebc2b810d8c7a5a4cc65ec195552",
+    "durationSeconds": 13.380042,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Hani Ar-Rifai",
+    "id": "ar.hanirifai",
+    "kind": "verse_114_6",
+    "url": "https://cdn.islamic.network/quran/audio/192/ar.hanirifai/6236.mp3",
+    "bytes": 162506,
+    "sha256": "bc3797bc6cf067f7921dbe51d6b3ed74ed6f857a82088a0c00d1b91737792a35",
+    "durationSeconds": 6.771083,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Muhammad Ayyub",
+    "id": "ar.muhammadayyoub",
+    "kind": "verse_1_1",
+    "url": "https://cdn.islamic.network/quran/audio/128/ar.muhammadayyoub/1.mp3",
+    "bytes": 54317,
+    "sha256": "dc2850c2f4c6cb68e2b8cc5053e91c5b640fa911412be61e4fa0bacb23d847e8",
+    "durationSeconds": 6.713469,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Muhammad Ayyub",
+    "id": "ar.muhammadayyoub",
+    "kind": "verse_9_1",
+    "url": "https://cdn.islamic.network/quran/audio/128/ar.muhammadayyoub/1236.mp3",
+    "bytes": 160895,
+    "sha256": "c19853d8eb59e732491d61d210478110487803422b9cd22d9aa287cc69e58c2f",
+    "durationSeconds": 20.035918,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Muhammad Ayyub",
+    "id": "ar.muhammadayyoub",
+    "kind": "verse_114_6",
+    "url": "https://cdn.islamic.network/quran/audio/128/ar.muhammadayyoub/6236.mp3",
+    "bytes": 59541,
+    "sha256": "03b6bc9f2c1d2aa8922f04c6922f5572786483b8046a03306f59160f26c52375",
+    "durationSeconds": 7.366531,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Muhammad Jibreel",
+    "id": "ar.muhammadjibreel",
+    "kind": "verse_1_1",
+    "url": "https://cdn.islamic.network/quran/audio/128/ar.muhammadjibreel/1.mp3",
+    "bytes": 38854,
+    "sha256": "f920c8259a4005e1a115bf9d893c6be950793f7eb657fc1f5d994e01bad9d692",
+    "durationSeconds": 4.780408,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Muhammad Jibreel",
+    "id": "ar.muhammadjibreel",
+    "kind": "verse_9_1",
+    "url": "https://cdn.islamic.network/quran/audio/128/ar.muhammadjibreel/1236.mp3",
+    "bytes": 98411,
+    "sha256": "080b80c6c65addf7ac17a2c3266ea59a7b7b6ee09f5fcf87e2489ee5d45b522f",
+    "durationSeconds": 12.225306,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Muhammad Jibreel",
+    "id": "ar.muhammadjibreel",
+    "kind": "verse_114_6",
+    "url": "https://cdn.islamic.network/quran/audio/128/ar.muhammadjibreel/6236.mp3",
+    "bytes": 43659,
+    "sha256": "d8e2eefcd8f9259e0100587c164f8ff7e484ff85f4abea8896dfa4c22918f570",
+    "durationSeconds": 5.381224,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ibrahim Akhdar",
+    "id": "ar.ibrahimakhbar",
+    "kind": "verse_1_1",
+    "url": "https://cdn.islamic.network/quran/audio/32/ar.ibrahimakhbar/1.mp3",
+    "bytes": 26624,
+    "sha256": "920eeac9e9cf2ac0b2697386cbb56c8b4b7d162fd36addfae7b1fb97f2587df7",
+    "durationSeconds": 6.656,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ibrahim Akhdar",
+    "id": "ar.ibrahimakhbar",
+    "kind": "verse_9_1",
+    "url": "https://cdn.islamic.network/quran/audio/32/ar.ibrahimakhbar/1236.mp3",
+    "bytes": 68096,
+    "sha256": "c3a45176f3a4a4c0377f927076e5739dca5a381cef0a8859f732025965ecb9eb",
+    "durationSeconds": 17.024,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ibrahim Akhdar",
+    "id": "ar.ibrahimakhbar",
+    "kind": "verse_114_6",
+    "url": "https://cdn.islamic.network/quran/audio/32/ar.ibrahimakhbar/6236.mp3",
+    "bytes": 33248,
+    "sha256": "7ee1a8f1ef43dd119b87da452c9a41e1aa0f24753ea62115b67e9f8d98459071",
+    "durationSeconds": 8.312,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ayman Sowaid",
+    "id": "ar.aymanswoaid",
+    "kind": "verse_1_1",
+    "url": "https://cdn.islamic.network/quran/audio/64/ar.aymanswoaid/1.mp3",
+    "bytes": 55104,
+    "sha256": "0346242d1ee0c6074ce625e4f81c393784d7bc6bc253f23cd609242b96d76aa9",
+    "durationSeconds": 6.76,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ayman Sowaid",
+    "id": "ar.aymanswoaid",
+    "kind": "verse_9_1",
+    "url": "https://cdn.islamic.network/quran/audio/64/ar.aymanswoaid/1236.mp3",
+    "bytes": 133248,
+    "sha256": "968c414b83875473d127166f8343313d73d0b7c36eca045ba6b3bab7f6263309",
+    "durationSeconds": 16.528,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ayman Sowaid",
+    "id": "ar.aymanswoaid",
+    "kind": "verse_114_6",
+    "url": "https://cdn.islamic.network/quran/audio/64/ar.aymanswoaid/6236.mp3",
+    "bytes": 60864,
+    "sha256": "a566495e4d6ac8db3cb1c1ea84490a0af9cad0236acad5023446b1715f4cd73d",
+    "durationSeconds": 7.48,
+    "audioDecodePassed": true
+  }
+]

@@ -1,5 +1,6 @@
 package com.nuraya.app.ui
 
+import com.nuraya.app.ui.icons.AppIcons as Icons
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -7,9 +8,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.ArrowForward
-import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -38,6 +36,16 @@ fun HomeScreen(app: NurayaApplication, language: String, entries: List<UserEntry
         Triple("library",Icons.Outlined.Bookmarks,label(language,"Koleksi saya","My collection")))
     LazyColumn(Modifier.testTag("home_menu"),contentPadding=PaddingValues(bottom=24.dp),verticalArrangement=Arrangement.spacedBy(20.dp)) {
         item { PrayerHero(language,onNavigate) }
+        item { Row(Modifier.fillMaxWidth().padding(horizontal=20.dp),horizontalArrangement=Arrangement.spacedBy(12.dp)) {
+            listOf("learn" to label(language,"Cari Ayat","Find Verses"),"hadith" to label(language,"Cari Hadis","Find Hadith")).forEach { (destination,title) ->
+                Surface(onClick={onNavigate(destination)},modifier=Modifier.weight(1f).heightIn(min=60.dp).testTag("home_search_$destination"),shape=RoundedCornerShape(20.dp),color=MaterialTheme.colorScheme.surfaceContainerHigh) {
+                    Row(Modifier.padding(horizontal=16.dp,vertical=12.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(8.dp)) {
+                        Text(title,Modifier.weight(1f),style=MaterialTheme.typography.titleSmall)
+                        Icon(Icons.Outlined.Search,null,Modifier.size(24.dp),tint=MaterialTheme.colorScheme.primary)
+                    }
+                }
+            }
+        } }
         item { Column(Modifier.padding(horizontal=20.dp)){
             Text("Assalamualaikum,",style=MaterialTheme.typography.bodyLarge,color=MaterialTheme.colorScheme.onSurfaceVariant)
             Text(profile.nickname,style=MaterialTheme.typography.headlineSmall,fontWeight=FontWeight.Bold)

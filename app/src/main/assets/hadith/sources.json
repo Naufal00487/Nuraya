@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "provider": "fawazahmed0/hadith-api",
+  "sourceCommit": "df57907be35291c91ad6a6691180e22ca9920784",
+  "license": "Unlicense",
+  "licenseUrl": "https://raw.githubusercontent.com/fawazahmed0/hadith-api/df57907be35291c91ad6a6691180e22ca9920784/LICENSE",
+  "total": 15152,
+  "indonesianAvailable": 11785,
+  "arabicAvailable": 14940,
+  "collections": [
+    {
+      "id": "bukhari",
+      "title": "Shahih al-Bukhari",
+      "records": 7589,
+      "indonesianAvailable": 6858
+    },
+    {
+      "id": "muslim",
+      "title": "Shahih Muslim",
+      "records": 7563,
+      "indonesianAvailable": 4927
+    }
+  ],
+  "sources": {
+    "ara-bukhari": {
+      "url": "https://raw.githubusercontent.com/fawazahmed0/hadith-api/df57907be35291c91ad6a6691180e22ca9920784/editions/ara-bukhari.min.json",
+      "sha256": "f887d8724f75fb6e1d5d29342a173af5346ad9b933173c85e6e3cb570063ea33",
+      "bytes": 9409647
+    },
+    "ind-bukhari": {
+      "url": "https://raw.githubusercontent.com/fawazahmed0/hadith-api/df57907be35291c91ad6a6691180e22ca9920784/editions/ind-bukhari.min.json",
+      "sha256": "2222688acca11b122916e302c4a409cfd22b9d4163b0641ac004c88fbc3c2661",
+      "bytes": 6551021
+    },
+    "ara-muslim": {
+      "url": "https://raw.githubusercontent.com/fawazahmed0/hadith-api/df57907be35291c91ad6a6691180e22ca9920784/editions/ara-muslim.min.json",
+      "sha256": "2cb296f3455ff8a3da9f6a0ca3de75da675788b2fb446ad316df297838e48217",
+      "bytes": 8329204
+    },
+    "ind-muslim": {
+      "url": "https://raw.githubusercontent.com/fawazahmed0/hadith-api/df57907be35291c91ad6a6691180e22ca9920784/editions/ind-muslim.min.json",
+      "sha256": "97a76412987c7f207d02bee4c36e752fa50a5e1e46ad6769892ed7c1491b9636",
+      "bytes": 5665755
+    }
+  },
+  "notice": "Numbers follow this dataset edition. Text is preserved verbatim; blank source texts remain unavailable. Arabic and Indonesian are joined by exact hadithnumber and matching book/hadith reference, never by array position.",
+  "databaseBytes": 44494848,
+  "databaseSha256": "27c825514f4911cfe525ae5a0d9043c9cf60d96be33583cd21db8c96992ba13b",
+  "gzipBytes": 11322456,
+  "gzipSha256": "130c1135d0ababf616529079544a774c81de8bad33dccf5f6344b5ff8cc80aa6"
+}

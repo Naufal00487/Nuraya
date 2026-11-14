@@ -128,7 +128,7 @@ class VerseAudioCatalogTest {
         assertEquals(catalog.reciters.size, catalog.reciters.map { it.id }.toSet().size)
         catalog.reciters.filter { !it.supportsWordSync }.forEach { reciter ->
             assertNull(catalog.timing(reciter, 1))
-            assertTrue(reciter.audioUrl(6236).endsWith("/${reciter.id}/6236.mp3"))
+            assertTrue(reciter.audioUrl(6236).endsWith(if (reciter.ayahBaseUrl != null) "/114006.mp3" else "/${reciter.id}/6236.mp3"))
         }
     }
 

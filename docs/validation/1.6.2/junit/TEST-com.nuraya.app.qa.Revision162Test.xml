@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.qa.Revision162Test" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-14T21:51:35" hostname="fdb9ea6ea168" time="4.675">
+  <properties/>
+  <testcase name="selectingMurottalQariPersistsTheMatchingQuranVoice" classname="com.nuraya.app.qa.Revision162Test" time="1.658"/>
+  <testcase name="settingsPanelsAndPrayerRemainReadableWithLargeDarkText" classname="com.nuraya.app.qa.Revision162Test" time="1.432"/>
+  <testcase name="homeSearchesOpenActualVerseAndHadithReaders" classname="com.nuraya.app.qa.Revision162Test" time="1.584"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

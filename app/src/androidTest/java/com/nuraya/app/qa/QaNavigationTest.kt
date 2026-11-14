@@ -2,6 +2,8 @@ package com.nuraya.app.qa
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextEquals
+import androidx.compose.ui.test.performScrollToNode
+import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.hasSetTextAction
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
@@ -57,6 +59,8 @@ class QaNavigationTest {
                 compose.waitForIdle()
             }
         compose.onNodeWithTag("settings_button").assertIsDisplayed().performClick()
+        compose.onNodeWithTag("settings_screen").performScrollToNode(hasTestTag("settings_language"))
+        compose.onNodeWithTag("settings_language").performClick()
         awaitTag("language_en")
     }
 
@@ -89,6 +93,8 @@ class QaNavigationTest {
 
     @Test fun languageCanChangeAndSurviveActivityRecreation() {
         compose.onNodeWithTag("settings_button").performClick()
+        compose.onNodeWithTag("settings_screen").performScrollToNode(hasTestTag("settings_language"))
+        compose.onNodeWithTag("settings_language").performClick()
         awaitTag("language_en")
         compose.onNodeWithTag("language_en").performClick()
         compose.waitForIdle()
@@ -97,7 +103,11 @@ class QaNavigationTest {
             runBlocking { app.settings.settings.first().language == "en" }
         }
         compose.onNodeWithText("Settings").assertIsDisplayed()
+        compose.onNodeWithContentDescription("Close settings").performClick()
         compose.activityRule.scenario.recreate()
+        awaitTag("settings_screen")
+        compose.onNodeWithTag("settings_screen").performScrollToNode(hasTestTag("settings_language"))
+        compose.onNodeWithTag("settings_language").performClick()
         awaitTag("language_id")
         assertEquals("en", runBlocking { app.settings.settings.first().language })
         compose.onNodeWithText("Settings").assertIsDisplayed()

@@ -1,0 +1,859 @@
+{
+  "checkedAt": "2026-11-14T14:57:24.148211+00:00",
+  "selectionPolicy": "30 distinct prominent reciters, one Hafs edition per person. Names paired using provider metadata, not face or voice recognition. Legacy IDs remain readable.",
+  "sources": {
+    "https://www.mp3quran.net/api/v3/reciters?language=eng": {
+      "sha256": "1746ff7c10401ba3bce0328e9334696b0b682f45ca996d346af4760505ca5836"
+    },
+    "https://everyayah.com/data/recitations.js": {
+      "sha256": "cde8cc62f7a6d830bd61934d279d8c4ab890d9db440087d1db51a9bd55864ee6"
+    }
+  },
+  "reciters": [
+    {
+      "chapterId": "ar.alafasy",
+      "verseId": "ar.alafasy",
+      "name": "Mishary Rashid Alafasy",
+      "mp3QuranId": 123,
+      "mp3QuranName": "Mishary Alafasi",
+      "moshaf": {
+        "id": 123,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/mishary-alafasy/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 15,
+      "everyAyah": {
+        "subfolder": "Alafasy_128kbps",
+        "name": "Alafasy",
+        "bitrate": "128kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Alafasy_128kbps/",
+        "sha256": "fae96b099bbd57811c79579f0b637e9706c5bb8d2af26c886c42a190e08156ba",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6348
+      }
+    },
+    {
+      "chapterId": "ar.abdulbasitmurattal",
+      "verseId": "ar.abdulsamad",
+      "name": "Abdul Basit Abdus Samad",
+      "mp3QuranId": 51,
+      "mp3QuranName": "Abdulbasit Abdulsamad",
+      "moshaf": {
+        "id": 53,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/abdulbasit-abdulsamad/r3/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 2,
+      "everyAyah": {
+        "subfolder": "Abdul_Basit_Murattal_192kbps",
+        "name": "Abdul Basit Murattal",
+        "bitrate": "192kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/",
+        "sha256": "c0174ef5f9ccac734b0a09f8da5da3afd7c0abe061b29782cd8ffcf61d286f82",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6350
+      }
+    },
+    {
+      "chapterId": "ar.muhammadsiddiqalminshawimujawwad",
+      "verseId": "ar.minshawimujawwad",
+      "name": "Muhammad Siddiq Al-Minshawi",
+      "mp3QuranId": 112,
+      "mp3QuranName": "Mohammed Siddiq Al-Minshawi",
+      "moshaf": {
+        "id": 113,
+        "name": "Rewayat Hafs A'n Assem - Almusshaf Al Mojawwad",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/muhammad-minshawi/r2/",
+        "surah_total": 114,
+        "moshaf_type": 12,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 33,
+      "everyAyah": {
+        "subfolder": "Minshawy_Mujawwad_192kbps",
+        "name": "Minshawy Mujawwad",
+        "bitrate": "192kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Minshawy_Mujawwad_192kbps/",
+        "sha256": "6cc8e14fd6d546fb64b84b0097822bbe2cc1b7c49926bbfe8feab47c9663605d",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6349
+      }
+    },
+    {
+      "chapterId": "ar.husary",
+      "verseId": "ar.husary",
+      "name": "Mahmoud Khalil Al-Husary",
+      "mp3QuranId": 118,
+      "mp3QuranName": "Mahmoud Khalil Al-Hussary",
+      "moshaf": {
+        "id": 118,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/mahmoud-husary/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 20,
+      "everyAyah": {
+        "subfolder": "Husary_128kbps",
+        "name": "Husary",
+        "bitrate": "128kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Husary_128kbps/",
+        "sha256": "610370a11f71f231a0df8f3a7f5103aa45d7b6dbe71359792aa47f6bd8905fda",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6237
+      }
+    },
+    {
+      "chapterId": "ar.abdurrahmaansudais",
+      "verseId": "ar.abdurrahmaansudais",
+      "name": "Abdurrahman As-Sudais",
+      "mp3QuranId": 54,
+      "mp3QuranName": "Abdulrahman Alsudaes",
+      "moshaf": {
+        "id": 54,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/abdulrahman-sudais/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 8,
+      "everyAyah": {
+        "subfolder": "Abdurrahmaan_As-Sudais_192kbps",
+        "name": "Abdurrahmaan As-Sudais",
+        "bitrate": "192kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Abdurrahmaan_As-Sudais_192kbps/",
+        "sha256": "bc03cd4aaf5384e3054adbac68b31724a9a3eef14de7162e675c46e82213885f",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6349
+      }
+    },
+    {
+      "chapterId": "ar.saudalshuraim",
+      "verseId": "ar.saoodshuraym",
+      "name": "Saud Al-Shuraim",
+      "mp3QuranId": 31,
+      "mp3QuranName": "Saud Al-Shuraim",
+      "moshaf": {
+        "id": 31,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/saud-shuraim/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 44,
+      "everyAyah": {
+        "subfolder": "Saood_ash-Shuraym_128kbps",
+        "name": "Saood bin Ibraaheem Ash-Shuraym",
+        "bitrate": "128kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Saood_ash-Shuraym_128kbps/",
+        "sha256": "bc9496807e497fbab21945ebdd9c4a82805c408598bf9233c6f03c81dfbf6dde",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6355
+      }
+    },
+    {
+      "chapterId": "ar.mahermuaiqly",
+      "verseId": "ar.mahermuaiqly",
+      "name": "Maher Al-Muaiqly",
+      "mp3QuranId": 102,
+      "mp3QuranName": "Maher Al Meaqli",
+      "moshaf": {
+        "id": 102,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/maher-muaiqly/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 29,
+      "everyAyah": {
+        "subfolder": "MaherAlMuaiqly128kbps",
+        "name": "Maher Al Muaiqly",
+        "bitrate": "128kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/MaherAlMuaiqly128kbps/",
+        "sha256": "c0fdf840d2e9c5a0b3c02897efafd95e626e356cb7382941e984118a9453a517",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6348
+      }
+    },
+    {
+      "chapterId": "ar.shaatree",
+      "verseId": "ar.shaatree",
+      "name": "Abu Bakr Ash-Shatri",
+      "mp3QuranId": 4,
+      "mp3QuranName": "Shaik Abu Bakr Al Shatri",
+      "moshaf": {
+        "id": 4,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/abubakr-shatri/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 11,
+      "everyAyah": {
+        "subfolder": "Abu_Bakr_Ash-Shaatree_128kbps",
+        "name": "Abu Bakr Ash-Shaatree",
+        "bitrate": "128kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Abu_Bakr_Ash-Shaatree_128kbps/",
+        "sha256": "85d63e292c6b976c01f3fda3bda3ffeebcf7357f0c2b0539ab5227d3e990b5b1",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6350
+      }
+    },
+    {
+      "chapterId": "ar.ahmedalajmi",
+      "verseId": "ar.ahmedajamy",
+      "name": "Ahmed Al-Ajmi",
+      "mp3QuranId": 5,
+      "mp3QuranName": "Ahmad Al-Ajmy",
+      "moshaf": {
+        "id": 5,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/ahmad-ajmi/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 71,
+      "everyAyah": {
+        "subfolder": "ahmed_ibn_ali_al_ajamy_128kbps",
+        "name": "Ahmed Ibn Ali Al Ajamy",
+        "bitrate": "128kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/ahmed_ibn_ali_al_ajamy_128kbps/",
+        "sha256": "1c564488b2cc32978423bdedb2cd1e4cc9e2dffe3c725a75ee9a120b397c48d0",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6350
+      }
+    },
+    {
+      "chapterId": "ar.saadalghamdi",
+      "verseId": "ar.saadalghamdi",
+      "name": "Saad Al-Ghamdi",
+      "mp3QuranId": 30,
+      "mp3QuranName": "Saad Al-Ghamdi",
+      "moshaf": {
+        "id": 30,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/saad-ghamdi/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 16,
+      "everyAyah": {
+        "subfolder": "Ghamadi_40kbps",
+        "name": "Ghamadi",
+        "bitrate": "40kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Ghamadi_40kbps/",
+        "sha256": "97fb69d60f89f672262bba0338573e46b81abbc23f1350374bdb154768546f4a",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6347
+      }
+    },
+    {
+      "chapterId": "ar.yasseraldossari",
+      "verseId": "ar.yasseraldossari",
+      "name": "Yasser Al-Dossari",
+      "mp3QuranId": 92,
+      "mp3QuranName": "Yasser Al-Dosari",
+      "moshaf": {
+        "id": 92,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/yasser-dosari/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 67,
+      "everyAyah": {
+        "subfolder": "Yasser_Ad-Dussary_128kbps",
+        "name": "Yasser_Ad-Dussary",
+        "bitrate": "128kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/",
+        "sha256": "ff88ab643de537e66ba1ed3f7f3990ca1f1ab03d6c0a870611158cde9af78a13",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6350
+      }
+    },
+    {
+      "chapterId": "ar.nasseralqatami",
+      "verseId": "ar.nasseralqatami",
+      "name": "Nasser Al-Qatami",
+      "mp3QuranId": 86,
+      "mp3QuranName": "Nasser Alqatami",
+      "moshaf": {
+        "id": 86,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/nasser-qatami/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 68,
+      "everyAyah": {
+        "subfolder": "Nasser_Alqatami_128kbps",
+        "name": "Nasser_Alqatami",
+        "bitrate": "128kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Nasser_Alqatami_128kbps/",
+        "sha256": "8400235a34f3a366708ef3fb259f8e06b81db9f4ce2a96a6b826e74632a4bf94",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6350
+      }
+    },
+    {
+      "chapterId": "ar.faresabbad",
+      "verseId": "ar.faresabbad",
+      "name": "Fares Abbad",
+      "mp3QuranId": 81,
+      "mp3QuranName": "Fares Abbad",
+      "moshaf": {
+        "id": 81,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/fares-abbad/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 77,
+      "everyAyah": {
+        "subfolder": "Fares_Abbad_64kbps",
+        "name": "Fares Abbad",
+        "bitrate": "64kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Fares_Abbad_64kbps/",
+        "sha256": "71f57628b1214e4ad14870da84749e0eb297485c6a21a244a25a6f531d6e7f2c",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6350
+      }
+    },
+    {
+      "chapterId": "ar.aliabdurrahmanalhuthaify",
+      "verseId": "ar.hudhaify",
+      "name": "Ali Abdurrahman Al-Hudhaify",
+      "mp3QuranId": 74,
+      "mp3QuranName": "Ali Alhuthaifi",
+      "moshaf": {
+        "id": 74,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/ali-hudhaifi/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 25,
+      "everyAyah": {
+        "subfolder": "Hudhaify_128kbps",
+        "name": "Hudhaify",
+        "bitrate": "128kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Hudhaify_128kbps/",
+        "sha256": "209e6c2f2d0da912a889368f7488225eb99cb8ad47b926c99100213c838d1b7e",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6350
+      }
+    },
+    {
+      "chapterId": "ar.abdullahbasfar",
+      "verseId": "ar.abdullahbasfar",
+      "name": "Abdullah Basfar",
+      "mp3QuranId": 60,
+      "mp3QuranName": "Abdullah Basfer",
+      "moshaf": {
+        "id": 60,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/abdullah-basfar/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 6,
+      "everyAyah": {
+        "subfolder": "Abdullah_Basfar_192kbps",
+        "name": "Abdullah Basfar",
+        "bitrate": "192kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Abdullah_Basfar_192kbps/",
+        "sha256": "c4cb37c6c2c305281b53b3556beaf511fd6cc3790ff53d2c04b72aeb86932905",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6314
+      }
+    },
+    {
+      "chapterId": "ar.haniarrifai",
+      "verseId": "ar.hanirifai",
+      "name": "Hani Ar-Rifai",
+      "mp3QuranId": 89,
+      "mp3QuranName": "Hani Arrifai",
+      "moshaf": {
+        "id": 89,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/hani-rifai/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 18,
+      "everyAyah": {
+        "subfolder": "Hani_Rifai_192kbps",
+        "name": "Hani Rifai",
+        "bitrate": "192kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Hani_Rifai_192kbps/",
+        "sha256": "4fab06e531ee327463695aa5e8819846aa364d29bad94bbdaca9759d32900d58",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6236
+      }
+    },
+    {
+      "chapterId": "ar.muhammadayyub",
+      "verseId": "ar.muhammadayyoub",
+      "name": "Muhammad Ayyub",
+      "mp3QuranId": 109,
+      "mp3QuranName": "Mohammed Ayyub",
+      "moshaf": {
+        "id": 109,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/muhammad-ayyub/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 37,
+      "everyAyah": {
+        "subfolder": "Muhammad_Ayyoub_128kbps",
+        "name": "Muhammad Ayyoub",
+        "bitrate": "128kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Muhammad_Ayyoub_128kbps/",
+        "sha256": "6128d1234d9d11b79141360aed15c17c3f25bcf0c8741ea208b97e2f64028543",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6349
+      }
+    },
+    {
+      "chapterId": "ar.muhammadjibreel",
+      "verseId": "ar.muhammadjibreel",
+      "name": "Muhammad Jibreel",
+      "mp3QuranId": 111,
+      "mp3QuranName": "Mohammed Jibreel",
+      "moshaf": {
+        "id": 111,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/muhammad-jibreel/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 41,
+      "everyAyah": {
+        "subfolder": "Muhammad_Jibreel_128kbps",
+        "name": "Muhammad Jibreel",
+        "bitrate": "128kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Muhammad_Jibreel_128kbps/",
+        "sha256": "f9600eb5140a428a56357d0d461858a989f02d9be8c60e341666dc4feddf1d51",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6349
+      }
+    },
+    {
+      "chapterId": "ar.ibrahimalakhdar",
+      "verseId": "ar.ibrahimakhbar",
+      "name": "Ibrahim Akhdar",
+      "mp3QuranId": 1,
+      "mp3QuranName": "Ibrahim Al-Akdar",
+      "moshaf": {
+        "id": 1,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/ibrahim-akhdar/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 26,
+      "everyAyah": {
+        "subfolder": "Ibrahim_Akhdar_32kbps",
+        "name": "Ibrahim Akhdar",
+        "bitrate": "32kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Ibrahim_Akhdar_32kbps/",
+        "sha256": "49df737fa010f7bad4279f9022b193e9cbe35a08ba66b28ecff123806f66d628",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6236
+      }
+    },
+    {
+      "chapterId": "ar.aymanswed",
+      "verseId": "ar.aymanswoaid",
+      "name": "Ayman Sowaid",
+      "mp3QuranId": 21203,
+      "mp3QuranName": "Ayman Rushdi Swaid",
+      "moshaf": {
+        "id": 10925,
+        "name": "Rewayat Hafs A'n Assem - Almusshaf Al Mo'lim",
+        "rewaya_id": 1,
+        "server": "https://server15.mp3quran.net/a-rushdi/Almusshaf-Al-Mo-lim/",
+        "surah_total": 114,
+        "moshaf_type": 13,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 79,
+      "everyAyah": {
+        "subfolder": "Ayman_Sowaid_64kbps",
+        "name": "Ayman Sowaid",
+        "bitrate": "64kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Ayman_Sowaid_64kbps/",
+        "sha256": "35a7b10f2cacfdf396a77468f74cd926b0846c9e2db6659b2af7dfeeff5eb907",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6236
+      }
+    },
+    {
+      "chapterId": "ar.alijaber",
+      "verseId": "ar.alijaber",
+      "name": "Ali Jaber",
+      "mp3QuranId": 76,
+      "mp3QuranName": "Ali Jaber",
+      "moshaf": {
+        "id": 76,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/ali-jaber/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 76,
+      "everyAyah": {
+        "subfolder": "Ali_Jaber_64kbps",
+        "name": "Ali Jaber",
+        "bitrate": "64kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Ali_Jaber_64kbps/",
+        "sha256": "b45cdfba08d9a813a7c7400ae56c0cd8d3d79dec817692bc1769d3418ac20c95",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6349
+      }
+    },
+    {
+      "chapterId": "ar.abdullahawadaljuhani",
+      "verseId": "ar.abdullahawadaljuhani",
+      "name": "Abdullah Awad Al-Juhani",
+      "mp3QuranId": 62,
+      "mp3QuranName": "Abdullah Al-Johany",
+      "moshaf": {
+        "id": 62,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/abdullah-juhani/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 53,
+      "everyAyah": {
+        "subfolder": "Abdullaah_3awwaad_Al-Juhaynee_128kbps",
+        "name": "Abdullaah 3awwaad Al-Juhaynee",
+        "bitrate": "128kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Abdullaah_3awwaad_Al-Juhaynee_128kbps/",
+        "sha256": "eee3cbc905257d4a2b19b37d6be554c5e6d03cccb9f29da0f0bc899882a31a75",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6350
+      }
+    },
+    {
+      "chapterId": "ar.abdulmohsenalqasim",
+      "verseId": "ar.abdulmohsenalqasim",
+      "name": "Abdul Muhsin Al-Qasim",
+      "mp3QuranId": 67,
+      "mp3QuranName": "Abdulmohsen Al-Qasim",
+      "moshaf": {
+        "id": 67,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/abdulmohsen-qasim/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 52,
+      "everyAyah": {
+        "subfolder": "Muhsin_Al_Qasim_192kbps",
+        "name": "Muhsin Al Qasim",
+        "bitrate": "192kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/",
+        "sha256": "884395183d8e16a603194148911be730825f0f03ad12964fcaf3de1ddbe70d98",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6350
+      }
+    },
+    {
+      "chapterId": "ar.salahalbudair",
+      "verseId": "ar.salahalbudair",
+      "name": "Salah Al-Budair",
+      "mp3QuranId": 43,
+      "mp3QuranName": "Salah Albudair",
+      "moshaf": {
+        "id": 43,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/salah-budair/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 54,
+      "everyAyah": {
+        "subfolder": "Salah_Al_Budair_128kbps",
+        "name": "Salah Al Budair",
+        "bitrate": "128kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Salah_Al_Budair_128kbps/",
+        "sha256": "0de1870838bc46596c07cf299838892fb91361693c194fd1c9caa18b1b9b087e",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6350
+      }
+    },
+    {
+      "chapterId": "ar.mahmoudalialbanna",
+      "verseId": "ar.mahmoudalialbanna",
+      "name": "Mahmoud Ali Al-Banna",
+      "mp3QuranId": 121,
+      "mp3QuranName": "Mahmoud Ali  Albanna",
+      "moshaf": {
+        "id": 121,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/mahmoud-banna/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 59,
+      "everyAyah": {
+        "subfolder": "mahmoud_ali_al_banna_32kbps",
+        "name": "Mahmoud Ali Al-Banna",
+        "bitrate": "32kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/mahmoud_ali_al_banna_32kbps/",
+        "sha256": "537ed1b19cd8dad66e42e7bf153548ab888deef2843e7cd82ae2f797a85f130c",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6236
+      }
+    },
+    {
+      "chapterId": "ar.khalifaaltunaiji",
+      "verseId": "ar.khalifaaltunaiji",
+      "name": "Khalifa Al-Tunaiji",
+      "mp3QuranId": 24,
+      "mp3QuranName": "Khalifa Altunaiji",
+      "moshaf": {
+        "id": 24,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/khalifa-tunaiji/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 58,
+      "everyAyah": {
+        "subfolder": "khalefa_al_tunaiji_64kbps",
+        "name": "Khalefa Al-Tunaiji",
+        "bitrate": "64kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/khalefa_al_tunaiji_64kbps/",
+        "sha256": "51ea47cace678ce40722f9bf6717e3bd33777225e453890e68c2afaea7df722b",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6236
+      }
+    },
+    {
+      "chapterId": "ar.mohamedtablawi",
+      "verseId": "ar.mohamedtablawi",
+      "name": "Muhammad At-Tablawi",
+      "mp3QuranId": 106,
+      "mp3QuranName": "Mohammad Al-Tablaway",
+      "moshaf": {
+        "id": 106,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/muhammad-tablawi/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 36,
+      "everyAyah": {
+        "subfolder": "Mohammad_al_Tablaway_128kbps",
+        "name": "Mohammad al Tablaway",
+        "bitrate": "128kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Mohammad_al_Tablaway_128kbps/",
+        "sha256": "9941af6cfc858238d2cc25a7e41616de137733878bbd8d3b5c9287eda7ccceea",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6350
+      }
+    },
+    {
+      "chapterId": "ar.salahbukhatir",
+      "verseId": "ar.salahbukhatir",
+      "name": "Salah Bukhatir",
+      "mp3QuranId": 46,
+      "mp3QuranName": "Slaah Bukhatir",
+      "moshaf": {
+        "id": 46,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/salah-bukhatir/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 51,
+      "everyAyah": {
+        "subfolder": "Salaah_AbdulRahman_Bukhatir_128kbps",
+        "name": "Salaah AbdulRahman Bukhatir",
+        "bitrate": "128kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Salaah_AbdulRahman_Bukhatir_128kbps/",
+        "sha256": "6f82b678b5cd0f048cdfbdd0c20735c85cd68df920891b0413f27b7008e8dee4",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6350
+      }
+    },
+    {
+      "chapterId": "ar.khaledalqahtani",
+      "verseId": "ar.khaledalqahtani",
+      "name": "Khalid Al-Qahtani",
+      "mp3QuranId": 21,
+      "mp3QuranName": "Khaled Al-Qahtani",
+      "moshaf": {
+        "id": 21,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/khalid-qahtani/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 66,
+      "everyAyah": {
+        "subfolder": "Khaalid_Abdullaah_al-Qahtaanee_192kbps",
+        "name": "Khalid Abdullah al-Qahtanee",
+        "bitrate": "192kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Khaalid_Abdullaah_al-Qahtaanee_192kbps/",
+        "sha256": "8d2267b933a8eb03c20b3814d422bc40660a4f3a03648161998591febef37931",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6350
+      }
+    },
+    {
+      "chapterId": "ar.abdullahalmatrood",
+      "verseId": "ar.abdullahalmatrood",
+      "name": "Abdullah Al-Matrood",
+      "mp3QuranId": 59,
+      "mp3QuranName": "Abdullah Al-Mattrod",
+      "moshaf": {
+        "id": 59,
+        "name": "Rewayat Hafs A'n Assem - Murattal",
+        "rewaya_id": 1,
+        "server": "https://cdn.mp3quran.net/audio/abdullah-matrood/r1/",
+        "surah_total": 114,
+        "moshaf_type": 11,
+        "surah_list": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114"
+      },
+      "everyAyahId": 55,
+      "everyAyah": {
+        "subfolder": "Abdullah_Matroud_128kbps",
+        "name": "Abdullah Matroud",
+        "bitrate": "128kbps"
+      },
+      "individualVerseDirectoryEvidence": {
+        "url": "https://everyayah.com/data/Abdullah_Matroud_128kbps/",
+        "sha256": "737bb4817adb2c704eb169ed0d44bfd7c0acf6185925a39e7e655358a5609be5",
+        "canonicalFiles": 6236,
+        "totalSixDigitMp3Names": 6350
+      }
+    }
+  ],
+  "limits": [
+    "Only sampled audio files were downloaded and decoded; directory completeness is not a download of all audio.",
+    "No human voice authentication or physical handset playback test.",
+    "Word timing remains paired with its original recording. Other reciters use verse highlighting."
+  ]
+}

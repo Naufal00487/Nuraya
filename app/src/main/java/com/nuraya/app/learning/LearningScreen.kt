@@ -1,5 +1,6 @@
 package com.nuraya.app.learning
 
+import com.nuraya.app.ui.icons.AppIcons as Icons
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,11 +18,6 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.automirrored.filled.MenuBook
-import androidx.compose.material.icons.outlined.Search
-import androidx.compose.material.icons.outlined.Mic
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.Button

@@ -31,6 +31,8 @@ import com.nuraya.app.storage.UserSettings
 import com.nuraya.app.ui.NurayaApp
 import com.nuraya.app.ui.NurayaTheme
 import java.io.File
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule
@@ -308,7 +310,7 @@ class SeniorNavigationTest {
     }
 
     @Test fun homeContinueReturnsToTheSavedBookPage() {
-        openApp()
+        val app = openApp()
         compose.onNodeWithTag("nav_quran").performClick()
         compose.onNodeWithTag("quran_modes").performScrollToNode(hasTestTag("quran_mode_indonesia"))
         compose.onNodeWithTag("quran_mode_indonesia").performClick()
@@ -317,6 +319,12 @@ class SeniorNavigationTest {
         compose.onNodeWithTag("mushaf_page_viewport").performTouchInput { swipeRight() }
         compose.waitUntil(30_000) { runCatching { compose.onNodeWithContentDescription("Mushaf Indonesia halaman 2").fetchSemanticsNode() }.isSuccess }
         compose.mainClock.advanceTimeBy(1000)
+        // Advancing the Compose clock covers the history debounce, but not Room's
+        // IO executor. Wait for the actual save before navigating away.
+        compose.waitUntil(15_000) {
+            runBlocking { app.library.entries.first() }.filter { it.type == "read_history" }
+                .maxByOrNull { it.updatedAt }?.key == "2:1"
+        }
         showBookControls()
         goBack()
         compose.onNodeWithTag("nav_home").performClick()

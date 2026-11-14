@@ -1,0 +1,1202 @@
+[
+  {
+    "qari": "Mishary Rashid Alafasy",
+    "verseId": "ar.alafasy",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/mishary-alafasy/r1/001.mp3",
+    "bytes": 837734,
+    "sha256": "3ac2fd2b9313dee8c69c78ebbf71ac10e5bff9223b7829bff84a8f0ffc165ee1",
+    "durationSeconds": 51.931378,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Mishary Rashid Alafasy",
+    "verseId": "ar.alafasy",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Alafasy_128kbps/001001.mp3",
+    "bytes": 146830,
+    "sha256": "8808f3fc313d9df87b6090ee9efc8c11859da58b0100ad92621c5ee9a93d7280",
+    "durationSeconds": 6.086531,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Mishary Rashid Alafasy",
+    "verseId": "ar.alafasy",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Alafasy_128kbps/009001.mp3",
+    "bytes": 242125,
+    "sha256": "4c512964e1f09023be2c342edfe8a6571d3882ac8276a32606e986fa7102ce2c",
+    "durationSeconds": 15.098776,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Mishary Rashid Alafasy",
+    "verseId": "ar.alafasy",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Alafasy_128kbps/114006.mp3",
+    "bytes": 132620,
+    "sha256": "99047f038edf3db4ce4914f0d935d46693f8b95ca00316ecf2457002e457c2f9",
+    "durationSeconds": 8.254694,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdul Basit Abdus Samad",
+    "verseId": "ar.abdulsamad",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/abdulbasit-abdulsamad/r3/001.mp3",
+    "bytes": 188417,
+    "sha256": "b9b3180e7357d3b8959351528a56d6c0cf92096f40f193c20cedab2f2c8b13fe",
+    "durationSeconds": 47.05225,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdul Basit Abdus Samad",
+    "verseId": "ar.abdulsamad",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/001001.mp3",
+    "bytes": 104827,
+    "sha256": "7788e7495d9fa6e7ab0ec0d9a9e0b7796b09044c7b918cd0c78bfc9edd3c1cda",
+    "durationSeconds": 4.367792,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdul Basit Abdus Samad",
+    "verseId": "ar.abdulsamad",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/009001.mp3",
+    "bytes": 324255,
+    "sha256": "3855e338ba966941b1aedabfa39e0f5fe63541633edb1f5bc6c3ef9dbcc9ed36",
+    "durationSeconds": 13.510625,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdul Basit Abdus Samad",
+    "verseId": "ar.abdulsamad",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/114006.mp3",
+    "bytes": 123635,
+    "sha256": "ca02a987ea833aa5dd3378031a192d27eeaec2ea0e98fd5e848b43112cbfc880",
+    "durationSeconds": 5.151458,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Muhammad Siddiq Al-Minshawi",
+    "verseId": "ar.minshawimujawwad",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/muhammad-minshawi/r2/001.mp3",
+    "bytes": 2848290,
+    "sha256": "2f3e44ad46542fe7137d1b478ebf38996bd086124102bf1c3f3f94718e24f040",
+    "durationSeconds": 177.431625,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Muhammad Siddiq Al-Minshawi",
+    "verseId": "ar.minshawimujawwad",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Minshawy_Mujawwad_192kbps/001001.mp3",
+    "bytes": 215050,
+    "sha256": "492d2f3f21b87f74970d970b2059399ba07c95736df4aa20a3638a1805d0798b",
+    "durationSeconds": 13.322438,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Muhammad Siddiq Al-Minshawi",
+    "verseId": "ar.minshawimujawwad",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Minshawy_Mujawwad_192kbps/009001.mp3",
+    "bytes": 630794,
+    "sha256": "8769f672825499572c4ac97e0d642a85fc33b8f8a8c5b3268c98497dd742b03f",
+    "durationSeconds": 26.226917,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Muhammad Siddiq Al-Minshawi",
+    "verseId": "ar.minshawimujawwad",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Minshawy_Mujawwad_192kbps/114006.mp3",
+    "bytes": 188426,
+    "sha256": "0ef37b3cdc715ab1b545de1e5c34757e57e2834440cdf97b74f6aac76eb6933e",
+    "durationSeconds": 7.810625,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Mahmoud Khalil Al-Husary",
+    "verseId": "ar.husary",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/mahmoud-husary/r1/001.mp3",
+    "bytes": 935074,
+    "sha256": "10c3b4d95cfe2ad4dabdcc1bf65c7f4e1bb76af3d15fa5555aafa1808722afd3",
+    "durationSeconds": 56.824313,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Mahmoud Khalil Al-Husary",
+    "verseId": "ar.husary",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Husary_128kbps/001001.mp3",
+    "bytes": 82164,
+    "sha256": "a32088d34381989c1eae4e927d9d1d569e6dcc4f35d29eee414c6d12d2f32a1f",
+    "durationSeconds": 5.128,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Mahmoud Khalil Al-Husary",
+    "verseId": "ar.husary",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Husary_128kbps/009001.mp3",
+    "bytes": 318111,
+    "sha256": "87610386f97fb2565bfeacae959bc94b65c957228ab86102403df4fe8309428c",
+    "durationSeconds": 19.625938,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Mahmoud Khalil Al-Husary",
+    "verseId": "ar.husary",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Husary_128kbps/114006.mp3",
+    "bytes": 140061,
+    "sha256": "5d613a767f089cf4400b4884c86a6bb870928706083952a75452571690bd801e",
+    "durationSeconds": 8.497813,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdurrahman As-Sudais",
+    "verseId": "ar.abdurrahmaansudais",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/abdulrahman-sudais/r1/001.mp3",
+    "bytes": 584094,
+    "sha256": "ba4e63cf06b33a683b84b4244fee3cd6036c76ba14ffa3126d2c80bd6e8a4d2b",
+    "durationSeconds": 36.075067,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdurrahman As-Sudais",
+    "verseId": "ar.abdurrahmaansudais",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Abdurrahmaan_As-Sudais_192kbps/001001.mp3",
+    "bytes": 75786,
+    "sha256": "1245979941c5185dddd9ef8dca457eedd9bd9b3989780850fb0e04adce7af12e",
+    "durationSeconds": 3.082458,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdurrahman As-Sudais",
+    "verseId": "ar.abdurrahmaansudais",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Abdurrahmaan_As-Sudais_192kbps/009001.mp3",
+    "bytes": 249866,
+    "sha256": "2158c85d06f5851ea3a3c3ef0aa549f2dea5ea18d7775d687c30a49f0ead1b7c",
+    "durationSeconds": 10.39675,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdurrahman As-Sudais",
+    "verseId": "ar.abdurrahmaansudais",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Abdurrahmaan_As-Sudais_192kbps/114006.mp3",
+    "bytes": 145418,
+    "sha256": "94f35d0f94799e4050e21e4c0573f7cbfea258ff16272a34e5dde19bbc26f97d",
+    "durationSeconds": 5.982042,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Saud Al-Shuraim",
+    "verseId": "ar.saoodshuraym",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/saud-shuraim/r1/001.mp3",
+    "bytes": 613096,
+    "sha256": "6ab944377612d7032a68ea18a00b517fc7793af3755304d3069220c96a50d419",
+    "durationSeconds": 37.754938,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Saud Al-Shuraim",
+    "verseId": "ar.saoodshuraym",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Saood_ash-Shuraym_128kbps/001001.mp3",
+    "bytes": 44870,
+    "sha256": "c543f54a791b454c7ebc3ee70e944ab1302969af071c60d5277b3c2e0b95cb18",
+    "durationSeconds": 2.76898,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Saud Al-Shuraim",
+    "verseId": "ar.saoodshuraym",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Saood_ash-Shuraym_128kbps/009001.mp3",
+    "bytes": 134293,
+    "sha256": "cb06cfec279ecf604f6f274743b596033b4b00ca3586c36d6cc5c528ee1eecac",
+    "durationSeconds": 8.393313,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Saud Al-Shuraim",
+    "verseId": "ar.saoodshuraym",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Saood_ash-Shuraym_128kbps/114006.mp3",
+    "bytes": 61150,
+    "sha256": "1ae8c05c3e6c59ce40a1649aa1bc564c53a9d72ae1ef5388b2453760a07a863f",
+    "durationSeconds": 3.821875,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Maher Al-Muaiqly",
+    "verseId": "ar.mahermuaiqly",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/maher-muaiqly/r1/001.mp3",
+    "bytes": 330623,
+    "sha256": "3580f1114e2fe598b484402e7aa68abd15e22b8ec44be3396259e054bf1e839c",
+    "durationSeconds": 38.076378,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Maher Al-Muaiqly",
+    "verseId": "ar.mahermuaiqly",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/MaherAlMuaiqly128kbps/001001.mp3",
+    "bytes": 90341,
+    "sha256": "c7da61e6c588874e82cd220ddde0bacdbfb93473eb233439b764969635883c62",
+    "durationSeconds": 3.552653,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Maher Al-Muaiqly",
+    "verseId": "ar.mahermuaiqly",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/MaherAlMuaiqly128kbps/009001.mp3",
+    "bytes": 224862,
+    "sha256": "33388602a9a46937d6288eea51bef97d72801183f5a66cfb49677da475617752",
+    "durationSeconds": 14.053875,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Maher Al-Muaiqly",
+    "verseId": "ar.mahermuaiqly",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/MaherAlMuaiqly128kbps/114006.mp3",
+    "bytes": 63948,
+    "sha256": "0f6325675f8013b5e2c365d45e10d745fabfc517d3eefcfd2d0f86fe02e11cf4",
+    "durationSeconds": 3.99675,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abu Bakr Ash-Shatri",
+    "verseId": "ar.shaatree",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/abubakr-shatri/r1/001.mp3",
+    "bytes": 1012463,
+    "sha256": "74847c8e8590adb8c5670cb36a5b6f778763ec6789f2ee942574bed6791c2696",
+    "durationSeconds": 62.850567,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abu Bakr Ash-Shatri",
+    "verseId": "ar.shaatree",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Abu_Bakr_Ash-Shaatree_128kbps/001001.mp3",
+    "bytes": 104200,
+    "sha256": "b72b1275a8db14537557f668735b70a7280c1f7ec83532d159de978e8a3e7023",
+    "durationSeconds": 6.5125,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abu Bakr Ash-Shatri",
+    "verseId": "ar.shaatree",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Abu_Bakr_Ash-Shaatree_128kbps/009001.mp3",
+    "bytes": 225826,
+    "sha256": "ba9210470282f2bbd5de4da34d43962e39ed1848a80cd1401def079fd9b6f598",
+    "durationSeconds": 14.114125,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abu Bakr Ash-Shatri",
+    "verseId": "ar.shaatree",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Abu_Bakr_Ash-Shaatree_128kbps/114006.mp3",
+    "bytes": 81212,
+    "sha256": "e4d867500a666b64e5c173c44e7b201d83470d000b36689ea824f240785308f0",
+    "durationSeconds": 5.07575,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ahmed Al-Ajmi",
+    "verseId": "ar.ahmedajamy",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/ahmad-ajmi/r1/001.mp3",
+    "bytes": 880306,
+    "sha256": "88afa87fdfae38f74fb0338b62ced34be1c6d9dc3fbfa2315243589315996871",
+    "durationSeconds": 42.742756,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ahmed Al-Ajmi",
+    "verseId": "ar.ahmedajamy",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/ahmed_ibn_ali_al_ajamy_128kbps/001001.mp3",
+    "bytes": 49817,
+    "sha256": "d01158a7e46d294fb5028f11bd9d950f57191cc0ad335409e9d92fabb09b0b7b",
+    "durationSeconds": 2.977959,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ahmed Al-Ajmi",
+    "verseId": "ar.ahmedajamy",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/ahmed_ibn_ali_al_ajamy_128kbps/009001.mp3",
+    "bytes": 165967,
+    "sha256": "3ceac376210642cf208c75319145508d32f80959f3c4d8e97e6e4d42c41c01de",
+    "durationSeconds": 10.292245,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ahmed Al-Ajmi",
+    "verseId": "ar.ahmedajamy",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/ahmed_ibn_ali_al_ajamy_128kbps/114006.mp3",
+    "bytes": 77631,
+    "sha256": "86230fa3f0e6d54e33eb0912fd693aee2e59f24d0f9975e19222f16de235a25c",
+    "durationSeconds": 4.728163,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Saad Al-Ghamdi",
+    "verseId": "ar.saadalghamdi",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/saad-ghamdi/r1/001.mp3",
+    "bytes": 577295,
+    "sha256": "bc72ba2ac0807914cd8092212173eca5ebc8a16c83b814a02702b0c03c761916",
+    "durationSeconds": 48.091417,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Saad Al-Ghamdi",
+    "verseId": "ar.saadalghamdi",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Ghamadi_40kbps/001001.mp3",
+    "bytes": 27426,
+    "sha256": "3ab00816a3906554e35ec769a7275d22ee3031eae74e27d43649609bb517a4d3",
+    "durationSeconds": 5.4852,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Saad Al-Ghamdi",
+    "verseId": "ar.saadalghamdi",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Ghamadi_40kbps/009001.mp3",
+    "bytes": 64650,
+    "sha256": "46c5423bdf125ac6069b04df4176c801658c425009c5458b042e71e432b378f3",
+    "durationSeconds": 12.93,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Saad Al-Ghamdi",
+    "verseId": "ar.saadalghamdi",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Ghamadi_40kbps/114006.mp3",
+    "bytes": 31475,
+    "sha256": "7978fc269b4963b6b9646f18297be574c72c030a6613e4eafd23645eed104ab8",
+    "durationSeconds": 6.295,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Yasser Al-Dossari",
+    "verseId": "ar.yasseraldossari",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/yasser-dosari/r1/001.mp3",
+    "bytes": 774896,
+    "sha256": "08237b30a2fcdabe9df6633208442395b5bbb0cd0e612f15bb43de5d0ed72a33",
+    "durationSeconds": 48.013067,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Yasser Al-Dossari",
+    "verseId": "ar.yasseraldossari",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/001001.mp3",
+    "bytes": 55424,
+    "sha256": "efc922e29b8e10cd09e83617fe85ba09a2a77ed9e449a09b9e515250d2806ce0",
+    "durationSeconds": 3.343673,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Yasser Al-Dossari",
+    "verseId": "ar.yasseraldossari",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/009001.mp3",
+    "bytes": 217088,
+    "sha256": "507541a41e9e9bc05b0ea8fad06ab74e8ce76776c7f2a9d0a4a4de0ae5d98e1b",
+    "durationSeconds": 13.513313,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Yasser Al-Dossari",
+    "verseId": "ar.yasseraldossari",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Yasser_Ad-Dussary_128kbps/114006.mp3",
+    "bytes": 102400,
+    "sha256": "259bb667f01edb94ebef671ea70541fc68c9d291e1df8a816abe2469cc30b311",
+    "durationSeconds": 6.329625,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Nasser Al-Qatami",
+    "verseId": "ar.nasseralqatami",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/nasser-qatami/r1/001.mp3",
+    "bytes": 483656,
+    "sha256": "46ec82eb9c0fa87f43dcf8774645f60f31b1f5bd3eebdd33a881237bbc10e82f",
+    "durationSeconds": 39.732256,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Nasser Al-Qatami",
+    "verseId": "ar.nasseralqatami",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Nasser_Alqatami_128kbps/001001.mp3",
+    "bytes": 40960,
+    "sha256": "ea9327e99d8cb6bab504af2d910b689e955f882d9df29910a3f86f33daa7dc09",
+    "durationSeconds": 3.354333,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Nasser Al-Qatami",
+    "verseId": "ar.nasseralqatami",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Nasser_Alqatami_128kbps/009001.mp3",
+    "bytes": 124928,
+    "sha256": "d528a87e536b9ce669e6aa7f77dd86e61415c9f8d09cb9b5c5348885b2fd1238",
+    "durationSeconds": 10.224583,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Nasser Al-Qatami",
+    "verseId": "ar.nasseralqatami",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Nasser_Alqatami_128kbps/114006.mp3",
+    "bytes": 141312,
+    "sha256": "3a5112cc0926e487454885cc3a977711b198c375e8b57fcc128c482f2572ff98",
+    "durationSeconds": 8.732938,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Fares Abbad",
+    "verseId": "ar.faresabbad",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/fares-abbad/r1/001.mp3",
+    "bytes": 889291,
+    "sha256": "e922a579fcb12a757ae171bd3ae233abc5569779c50f323e06639587eaf3d6cc",
+    "durationSeconds": 44.1208,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Fares Abbad",
+    "verseId": "ar.faresabbad",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Fares_Abbad_64kbps/001001.mp3",
+    "bytes": 48458,
+    "sha256": "783ffca133f121ab1250713b40e0e269b604cf5a309099a81271ae667105d65c",
+    "durationSeconds": 5.397256,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Fares Abbad",
+    "verseId": "ar.faresabbad",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Fares_Abbad_64kbps/009001.mp3",
+    "bytes": 64344,
+    "sha256": "74b6fdf05c042d027c9874e3dc83e27914ee426fc57687b606d47d86fe9901d8",
+    "durationSeconds": 10.261333,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Fares Abbad",
+    "verseId": "ar.faresabbad",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Fares_Abbad_64kbps/114006.mp3",
+    "bytes": 40047,
+    "sha256": "83c0cd01782bd138df6ebbd76789a9407e389743b8a2d77b2c0563e11c329dd9",
+    "durationSeconds": 6.212333,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ali Abdurrahman Al-Hudhaify",
+    "verseId": "ar.hudhaify",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/ali-hudhaifi/r1/001.mp3",
+    "bytes": 513430,
+    "sha256": "eab88721bd74920b0b12d8d84f3473a12150989170fd1a76233c87f8fd26b152",
+    "durationSeconds": 62.992,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ali Abdurrahman Al-Hudhaify",
+    "verseId": "ar.hudhaify",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Hudhaify_128kbps/001001.mp3",
+    "bytes": 113395,
+    "sha256": "ce4af17fb70ce3c08ebe45b008fc7fa9670b8bd2cb75c89fcdef9fd82441d1bc",
+    "durationSeconds": 7.087188,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ali Abdurrahman Al-Hudhaify",
+    "verseId": "ar.hudhaify",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Hudhaify_128kbps/009001.mp3",
+    "bytes": 242545,
+    "sha256": "76e53938b907858aaaa03356a8cffcdf1d66f1a4fcebb209dd1ce86d5b62dd72",
+    "durationSeconds": 15.159063,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ali Abdurrahman Al-Hudhaify",
+    "verseId": "ar.hudhaify",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Hudhaify_128kbps/114006.mp3",
+    "bytes": 111305,
+    "sha256": "eae0818ac44dc54f89c899b84bacac39da3970d0d24d9f02980b14e51ddb4e59",
+    "durationSeconds": 6.956563,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdullah Basfar",
+    "verseId": "ar.abdullahbasfar",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/abdullah-basfar/r1/001.mp3",
+    "bytes": 799836,
+    "sha256": "620d31f7380bb9f382972deb7947c8d9e843a50ff1f04ff657188aa9ab556b69",
+    "durationSeconds": 49.431689,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdullah Basfar",
+    "verseId": "ar.abdullahbasfar",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Abdullah_Basfar_192kbps/001001.mp3",
+    "bytes": 133666,
+    "sha256": "7f4e6493e54b4e81aafec0141b634939d356169f371e18c417e88457d44fa815",
+    "durationSeconds": 5.569417,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdullah Basfar",
+    "verseId": "ar.abdullahbasfar",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Abdullah_Basfar_192kbps/009001.mp3",
+    "bytes": 333033,
+    "sha256": "30a33686a543b39ed6949964197a25ab2e669a91b30a66d49d961f43e128706b",
+    "durationSeconds": 13.876375,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdullah Basfar",
+    "verseId": "ar.abdullahbasfar",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Abdullah_Basfar_192kbps/114006.mp3",
+    "bytes": 154355,
+    "sha256": "b4b78d010b60ca15dbee66c6ad90cfcc50b2ed8b148118e628e78c7024baff0c",
+    "durationSeconds": 6.431458,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Hani Ar-Rifai",
+    "verseId": "ar.hanirifai",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/hani-rifai/r1/001.mp3",
+    "bytes": 791078,
+    "sha256": "8508ba7c2747d227209687d6de4f56b8fd3aed342b23f6bfa891f832d34f9fb3",
+    "durationSeconds": 49.057938,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Hani Ar-Rifai",
+    "verseId": "ar.hanirifai",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Hani_Rifai_192kbps/001001.mp3",
+    "bytes": 107335,
+    "sha256": "65d5951750cac491fb42332ff52f31af81ec6b75539d95e7678bcdf9a4c13a4a",
+    "durationSeconds": 4.472292,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Hani Ar-Rifai",
+    "verseId": "ar.hanirifai",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Hani_Rifai_192kbps/009001.mp3",
+    "bytes": 321121,
+    "sha256": "f32f750adbc9da4a90e01c0844b44934ed5878dcb281a669819a9e4bf09cd3ab",
+    "durationSeconds": 13.380042,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Hani Ar-Rifai",
+    "verseId": "ar.hanirifai",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Hani_Rifai_192kbps/114006.mp3",
+    "bytes": 162506,
+    "sha256": "af4dc28eb22d5a618a29c77717d6ddad033035c04e62b01738a045a4dae03704",
+    "durationSeconds": 6.771083,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Muhammad Ayyub",
+    "verseId": "ar.muhammadayyoub",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/muhammad-ayyub/r1/001.mp3",
+    "bytes": 715271,
+    "sha256": "cdb2c5ef857691ad790ab7e448f33569f240e72ba2dfa2817a26027f3edb67fa",
+    "durationSeconds": 59.036756,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Muhammad Ayyub",
+    "verseId": "ar.muhammadayyoub",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Muhammad_Ayyoub_128kbps/001001.mp3",
+    "bytes": 106289,
+    "sha256": "699433144d40dc1ead078b489d5e2925fe00cdaad1d3e8ecdeee0dd5c286da51",
+    "durationSeconds": 6.643063,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Muhammad Ayyub",
+    "verseId": "ar.muhammadayyoub",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Muhammad_Ayyoub_128kbps/009001.mp3",
+    "bytes": 319031,
+    "sha256": "1fb8465c5bed29d94bffbb0038d449ac2086f6775bf406fd8c78f78d923d03fb",
+    "durationSeconds": 19.939438,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Muhammad Ayyub",
+    "verseId": "ar.muhammadayyoub",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Muhammad_Ayyoub_128kbps/114006.mp3",
+    "bytes": 116739,
+    "sha256": "89673a210b62121021a44c72c01329e27751e0bb04642cd853d3a4c65673df1e",
+    "durationSeconds": 7.296188,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Muhammad Jibreel",
+    "verseId": "ar.muhammadjibreel",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/muhammad-jibreel/r1/001.mp3",
+    "bytes": 746717,
+    "sha256": "b75d556f49cd81d5456dd4a986053aac60110953f265b9075774ad1ef9da3b70",
+    "durationSeconds": 46.114067,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Muhammad Jibreel",
+    "verseId": "ar.muhammadjibreel",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Muhammad_Jibreel_128kbps/001001.mp3",
+    "bytes": 80228,
+    "sha256": "1d99c437b08af0117ccf32564ac68e03ffa7eb6c468474838fe444af89467266",
+    "durationSeconds": 4.751375,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Muhammad Jibreel",
+    "verseId": "ar.muhammadjibreel",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Muhammad_Jibreel_128kbps/009001.mp3",
+    "bytes": 194972,
+    "sha256": "79bc2123646dbe00893ceefe28101b998aa37f1d28dfc2b04856d40713f659f2",
+    "durationSeconds": 12.179188,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Muhammad Jibreel",
+    "verseId": "ar.muhammadjibreel",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Muhammad_Jibreel_128kbps/114006.mp3",
+    "bytes": 85718,
+    "sha256": "10ec0cc53e8a8915417efcdb02bce6d0532ad172d8d6fa50fb86bb261fc7d743",
+    "durationSeconds": 5.350813,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ibrahim Akhdar",
+    "verseId": "ar.ibrahimakhbar",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/ibrahim-akhdar/r1/001.mp3",
+    "bytes": 375643,
+    "sha256": "f1ddcda825cca9dcae06b8267ccdb91db6ae7946322115da0a8144e749d6b7bc",
+    "durationSeconds": 61.121667,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ibrahim Akhdar",
+    "verseId": "ar.ibrahimakhbar",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Ibrahim_Akhdar_32kbps/001001.mp3",
+    "bytes": 26624,
+    "sha256": "bbb6c553724c2ba7fc322013b1d4087d152612a64aa6b25fca87b79c48e44595",
+    "durationSeconds": 6.656,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ibrahim Akhdar",
+    "verseId": "ar.ibrahimakhbar",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Ibrahim_Akhdar_32kbps/009001.mp3",
+    "bytes": 68096,
+    "sha256": "244cae9afbfa97953ef4beccb849055b27a682d44de2ab219a32e85ed934410f",
+    "durationSeconds": 17.024,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ibrahim Akhdar",
+    "verseId": "ar.ibrahimakhbar",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Ibrahim_Akhdar_32kbps/114006.mp3",
+    "bytes": 33248,
+    "sha256": "974a30d87e2d1101f3fc02d9a61f3456e21c40e83d50a208596fe1527aad5c50",
+    "durationSeconds": 8.312,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ayman Sowaid",
+    "verseId": "ar.aymanswoaid",
+    "kind": "chapter_1",
+    "url": "https://server15.mp3quran.net/a-rushdi/Almusshaf-Al-Mo-lim/001.mp3",
+    "bytes": 1005607,
+    "sha256": "906ea552c468889b6eabb2f5340fb408999ce105b6e9258d899fc35e6b9d1f8d",
+    "durationSeconds": 75.816,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ayman Sowaid",
+    "verseId": "ar.aymanswoaid",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Ayman_Sowaid_64kbps/001001.mp3",
+    "bytes": 55104,
+    "sha256": "98947a21a7e0e955145bcf9b500e05b4f688a12b37ef521ebf288722d34c55fa",
+    "durationSeconds": 6.76,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ayman Sowaid",
+    "verseId": "ar.aymanswoaid",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Ayman_Sowaid_64kbps/009001.mp3",
+    "bytes": 133248,
+    "sha256": "f6c2a127ca163305cb8cfca3b18f912eae197e2158cef0aa6fb051a069a512af",
+    "durationSeconds": 16.528,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ayman Sowaid",
+    "verseId": "ar.aymanswoaid",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Ayman_Sowaid_64kbps/114006.mp3",
+    "bytes": 60864,
+    "sha256": "d00b699caacd4358c633d95c2bd188369b101035b3545e75719db5f39f1f9ba8",
+    "durationSeconds": 7.48,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ali Jaber",
+    "verseId": "ar.alijaber",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/ali-jaber/r1/001.mp3",
+    "bytes": 1379102,
+    "sha256": "ce5b4c59b19917da98e4a5656a806431054d705bd971be422280be7474bce44d",
+    "durationSeconds": 57.025292,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ali Jaber",
+    "verseId": "ar.alijaber",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Ali_Jaber_64kbps/001001.mp3",
+    "bytes": 105953,
+    "sha256": "4830a96d83c0a9721012fa1949091350c39639b442928695bd8c5da49ff20750",
+    "durationSeconds": 13.244125,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ali Jaber",
+    "verseId": "ar.alijaber",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Ali_Jaber_64kbps/009001.mp3",
+    "bytes": 104908,
+    "sha256": "b84989dc71ebc1660dc6ab297826e202db123bbd9309d57d318baa737fcd6a97",
+    "durationSeconds": 13.1135,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Ali Jaber",
+    "verseId": "ar.alijaber",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Ali_Jaber_64kbps/114006.mp3",
+    "bytes": 76278,
+    "sha256": "d8d376bf71360d0c6bb04908250594907bc11a3f114a59e6b1d68528026a90d3",
+    "durationSeconds": 9.53475,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdullah Awad Al-Juhani",
+    "verseId": "ar.abdullahawadaljuhani",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/abdullah-juhani/r1/001.mp3",
+    "bytes": 704485,
+    "sha256": "033edf24bea0eeb5d7bf525f28367c60f491895c3ea1362735272e3ec668c70b",
+    "durationSeconds": 44.04,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdullah Awad Al-Juhani",
+    "verseId": "ar.abdullahawadaljuhani",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Abdullaah_3awwaad_Al-Juhaynee_128kbps/001001.mp3",
+    "bytes": 53208,
+    "sha256": "675f04701fc480cb649a0b39ad2bf0798fe762a36a7194ef62d55c8622238913",
+    "durationSeconds": 3.317551,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdullah Awad Al-Juhani",
+    "verseId": "ar.abdullahawadaljuhani",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Abdullaah_3awwaad_Al-Juhaynee_128kbps/009001.mp3",
+    "bytes": 154354,
+    "sha256": "8c31703950220a6b454fc58048f5759b2e9ead9eb292240787c70a1f1a423c69",
+    "durationSeconds": 9.639184,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdullah Awad Al-Juhani",
+    "verseId": "ar.abdullahawadaljuhani",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Abdullaah_3awwaad_Al-Juhaynee_128kbps/114006.mp3",
+    "bytes": 70344,
+    "sha256": "074a49379c6a1d2f8ae4260456b07edf75a741ed0e7a81b9b97c5b00cff6ecad",
+    "durationSeconds": 4.388571,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdul Muhsin Al-Qasim",
+    "verseId": "ar.abdulmohsenalqasim",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/abdulmohsen-qasim/r1/001.mp3",
+    "bytes": 691117,
+    "sha256": "028e301464a4129a1a481ade94a01aa5a3d41e623368e2438297ff669c31d773",
+    "durationSeconds": 42.638067,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdul Muhsin Al-Qasim",
+    "verseId": "ar.abdulmohsenalqasim",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/001001.mp3",
+    "bytes": 97011,
+    "sha256": "21ed0501ad982becd5fa3a6ee6af5780b20eb99b37348bcb75f8b40f73af9dd3",
+    "durationSeconds": 3.871458,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdul Muhsin Al-Qasim",
+    "verseId": "ar.abdulmohsenalqasim",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/009001.mp3",
+    "bytes": 298268,
+    "sha256": "477d34c1a9873b16a3243c50ab5af45c19c2406234e440e60815536a2fc71c7d",
+    "durationSeconds": 9.69675,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdul Muhsin Al-Qasim",
+    "verseId": "ar.abdulmohsenalqasim",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Muhsin_Al_Qasim_192kbps/114006.mp3",
+    "bytes": 106415,
+    "sha256": "35c7c0ae9c0a44b2b750f2e085204cd064b85f8ac6f51d4a8fff94de88e32710",
+    "durationSeconds": 4.263292,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Salah Al-Budair",
+    "verseId": "ar.salahalbudair",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/salah-budair/r1/001.mp3",
+    "bytes": 2222041,
+    "sha256": "5708578e8e92eacf058974516a6729734fe6e91c39cd37400f65464bc9994287",
+    "durationSeconds": 54.96,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Salah Al-Budair",
+    "verseId": "ar.salahalbudair",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Salah_Al_Budair_128kbps/001001.mp3",
+    "bytes": 50470,
+    "sha256": "3249848c254012481468b88a2202e1583085816d3650eae200c72fb7cb69071a",
+    "durationSeconds": 3.056327,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Salah Al-Budair",
+    "verseId": "ar.salahalbudair",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Salah_Al_Budair_128kbps/009001.mp3",
+    "bytes": 157882,
+    "sha256": "2e56e791ecd5d09c968386371ab0243fd67d30cf47bd210365c7ff141e3462b1",
+    "durationSeconds": 9.856125,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Salah Al-Budair",
+    "verseId": "ar.salahalbudair",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Salah_Al_Budair_128kbps/114006.mp3",
+    "bytes": 83968,
+    "sha256": "579efa03c56b0cfd60c227a0352a29735c5607c796aa79967ea2cb641164815b",
+    "durationSeconds": 5.18025,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Mahmoud Ali Al-Banna",
+    "verseId": "ar.mahmoudalialbanna",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/mahmoud-banna/r1/001.mp3",
+    "bytes": 682197,
+    "sha256": "cc606ecaa3d9bf42a5bfaa912ebbf3e89c516d5bffb97b593cce25cb79000e2f",
+    "durationSeconds": 42.056,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Mahmoud Ali Al-Banna",
+    "verseId": "ar.mahmoudalialbanna",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/mahmoud_ali_al_banna_32kbps/001001.mp3",
+    "bytes": 38202,
+    "sha256": "5c4117092ea933d7b7ce2e154efad1cf97c076185d3dd6f36017fb04e618905a",
+    "durationSeconds": 9.25325,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Mahmoud Ali Al-Banna",
+    "verseId": "ar.mahmoudalialbanna",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/mahmoud_ali_al_banna_32kbps/009001.mp3",
+    "bytes": 44368,
+    "sha256": "9d47532619cca676910a0a083fe2a3f9f0fe827a7d53d8661d370ef56e806e18",
+    "durationSeconds": 10.7945,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Mahmoud Ali Al-Banna",
+    "verseId": "ar.mahmoudalialbanna",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/mahmoud_ali_al_banna_32kbps/114006.mp3",
+    "bytes": 49059,
+    "sha256": "f6cb7b0fbdf41888e518e46d0b5dc96c120ced54d3297a888134146face2e6b4",
+    "durationSeconds": 11.97,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Khalifa Al-Tunaiji",
+    "verseId": "ar.khalifaaltunaiji",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/khalifa-tunaiji/r1/001.mp3",
+    "bytes": 637816,
+    "sha256": "0ab1d083efd75020966e9faa936615548b28a466fcfc65455112d82ed69a3837",
+    "durationSeconds": 52.636756,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Khalifa Al-Tunaiji",
+    "verseId": "ar.khalifaaltunaiji",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/khalefa_al_tunaiji_64kbps/001001.mp3",
+    "bytes": 79540,
+    "sha256": "7a762d2da25b7440adbbbe0a7f81724c4eb2857f4df72c3f00c25d238b3891b8",
+    "durationSeconds": 4.97125,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Khalifa Al-Tunaiji",
+    "verseId": "ar.khalifaaltunaiji",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/khalefa_al_tunaiji_64kbps/009001.mp3",
+    "bytes": 118419,
+    "sha256": "b3f2bd4cd96d44d243f6624e7107b8d9885fd3d5b2bb27737bebeecfc2167d8f",
+    "durationSeconds": 14.785306,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Khalifa Al-Tunaiji",
+    "verseId": "ar.khalifaaltunaiji",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/khalefa_al_tunaiji_64kbps/114006.mp3",
+    "bytes": 50649,
+    "sha256": "6d4986fc73f89955a3c13300b40a8de90e9d0ad21d16157470100403613a62e9",
+    "durationSeconds": 6.321625,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Muhammad At-Tablawi",
+    "verseId": "ar.mohamedtablawi",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/muhammad-tablawi/r1/001.mp3",
+    "bytes": 847710,
+    "sha256": "d71c06fecc540c661750ae37eedb04eca5a5517e0a9ab97b1c3da0b777d6ee5d",
+    "durationSeconds": 52.435756,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Muhammad At-Tablawi",
+    "verseId": "ar.mohamedtablawi",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Mohammad_al_Tablaway_128kbps/001001.mp3",
+    "bytes": 98314,
+    "sha256": "f14f0a17059a7e4e5fdcad2d0723333ff2a02a614c30c758db8ede61183fc3cf",
+    "durationSeconds": 6.016188,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Muhammad At-Tablawi",
+    "verseId": "ar.mohamedtablawi",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Mohammad_al_Tablaway_128kbps/009001.mp3",
+    "bytes": 239626,
+    "sha256": "268a0cb0a8b525af6de8aaff68f833dfe8c48dd6f723ea4217c60a1f2ff6a12d",
+    "durationSeconds": 14.923875,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Muhammad At-Tablawi",
+    "verseId": "ar.mohamedtablawi",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Mohammad_al_Tablaway_128kbps/114006.mp3",
+    "bytes": 151562,
+    "sha256": "ef04fb5a0f28b1065b39147926c760527354181eff7f5040d4c659b9acb67e9e",
+    "durationSeconds": 9.385938,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Salah Bukhatir",
+    "verseId": "ar.salahbukhatir",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/salah-bukhatir/r1/001.mp3",
+    "bytes": 838984,
+    "sha256": "3792da2f9c47284efd332f6dd3a4c590f14c783c064cab85ccf28fcc94e6c1b0",
+    "durationSeconds": 52.009756,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Salah Bukhatir",
+    "verseId": "ar.salahbukhatir",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Salaah_AbdulRahman_Bukhatir_128kbps/001001.mp3",
+    "bytes": 72811,
+    "sha256": "98fe72593edb8e7f4fc0a7768140a549073c248f3a4a3b409a7ac0dbf99de035",
+    "durationSeconds": 3.926378,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Salah Bukhatir",
+    "verseId": "ar.salahbukhatir",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Salaah_AbdulRahman_Bukhatir_128kbps/009001.mp3",
+    "bytes": 177411,
+    "sha256": "4e3a93ea38748605e20ca28664c76e6f95354b110764dfcbc25e9ee2e6bbe507",
+    "durationSeconds": 11.0055,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Salah Bukhatir",
+    "verseId": "ar.salahbukhatir",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Salaah_AbdulRahman_Bukhatir_128kbps/114006.mp3",
+    "bytes": 116736,
+    "sha256": "148e7b8005e2aa6265ad875c137a342a2abb0a036f8256b5c16b25169f9d47ad",
+    "durationSeconds": 7.191688,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Khalid Al-Qahtani",
+    "verseId": "ar.khaledalqahtani",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/khalid-qahtani/r1/001.mp3",
+    "bytes": 663449,
+    "sha256": "50c9b11e0c27194d1bb2423b7633ac6f401d3ba6457c7ed74e5ac45c449e2f98",
+    "durationSeconds": 41.038313,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Khalid Al-Qahtani",
+    "verseId": "ar.khaledalqahtani",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Khaalid_Abdullaah_al-Qahtaanee_192kbps/001001.mp3",
+    "bytes": 83968,
+    "sha256": "c8edf8fb0c46b25767dea903a6ff5cf70ec0059f33175d6643dfeb613d224694",
+    "durationSeconds": 3.427375,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Khalid Al-Qahtani",
+    "verseId": "ar.khaledalqahtani",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Khaalid_Abdullaah_al-Qahtaanee_192kbps/009001.mp3",
+    "bytes": 440320,
+    "sha256": "8de115757e308d4c9248455e249c60e907368e5979334d4eab611a955dfe297b",
+    "durationSeconds": 18.264917,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Khalid Al-Qahtani",
+    "verseId": "ar.khaledalqahtani",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Khaalid_Abdullaah_al-Qahtaanee_192kbps/114006.mp3",
+    "bytes": 137216,
+    "sha256": "c8282c657455dd9e2002fdf33c44b4cd686b07ea58478104da996f476f29c67e",
+    "durationSeconds": 5.616327,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdullah Al-Matrood",
+    "verseId": "ar.abdullahalmatrood",
+    "kind": "chapter_1",
+    "url": "https://cdn.mp3quran.net/audio/abdullah-matrood/r1/001.mp3",
+    "bytes": 808487,
+    "sha256": "66f92d77c0519303069c4162620dbed240e311824e09b39c3698f5a3f7ac7ccf",
+    "durationSeconds": 50.102813,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdullah Al-Matrood",
+    "verseId": "ar.abdullahalmatrood",
+    "kind": "verse_1_1",
+    "url": "https://everyayah.com/data/Abdullah_Matroud_128kbps/001001.mp3",
+    "bytes": 110592,
+    "sha256": "0c4ece255901cef155a6d739b925fdaf5772f2d8d714b270ce04993c7677a922",
+    "durationSeconds": 6.870204,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdullah Al-Matrood",
+    "verseId": "ar.abdullahalmatrood",
+    "kind": "verse_9_1",
+    "url": "https://everyayah.com/data/Abdullah_Matroud_128kbps/009001.mp3",
+    "bytes": 215040,
+    "sha256": "b6331197604ee502962ae48858f6a42e22c75c647ea25c2b9439e2c2b214251c",
+    "durationSeconds": 13.426939,
+    "audioDecodePassed": true
+  },
+  {
+    "qari": "Abdullah Al-Matrood",
+    "verseId": "ar.abdullahalmatrood",
+    "kind": "verse_114_6",
+    "url": "https://everyayah.com/data/Abdullah_Matroud_128kbps/114006.mp3",
+    "bytes": 102711,
+    "sha256": "079341e6609ae806d461cd45ebdaf8cb0112def13b1219a091fdde311e96395e",
+    "durationSeconds": 6.347755,
+    "audioDecodePassed": true
+  }
+]

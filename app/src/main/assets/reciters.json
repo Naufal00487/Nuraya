@@ -1,14 +1,13 @@
 {
   "schemaVersion": 1,
   "metadata": {
-    "provider": "Islamic Network / Al Quran Cloud",
     "manifestUrl": "https://cdn.islamic.network/quran/info/by-surah/info.json",
     "manifestSha256": "6f183510806ab226e3df8be6675cd222e35209123f5153f51aa1b8b08005e25a",
     "verifiedDate": "2026-10-24",
     "bitrateKbps": 128,
     "termsUrl": "https://alquran.cloud/terms-and-conditions",
     "rights": "Noncommercial personal and educational streaming/downloads; copyright remains with reciters and rightsholders. Recordings are not bundled in the APK.",
-    "validationScope": "All selected editions have 114 surah files in the pinned provider manifest and a successful complete Al-Fatihah HTTP download/host MP3 decode. Seven new editions failing the sample and recheck are excluded. Device playback and all remaining files are not verified.",
+    "validationScope": "See docs/sources/curated-reciters.json and docs/sources/reciter-audio-probes.json for the 30 active reciters. Other manifest fields describe retained legacy editions only.",
     "namesUrl": "https://api.alquran.cloud/v1/edition?format=audio",
     "namesSha256": "8f53227df80805a0d5592c8db0ef41adf9b6d416cdc196c840b2c991def12c58",
     "countMeaning": "Recording editions; multiple styles/riwayat can belong to the same reciter. Only editions named by the provider with all 114 surah files are included.",
@@ -20,104 +19,119 @@
       "ar.mohamedabdelhakimsaadalabdullah",
       "ar.saberabdulhakam",
       "ar.yasseralmazroyee"
-    ]
+    ],
+    "activeCatalog": "30 selected people; MP3Quran V3 Hafs editions, paired by explicit IDs with individual-verse sources. Unselected legacy IDs remain for stored downloads.",
+    "legacyProvider": "Islamic Network / Al Quran Cloud",
+    "provider": "MP3Quran V3 for 30 visible reciters; Islamic Network for retained legacy IDs"
   },
   "qaris": [
     {
       "id": "ar.alafasy",
       "name": "Mishary Rashid Alafasy",
-      "description": "Murattal · 128 kbps",
-      "sourceUrl": "https://alquran.cloud/cdn",
-      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/",
-      "manifestSurahCount": 114
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=123",
+      "baseUrl": "https://cdn.mp3quran.net/audio/mishary-alafasy/r1/",
+      "manifestSurahCount": 114,
+      "numberPadding": 3
     },
     {
       "id": "ar.abdulbasitmurattal",
       "name": "Abdul Basit Abdus Samad",
-      "description": "Murattal · 128 kbps",
-      "sourceUrl": "https://alquran.cloud/cdn",
-      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.abdulbasitmurattal/",
-      "manifestSurahCount": 114
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=51",
+      "baseUrl": "https://cdn.mp3quran.net/audio/abdulbasit-abdulsamad/r3/",
+      "manifestSurahCount": 114,
+      "numberPadding": 3
     },
     {
       "id": "ar.saudalshuraim",
       "name": "Saud Al-Shuraim",
-      "description": "Murattal · 128 kbps",
-      "sourceUrl": "https://alquran.cloud/cdn",
-      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.saudalshuraim/",
-      "manifestSurahCount": 114
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=31",
+      "baseUrl": "https://cdn.mp3quran.net/audio/saud-shuraim/r1/",
+      "manifestSurahCount": 114,
+      "numberPadding": 3
     },
     {
       "id": "ar.muhammadsiddiqalminshawimujawwad",
       "name": "Muhammad Siddiq Al-Minshawi",
-      "description": "Mujawwad · 128 kbps",
-      "sourceUrl": "https://alquran.cloud/cdn",
-      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.muhammadsiddiqalminshawimujawwad/",
-      "manifestSurahCount": 114
+      "description": "Hafs ‘an ‘Asim · Mujawwad",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=112",
+      "baseUrl": "https://cdn.mp3quran.net/audio/muhammad-minshawi/r2/",
+      "manifestSurahCount": 114,
+      "numberPadding": 3
     },
     {
       "id": "ar.ahmedalajmi",
       "name": "Ahmed Al-Ajmi",
-      "description": "Murattal · 128 kbps",
-      "sourceUrl": "https://alquran.cloud/cdn",
-      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.ahmedalajmi/",
-      "manifestSurahCount": 114
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=5",
+      "baseUrl": "https://cdn.mp3quran.net/audio/ahmad-ajmi/r1/",
+      "manifestSurahCount": 114,
+      "numberPadding": 3
     },
     {
       "id": "ar.abdullahbasfar",
       "name": "Abdullah Basfar",
-      "description": "Murattal · 128 kbps",
-      "sourceUrl": "https://alquran.cloud/cdn",
-      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.abdullahbasfar/",
-      "manifestSurahCount": 114
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=60",
+      "baseUrl": "https://cdn.mp3quran.net/audio/abdullah-basfar/r1/",
+      "manifestSurahCount": 114,
+      "numberPadding": 3
     },
     {
       "id": "ar.aliabdurrahmanalhuthaify",
       "name": "Ali Abdurrahman Al-Hudhaify",
-      "description": "Murattal · 128 kbps",
-      "sourceUrl": "https://alquran.cloud/cdn",
-      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.aliabdurrahmanalhuthaify/",
-      "manifestSurahCount": 114
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=74",
+      "baseUrl": "https://cdn.mp3quran.net/audio/ali-hudhaifi/r1/",
+      "manifestSurahCount": 114,
+      "numberPadding": 3
     },
     {
       "id": "ar.faresabbad",
       "name": "Fares Abbad",
-      "description": "Murattal · 128 kbps",
-      "sourceUrl": "https://alquran.cloud/cdn",
-      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.faresabbad/",
-      "manifestSurahCount": 114
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=81",
+      "baseUrl": "https://cdn.mp3quran.net/audio/fares-abbad/r1/",
+      "manifestSurahCount": 114,
+      "numberPadding": 3
     },
     {
       "id": "ar.muhammadayyub",
       "name": "Muhammad Ayyub",
-      "description": "Murattal · 128 kbps",
-      "sourceUrl": "https://alquran.cloud/cdn",
-      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.muhammadayyub/",
-      "manifestSurahCount": 114
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=109",
+      "baseUrl": "https://cdn.mp3quran.net/audio/muhammad-ayyub/r1/",
+      "manifestSurahCount": 114,
+      "numberPadding": 3
     },
     {
       "id": "ar.nasseralqatami",
       "name": "Nasser Al-Qatami",
-      "description": "Murattal · 128 kbps",
-      "sourceUrl": "https://alquran.cloud/cdn",
-      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.nasseralqatami/",
-      "manifestSurahCount": 114
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=86",
+      "baseUrl": "https://cdn.mp3quran.net/audio/nasser-qatami/r1/",
+      "manifestSurahCount": 114,
+      "numberPadding": 3
     },
     {
       "id": "ar.yasseraldossari",
       "name": "Yasser Al-Dossari",
-      "description": "Murattal · 128 kbps",
-      "sourceUrl": "https://alquran.cloud/cdn",
-      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.yasseraldossari/",
-      "manifestSurahCount": 114
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=92",
+      "baseUrl": "https://cdn.mp3quran.net/audio/yasser-dosari/r1/",
+      "manifestSurahCount": 114,
+      "numberPadding": 3
     },
     {
       "id": "ar.haniarrifai",
       "name": "Hani Ar-Rifai",
-      "description": "Murattal · 128 kbps",
-      "sourceUrl": "https://alquran.cloud/cdn",
-      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.haniarrifai/",
-      "manifestSurahCount": 114
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=89",
+      "baseUrl": "https://cdn.mp3quran.net/audio/hani-rifai/r1/",
+      "manifestSurahCount": 114,
+      "numberPadding": 3
     },
     {
       "id": "ar.abdulazizazzahrani",
@@ -153,19 +167,21 @@
     },
     {
       "id": "ar.abdullahalmatrood",
-      "name": "Abdullah al-Matrood",
-      "description": "114 surah · 128 kbps",
-      "sourceUrl": "https://alquran.cloud/cdn",
-      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.abdullahalmatrood/",
-      "manifestSurahCount": 114
+      "name": "Abdullah Al-Matrood",
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=59",
+      "baseUrl": "https://cdn.mp3quran.net/audio/abdullah-matrood/r1/",
+      "manifestSurahCount": 114,
+      "numberPadding": 3
     },
     {
       "id": "ar.abdullahawadaljuhani",
-      "name": "Abdullah Awad al-Juhani",
-      "description": "114 surah · 128 kbps",
-      "sourceUrl": "https://alquran.cloud/cdn",
-      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.abdullahawadaljuhani/",
-      "manifestSurahCount": 114
+      "name": "Abdullah Awad Al-Juhani",
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=62",
+      "baseUrl": "https://cdn.mp3quran.net/audio/abdullah-juhani/r1/",
+      "manifestSurahCount": 114,
+      "numberPadding": 3
     },
     {
       "id": "ar.abdullahkhayat",
@@ -377,11 +393,12 @@
     },
     {
       "id": "ar.aymanswed",
-      "name": "Ayman Swed",
-      "description": "114 surah · 128 kbps",
-      "sourceUrl": "https://alquran.cloud/cdn",
-      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.aymanswed/",
-      "manifestSurahCount": 114
+      "name": "Ayman Sowaid",
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=21203",
+      "baseUrl": "https://server15.mp3quran.net/a-rushdi/Almusshaf-Al-Mo-lim/",
+      "manifestSurahCount": 114,
+      "numberPadding": 3
     },
     {
       "id": "ar.azizalili",
@@ -473,11 +490,12 @@
     },
     {
       "id": "ar.ibrahimalakhdar",
-      "name": "Ibrahim al-Akhdar",
-      "description": "114 surah · 128 kbps",
-      "sourceUrl": "https://alquran.cloud/cdn",
-      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.ibrahimalakhdar/",
-      "manifestSurahCount": 114
+      "name": "Ibrahim Akhdar",
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=1",
+      "baseUrl": "https://cdn.mp3quran.net/audio/ibrahim-akhdar/r1/",
+      "manifestSurahCount": 114,
+      "numberPadding": 3
     },
     {
       "id": "ar.ibrahimaldossari",
@@ -545,11 +563,12 @@
     },
     {
       "id": "ar.khaledalqahtani",
-      "name": "Khaled al-Qahtani",
-      "description": "114 surah · 128 kbps",
-      "sourceUrl": "https://alquran.cloud/cdn",
-      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.khaledalqahtani/",
-      "manifestSurahCount": 114
+      "name": "Khalid Al-Qahtani",
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=21",
+      "baseUrl": "https://cdn.mp3quran.net/audio/khalid-qahtani/r1/",
+      "manifestSurahCount": 114,
+      "numberPadding": 3
     },
     {
       "id": "ar.khaledbarakat",
@@ -609,11 +628,12 @@
     },
     {
       "id": "ar.mahmoudalialbanna",
-      "name": "Mahmoud Ali al-Banna",
-      "description": "114 surah · 128 kbps",
-      "sourceUrl": "https://alquran.cloud/cdn",
-      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.mahmoudalialbanna/",
-      "manifestSurahCount": 114
+      "name": "Mahmoud Ali Al-Banna",
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=121",
+      "baseUrl": "https://cdn.mp3quran.net/audio/mahmoud-banna/r1/",
+      "manifestSurahCount": 114,
+      "numberPadding": 3
     },
     {
       "id": "ar.mahmoudelsheimy",
@@ -721,11 +741,12 @@
     },
     {
       "id": "ar.mohamedtablawi",
-      "name": "Mohamed at-Tablawi",
-      "description": "114 surah · 128 kbps",
-      "sourceUrl": "https://alquran.cloud/cdn",
-      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.mohamedtablawi/",
-      "manifestSurahCount": 114
+      "name": "Muhammad At-Tablawi",
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=106",
+      "baseUrl": "https://cdn.mp3quran.net/audio/muhammad-tablawi/r1/",
+      "manifestSurahCount": 114,
+      "numberPadding": 3
     },
     {
       "id": "ar.mohammadismaeelalmuqaddim",
@@ -937,11 +958,12 @@
     },
     {
       "id": "ar.salahalbudair",
-      "name": "Salah al-Budair",
-      "description": "114 surah · 128 kbps",
-      "sourceUrl": "https://alquran.cloud/cdn",
-      "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.salahalbudair/",
-      "manifestSurahCount": 114
+      "name": "Salah Al-Budair",
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=43",
+      "baseUrl": "https://cdn.mp3quran.net/audio/salah-budair/r1/",
+      "manifestSurahCount": 114,
+      "numberPadding": 3
     },
     {
       "id": "ar.salahalhashem",
@@ -1125,6 +1147,96 @@
       "description": "114 surah · 128 kbps",
       "sourceUrl": "https://alquran.cloud/cdn",
       "baseUrl": "https://cdn.islamic.network/quran/audio-surah/128/ar.yousufbinnoahahmad/",
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.husary",
+      "name": "Mahmoud Khalil Al-Husary",
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=118",
+      "baseUrl": "https://cdn.mp3quran.net/audio/mahmoud-husary/r1/",
+      "numberPadding": 3,
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.abdurrahmaansudais",
+      "name": "Abdurrahman As-Sudais",
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=54",
+      "baseUrl": "https://cdn.mp3quran.net/audio/abdulrahman-sudais/r1/",
+      "numberPadding": 3,
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.mahermuaiqly",
+      "name": "Maher Al-Muaiqly",
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=102",
+      "baseUrl": "https://cdn.mp3quran.net/audio/maher-muaiqly/r1/",
+      "numberPadding": 3,
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.shaatree",
+      "name": "Abu Bakr Ash-Shatri",
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=4",
+      "baseUrl": "https://cdn.mp3quran.net/audio/abubakr-shatri/r1/",
+      "numberPadding": 3,
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.saadalghamdi",
+      "name": "Saad Al-Ghamdi",
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=30",
+      "baseUrl": "https://cdn.mp3quran.net/audio/saad-ghamdi/r1/",
+      "numberPadding": 3,
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.muhammadjibreel",
+      "name": "Muhammad Jibreel",
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=111",
+      "baseUrl": "https://cdn.mp3quran.net/audio/muhammad-jibreel/r1/",
+      "numberPadding": 3,
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.alijaber",
+      "name": "Ali Jaber",
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=76",
+      "baseUrl": "https://cdn.mp3quran.net/audio/ali-jaber/r1/",
+      "numberPadding": 3,
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.abdulmohsenalqasim",
+      "name": "Abdul Muhsin Al-Qasim",
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=67",
+      "baseUrl": "https://cdn.mp3quran.net/audio/abdulmohsen-qasim/r1/",
+      "numberPadding": 3,
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.khalifaaltunaiji",
+      "name": "Khalifa Al-Tunaiji",
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=24",
+      "baseUrl": "https://cdn.mp3quran.net/audio/khalifa-tunaiji/r1/",
+      "numberPadding": 3,
+      "manifestSurahCount": 114
+    },
+    {
+      "id": "ar.salahbukhatir",
+      "name": "Salah Bukhatir",
+      "description": "Hafs ‘an ‘Asim · Murattal",
+      "sourceUrl": "https://www.mp3quran.net/api/v3/reciters?language=eng&reciter=46",
+      "baseUrl": "https://cdn.mp3quran.net/audio/salah-bukhatir/r1/",
+      "numberPadding": 3,
       "manifestSurahCount": 114
     }
   ]

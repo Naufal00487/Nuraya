@@ -1,5 +1,6 @@
 package com.nuraya.app.banners
 
+import com.nuraya.app.ui.icons.AppIcons as Icons
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -12,9 +13,6 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.ArrowForward
-import androidx.compose.material.icons.outlined.AutoStories
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment

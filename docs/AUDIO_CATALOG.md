@@ -1,4 +1,25 @@
-# Katalog audio Nuraya 1.3.1
+# Katalog audio Nuraya 1.6.2
+
+Daftar aktif menampilkan **30 orang qari berbeda**, masing-masing satu edisi Hafs. Nama yang sama tidak ditampilkan berulang sebagai orang lain. Metadata lama tetap disimpan untuk favorit dan unduhan lama.
+
+Rekaman surah berasal dari MP3Quran V3; seluruh 30 manifest mencantumkan 114 surah. Audio ayat menggunakan Islamic Network yang sebelumnya telah diperiksa atau EveryAyah untuk tambahan baru. Pilihan pada Murottal dipasangkan ke pilihan Quran/hafalan dengan ID eksplisit. Pengaturan juga menyediakan daftar 30 qari yang sama. Foto yang tersedia memiliki atribusi Quran.com; 22 qari tanpa foto terverifikasi memakai inisial.
+
+**11 qari mendukung sorotan kata** dengan rekaman bertimestamp yang sudah dipasangkan. Untuk ayat tanpa data yang cocok dan 19 qari lainnya, sorotan mengikuti ayat. Minshawi memakai edisi Mujawwad; lainnya memakai edisi sesuai metadata pada daftar. Mengganti qari tidak meminjam timestamp rekaman qari lain. Tombol “Baca & dengarkan dari awal” pada pemutar surah memulai antrean ayat dari awal; tidak menebak posisi ayat dari rekaman surah.
+
+Bukti: [30 pemetaan sumber](sources/curated-reciters.json), [120 sampel audio](sources/reciter-audio-probes.json). Sampel mencakup Al-Fatihah penuh dan klip EveryAyah 1:1, 9:1, 114:6 untuk setiap qari. Seluruh sampel berhasil didekode; 30 berkas Al-Fatihah mempunyai hash berbeda. Sebanyak [45 sampel tambahan](sources/reciter-actual-verse-probes.json) dari URL Islamic Network yang benar-benar dipakai 15 qari lama juga berhasil didekode. Jadi seluruh 30 penyedia ayat aktif telah diperiksa pada tiga rujukan tersebut. Direktori EveryAyah 30 qari mencantumkan seluruh 6.236 nomor kanonis. Ini pemeriksaan metadata/berkas, bukan autentikasi suara oleh pendengaran manusia atau pengujian seluruh rekaman pada HP.
+
+```sh
+python3 scripts/verify_curated_reciters.py
+# Opsional: ulangi pengecekan ketersediaan direktori daring
+python3 scripts/verify_curated_reciters.py --live
+```
+
+Streaming perlu internet. Hak rekaman tetap milik penyedia/qari; tidak ada audio Quran baru yang dimasukkan ke APK. Unduhan surah memakai mekanisme lama. Metadata/timing lama tidak diubah atau diterapkan ke MP3Quran baru.
+
+## Catatan historis 1.3.1
+
+Angka di bawah menggambarkan katalog historis, bukan jumlah pilihan di UI saat ini.
+
 
 Aplikasi mendukung **138 ID edisi rekaman lengkap 114 surah**. Daftar menampilkan **137 pilihan** karena dua alias Alafasy diringkas menjadi satu kartu, sementara seluruh ID tetap tersedia untuk favorit, daftar putar dan unduhan lama. Angka tersebut menghitung edisi rekaman, bukan jumlah orang; beberapa edisi berasal dari qari yang sama. Nama berasal dari metadata Islamic Network.
 

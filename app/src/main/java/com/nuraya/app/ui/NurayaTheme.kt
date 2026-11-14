@@ -10,27 +10,27 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.dp
 
-val Emerald = Color(0xFF2E5A4D)
+val Emerald = Color(0xFF168C7C)
 val Gold = Color(0xFFB49A58)
 private val LightColors = lightColorScheme(
     primary = Emerald, onPrimary = Color.White,
     primaryContainer = Color(0xFFDDEAE1), onPrimaryContainer = Color(0xFF23463A),
     secondary = Color(0xFF74602C), secondaryContainer = Color(0xFFF2EBCD), onSecondaryContainer = Color(0xFF56451C),
-    background = Color(0xFFF8F8F1), surface = Color(0xFFF8F8F1),
-    surfaceContainer = Color(0xFFEDF1E6), surfaceContainerLow = Color(0xFFF0F3E9),
-    surfaceContainerHigh = Color(0xFFE4EBDD), surfaceVariant = Color(0xFFE4EBDD),
-    onSurface = Color(0xFF263B31), onSurfaceVariant = Color(0xFF5A685D),
-    outline = Color(0xFF99A58F), outlineVariant = Color(0xFFD8DFCE)
+    background = Color(0xFFF5F6F5), surface = Color(0xFFF5F6F5),
+    surfaceContainer = Color(0xFFE9EEEC), surfaceContainerLow = Color(0xFFFFFFFF),
+    surfaceContainerHigh = Color(0xFFE5EBE8), surfaceVariant = Color(0xFFE5EBE8),
+    onSurface = Color(0xFF192420), onSurfaceVariant = Color(0xFF62706A),
+    outline = Color(0xFF89978F), outlineVariant = Color(0xFFDCE2DE)
 )
 private val DarkColors = darkColorScheme(
-    primary = Color(0xFFBDDAC5), onPrimary = Color(0xFF19372B),
-    primaryContainer = Color(0xFF2E5A4D), onPrimaryContainer = Color(0xFFE5F2E6),
+    primary = Color(0xFF7BD7C3), onPrimary = Color(0xFF19372B),
+    primaryContainer = Color(0xFF168C7C), onPrimaryContainer = Color(0xFFE5F2E6),
     secondary = Color(0xFFDEC77F), secondaryContainer = Color(0xFF51482C),
-    background = Color(0xFF14251E), surface = Color(0xFF14251E),
-    surfaceContainer = Color(0xFF20352A), surfaceContainerLow = Color(0xFF1B2D24),
-    surfaceContainerHigh = Color(0xFF2D4436), surfaceVariant = Color(0xFF2D4436),
-    onSurface = Color(0xFFE8F0E5), onSurfaceVariant = Color(0xFFBFCEBC),
-    outlineVariant = Color(0xFF435B48)
+    background = Color(0xFF121516), surface = Color(0xFF121516),
+    surfaceContainer = Color(0xFF292F32), surfaceContainerLow = Color(0xFF242A2D),
+    surfaceContainerHigh = Color(0xFF30383B), surfaceVariant = Color(0xFF30383B),
+    onSurface = Color(0xFFF1F3F2), onSurfaceVariant = Color(0xFFB4BFC0),
+    outlineVariant = Color(0xFF3B4447)
 )
 
 @Composable
