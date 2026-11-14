@@ -31,7 +31,8 @@ fun rememberAssetBitmap(path: String): ImageBitmap? {
                         val bytes=input.readBytes()
                         val bounds=BitmapFactory.Options().apply{inJustDecodeBounds=true}
                         BitmapFactory.decodeByteArray(bytes,0,bytes.size,bounds)
-                        val options=BitmapFactory.Options().apply{while(bounds.outWidth/inSampleSize.coerceAtLeast(1)>1600)inSampleSize=inSampleSize.coerceAtLeast(1)*2}
+                        val maxWidth = if (path.startsWith("brand/covers/")) 512 else 1600
+                        val options=BitmapFactory.Options().apply{while(bounds.outWidth/inSampleSize.coerceAtLeast(1)>maxWidth)inSampleSize=inSampleSize.coerceAtLeast(1)*2}
                         BitmapFactory.decodeByteArray(bytes,0,bytes.size,options)
                     }?.also{brandCache.put(path,it)}
                     bitmap?.asImageBitmap()
@@ -44,7 +45,8 @@ fun rememberAssetBitmap(path: String): ImageBitmap? {
 
 @Composable
 fun BrandImage(name: String, modifier: Modifier = Modifier, scale: ContentScale = ContentScale.Crop, description: String? = null) {
-    val bitmap = rememberAssetBitmap("brand/$name.jpg")
+    val path = if (name.startsWith("covers/")) "brand/" + (if (name == "covers/madinah_tajwid") "covers/madinah" else name) + ".png" else "brand/$name.jpg"
+    val bitmap = rememberAssetBitmap(path)
     Box(modifier) { bitmap?.let { Image(it, description, Modifier.fillMaxSize().testTag("brand_image_$name"), contentScale = scale) } }
 }
 

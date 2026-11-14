@@ -30,6 +30,8 @@ class LocalLearningRepository(
     private val quran: QuranRepository,
     private val study: StudyRepository,
 ) {
+    private val semanticIndex by lazy { SemanticVerseIndex(context.applicationContext) }
+    private val spokenIndex by lazy { SpokenVerseSearch(quran) }
     private val assets = context.applicationContext.assets
     private val lessons by lazy { PracticeContent(context.applicationContext, quran).lessons }
     private data class Index(val lengths: IntArray, val postings: Map<String, IntArray>)
@@ -57,8 +59,9 @@ class LocalLearningRepository(
         }
     }
 
-    suspend fun find(question: String): LocalLearningResponse = withContext(Dispatchers.IO) {
+    suspend fun find(question: String, semantic: Boolean = false): LocalLearningResponse = withContext(Dispatchers.IO) {
         require(question.trim().length in 2..1000) { "question_length" }
+        if (question.any { it in 'ء'..'ي' }) return@withContext response(spokenIndex.find(question), emptyList(), emptyList())
         val normalized = normalize(question)
         val words = tokens(normalized)
         if (words.any { it in outsideScope }) return@withContext LocalLearningResponse(status = "outside_scope")
@@ -77,7 +80,7 @@ class LocalLearningRepository(
         if (requestedLessons.isNotEmpty()) {
             return@withContext response(requestedLessons.mapNotNull { quran.verse(it.surah, it.ayah) }.distinctBy { it.number }, requestedLessons, words)
         }
-        val queryWords = words.filterNot { it in stopWords }.distinct().take(12)
+        val queryWords = (if (semantic) semanticIndex.queryTerms(question) else words.filterNot { it in stopWords }).distinct().take(16)
         if (queryWords.isEmpty()) return@withContext LocalLearningResponse(status = "no_results")
         val groups = queryWords.map { aliases[it] ?: setOf(it) }.distinct()
         val data = index
@@ -103,6 +106,18 @@ class LocalLearningRepository(
             }
         }
         val required = if (groups.size <= 2) groups.size else ceil(groups.size * .67).toInt()
+        if (semantic) {
+            val meaning = semanticIndex.scores(question)
+            val maxScore = scores.maxOrNull()?.coerceAtLeast(1.0) ?: 1.0
+            val ranked = scores.indices.filter { scores[it] > 0 || meaning[it] >= .5f }.map { position ->
+                val coverage = matches[position].toDouble() / groups.size
+                val verse = quran.allVerses[position]
+                val translation = tokens(normalize(verse.indonesian + " " + verse.english)).toSet()
+                val direct = groups.count { group -> group.any { it in translation } }.toDouble() / groups.size
+                verse to (scores[position] / maxScore * .55 + meaning[position] * .35 + coverage * .15 + direct * .45)
+            }.sortedWith(compareByDescending<Pair<Verse, Double>> { it.second }.thenBy { it.first.number }).take(5).map { it.first }
+            return@withContext response(ranked, emptyList(), queryWords)
+        }
         val ranked = scores.indices.filter { matches[it] >= required && scores[it] > 0 }.map { position ->
             val verse = quran.allVerses[position]
             val translationWords = tokens(normalize(verse.indonesian + " " + verse.english)).toSet()
@@ -113,7 +128,7 @@ class LocalLearningRepository(
     }
 
     private suspend fun response(verses: List<Verse>, foundLessons: List<TajwidLesson>, terms: List<String>): LocalLearningResponse {
-        val sources = verses.take(5).map { verse ->
+        val sources = verses.take(8).map { verse ->
             coroutineContext.ensureActive()
             val details = study.verse(verse.surah, verse.ayah)
             val full = details?.tafsir
@@ -193,6 +208,9 @@ class LocalLearningRepository(
             setOf("cobaan", "ujian", "musibah", "trial", "trials"),
             setOf("doa", "berdoa", "supplication"),
             setOf("orangtua", "parents"),
+            setOf("susah", "kesusahan", "sulit", "kesulitan", "kesukaran", "kesempitan"),
+            setOf("gosip", "ghibah", "menggunjing"),
+            setOf("miskin", "kemiskinan"),
             setOf("sedih", "kesedihan", "bersedih", "sorrow", "grief"),
         )
         private val aliases = aliasGroups.flatMap { group -> group.map { it to group } }.toMap()

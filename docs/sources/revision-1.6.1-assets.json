@@ -1,0 +1,73 @@
+{
+  "source": "User-provided Penambahan dan revisi.docx",
+  "docxSha256": "43b7411a42dcf1cd45428ee57ccb3e5a8aa28a38bf13cc505f31fb7dda2df0c6",
+  "unchangedImageBytes": true,
+  "madinahTajwidCover": "User selected the green Madinah cover image6.png; image7.png says Bahriyah/Pojok and is excluded.",
+  "files": [
+    {
+      "source": "image1.png",
+      "asset": "brand/covers/standard.png",
+      "sha256": "98e2283a8994a3aebc04e4f20f3674e352e51ebb0e2cc4b2ce00d31ca8742780"
+    },
+    {
+      "source": "image2.png",
+      "asset": "brand/covers/word_tajwid.png",
+      "sha256": "672baa12ebfc7feae5ca500b680769fb0f968e72cf04d92cf6febda6296dd0fc"
+    },
+    {
+      "source": "image3.png",
+      "asset": "brand/covers/latin_tajwid.png",
+      "sha256": "38d03778c0b48a4171465ea622a3b63862dd99bbe90a43154419886a8dc07f0f"
+    },
+    {
+      "source": "image4.png",
+      "asset": "brand/covers/indonesia.png",
+      "sha256": "94a68c4e569fb82ac44f6f51a82d74ca1b98eef8c91237ac49ae916325522708"
+    },
+    {
+      "source": "image5.png",
+      "asset": "brand/covers/indonesia_tajwid.png",
+      "sha256": "5de89af4f6112a682d560070bcfe490394c48be6d460204838755bc8f259bbd5"
+    },
+    {
+      "source": "image6.png",
+      "asset": "brand/covers/madinah.png",
+      "sha256": "6ef0177b6ac452abe68cea0f5f67866f02c4a1da8803b5a3923909e1c5e4c583"
+    },
+    {
+      "source": "image8.png",
+      "asset": "brand/covers/hafalan_8.png",
+      "sha256": "0f5bd3ef34348cd365acedd9298b85262a5f7d78b96401b507acc751c5dacad8"
+    },
+    {
+      "source": "image9.png",
+      "asset": "brand/covers/tikrar.png",
+      "sha256": "fa47e39c048d16fb27020384e7c563ce806da27b6c30cc2eb6bedc265c525f3c"
+    },
+    {
+      "source": "image10.png",
+      "asset": "brand/covers/waqaf.png",
+      "sha256": "05f05cc407c3e2a4107dfc02c1a1b92844246a0d03496d4f72cb69623ed4ce0a"
+    },
+    {
+      "source": "image11.png",
+      "asset": "brand/covers/thematic.png",
+      "sha256": "52be07f6f4efc70bbdcef8b7f45915723a3fbf4132e177e9b94b2252e380544e"
+    },
+    {
+      "source": "image12.png",
+      "asset": "brand/banners/learn.png",
+      "sha256": "688ce8e71fddb704434c76cc32cb6f34cd716da114584215cb4f714c34c384d4"
+    },
+    {
+      "source": "image13.png",
+      "asset": "brand/banners/explore.png",
+      "sha256": "7db8538f2c09b28a7e23cdb6ce55786299acbf3efa7c6f1e1898a767004d0a94"
+    },
+    {
+      "source": "image14.jpeg",
+      "asset": "brand/avatars.jpeg",
+      "sha256": "05aef677432d3d274f7b72d6464153876199f2d639887bc2ee271c13c5624477"
+    }
+  ]
+}

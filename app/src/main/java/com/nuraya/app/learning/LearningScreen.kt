@@ -21,6 +21,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.outlined.Search
+import androidx.compose.material.icons.outlined.Mic
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -67,6 +69,8 @@ fun LearningScreen(language: String, onBack: () -> Unit, onRead: (Int, Int) -> U
     var loading by remember { mutableStateOf(false) }
     var answer by remember { mutableStateOf<LocalLearningResponse?>(null) }
     var failure by remember { mutableStateOf(false) }
+    var semantic by rememberSaveable { mutableStateOf(true) }
+    var voice by remember { mutableStateOf(false) }
     fun search(value: String) {
         if (loading || value.trim().length !in 2..1000) return
         question = value
@@ -75,13 +79,14 @@ fun LearningScreen(language: String, onBack: () -> Unit, onRead: (Int, Int) -> U
         failure = false
         answer = null
         scope.launch {
-            try { answer = repository.find(value) }
+            try { answer = repository.find(value, semantic) }
             catch (cancelled: CancellationException) { throw cancelled }
             catch (_: Exception) { failure = true }
             finally { loading = false }
         }
     }
 
+    if (voice) VoiceVerseSearchSheet(application, language, onDismiss = { voice = false }) { recognized -> voice = false; search(recognized) }
     Column(Modifier.fillMaxSize().testTag("learning_screen").verticalScroll(rememberScrollState()).padding(20.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp)) {
         Row(Modifier.fillMaxWidth()) {
@@ -97,12 +102,19 @@ fun LearningScreen(language: String, onBack: () -> Unit, onRead: (Int, Int) -> U
                 Icon(Icons.AutoMirrored.Filled.MenuBook, null, Modifier.size(30.dp))
                 Text(learningText(language, "Tanya dengan bahasamu sendiri", "Ask in your own words"), style = MaterialTheme.typography.titleLarge)
                 Text(learningText(language,
-                    "Cari ayat, tafsir Kemenag, atau pelajaran tajwid. Rujukan dicari di HP tanpa akun atau koneksi internet; pertanyaan tidak dikirim ke server.",
+                    "Cari berdasarkan makna, kata kunci, atau bacakan potongan ayat Arab. Temukan ayat, tafsir Kemenag, dan pelajaran tajwid. Rujukan dicari di HP tanpa akun atau koneksi internet; pertanyaan tidak dikirim ke server.",
                     "Find verses, Kemenag tafsir, or tajwid lessons. Sources are searched on your phone without an account or internet; questions are not sent to a server."))
                 Text(learningText(language,
                     "Hasil berupa kutipan sumber yang mungkin relevan, bukan jawaban AI generatif atau fatwa.",
                     "Results are potentially relevant source passages, not generative AI answers or religious rulings."), style = MaterialTheme.typography.bodySmall)
             }
+        }
+        Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            FilterChip(semantic, onClick = { semantic = true }, enabled = !loading, label = { Text(learningText(language, "Pencarian makna", "Meaning search")) }, modifier = Modifier.testTag("search_semantic"))
+            FilterChip(!semantic, onClick = { semantic = false }, enabled = !loading, label = { Text(learningText(language, "Kata kunci", "Keywords")) }, modifier = Modifier.testTag("search_keywords"))
+        }
+        TextButton(onClick = { voice = true }, enabled = !loading, modifier = Modifier.fillMaxWidth().testTag("learning_voice_search")) {
+            Icon(Icons.Outlined.Mic, null); Spacer(Modifier.width(8.dp)); Text(learningText(language, "Cari ayat lewat suara", "Find a verse by voice"))
         }
         OutlinedTextField(value = question, onValueChange = { question = it.take(1000) }, enabled = !loading,
             label = { Text(learningText(language, "Apa yang ingin dipelajari?", "What would you like to learn?")) },

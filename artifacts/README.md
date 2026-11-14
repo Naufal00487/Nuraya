@@ -1,9 +1,7 @@
-# APK Nuraya terbaru
+# Unduh Nuraya
 
-[Nuraya 1.6.0 — 75,1 MB](Nuraya-1.6.0.apk?raw=1), Android 8.0+, versionCode 14. [SHA-256](SHA256SUMS).
+**[Nuraya 1.6.1 — 105,6 MB](https://github.com/Naufal00487/Nuraya/releases/latest/download/Nuraya-1.6.1.apk)** · Android 8.0+, versionCode 15 · [SHA-256](SHA256SUMS).
 
-Tujuh edisi mushaf bergambar, masing-masing 604 halaman. Pembaca layar penuh, sorotan ayat pada enam edisi berpeta, panel arti, rentang murottal lintas surah, latihan dan unduhan edisi penuh. AI dan fitur Nuraya lain dipertahankan. Gambar Hafalan belum memiliki peta sorotan ayat.
+APK terbaru disimpan sebagai aset GitHub Release karena melewati batas ukuran berkas Git biasa. Gunakan tautan unduhan di atas. Versi APK sebelumnya tidak lagi disertakan pada cabang utama. Source tersedia melalui **Code → Download ZIP** di halaman utama repo.
 
-APK memakai sertifikat yang sama dengan versi sebelumnya sehingga dapat dipasang sebagai pembaruan. [Perubahan](../docs/UPDATE_1.6.0.md) · [Validasi dan batas uji](../docs/BUILD_VALIDATION.md).
-
-Source aktif berada di root repository; gunakan Code → Download ZIP. Mengedit source tidak otomatis memperbarui APK; build ulang setelah revisi. Keystore distribusi tidak disertakan. Hanya APK terbaru tersedia di folder ini; versi lama berada pada riwayat Git.
+Sertifikat dan ID aplikasi sama dengan versi sebelumnya sehingga dapat dipasang sebagai pembaruan. [Perubahan](../docs/UPDATE_1.6.1.md) · [Validasi dan batas uji](../docs/BUILD_VALIDATION.md).

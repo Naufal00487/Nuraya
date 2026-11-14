@@ -37,7 +37,7 @@ import java.net.URI
 import java.net.HttpURLConnection
 
 private val destinations=setOf("quran","murottal","practice","recitation","prayer","library","learn")
-data class HomeBanner(val id:String,val title:String,val subtitle:String,val destination:String,val imageUrl:String?=null)
+data class HomeBanner(val id:String,val title:String,val subtitle:String,val destination:String,val imageUrl:String?=null,val assetPath:String?=null)
 fun safeBannerUrl(value:String):Boolean=runCatching{val uri=URI(value);uri.scheme=="https"&&uri.userInfo==null&&!uri.host.isNullOrBlank()&&!uri.host.equals("localhost",true)&&uri.host.contains('.')}.getOrDefault(false)
 fun parseBanners(text:String):List<HomeBanner>{
     val rows=JSONObject(text).getJSONArray("banners")
@@ -77,11 +77,10 @@ class BannerRepository(context:Context){
     val repository=remember{BannerRepository(context)}
     var remote by remember{mutableStateOf(repository.cached())}
     LaunchedEffect(repository){remote=withContext(Dispatchers.IO){repository.refresh()}}
-    val fallback=listOf(
-        HomeBanner("read",label(language,"Satu halaman, satu langkah","One page, one step"),label(language,"Luangkan waktu untuk membaca hari ini.","Make a little time to read today."),"quran"),
-        HomeBanner("practice",label(language,"Sedikit demi sedikit","A little, every day"),label(language,"Bangun hafalan dengan pengulangan.","Build your memory through repetition."),"practice"),
-        HomeBanner("listen",label(language,"Tenangkan hati dengan lantunan","Take a moment to listen"),label(language,"Dengarkan qari pilihanmu.","Listen to your favourite reciter."),"murottal"))
-    val banners=remote.ifEmpty{fallback}
+    val designed = listOf(
+        HomeBanner("nuraya-learn", label(language, "Bacalah, dengarkan, hafalkan · AI belajar", "Read, listen, memorize · learning companion"), "", "learn", assetPath = "brand/banners/learn.png"),
+        HomeBanner("nuraya-explore", label(language, "Jelajahi fitur Nuraya", "Explore Nuraya"), "", "quran", assetPath = "brand/banners/explore.png"))
+    val banners = designed + remote.filter { candidate -> designed.none { it.id == candidate.id } }
     val pager=rememberPagerState(pageCount={banners.size})
     Column(modifier,verticalArrangement=Arrangement.spacedBy(10.dp)){
         HorizontalPager(state=pager,modifier=Modifier.fillMaxWidth().testTag("home_banners"),pageSpacing=12.dp){index->val banner=banners[index]
@@ -91,6 +90,15 @@ class BannerRepository(context:Context){
                 require(bounds.outWidth in 1..4096 && bounds.outHeight in 1..4096)
                 BitmapFactory.decodeByteArray(bytes,0,bytes.size,BitmapFactory.Options().apply{inSampleSize=2})?.asImageBitmap()
             }.getOrNull()}}
+            val bundled = banner.assetPath?.let { com.nuraya.app.ui.rememberAssetBitmap(it) }
+            if (banner.assetPath != null) {
+                Box(Modifier.fillMaxWidth().aspectRatio(5300f / 1331f).clip(RoundedCornerShape(16.dp))
+                    .background(MaterialTheme.colorScheme.surfaceContainerLow).testTag("home_banner_${banner.id}")
+                    .clickable { onNavigate(banner.destination) }, contentAlignment = Alignment.Center) {
+                    if (bundled != null) Image(bundled, banner.title, Modifier.fillMaxSize(), contentScale = ContentScale.Fit)
+                    else Text(banner.title, Modifier.padding(12.dp), style = MaterialTheme.typography.titleSmall)
+                }
+            } else {
             Box(Modifier.fillMaxWidth().heightIn(min=168.dp).clip(RoundedCornerShape(24.dp)).background(Color(0xFF2C4066)).clickable{
                 if(banner.destination in destinations)onNavigate(banner.destination)
                 else if(safeBannerUrl(banner.destination))runCatching{context.startActivity(Intent(Intent.ACTION_VIEW,Uri.parse(banner.destination)))}
@@ -101,6 +109,7 @@ class BannerRepository(context:Context){
                     Text(banner.title,color=Color.White,style=MaterialTheme.typography.titleLarge,fontWeight=FontWeight.Bold)
                     Text(banner.subtitle,color=Color(0xFFDCE6F8),style=MaterialTheme.typography.bodySmall)
                 };Icon(Icons.AutoMirrored.Outlined.ArrowForward,null,Modifier.padding(start=14.dp),tint=Color(0xFFEAD191))}
+            }
             }
         }
         Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.Center){repeat(banners.size){index->Box(Modifier.padding(horizontal=3.dp).size(if(index==pager.currentPage)8.dp else 6.dp).clip(CircleShape).background(if(index==pager.currentPage)MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant))}}

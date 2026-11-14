@@ -52,11 +52,11 @@ class ProfileStore(context: Context) {
     return profile
 }
 @Composable fun ProfileAvatar(avatar: Int, modifier: Modifier = Modifier) {
-    val image = rememberAssetBitmap("brand/avatars.png")
+    val image = rememberAssetBitmap("brand/avatars.jpeg")
     Box(modifier.clip(CircleShape).background(Color.White).border(2.dp,MaterialTheme.colorScheme.outlineVariant,CircleShape),contentAlignment=Alignment.Center) {
         if(image!=null) {
             val width=image.width/5
-            Image(BitmapPainter(image,IntOffset(width*avatar.coerceIn(0,4),(image.height*.32f).toInt()),IntSize(width,(image.height*.42f).toInt())),
+            Image(BitmapPainter(image,IntOffset(width*avatar.coerceIn(0,4),(image.height*.31f).toInt()),IntSize(width,(image.height*.40f).toInt())),
                 "Avatar ${avatar+1}",Modifier.fillMaxSize(),contentScale=ContentScale.Fit)
         } else Icon(Icons.Outlined.Person,null,tint=MaterialTheme.colorScheme.primary)
     }

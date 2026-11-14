@@ -1,47 +1,45 @@
-# Build dan validasi Nuraya 1.6.0
+# Build dan validasi Nuraya 1.6.1
 
-Paket `com.nuraya.app`, versionCode **14**, minimum Android 8/API 26, target API 35. Penyelesaian diperiksa 14 November 2026 (Asia/Jakarta). [Perubahan](UPDATE_1.6.0.md).
+Paket `com.nuraya.app`, versionCode **15**, minimum Android 8/API 26, target API 35. Diperiksa 14 November 2026 (Asia/Jakarta). [Perubahan](UPDATE_1.6.1.md).
 
 ## Hasil
 
-**205 tes JVM/Compose berbeda lulus, 0 gagal/error/dilewati pada hasil akhir.** Lint: 0 error/fatal dan 61 peringatan. APK aplikasi serta APK instrumentasi berhasil dibangun; instrumentasi belum dijalankan pada perangkat.
-
-Suite lengkap dijalankan, kemudian kelas yang terdampak dijalankan ulang setelah memperjelas selector tes Waqaf (judul ada pada header dan dialog) dan keterangan kelompok hafalan manual. Hasil JUnit menyimpan hasil terbaru setiap kelas, bukan mengklaim semua tes berjalan ulang pada satu perintah akhir.
+**212 tes JVM/Compose lulus; 0 gagal, error, atau dilewati.** Suite lengkap dijalankan pada source akhir. Lint: **0 error/fatal, 61 peringatan**. APK aplikasi dan APK instrumentasi berhasil dibangun; instrumentasi belum dijalankan pada perangkat.
 
 ```sh
 bash scripts/gradle.sh testDebugUnitTest lintDebug assembleDebug assembleDebugAndroidTest
-bash scripts/gradle.sh testDebugUnitTest --tests '*PrintedMushafPresentationTest' lintDebug assembleDebug assembleDebugAndroidTest
-bash scripts/gradle.sh testDebugUnitTest --tests '*ReadingRegression153Test' lintDebug assembleDebug assembleDebugAndroidTest
-python3 scripts/import_printed_mushaf.py --verify
+python3 scripts/import_semantic_index.py --verify
 python3 scripts/import_quran.py --verify
+python3 scripts/import_printed_mushaf.py --verify
 python3 scripts/verify-native-optimization.py
+python3 scripts/package-artifacts.py
 ```
 
-Bukti: [ringkasan](validation/1.6.0/summary.json), [JUnit](validation/1.6.0/junit), [build akhir](validation/1.6.0/gradle-build.log), [lint](validation/1.6.0/lint.txt).
+Bukti: [ringkasan](validation/1.6.1/summary.json), [JUnit lengkap](validation/1.6.1/junit), [build](validation/1.6.1/gradle-build.log), [lint](validation/1.6.1/lint.txt).
 
-## Yang diperiksa
+## Perubahan yang diperiksa
 
-| Bagian | Cakupan |
+| Bagian | Hasil |
 | --- | --- |
-| Tujuh edisi | Setiap edisi tepat 604 URL pada commit tetap dan 604 hash unik. Seluruh 4.228 sumber PNG diunduh/didekode; 42 gambar bundel cocok byte/hash, ukuran dan transparansinya. |
-| Indeks/sorotan | Seluruh 6.236 ayat dan 114 awal surah diperiksa per edisi. Enam edisi berpeta mencakup 6.236 ayat, koordinat dibatasi ukuran gambar. 10:95 dan 69:35 memakai koreksi visual yang terdokumentasi. Hafalan tidak memakai peta edisi lain. |
-| Halaman dan sentuhan | Gambar Per Kata penuh, tekan lama 1:3 memilih ayat tepat, panel tidak memperkecil halaman, transformasi koordinat diuji dalam letterbox/lanskap/zoom, Madinah Tajwid p8 memakai gambar aslinya. |
-| Surah jauh | An-Nas pada Latin Tajwid tetap p604 meskipun audio lama 2:6 tersimpan; tombol putar meminta 114:1. Regresi semua 114 surah dan pembaca lama tetap lulus. |
-| Audio lintas surah | Rentang 8:74–9:2 dan pengulangan mempertahankan urutan kanonis tanpa ayat basmalah tambahan; seluruh 6.236 ayat tersusun tepat. Formulir menolak 114:7 dan menerima 113:4–114:6 dengan qari yang sama. Timing disimpan menurut surah rekaman. |
-| Mengikuti audio | Perpindahan lintas surah hanya diikuti setelah pengguna memulai antrean dari pembaca; audio lama/jeda/galat atau pengaturan nonaktif tidak mengubah posisi. Pemilihan ayat pada dialog tidak ditimpa transisi audio. |
-| Latihan | Halaman Hafalan dan sembunyikan/tampilkan, penghitung Tikrar per ayat, panduan Waqaf termasuk ayat tanpa tanda internal, serta penjelasan kelompok hafalan manual yang berbeda dari blok cetak. |
-| Regresi fitur lama | Navigasi, profil wajib, Ibadah/Pengaturan pada huruf besar, AI/mikrofon simulasi, kuis, progres, penyimpanan, identitas qari dan timing yang sudah ada. |
+| Aset dokumen | Sepuluh PNG sampul, dua PNG banner dan satu JPEG avatar sama persis byte/hash dengan dokumen. Madinah & Tajwid memakai sampul Madinah sesuai konfirmasi pengguna; tidak memasukkan Bahriyah. Gambar ditampilkan proporsional. |
+| Banner | Kedua gambar tampil utuh dengan rasio asli 5300:1331. Ketuk banner belajar membuka pencarian; banner fitur membuka Quran; kembali berfungsi. |
+| Profil | Kelima avatar tersedia; menyimpan avatar baru mempertahankan nama panggilan dan penyimpanan profil lokal. |
+| Warna | Status/navigation bar transparan, kontras otomatis Android dimatikan, ikon menyesuaikan tema/rute. Mushaf cetak tetap krem pada tema gelap. Tombol dan panel mushaf memakai permukaan solid. |
+| Pencarian makna | Tujuh topik bahasa sehari-hari menghasilkan rujukan yang relevan dalam lima hasil; setiap ayat dan kutipan tafsir sama dengan database. Rujukan salah, kueri tidak dikenal dan kueri di luar lingkup tidak menghasilkan jawaban rekaan. Model serta 115 hash sumber diverifikasi. |
+| Pencarian suara | Potongan Arab di tengah 2:255, 94:5, 112:1 dan frasa berulang Ar-Rahman ditemukan; frasa sangat pendek/tidak sesuai ditolak. Panel suara terhubung dari Quran; tanpa model/mesin siap tombol rekam nonaktif; menutup panel dan membuka sumber 1:3 kembali ke layar asal dengan benar. |
+| Regresi membaca | Seluruh pengujian sebelumnya tetap lulus: 114 surah, halaman jauh An-Nas, viewport layar penuh, tekan lama/sorotan ayat, panel arti, audio lintas surah, pengulangan, Hafalan, Tikrar, Waqaf, identitas qari, serta timing. |
+| Fitur lain | AI/mikrofon simulasi dan lifecycle, izin lokasi, profil wajib, navigasi, pengaturan, kuis, progres dan penyimpanan tetap lulus. |
 
-Render host yang diperiksa: [Per Kata](validation/1.6.0/per-kata-full.png), [tindakan ayat](validation/1.6.0/per-kata-verse-actions.png), [panel arti](validation/1.6.0/per-kata-translation.png), [Latin An-Nas](validation/1.6.0/latin-an-nas-full.png), [Madinah Tajwid](validation/1.6.0/madinah-tajwid-8-controls.png), [Hafalan](validation/1.6.0/hafalan-full.png), [pengaturan audio](validation/1.6.0/audio-cross-surah.png), dan [Waqaf](validation/1.6.0/waqaf-guide.png). Ini render Compose/Robolectric, bukan tangkapan layar HP fisik.
+Render Compose/Robolectric yang diperiksa (bukan foto HP): [banner belajar](validation/1.6.1/home-banner-learn.png), [banner fitur](validation/1.6.1/home-banner-explore.png), [sampul Madinah](validation/1.6.1/madinah-covers.png), [avatar](validation/1.6.1/profile-avatars.png), [pencarian suara tanpa mesin host](validation/1.6.1/voice-search.png), [kontrol krem](validation/1.6.1/madinah-tajwid-8-controls.png), [panel arti](validation/1.6.1/per-kata-translation.png), [pengaturan audio](validation/1.6.1/audio-cross-surah.png).
 
-## Data dan APK
+## Integritas data dan APK
 
-Teks kanonis tetap SHA-256 `f41cef112e2efd581d3ea15ad7229a713d18122a6e0fbec4ddb0c00b7d1cae9c`. Audit ulang menemukan 114 surah/6.236 ayat, 112 pembukaan terpisah dan tanpa ID duplikat. Teks berulang yang memang ada dalam Quran tidak dihapus. Latin, tafsir, tanda waqaf dan tajwid digital tetap memakai sumber sebelumnya. [Audit korpus](audit/1.6.0/quran-corpus.json), [bantuan baca](audit/1.6.0/reading-guidance.json), [4.228 gambar](audit/1.6.0/printed-pages.json), [sumber/batas mushaf](PRINTED_MUSHAF.md).
+Tidak ada perubahan pada teks Quran, tafsir, terjemahan, latin, anotasi tajwid/waqaf, gambar halaman mushaf, indeks ayat/surah, rekaman/ID qari atau timing. Teks kanonis tetap SHA-256 `f41cef112e2efd581d3ea15ad7229a713d18122a6e0fbec4ddb0c00b7d1cae9c`. Verifikasi mencakup 114 surah, 6.236 ayat, 112 pembukaan terpisah, tujuh indeks edisi 604 halaman, enam peta ayat lengkap, dan 42 PNG bundel yang tidak berubah. Pemeriksaan penuh sumber 4.228 gambar dari 1.6.0 tetap berlaku karena manifest dan aset tersebut tidak diubah.
 
-APK **75.126.455 byte**; SHA-256 `ddbff089cde81d1c454990cc245e4f394d0b08e265f4f5357f8aa0dd3ea21824`. `apksigner verify` dan `zipalign -c -v -P 16 4` lulus. Sertifikat sama dengan rilis sebelumnya: `e2aa60317632bc6aea65f83c2247e54111941d0e0725875a2c9db3ffb93ac264`. Optimasi native tiga ABI lulus. Pengemasan membandingkan setiap aset APK dengan source secara byte.
+APK **105.629.920 byte**; SHA-256 `647be1147b86b43f364ee3aa99eee65142c4b1c02dafb6453fb9a343c654bc18`. `apksigner verify` dan `zipalign -c -P 16 4` lulus. Sertifikat sama dengan rilis sebelumnya: `e2aa60317632bc6aea65f83c2247e54111941d0e0725875a2c9db3ffb93ac264`. Native ketiga ABI memakai optimasi yang diperlukan. Pengemasan membandingkan setiap aset APK dengan source secara byte. Distribusi memakai GitHub Releases karena ukuran APK melewati batas blob Git biasa.
 
-[Tanda tangan](validation/1.6.0/apk-signature.txt), [alignment](validation/1.6.0/apk-alignment.txt), [metadata](validation/1.6.0/apk-metadata.txt), [optimasi native](validation/1.6.0/native-optimization.json).
+[Tanda tangan](validation/1.6.1/apk-signature.txt), [alignment](validation/1.6.1/apk-alignment.txt), [metadata](validation/1.6.1/apk-metadata.txt), [optimasi native](validation/1.6.1/native-optimization.json).
 
 ## Batas pengujian
 
-Belum ada uji HP fisik untuk streaming audio, unduhan seluruh edisi melalui UI Android, GPS, mikrofon, kompas atau azan pada pembaruan ini. Integritas sumber unduhan diuji di host, bukan klaim unduhan 604 halaman berhasil dijalankan pada setiap HP. Pemeriksaan hash/dekode bukan pentashihan seluruh huruf/harakat oleh ahli. Sorotan gambar per ayat tersedia pada enam edisi; Hafalan belum mempunyai peta. AI tetap bantuan perbandingan kata, bukan penilai tajwid/makhraj tervalidasi. Backend banner tidak berubah dan tidak di-deploy.
+Belum diuji pada HP fisik untuk mikrofon/pengenalan suara, streaming audio, GPS, kompas, azan atau unduhan 604 halaman melalui UI Android. Tes suara memeriksa matcher pada transkrip contoh dan siklus capture melalui simulasi, bukan akurasi bacaan manusia pada semua HP. Model LSA merupakan pencarian statistik, bukan LLM atau penafsir agama; tujuh kueri uji bukan jaminan relevansi semua pertanyaan. AI bacaan tetap belum menilai tajwid/makhraj secara tervalidasi. Backend banner tidak diubah atau di-deploy.

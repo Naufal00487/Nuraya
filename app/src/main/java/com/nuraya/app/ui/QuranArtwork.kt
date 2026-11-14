@@ -85,6 +85,7 @@ fun MadinahScreen(
     printedEdition: com.nuraya.app.quranreading.PrintedMushafEdition? = null,
     onReadVerses: (Int, Int) -> Unit,
 ) {
+    MaterialTheme(colorScheme = MushafColors) {
     val context = LocalContext.current
     val activity = context.findMushafActivity()
     val repository = remember(context, edition, printedEdition) { MushafImages(context.applicationContext, edition, printedEdition) }
@@ -208,18 +209,18 @@ fun MadinahScreen(
             }
         }
         if (controls) Row(Modifier.align(Alignment.TopCenter).fillMaxWidth().background(MaterialTheme.colorScheme.surface).padding(horizontal = 4.dp, vertical = 4.dp).testTag("mushaf_header"), verticalAlignment = Alignment.CenterVertically) {
-            IconButton(onClick = { controls = false; onBack() }, modifier = Modifier.testTag("back_button")) { Icon(Icons.AutoMirrored.Outlined.ArrowBack, tr("Kembali", "Back")) }
+            SolidReadingIconButton(onClick = { controls = false; onBack() }, modifier = Modifier.testTag("back_button")) { Icon(Icons.AutoMirrored.Outlined.ArrowBack, tr("Kembali", "Back")) }
             Column(Modifier.weight(1f)) {
                 Text(if (readingModeId == "standard") edition.title(language) else QuranReadingModes.find(readingModeId).title(language), style = MaterialTheme.typography.titleSmall,
                     maxLines = 1, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis, modifier = Modifier.testTag("reader_mode"))
                 Text(tr("Halaman $page / 604", "Page $page / 604"), style = MaterialTheme.typography.labelSmall, modifier = Modifier.testTag("mushaf_page_number"))
             }
-            if (app != null) IconButton(onClick = { panel = !panel }, modifier = Modifier.testTag("mushaf_translation")) {
+            if (app != null) SolidReadingIconButton(onClick = { panel = !panel }, modifier = Modifier.testTag("mushaf_translation")) {
                 Icon(Icons.Outlined.Translate, tr("Terjemahan & latin", "Translation & transliteration"))
             }
-            IconButton(onClick = { jump = true }) { Icon(Icons.Outlined.Search, tr("Pilih halaman, surah atau juz", "Choose page, chapter or juz")) }
+            SolidReadingIconButton(onClick = { jump = true }) { Icon(Icons.Outlined.Search, tr("Pilih halaman, surah atau juz", "Choose page, chapter or juz")) }
             Box {
-                IconButton(onClick = { menu = true }) { Icon(Icons.Outlined.MoreVert, tr("Menu mushaf", "Mushaf menu")) }
+                SolidReadingIconButton(onClick = { menu = true }) { Icon(Icons.Outlined.MoreVert, tr("Menu mushaf", "Mushaf menu")) }
                 DropdownMenu(expanded = menu, onDismissRequest = { menu = false }) {
                     if (readingModeId in setOf("tikrar", "waqaf") && app != null) DropdownMenuItem(
                         text = { Text(if (readingModeId == "tikrar") tr("Latihan Tikrar", "Repetition practice") else tr("Panduan waqaf & ibtida", "Stopping & resuming guide")) },
@@ -263,15 +264,15 @@ fun MadinahScreen(
             Surface(Modifier.fillMaxWidth().testTag("mushaf_controls"), tonalElevation = 2.dp) {
                 Row(Modifier.fillMaxWidth().heightIn(min = 56.dp).padding(horizontal = 4.dp), verticalAlignment = Alignment.CenterVertically) {
                     val playingHere = playback.verseMode && playback.surahId == selectedSurah && playback.isPlaying
-                    IconButton(onClick = { listen() }, modifier = Modifier.testTag("mushaf_play")) {
+                    SolidReadingIconButton(onClick = { listen() }, modifier = Modifier.testTag("mushaf_play")) {
                         Icon(if (playingHere) Icons.Outlined.PauseCircleOutline else Icons.Outlined.PlayCircleOutline, if (playingHere) tr("Jeda audio", "Pause audio") else tr("Putar bacaan", "Play recitation"))
                     }
                     if (app != null) {
                         val saved = entries.any { it.type == "bookmark" && it.key == "$selectedSurah:$selectedAyah" }
-                        IconButton(onClick = { scope.launch { app.library.toggle("bookmark", "$selectedSurah:$selectedAyah", app.quran.surahs[selectedSurah - 1].name, "Ayat $selectedAyah") } }) {
+                        SolidReadingIconButton(onClick = { scope.launch { app.library.toggle("bookmark", "$selectedSurah:$selectedAyah", app.quran.surahs[selectedSurah - 1].name, "Ayat $selectedAyah") } }) {
                             Icon(if (saved) Icons.Outlined.Bookmark else Icons.Outlined.BookmarkBorder, tr(if (saved) "Hapus penanda ayat" else "Tandai ayat", if (saved) "Remove verse bookmark" else "Bookmark verse"))
                         }
-                        IconButton(onClick = { qaris = true }) { Icon(Icons.Outlined.Tune, tr("Pengaturan murottal", "Recitation settings")) }
+                        SolidReadingIconButton(onClick = { qaris = true }) { Icon(Icons.Outlined.Tune, tr("Pengaturan murottal", "Recitation settings")) }
                         Row(Modifier.weight(1f).heightIn(min = 48.dp).clickable { qaris = true }.testTag("mushaf_qari"), verticalAlignment = Alignment.CenterVertically) {
                             val displayedQari = if (playingHere) playback.qariId else settings.readerQariId
                             Text(app.playback.verseReciters.firstOrNull { it.id == displayedQari }?.name ?: tr("Pilih qari", "Choose reciter"),
@@ -317,7 +318,7 @@ fun MadinahScreen(
     if (sourceVisible) AlertDialog(onDismissRequest = { sourceVisible = false }, title = { Text(tr("Tajwid & sumber mushaf", "Tajwid & page sources")) }, text = {
         Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             Text(tr("Panduan warna pada teks digital Nuraya", "Color guide for Nuraya digital text"), style = MaterialTheme.typography.titleSmall)
-            TajwidLegend(language, settings.darkMode)
+            TajwidLegend(language, dark = false)
             if (printedEdition != null) Text(tr("Warna pada gambar cetak mengikuti edisi sumbernya; legenda di atas digunakan pada panel teks digital.", "Printed image colors follow their source edition; the legend above applies to the digital text panel."))
             if (printedEdition == com.nuraya.app.quranreading.PrintedMushafEdition.HAFALAN_8) Text(tr("Edisi Hafalan belum memiliki peta sorotan ayat. Pilih surah/ayat melalui tombol pencarian untuk memutar atau melihat artinya.", "The Hafalan edition has no verse highlight map. Use the search control to choose a verse for audio or translation."))
             if (printedEdition != null) Text(tr("Halaman ${printedEdition.title(language)}: Quran Image Assets, agusibrahim/quran-image. Gambar asli dipertahankan. Terjemahan pada panel: Kementerian Agama RI melalui QuranEnc; latin panel: EQuran.id. Sorotan tersedia pada enam edisi berpeta (belum pada Hafalan); arti per kata dan latin tercetak mengikuti edisi yang dipilih.", "${printedEdition.title(language)} pages: Quran Image Assets, agusibrahim/quran-image. Original images are preserved. Panel translations: QuranEnc / Pickthall; panel transliteration: EQuran.id. Verse highlighting is available for six mapped editions (not yet Hafalan); printed word meanings and transliteration belong to the selected edition."))
@@ -353,10 +354,10 @@ fun MadinahScreen(
         Column(Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text("${app.quran.surahs[selectedSurah - 1].name} · $selectedAyah", style = MaterialTheme.typography.titleLarge, modifier = Modifier.weight(1f))
-                IconButton(onClick = { details = false }) { Icon(Icons.Outlined.Close, tr("Tutup rincian ayat", "Close verse details")) }
+                SolidReadingIconButton(onClick = { details = false }) { Icon(Icons.Outlined.Close, tr("Tutup rincian ayat", "Close verse details")) }
             }
             TextButton(onClick = { details = false; jump = true }) { Text(tr("Pilih ayat", "Choose verse")) }
-            Text(annotatedQuranText(selected.arabic, study, settings.tajwidColors, settings.darkMode, if (playback.verseMode && playback.surahId == selectedSurah && playback.ayahId == selectedAyah) playback.wordPosition else 0), fontFamily = QuranArabicFont, fontSize = settings.arabicSize.sp, lineHeight = (settings.arabicSize * 1.8f).sp, textAlign = androidx.compose.ui.text.style.TextAlign.Right, modifier = Modifier.fillMaxWidth())
+            Text(annotatedQuranText(selected.arabic, study, settings.tajwidColors, false, if (playback.verseMode && playback.surahId == selectedSurah && playback.ayahId == selectedAyah) playback.wordPosition else 0), fontFamily = QuranArabicFont, fontSize = settings.arabicSize.sp, lineHeight = (settings.arabicSize * 1.8f).sp, textAlign = androidx.compose.ui.text.style.TextAlign.Right, modifier = Modifier.fillMaxWidth())
             FlowRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 OutlinedButton(onClick = {
                     val previous = app.quran.allVerses.getOrNull(selected.number - 2)
@@ -376,13 +377,14 @@ fun MadinahScreen(
             }
             Text(tr("Ukuran tulisan Arab", "Arabic text size"))
             Slider(value = settings.arabicSize, onValueChange = { value -> scope.launch { app.settings.setArabicSize(value) } }, valueRange = 22f..48f)
-            StudyVersePanel(study, language, initiallyShowWords = showTajwidCompanion || edition == MushafEdition.INDONESIA, tajwidColors = settings.tajwidColors, dark = settings.darkMode)
+            StudyVersePanel(study, language, initiallyShowWords = showTajwidCompanion || edition == MushafEdition.INDONESIA, tajwidColors = settings.tajwidColors, dark = false)
             FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Button(onClick = { app.playback.playVerseRange(selectedSurah, selectedAyah, selectedAyah, settings.readerQariId, repeats) }) { Text(tr("Putar ayat ini", "Play this verse")) }
                 if (playback.isPlaying) OutlinedButton(onClick = { app.playback.toggle() }) { Text(tr("Jeda", "Pause")) }
                 OutlinedButton(onClick = { openVerseTools(); details = false }) { Text(tr("Baca per ayat", "Verse reader")) }
             }
         }
+    }
     }
 }
 
@@ -452,4 +454,10 @@ private fun MushafJumpDialog(language: String, currentPage: Int, surah: Int, aya
     }, confirmButton = { TextButton(enabled = valid, onClick = {
         when (tab) { 0 -> onOpen(null, null, s); 1 -> onOpen(s, a, null); else -> app?.quran?.juz(s!!)?.firstOrNull()?.let { onOpen(it.surah, it.ayah, null) } }
     }) { Text(label(language, "Buka", "Open")) } }, dismissButton = { TextButton(onClick = onDismiss) { Text(label(language, "Batal", "Cancel")) } })
+}
+
+@Composable
+fun SolidReadingIconButton(onClick: () -> Unit, modifier: Modifier = Modifier, content: @Composable () -> Unit) {
+    IconButton(onClick = onClick, modifier = modifier, colors = IconButtonDefaults.iconButtonColors(
+        containerColor = MaterialTheme.colorScheme.surfaceContainer, contentColor = MaterialTheme.colorScheme.primary), content = content)
 }

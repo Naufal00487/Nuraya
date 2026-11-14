@@ -33,7 +33,7 @@ fun HomeScreen(app: NurayaApplication, language: String, entries: List<UserEntry
         Triple("quran",Icons.Outlined.MenuBook,label(language,"Baca Al-Qur’an","Read the Qur’an")),
         Triple("recitation",Icons.Outlined.Mic,label(language,"AI bacaan Al-Qur’an","Qur’an recitation AI")),
         Triple("practice",Icons.Outlined.School,label(language,"Hafalan, tajwid & kuis","Memorization, tajwid & quizzes")),
-        Triple("learn",Icons.Outlined.AutoStories,label(language,"Teman belajar","Learning companion")),
+        Triple("learn",Icons.Outlined.AutoStories,label(language,"Cari ayat & makna","Find verses & meaning")),
         Triple("murottal",Icons.Outlined.Headphones,label(language,"Dengarkan murottal","Listen to recitation")),
         Triple("library",Icons.Outlined.Bookmarks,label(language,"Koleksi saya","My collection")))
     LazyColumn(Modifier.testTag("home_menu"),contentPadding=PaddingValues(bottom=24.dp),verticalArrangement=Arrangement.spacedBy(20.dp)) {

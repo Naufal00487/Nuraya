@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.recitation.RecitationMatcherTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-11-14T09:28:51" hostname="f171976d1b7d" time="0.006">
+  <properties/>
+  <testcase name="displayRangesKeepOriginalDiacriticsAndSkipStandalonePauseMarks" classname="com.nuraya.app.recitation.RecitationMatcherTest" time="0.002"/>
+  <testcase name="normalAlefIsNeverRemovedAndConsonantWawIsNeverReplaced" classname="com.nuraya.app.recitation.RecitationMatcherTest" time="0.001"/>
+  <testcase name="finalSubstitutionIsMarkedForReview" classname="com.nuraya.app.recitation.RecitationMatcherTest" time="0.0"/>
+  <testcase name="emptyOrNonArabicInterimResultsDoNotInventMatches" classname="com.nuraya.app.recitation.RecitationMatcherTest" time="0.001"/>
+  <testcase name="commonUthmaniFormsAcceptOrdinarySpeechTranscription" classname="com.nuraya.app.recitation.RecitationMatcherTest" time="0.0"/>
+  <testcase name="partialRecognitionMistakeDoesNotBecomeAnErrorAccusation" classname="com.nuraya.app.recitation.RecitationMatcherTest" time="0.0"/>
+  <testcase name="repeatedWordsRequireRepeatedSpeech" classname="com.nuraya.app.recitation.RecitationMatcherTest" time="0.0"/>
+  <testcase name="missingFinalWordDoesNotShiftTheRemainingWords" classname="com.nuraya.app.recitation.RecitationMatcherTest" time="0.0"/>
+  <testcase name="partialUtteranceNeverMarksUnreadTailAsWrongOrMissing" classname="com.nuraya.app.recitation.RecitationMatcherTest" time="0.0"/>
+  <testcase name="unexpectedSpokenWordDoesNotShiftTheVerse" classname="com.nuraya.app.recitation.RecitationMatcherTest" time="0.001"/>
+  <testcase name="markedArabicMatchesPlainRecognitionWithoutClaimingDiacriticAccuracy" classname="com.nuraya.app.recitation.RecitationMatcherTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

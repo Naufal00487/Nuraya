@@ -45,6 +45,7 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
     var readingModeId by rememberSaveable { mutableStateOf("standard") }
     var settingsFrom by rememberSaveable { mutableStateOf("home") }
     var aboutFrom by rememberSaveable { mutableStateOf("profile") }
+    var learningFrom by rememberSaveable { mutableStateOf("home") }
     var playerVisible by rememberSaveable { mutableStateOf(false) }
     var loading by remember { mutableStateOf(!app.launchArtworkShown) }
     var loadError by remember { mutableStateOf(false) }
@@ -88,7 +89,9 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
     val profileStore = remember(app) { com.nuraya.app.profile.ProfileStore(app) }
     var profileComplete by remember { mutableStateOf(profileStore.isComplete()) }
     if (!profileComplete) {
-        com.nuraya.app.profile.ProfileOnboarding(language) { profileComplete = profileStore.isComplete() }
+        ScreenColors("profile", settings.darkMode) {
+            com.nuraya.app.profile.ProfileOnboarding(language) { profileComplete = profileStore.isComplete() }
+        }
         return
     }
     val openVerse: (Int, Int) -> Unit = { surah, ayah ->
@@ -112,6 +115,7 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
             screen == "surahs" -> screen = "quran"
             screen == "settings" -> screen = settingsFrom
             screen == "about" -> screen = aboutFrom
+            screen == "learn" -> screen = learningFrom
             screen == "progress" -> screen = "profile"
             screen == "murottal" && qariId.isNotEmpty() -> qariId = ""
             else -> screen = "home"
@@ -131,7 +135,9 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
         "progress" to label(language, "Progres belajarku", "My learning progress"),
         "recitation" to label(language, "AI bacaan", "Recitation AI"),
         "reader" to if (juzId > 0) "Juz $juzId" else if (!loading && !loadError) app.quran.surahs.firstOrNull { it.id == surahId }?.name.orEmpty() else "Al-Qur’an")
+    ScreenColors(screen, settings.darkMode) {
     Scaffold(
+        containerColor = if (screen == "qibla") androidx.compose.ui.graphics.Color.Transparent else MaterialTheme.colorScheme.background,
         modifier = Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing),
         snackbarHost = { SnackbarHost(snackbar) },
         topBar = {
@@ -180,11 +186,12 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
                     ) { when(screen) {
                         "home" -> HomeScreen(app, language, entries, onRead = openVerse, onNavigate = {
                             if (it == "settings") settingsFrom = "home"
+                            if (it == "learn") learningFrom = "home"
                             if(it.startsWith("qari:")){qariId=it.removePrefix("qari:");screen="murottal"} else screen=it
                         })
                         "quran" -> QuranModesScreen(app, language,
                             onMode = { readingModeId = it; screen = "surahs" },
-                            onRead = { surah, ayah -> readingModeId = "thematic"; openVerse(surah, ayah) })
+                            onRead = { surah, ayah -> readingModeId = "thematic"; openVerse(surah, ayah) }, onSearch = { learningFrom = "quran"; screen = "learn" })
                         "surahs" -> QuranScreen(app.quran, language, onRead = openVerse, onJuz = {
                             readerFrom = "surahs"
                             if (QuranReadingModes.opensPageReader(readingModeId)) {
@@ -213,7 +220,7 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
                         "profile" -> ProfileScreen(language) { if(it=="settings")settingsFrom="profile";if(it=="about")aboutFrom="profile";if(it=="progress")screenState.removeState("progress");screen=it }
                         "about" -> AboutScreen(language)
                         "library" -> LibraryScreen(app, language, entries, downloads, perform, onRead = openVerse)
-                        "settings" -> SettingsScreen(app, settings, perform, onLearn = { screen = "learn" }, onAbout = { aboutFrom="settings";screen = "about" })
+                        "settings" -> SettingsScreen(app, settings, perform, onLearn = { learningFrom = "settings"; screen = "learn" }, onAbout = { aboutFrom="settings";screen = "about" })
                         "learn" -> LearningScreen(language, onBack = back, onRead = openVerse)
                         "practice", "progress" -> PracticeScreen(app, language, onRead = openVerse, initialTab = if(screen=="progress")3 else 0,
                             onPracticeRange = { surah, start, end, repeats ->
@@ -232,5 +239,6 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
             FullPlayer(app, language, playback, entries, downloads, perform, onClose = { playerVisible = false },
                 onRead = { surah, ayah -> playerVisible = false; openVerse(surah, ayah) })
         }
+    }
     }
 }

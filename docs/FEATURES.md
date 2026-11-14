@@ -1,6 +1,6 @@
-# Fitur Nuraya 1.5.3
+# Fitur Nuraya 1.6.1
 
-Versi 1.5.3, versionCode 13, memakai applicationId dan sertifikat yang sama agar dapat memperbarui pemasangan sebelumnya. Referensi kebutuhan pengguna adalah jam/tanggal Hijriah, waktu salat, kiblat, pilihan belajar Quran dan navigasi yang lebih mudah dibaca. Nuraya tidak mengklaim afiliasi, menyalin merek, atau menjadi edisi resmi aplikasi lain.
+Versi 1.6.1, versionCode 15, memakai applicationId dan sertifikat yang sama agar dapat memperbarui pemasangan sebelumnya. Referensi kebutuhan pengguna adalah jam/tanggal Hijriah, waktu salat, kiblat, pilihan belajar Quran dan navigasi yang lebih mudah dibaca. Nuraya tidak mengklaim afiliasi, menyalin merek, atau menjadi edisi resmi aplikasi lain.
 
 ## Navigasi dan aksesibilitas
 
@@ -70,3 +70,7 @@ Latihan hafalan menyediakan dua urutan audio: setiap ayat diulang N kali sebelum
 Banner beranda dapat digeser. Proyek backend Telegram tersedia di `backend/banner-bot`; belum deploy karena pengguna memilih menyiapkan proyek dahulu. Sebelum layanan diaktifkan, banner bawaan tetap berfungsi. Token bot hanya disimpan sebagai secret backend; tidak dimasukkan ke APK atau Git. Azan dijelaskan di [PRAYER.md](PRAYER.md).
 
 Setiap edisi mempunyai gambar, indeks, cache dan penyimpanan offline yang sesuai. Panel bantuan melengkapi halaman asli tanpa menggantinya. Pengisian nama wajib dilakukan sebelum masuk beranda; profil yang sudah berisi nama dipertahankan. [Sumber dan batas gambar](MUSHAF_IMAGES.md).
+
+## Revisi 1.6.1
+
+Sampul, banner, dan avatar memakai aset dari dokumen revisi penyusun. Madinah & Tajwid menggunakan sampul Madinah hijau sesuai persetujuan. Kontrol mushaf memakai warna krem solid dan sistem bar transparan mengikuti layar. Beranda dan menu Quran terhubung ke pencarian makna serta pencarian potongan ayat lewat suara. Pencarian mengembalikan kutipan database dengan rujukan; chatbot generatif belum ditambahkan. [Cara kerja, privasi, dan batas pencarian](SEMANTIC_SEARCH.md) · [Perubahan lengkap](UPDATE_1.6.1.md).

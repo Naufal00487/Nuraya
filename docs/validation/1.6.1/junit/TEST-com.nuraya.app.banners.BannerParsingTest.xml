@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.banners.BannerParsingTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-14T09:27:54" hostname="f171976d1b7d" time="0.91">
+  <properties/>
+  <testcase name="feedAcceptsOnlyBoundedUniqueBannersAndSafeDestinations" classname="com.nuraya.app.banners.BannerParsingTest" time="0.91"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

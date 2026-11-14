@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.learning.SemanticSearchTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-14T09:27:57" hostname="f171976d1b7d" time="2.798">
+  <properties/>
+  <testcase name="unknownQueriesAndInvalidReferencesDoNotProduceInventedAnswers" classname="com.nuraya.app.learning.SemanticSearchTest" time="0.355"/>
+  <testcase name="spokenArabicFragmentsFindAnExactVerseBeyondItsBeginning" classname="com.nuraya.app.learning.SemanticSearchTest" time="0.911"/>
+  <testcase name="meaningSearchRetrievesAttributedVersesForEverydayTopics" classname="com.nuraya.app.learning.SemanticSearchTest" time="1.532"/>
+  <system-out><![CDATA[SEMANTIC hati tenang mengingat Allah -> [(13, 28), (39, 23), (24, 37), (30, 21), (57, 16)]
+SEMANTIC berbuat baik kepada orang tua -> [(2, 83), (6, 151), (46, 15), (28, 83), (6, 84)]
+SEMANTIC jangan menyerah pada ampunan Allah -> [(39, 53), (60, 13), (11, 9), (12, 87), (23, 77)]
+SEMANTIC menjaga lisan dari gosip -> [(5, 78), (104, 1), (49, 12), (7, 205), (2, 116)]
+SEMANTIC aku ingin belajar sabar -> [(70, 5), (74, 7), (18, 69), (7, 126), (8, 46)]
+SEMANTIC kesulitan akan berlalu -> [(7, 94), (89, 4), (6, 64), (74, 33), (65, 7)]
+SEMANTIC cemas karena takut miskin -> [(28, 7), (17, 31), (4, 9), (26, 135), (9, 28)]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

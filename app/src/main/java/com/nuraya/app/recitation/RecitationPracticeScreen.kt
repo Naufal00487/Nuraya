@@ -345,8 +345,8 @@ internal fun statusText(status: String, language: String): String = when (status
 
 
 @Composable
-private fun QuranModelCard(language: String, state: QuranModelState, supported: Boolean, modelBytes: Long,
-    onDownload: () -> Unit, onCancel: () -> Unit) {
+internal fun QuranModelCard(language: String, state: QuranModelState, supported: Boolean, modelBytes: Long,
+    onDownload: () -> Unit, onCancel: () -> Unit, unsupportedMessage: String? = null) {
     val downloading = state.phase == ModelPhase.DOWNLOADING
     val checking = state.phase in setOf(ModelPhase.CHECKING, ModelPhase.VERIFYING)
     OutlinedCard(shape = RoundedCornerShape(20.dp), modifier = Modifier.testTag("quran_ai_model")) {
@@ -356,7 +356,7 @@ private fun QuranModelCard(language: String, state: QuranModelState, supported: 
                 "Unduh model sekali (sekitar ${modelBytes / 1_000_000} MB). Setelah siap, suara diproses di HP tanpa dikirim ke server. Tidak perlu akun atau biaya layanan. Disarankan memakai Wi-Fi untuk unduhan awal.",
                 "Download the model once (about ${modelBytes / 1_000_000} MB). Once ready, audio is processed on your phone without uploading it. No account or service fee is required. Wi-Fi is recommended for the initial download."),
                 style = MaterialTheme.typography.bodySmall)
-            if (!supported) Text(label(language,
+            if (!supported) Text(unsupportedMessage ?: label(language,
                 "Mesin AI belum mendukung perangkat ini. Pilih Pengenal Android untuk latihan suara.",
                 "This device is not supported by the AI engine. Choose Android recognition for voice practice."), style = MaterialTheme.typography.bodyMedium)
             else when (state.phase) {

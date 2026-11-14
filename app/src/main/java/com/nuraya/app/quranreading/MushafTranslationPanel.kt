@@ -58,7 +58,7 @@ fun MushafTranslationPanel(
                     Text(if (english) "Marmaduke Pickthall" else "Kementerian Agama RI · QuranEnc v1.0.1", style = MaterialTheme.typography.labelMedium)
                     Text("$surahName · ${selected.ayah}", style = MaterialTheme.typography.labelSmall)
                 }
-                IconButton(onClick = onClose) { Icon(Icons.Outlined.Close, if (english) "Close meaning panel" else "Tutup panel arti") }
+                com.nuraya.app.ui.SolidReadingIconButton(onClick = onClose) { Icon(Icons.Outlined.Close, if (english) "Close meaning panel" else "Tutup panel arti") }
             }
             LazyColumn(Modifier.weight(1f).fillMaxWidth().testTag("mushaf_translation_list"), state = listState,
                 contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp), verticalArrangement = Arrangement.spacedBy(20.dp)) {

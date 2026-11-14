@@ -1,0 +1,22 @@
+{
+  "optimizedAndroidRuntimeVerified": true,
+  "abis": [
+    {
+      "abi": "arm64-v8a",
+      "optimizedTranslationUnits": 25,
+      "compileCommands": "app/.cxx/Debug/2f463f1g/arm64-v8a/compile_commands.json"
+    },
+    {
+      "abi": "armeabi-v7a",
+      "optimizedTranslationUnits": 25,
+      "compileCommands": "app/.cxx/Debug/2f463f1g/armeabi-v7a/compile_commands.json"
+    },
+    {
+      "abi": "x86_64",
+      "optimizedTranslationUnits": 25,
+      "compileCommands": "app/.cxx/Debug/2f463f1g/x86_64/compile_commands.json"
+    }
+  ]
+}
+/workspace/nuraya-main/artifacts/nuraya-1.6.1-debug.apk: 105,629,920 bytes; SHA-256 647be1147b86b43f364ee3aa99eee65142c4b1c02dafb6453fb9a343c654bc18
+/workspace/nuraya-main/artifacts/nuraya-1.6.1-source.zip: 100,081,825 bytes; SHA-256 9402c6569a05fbc90ce3ed0c5e57c6e67325289e48b5f75a9feff298521680d4

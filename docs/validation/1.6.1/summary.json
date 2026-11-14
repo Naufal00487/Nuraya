@@ -1,0 +1,22 @@
+{
+  "versionName": "1.6.1",
+  "versionCode": 15,
+  "tests": {
+    "tests": 212,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 61
+  },
+  "apk": {
+    "bytes": 105629920,
+    "sha256": "647be1147b86b43f364ee3aa99eee65142c4b1c02dafb6453fb9a343c654bc18"
+  },
+  "physicalDeviceTested": false,
+  "semanticSourceHashesVerified": 115,
+  "printedEditionCount": 7,
+  "unchangedBundledPages": 42
+}

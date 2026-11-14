@@ -24,7 +24,7 @@ import com.nuraya.app.ui.BrandImage
 import com.nuraya.app.ui.SectionArtwork
 
 @Composable
-fun QuranModesScreen(app: NurayaApplication, language: String, onMode: (String) -> Unit, onRead: (Int, Int) -> Unit) {
+fun QuranModesScreen(app: NurayaApplication, language: String, onMode: (String) -> Unit, onRead: (Int, Int) -> Unit, onSearch: () -> Unit = {}) {
     var thematicOpen by rememberSaveable { mutableStateOf(false) }
     var query by rememberSaveable { mutableStateOf("") }
     BackHandler(thematicOpen) { thematicOpen = false }
@@ -44,6 +44,11 @@ fun QuranModesScreen(app: NurayaApplication, language: String, onMode: (String) 
                 "Choose mushaf pages or a learning aid. Word meanings, transliteration, tajwid and memorization each open their own reading tools."), style = MaterialTheme.typography.bodyLarge)
         }
         item {
+            Button(onClick = onSearch, modifier = Modifier.fillMaxWidth().testTag("quran_smart_search")) {
+                Icon(Icons.Outlined.Search, null); Spacer(Modifier.width(8.dp)); Text(label(language, "Cari ayat · makna & suara", "Find verses · meaning & voice"))
+            }
+        }
+        item {
             OutlinedTextField(value = query, onValueChange = { query = it.take(100) }, singleLine = true,
                 label = { Text(label(language, "Cari cara membaca", "Find a reading mode")) },
                 leadingIcon = { Icon(Icons.Outlined.Search, null) }, modifier = Modifier.fillMaxWidth().testTag("quran_mode_search"))
@@ -52,7 +57,7 @@ fun QuranModesScreen(app: NurayaApplication, language: String, onMode: (String) 
             OutlinedCard(onClick = { if (mode.id == "thematic") thematicOpen = true else onMode(mode.id) },
                 modifier = Modifier.fillMaxWidth().testTag("quran_mode_${mode.id}"), shape = RoundedCornerShape(20.dp)) {
                 Row(Modifier.padding(18.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                    BrandImage("covers/${mode.id}",Modifier.width(94.dp).height(132.dp),description=mode.title(language))
+                    BrandImage("covers/${mode.id}",Modifier.width(94.dp).height(132.dp),scale=androidx.compose.ui.layout.ContentScale.Fit,description=mode.title(language))
                     Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                         Text(mode.title(language), style = MaterialTheme.typography.titleLarge)
                         Text(mode.description(language), style = MaterialTheme.typography.bodyMedium)

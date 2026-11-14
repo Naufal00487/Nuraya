@@ -43,7 +43,7 @@ fun MushafAudioSheet(app: NurayaApplication, settings: UserSettings, surah: Int,
         Column(Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(16.dp).testTag("mushaf_audio_settings"), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(label(language, "Pengaturan murottal", "Recitation settings"), Modifier.weight(1f), style = MaterialTheme.typography.titleLarge)
-                IconButton(onClick = onDismiss) { Icon(Icons.Outlined.Close, label(language, "Tutup pilihan qari", "Close reciter picker")) }
+                com.nuraya.app.ui.SolidReadingIconButton(onClick = onDismiss) { Icon(Icons.Outlined.Close, label(language, "Tutup pilihan qari", "Close reciter picker")) }
             }
             Text(label(language, "Mulai dari", "Start at"), style = MaterialTheme.typography.titleSmall)
             VerseInputs(language, startSurah, { startSurah = it }, startAyah, { startAyah = it }, "start")

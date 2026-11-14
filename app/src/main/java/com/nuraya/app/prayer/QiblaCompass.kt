@@ -120,7 +120,7 @@ internal fun rememberCompass(location: PrayerLocation): CompassReading {
 @Composable
 fun QiblaScreen(language:String) {
     val (prefs, _) = rememberPrayerPreferences()
-    Column(Modifier.fillMaxSize().background(Brush.verticalGradient(listOf(Color(0xFF304E7B),Color(0xFF172A48)))).verticalScroll(rememberScrollState()).padding(20.dp),horizontalAlignment=Alignment.CenterHorizontally) {
+    Column(Modifier.fillMaxSize().background(Brush.verticalGradient(listOf(Color(0xFF247F78),Color(0xFF144B48)))).verticalScroll(rememberScrollState()).padding(20.dp),horizontalAlignment=Alignment.CenterHorizontally) {
         if(prefs.location!=null) QiblaPanel(prefs.location,language)
         else {
             Spacer(Modifier.height(60.dp))
@@ -137,20 +137,20 @@ internal fun QiblaPanel(location: PrayerLocation, language: String) {
     val turn=compass.heading?.let{PrayerCalculator.signedTurn(bearing,it)}
     val trusted=compass.accuracy>=SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM
     var info by remember{mutableStateOf(false)}
-    Surface(color=Color(0xFF243D61),shape=RoundedCornerShape(28.dp),modifier=Modifier.fillMaxWidth().testTag("qibla_panel")) {
+    Surface(color=Color(0xFF1E6660),shape=RoundedCornerShape(28.dp),modifier=Modifier.fillMaxWidth().testTag("qibla_panel")) {
         Column(Modifier.padding(16.dp),horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(18.dp)) {
             Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically){
                 Text(label(language,"Arah kiblat","Qibla direction"),Modifier.weight(1f),color=Color.White,style=MaterialTheme.typography.headlineSmall)
                 IconButton(onClick={info=true}){Icon(Icons.Outlined.Info,label(language,"Panduan kompas","Compass guide"),tint=Color.White)}
             }
-            Text(location.name,color=Color(0xFFCDDCF4),style=MaterialTheme.typography.titleMedium)
+            Text(location.name,color=Color(0xFFD8EEDE),style=MaterialTheme.typography.titleMedium)
             Spacer(Modifier.height(20.dp))
             Canvas(Modifier.fillMaxWidth().aspectRatio(1f)) {
                 val r=size.minDimension*.39f
-                val white=Color(0xFFEAF0FA);val gold=Color(0xFFE7BF65)
-                repeat(16){i->rotate(i*22.5f){drawOval(Color(0xFF32527D),topLeft=Offset(center.x-r*.38f,center.y-r*1.22f),size=Size(r*.76f,r*1.8f))}}
-                drawCircle(Color(0xFF16263D),r*1.08f)
-                drawCircle(Brush.radialGradient(listOf(Color(0xFF465A77),Color(0xFF24344D))),r)
+                val white=Color(0xFFF4F2DC);val gold=Color(0xFFE7BF65)
+                repeat(16){i->rotate(i*22.5f){drawOval(Color(0xFF348E84),topLeft=Offset(center.x-r*.38f,center.y-r*1.22f),size=Size(r*.76f,r*1.8f))}}
+                drawCircle(Color(0xFF123D39),r*1.08f)
+                drawCircle(Brush.radialGradient(listOf(Color(0xFF4F8278),Color(0xFF24524C))),r)
                 rotate(-(compass.heading?:0.0).toFloat()){
                     repeat(180){i->rotate(i*2f){drawLine(white.copy(alpha=if(i%5==0)1f else .6f),Offset(center.x,center.y-r*.94f),Offset(center.x,center.y-r*(if(i%5==0).85f else .9f)),if(i%5==0)2.dp.toPx() else 1.dp.toPx())}}
                     drawIntoCanvas{canvas->
@@ -180,7 +180,7 @@ internal fun QiblaPanel(location: PrayerLocation, language: String) {
                 turn>0 -> label(language,"Putar ke kanan ${abs(turn).roundToInt()}°","Turn right ${abs(turn).roundToInt()}°")
                 else -> label(language,"Putar ke kiri ${abs(turn).roundToInt()}°","Turn left ${abs(turn).roundToInt()}°")
             },color=Color.White,textAlign=TextAlign.Center,style=MaterialTheme.typography.bodyLarge)
-            Text(label(language,"Jauhkan HP dari magnet dan logam. Gerakkan membentuk angka delapan untuk kalibrasi.","Keep away from magnets and metal. Move your phone in a figure eight to calibrate."),color=Color(0xFFCDDCF4),textAlign=TextAlign.Center,style=MaterialTheme.typography.bodySmall)
+            Text(label(language,"Jauhkan HP dari magnet dan logam. Gerakkan membentuk angka delapan untuk kalibrasi.","Keep away from magnets and metal. Move your phone in a figure eight to calibrate."),color=Color(0xFFD8EEDE),textAlign=TextAlign.Center,style=MaterialTheme.typography.bodySmall)
         }
     }
     if(info)AlertDialog(onDismissRequest={info=false},title={Text(label(language,"Menggunakan kompas","Using the compass"))},text={Text(label(language,"Letakkan HP mendatar. Arah kiblat dihitung dari lokasi Anda menuju Ka'bah; putaran penunjuk mengikuti sensor perangkat dan koreksi utara sejati. Jika sensor belum akurat, lakukan kalibrasi sebelum mengikuti panah.","Hold the phone flat. The Qibla bearing uses your location and the device sensor with true-north correction. Calibrate before following an unreliable pointer."))},confirmButton={TextButton(onClick={info=false}){Text(label(language,"Mengerti","Got it"))}})
