@@ -4,17 +4,17 @@
     {
       "abi": "arm64-v8a",
       "optimizedTranslationUnits": 25,
-      "compileCommands": "app/.cxx/Debug/2f463f1g/arm64-v8a/compile_commands.json"
+      "compileCommands": "app/.cxx/RelWithDebInfo/6p2c6b1d/arm64-v8a/compile_commands.json"
     },
     {
       "abi": "armeabi-v7a",
       "optimizedTranslationUnits": 25,
-      "compileCommands": "app/.cxx/Debug/2f463f1g/armeabi-v7a/compile_commands.json"
+      "compileCommands": "app/.cxx/RelWithDebInfo/6p2c6b1d/armeabi-v7a/compile_commands.json"
     },
     {
       "abi": "x86_64",
       "optimizedTranslationUnits": 25,
-      "compileCommands": "app/.cxx/Debug/2f463f1g/x86_64/compile_commands.json"
+      "compileCommands": "app/.cxx/RelWithDebInfo/6p2c6b1d/x86_64/compile_commands.json"
     }
   ]
 }

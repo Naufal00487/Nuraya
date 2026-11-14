@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import argparse
 from pathlib import Path
 import shlex
 
@@ -10,10 +11,11 @@ ROOT = Path(__file__).resolve().parents[1]
 ABIS = ("arm64-v8a", "armeabi-v7a", "x86_64")
 
 
-def verify() -> dict:
+def verify(build_type: str = "debug") -> dict:
     results = []
     for abi in ABIS:
-        candidates = list((ROOT / "app/.cxx/Debug").glob(f"*/{abi}/compile_commands.json"))
+        configuration = "Debug" if build_type == "debug" else "RelWithDebInfo"
+        candidates = list((ROOT / f"app/.cxx/{configuration}").glob(f"*/{abi}/compile_commands.json"))
         if not candidates:
             raise SystemExit(f"Build the native Android engine first; missing compiler commands for {abi}")
         path = max(candidates, key=lambda entry: entry.stat().st_mtime)
@@ -33,4 +35,6 @@ def verify() -> dict:
 
 
 if __name__ == "__main__":
-    print(json.dumps(verify(), indent=2))
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--build-type", choices=("debug", "release"), default="debug")
+    print(json.dumps(verify(parser.parse_args().build_type), indent=2))

@@ -23,6 +23,8 @@ android {
     }
     buildTypes {
         release {
+            // Preserve the existing distribution certificate; the key stays outside Git.
+            signingConfig = signingConfigs.getByName("debug")
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }

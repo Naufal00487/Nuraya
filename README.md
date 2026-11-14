@@ -2,9 +2,9 @@
 
 Source aplikasi Android Nuraya **1.6.1** untuk dibuka dan direvisi langsung. Pembaca Quran memakai tujuh edisi gambar asli, masing-masing 604 halaman, mengikuti referensi yang diberikan.
 
-**[Unduh APK terbaru — 1.6.1](https://github.com/Naufal00487/Nuraya/releases/latest/download/Nuraya-1.6.1.apk)** · [Perubahan](docs/UPDATE_1.6.1.md) · [Audit Quran dan audio](docs/AUDIT_1.3.1.md) · [Validasi](docs/BUILD_VALIDATION.md)
+**[Unduh APK terbaru — 1.6.1](https://raw.githubusercontent.com/Naufal00487/Nuraya/HEAD/artifacts/Nuraya-1.6.1.apk)** · [Perubahan](docs/UPDATE_1.6.1.md) · [Audit Quran dan audio](docs/AUDIT_1.3.1.md) · [Validasi](docs/BUILD_VALIDATION.md)
 
-Android 8.0 atau lebih baru. APK memakai paket dan sertifikat distribusi yang sama, sehingga dapat dipasang sebagai pembaruan. APK terbaru tersedia di **Releases**; checksum dan tautannya ada di folder `artifacts/`. Source dapat diunduh melalui **Code → Download ZIP**.
+Android 8.0 atau lebih baru. APK memakai paket dan sertifikat distribusi yang sama, sehingga dapat dipasang sebagai pembaruan. Folder `artifacts/` hanya menyediakan APK terbaru dan checksum-nya. Source dapat diunduh melalui **Code → Download ZIP**.
 
 ## Revisi manual
 
@@ -21,7 +21,7 @@ Android 8.0 atau lebih baru. APK memakai paket dan sertifikat distribusi yang sa
 | `app/build.gradle.kts` | Versi aplikasi dan konfigurasi Android |
 | `scripts/` | Setup, build, impor/verifikasi data dan pengemasan |
 | `docs/` | Dokumentasi fitur, sumber, audit dan bukti validasi terkini |
-| `artifacts/` | Tautan APK terbaru dan checksum |
+| `artifacts/` | APK terbaru dan checksum |
 
 Toolchain: JDK 17, Android SDK 35, Gradle 8.11.1, NDK 27.2.12479018 dan CMake 3.22.1. Android Studio dapat memasang komponen SDK yang diperlukan. Build lokal memakai Gradle Wrapper:
 
@@ -31,7 +31,7 @@ Toolchain: JDK 17, Android SDK 35, Gradle 8.11.1, NDK 27.2.12479018 dan CMake 3.
 
 Di Windows, gunakan `gradlew.bat` menggantikan `./gradlew`. Build APK berada di `app/build/outputs/apk/debug/`. Keystore distribusi tidak disertakan dalam repo; build lokal memakai kunci pengembang masing-masing. Jangan mengubah data ayat tanpa memeriksa sumber dan menjalankan audit.
 
-Untuk cloud Linux yang menyediakan toolchain proyek, tersedia `bash scripts/setup-android.sh` dan `bash scripts/gradle.sh`. Setelah build, `python3 scripts/package-artifacts.py` membuat paket di `artifacts/`; folder tersebut dikecualikan dari ZIP source agar APK tidak ikut terkemas kembali.
+Untuk cloud Linux yang menyediakan toolchain proyek, tersedia `bash scripts/setup-android.sh` dan `bash scripts/gradle.sh`. Setelah build, `python3 scripts/package-artifacts.py` membuat paket debug di `artifacts/`; untuk APK distribusi gunakan `assembleRelease` lalu `python3 scripts/package-artifacts.py --build-type release`. Folder tersebut dikecualikan dari ZIP source agar APK tidak ikut terkemas kembali.
 
 ## Fitur dan batasnya
 

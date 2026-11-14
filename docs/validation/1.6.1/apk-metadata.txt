@@ -100,13 +100,12 @@ application-label-zh-CN:'Nuraya'
 application-label-zh-HK:'Nuraya'
 application-label-zh-TW:'Nuraya'
 application-label-zu:'Nuraya'
-application-icon-160:'res/mipmap-anydpi-v26/ic_launcher.xml'
-application-icon-240:'res/mipmap-anydpi-v26/ic_launcher.xml'
-application-icon-320:'res/mipmap-anydpi-v26/ic_launcher.xml'
-application-icon-65534:'res/mipmap-anydpi-v26/ic_launcher.xml'
-application-icon-65535:'res/mipmap-anydpi-v26/ic_launcher.xml'
-application: label='Nuraya' icon='res/mipmap-anydpi-v26/ic_launcher.xml'
-application-debuggable
+application-icon-160:'res/BW.xml'
+application-icon-240:'res/BW.xml'
+application-icon-320:'res/BW.xml'
+application-icon-65534:'res/BW.xml'
+application-icon-65535:'res/BW.xml'
+application: label='Nuraya' icon='res/BW.xml'
 launchable-activity: name='com.nuraya.app.MainActivity'  label='' icon=''
 feature-group: label=''
   uses-feature-not-required: name='android.hardware.location'
@@ -116,7 +115,6 @@ feature-group: label=''
   uses-feature: name='android.hardware.faketouch'
   uses-implied-feature: name='android.hardware.faketouch' reason='default feature for all apps'
 main
-other-activities
 other-receivers
 other-services
 supports-screens: 'small' 'normal' 'large' 'xlarge'

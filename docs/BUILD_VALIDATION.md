@@ -4,18 +4,19 @@ Paket `com.nuraya.app`, versionCode **15**, minimum Android 8/API 26, target API
 
 ## Hasil
 
-**212 tes JVM/Compose lulus; 0 gagal, error, atau dilewati.** Suite lengkap dijalankan pada source akhir. Lint: **0 error/fatal, 61 peringatan**. APK aplikasi dan APK instrumentasi berhasil dibangun; instrumentasi belum dijalankan pada perangkat.
+**212 tes JVM/Compose lulus; 0 gagal, error, atau dilewati.** Suite lengkap pada varian debug menguji kode aplikasi yang sama. APK distribusi kemudian dibangun sebagai release tanpa komponen debug UI; tidak ada perubahan kode fitur setelah suite lulus. Lint: **0 error/fatal, 61 peringatan**. APK aplikasi dan APK instrumentasi berhasil dibangun; instrumentasi belum dijalankan pada perangkat.
 
 ```sh
 bash scripts/gradle.sh testDebugUnitTest lintDebug assembleDebug assembleDebugAndroidTest
+bash scripts/gradle.sh assembleRelease lintRelease
 python3 scripts/import_semantic_index.py --verify
 python3 scripts/import_quran.py --verify
 python3 scripts/import_printed_mushaf.py --verify
-python3 scripts/verify-native-optimization.py
-python3 scripts/package-artifacts.py
+python3 scripts/verify-native-optimization.py --build-type release
+python3 scripts/package-artifacts.py --build-type release
 ```
 
-Bukti: [ringkasan](validation/1.6.1/summary.json), [JUnit lengkap](validation/1.6.1/junit), [build](validation/1.6.1/gradle-build.log), [lint](validation/1.6.1/lint.txt).
+Bukti: [ringkasan](validation/1.6.1/summary.json), [JUnit lengkap](validation/1.6.1/junit), [build](validation/1.6.1/gradle-build.log), [lint debug](validation/1.6.1/lint.txt), [build release](validation/1.6.1/release-build.log), [lint release](validation/1.6.1/lint-release.txt). Lint release: 0 error dan 61 peringatan.
 
 ## Perubahan yang diperiksa
 
@@ -36,7 +37,7 @@ Render Compose/Robolectric yang diperiksa (bukan foto HP): [banner belajar](vali
 
 Tidak ada perubahan pada teks Quran, tafsir, terjemahan, latin, anotasi tajwid/waqaf, gambar halaman mushaf, indeks ayat/surah, rekaman/ID qari atau timing. Teks kanonis tetap SHA-256 `f41cef112e2efd581d3ea15ad7229a713d18122a6e0fbec4ddb0c00b7d1cae9c`. Verifikasi mencakup 114 surah, 6.236 ayat, 112 pembukaan terpisah, tujuh indeks edisi 604 halaman, enam peta ayat lengkap, dan 42 PNG bundel yang tidak berubah. Pemeriksaan penuh sumber 4.228 gambar dari 1.6.0 tetap berlaku karena manifest dan aset tersebut tidak diubah.
 
-APK **105.629.920 byte**; SHA-256 `647be1147b86b43f364ee3aa99eee65142c4b1c02dafb6453fb9a343c654bc18`. `apksigner verify` dan `zipalign -c -P 16 4` lulus. Sertifikat sama dengan rilis sebelumnya: `e2aa60317632bc6aea65f83c2247e54111941d0e0725875a2c9db3ffb93ac264`. Native ketiga ABI memakai optimasi yang diperlukan. Pengemasan membandingkan setiap aset APK dengan source secara byte. Distribusi memakai GitHub Releases karena ukuran APK melewati batas blob Git biasa.
+APK **94.653.395 byte**; SHA-256 `b23c8441d5fcab50d342623b689d2a064dc22548e9033e7507ae59e03405af8c`. `apksigner verify` dan `zipalign -c -P 16 4` lulus. Sertifikat sama dengan rilis sebelumnya: `e2aa60317632bc6aea65f83c2247e54111941d0e0725875a2c9db3ffb93ac264`. Native ketiga ABI memakai optimasi yang diperlukan. Pengemasan membandingkan setiap aset APK dengan source secara byte. APK distribusi menggunakan build release (debuggable=false), dengan sertifikat distribusi yang sudah digunakan sebelumnya. Seluruh gambar/data tetap utuh; APK terbaru tersedia langsung di folder artifacts repo.
 
 [Tanda tangan](validation/1.6.1/apk-signature.txt), [alignment](validation/1.6.1/apk-alignment.txt), [metadata](validation/1.6.1/apk-metadata.txt), [optimasi native](validation/1.6.1/native-optimization.json).
 

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import argparse
 import json
 from pathlib import Path
 import shutil
@@ -10,7 +11,6 @@ import subprocess
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-APK = ROOT / "app/build/outputs/apk/debug/app-debug.apk"
 OUTPUT = ROOT / "artifacts"
 
 
@@ -23,9 +23,13 @@ def sha256(path: Path) -> str:
 
 
 def main() -> None:
-    if not APK.is_file() or APK.stat().st_size < 100_000:
-        raise SystemExit("Build the APK first: bash scripts/gradle.sh assembleDebug")
-    metadata = json.loads((APK.parent / "output-metadata.json").read_text())
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--build-type", choices=("debug", "release"), default="debug")
+    build_type = parser.parse_args().build_type
+    apk = ROOT / f"app/build/outputs/apk/{build_type}/app-{build_type}.apk"
+    if not apk.is_file() or apk.stat().st_size < 100_000:
+        raise SystemExit(f"Build the signed APK first: bash scripts/gradle.sh assemble{build_type.title()}")
+    metadata = json.loads((apk.parent / "output-metadata.json").read_text())
     element, = metadata["elements"]
     version_name = element["versionName"]
     version_code = element["versionCode"]
@@ -36,15 +40,20 @@ def main() -> None:
     ).decode().split("\0")
     files = sorted({name for name in source_names if name and (ROOT / name).is_file()})
     build_inputs = [ROOT / name for name in files if name.startswith("app/src/main/") or name.endswith(".gradle.kts") or name == "gradle.properties"]
-    newer = [str(path.relative_to(ROOT)) for path in build_inputs if path.stat().st_mtime > APK.stat().st_mtime]
+    newer = [str(path.relative_to(ROOT)) for path in build_inputs if path.stat().st_mtime > apk.stat().st_mtime]
     if newer:
         raise SystemExit("APK predates source changes. Rebuild before packaging: " + ", ".join(newer))
     # A debug-signed delivery still needs optimized native speech kernels.
-    subprocess.run(["python3", str(ROOT / "scripts/verify-native-optimization.py")], cwd=ROOT, check=True)
-    with zipfile.ZipFile(APK) as archive:
+    subprocess.run(["python3", str(ROOT / "scripts/verify-native-optimization.py"), "--build-type", build_type], cwd=ROOT, check=True)
+    with zipfile.ZipFile(apk) as archive:
         names = set(archive.namelist())
-        if not {"AndroidManifest.xml", "classes.dex", "assets/quran.json", "assets/reciters.json", "res/font/amiri_quran.ttf"}.issubset(names):
+        if not {"AndroidManifest.xml", "classes.dex", "assets/quran.json", "assets/reciters.json"}.issubset(names):
             raise SystemExit("Unexpected or incomplete Android APK")
+        # AAPT shortens release resource paths. Verify the font bytes rather
+        # than assuming the debug-only res/font/... entry name is retained.
+        font = (ROOT / "app/src/main/res/font/amiri_quran.ttf").read_bytes()
+        if not any(archive.read(name) == font for name in names if name.endswith(".ttf")):
+            raise SystemExit("Canonical Quran font is missing or differs from source")
         for asset in sorted((ROOT / "app/src/main/assets").rglob("*")):
             if asset.is_file():
                 entry = "assets/" + asset.relative_to(ROOT / "app/src/main/assets").as_posix()
@@ -53,9 +62,9 @@ def main() -> None:
         if "assets/alafasy1.mp3" in names:
             raise SystemExit("Instrumentation fixture must not be packaged in the app")
     OUTPUT.mkdir(exist_ok=True)
-    result_apk = OUTPUT / f"nuraya-{version_name}-debug.apk"
+    result_apk = OUTPUT / f"nuraya-{version_name}-{build_type}.apk"
     source_zip = OUTPUT / f"nuraya-{version_name}-source.zip"
-    shutil.copy2(APK, result_apk)
+    shutil.copy2(apk, result_apk)
     source_hashes = {}
     with zipfile.ZipFile(source_zip, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
         for name in files:
@@ -71,7 +80,7 @@ def main() -> None:
             raise SystemExit("Source ZIP integrity check failed")
     info = {
         "applicationId": metadata["applicationId"], "versionName": version_name, "versionCode": version_code,
-        "buildType": "debug", "minimumAndroidApi": 26, "targetAndroidApi": 35,
+        "buildType": build_type, "minimumAndroidApi": 26, "targetAndroidApi": 35,
         "apk": {"file": result_apk.name, "bytes": result_apk.stat().st_size, "sha256": sha256(result_apk)},
         "sources": {"file": source_zip.name, "bytes": source_zip.stat().st_size, "sha256": sha256(source_zip)},
         "sourceFiles": source_hashes,

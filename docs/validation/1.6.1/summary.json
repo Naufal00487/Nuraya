@@ -12,11 +12,18 @@
     "warnings": 61
   },
   "apk": {
-    "bytes": 105629920,
-    "sha256": "647be1147b86b43f364ee3aa99eee65142c4b1c02dafb6453fb9a343c654bc18"
+    "buildType": "release",
+    "debuggable": false,
+    "bytes": 94653395,
+    "sha256": "b23c8441d5fcab50d342623b689d2a064dc22548e9033e7507ae59e03405af8c",
+    "certificateSha256": "e2aa60317632bc6aea65f83c2247e54111941d0e0725875a2c9db3ffb93ac264"
   },
   "physicalDeviceTested": false,
   "semanticSourceHashesVerified": 115,
   "printedEditionCount": 7,
-  "unchangedBundledPages": 42
+  "unchangedBundledPages": 42,
+  "releaseLint": {
+    "errors": 0,
+    "warnings": 61
+  }
 }
