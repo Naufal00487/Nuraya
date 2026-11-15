@@ -1,6 +1,6 @@
-# Fitur Nuraya 1.6.2
+# Fitur Nuraya 1.6.3
 
-Versi 1.6.2, versionCode 16, memakai applicationId dan sertifikat yang sama agar dapat memperbarui pemasangan sebelumnya. Referensi kebutuhan pengguna adalah jam/tanggal Hijriah, waktu salat, kiblat, pilihan belajar Quran dan navigasi yang lebih mudah dibaca. Nuraya tidak mengklaim afiliasi, menyalin merek, atau menjadi edisi resmi aplikasi lain.
+Versi 1.6.3, versionCode 17, memakai applicationId dan sertifikat yang sama agar dapat memperbarui pemasangan sebelumnya. Referensi kebutuhan pengguna adalah jam/tanggal Hijriah, waktu salat, kiblat, pilihan belajar Quran dan navigasi yang lebih mudah dibaca. Nuraya tidak mengklaim afiliasi, menyalin merek, atau menjadi edisi resmi aplikasi lain.
 
 ## Navigasi dan aksesibilitas
 
@@ -73,7 +73,7 @@ Setiap edisi mempunyai gambar, indeks, cache dan penyimpanan offline yang sesuai
 
 ## Revisi 1.6.2
 
-Sampul, banner, dan avatar memakai aset dari dokumen revisi penyusun. Madinah & Tajwid menggunakan sampul Madinah hijau sesuai persetujuan. Kontrol mushaf memakai warna krem solid dan sistem bar transparan mengikuti layar. Beranda dan menu Quran terhubung ke pencarian makna serta pencarian potongan ayat lewat suara. Pencarian mengembalikan kutipan database dengan rujukan; chatbot generatif belum ditambahkan. [Cara kerja, privasi, dan batas pencarian](SEMANTIC_SEARCH.md) · [Perubahan lengkap](UPDATE_1.6.2.md).
+Sampul, banner, dan avatar memakai aset dari dokumen revisi penyusun. Madinah & Tajwid menggunakan sampul Madinah hijau sesuai persetujuan. Kontrol mushaf memakai warna krem solid dan sistem bar transparan mengikuti layar. Beranda dan menu Quran terhubung ke pencarian makna serta pencarian suara bahasa Indonesia. Pencarian mengembalikan kutipan database dengan rujukan; chatbot generatif belum ditambahkan. [Cara kerja, privasi, dan batas pencarian](SEMANTIC_SEARCH.md) · [Perubahan lengkap](UPDATE_1.6.2.md).
 
 ## Pembaruan 1.6.2
 
@@ -82,3 +82,11 @@ Beranda menyediakan Cari Ayat dan Cari Hadis. Cari Hadis mencari kata/frasa Arab
 Daftar aktif terdiri dari 30 orang qari, masing-masing satu pilihan Hafs. Pilihan Murottal disimpan juga sebagai qari Quran/hafalan; pembaca memakai suara dengan ID penyedia yang dipasangkan secara eksplisit. Tombol pada pemutar surah dapat memulai bacaan sinkron dari ayat 1; posisi rekaman surah tidak ditebak menjadi posisi ayat. Sebelas qari mempunyai data waktu kata; sisanya mengikuti ayat. [Katalog terbaru](AUDIO_CATALOG.md).
 
 Pengaturan dan menu Profil memakai grup kartu, ikon, judul/subjudul serta pemisah. Ibadah/Beranda menampilkan jam dan dua kalender dalam kolom, dengan strip lima waktu salat. Semua ikon Compose memakai UIcons Regular Rounded dari Flaticon; atribusi tersedia di Pengaturan → Sumber & atribusi.
+
+## Pembaruan 1.6.3
+
+Tema biru kembali untuk menu umum dan pembaca teks. Gambar lanskap beranda tampil tanpa overlay hijau, termasuk di belakang status bar; teks memakai bayangan untuk keterbacaan. Bilah sistem dan navigasi utama transparan. Gambar cetak mushaf mempertahankan warna aslinya.
+
+Pencarian suara sekarang mendikte bahasa Indonesia memakai layanan pengenal Android dan meneruskan transkrip ke pencarian teks biasa. Nama surah, variasi ejaan, nomor surah, dan angka ayat lisan didukung. Hasil fuzzy diberi keterangan sebagai kemungkinan dan tidak membuka surah otomatis. Topik pembelajaran tetap mencari ayat, tafsir dan materi tajwid lokal. Model Arab untuk AI koreksi bacaan tetap terpisah. [Cara kerja dan privasi](SEMANTIC_SEARCH.md).
+
+Audio per ayat pembaca berhenti saat meninggalkan pembaca atau aplikasi; menukar tampilan gambar/teks di pembaca mempertahankan sesi. Murottal surah lengkap tetap mendukung latar belakang. Rotasi perangkat tidak memutus sesi pembaca.

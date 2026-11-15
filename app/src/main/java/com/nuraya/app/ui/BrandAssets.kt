@@ -46,8 +46,10 @@ fun rememberAssetBitmap(path: String): ImageBitmap? {
 @Composable
 fun BrandImage(name: String, modifier: Modifier = Modifier, scale: ContentScale = ContentScale.Crop, description: String? = null) {
     val path = if (name.startsWith("covers/")) "brand/" + (if (name == "covers/madinah_tajwid") "covers/madinah" else name) + ".png" else "brand/$name.jpg"
-    val bitmap = rememberAssetBitmap(path)
-    Box(modifier) { bitmap?.let { Image(it, description, Modifier.fillMaxSize().testTag("brand_image_$name"), contentScale = scale) } }
+    key(path) {
+        val bitmap = rememberAssetBitmap(path)
+        Box(modifier) { bitmap?.let { Image(it, description, Modifier.fillMaxSize().testTag("brand_image_$name"), contentScale = scale) } }
+    }
 }
 
 fun landscapeForHour(hour: Int): String = when (hour) {

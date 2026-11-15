@@ -1,0 +1,34 @@
+{
+  "version": "1.6.3",
+  "versionCode": 17,
+  "checkedAt": "2026-11-15T10:27:14.090186+07:00",
+  "junit": {
+    "tests": 238,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "debug": {
+      "Fatal": 0,
+      "Error": 0,
+      "Warning": 65,
+      "Information": 0
+    },
+    "release": {
+      "Fatal": 0,
+      "Error": 0,
+      "Warning": 65,
+      "Information": 0
+    }
+  },
+  "apk": {
+    "bytes": 101854702,
+    "sha256": "d0d4c9c1f7da47a9763e98c92ac19323cbd7d0795369ee5b6520e64364415a70",
+    "file": "artifacts/Nuraya-1.6.3.apk",
+    "buildType": "release"
+  },
+  "voiceSearchLanguage": "id-ID",
+  "referenceSurahsChecked": 114,
+  "physicalDeviceTested": false
+}

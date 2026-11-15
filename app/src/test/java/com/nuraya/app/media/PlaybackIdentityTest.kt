@@ -26,6 +26,25 @@ class PlaybackIdentityTest {
         return app.playback
     }
 
+    @Test fun leavingTheReaderCancelsPendingVerseAudioButPreservesMurottal() {
+        val manager = playback()
+        val app = ApplicationProvider.getApplicationContext<NurayaApplication>()
+        manager.playVerseRange(36, 1, 3, "ar.alafasy")
+        assertTrue(manager.state.value.verseMode)
+        assertTrue(manager.state.value.loading)
+        manager.stopReading()
+        assertEquals(PlaybackState(), manager.state.value)
+        manager.toggle()
+        assertEquals(PlaybackState(), manager.state.value)
+        manager.play(app.quran.surahs[35], app.quran.qaris.first())
+        val chapter = manager.state.value
+        assertFalse(chapter.verseMode)
+        assertEquals(36, chapter.surahId)
+        manager.stopReading()
+        assertEquals(chapter, manager.state.value)
+        manager.stop()
+    }
+
     @Test fun unknownSavedReciterIsRejectedRatherThanSubstitutingAlafasy() {
         val manager = playback()
         manager.playVerseRange(2, 255, 255, "ar.retirededition")

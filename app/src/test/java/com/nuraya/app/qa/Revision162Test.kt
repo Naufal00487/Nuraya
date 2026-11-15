@@ -38,6 +38,9 @@ class Revision162Test {
     private fun openApp(dark: Boolean = false, scale: Float = 1f): NurayaApplication {
         val app = ApplicationProvider.getApplicationContext<NurayaApplication>()
         ProfileStore(app).save("Naufal", 2)
+        // These UI checks exercise bundled artwork; remote catalog refresh is unrelated.
+        app.getSharedPreferences("nuraya_banners", android.content.Context.MODE_PRIVATE).edit()
+            .putLong("checked", System.currentTimeMillis()).commit()
         if (runCatching { androidx.work.WorkManager.getInstance(app) }.isFailure)
             androidx.work.WorkManager.initialize(app, androidx.work.Configuration.Builder().build())
         Shadows.shadowOf(app).setComponentNameAndServiceForBindService(ComponentName(app, PlaybackService::class.java), Binder())

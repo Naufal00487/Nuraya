@@ -42,16 +42,16 @@ fun PrayerOverview(language:String,onNavigate:(String)->Unit,home:Boolean=false)
     val day=remember(preferences,local.toLocalDate()){preferences.location?.let{PrayerCalculator.calculate(local.toLocalDate(),it,preferences.minuteAdjustment)}}
     var locationDialog by remember{mutableStateOf(false)}
     val fontScale=LocalDensity.current.fontScale
-    Box(Modifier.fillMaxWidth().clip(RoundedCornerShape(if(home)0.dp else 26.dp,if(home)0.dp else 26.dp,26.dp,26.dp)).background(Brush.linearGradient(listOf(Color(0xFF168B80),Color(0xFF105D58)))).testTag(if(home)"prayer_dashboard" else "prayer_calendar")) {
+    val textShadow = if (home) androidx.compose.ui.graphics.Shadow(Color(0xFF102038), androidx.compose.ui.geometry.Offset(0f, 1f), 5f) else androidx.compose.ui.graphics.Shadow.None
+    Box(Modifier.fillMaxWidth().clip(RoundedCornerShape(if(home)0.dp else 26.dp,if(home)0.dp else 26.dp,26.dp,26.dp)).background(Brush.linearGradient(listOf(Color(0xFF2C4066),Color(0xFF17253B)))).testTag(if(home)"prayer_dashboard" else "prayer_calendar")) {
         if(home) {
             BrandImage(landscapeForHour(local.hour),Modifier.matchParentSize())
-            Box(Modifier.matchParentSize().background(Brush.verticalGradient(listOf(Color(0xDD096C63),Color(0xD9145E59)))))
         }
-        Column(Modifier.fillMaxWidth().padding(if(home)20.dp else 16.dp),verticalArrangement=Arrangement.spacedBy(18.dp)) {
+        Column(Modifier.fillMaxWidth().then(if(home)Modifier.statusBarsPadding() else Modifier).padding(if(home)20.dp else 16.dp),verticalArrangement=Arrangement.spacedBy(18.dp)) {
             Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(8.dp)) {
                 TextButton(onClick={locationDialog=true},modifier=Modifier.weight(1f).testTag(if(home)"home_location" else "prayer_location"),contentPadding=PaddingValues(0.dp)) {
                     Icon(Icons.Outlined.LocationOn,null,tint=Color.White,modifier=Modifier.size(20.dp));Spacer(Modifier.width(6.dp))
-                    Text(preferences.location?.name ?: label(language,"Pilih lokasi","Choose location"),color=Color.White,modifier=Modifier.weight(1f),style=MaterialTheme.typography.titleSmall)
+                    Text(preferences.location?.name ?: label(language,"Pilih lokasi","Choose location"),color=Color.White,modifier=Modifier.weight(1f),style=MaterialTheme.typography.titleSmall.copy(shadow=textShadow))
                     Icon(Icons.Outlined.ExpandMore,null,tint=Color.White,modifier=Modifier.size(16.dp))
                 }
                 if(home) {
@@ -61,35 +61,35 @@ fun PrayerOverview(language:String,onNavigate:(String)->Unit,home:Boolean=false)
             }
             Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.spacedBy(18.dp),verticalAlignment=Alignment.Top) {
                 Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(8.dp)) {
-                    Text(local.format(DateTimeFormatter.ofPattern("HH:mm")),color=Color.White,fontSize=(if(fontScale>1.2f)34 else 46).sp,lineHeight=(if(fontScale>1.2f)42 else 54).sp,fontWeight=FontWeight.Bold,modifier=Modifier.testTag("prayer_clock"))
+                    Text(local.format(DateTimeFormatter.ofPattern("HH:mm")),style=MaterialTheme.typography.bodyLarge.copy(shadow=textShadow),color=Color.White,fontSize=(if(fontScale>1.2f)34 else 46).sp,lineHeight=(if(fontScale>1.2f)42 else 54).sp,fontWeight=FontWeight.Bold,modifier=Modifier.testTag("prayer_clock"))
                     if(next!=null) {
-                        Text(label(language,"Menuju ${next.name(language)}","Until ${next.name(language)}"),color=Color(0xFFD5F4EB),style=MaterialTheme.typography.bodySmall)
-                        Text(PrayerCalculator.countdown(now,next.instant),color=Color.White,style=MaterialTheme.typography.titleSmall,modifier=Modifier.testTag("prayer_countdown"))
+                        Text(label(language,"Menuju ${next.name(language)}","Until ${next.name(language)}"),color=Color.White,style=MaterialTheme.typography.bodySmall.copy(shadow=textShadow))
+                        Text(PrayerCalculator.countdown(now,next.instant),color=Color.White,style=MaterialTheme.typography.titleSmall.copy(shadow=textShadow),modifier=Modifier.testTag("prayer_countdown"))
                     }
-                    Text(runCatching{HijriCalendar.label(local.toLocalDate(),preferences.hijriAdjustment,language)}.getOrDefault(""),color=Color.White,style=MaterialTheme.typography.bodySmall,modifier=Modifier.testTag("prayer_hijri_date"))
+                    Text(runCatching{HijriCalendar.label(local.toLocalDate(),preferences.hijriAdjustment,language)}.getOrDefault(""),color=Color.White,style=MaterialTheme.typography.bodySmall.copy(shadow=textShadow),modifier=Modifier.testTag("prayer_hijri_date"))
                 }
                 Column(Modifier.weight(1f),verticalArrangement=Arrangement.spacedBy(12.dp)) {
-                    Surface(onClick={onNavigate("qibla")},color=Color(0xFF0B514B),shape=RoundedCornerShape(16.dp),modifier=Modifier.fillMaxWidth().testTag(if(home)"home_qibla" else "prayer_open_qibla")) {
+                    Surface(onClick={onNavigate("qibla")},color=Color(0xFF25395B),shape=RoundedCornerShape(16.dp),modifier=Modifier.fillMaxWidth().testTag(if(home)"home_qibla" else "prayer_open_qibla")) {
                         Row(Modifier.padding(12.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(8.dp)) {
                             Icon(Icons.Outlined.Qibla,null,Modifier.size(25.dp),tint=Color.White)
                             Text(label(language,"Arah kiblat","Qibla"),color=Color.White,style=MaterialTheme.typography.labelLarge,modifier=Modifier.weight(1f))
                         }
                     }
-                    Text(local.format(DateTimeFormatter.ofPattern("EEEE",locale)),color=Color(0xFFD5F4EB),style=MaterialTheme.typography.bodySmall)
-                    Text(local.format(DateTimeFormatter.ofPattern("d MMMM yyyy",locale)),color=Color.White,style=MaterialTheme.typography.bodySmall,modifier=Modifier.testTag("prayer_gregorian_date"))
+                    Text(local.format(DateTimeFormatter.ofPattern("EEEE",locale)),color=Color.White,style=MaterialTheme.typography.bodySmall.copy(shadow=textShadow))
+                    Text(local.format(DateTimeFormatter.ofPattern("d MMMM yyyy",locale)),color=Color.White,style=MaterialTheme.typography.bodySmall.copy(shadow=textShadow),modifier=Modifier.testTag("prayer_gregorian_date"))
                 }
             }
-            if(preferences.location==null)Text(label(language,"Aktifkan lokasi untuk menampilkan jadwal salat.","Set a location to see prayer times."),color=Color.White,style=MaterialTheme.typography.bodySmall)
-            Surface(onClick={onNavigate("prayer")},shape=RoundedCornerShape(20.dp),color=Color(0xFF142E2B),modifier=Modifier.fillMaxWidth().testTag("prayer_times_strip")) {
+            if(preferences.location==null)Text(label(language,"Aktifkan lokasi untuk menampilkan jadwal salat.","Set a location to see prayer times."),color=Color.White,style=MaterialTheme.typography.bodySmall.copy(shadow=textShadow))
+            Surface(onClick={onNavigate("prayer")},shape=RoundedCornerShape(20.dp),color=Color(0xFF17253B),modifier=Modifier.fillMaxWidth().testTag("prayer_times_strip")) {
                 Row(Modifier.padding(6.dp),horizontalArrangement=Arrangement.spacedBy(2.dp)) {
                     val moments=day?.moments?.filter{it.isPrayer}.orEmpty()
                     val names=if(language=="en")listOf("Fajr","Dhuhr","Asr","Maghrib","Isha") else listOf("Subuh","Zuhur","Asar","Magrib","Isya")
                     repeat(5) { index ->
                         val moment=moments.getOrNull(index);val upcoming=moment!=null&&moment.instant==next?.instant
-                        Surface(color=if(upcoming)Color(0xFF248D7D) else Color(0xFF142E2B),shape=RoundedCornerShape(14.dp),modifier=Modifier.weight(1f)) {
+                        Surface(color=if(upcoming)Color(0xFF486CA2) else Color(0xFF17253B),shape=RoundedCornerShape(14.dp),modifier=Modifier.weight(1f)) {
                             Column(Modifier.padding(horizontal=2.dp,vertical=12.dp),horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(6.dp)) {
                                 Text(moment?.name(language)?:names[index],color=Color.White,fontSize=12.sp,lineHeight=18.sp,textAlign=TextAlign.Center)
-                                Text(moment?.instant?.atZone(zone)?.format(DateTimeFormatter.ofPattern("HH:mm"))?:"—",color=if(upcoming)Color.White else Color(0xFF8CDCC9),fontSize=14.sp,lineHeight=20.sp,fontWeight=FontWeight.SemiBold,textAlign=TextAlign.Center)
+                                Text(moment?.instant?.atZone(zone)?.format(DateTimeFormatter.ofPattern("HH:mm"))?:"—",color=if(upcoming)Color.White else Color(0xFFBACDF4),fontSize=14.sp,lineHeight=20.sp,fontWeight=FontWeight.SemiBold,textAlign=TextAlign.Center)
                             }
                         }
                     }

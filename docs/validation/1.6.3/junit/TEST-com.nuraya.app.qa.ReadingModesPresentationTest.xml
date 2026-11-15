@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.qa.ReadingModesPresentationTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-15T03:25:19" hostname="31ae77c6cf61" time="0.974">
+  <properties/>
+  <testcase name="restartingTikrarForTheSameVerseUsesTheNewRepeatTarget" classname="com.nuraya.app.qa.ReadingModesPresentationTest" time="0.213"/>
+  <testcase name="tikrarRequestsTheChosenRepeatCountForTheExactVerse" classname="com.nuraya.app.qa.ReadingModesPresentationTest" time="0.285"/>
+  <testcase name="choosingABlockHidesAndRestoresItsActualVerses" classname="com.nuraya.app.qa.ReadingModesPresentationTest" time="0.297"/>
+  <testcase name="waqafModeShowsSourcedStopSignsWithoutChangingTheCanonicalVerse" classname="com.nuraya.app.qa.ReadingModesPresentationTest" time="0.178"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

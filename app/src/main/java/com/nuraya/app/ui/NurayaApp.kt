@@ -66,6 +66,12 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
             perform { app.settings.setReaderQari(verseId) }
         }
     }
+    var readerWasOpen by remember { mutableStateOf(false) }
+    LaunchedEffect(screen) {
+        val readerOpen = screen in setOf("reader", "mushaf")
+        if (readerWasOpen && !readerOpen) app.playback.stopReading()
+        readerWasOpen = readerOpen
+    }
     LaunchedEffect(retry) {
         val showLaunchArtwork = !app.launchArtworkShown
         loading = showLaunchArtwork
@@ -134,7 +140,7 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
         "mushaf" to QuranReadingModes.find(readingModeId).title(language),
         "library" to label(language, "Koleksi saya", "My collection"),
         "settings" to label(language, "Pengaturan", "Settings"),
-        "learn" to label(language, "Teman belajar", "Learning companion"),
+        "learn" to label(language, "Cari surah & ayat", "Find surahs & verses"),
         "hadith" to label(language, "Cari hadis", "Find hadith"),
         "practice" to label(language, "Latihan & hafalan", "Practice & memorization"),
         "progress" to label(language, "Progres belajarku", "My learning progress"),
@@ -143,7 +149,8 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
     ScreenColors(screen, settings.darkMode) {
     Scaffold(
         containerColor = if (screen == "qibla") androidx.compose.ui.graphics.Color.Transparent else MaterialTheme.colorScheme.background,
-        modifier = Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing),
+        modifier = Modifier.fillMaxSize().windowInsetsPadding(if (screen == "home") WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom) else WindowInsets.safeDrawing),
+        contentWindowInsets = if (screen == "home") WindowInsets(0, 0, 0, 0) else ScaffoldDefaults.contentWindowInsets,
         snackbarHost = { SnackbarHost(snackbar) },
         topBar = {
             if (screen !in setOf("home", "mushaf", "reader")) TopAppBar(title = { Text(titles[screen].orEmpty(), style = MaterialTheme.typography.titleLarge, maxLines = 2, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis) },
@@ -158,12 +165,12 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
                     if (screen != "settings") IconButton(onClick = { settingsFrom = screen; screen = "settings" }, modifier = Modifier.size(56.dp).testTag("settings_button")) {
                         Icon(Icons.Outlined.Settings, label(language, "Pengaturan", "Settings"))
                     }
-                }, colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.background))
+                }, colors = TopAppBarDefaults.topAppBarColors(containerColor = androidx.compose.ui.graphics.Color.Transparent))
         },
         bottomBar = {
             Column {
                 if (playback.surahId > 0 && screen !in setOf("mushaf", "reader")) MiniPlayer(playback, language, onOpen = { playerVisible = true }, onToggle = { app.playback.toggle() })
-                if (screen !in listOf("reader", "mushaf", "learn", "hadith", "practice", "progress", "recitation", "qibla")) NavigationBar(containerColor = MaterialTheme.colorScheme.surface, tonalElevation = 0.dp) {
+                if (screen !in listOf("reader", "mushaf", "learn", "hadith", "practice", "progress", "recitation", "qibla")) NavigationBar(containerColor = androidx.compose.ui.graphics.Color.Transparent, tonalElevation = 0.dp) {
                     val items = listOf(
                         Triple("home", label(language, "Beranda", "Home"), Icons.Outlined.Home),
                         Triple("quran", "Al-Qur’an", Icons.Outlined.MenuBook),
@@ -172,6 +179,7 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
                     )
                     items.forEach { (key, title, icon) ->
                         NavigationBarItem(selected = screen == key || (key == "quran" && screen == "surahs"), onClick = { screen = key },
+                            colors = NavigationBarItemDefaults.colors(indicatorColor = androidx.compose.ui.graphics.Color.Transparent),
                             icon = { Icon(icon, null) }, label = { Text(title, style = MaterialTheme.typography.labelSmall, maxLines = 2) },
                             modifier = Modifier.testTag("nav_$key"))
                     }
@@ -226,7 +234,7 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
                         "about" -> AboutScreen(language)
                         "library" -> LibraryScreen(app, language, entries, downloads, perform, onRead = openVerse)
                         "settings" -> SettingsScreen(app, settings, perform, onLearn = { learningFrom = "settings"; screen = "learn" }, onAbout = { aboutFrom="settings";screen = "about" })
-                        "learn" -> LearningScreen(language, onBack = back, onRead = openVerse)
+                        "learn" -> LearningScreen(language, onRead = openVerse)
                         "hadith" -> com.nuraya.app.hadith.HadithScreen(language)
                         "practice", "progress" -> PracticeScreen(app, language, onRead = openVerse, initialTab = if(screen=="progress")3 else 0,
                             onPracticeRange = { surah, start, end, repeats ->

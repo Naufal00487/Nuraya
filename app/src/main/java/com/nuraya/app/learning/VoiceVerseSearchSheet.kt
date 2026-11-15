@@ -2,7 +2,9 @@ package com.nuraya.app.learning
 
 import com.nuraya.app.ui.icons.AppIcons as Icons
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.provider.Settings
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
@@ -19,73 +21,87 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.nuraya.app.NurayaApplication
-import com.nuraya.app.recitation.*
-import com.nuraya.app.recitation.ai.QuranWhisperEngine
 import com.nuraya.app.ui.label
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun VoiceVerseSearchSheet(app: NurayaApplication, language: String, onDismiss: () -> Unit, onRecognized: (String) -> Unit) {
     val context = LocalContext.current
     val lifecycle = LocalLifecycleOwner.current.lifecycle
-    val scope = rememberCoroutineScope()
     val callback by rememberUpdatedState(onRecognized)
-    var state by remember { mutableStateOf(LocalQuranRecitationState()) }
-    val session = remember(context) { LocalQuranRecitationSession(context, onState = { state = it }, onFinal = { callback(it) }) }
-    val model = remember(context) { QuranModelStore(context) }
-    val modelState by model.state.collectAsStateWithLifecycle()
-    val supported = remember { QuranWhisperEngine.isSupported() }
-    var job by remember { mutableStateOf<Job?>(null) }
+    val referenceSearch = remember(app) { QuranReferenceSearch(app.quran) }
+    var state by remember { mutableStateOf(QuerySpeechState()) }
+    val session = remember(context) { QuerySpeechSession(context, { state = it }, { callback(referenceSearch.preferredTranscript(it)) }) }
     var denied by remember { mutableStateOf(false) }
+    var useSystem by remember { mutableStateOf(false) }
     var foreground by remember { mutableStateOf(lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) }
     val start by rememberUpdatedState(newValue = {
-        if (foreground && supported && modelState.phase == ModelPhase.READY) { app.playback.pause(); session.start(model.modelFile) }
+        if (foreground) { app.playback.pause(); session.start(useSystem) }
     })
     val permission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted -> denied = !granted; if (granted) start() }
-    LaunchedEffect(model) { model.inspect() }
-    LaunchedEffect(state.elapsedSeconds, state.speech.listening) { if (state.elapsedSeconds >= 20 && state.speech.listening) session.stopListening() }
-    DisposableEffect(session, model, lifecycle) {
+    fun requestStart(system: Boolean = false) {
+        useSystem = system
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+            if (foreground) { app.playback.pause(); session.start(system) }
+        } else permission.launch(Manifest.permission.RECORD_AUDIO)
+    }
+    DisposableEffect(session, lifecycle) {
         val observer = LifecycleEventObserver { _, event ->
             foreground = lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)
             if (event == Lifecycle.Event.ON_STOP) session.cancel()
         }
         lifecycle.addObserver(observer)
-        onDispose { lifecycle.removeObserver(observer); session.destroy(); model.cancel(); job?.cancel() }
+        onDispose { lifecycle.removeObserver(observer); session.destroy() }
     }
     ModalBottomSheet(onDismissRequest = onDismiss, sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)) {
         Column(Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(20.dp).testTag("voice_verse_search"), verticalArrangement = Arrangement.spacedBy(16.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(label(language, "Cari ayat lewat suara", "Find a verse by voice"), Modifier.weight(1f), style = MaterialTheme.typography.titleLarge)
+                Text(label(language, "Cari dengan suara", "Voice search"), Modifier.weight(1f), style = MaterialTheme.typography.titleLarge)
                 IconButton(onClick = onDismiss) { Icon(Icons.Outlined.Close, label(language, "Tutup pencarian suara", "Close voice search")) }
             }
-            Text(label(language, "Bacakan potongan ayat dalam bahasa Arab selama 5–20 detik, lalu tekan Selesai. Nuraya mencari ayat yang cocok dari bacaan yang dikenali.",
-                "Recite an Arabic verse fragment for 5–20 seconds, then tap Finish. Nuraya searches for matching verses from the recognized words."))
-            QuranModelCard(language, modelState, supported, model.spec.bytes,
-                unsupportedMessage = label(language, "Mesin suara belum mendukung perangkat ini. Anda tetap dapat mengetik potongan ayat di pencarian.", "Voice recognition is not supported on this device. You can still type the verse fragment."),
-                onDownload = { job = scope.launch { model.download() } }, onCancel = { model.cancel(); job?.cancel() })
-            if (denied) Text(label(language, "Izin mikrofon diperlukan untuk pencarian suara. Izinkan lewat Pengaturan Android jika permintaan izin tidak muncul lagi.", "Microphone permission is required. Allow it in Android Settings if the permission request no longer appears."), color = MaterialTheme.colorScheme.error)
-            Text(statusText(state.speech.status, language), Modifier.testTag("voice_search_status"), style = MaterialTheme.typography.titleSmall)
-            if (state.speech.listening) {
-                LinearProgressIndicator(progress = { state.audioLevel }, modifier = Modifier.fillMaxWidth())
-                Text(label(language, "Mendengarkan · ${state.elapsedSeconds} / 20 detik", "Listening · ${state.elapsedSeconds} / 20 seconds"))
-            }
-            if (state.speech.waiting && !state.speech.listening) LinearProgressIndicator(Modifier.fillMaxWidth())
-            if (state.speech.transcript.isNotBlank()) Text(state.speech.transcript, Modifier.fillMaxWidth().testTag("voice_search_transcript"))
-            Button(onClick = {
-                if (state.speech.listening) session.stopListening()
-                else if (ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) start()
-                else permission.launch(Manifest.permission.RECORD_AUDIO)
-            }, enabled = state.speech.listening || (!state.speech.waiting && supported && modelState.phase == ModelPhase.READY), modifier = Modifier.fillMaxWidth().testTag("voice_search_record")) {
+            Text(label(language, "Bicara dalam bahasa Indonesia. Contoh: “cari surat Yasin”, “Al-Baqarah ayat dua ratus lima puluh lima”, atau “ayat tentang sabar”.",
+                "Speak in Indonesian: for example, “cari surat Yasin”, “Al-Baqarah ayat dua ratus lima puluh lima”, or “ayat tentang sabar”."), Modifier.testTag("voice_search_language"))
+            Text(label(language, "Hasil ucapan menjadi kata pencarian dan bisa kamu edit. Tidak perlu membaca ayat Arab atau menilai bacaan.",
+                "Your words become an editable search query. You do not need to recite Arabic or have your recitation assessed."))
+            Text(label(language, "Pengenalan suara memakai layanan Android. Jika pengenal Indonesia offline tidak tersedia, layanan perangkat dapat memerlukan internet dan memproses audio melalui penyedianya.",
+                "Dictation uses Android speech services. Without offline Indonesian recognition, your device provider may require internet and process the audio."), style = MaterialTheme.typography.bodySmall)
+            if (denied) Text(label(language, "Izinkan mikrofon untuk mencari dengan suara. Jika izin tidak muncul lagi, aktifkan melalui Pengaturan Android.", "Allow microphone access for voice search. If no prompt appears, enable it in Android Settings."), color = MaterialTheme.colorScheme.error)
+            Text(label(language, when(state.status) {
+                "starting", "listening" -> "Mendengarkan bahasa Indonesia…"
+                "processing" -> "Mengubah ucapan menjadi pencarian…"
+                "language_unavailable" -> "Bahasa Indonesia belum tersedia pada pengenal suara ini."
+                "unavailable" -> "Layanan pengenalan suara belum tersedia di HP."
+                "permission" -> "Izin mikrofon belum diberikan."
+                "network" -> "Koneksi layanan suara bermasalah. Coba lagi atau ketik pencarian."
+                "no_match" -> "Ucapan belum tertangkap. Coba sebut nama surah atau topik lagi."
+                "busy" -> "Mikrofon sedang digunakan. Coba lagi setelah selesai."
+                "timeout" -> "Layanan suara belum memberi hasil. Silakan coba lagi."
+                "audio", "failed" -> "Pengenalan suara belum berhasil. Silakan coba lagi."
+                else -> "Siap mencari dengan suara"
+            }, when(state.status) {
+                "starting", "listening" -> "Listening in Indonesian…"
+                "processing" -> "Turning your words into a search…"
+                "ready" -> "Ready for voice search"
+                else -> "Speech recognition is unavailable or did not return a result. Retry or type your query."
+            }), Modifier.testTag("voice_search_status"), style = MaterialTheme.typography.titleSmall)
+            if (state.listening) LinearProgressIndicator(progress = { state.level }, modifier = Modifier.fillMaxWidth())
+            if (state.waiting) LinearProgressIndicator(Modifier.fillMaxWidth())
+            if (state.transcript.isNotBlank()) Text(state.transcript, Modifier.fillMaxWidth().testTag("voice_search_transcript"))
+            val available = session.onDeviceAvailable || session.systemAvailable
+            if (!available) Text(label(language, "Aktifkan layanan pengenalan suara Android. Pencarian dengan tulisan tetap tersedia.", "Enable an Android speech recognition service. Typed search remains available."))
+            Button(onClick = { if (state.listening) session.stopListening() else requestStart() },
+                enabled = foreground && (state.listening || !state.waiting && available), modifier = Modifier.fillMaxWidth().testTag("voice_search_record")) {
                 Icon(Icons.Outlined.Mic, null); Spacer(Modifier.width(8.dp))
-                Text(label(language, if (state.speech.listening) "Selesai & cari ayat" else "Mulai membaca", if (state.speech.listening) "Finish & find verse" else "Start reciting"))
+                Text(label(language, if (state.listening) "Selesai" else "Mulai bicara", if (state.listening) "Finish" else "Start speaking"))
             }
-            TextButton(onClick = { session.cancel(); onDismiss() }, modifier = Modifier.fillMaxWidth()) { Text(label(language, "Batal", "Cancel")) }
-            Text(label(language, "Suara diproses di HP. Hasil pengenalan bisa keliru; cocokkan potongan yang dikenali dengan ayat hasil pencarian.",
-                "Audio is processed on your phone. Recognition can be wrong; compare the recognized fragment with the returned verses."), style = MaterialTheme.typography.bodySmall)
+            if (state.onDevice && !state.listening && !state.waiting && state.status !in setOf("ready", "complete") && session.systemAvailable) {
+                OutlinedButton(onClick = { requestStart(true) }, modifier = Modifier.fillMaxWidth().testTag("voice_search_system")) {
+                    Text(label(language, "Coba layanan suara Android", "Try the Android speech service"))
+                }
+            }
+            if (!available || state.status == "language_unavailable") TextButton(onClick = { runCatching { context.startActivity(Intent(Settings.ACTION_VOICE_INPUT_SETTINGS)) } }) { Text(label(language,"Pengaturan suara Android","Android voice settings")) }
+            TextButton(onClick = { session.cancel(); onDismiss() }, modifier = Modifier.fillMaxWidth()) { Text(label(language, "Kembali ke pencarian", "Back to search")) }
         }
     }
 }

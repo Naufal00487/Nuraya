@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.qa.QuranRecitationPresentationTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-15T03:25:18" hostname="31ae77c6cf61" time="0.612">
+  <properties/>
+  <testcase name="disablingFollowKeepsRequestedVerseAndStartsItsOwnAudio" classname="com.nuraya.app.qa.QuranRecitationPresentationTest" time="0.166"/>
+  <testcase name="openingReaderDuringPlaybackFollowsTheActiveVerseAndItsButtonPauses" classname="com.nuraya.app.qa.QuranRecitationPresentationTest" time="0.169"/>
+  <testcase name="changingReciterStartsSelectedVoiceInsteadOfPausingTheOldVoice" classname="com.nuraya.app.qa.QuranRecitationPresentationTest" time="0.159"/>
+  <testcase name="currentWordHighlightUsesPackagedOffsetsEvenWithTajwidColorsOff" classname="com.nuraya.app.qa.QuranRecitationPresentationTest" time="0.117"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

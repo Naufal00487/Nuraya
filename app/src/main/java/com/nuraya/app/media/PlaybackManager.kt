@@ -80,6 +80,7 @@ class PlaybackManager(
     private var generation = 0
     private var preparingQueue = false
     private var connecting = false
+    private var readingAudioAllowed = false
 
     private val listener = object : Player.Listener {
         override fun onEvents(player: Player, events: Player.Events) {
@@ -153,6 +154,11 @@ class PlaybackManager(
             connecting = false
             try {
                 controller = future.get().also { it.addListener(listener) }
+                // A delayed service connection must not restore a book queue after the
+                // reader/activity has closed. A pending full-surah queue still starts below.
+                controller?.takeIf { !readingAudioAllowed && it.currentMediaItem?.mediaMetadata?.extras?.getBoolean("verseMode") == true }?.run {
+                    stop(); clearMediaItems()
+                }
                 updateState()
                 pending?.also { pending = null; startQueue(it) }
             } catch (exception: Exception) {
@@ -282,7 +288,7 @@ class PlaybackManager(
     }
 
     private fun startQueue(queue: QueueRequest) {
-        if (queue.verse != null) { startVerseQueue(queue); return }
+        if (queue.verse != null) { readingAudioAllowed = true; startVerseQueue(queue); return }
         timedChapters = emptyMap()
         val (surah, qari) = queue.tracks[queue.index]
         val request = ++generation
@@ -398,7 +404,14 @@ class PlaybackManager(
         }
     }
 
+    /** Reading audio belongs to the visible book; full-surah Murottal is independent. */
+    fun stopReading() {
+        readingAudioAllowed = false
+        if (mutableState.value.verseMode || pending?.verse != null) stop()
+    }
+
     fun stop() {
+        readingAudioAllowed = false
         ++generation
         preparingQueue = false
         pending = null

@@ -29,22 +29,11 @@ val MushafColors = lightColorScheme(
     onSurface = Color(0xFF3E3527), onSurfaceVariant = Color(0xFF6B604C),
     outline = Color(0xFF9B8968), outlineVariant = Color(0xFFDED0B2),
 )
-private val NightMushafColors = darkColorScheme(
-    primary = Color(0xFFE5CC92), onPrimary = Color(0xFF382B16),
-    primaryContainer = Color(0xFF534329), onPrimaryContainer = Color(0xFFF6E5BF),
-    secondary = Color(0xFFBDCAA4), secondaryContainer = Color(0xFF39442F),
-    background = Color(0xFF242119), surface = Color(0xFF242119),
-    surfaceContainer = Color(0xFF332E24), surfaceContainerLow = Color(0xFF2A261E),
-    surfaceContainerHigh = Color(0xFF40392C), surfaceVariant = Color(0xFF40392C),
-    onSurface = Color(0xFFF3EAD7), onSurfaceVariant = Color(0xFFD1C4AA), outlineVariant = Color(0xFF5A4F3D),
-)
-
 @Composable
 fun ScreenColors(screen: String, dark: Boolean, content: @Composable () -> Unit) {
     val printed = screen == "mushaf"
-    val quran = screen in setOf("quran", "surahs", "reader", "mushaf")
     val qibla = screen == "qibla"
-    val colors = if (quran) { if (dark && !printed) NightMushafColors else MushafColors }
+    val colors = if (printed) MushafColors
         else if (qibla) MaterialTheme.colorScheme.copy(background = Color(0xFF247F78), surface = Color(0xFF247F78), onSurface = Color.White, onSurfaceVariant = Color(0xFFD8EEDE), primary = Color(0xFFFFE6A9))
         else MaterialTheme.colorScheme
     val background = if (qibla) Brush.verticalGradient(listOf(Color(0xFF247F78), Color(0xFF144B48)))
@@ -61,7 +50,7 @@ fun ScreenColors(screen: String, dark: Boolean, content: @Composable () -> Unit)
                 window.isStatusBarContrastEnforced = false
             }
             WindowCompat.getInsetsController(window, view).apply {
-                isAppearanceLightStatusBars = !qibla && (!dark || printed)
+                isAppearanceLightStatusBars = screen != "home" && !qibla && (!dark || printed)
                 isAppearanceLightNavigationBars = !qibla && (!dark || printed)
             }
         }

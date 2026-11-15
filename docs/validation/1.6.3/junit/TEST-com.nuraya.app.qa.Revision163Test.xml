@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.qa.Revision163Test" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-15T03:25:31" hostname="31ae77c6cf61" time="3.709">
+  <properties/>
+  <testcase name="indonesianQueriesOpenTheirOwnSurahsAndVoiceHasNoRecitationModelStep" classname="com.nuraya.app.qa.Revision163Test" time="1.742"/>
+  <testcase name="leavingTheActualReaderStopsReadingAudioButNotMurottal" classname="com.nuraya.app.qa.Revision163Test" time="0.849"/>
+  <testcase name="originalLandscapeAndBlueScreensStayReadable" classname="com.nuraya.app.qa.Revision163Test" time="1.117"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -21,6 +21,11 @@ class MainActivity : ComponentActivity() {
         com.nuraya.app.prayer.AdhanScheduler.reconcile(this)
     }
 
+    override fun onStop() {
+        if (!isChangingConfigurations) (application as NurayaApplication).playback.stopReading()
+        super.onStop()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge(

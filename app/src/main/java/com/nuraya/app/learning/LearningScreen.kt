@@ -56,7 +56,7 @@ import kotlinx.coroutines.launch
 private fun learningText(language: String, id: String, en: String) = if (language == "en") en else id
 
 @Composable
-fun LearningScreen(language: String, onBack: () -> Unit, onRead: (Int, Int) -> Unit = { _, _ -> }) {
+fun LearningScreen(language: String, onRead: (Int, Int) -> Unit = { _, _ -> }) {
     val application = LocalContext.current.applicationContext as NurayaApplication
     val repository = remember(application) { LocalLearningRepository(application, application.quran, application.study) }
     val scope = rememberCoroutineScope()
@@ -68,7 +68,7 @@ fun LearningScreen(language: String, onBack: () -> Unit, onRead: (Int, Int) -> U
     var semantic by rememberSaveable { mutableStateOf(true) }
     var voice by remember { mutableStateOf(false) }
     fun search(value: String) {
-        if (loading || value.trim().length !in 2..1000) return
+        if (loading || value.trim().length !in 1..1000) return
         question = value
         keyboard?.hide()
         loading = true
@@ -85,40 +85,24 @@ fun LearningScreen(language: String, onBack: () -> Unit, onRead: (Int, Int) -> U
     if (voice) VoiceVerseSearchSheet(application, language, onDismiss = { voice = false }) { recognized -> voice = false; search(recognized) }
     Column(Modifier.fillMaxSize().testTag("learning_screen").verticalScroll(rememberScrollState()).padding(20.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp)) {
-        Row(Modifier.fillMaxWidth()) {
-            IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, learningText(language, "Kembali", "Back")) }
-            Column(Modifier.padding(start = 8.dp)) {
-                Text(learningText(language, "TEMAN BELAJAR", "LEARNING COMPANION"), style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.primary)
-                Text(learningText(language, "Temukan rujukannya", "Find the source"), style = MaterialTheme.typography.headlineSmall)
-            }
-        }
-        Card(shape = RoundedCornerShape(24.dp), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)) {
-            Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                Icon(Icons.AutoMirrored.Filled.MenuBook, null, Modifier.size(30.dp))
-                Text(learningText(language, "Tanya dengan bahasamu sendiri", "Ask in your own words"), style = MaterialTheme.typography.titleLarge)
-                Text(learningText(language,
-                    "Cari berdasarkan makna, kata kunci, atau bacakan potongan ayat Arab. Temukan ayat, tafsir Kemenag, dan pelajaran tajwid. Rujukan dicari di HP tanpa akun atau koneksi internet; pertanyaan tidak dikirim ke server.",
-                    "Find verses, Kemenag tafsir, or tajwid lessons. Sources are searched on your phone without an account or internet; questions are not sent to a server."))
-                Text(learningText(language,
-                    "Hasil berupa kutipan sumber yang mungkin relevan, bukan jawaban AI generatif atau fatwa.",
-                    "Results are potentially relevant source passages, not generative AI answers or religious rulings."), style = MaterialTheme.typography.bodySmall)
-            }
-        }
+        Text(learningText(language,
+            "Cari nama surah, nomor ayat, atau topik pembelajaran. Bisa diketik atau diucapkan dalam bahasa Indonesia.",
+            "Find a surah, verse reference, or study topic. Type your query or speak in Indonesian."),
+            style = MaterialTheme.typography.bodyLarge)
         Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             FilterChip(semantic, onClick = { semantic = true }, enabled = !loading, label = { Text(learningText(language, "Pencarian makna", "Meaning search")) }, modifier = Modifier.testTag("search_semantic"))
             FilterChip(!semantic, onClick = { semantic = false }, enabled = !loading, label = { Text(learningText(language, "Kata kunci", "Keywords")) }, modifier = Modifier.testTag("search_keywords"))
         }
         TextButton(onClick = { voice = true }, enabled = !loading, modifier = Modifier.fillMaxWidth().testTag("learning_voice_search")) {
-            Icon(Icons.Outlined.Mic, null); Spacer(Modifier.width(8.dp)); Text(learningText(language, "Cari ayat lewat suara", "Find a verse by voice"))
+            Icon(Icons.Outlined.Mic, null); Spacer(Modifier.width(8.dp)); Text(learningText(language, "Cari dengan suara · bahasa Indonesia", "Voice search · Indonesian"))
         }
         OutlinedTextField(value = question, onValueChange = { question = it.take(1000) }, enabled = !loading,
-            label = { Text(learningText(language, "Apa yang ingin dipelajari?", "What would you like to learn?")) },
-            placeholder = { Text(learningText(language, "Contoh: hukum nun mati bertemu ba", "Example: explain patience in the Quran")) },
+            label = { Text(learningText(language, "Nama surah, ayat, atau topik", "Surah, verse, or topic")) },
+            placeholder = { Text(learningText(language, "Contoh: Yasin, 2:255, atau ayat tentang sabar", "Example: Yasin, 2:255, or patience")) },
             minLines = 2, maxLines = 4, modifier = Modifier.fillMaxWidth().testTag("learning_query"),
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search), keyboardActions = KeyboardActions(onSearch = { search(question) }),
             supportingText = { Text("${question.length}/1000") }, shape = RoundedCornerShape(18.dp))
-        Button(onClick = { search(question) }, enabled = !loading && question.trim().length >= 2,
+        Button(onClick = { search(question) }, enabled = !loading && question.trim().isNotEmpty(),
             modifier = Modifier.fillMaxWidth().testTag("learning_search")) {
             if (loading) CircularProgressIndicator(Modifier.size(18.dp), strokeWidth = 2.dp, color = MaterialTheme.colorScheme.onPrimary)
             else Icon(Icons.Outlined.Search, null)
@@ -146,6 +130,16 @@ fun LearningScreen(language: String, onBack: () -> Unit, onRead: (Int, Int) -> U
                 }
             } else {
                 Text(learningText(language, "Rujukan untuk dipelajari", "Sources to study"), style = MaterialTheme.typography.titleLarge)
+                if (response.approximateReference) Text(learningText(language, "Kemungkinan rujukan yang kamu maksud. Pilih hasil yang sesuai atau perbaiki kata pencarian.", "Possible references. Choose a result or edit your query."), Modifier.testTag("learning_approximate"))
+                response.chapters.forEach { surah ->
+                    Card(colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerLow)) {
+                        Column(Modifier.fillMaxWidth().padding(20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                            Text("${surah.id}. ${surah.name}", style = MaterialTheme.typography.titleMedium)
+                            Text("${surah.ayahCount} ${learningText(language,"ayat","verses")}")
+                            TextButton(onClick = { onRead(surah.id, 1) }, modifier = Modifier.testTag("learning_surah_${surah.id}")) { Text(learningText(language,"Buka surah","Open surah")) }
+                        }
+                    }
+                }
                 response.lessons.forEach { lesson ->
                     Card(colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer)) {
                         Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {

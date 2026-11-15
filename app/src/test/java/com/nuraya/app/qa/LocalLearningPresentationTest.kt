@@ -35,7 +35,7 @@ class LocalLearningPresentationTest {
     @Test fun everydayQuestionShowsSourcedLessonAndOpensItsActualVerse() {
         var opened: Pair<Int, Int>? = null
         compose.setContent { NurayaTheme { Surface {
-            LearningScreen("id", onBack = {}, onRead = { surah, ayah -> opened = surah to ayah })
+            LearningScreen("id", onRead = { surah, ayah -> opened = surah to ayah })
         } } }
         compose.onNodeWithTag("learning_query").performScrollTo().performTextReplacement("hukum nun mati ketemu ba")
         compose.onNodeWithTag("learning_search").performScrollTo().performClick()

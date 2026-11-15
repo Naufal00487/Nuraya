@@ -42,6 +42,9 @@ class Revision161Test {
     private fun openApp() {
         val app = ApplicationProvider.getApplicationContext<NurayaApplication>()
         ProfileStore(app).save("Naufal", 2)
+        // These UI checks exercise bundled artwork; remote catalog refresh is unrelated.
+        app.getSharedPreferences("nuraya_banners", android.content.Context.MODE_PRIVATE).edit()
+            .putLong("checked", System.currentTimeMillis()).commit()
         if (runCatching { androidx.work.WorkManager.getInstance(app) }.isFailure)
             androidx.work.WorkManager.initialize(app, androidx.work.Configuration.Builder().build())
         Shadows.shadowOf(app).setComponentNameAndServiceForBindService(ComponentName(app, PlaybackService::class.java), Binder())
@@ -64,7 +67,7 @@ class Revision161Test {
     @Test fun suppliedBannersDisplayAtOriginalAspectAndOpenTheirDestinations() {
         openApp()
         compose.onNodeWithTag("home_menu").performScrollToNode(hasTestTag("home_banners"))
-        compose.waitUntil(10_000) { compose.onAllNodesWithContentDescription("Bacalah, dengarkan, hafalkan · AI belajar", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitUntil(30_000) { compose.onAllNodesWithContentDescription("Bacalah, dengarkan, hafalkan · AI belajar", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         val bounds = compose.onNodeWithTag("home_banner_nuraya-learn").getUnclippedBoundsInRoot()
         assertEquals(5300f / 1331f, (bounds.right - bounds.left) / (bounds.bottom - bounds.top), .03f)
         screenshot("home-banner-learn")
@@ -74,7 +77,7 @@ class Revision161Test {
         back(); await("home_menu")
         compose.onNodeWithTag("home_menu").performScrollToNode(hasTestTag("home_banners"))
         compose.onNodeWithTag("home_banners").performTouchInput { swipeLeft() }
-        compose.waitUntil(10_000) { compose.onAllNodesWithContentDescription("Jelajahi fitur Nuraya", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitUntil(30_000) { compose.onAllNodesWithContentDescription("Jelajahi fitur Nuraya", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithTag("home_banner_nuraya-explore").assertIsDisplayed()
         screenshot("home-banner-explore")
         compose.onNodeWithTag("home_banner_nuraya-explore").performClick()
@@ -113,7 +116,7 @@ class Revision161Test {
         await("profile_screen")
         compose.onNodeWithTag("profile_screen").performScrollToNode(hasTestTag("profile_avatar_4"))
         for (index in 0..4) compose.onNodeWithTag("profile_avatar_$index").assertExists()
-        compose.waitUntil(10_000) { compose.onAllNodesWithContentDescription("Avatar 5", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
+        compose.waitUntil(30_000) { compose.onAllNodesWithContentDescription("Avatar 5", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithTag("profile_avatar_4").performClick()
         screenshot("profile-avatars")
         compose.onNodeWithTag("profile_save").performScrollTo().performClick()

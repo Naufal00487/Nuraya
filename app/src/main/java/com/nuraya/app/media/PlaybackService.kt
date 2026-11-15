@@ -68,7 +68,11 @@ class PlaybackService : MediaSessionService() {
 
     override fun onTaskRemoved(rootIntent: Intent?) {
         val player = session?.player
-        if (player == null || !player.playWhenReady || player.mediaItemCount == 0) stopSelf()
+        if (player?.currentMediaItem?.mediaMetadata?.extras?.getBoolean("verseMode") == true) {
+            player.stop()
+            player.clearMediaItems()
+            stopSelf()
+        } else if (player == null || !player.playWhenReady || player.mediaItemCount == 0) stopSelf()
     }
 
     override fun onDestroy() {

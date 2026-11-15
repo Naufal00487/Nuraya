@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.qa.StudyIntegrationTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-15T03:25:50" hostname="31ae77c6cf61" time="0.902">
+  <properties/>
+  <testcase name="colorPreferenceStartsEnabledAndPersistsAlongsideExistingPreferences" classname="com.nuraya.app.qa.StudyIntegrationTest" time="0.077"/>
+  <testcase name="followingAWordRemainsVisibleWhenTajwidColorsAreDisabled" classname="com.nuraya.app.qa.StudyIntegrationTest" time="0.077"/>
+  <testcase name="addingStudyFeaturesDoesNotReplaceTheVerifiedCanonicalCorpus" classname="com.nuraya.app.qa.StudyIntegrationTest" time="0.107"/>
+  <testcase name="malformedExternalRangesDoNotCrashOrStyleUnrelatedCharacters" classname="com.nuraya.app.qa.StudyIntegrationTest" time="0.02"/>
+  <testcase name="allPackagedStudyReferencesAlignWithTheCanonicalReaderAndCarrySources" classname="com.nuraya.app.qa.StudyIntegrationTest" time="0.576"/>
+  <testcase name="sourceIdghaamNamesDoNotMistakeWithoutGhunnahForGhunnah" classname="com.nuraya.app.qa.StudyIntegrationTest" time="0.024"/>
+  <testcase name="colorsNeverChangeTextAndAnnotationsRequireTheirExactSource" classname="com.nuraya.app.qa.StudyIntegrationTest" time="0.019"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

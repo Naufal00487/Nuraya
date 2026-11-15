@@ -22,6 +22,8 @@ data class LocalLearningResponse(
     val matches: List<LocalSourceMatch> = emptyList(),
     val lessons: List<TajwidLesson> = emptyList(),
     val status: String = "matches",
+    val chapters: List<com.nuraya.app.data.Surah> = emptyList(),
+    val approximateReference: Boolean = false,
 )
 
 /** Uses a compact, reproducible index of all 6,236 translations and Kemenag tafsir entries. */
@@ -31,6 +33,7 @@ class LocalLearningRepository(
     private val study: StudyRepository,
 ) {
     private val semanticIndex by lazy { SemanticVerseIndex(context.applicationContext) }
+    private val referenceSearch by lazy { QuranReferenceSearch(quran) }
     private val spokenIndex by lazy { SpokenVerseSearch(quran) }
     private val assets = context.applicationContext.assets
     private val lessons by lazy { PracticeContent(context.applicationContext, quran).lessons }
@@ -60,21 +63,19 @@ class LocalLearningRepository(
     }
 
     suspend fun find(question: String, semantic: Boolean = false): LocalLearningResponse = withContext(Dispatchers.IO) {
-        require(question.trim().length in 2..1000) { "question_length" }
-        if (question.any { it in 'ء'..'ي' }) return@withContext response(spokenIndex.find(question), emptyList(), emptyList())
+        require(question.trim().length in 1..1000) { "question_length" }
         val normalized = normalize(question)
         val words = tokens(normalized)
         if (words.any { it in outsideScope }) return@withContext LocalLearningResponse(status = "outside_scope")
 
-        val numeric = Regex("\\b(\\d{1,3})\\s*[:.]\\s*(\\d{1,3})\\b").find(question)
-        if (numeric != null) {
-            val verse = quran.verse(numeric.groupValues[1].toInt(), numeric.groupValues[2].toInt())
-                ?: return@withContext LocalLearningResponse(status = "invalid_reference")
-            return@withContext response(listOf(verse), emptyList(), words)
+        val reference = referenceSearch.find(question)
+        if (reference != null) {
+            if (reference.invalid) return@withContext LocalLearningResponse(status = "invalid_reference")
+            if (reference.chapters.isEmpty()) return@withContext LocalLearningResponse(status = "no_results")
+            if (reference.ayah == null) return@withContext LocalLearningResponse(chapters = reference.chapters, approximateReference = reference.approximate)
+            return@withContext response(reference.chapters.mapNotNull { quran.verse(it.id, reference.ayah) }, emptyList(), words).copy(approximateReference = reference.approximate)
         }
-        val named = namedReferences(normalized)
-        if (named != null) return@withContext if (named.isEmpty()) LocalLearningResponse(status = "invalid_reference")
-            else response(named, emptyList(), words)
+        if (question.any { it in 'ء'..'ي' }) return@withContext response(spokenIndex.find(question), emptyList(), emptyList())
 
         val requestedLessons = lessonMatches(normalized, words)
         if (requestedLessons.isNotEmpty()) {
@@ -136,25 +137,6 @@ class LocalLearningRepository(
             LocalSourceMatch(verse, excerpt, details?.tafsirSource, excerpt != null && excerpt != full)
         }
         return LocalLearningResponse(sources, foundLessons, if (sources.isEmpty() && foundLessons.isEmpty()) "no_results" else "matches")
-    }
-
-    private fun namedReferences(query: String): List<Verse>? {
-        if (Regex("\\bayat kursi\\b|\\bayatul kursi\\b").containsMatchIn(query)) return listOfNotNull(quran.verse(2, 255))
-        // The corpus uses forms such as Al-Baqara/Al-Faatiha, while Indonesian
-        // readers commonly type Al-Baqarah/Al-Fatihah. Preserve verse numbers.
-        val padded = " ${surahSpelling(query)} "
-        val chapter = quran.surahs.firstOrNull { surah ->
-            val name = surahSpelling(surah.name)
-            val variants = setOf(name, name.removePrefix("al "), name.removePrefix("an "), name.removePrefix("at "),
-                name.removePrefix("as "), name.removePrefix("az "), name.removePrefix("ar "))
-            variants.any { variant -> variant.length >= 3 && padded.contains(" $variant ") }
-        } ?: return null
-        val requested = Regex("\\b(?:ayat|ayah|verse) (\\d{1,3})\\b").find(query)?.groupValues?.get(1)?.toInt()
-        return if (requested != null) listOfNotNull(quran.verse(chapter.id, requested)) else quran.verses(chapter.id).take(5)
-    }
-
-    private fun surahSpelling(value: String): String = normalize(value).split(' ').joinToString(" ") {
-        it.replace(Regex("([aiu])\\1+"), "$1").removeSuffix("h")
     }
 
     private fun lessonMatches(query: String, words: List<String>): List<TajwidLesson> {

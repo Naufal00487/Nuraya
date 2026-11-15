@@ -13,8 +13,8 @@ android {
         applicationId = "com.nuraya.app"
         minSdk = 26
         targetSdk = 35
-        versionCode = 16
-        versionName = "1.6.2"
+        versionCode = 17
+        versionName = "1.6.3"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         ndk { abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86_64") }
         externalNativeBuild {

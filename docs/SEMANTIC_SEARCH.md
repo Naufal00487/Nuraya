@@ -1,29 +1,31 @@
-# Pencarian makna dan suara
+# Pencarian surah, ayat, makna, dan suara
 
 ## Cara menggunakan
 
-Buka **Cari ayat & makna** dari Beranda, banner belajar, atau tombol **Cari ayat · makna & suara** di pilihan Quran. Ketik topik seperti “hati tenang mengingat Allah”, istilah tajwid, atau rujukan “Al-Baqarah ayat 255”. Pilih **Pencarian makna** atau **Kata kunci** lalu **Cari rujukan**. Setiap hasil mempunyai ayat, terjemahan, kutipan tafsir Kemenag bila tersedia, atribusi sumber, dan tombol membuka bacaan lengkap.
+Buka **Cari Ayat** di Beranda atau **Cari ayat · makna & suara** di pilihan Quran. Ketik nama surah (`Yasin`, `Albaqarah`), rujukan (`2:255`), atau topik (`ayat tentang sabar`, `hukum nun mati ketemu ba`). Pilih **Pencarian makna** atau **Kata kunci**, lalu **Cari rujukan**. Hasil surah membuka awal surah yang dipilih; hasil ayat menyediakan teks sumber, terjemahan, kutipan tafsir Kemenag bila tersedia, dan tombol membuka bacaan.
 
-Untuk suara, pilih **Cari ayat lewat suara**, unduh model jika belum ada, dan izinkan mikrofon. Bacakan potongan ayat **bahasa Arab**, bukan pertanyaan bahasa Indonesia. Tekan **Selesai & cari ayat** setelah 5–20 detik. Hasil pengenalan masuk ke kolom pencarian agar bisa diperiksa/diedit. Rekaman berhenti otomatis pada 20 detik. Frasa yang muncul di beberapa ayat dapat menghasilkan beberapa rujukan.
+Untuk dikte, pilih **Cari dengan suara · bahasa Indonesia**, izinkan mikrofon, lalu **Mulai bicara**. Ucapkan misalnya “cari surat Yasin”, “surah enam puluh tujuh”, atau “Al-Baqarah ayat dua ratus lima puluh lima”. Tekan **Selesai** bila pengenal belum berhenti sendiri. Transkrip masuk ke kolom pencarian yang sama dengan ketikan dan bisa diedit. Pencarian ini tidak meminta bacaan Arab atau model AI Quran. AI koreksi bacaan tetap berada di menu **AI bacaan**.
 
 ## Cara kerja dan data
 
-Pencarian makna memakai gabungan BM25, kecocokan langsung terjemahan, perluasan variasi kata, dan *latent semantic analysis* (LSA) 128 dimensi. LSA dilatih dari 6.236 terjemahan Indonesia/Inggris dan tafsir Kemenag yang sudah dibundel. Tidak menggunakan LLM, layanan API berbayar, akun, atau jawaban generatif. Skor adalah ukuran relevansi, bukan probabilitas kebenaran agama. Referensi bernomor dan pelajaran tajwid yang dikenali didahulukan.
+`QuerySpeechSession` meminta bahasa `id-ID`, model dikte bebas, hasil sementara dan hingga lima alternatif kepada Android SpeechRecognizer. Pengenal di perangkat dipilih jika tersedia; jika tidak, layanan suara Android digunakan. Ketika pengenal lokal tidak mempunyai bahasa Indonesia, pengguna dapat memilih **Coba layanan suara Android**. Sesi dibatasi 30 detik; setelah selesai berbicara, aplikasi menunggu hasil maksimal 15 detik. Membatalkan, menutup panel, atau meninggalkan aplikasi melepas pengenal dan mengabaikan callback terlambat.
 
-Model `semantic_index.bin` berukuran sekitar 3,3 MB; proyeksi istilah dan vektor ayat dikuantisasi int8. [Metadata](../app/src/main/assets/semantic_index_sources.json) mencatat metode, seed, jumlah dimensi, checksum model, dan checksum 115 berkas sumber. Skrip pelatihan: [import_semantic_index.py](../scripts/import_semantic_index.py). Python memerlukan NumPy, SciPy, dan scikit-learn untuk pelatihan ulang; Android membaca model langsung tanpa dependensi ML baru.
+`QuranReferenceSearch` menggabungkan 114 nama sumber dengan alias Indonesia, awalan Al/An/Asy dan variasi transliterasi. Nomor yang diucapkan sebagai bilangan atau digit dibaca sebelum pemeringkatan topik. Nomor di luar batas ditolak. Ejaan yang mendekati nama surah menghasilkan pilihan berlabel **Kemungkinan rujukan**; aplikasi tidak langsung membuka tebakan. Pertanyaan topik yang jelas tidak diganti oleh alternatif nama surah dengan keyakinan pengenal lebih rendah. Normalisasi hanya untuk pencarian, tidak mengubah teks Quran.
+
+Pencarian makna menggabungkan BM25, kecocokan terjemahan, perluasan variasi kata, dan *latent semantic analysis* (LSA) 128 dimensi. LSA dilatih dari 6.236 terjemahan Indonesia/Inggris dan tafsir Kemenag yang dibundel. Tidak memakai LLM atau jawaban generatif. Skor menunjukkan relevansi, bukan probabilitas kebenaran agama. Referensi bernomor, nama surah dan pelajaran tajwid yang dikenali didahulukan.
+
+Model `semantic_index.bin` sekitar 3,3 MB memakai proyeksi istilah dan vektor int8. [Metadata](../app/src/main/assets/semantic_index_sources.json) mencatat metode, seed, checksum model dan 115 berkas sumber. [Skrip](../scripts/import_semantic_index.py) memerlukan NumPy, SciPy dan scikit-learn hanya untuk pelatihan ulang; Android membaca model langsung.
 
 ```sh
 python3 scripts/import_semantic_index.py --verify
-# Latih ulang hanya setelah sumber yang sah diperbarui dan diaudit:
-python3 scripts/import_semantic_index.py
 ```
 
-Pencarian suara memakai `LocalQuranRecitationSession` dan model Whisper Quran yang sama dengan AI bacaan. Tidak perlu mengunduh model kedua. Kecocokan potongan dicari di seluruh ayat dengan penyelarasan kata, termasuk potongan di tengah ayat. Normalisasi ejaan hanya untuk pencarian; teks kanonis tidak diubah. Hasil dibatasi delapan rujukan, sehingga frasa berulang bisa mempunyai rujukan lain yang tidak tampil.
+Teks Arab yang diketik tetap dapat dicari dengan pencocokan potongan ayat. Ini bukan mode bahasa untuk mikrofon pencarian Indonesia.
 
 ## Privasi dan batas
 
-- Pertanyaan, rekaman, transkrip, dan hasil pencarian tidak dikirim ke server. Pengunduhan model memerlukan internet satu kali; jika model sudah siap, pencarian suara berjalan lokal.
-- Izin mikrofon dan model yang siap wajib sebelum mulai. Pemutar audio dijeda saat merekam. Menutup panel, membatalkan, atau meninggalkan aplikasi membebaskan mikrofon dan membatalkan sesi.
-- Kemampuan pengenalan bergantung pada perangkat, kebisingan, dan bacaan. Bacaan terlalu pendek, melintasi banyak ayat, atau berbeda jauh dari hasil pengenalan bisa tidak ditemukan. Cocokkan transkrip dan sumber sebelum memakai hasil.
-- Relevansi makna terbatas pada korpus dan model statistik ini. Hasil kosong bukan berarti suatu topik tidak dibahas dalam Quran; hasil yang muncul belum tentu menjawab pertanyaan secara lengkap.
-- Fitur ini bukan alat pentashihan, penilaian tajwid/makhraj, atau pemberi fatwa. AI bacaan dan alat belajar lain tetap tersedia seperti sebelumnya.
+- Pencarian terhadap ayat, tafsir dan pelajaran dilakukan di perangkat. Nuraya tidak menyimpan rekaman atau transkrip pencarian ke riwayat/database atau mengirimkannya ke server Nuraya.
+- Dikte memakai layanan Android, bukan model Whisper Quran. Jika pengenal Indonesia offline tidak tersedia, layanan perangkat dapat membutuhkan internet dan memproses audio melalui penyedia suara. Penjelasan ini tampil sebelum tombol mikrofon. Ketersediaan bahasa/provider bergantung pada HP.
+- Izin mikrofon diperlukan. Pemutar dijeda selama dikte. Tidak ada perekaman latar belakang.
+- Kesalahan transkripsi tetap mungkin; pengguna dapat mengedit hasil. Pencocokan nama tidak mencakup semua salah dengar, dan pencarian topik tidak menjamin menjawab pertanyaan secara lengkap.
+- Pengujian otomatis memverifikasi bahasa intent, alternatif, pembatalan, timeout, rujukan seluruh surah, dan alur antarmuka. Akurasi mikrofon/pengenal perangkat fisik belum diverifikasi dalam rilis ini.
