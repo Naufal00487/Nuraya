@@ -45,6 +45,9 @@ fun SettingsScreen(app:NurayaApplication,settings:UserSettings,perform:(suspend 
             SettingsSeparator()
             SettingsMenuRow(Icons.Outlined.Globe,label(language,"Bahasa aplikasi","App language"),if(language=="en")"English" else "Indonesia","settings_language") { panel="language" }
         } }
+        item { SettingsGroup(label(language,"Pengingat","Reminders")) {
+            SettingsMenuRow(Icons.Outlined.Notifications,label(language,"Notifikasi & alarm","Notifications & alarms"),label(language,"Pengingat Quran, salat, dan suara azan","Quran reminders, prayer and adhan audio"),"settings_reminders") { panel="reminders" }
+        } }
         item { SettingsGroup(label(language,"Aplikasi","Application")) {
             SettingsMenuRow(Icons.Outlined.Shield,label(language,"Privasi & penyimpanan","Privacy & storage"),label(language,"Data pribadi disimpan di HP","Personal data stays on your phone"),"settings_privacy") { panel="privacy" }
             SettingsSeparator()
@@ -60,10 +63,11 @@ fun SettingsScreen(app:NurayaApplication,settings:UserSettings,perform:(suspend 
         ModalBottomSheet(onDismissRequest={panel=null},sheetState=rememberModalBottomSheetState(skipPartiallyExpanded=true)) {
             Column(Modifier.fillMaxWidth().heightIn(max=680.dp).verticalScroll(rememberScrollState()).padding(20.dp).testTag("settings_panel_$current"),verticalArrangement=Arrangement.spacedBy(18.dp)) {
                 Row(verticalAlignment=Alignment.CenterVertically) {
-                    Text(when(current){"qari"->label(language,"Qari pilihan","Preferred reciter");"translation"->label(language,"Terjemahan Al-Qur’an","Qur’an translation");"arabic"->label(language,"Ukuran tulisan Arab","Arabic text size");"language"->label(language,"Bahasa aplikasi","App language");"privacy"->label(language,"Privasi & penyimpanan","Privacy & storage");else->label(language,"Sumber & atribusi","Sources & attribution")},Modifier.weight(1f),style=MaterialTheme.typography.titleLarge)
+                    Text(when(current){"qari"->label(language,"Qari pilihan","Preferred reciter");"translation"->label(language,"Terjemahan Al-Qur’an","Qur’an translation");"arabic"->label(language,"Ukuran tulisan Arab","Arabic text size");"language"->label(language,"Bahasa aplikasi","App language");"privacy"->label(language,"Privasi & penyimpanan","Privacy & storage");"reminders"->label(language,"Notifikasi & alarm","Notifications & alarms");else->label(language,"Sumber & atribusi","Sources & attribution")},Modifier.weight(1f),style=MaterialTheme.typography.titleLarge)
                     IconButton(onClick={panel=null}) { Icon(Icons.Outlined.Close,label(language,"Tutup pengaturan","Close settings")) }
                 }
                 when(current) {
+                    "reminders" -> com.nuraya.app.reminders.ReminderSettings(language)
                     "language" -> FlowRow(horizontalArrangement=Arrangement.spacedBy(12.dp)) {
                         FilterChip(language=="id",onClick={perform{app.settings.setLanguage("id")}},label={Text("Indonesia")},modifier=Modifier.testTag("language_id"))
                         FilterChip(language=="en",onClick={perform{app.settings.setLanguage("en")}},label={Text("English")},modifier=Modifier.testTag("language_en"))

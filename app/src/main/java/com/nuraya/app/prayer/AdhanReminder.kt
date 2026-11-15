@@ -33,14 +33,14 @@ import java.time.Instant
 import java.time.format.DateTimeFormatter
 
 internal val prayerReminderIds=setOf("fajr","dhuhr","asr","maghrib","isha")
-data class PrayerReminder(val prayer:PrayerMoment,val before:Boolean) {
-    val at:Instant get()=if(before)prayer.instant.minusSeconds(600) else prayer.instant
+data class PrayerReminder(val prayer:PrayerMoment,val before:Boolean,val minutes:Int=10) {
+    val at:Instant get()=if(before)prayer.instant.minusSeconds(minutes * 60L) else prayer.instant
     val key:String get()="${prayer.id}:${at.toEpochMilli()}:$before"
 }
-internal fun nextPrayerReminder(now:Instant,location:PrayerLocation,correction:Int,selected:Set<String>):PrayerReminder? {
+internal fun nextPrayerReminder(now:Instant,location:PrayerLocation,correction:Int,selected:Set<String>,minutes:Int=10):PrayerReminder? {
     val date=now.atZone(location.zone).toLocalDate()
     return (0L..2L).flatMap{PrayerCalculator.calculate(date.plusDays(it),location,correction).moments}
-        .filter{it.isPrayer&&it.id in selected}.flatMap{listOf(PrayerReminder(it,true),PrayerReminder(it,false))}
+        .filter{it.isPrayer&&it.id in selected}.flatMap{listOf(PrayerReminder(it,true,minutes),PrayerReminder(it,false,minutes))}
         .filter{it.at.isAfter(now)}.minByOrNull{it.at}
 }
 
@@ -51,9 +51,11 @@ object AdhanScheduler {
     /** Sound is independent of the per-prayer notification selections. */
     fun enabled(context:Context)=preferences(context).getBoolean("enabled",false)
     fun selected(context:Context):Set<String> = (preferences(context).getStringSet("prayers",null)
-        ?: if(enabled(context))prayerReminderIds else emptySet()).intersect(prayerReminderIds)
+        ?: prayerReminderIds).intersect(prayerReminderIds)
     fun exactAllowed(context:Context)=Build.VERSION.SDK_INT<31||context.getSystemService(AlarmManager::class.java).canScheduleExactAlarms()
-    fun permissionsAllowed(context:Context)=exactAllowed(context)&&NotificationManagerCompat.from(context).areNotificationsEnabled()
+    fun permissionsAllowed(context:Context)=NotificationManagerCompat.from(context).areNotificationsEnabled()
+    fun beforeMinutes(context:Context)=preferences(context).getInt("before_minutes",10).takeIf{it in listOf(5,10,15,30)}?:10
+    fun setBeforeMinutes(context:Context,value:Int){require(value in listOf(5,10,15,30));preferences(context).edit().putInt("before_minutes",value).apply();schedule(context)}
     fun setEnabled(context:Context,value:Boolean){
         val choices=selected(context).let{if(value&&it.isEmpty())prayerReminderIds else it}
         preferences(context).edit().putStringSet("prayers",choices).putBoolean("enabled",value).apply()
@@ -68,8 +70,8 @@ object AdhanScheduler {
         if(choices.isEmpty())setEnabled(context,false) else schedule(context)
     }
     fun reconcile(context:Context){
-        if(!permissionsAllowed(context)){
-            preferences(context).edit().putBoolean("enabled",false).putStringSet("prayers",emptySet()).apply()
+        if(!permissionsAllowed(context)||!exactAllowed(context)){
+            preferences(context).edit().putBoolean("enabled",false).apply()
             context.stopService(Intent(context,AdhanService::class.java))
         }
         schedule(context)
@@ -82,47 +84,63 @@ object AdhanScheduler {
         if(!permissionsAllowed(context))return
         val prefs=PrayerPreferenceStore(context).read()
         val location=prefs.location?:return
-        val next=nextPrayerReminder(Instant.now(),location,prefs.minuteAdjustment,selected(context))?:return
+        val next=nextPrayerReminder(Instant.now(),location,prefs.minuteAdjustment,selected(context),beforeMinutes(context))?:return
         intent.putExtra("at",next.at.toEpochMilli()).putExtra("prayerAt",next.prayer.instant.toEpochMilli())
-            .putExtra("name",next.prayer.nameId).putExtra("id",next.prayer.id).putExtra("before",next.before).putExtra("key",next.key)
+            .putExtra("minutes",next.minutes).putExtra("name",next.prayer.nameId).putExtra("id",next.prayer.id).putExtra("before",next.before).putExtra("key",next.key)
         val alarm=PendingIntent.getBroadcast(context,ID,intent,PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
         try{
-            alarms.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,next.at.toEpochMilli(),alarm)
+            if(exactAllowed(context))alarms.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,next.at.toEpochMilli(),alarm)
+            else alarms.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,next.at.toEpochMilli(),alarm)
             preferences(context).edit().putString("scheduled_key",next.key).apply()
-        }catch(_:SecurityException){/* A revoked system permission never starts audio. */}
+        }catch(_:SecurityException){
+            preferences(context).edit().putBoolean("enabled",false).apply()
+            alarms.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,next.at.toEpochMilli(),alarm)
+            preferences(context).edit().putString("scheduled_key",next.key).apply()
+        }
     }
 }
 class AdhanReceiver:BroadcastReceiver(){
     override fun onReceive(context:Context,intent:Intent){
-        if(intent.action!=AdhanScheduler.ACTION){AdhanScheduler.reconcile(context);return}
+        if(intent.action!=AdhanScheduler.ACTION){AdhanScheduler.reconcile(context);com.nuraya.app.reminders.QuranReminderScheduler.schedule(context);return}
+        val now=System.currentTimeMillis()
         val at=intent.getLongExtra("at",0L)
         val id=intent.getStringExtra("id").orEmpty()
-        val location=PrayerPreferenceStore(context).read().location
+        val settings=PrayerPreferenceStore(context).read()
+        val location=settings.location
+        val prayerAt=intent.getLongExtra("prayerAt",at)
+        val before=intent.getBooleanExtra("before",false)&&prayerAt>now
+        val deliveryKey="$id:$prayerAt:$before"
+        val preferences=AdhanScheduler.preferences(context)
         val valid=location!=null&&id in AdhanScheduler.selected(context)&&AdhanScheduler.permissionsAllowed(context)&&
-            System.currentTimeMillis()-at in 0L..119_999L&&intent.getStringExtra("key")!=null&&
-            intent.getStringExtra("key")==AdhanScheduler.preferences(context).getString("scheduled_key",null)
+            now-at in 0L..2_700_000L&&intent.getStringExtra("key")!=null&&
+            intent.getStringExtra("key")==preferences.getString("scheduled_key",null)&&
+            preferences.getString("delivered_$id",null)!=deliveryKey
         AdhanScheduler.schedule(context)
         if(!valid)return
-        val before=intent.getBooleanExtra("before",false)
+        preferences.edit().putString("delivered_$id",deliveryKey).apply()
         val notificationId=4300+prayerReminderIds.indexOf(id)
-        if(!before&&AdhanScheduler.enabled(context)){
+        if(!before&&AdhanScheduler.enabled(context)&&AdhanScheduler.exactAllowed(context)&&now-prayerAt in 0L..119_999L){
             try{
                 ContextCompat.startForegroundService(context,Intent(context,AdhanService::class.java)
                     .putExtra("name",intent.getStringExtra("name")).putExtra("notificationId",notificationId))
                 return
-            }catch(_:RuntimeException){/* Preserve the time notification if the OS prevents audio. */}
+            }catch(_:RuntimeException){/* Keep the ordinary notification if Android prevents audio. */}
         }
         val manager=context.getSystemService(NotificationManager::class.java)
         manager.createNotificationChannel(NotificationChannel("prayer_reminders","Pengingat salat",NotificationManager.IMPORTANCE_HIGH))
-        val open=PendingIntent.getActivity(context,2,Intent(context,MainActivity::class.java),PendingIntent.FLAG_IMMUTABLE)
         val name=intent.getStringExtra("name").orEmpty()
-        val time=Instant.ofEpochMilli(intent.getLongExtra("prayerAt",at)).atZone(location.zone).format(DateTimeFormatter.ofPattern("HH:mm"))
+        val local=Instant.ofEpochMilli(prayerAt).atZone(requireNotNull(location).zone)
+        val time=local.format(DateTimeFormatter.ofPattern("HH:mm"))
+        // If Android delays an inexact notification, never promise an outdated countdown.
+        val minutes=kotlin.math.ceil((prayerAt-now)/60_000.0).toInt().coerceIn(1,AdhanScheduler.beforeMinutes(context))
+        val text=if(before)com.nuraya.app.reminders.ReminderContent(context).beforePrayer(id,name,minutes,local.toLocalDate(),settings.hijriAdjustment)
+            else com.nuraya.app.reminders.ReminderText("Waktu salat $name","Telah masuk waktu salat $name.")
+        val body="${text.body}\n$name pukul $time · ${location.name}"
         val notification=NotificationCompat.Builder(context,"prayer_reminders").setSmallIcon(R.drawable.ic_notification)
-            .setContentTitle(if(before)"Menjelang salat $name" else "Waktu salat $name")
-            .setContentText("$name pukul $time · ${location.name}")
-            .setStyle(NotificationCompat.BigTextStyle().bigText(if(before)"Pengingat 10 menit sebelum salat. $name pukul $time · ${location.name}" else "Telah masuk waktu salat $name, pukul $time · ${location.name}"))
-            .setContentIntent(open).setAutoCancel(true).setCategory(NotificationCompat.CATEGORY_REMINDER).build()
-        manager.notify(notificationId,notification)
+            .setContentTitle(text.title).setContentText(text.body).setStyle(NotificationCompat.BigTextStyle().bigText(body))
+            .setContentIntent(com.nuraya.app.reminders.ReminderNavigation.pending(context,"prayer/$id"))
+            .setAutoCancel(true).setCategory(NotificationCompat.CATEGORY_REMINDER).build()
+        runCatching{manager.notify(notificationId,notification)}
     }
 }
 class AdhanService:Service(){
@@ -130,7 +148,7 @@ class AdhanService:Service(){
     private var focus:AudioFocusRequest?=null
     override fun onBind(intent:Intent?)=null
     override fun onStartCommand(intent:Intent?,flags:Int,startId:Int):Int{
-        if(intent?.action=="stop"||!AdhanScheduler.enabled(this)){stopSelf();return START_NOT_STICKY}
+        if(intent?.action=="stop"||!AdhanScheduler.enabled(this)||!AdhanScheduler.exactAllowed(this)||!AdhanScheduler.permissionsAllowed(this)){stopSelf();return START_NOT_STICKY}
         val manager=getSystemService(NotificationManager::class.java)
         manager.createNotificationChannel(NotificationChannel("adhan_playback","Azan salat",NotificationManager.IMPORTANCE_LOW).apply{setSound(null,null)})
         val open=PendingIntent.getActivity(this,0,Intent(this,MainActivity::class.java),PendingIntent.FLAG_IMMUTABLE)
@@ -162,7 +180,7 @@ class AdhanService:Service(){
     val preferences=remember{AdhanScheduler.preferences(context)}
     var revision by remember{mutableIntStateOf(0)}
     DisposableEffect(preferences){
-        val listener=SharedPreferences.OnSharedPreferenceChangeListener{_,key->if(key=="prayers"||key=="enabled")revision++}
+        val listener=SharedPreferences.OnSharedPreferenceChangeListener{_,key->if(key=="prayers"||key=="enabled"||key=="before_minutes")revision++}
         preferences.registerOnSharedPreferenceChangeListener(listener)
         onDispose{preferences.unregisterOnSharedPreferenceChangeListener(listener)}
     }
@@ -189,20 +207,20 @@ class AdhanService:Service(){
         lifecycle.addObserver(observer)
         onDispose{lifecycle.removeObserver(observer)}
     }
-    FilledTonalIconButton(onClick={if(enabled)AdhanScheduler.setEnabled(context,false)else dialog=true},modifier=Modifier.size(56.dp).testTag("adhan_toggle"),colors=IconButtonDefaults.filledTonalIconButtonColors(containerColor=Color(0xFFF4E6B9),contentColor=Color(0xFF5E4922))){
+    FilledTonalIconButton(onClick={if(enabled)AdhanScheduler.setEnabled(context,false)else dialog=true},modifier=Modifier.size(56.dp).testTag("adhan_toggle"),colors=IconButtonDefaults.filledTonalIconButtonColors(containerColor=MaterialTheme.colorScheme.primaryContainer,contentColor=MaterialTheme.colorScheme.onPrimaryContainer)){
         Icon(if(enabled)Icons.AutoMirrored.Outlined.VolumeUp else Icons.AutoMirrored.Outlined.VolumeOff,label(language,if(enabled)"Nonaktifkan suara azan" else "Aktifkan suara azan",if(enabled)"Disable adhan sound" else "Enable adhan sound"))
     }
-    if(dialog)ReminderPermissionDialog(language,{dialog=false}){AdhanScheduler.setEnabled(context,true);dialog=false}
+    if(dialog)ReminderPermissionDialog(language,{dialog=false},alarm=true){AdhanScheduler.setEnabled(context,true);dialog=false}
 }
-@Composable private fun ReminderPermissionDialog(language:String,onDismiss:()->Unit,onGranted:()->Unit){
+@Composable internal fun ReminderPermissionDialog(language:String,onDismiss:()->Unit,alarm:Boolean=false,onGranted:()->Unit){
     val context=LocalContext.current
     var message by remember{mutableStateOf("")}
     val permission=rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()){granted->message=if(granted)label(language,"Izin notifikasi aktif. Tekan Aktifkan untuk melanjutkan.","Notifications enabled. Tap Enable to continue.")else label(language,"Izin notifikasi diperlukan untuk pengingat salat.","Notification permission is needed for prayer reminders.")}
-    AlertDialog(onDismissRequest=onDismiss,title={Text(label(language,"Pengingat salat","Prayer reminders"))},text={Text(message.ifBlank{label(language,"Pengingat muncul 10 menit sebelum dan saat waktu salat. Pilih salat yang diingatkan di Ibadah. Suara azan mengikuti tombol pengeras suara dan volume alarm HP; mematikannya tetap mempertahankan pilihan notifikasi.","Receive reminders ten minutes before and at prayer time. Choose prayers under Prayer. Adhan sound follows the speaker switch and alarm volume; muting it keeps notification selections.")})},confirmButton={TextButton(onClick={
+    com.nuraya.app.reminders.NoticePopup(onDismissRequest=onDismiss,title={Text(label(language,"Pengingat salat","Prayer reminders"))},text={Text(message.ifBlank{label(language,"Notifikasi salat dan alarm suara azan diatur terpisah. Notifikasi tidak memerlukan izin alarm. Suara azan opsional, mengikuti volume alarm HP, dan memerlukan izin alarm tepat waktu.","Prayer notifications and adhan alarms are separate. Notifications do not require alarm permission. Optional adhan audio follows the phone alarm volume and requires exact-alarm permission.")})},confirmButton={TextButton(onClick={
         when{
             PrayerPreferenceStore(context).read().location==null->message=label(language,"Pilih lokasi terlebih dahulu di Beranda atau Ibadah.","Choose a location under Home or Prayer first.")
             Build.VERSION.SDK_INT>=33&&ContextCompat.checkSelfPermission(context,Manifest.permission.POST_NOTIFICATIONS)!=PackageManager.PERMISSION_GRANTED->permission.launch(Manifest.permission.POST_NOTIFICATIONS)
-            !AdhanScheduler.exactAllowed(context)->{message=label(language,"Izinkan alarm tepat waktu, lalu kembali dan tekan Aktifkan.","Allow exact alarms, return, then tap Enable.");runCatching{context.startActivity(Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM,android.net.Uri.parse("package:${context.packageName}")))}}
+            alarm&&!AdhanScheduler.exactAllowed(context)->{message=label(language,"Izinkan alarm tepat waktu, lalu kembali dan tekan Aktifkan.","Allow exact alarms, return, then tap Enable.");runCatching{context.startActivity(Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM,android.net.Uri.parse("package:${context.packageName}")))}}
             !NotificationManagerCompat.from(context).areNotificationsEnabled()->{message=label(language,"Aktifkan notifikasi Nuraya di pengaturan HP.","Enable Nuraya notifications in device settings.");runCatching{context.startActivity(Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).putExtra(Settings.EXTRA_APP_PACKAGE,context.packageName))}}
             else->onGranted()
         }

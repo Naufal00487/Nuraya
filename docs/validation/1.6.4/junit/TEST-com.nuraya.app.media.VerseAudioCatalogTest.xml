@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.media.VerseAudioCatalogTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-15T09:08:54" hostname="d17a99305e86" time="3.82">
+  <properties/>
+  <testcase name="knownAlafasyTimingChangesAtRealFirstVerseBoundaries" classname="com.nuraya.app.media.VerseAudioCatalogTest" time="0.02"/>
+  <testcase name="inconsistentProviderTimestampsUseAyahFallbackRatherThanFalsePrecision" classname="com.nuraya.app.media.VerseAudioCatalogTest" time="0.023"/>
+  <testcase name="unsupportedRecitersNeverBorrowAlafasyTimestamps" classname="com.nuraya.app.media.VerseAudioCatalogTest" time="0.022"/>
+  <testcase name="pairedSourceFailureKeepsReciterAndDropsIncompatibleTimingExactlyOnce" classname="com.nuraya.app.media.VerseAudioCatalogTest" time="0.062"/>
+  <testcase name="silenceAndUnmappedTimesDoNotInventWordHighlights" classname="com.nuraya.app.media.VerseAudioCatalogTest" time="0.017"/>
+  <testcase name="allTimedChaptersUseTheRecordingPairedWithTheirOwnRealSegments" classname="com.nuraya.app.media.VerseAudioCatalogTest" time="0.176"/>
+  <testcase name="addedQarisUseTheirOwnPinnedSourcesAndCanonicalWordPositions" classname="com.nuraya.app.media.VerseAudioCatalogTest" time="3.484"/>
+  <testcase name="memorizationRepeatsEachAyahInOrderAndRejectsInvalidRanges" classname="com.nuraya.app.media.VerseAudioCatalogTest" time="0.016"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

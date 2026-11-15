@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.hadith.HadithRepositoryTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-15T09:08:43" hostname="d17a99305e86" time="5.029">
+  <properties/>
+  <testcase name="keywordSearchSupportsArabicAndPaginationWithoutDuplicates" classname="com.nuraya.app.hadith.HadithRepositoryTest" time="4.388"/>
+  <testcase name="datasetCountsAndFractionalNumbersArePreserved" classname="com.nuraya.app.hadith.HadithRepositoryTest" time="0.329"/>
+  <testcase name="exactReferenceKeepsOriginalArabicAndIndonesianTogether" classname="com.nuraya.app.hadith.HadithRepositoryTest" time="0.312"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

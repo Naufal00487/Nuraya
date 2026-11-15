@@ -139,6 +139,7 @@ fun PrayerScreen(language: String, initialTab: String? = null) {
                 } }
             }
             "qibla" -> {
+                item { ContextLocationPrompt(language,onManualLocation={tab="location"}) }
                 val location = preferences.location
                 if (location == null) item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) { SelectLocationPrompt(language) { tab = "location" } } }
                 else item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) { QiblaPanel(location, language) } }
@@ -178,6 +179,7 @@ fun PrayerScreen(language: String, initialTab: String? = null) {
                         }
                     } else item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) { Text(label(language, "Perhitungan tidak tersedia untuk lokasi/tanggal ini. Periksa jadwal otoritas setempat; aplikasi tidak membuat waktu pengganti.",
                         "Calculation is unavailable for this location/date. Consult your local authority; the app does not invent replacement times."), style = MaterialTheme.typography.bodyLarge) } }
+                    item { com.nuraya.app.reminders.PrayerTimingControls(language) }
                     if (day?.highLatitude == true) item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) { Text(label(language, "Lintang tinggi: Subuh dan Isya memakai batas porsi malam berbasis sudut. Cocokkan dengan pedoman wilayah Anda.",
                         "High latitude: Fajr and Isha use twilight-angle night limits. Check the guidance for your region."), style = MaterialTheme.typography.bodyLarge) } }
                     item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) {

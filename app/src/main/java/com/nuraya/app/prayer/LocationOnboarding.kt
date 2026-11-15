@@ -39,8 +39,15 @@ private tailrec fun Context.locationActivity(): Activity? = when (this) {
 
 /** Place once beside the app content. Existing manual city choices are never replaced automatically. */
 @Composable
-fun LocationOnboarding(language: String, onManualLocation: () -> Unit = {}) {
-    LocationSetupFlow(language, autoPrompt = true, onManualLocation = onManualLocation)
+fun LocationOnboarding(language: String, onManualLocation: () -> Unit = {}, onVisibility: (Boolean) -> Unit = {}) {
+    LocationSetupFlow(language, autoPrompt = true, onManualLocation = onManualLocation, onVisibility = onVisibility)
+}
+
+/** A contextual reminder may appear again when the user explicitly enters Qibla. */
+@Composable fun ContextLocationPrompt(language:String,onManualLocation:()->Unit={}) {
+    val context=LocalContext.current
+    val needed=remember{!hasDeviceLocationPermission(context)}
+    if(needed)LocationSetupFlow(language,autoPrompt=true,onManualLocation=onManualLocation,forceOpen=true)
 }
 
 /** Explicit refresh on the Ibadah location tab, including after a denial or a trip. */
@@ -55,6 +62,8 @@ private fun LocationSetupFlow(
     autoPrompt: Boolean,
     onManualLocation: () -> Unit,
     onLocated: () -> Unit = {},
+    onVisibility: (Boolean) -> Unit = {},
+    forceOpen: Boolean = false,
 ) {
     val context = LocalContext.current
     val activity = context.locationActivity()
@@ -62,7 +71,7 @@ private fun LocationSetupFlow(
     val reader = remember(context.applicationContext) { DeviceLocationReader(context) }
     val store = remember(context.applicationContext) { PrayerPreferenceStore(context) }
     val prompt = remember(context.applicationContext) { LocationPromptStore(context) }
-    var visible by rememberSaveable { mutableStateOf(autoPrompt && prompt.shouldIntroduce(store.read().location != null)) }
+    var visible by rememberSaveable { mutableStateOf(forceOpen || autoPrompt && prompt.shouldIntroduce(store.read().location != null)) }
     var stage by rememberSaveable { mutableStateOf(LocationStage.INTRO) }
     var problem by remember { mutableStateOf(LocationProblem.UNAVAILABLE) }
     var found by remember { mutableStateOf<DeviceLocationResult.Found?>(null) }
@@ -157,23 +166,21 @@ private fun LocationSetupFlow(
     }, modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp).testTag("device_location_button")) {
         Text(label(language, "Gunakan lokasi HP", "Use device location"))
     }
+    val visibilityCallback by rememberUpdatedState(onVisibility)
+    DisposableEffect(visible) { visibilityCallback(visible); onDispose { visibilityCallback(false) } }
     if (!visible) return
     val deniedPermanently = stage == LocationStage.DENIED && prompt.hasRequestedPermission() && activity != null &&
         !ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.ACCESS_COARSE_LOCATION) &&
         !ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.ACCESS_FINE_LOCATION)
-    AlertDialog(onDismissRequest = { /* Explicit buttons keep the first-use explanation visible until a choice is made. */ },
+    com.nuraya.app.reminders.NoticePopup(onDismissRequest = close,
         modifier = Modifier.testTag("location_setup_dialog"),
         title = { Text(label(language, "Lokasi untuk salat & kiblat", "Location for prayer & Qibla")) },
         text = {
-            Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 when (stage) {
                     LocationStage.INTRO -> {
-                        Text(label(language, "Aktifkan izin lokasi agar Nuraya mengisi koordinat Anda secara otomatis. Anda tidak perlu mengetik koordinat.",
-                            "Allow location access so Nuraya can fill your coordinates automatically. You do not need to type them."))
-                        Text(label(language, "Pilih “Saat aplikasi digunakan”. Lokasi perkiraan juga dapat digunakan; lokasi akurat membantu menentukan arah lebih tepat.",
-                            "Choose “While using the app”. Approximate location is supported; precise location helps improve the direction."))
-                        Text(label(language, "Koordinat disimpan di HP untuk menghitung jadwal dan kiblat. Nuraya tidak mengunggah lokasi atau melacaknya di latar belakang. Zona waktu mengikuti pengaturan HP.",
-                            "Coordinates stay on your phone for prayer and Qibla calculations. Nuraya does not upload or track your location in the background. The time zone follows your phone settings."), style = MaterialTheme.typography.bodyMedium)
+                        Text(label(language, "Izinkan lokasi agar jadwal salat dan kiblat terisi otomatis. Pilih “Saat aplikasi digunakan”; lokasi perkiraan juga bisa dipakai. Koordinat disimpan di HP.",
+                            "Allow location to set prayer times and Qibla automatically. Choose “While using the app”; approximate location also works. Coordinates stay on your phone."))
                     }
                     LocationStage.LOOKING -> {
                         LinearProgressIndicator(Modifier.fillMaxWidth().testTag("device_location_loading"))

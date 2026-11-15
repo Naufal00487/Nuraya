@@ -24,6 +24,12 @@ class PlaybackService : MediaSessionService() {
             .setConnectTimeoutMs(20_000)
             .setReadTimeoutMs(30_000)
             .setAllowCrossProtocolRedirects(false)
+            .setTransferListener(object : androidx.media3.datasource.TransferListener {
+                override fun onTransferInitializing(source: androidx.media3.datasource.DataSource, spec: androidx.media3.datasource.DataSpec, network: Boolean) { if(network)com.nuraya.app.reminders.NetworkNotice.warnIfOffline(this@PlaybackService) }
+                override fun onTransferStart(source: androidx.media3.datasource.DataSource, spec: androidx.media3.datasource.DataSpec, network: Boolean) = Unit
+                override fun onBytesTransferred(source: androidx.media3.datasource.DataSource, spec: androidx.media3.datasource.DataSpec, network: Boolean, count: Int) = Unit
+                override fun onTransferEnd(source: androidx.media3.datasource.DataSource, spec: androidx.media3.datasource.DataSpec, network: Boolean) = Unit
+            })
         val player = ExoPlayer.Builder(this)
             .setMediaSourceFactory(DefaultMediaSourceFactory(DefaultDataSource.Factory(this, http)))
             .build()

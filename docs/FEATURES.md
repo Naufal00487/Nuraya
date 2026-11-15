@@ -61,7 +61,7 @@ Hasil build, tes JVM/Compose, lint, pemeriksaan APK dan batas perangkat dicatat 
 
 ## Desain 1.5.0
 
-Beranda memakai empat lanskap dari berkas desain sesuai jam setempat (05–10 pagi, 11–14 siang, 15–17 sore, selebihnya malam), jam/Hijriah, jadwal dan hitung mundur, tombol lokasi, azan, kiblat, pengaturan dan profil. Profil berisi nama panggilan dan lima ilustrasi avatar internal; tidak ada unggahan galeri, akun atau papan peringkat. Kuis dan progres tetap lokal.
+Beranda memakai empat lanskap dari berkas desain sesuai jam setempat (05–10 pagi, 11–14 siang, 15–17 sore, selebihnya malam), jam/Hijriah, jadwal dan hitung mundur, tombol lokasi, azan, kiblat, pengaturan dan profil. Profil berisi nama panggilan dan tiga ilustrasi avatar dari dokumen penyusun; tidak ada unggahan galeri, akun atau papan peringkat. Kuis dan progres tetap lokal.
 
 Daftar qari berupa dua kolom foto/nama, dengan pilihan horizontal di beranda. Halaman qari menampilkan keterangan edisi rekaman yang bersumber dari penyedia. Biografi pribadi lengkap untuk semua qari belum tersedia; tanggal lahir/negara/riwayat pendidikan tidak diisi dengan dugaan.
 
@@ -90,3 +90,7 @@ Tema biru kembali untuk menu umum dan pembaca teks. Gambar lanskap beranda tampi
 Pencarian suara sekarang mendikte bahasa Indonesia memakai layanan pengenal Android dan meneruskan transkrip ke pencarian teks biasa. Nama surah, variasi ejaan, nomor surah, dan angka ayat lisan didukung. Hasil fuzzy diberi keterangan sebagai kemungkinan dan tidak membuka surah otomatis. Topik pembelajaran tetap mencari ayat, tafsir dan materi tajwid lokal. Model Arab untuk AI koreksi bacaan tetap terpisah. [Cara kerja dan privasi](SEMANTIC_SEARCH.md).
 
 Audio per ayat pembaca berhenti saat meninggalkan pembaca atau aplikasi; menukar tampilan gambar/teks di pembaca mempertahankan sesi. Murottal surah lengkap tetap mendukung latar belakang. Rotasi perangkat tidak memutus sesi pembaca.
+
+## Finishing 1.6.4
+
+Kiblat biru, banner otomatis/manual, tiga avatar asli terbaru, ikon tindakan ayat, dan pernyataan akademik/sumber di Tentang Nuraya. Pengingat Quran dua kali sehari acak 08.00–20.00; pengingat salat memakai template penyusun dan pilihan 5/10/15/30 menit. Suara azan opsional/default mati, terpisah dari izin notifikasi. Kartu izin dan koneksi berukuran kecil. [Perubahan](UPDATE_1.6.4.md) · [Pengingat dan batas Android](REMINDERS.md).

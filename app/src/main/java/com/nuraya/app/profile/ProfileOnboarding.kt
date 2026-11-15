@@ -36,7 +36,7 @@ fun ProfileOnboarding(language: String, onComplete: () -> Unit) {
                 Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                     Text(label(language, "Pilih avatar", "Choose an avatar"), style = MaterialTheme.typography.titleMedium)
                     FlowRow(horizontalArrangement = Arrangement.spacedBy(10.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                        repeat(5) { index ->
+                        repeat(3) { index ->
                             Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.clickable { avatar = index }.padding(4.dp)) {
                                 ProfileAvatar(index, Modifier.size(56.dp))
                                 if (avatar == index) Text(label(language, "Dipilih", "Selected"), style = MaterialTheme.typography.labelSmall)

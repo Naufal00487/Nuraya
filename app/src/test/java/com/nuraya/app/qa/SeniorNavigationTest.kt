@@ -165,9 +165,9 @@ class SeniorNavigationTest {
         awaitTag("profile_screen")
         compose.onNodeWithTag("profile_nickname").performTextClearance()
         compose.onNodeWithTag("profile_nickname").performTextInput("Naufal")
-        compose.onNodeWithTag("profile_avatar_3").performScrollTo().performClick()
+        compose.onNodeWithTag("profile_avatar_2").performScrollTo().performClick()
         compose.onNodeWithTag("profile_save").performScrollTo().performClick()
-        assertEquals(com.nuraya.app.profile.LocalProfile("Naufal",3),com.nuraya.app.profile.ProfileStore(app).read())
+        assertEquals(com.nuraya.app.profile.LocalProfile("Naufal",2),com.nuraya.app.profile.ProfileStore(app).read())
         saveHostImage("profile.png")
         compose.onNodeWithTag("profile_screen").performScrollToNode(hasText("Progres belajarku"))
         compose.onNodeWithText("Progres belajarku").performClick()
@@ -366,13 +366,9 @@ class SeniorNavigationTest {
     private fun saveHostImage(name: String, dialog: Boolean = false) {
         val folder = File(System.getProperty("user.home"), "ui-140").apply { mkdirs() }
         compose.runOnIdle {
-            // Compose dialogs have their own Window: drawing the Activity alone
-            // would misleadingly show only the home screen behind the prompt.
-            val view = if (dialog) {
-                val activeDialog = requireNotNull(org.robolectric.shadows.ShadowDialog.getLatestDialog())
-                assertTrue("The captured dialog must still be showing", activeDialog.isShowing)
-                requireNotNull(activeDialog.window).decorView
-            } else compose.activity.window.decorView
+            // Permission cards use a non-modal Compose Popup, which has its own window.
+            val view = if (dialog) hostWindow(compose.activity) else compose.activity.window.decorView
+            if(dialog) assertTrue("Capture the permission popup, not the background", view !== compose.activity.window.decorView)
             val bitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
             view.draw(Canvas(bitmap))
             File(folder, name).outputStream().use { assertTrue(bitmap.compress(Bitmap.CompressFormat.PNG, 100, it)) }

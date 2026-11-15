@@ -34,9 +34,9 @@ fun ScreenColors(screen: String, dark: Boolean, content: @Composable () -> Unit)
     val printed = screen == "mushaf"
     val qibla = screen == "qibla"
     val colors = if (printed) MushafColors
-        else if (qibla) MaterialTheme.colorScheme.copy(background = Color(0xFF247F78), surface = Color(0xFF247F78), onSurface = Color.White, onSurfaceVariant = Color(0xFFD8EEDE), primary = Color(0xFFFFE6A9))
+        else if (qibla) MaterialTheme.colorScheme.copy(background = Color(0xFF2C4066), surface = Color(0xFF2C4066), onSurface = Color.White, onSurfaceVariant = Color(0xFFE3ECFE), primary = Color(0xFFFFE6A9))
         else MaterialTheme.colorScheme
-    val background = if (qibla) Brush.verticalGradient(listOf(Color(0xFF247F78), Color(0xFF144B48)))
+    val background = if (qibla) Brush.verticalGradient(listOf(Color(0xFF2C4066), Color(0xFF111C30)))
         else Brush.verticalGradient(listOf(colors.background, colors.background))
     val view = LocalView.current
     SideEffect {

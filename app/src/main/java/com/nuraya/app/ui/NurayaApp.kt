@@ -115,6 +115,19 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
         if (openBook) mushafFrom = screen
         screen = if (openBook) "mushaf" else "reader"
     }
+    val reminderRequest by com.nuraya.app.reminders.ReminderNavigation.requests.collectAsStateWithLifecycle()
+    LaunchedEffect(reminderRequest) {
+        reminderRequest?.let { request ->
+            if(request.surah!=null&&request.ayah!=null&&app.quran.verse(request.surah,request.ayah)!=null) {
+                // Notification references must not be replaced by a saved reading mode/position.
+                mushafFrom = if(screen in setOf("reader","mushaf")) readerFrom else screen
+                readerFrom = mushafFrom
+                readingModeId="indonesia";surahId=request.surah;ayahId=request.ayah;juzId=0
+                playerVisible=false;screen="mushaf"
+            } else if(request.surah==null)screen="prayer"
+            com.nuraya.app.reminders.ReminderNavigation.consume(request)
+        }
+    }
     LaunchedEffect(Unit) {
         if (QuranReadingModes.all.none { it.id == readingModeId }) { readingModeId = "standard"; screen = "quran" }
     }
@@ -157,7 +170,7 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
                 navigationIcon = {
                     if (screen !in listOf("home", "quran", "murottal", "prayer") || screen == "murottal" && qariId.isNotEmpty()) {
                         TextButton(onClick = back, modifier = Modifier.testTag("back_button")) {
-                            Icon(Icons.AutoMirrored.Outlined.ArrowBack, null)
+                            if (screen != "murottal") Icon(Icons.AutoMirrored.Outlined.ArrowBack, null)
                             Text(label(language,"Kembali","Back"))
                         }
                     }
@@ -229,7 +242,7 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
                         "murottal" -> MurottalScreen(app, language, qariId, onQari = chooseQari, entries, downloads, playback, perform)
                         "prayer" -> PrayerScreen(language)
                         "location" -> PrayerScreen(language,"location")
-                        "qibla" -> QiblaScreen(language)
+                        "qibla" -> QiblaScreen(language,onManualLocation={screen="location"})
                         "profile" -> ProfileScreen(language) { if(it=="settings")settingsFrom="profile";if(it=="about")aboutFrom="profile";if(it=="progress")screenState.removeState("progress");screen=it }
                         "about" -> AboutScreen(language)
                         "library" -> LibraryScreen(app, language, entries, downloads, perform, onRead = openVerse)
@@ -247,7 +260,11 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
             }
         }
     }
-    if (!loading && !loadError) LocationOnboarding(language, onManualLocation = { screen = "prayer" })
+    var locationPromptVisible by remember { mutableStateOf(com.nuraya.app.prayer.LocationPromptStore(app).shouldIntroduce(com.nuraya.app.prayer.PrayerPreferenceStore(app).read().location != null)) }
+    if (!loading && !loadError) LocationOnboarding(language, onManualLocation = { screen = "location" }, onVisibility = { locationPromptVisible = it })
+    val offlineEvent by com.nuraya.app.reminders.NetworkNotice.events.collectAsStateWithLifecycle()
+    com.nuraya.app.reminders.NotificationPermissionNotice(language, allowedToShow = screen=="home"&&!locationPromptVisible&&!playerVisible&&offlineEvent==null)
+    com.nuraya.app.reminders.OfflineNotice(language, allowedToShow = !locationPromptVisible)
     if (playerVisible && !loading && !loadError) {
         ModalBottomSheet(onDismissRequest = { playerVisible = false }) {
             FullPlayer(app, language, playback, entries, downloads, perform, onClose = { playerVisible = false },

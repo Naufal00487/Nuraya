@@ -17,7 +17,7 @@ BASE = f'https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons@{VERSION}'
 MAPPING = {
     'Add':'plus','ArrowBack':'arrow-left','ArrowForward':'arrow-right','AutoStories':'book-open-cover',
     'Bookmark':'bookmark','BookmarkAdded':'bookmark','BookmarkBorder':'bookmark','Bookmarks':'books',
-    'CheckCircle':'check-circle','ChevronRight':'angle-right','Close':'cross','DarkMode':'moon',
+    'ContentCopy':'copy','Notifications':'bell','WifiOff':'wifi-slash','CheckCircle':'check-circle','ChevronRight':'angle-right','Close':'cross','DarkMode':'moon',
     'DeleteOutline':'trash','Download':'download','DownloadDone':'download','EmojiEvents':'trophy',
     'ExpandLess':'angle-up','ExpandMore':'angle-down','Explore':'compass-alt',
     'Favorite':'heart','FavoriteBorder':'heart','GraphicEq':'waveform-path','Headphones':'headphones',

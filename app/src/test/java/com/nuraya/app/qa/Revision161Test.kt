@@ -114,14 +114,14 @@ class Revision161Test {
         openApp()
         compose.onNodeWithTag("home_profile").performClick()
         await("profile_screen")
-        compose.onNodeWithTag("profile_screen").performScrollToNode(hasTestTag("profile_avatar_4"))
-        for (index in 0..4) compose.onNodeWithTag("profile_avatar_$index").assertExists()
-        compose.waitUntil(30_000) { compose.onAllNodesWithContentDescription("Avatar 5", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
-        compose.onNodeWithTag("profile_avatar_4").performClick()
+        compose.onNodeWithTag("profile_screen").performScrollToNode(hasTestTag("profile_avatar_2"))
+        for (index in 0..2) compose.onNodeWithTag("profile_avatar_$index").assertExists()
+        compose.waitUntil(30_000) { compose.onAllNodesWithContentDescription("Avatar 3", useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
+        compose.onNodeWithTag("profile_avatar_2").performClick()
         screenshot("profile-avatars")
         compose.onNodeWithTag("profile_save").performScrollTo().performClick()
         val saved = ProfileStore(ApplicationProvider.getApplicationContext()).read()
-        assertEquals("Naufal", saved.nickname); assertEquals(4, saved.avatar)
+        assertEquals("Naufal", saved.nickname); assertEquals(2, saved.avatar)
     }
 
     @Test @Config(sdk = [29])

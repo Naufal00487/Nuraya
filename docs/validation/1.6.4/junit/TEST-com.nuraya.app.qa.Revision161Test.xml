@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.qa.Revision161Test" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-15T09:09:10" hostname="d17a99305e86" time="5.735">
+  <properties/>
+  <testcase name="suppliedBannersDisplayAtOriginalAspectAndOpenTheirDestinations" classname="com.nuraya.app.qa.Revision161Test" time="1.139"/>
+  <testcase name="quranSearchOpensLocalVoiceSheetAndReturnsToQuranWithoutRecording" classname="com.nuraya.app.qa.Revision161Test" time="1.181"/>
+  <testcase name="systemBarsStayTransparentAndIconsFollowTheCurrentScreen" classname="com.nuraya.app.qa.Revision161Test" time="2.74"/>
+  <testcase name="everyNewAvatarIsAvailableAndSavingKeepsTheSameLocalProfile" classname="com.nuraya.app.qa.Revision161Test" time="0.675"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

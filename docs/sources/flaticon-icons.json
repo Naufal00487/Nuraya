@@ -56,6 +56,24 @@
       "outlineSha256": "588c413d429aa82f806605d8f9b5bbc3bd4213e3709e99d463b4f14c2471056b"
     },
     {
+      "property": "ContentCopy",
+      "icon": "copy",
+      "codepoint": "0xf4dd",
+      "outlineSha256": "30832e2bd4853584e17d42442c56ada7b11e47d628bad7e28a241d90e1fffb87"
+    },
+    {
+      "property": "Notifications",
+      "icon": "bell",
+      "codepoint": "0xf239",
+      "outlineSha256": "5bfad6e9344a9311685277640c6f599e14d0bfa4a5b2ef2895191c56a6a910f0"
+    },
+    {
+      "property": "WifiOff",
+      "icon": "wifi-slash",
+      "codepoint": "0xff07",
+      "outlineSha256": "d6a169d756c190ca362f277398111dc16a7d4faf81e92232a3c2bfbadd249920"
+    },
+    {
       "property": "CheckCircle",
       "icon": "check-circle",
       "codepoint": "0xf3c4",

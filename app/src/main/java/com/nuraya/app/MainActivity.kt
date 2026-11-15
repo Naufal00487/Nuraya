@@ -19,6 +19,12 @@ class MainActivity : ComponentActivity() {
     override fun onResume() {
         super.onResume()
         com.nuraya.app.prayer.AdhanScheduler.reconcile(this)
+        com.nuraya.app.reminders.QuranReminderScheduler.schedule(this)
+    }
+
+    override fun onNewIntent(intent: android.content.Intent) {
+        super.onNewIntent(intent); setIntent(intent)
+        com.nuraya.app.reminders.ReminderNavigation.accept(intent)
     }
 
     override fun onStop() {
@@ -28,6 +34,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if(savedInstanceState==null)com.nuraya.app.reminders.ReminderNavigation.accept(intent)
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.auto(android.graphics.Color.TRANSPARENT, android.graphics.Color.TRANSPARENT),
             navigationBarStyle = SystemBarStyle.auto(android.graphics.Color.TRANSPARENT, android.graphics.Color.TRANSPARENT),

@@ -34,6 +34,7 @@ class DownloadRepository(context: Context, private val dao: DownloadDao) {
         DownloadLocks.forId(id).withLock {
             val existing = dao.get(id)
             if (existing?.status == "complete" && validLocalFile(existing) != null) return@withLock
+            com.nuraya.app.reminders.NetworkNotice.warnIfOffline(context)
             val active = workManager.getWorkInfosForUniqueWork(workName(id)).get()
                 .any { !it.state.isFinished }
             if (active) return@withLock
@@ -110,7 +111,8 @@ class DownloadRepository(context: Context, private val dao: DownloadDao) {
                         dao.updateState(row.id, "failed", 0, "", "Berkas tidak tersedia; unduh kembali / File missing; download again", nextRevision(latest))
                     }
                     "queued", "downloading" -> {
-                        val active = workManager.getWorkInfosForUniqueWork(workName(row.id)).get()
+                        com.nuraya.app.reminders.NetworkNotice.warnIfOffline(context)
+            val active = workManager.getWorkInfosForUniqueWork(workName(row.id)).get()
                             .any { !it.state.isFinished }
                         if (!active) {
                             dao.updateState(row.id, "failed", latest.progress, "", "Unduhan terhenti; coba lagi / Download interrupted; try again", nextRevision(latest))

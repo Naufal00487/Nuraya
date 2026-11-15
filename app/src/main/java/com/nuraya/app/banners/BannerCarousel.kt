@@ -33,6 +33,12 @@ import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import java.net.URI
 import java.net.HttpURLConnection
+import androidx.compose.foundation.interaction.collectIsDraggedAsState
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.repeatOnLifecycle
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 
 private val destinations=setOf("quran","murottal","practice","recitation","prayer","library","learn")
 data class HomeBanner(val id:String,val title:String,val subtitle:String,val destination:String,val imageUrl:String?=null,val assetPath:String?=null)
@@ -80,6 +86,21 @@ class BannerRepository(context:Context){
         HomeBanner("nuraya-explore", label(language, "Jelajahi fitur Nuraya", "Explore Nuraya"), "", "quran", assetPath = "brand/banners/explore.png"))
     val banners = designed + remote.filter { candidate -> designed.none { it.id == candidate.id } }
     val pager=rememberPagerState(pageCount={banners.size})
+    val lifecycle = LocalLifecycleOwner.current.lifecycle
+    val dragged by pager.interactionSource.collectIsDraggedAsState()
+    val touching by rememberUpdatedState(dragged)
+    LaunchedEffect(pager, lifecycle) {
+        lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+            while (isActive) {
+                val previous = pager.currentPage
+                delay(6_000)
+                val accessibility = context.getSystemService(android.view.accessibility.AccessibilityManager::class.java)
+                if (!touching && !pager.isScrollInProgress && pager.currentPage == previous && pager.pageCount > 1 && accessibility?.isTouchExplorationEnabled != true) {
+                    pager.animateScrollToPage((previous + 1) % pager.pageCount)
+                }
+            }
+        }
+    }
     Column(modifier,verticalArrangement=Arrangement.spacedBy(10.dp)){
         HorizontalPager(state=pager,modifier=Modifier.fillMaxWidth().testTag("home_banners"),pageSpacing=12.dp){index->val banner=banners[index]
             val image by produceState<ImageBitmap?>(null,banner.imageUrl){value=withContext(Dispatchers.IO){runCatching{

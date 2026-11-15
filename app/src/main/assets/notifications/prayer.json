@@ -1,0 +1,57 @@
+{
+  "_info": {
+    "description": "Template notifikasi pengingat sebelum azan untuk aplikasi Nuraya",
+    "placeholders": {
+      "{minutes}": "Jumlah menit sebelum azan sesuai pengaturan pengguna (contoh: 5, 10, 15, 30)",
+      "{salat}": "Nama salat (Subuh, Dzuhur, Ashar, Maghrib, Isya)"
+    },
+    "usage": "Pilih satu varian secara acak dari kategori yang sesuai. Prioritas kategori: ramadan > jumat > per-salat > umum."
+  },
+  "umum": [
+    {"title": "{minutes} menit lagi azan {salat}", "body": "Yuk siap-siap wudu dan salat tepat waktu."},
+    {"title": "Sebentar lagi masuk waktu {salat}", "body": "Tinggal {minutes} menit. Rehat sejenak dari aktivitasmu."},
+    {"title": "Waktu {salat} makin dekat", "body": "Yuk bersiap, {minutes} menit lagi azan berkumandang."}
+  ],
+  "per_salat": {
+    "subuh": [
+      {"title": "{minutes} menit lagi Subuh", "body": "Bangun yuk, awali hari dengan salat berjamaah."},
+      {"title": "Menjelang Subuh", "body": "Air wudu pagi menunggu. Semoga hari ini penuh berkah."},
+      {"title": "Subuh segera tiba", "body": "Tinggal {minutes} menit. Yuk bangun dan bersiap."}
+    ],
+    "dzuhur": [
+      {"title": "{minutes} menit lagi Dzuhur", "body": "Sisihkan waktu sejenak dari kesibukanmu untuk salat."},
+      {"title": "Dzuhur segera tiba", "body": "Selesaikan pekerjaanmu dulu, lalu bersiap wudu."},
+      {"title": "Menjelang Dzuhur", "body": "Yuk istirahat sebentar dan siapkan diri untuk salat."}
+    ],
+    "ashar": [
+      {"title": "{minutes} menit lagi Ashar", "body": "Jangan sampai terlewat. Yuk jaga salat Asharmu."},
+      {"title": "Menjelang Ashar", "body": "Sore hari, saatnya rehat dan menghadap-Nya."},
+      {"title": "Ashar segera tiba", "body": "Tinggal {minutes} menit. Yuk bersiap wudu."}
+    ],
+    "maghrib": [
+      {"title": "{minutes} menit lagi Maghrib", "body": "Waktu Maghrib singkat, yuk siap-siap dari sekarang."},
+      {"title": "Maghrib hampir tiba", "body": "Siapkan wudu dan sajadahmu."},
+      {"title": "Menjelang Maghrib", "body": "Tinggal {minutes} menit. Yuk segera bersiap."}
+    ],
+    "isya": [
+      {"title": "{minutes} menit lagi Isya", "body": "Tutup hari dengan salat, lalu istirahat dengan tenang."},
+      {"title": "Menjelang Isya", "body": "Yuk bersiap, jangan tunda salat Isyamu."},
+      {"title": "Isya segera tiba", "body": "Tinggal {minutes} menit. Yuk wudu dulu."}
+    ]
+  },
+  "jumat": [
+    {"title": "Jumat berkah, {minutes} menit lagi Dzuhur", "body": "Yuk bersiap untuk salat Jumat. Mandi, rapi, dan berangkat lebih awal."},
+    {"title": "Salat Jumat segera tiba", "body": "Tinggal {minutes} menit. Jangan lupa memperbanyak selawat hari ini."},
+    {"title": "Hari Jumat, waktu mulia", "body": "{minutes} menit lagi masuk waktu salat Jumat. Yuk berangkat ke masjid."}
+  ],
+  "ramadan": {
+    "maghrib": [
+      {"title": "{minutes} menit lagi berbuka", "body": "Siapkan hidangan dan doa terbaikmu."},
+      {"title": "Sebentar lagi waktu berbuka", "body": "Tinggal {minutes} menit. Perbanyak doa, karena waktu berbuka adalah waktu mustajab."}
+    ],
+    "subuh": [
+      {"title": "{minutes} menit lagi Subuh", "body": "Segera selesaikan sahurmu."},
+      {"title": "Waktu sahur hampir habis", "body": "Tinggal {minutes} menit menuju Subuh. Jangan lupa niat puasa."}
+    ]
+  }
+}

@@ -47,6 +47,7 @@ data class QuranModelState(val phase: ModelPhase = ModelPhase.CHECKING, val down
 
 /** Checksum-verified, private on-device model storage. Only model bytes are downloaded; audio never leaves the device. */
 class QuranModelStore(context: Context, val spec: QuranModelSpec = QuranAiModel.spec) {
+    private val appContext = context.applicationContext
     private val folder = File(context.noBackupFilesDir, "quran-ai")
     val modelFile: File get() = File(folder, spec.fileName)
     private val partialFile: File get() = File(folder, spec.fileName + ".part")
@@ -89,6 +90,7 @@ class QuranModelStore(context: Context, val spec: QuranModelSpec = QuranAiModel.
                 }
                 if (folder.usableSpace < spec.bytes - offset + 32L * 1024 * 1024) throw IOException("space")
                 mutableState.value = QuranModelState(ModelPhase.DOWNLOADING, offset)
+                com.nuraya.app.reminders.NetworkNotice.warnIfOffline(appContext)
                 val remote = (URL(spec.url).openConnection() as HttpURLConnection).apply {
                     connectTimeout = 15_000
                     readTimeout = 15_000

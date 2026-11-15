@@ -38,7 +38,7 @@ private class AndroidQueryRecognizerFactory(private val context: Context) : Quer
 }
 
 /** Indonesian query dictation. This session never loads or prompts the Quran recitation model. */
-class QuerySpeechSession internal constructor(context: Context, private val onState: (QuerySpeechState) -> Unit,
+class QuerySpeechSession internal constructor(private val context: Context, private val onState: (QuerySpeechState) -> Unit,
     private val onFinal: (List<String>) -> Unit, private val factory: QueryRecognizerFactory) {
     constructor(context: Context, onState: (QuerySpeechState) -> Unit, onFinal: (List<String>) -> Unit) :
         this(context, onState, onFinal, AndroidQueryRecognizerFactory(context.applicationContext))
@@ -70,6 +70,7 @@ class QuerySpeechSession internal constructor(context: Context, private val onSt
                 override fun onEndOfSpeech() { if (active()) { publish(state.copy(listening = false, waiting = true, status = "processing")); timeout(request, 15_000) } }
                 override fun onError(error: Int) {
                     if (!active()) return
+                    if(error == SpeechRecognizer.ERROR_NETWORK || error == SpeechRecognizer.ERROR_NETWORK_TIMEOUT) com.nuraya.app.reminders.NetworkNotice.warnIfOffline(context)
                     val reason = when (error) {
                         SpeechRecognizer.ERROR_AUDIO -> "audio"
                         SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS -> "permission"

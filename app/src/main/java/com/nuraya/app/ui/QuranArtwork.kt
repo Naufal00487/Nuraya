@@ -278,29 +278,31 @@ fun MadinahScreen(
         page = target ?: repository.pageFor(selectedSurah, selectedAyah); jump = false
     }
     if (verseActions && selected != null) ModalBottomSheet(onDismissRequest = { verseActions = false }) {
-        Column(Modifier.fillMaxWidth().padding(20.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        Column(Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(20.dp).testTag("mushaf_verse_actions"), verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Text("${app.quran.surahs[selectedSurah - 1].name} · $selectedAyah", style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier.testTag("mushaf_selected_verse"))
             TextButton(onClick = { verseActions = false; app.playback.playVerseRange(selectedSurah, selectedAyah, selectedAyah, settings.readerQariId, repeats) }) {
+                Icon(Icons.Outlined.PlayArrow, null); Spacer(Modifier.width(14.dp))
                 Text(tr("Putar ayat ini", "Play this verse"))
             }
             TextButton(onClick = { scope.launch { app.library.toggle("bookmark", "$selectedSurah:$selectedAyah", app.quran.surahs[selectedSurah - 1].name, "Ayat $selectedAyah") }; verseActions = false }) {
+                Icon(Icons.Outlined.BookmarkBorder, null); Spacer(Modifier.width(14.dp))
                 Text(tr("Tandai ayat", "Bookmark verse"))
             }
             TextButton(onClick = {
                 val clipboard = context.getSystemService(android.content.Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
                 clipboard.setPrimaryClip(android.content.ClipData.newPlainText("$selectedSurah:$selectedAyah", "${selected.arabic}\n\n${selected.indonesian}\n($selectedSurah:$selectedAyah)"))
                 verseActions = false
-            }) { Text(tr("Salin ayat", "Copy verse")) }
+            }) { Icon(Icons.Outlined.ContentCopy, null); Spacer(Modifier.width(14.dp)); Text(tr("Salin ayat", "Copy verse")) }
             TextButton(onClick = {
                 val text = "${selected.arabic}\n\n${selected.indonesian}\n(${app.quran.surahs[selectedSurah - 1].name} $selectedSurah:$selectedAyah)"
                 context.startActivity(android.content.Intent.createChooser(android.content.Intent(android.content.Intent.ACTION_SEND)
                     .setType("text/plain").putExtra(android.content.Intent.EXTRA_TEXT, text), tr("Bagikan ayat", "Share verse")))
                 verseActions = false
-            }) { Text(tr("Bagikan ayat", "Share verse")) }
-            TextButton(onClick = { verseActions = false; controls = true; panel = true }) { Text(tr("Terjemahan & latin", "Translation & transliteration")) }
-            TextButton(onClick = { verseActions = false; details = true }) { Text(tr("Arti per kata & tafsir ayat", "Word meanings & verse tafsir")) }
-            TextButton(onClick = { verseActions = false }) { Text(tr("Tutup", "Close")) }
+            }) { Icon(Icons.Outlined.Share, null); Spacer(Modifier.width(14.dp)); Text(tr("Bagikan ayat", "Share verse")) }
+            TextButton(onClick = { verseActions = false; controls = true; panel = true }) { Icon(Icons.Outlined.Translate, null); Spacer(Modifier.width(14.dp)); Text(tr("Terjemahan & latin", "Translation & transliteration")) }
+            TextButton(onClick = { verseActions = false; details = true }) { Icon(Icons.Outlined.MenuBook, null); Spacer(Modifier.width(14.dp)); Text(tr("Arti per kata & tafsir ayat", "Word meanings & verse tafsir")) }
+            TextButton(onClick = { verseActions = false }) { Icon(Icons.Outlined.Close, null); Spacer(Modifier.width(14.dp)); Text(tr("Tutup", "Close")) }
         }
     }
     if (sourceVisible) AlertDialog(onDismissRequest = { sourceVisible = false }, title = { Text(tr("Tajwid & sumber mushaf", "Tajwid & page sources")) }, text = {

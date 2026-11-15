@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.prayer.LocationOnboardingTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-15T09:08:59" hostname="d17a99305e86" time="3.588">
+  <properties/>
+  <testcase name="acceptedFreshApproximateLocationSavesCoordinatesWithoutReplacingScheduleCorrections" classname="com.nuraya.app.prayer.LocationOnboardingTest" time="3.127"/>
+  <testcase name="existingManualCityIsPreservedAndExplicitRefreshShowsLocationServicesAction" classname="com.nuraya.app.prayer.LocationOnboardingTest" time="0.17"/>
+  <testcase name="firstLaunchRequestsBothForegroundPermissionsAndDenialKeepsManualReadingAvailable" classname="com.nuraya.app.prayer.LocationOnboardingTest" time="0.162"/>
+  <testcase name="dismissingTheIntroductionDoesNotLoopOrRegisterLocationListeners" classname="com.nuraya.app.prayer.LocationOnboardingTest" time="0.128"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Intent = Intent { act=android.location.PROVIDERS_CHANGED }; Matching wrappers: []
+Intent = Intent { act=android.location.PROVIDERS_CHANGED }; Matching wrappers: []
+]]></system-err>
+</testsuite>

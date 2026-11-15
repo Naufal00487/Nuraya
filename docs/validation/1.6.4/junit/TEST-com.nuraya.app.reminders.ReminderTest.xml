@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.reminders.ReminderTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2026-11-15T09:09:45" hostname="d17a99305e86" time="1.728">
+  <properties/>
+  <testcase name="notificationPromptIsWeeklyAndClockRollbackDoesNotRetriggerIt" classname="com.nuraya.app.reminders.ReminderTest" time="0.025"/>
+  <testcase name="daylightSavingChangesDoNotShiftTheLocalReminderHour" classname="com.nuraya.app.reminders.ReminderTest" time="0.038"/>
+  <testcase name="allOneHundredSuppliedReferencesExistInTheCanonicalCorpus" classname="com.nuraya.app.reminders.ReminderTest" time="0.059"/>
+  <testcase name="oldAvatarSelectionMigratesWithoutResettingTheName" classname="com.nuraya.app.reminders.ReminderTest" time="0.033"/>
+  <testcase name="randomPlansStayInDaytimeHaveDifferentMessagesAndThreeHourGap" classname="com.nuraya.app.reminders.ReminderTest" time="0.031"/>
+  <testcase name="prePrayerLeadMinutesChangeTheActualScheduleAndNeverAffectAudioDefault" classname="com.nuraya.app.reminders.ReminderTest" time="0.02"/>
+  <testcase name="successfulDeliveryOpensCorrectVerseAndReplayDoesNotDuplicate" classname="com.nuraya.app.reminders.ReminderTest" time="0.024"/>
+  <testcase name="templatesFollowRamadanFridayPrayerAndGeneralPriorities" classname="com.nuraya.app.reminders.ReminderTest" time="0.022"/>
+  <testcase name="disablingOrRevokingNotificationsCancelsQueueAndRetainsTheDayPlan" classname="com.nuraya.app.reminders.ReminderTest" time="0.022"/>
+  <testcase name="previousDayOrChangedTimeZoneCannotDeliverStaleContent" classname="com.nuraya.app.reminders.ReminderTest" time="0.023"/>
+  <testcase name="ordinaryNotificationsWorkWithoutExactAlarmPermissionAndAudioStaysOff" classname="com.nuraya.app.reminders.ReminderTest" time="1.334"/>
+  <testcase name="clockRollbackCannotRepeatAnAlreadyDeliveredSlot" classname="com.nuraya.app.reminders.ReminderTest" time="0.027"/>
+  <testcase name="notificationIntentsAreDistinctAndInvalidReferencesAreIgnored" classname="com.nuraya.app.reminders.ReminderTest" time="0.024"/>
+  <testcase name="reopenPreservesDailyPlanAndOnlyOneNextAlarm" classname="com.nuraya.app.reminders.ReminderTest" time="0.021"/>
+  <testcase name="androidDelayPreservesActualThreeHourGapAndQuietHours" classname="com.nuraya.app.reminders.ReminderTest" time="0.022"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

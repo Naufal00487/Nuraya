@@ -60,7 +60,6 @@ fun QuranModesScreen(app: NurayaApplication, language: String, onMode: (String) 
                         Text(label(language, "Buka bacaan", "Open reading"), style = MaterialTheme.typography.labelLarge,
                             fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.primary)
                     }
-                    Icon(Icons.AutoMirrored.Filled.ArrowForward, null)
                 }
             }
         }

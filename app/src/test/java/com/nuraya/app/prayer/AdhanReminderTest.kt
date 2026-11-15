@@ -41,7 +41,8 @@ class AdhanReminderTest {
     }
     @Test fun soundAndPerPrayerSelectionsAreIndependentAndOnlyOneAlarmIsQueued(){
         PrayerPreferenceStore(context).save(PrayerPreferences(location))
-        assertFalse(AdhanScheduler.enabled(context));assertTrue(AdhanScheduler.selected(context).isEmpty())
+        assertFalse(AdhanScheduler.enabled(context));assertEquals(prayerReminderIds,AdhanScheduler.selected(context))
+        prayerReminderIds.filter{it!="fajr"}.forEach{AdhanScheduler.setPrayerEnabled(context,it,false)}
         AdhanScheduler.setPrayerEnabled(context,"fajr",true)
         assertFalse(AdhanScheduler.enabled(context));assertEquals(setOf("fajr"),AdhanScheduler.selected(context))
         assertEquals(nextPrayerReminder(Instant.now(),location,2,setOf("fajr"))!!.at.toEpochMilli(),alarms.scheduledAlarms.single().triggerAtTime)
@@ -63,7 +64,7 @@ class AdhanReminderTest {
         }
         val notifications=Shadows.shadowOf(context.getSystemService(NotificationManager::class.java))
         send(true,"pre-test");assertEquals(1,notifications.size())
-        assertEquals("Menjelang salat Subuh",notifications.allNotifications.single().extras.getCharSequence("android.title"))
+        assertTrue(notifications.allNotifications.single().extras.getCharSequence("android.title").toString().contains("Subuh"))
         send(false,"at-test");assertEquals(1,notifications.size())
         assertEquals("Waktu salat Subuh",notifications.allNotifications.single().extras.getCharSequence("android.title"))
         assertNull(Shadows.shadowOf(context).nextStartedService)
@@ -74,13 +75,13 @@ class AdhanReminderTest {
         AdhanReceiver().onReceive(context,Intent(AdhanScheduler.ACTION).putExtra("at",0L))
         assertNull(Shadows.shadowOf(context).nextStartedService)
     }
-    @Test fun revokingNotificationsDisablesAndCancelsPreviouslyEnabledReminders(){
+    @Test fun revokingNotificationsStopsAudioButKeepsPrayerChoicesForLater(){
         PrayerPreferenceStore(context).save(PrayerPreferences(location))
         AdhanScheduler.setEnabled(context,true)
         assertEquals(1,alarms.scheduledAlarms.size)
         Shadows.shadowOf(context.getSystemService(NotificationManager::class.java)).setNotificationsEnabled(false)
         AdhanScheduler.reconcile(context)
-        assertFalse(AdhanScheduler.enabled(context));assertTrue(AdhanScheduler.selected(context).isEmpty())
+        assertFalse(AdhanScheduler.enabled(context));assertEquals(prayerReminderIds,AdhanScheduler.selected(context))
         assertTrue(alarms.scheduledAlarms.isEmpty())
     }
 }

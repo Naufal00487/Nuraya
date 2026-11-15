@@ -117,6 +117,7 @@ class MushafImages(private val context: Context, val edition: MushafEdition = Mu
         }
         val address = URL(pages[page - 1].url)
         require(if (printedEdition != null) address.toString().startsWith(PrintedMushafEdition.BASE_URL + printedEdition.id + "/") else edition.accepts(address))
+        com.nuraya.app.reminders.NetworkNotice.warnIfOffline(context)
         val connection = (address.openConnection() as HttpURLConnection).apply {
             connectTimeout = 15000
             readTimeout = 20000

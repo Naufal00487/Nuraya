@@ -33,9 +33,9 @@ data class LocalProfile(val nickname: String = "Sahabat Nuraya", val avatar: Int
 class ProfileStore(context: Context) {
     val preferences = context.applicationContext.getSharedPreferences("nuraya_profile", Context.MODE_PRIVATE)
     fun isComplete(): Boolean = preferences.getString("nickname", null)?.trim()?.length in 1..30
-    fun read() = LocalProfile(preferences.getString("nickname", null)?.takeIf { it.isNotBlank() } ?: "Sahabat Nuraya", preferences.getInt("avatar", 0).coerceIn(0,4))
+    fun read() = LocalProfile(preferences.getString("nickname", null)?.takeIf { it.isNotBlank() } ?: "Sahabat Nuraya", preferences.getInt("avatar", 0).coerceIn(0,2))
     fun save(nickname: String, avatar: Int) {
-        require(nickname.trim().length in 1..30 && avatar in 0..4)
+        require(nickname.trim().length in 1..30 && avatar in 0..2)
         preferences.edit().putString("nickname", nickname.trim()).putInt("avatar", avatar).apply()
     }
 }
@@ -51,12 +51,10 @@ class ProfileStore(context: Context) {
     return profile
 }
 @Composable fun ProfileAvatar(avatar: Int, modifier: Modifier = Modifier) {
-    val image = rememberAssetBitmap("brand/avatars.jpeg")
+    val image = rememberAssetBitmap("brand/avatars/avatar_${avatar.coerceIn(0,2)}.png")
     Box(modifier.clip(CircleShape).background(Color.White).border(2.dp,MaterialTheme.colorScheme.outlineVariant,CircleShape),contentAlignment=Alignment.Center) {
         if(image!=null) {
-            val width=image.width/5
-            Image(BitmapPainter(image,IntOffset(width*avatar.coerceIn(0,4),(image.height*.31f).toInt()),IntSize(width,(image.height*.40f).toInt())),
-                "Avatar ${avatar+1}",Modifier.fillMaxSize(),contentScale=ContentScale.Fit)
+            Image(image, "Avatar ${avatar.coerceIn(0,2)+1}", Modifier.fillMaxSize(), contentScale=ContentScale.Fit)
         } else Icon(Icons.Outlined.Person,null,tint=MaterialTheme.colorScheme.primary)
     }
 }
@@ -77,7 +75,7 @@ class ProfileStore(context: Context) {
         item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Text(label(language,"Pilih avatarmu","Choose your avatar"),style=MaterialTheme.typography.titleMedium)
             FlowRow(horizontalArrangement=Arrangement.spacedBy(12.dp),verticalArrangement=Arrangement.spacedBy(12.dp)) {
-                repeat(5) { index -> Column(horizontalAlignment=Alignment.CenterHorizontally,modifier=Modifier.clickable{avatar=index;saved=false}.testTag("profile_avatar_$index").padding(4.dp)) {
+                repeat(3) { index -> Column(horizontalAlignment=Alignment.CenterHorizontally,modifier=Modifier.clickable{avatar=index;saved=false}.testTag("profile_avatar_$index").padding(4.dp)) {
                     ProfileAvatar(index,Modifier.size(64.dp));if(index==avatar)Icon(Icons.Outlined.CheckCircle,label(language,"Dipilih","Selected"),tint=MaterialTheme.colorScheme.primary)
                 } }
             }
@@ -100,11 +98,21 @@ class ProfileStore(context: Context) {
     }
 }
 @Composable fun AboutScreen(language:String) {
-    LazyColumn(contentPadding=PaddingValues(24.dp),verticalArrangement=Arrangement.spacedBy(18.dp)) {
+    LazyColumn(Modifier.testTag("about_screen"),contentPadding=PaddingValues(24.dp),verticalArrangement=Arrangement.spacedBy(18.dp)) {
         item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) { BrandImage("logo",Modifier.fillMaxWidth().height(160.dp),ContentScale.Fit,"Logo Nuraya") } }
         item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) { Text("Nuraya ${BuildConfig.VERSION_NAME}",style=MaterialTheme.typography.headlineMedium)
             Text(label(language,"Teman membaca, mendengar, dan mempelajari Al-Qur’an.","A companion for reading, listening, and learning the Qur’an.")) } }
         item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) { Text(label(language,"Dirancang untuk perjalanan belajar yang bertahap: bacaan Utsmani, murottal, hafalan, tajwid, kuis, dan catatan progres pribadi.","Designed for a gradual learning journey: Uthmani text, recitation, memorization, tajwid, quizzes, and personal progress.")) } }
+        item { Text(label(language,
+            "Nuraya dikembangkan oleh tim penyusun sebagai tugas mata kuliah di bawah arahan dosen pengampu. Seluruh proses perancangan dan pengembangan dilakukan secara sukarela, tanpa menerima imbalan finansial dalam bentuk apa pun dari pihak mana pun. Aplikasi ini dibuat untuk kepentingan akademik dan pembelajaran.",
+            "Nuraya was developed by the team as a course assignment under a lecturer’s guidance. All design and development work was voluntary, without financial compensation from any party. The application serves academic and learning purposes."), Modifier.testTag("about_academic")) }
+        item { Text(label(language,"Sumber data dan materi","Data and learning sources"),style=MaterialTheme.typography.titleLarge) }
+        item { Text(label(language,
+            "Teks Arab Utsmani bersumber dari Tanzil, dengan font Amiri Quran. Terjemahan Indonesia berasal dari Kementerian Agama RI melalui QuranEnc; tafsir Kemenag dan transliterasi melalui eQuran.id. Arti per kata dan sebagian data waktu audio bersumber dari Quran.com. Gambar mushaf berasal dari repositori publik agusibrahim/quran-image dengan indeks dan checksum tiap edisi.",
+            "Uthmani Arabic: Tanzil, rendered with Amiri Quran. Indonesian translation: the Indonesian Ministry of Religious Affairs via QuranEnc; commentary and transliteration via eQuran.id. Word meanings and some audio timings: Quran.com. Mushaf images: agusibrahim/quran-image, with per-edition indexes and checksums."), Modifier.testTag("about_sources")) }
+        item { Text(label(language,
+            "Murottal bersumber dari MP3Quran, EveryAyah, Islamic Network dan QuranicAudio; sinkronisasi tambahan dari QUD Technologies. Foto qari beratribusi Quran.com. Data hadis berasal dari fawazahmed0/hadith-api, dan audio azan dari DBChoco/Muezzin. AI bacaan memakai model Tarteel AI dengan Whisper/whisper.cpp. Ikon UI berasal dari Flaticon; ilustrasi, banner, avatar dan template pengingat disediakan tim penyusun. Rincian atribusi dan lisensi tersedia di Pengaturan → Sumber & atribusi.",
+            "Recitations: MP3Quran, EveryAyah, Islamic Network and QuranicAudio; additional timings: QUD Technologies. Reciter photos: Quran.com. Hadith: fawazahmed0/hadith-api; adhan audio: DBChoco/Muezzin. Recitation AI: Tarteel AI with Whisper/whisper.cpp. UI icons: Flaticon. Illustrations, banners, avatars and reminder templates were supplied by the team. Detailed credits and licenses are available in Settings → Sources & attribution.")) }
         item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) { Text(label(language,"AI membantu membandingkan perkiraan kata bacaan, bukan pengganti bimbingan guru atau penilai tajwid/makhraj tervalidasi.","AI helps compare estimated spoken words; it does not replace a teacher or validated tajwid assessment.")) } }
         item { Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(10.dp)) { Text(label(language,"Teks, terjemahan, rekaman, dan foto tetap mengikuti atribusi sumber serta hak pemiliknya. Rincian sumber tersedia di Pengaturan → Sumber & atribusi.","Texts, translations, recordings, and photos retain source attribution and their owners’ rights. See Settings → Sources & attribution."),style=MaterialTheme.typography.bodySmall) } }
     }

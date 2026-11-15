@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.learning.QuerySpeechSessionTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-15T09:08:50" hostname="d17a99305e86" time="0.213">
+  <properties/>
+  <testcase name="unsupportedOfflineLanguageRequiresAnExplicitSystemRetry" classname="com.nuraya.app.learning.QuerySpeechSessionTest" time="0.057"/>
+  <testcase name="systemOnlyDevicesStillDictateIndonesianAndNoProviderHasActionableState" classname="com.nuraya.app.learning.QuerySpeechSessionTest" time="0.028"/>
+  <testcase name="dictationRequestsIndonesianAndReturnsEditableAlternativesOnlyAtFinal" classname="com.nuraya.app.learning.QuerySpeechSessionTest" time="0.035"/>
+  <testcase name="closingOrDestroyingTheSheetDiscardsLateResultsAndReleasesMicrophone" classname="com.nuraya.app.learning.QuerySpeechSessionTest" time="0.031"/>
+  <testcase name="finishWaitsForTranscriptAndAStalledProviderTimesOut" classname="com.nuraya.app.learning.QuerySpeechSessionTest" time="0.031"/>
+  <testcase name="permissionAndEmptyResultsStopRecordingWithoutRunningASearch" classname="com.nuraya.app.learning.QuerySpeechSessionTest" time="0.03"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

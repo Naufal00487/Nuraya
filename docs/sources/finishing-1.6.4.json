@@ -1,0 +1,40 @@
+{
+  "sourceDocument": "bentar lagi selesai 01.docx",
+  "avatarMapping": {
+    "avatar_0.png": "word/media/image4.png",
+    "avatar_1.png": "word/media/image5.png",
+    "avatar_2.png": "word/media/image6.png"
+  },
+  "notificationSources": {
+    "prayer.json": "nuraya_notif_pengingat_salat.json",
+    "quran.json": "nuraya_notif_quran.json"
+  },
+  "note": "Original supplied bytes. No generated/repainted avatars; Quran reminders are supplied excerpts/paraphrases, separate from the canonical corpus. Old five-avatar strip removed.",
+  "files": [
+    {
+      "path": "app/src/main/assets/brand/avatars/avatar_0.png",
+      "bytes": 408584,
+      "sha256": "d8de21af616d175e83ce2da38d3db36fc43d4a0e6cd6d223c0aba2a12c324c80"
+    },
+    {
+      "path": "app/src/main/assets/brand/avatars/avatar_1.png",
+      "bytes": 349549,
+      "sha256": "83a5d58a23b640a266f8375dba3e49ab5c4e14953d414bc7311820da4992e10c"
+    },
+    {
+      "path": "app/src/main/assets/brand/avatars/avatar_2.png",
+      "bytes": 479828,
+      "sha256": "3d158655fc9704885aed1b10e9790412dba7f6bdf4f09a6e6bff8354af1a7449"
+    },
+    {
+      "path": "app/src/main/assets/notifications/prayer.json",
+      "bytes": 3292,
+      "sha256": "fbde9e7c9800d90de25fa43b014c7353ede0493c84278cac9e32ce61fad00b56"
+    },
+    {
+      "path": "app/src/main/assets/notifications/quran.json",
+      "bytes": 13049,
+      "sha256": "ce0095543b1bbcee436e45a6f46573cf25425bb3b5bb9ba218119182905313b7"
+    }
+  ]
+}

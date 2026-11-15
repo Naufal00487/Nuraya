@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.qa.Revision164Test" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-15T09:09:22" hostname="d17a99305e86" time="1.782">
+  <properties/>
+  <testcase name="firstLocationNoticeIsCompactAndCanBeDismissedBeforeWeeklyNotificationNotice" classname="com.nuraya.app.qa.Revision164Test" time="0.098"/>
+  <testcase name="contextualQiblaPromptStillAppearsAfterInitialLocationDismissal" classname="com.nuraya.app.qa.Revision164Test" time="0.065"/>
+  <testcase name="bannerSlidesAutomaticallyAndManualSwipeStillWorks" classname="com.nuraya.app.qa.Revision164Test" time="0.053"/>
+  <testcase name="largeFontPermissionCardKeepsItsActionsVisibleAndOfflineCardDismisses" classname="com.nuraya.app.qa.Revision164Test" time="0.106"/>
+  <testcase name="qiblaUsesBlueAndAboutIncludesAcademicStatementAndSources" classname="com.nuraya.app.qa.Revision164Test" time="0.743"/>
+  <testcase name="QuranNotificationFromHomeOpensItsOwnVerseAndPrayerNotificationOpensIbadah" classname="com.nuraya.app.qa.Revision164Test" time="0.645"/>
+  <testcase name="reminderSettingsChangeMinutesAndQuranSwitchWithoutStartingAudio" classname="com.nuraya.app.qa.Revision164Test" time="0.07"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

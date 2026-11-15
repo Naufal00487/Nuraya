@@ -1,0 +1,38 @@
+{
+  "version": "1.6.4",
+  "versionCode": 18,
+  "checkedAt": "2026-11-15T20:53:34.364727+07:00",
+  "junit": {
+    "tests": 260,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "debug": {
+      "Fatal": 0,
+      "Error": 0,
+      "Warning": 79,
+      "Information": 0
+    },
+    "release": {
+      "Fatal": 0,
+      "Error": 0,
+      "Warning": 79,
+      "Information": 0
+    }
+  },
+  "apk": {
+    "bytes": 103035619,
+    "sha256": "1e036358841f48a0117fc1c9fd13c6c339c412b020fae9b5f8d38002ebf75ac1",
+    "file": "artifacts/Nuraya-1.6.4.apk",
+    "buildType": "release"
+  },
+  "quranReminderTemplates": 100,
+  "prayerReminderTemplates": 25,
+  "dailyQuranReminders": 2,
+  "quranReminderWindow": "08:00\u201320:00 device local time",
+  "minimumQuranReminderGapHours": 3,
+  "adhanAudioDefault": false,
+  "physicalDeviceTested": false
+}
