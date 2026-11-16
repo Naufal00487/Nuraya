@@ -65,7 +65,6 @@ fun MushafAudioSheet(app: NurayaApplication, settings: UserSettings, surah: Int,
             app.playback.verseReciters.filter { it.name.contains(search, ignoreCase = true) }.forEach { reciter ->
                 ListItem(headlineContent = { Text(reciter.name) },
                     leadingContent = { QariPortrait(reciter.id, reciter.name, language, Modifier.size(52.dp)) },
-                    supportingContent = { Text(if (reciter.supportsWordSync) label(language, "Sorotan ayat · kata pada ayat dengan timing sesuai", "Verse highlights · words with matching timing") else label(language, "Sorotan mengikuti ayat", "Highlights follow each verse")) },
                     trailingContent = { RadioButton(selected = qari == reciter.id, onClick = null) },
                     modifier = Modifier.clickable { qari = reciter.id; scope.launch { app.settings.setReaderQari(reciter.id) } })
             }

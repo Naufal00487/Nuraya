@@ -15,6 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
@@ -65,7 +66,7 @@ class QariPortraitCatalog(context: Context) {
 }
 
 @Composable
-fun QariPortrait(qariId: String, name: String, language: String, modifier: Modifier = Modifier) {
+fun QariPortrait(qariId: String, name: String, language: String, modifier: Modifier = Modifier, shape: Shape = CircleShape) {
     val context = LocalContext.current
     val entry = remember(qariId) { QariPortraitCatalog.shared(context).find(qariId) }
     val picture by produceState<ImageBitmap?>(null, entry?.asset) {
@@ -74,21 +75,12 @@ fun QariPortrait(qariId: String, name: String, language: String, modifier: Modif
         }
     }
     val description = if (entry != null && picture != null) label(language,
-        "Foto ${entry.name}. Sumber ${entry.sourceName}.", "Photograph of ${entry.name}. Source: ${entry.sourceName}.")
+        "Foto ${entry.name}", "Photograph of ${entry.name}")
     else label(language, "Inisial $name. Foto belum tersedia.", "$name initials. Photograph unavailable.")
-    Box(modifier.clip(CircleShape).background(MaterialTheme.colorScheme.primaryContainer)
+    Box(modifier.clip(shape).background(MaterialTheme.colorScheme.primaryContainer)
         .testTag("qari_portrait_$qariId").semantics { contentDescription = description }, contentAlignment = Alignment.Center) {
         if (picture != null) Image(picture!!, null, Modifier.matchParentSize(), contentScale = ContentScale.Crop)
         else Text(name.trim().split(Regex("\\s+")).filter { it.isNotEmpty() }.take(2).joinToString("") { it.take(1).uppercase() }
             .ifBlank { "Q" }, color = MaterialTheme.colorScheme.onPrimaryContainer, style = MaterialTheme.typography.titleLarge)
     }
-}
-
-@Composable
-fun QariPortraitCredit(qariId: String, language: String) {
-    val context = LocalContext.current
-    val entry = remember(qariId) { QariPortraitCatalog.shared(context).find(qariId) }
-    Text(if (entry == null) label(language, "Foto qari ini belum tersedia.", "This reciter's photograph is not available.")
-        else label(language, "Foto: ${entry.sourceName} · hak milik pemilik foto.", "Photo: ${entry.sourceName} · rights remain with its owner."),
-        style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
 }

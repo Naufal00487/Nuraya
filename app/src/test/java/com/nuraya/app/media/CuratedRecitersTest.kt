@@ -12,12 +12,12 @@ import org.robolectric.annotation.Config
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [28], application = Application::class)
 class CuratedRecitersTest {
-    @Test fun thirtyDistinctPeopleHaveBothChapterAndVerseSources() {
+    @Test fun twentyEightDistinctPeopleHaveBothChapterAndVerseSources() {
         val context = ApplicationProvider.getApplicationContext<Application>()
         val quran = QuranRepository(context)
         val catalog = VerseAudioCatalog(context)
-        assertEquals(30, CuratedReciters.selections.size)
-        assertEquals(30, CuratedReciters.selections.map { it.name }.toSet().size)
+        assertEquals(28, CuratedReciters.selections.size)
+        assertEquals(28, CuratedReciters.selections.map { it.name }.toSet().size)
         for (choice in CuratedReciters.selections) {
             val chapter = quran.qariChoices.single { it.id == choice.chapterId }
             val verse = catalog.reciters.single { it.id == choice.verseId }

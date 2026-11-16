@@ -110,11 +110,11 @@ class ReadingRegression153Test {
         val portraits = QariPortraitCatalog(app)
         val chapters = app.quran.qariChoices
         val verses = app.playback.verseReciters
-        assertEquals(30, chapters.size)
-        assertEquals(30, verses.size)
+        assertEquals(28, chapters.size)
+        assertEquals(28, verses.size)
         for (ids in listOf(chapters.map { it.id }, verses.map { it.id })) {
             val mapped = ids.mapNotNull { id -> portraits.find(id) }
-            assertTrue(mapped.all { it.sourceName == "Quran.com" })
+            assertTrue(mapped.all { it.sourceName in setOf("Quran.com", "Dokumen foto qari dari penyusun") })
             assertEquals(mapped.size, mapped.map { it.id }.toSet().size)
         }
         assertFalse(verses.any { it.id == "ar.parhizgar" })
@@ -131,7 +131,7 @@ class ReadingRegression153Test {
         val pages = MushafImages(app, MushafEdition.INDONESIA)
         for (id in listOf(18, 36, 67, 112, 114)) {
             compose.runOnIdle { chosen = id }
-            compose.onNodeWithTag("mushaf_page_viewport").performTouchInput { click(center) }
+            compose.onNodeWithTag("mushaf_page_viewport").performClick()
             compose.mainClock.advanceTimeBy(400)
             compose.onNodeWithTag("mushaf_page_number").assertTextEquals("Halaman ${pages.pageFor(id, 1)} / 604")
             compose.onNodeWithTag("mushaf_translation").performClick()

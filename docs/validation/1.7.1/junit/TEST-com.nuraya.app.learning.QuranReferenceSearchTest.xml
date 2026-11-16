@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.learning.QuranReferenceSearchTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-16T05:54:08" hostname="8c1fdd39b7f5" time="0.855">
+  <properties/>
+  <testcase name="typosSuggestReferencesWithoutChangingCanonicalContent" classname="com.nuraya.app.learning.QuranReferenceSearchTest" time="0.096"/>
+  <testcase name="everyCanonicalSurahNameAndNumberResolvesToItself" classname="com.nuraya.app.learning.QuranReferenceSearchTest" time="0.105"/>
+  <testcase name="invalidNumbersNeverSilentlyOpenAnotherReference" classname="com.nuraya.app.learning.QuranReferenceSearchTest" time="0.061"/>
+  <testcase name="topicsAndUnrecognizedNamesAreNotGuessedAsSurahs" classname="com.nuraya.app.learning.QuranReferenceSearchTest" time="0.398"/>
+  <testcase name="indonesianAliasesAndSpokenNumbersUseTheSameRepositoryAsTyping" classname="com.nuraya.app.learning.QuranReferenceSearchTest" time="0.123"/>
+  <testcase name="speechAlternativesCanRecoverNamesButNeverReplaceAClearTopic" classname="com.nuraya.app.learning.QuranReferenceSearchTest" time="0.072"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.prayer.AdhanReminderTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-16T05:54:16" hostname="8c1fdd39b7f5" time="0.16">
+  <properties/>
+  <testcase name="soundAndPerPrayerSelectionsAreIndependentAndOnlyOneAlarmIsQueued" classname="com.nuraya.app.prayer.AdhanReminderTest" time="0.041"/>
+  <testcase name="revokingNotificationsStopsAudioButKeepsPrayerChoicesForLater" classname="com.nuraya.app.prayer.AdhanReminderTest" time="0.02"/>
+  <testcase name="aValidSilentReminderReplacesEarlierNotificationAndReplayIsIgnored" classname="com.nuraya.app.prayer.AdhanReminderTest" time="0.059"/>
+  <testcase name="missingLocationAndStaleAlarmNeverStartAdhanService" classname="com.nuraya.app.prayer.AdhanReminderTest" time="0.017"/>
+  <testcase name="eachSelectedPrayerHasTenMinuteAndAtTimeEventsAndNeverSunrise" classname="com.nuraya.app.prayer.AdhanReminderTest" time="0.022"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

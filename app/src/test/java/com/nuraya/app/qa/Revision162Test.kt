@@ -128,9 +128,12 @@ class Revision162Test {
         compose.onNodeWithTag("study_open_menu").performScrollTo().performClick()
         compose.onNodeWithTag("study_qari_choose").performScrollTo().performClick()
         compose.onNodeWithTag("study_qari_search").performScrollTo().performTextInput("Matrood")
-        compose.onNodeWithTag("study_qari_ar.abdullahalmatrood").performScrollTo().performClick()
-        compose.waitUntil(15_000) { runBlocking { app.settings.settings.first().readerQariId } == "ar.abdullahalmatrood" }
+        compose.onNodeWithTag("study_qari_ar.abdullahalmatrood").assertDoesNotExist()
+        compose.onNodeWithTag("study_qari_search").performTextClearance()
+        compose.onNodeWithTag("study_qari_search").performTextInput("Qahtani")
+        compose.onNodeWithTag("study_qari_ar.khaledalqahtani").performScrollTo().performClick()
+        compose.waitUntil(15_000) { runBlocking { app.settings.settings.first().readerQariId } == "ar.khaledalqahtani" }
         compose.onNodeWithTag("study_qari_search").assertDoesNotExist()
-        compose.onNodeWithTag("study_qari_choose").assertTextContains("Abdullah Al-Matrood", substring = true)
+        compose.onNodeWithTag("study_qari_choose").assertTextContains("Khalid Al-Qahtani", substring = true)
     }
 }

@@ -1,9 +1,11 @@
-# Qari photographs in Nuraya
+# Foto qari Nuraya 1.7.1
 
-Eight real profile photographs are bundled offline: Mishary Rashid Alafasy, Abdul Basit Abdus Samad, Abdurrahman As-Sudais, Abu Bakr Ash-Shatri, Hani Ar-Rifai, Mahmoud Khalil Al-Husary, Muhammad Siddiq Al-Minshawi, and Saud Al-Shuraim. They cover 14 exact audio edition IDs across the surah and verse catalogs. A portrait is never selected using approximate name matching. Other reciters retain their initials, with an accessible explanation that their photograph is unavailable.
+Seluruh **28 pilihan qari** memiliki foto yang dibundel offline, dipakai bersama oleh Murottal, pemutar mini/penuh, pengaturan Quran dan pilihan audio mushaf. Delapan foto profil berasal dari Quran.com; dua puluh foto tambahan diambil byte demi byte dari dokumen penyusun **bentarr lagi selesai 02.docx**, tanpa modifikasi gambar. Pemotongan tampilan mengikuti ukuran komponen Android.
 
-The qari list, selected qari, mini player, and full player show the corresponding portrait. Photo credits appear in the selected qari and full player views. Large labeled listening, favorite, download, play/pause, previous, and next controls accompany these views.
+Pemetaan mengikuti label nama eksplisit di dokumen dan pasangan ID rekaman surah/ayat. Tidak ada pencocokan nama samar atau klaim verifikasi identitas wajah secara independen. Ali Jaber dan Abdullah Al-Matrood dihapus dari pilihan atas permintaan penyusun. Berkas audio/progres pengguna yang sudah tersimpan tidak dihapus.
 
-The photographs come from the official Quran.com frontend repository, pinned to commit `aff1a035b09b66f28047b3216edcae4c5c949a49`. `app/src/main/assets/portraits/catalog.json` records each Quran.com reciter profile, original URL, identity aliases, byte length, SHA-256 digest, and rights notice. The repository's MIT declaration is not presented as an independent per-photo open license; rights remain with the respective photograph owners. These are attributed identification photographs, not generated faces.
+`app/src/main/assets/portraits/catalog.json` mencatat nama, ID audio, sumber dokumen/gambar atau URL Quran.com, jumlah byte, SHA-256 dan keterangan hak. Foto Quran.com dipin ke commit `aff1a035b09b66f28047b3216edcae4c5c949a49`. Hak setiap foto tetap pada pemiliknya; lisensi MIT proyek Quran.com tidak dianggap sebagai lisensi terbuka setiap foto. Foto unggahan tidak diklaim sebagai karya fotografi penyusun.
 
-`QariPortraitTest` checks all bundled image digests, decodability, exact edition membership, and rejection of misleading name matches (including Hani versus Nabil/Mahmood Ar-Rifai). `QariPortraitPresentationTest` checks the displayed identity and selection callback and captures the qari list. Full validation results belong in `BUILD_VALIDATION.md`; these tests do not validate physical-device audio playback.
+Kredit foto ditampilkan di Pengaturan → Sumber & Atribusi, bukan di layar pemutar. Desain gambar profil/avatar, banner, splash screen, logo dan maskot dikreditkan terpisah kepada **Naufal Irfan Ramadhan** sesuai keterangannya.
+
+Tes memeriksa hash, format gambar, alias audio, kelengkapan seluruh 28 pilihan dan pengecualian dua qari tersebut. Tes UI memeriksa identitas gambar, pemilihan audio, serta tampilan pemutar. Pemeriksaan ini bukan autentikasi suara atau uji speaker HP. Lihat [validasi](BUILD_VALIDATION.md).

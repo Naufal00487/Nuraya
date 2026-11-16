@@ -1,0 +1,45 @@
+{
+  "version": "1.7.1",
+  "versionCode": 20,
+  "checkedAt": "2026-11-16T12:57:25.700552+07:00",
+  "junit": {
+    "tests": 284,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "debug": {
+      "Fatal": 0,
+      "Error": 0,
+      "Warning": 79,
+      "Information": 0
+    },
+    "release": {
+      "Fatal": 0,
+      "Error": 0,
+      "Warning": 79,
+      "Information": 0
+    }
+  },
+  "apk": {
+    "bytes": 104123507,
+    "sha256": "793c09d7c8b5c0abb7ca5c1103141522533373efdd5fee750a01961acf3c50c6",
+    "file": "artifacts/Nuraya-1.7.1.apk",
+    "buildType": "release"
+  },
+  "qari": {
+    "active": 28,
+    "bundledPortraits": 28,
+    "suppliedPortraits": 20,
+    "removed": [
+      "ar.alijaber",
+      "ar.abdullahalmatrood"
+    ],
+    "audioRangeProbes": 201,
+    "audioRangeProbesPassed": 201
+  },
+  "canonicalQuranSha256": "f41cef112e2efd581d3ea15ad7229a713d18122a6e0fbec4ddb0c00b7d1cae9c",
+  "physicalDeviceTested": false,
+  "referenceApkRuntimeTested": false
+}

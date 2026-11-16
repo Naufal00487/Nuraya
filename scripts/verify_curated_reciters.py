@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify the 30 explicit person/provider mappings; optionally recheck remote directories."""
+"""Verify the 28 active person/provider mappings against the original 30-person snapshot; optionally recheck remote directories."""
 from pathlib import Path
 import argparse, json, re, urllib.request
 
@@ -16,11 +16,14 @@ def main():
     quran = json.loads((ASSETS / 'quran.json').read_text())
     expected = {f"{v['surah']:03}{v['ayah']:03}.mp3" for v in quran['verses']}
     assert len(expected) == 6236
-    rows = source['reciters']
-    assert len(rows) == 30
-    for key in ['name', 'chapterId', 'verseId', 'mp3QuranId']:
-        assert len({r[key] for r in rows}) == 30, key
     kotlin = (ROOT / 'app/src/main/java/com/nuraya/app/media/CuratedReciters.kt').read_text()
+    active = set(re.findall(r'Selection\("([^"]+)"', kotlin))
+    assert len(active) == 28
+    assert not active & {'ar.alijaber', 'ar.abdullahalmatrood'}
+    rows = [row for row in source['reciters'] if row['chapterId'] in active]
+    assert len(rows) == 28
+    for key in ['name', 'chapterId', 'verseId', 'mp3QuranId']:
+        assert len({r[key] for r in rows}) == 28, key
     for row in rows:
         c = chapter[row['chapterId']]; v = verse[row['verseId']]
         assert c['name'] == v['name'] == row['name']
@@ -43,7 +46,7 @@ def main():
     assert len({p['sha256'] for p in probes if p['kind'] == 'chapter_1'}) == 30
     actual = json.loads((ROOT / 'docs/sources/reciter-actual-verse-probes.json').read_text())
     assert len(actual) == 45 and all(p.get('audioDecodePassed') for p in actual)
-    print('Verified 30 unique people, chapter/verse mappings, 114-surah manifests, 6236-verse directory evidence and 120 directory/chapter samples plus 45 actual Islamic Network clips decoded.')
+    print('Verified 28 active unique people against historical 30-reciter evidence, chapter/verse mappings, 114-surah manifests, 6236-verse directory evidence and 120 directory/chapter samples plus 45 actual Islamic Network clips decoded.')
 
 if __name__ == '__main__':
     main()

@@ -24,7 +24,6 @@ object CuratedReciters {
         Selection("ar.muhammadjibreel", "ar.muhammadjibreel", "Muhammad Jibreel"),
         Selection("ar.ibrahimalakhdar", "ar.ibrahimakhbar", "Ibrahim Akhdar"),
         Selection("ar.aymanswed", "ar.aymanswoaid", "Ayman Sowaid"),
-        Selection("ar.alijaber", "ar.alijaber", "Ali Jaber"),
         Selection("ar.abdullahawadaljuhani", "ar.abdullahawadaljuhani", "Abdullah Awad Al-Juhani"),
         Selection("ar.abdulmohsenalqasim", "ar.abdulmohsenalqasim", "Abdul Muhsin Al-Qasim"),
         Selection("ar.salahalbudair", "ar.salahalbudair", "Salah Al-Budair"),
@@ -33,7 +32,6 @@ object CuratedReciters {
         Selection("ar.mohamedtablawi", "ar.mohamedtablawi", "Muhammad At-Tablawi"),
         Selection("ar.salahbukhatir", "ar.salahbukhatir", "Salah Bukhatir"),
         Selection("ar.khaledalqahtani", "ar.khaledalqahtani", "Khalid Al-Qahtani"),
-        Selection("ar.abdullahalmatrood", "ar.abdullahalmatrood", "Abdullah Al-Matrood")
     )
     val chapterIds = selections.map { it.chapterId }
     val verseIds = selections.map { it.verseId }

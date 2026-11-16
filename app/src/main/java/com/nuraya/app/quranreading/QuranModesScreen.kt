@@ -64,11 +64,7 @@ fun QuranModesScreen(app: NurayaApplication, language: String, onMode: (String) 
             }
         }
         if (filtered.isEmpty()) item { Text(label(language, "Tidak ada pilihan yang cocok. Coba “tajwid”, “Latin”, atau “hafalan”.", "No matching mode. Try tajwid, transliteration or memorization.")) }
-        item {
-            Text(label(language, "Teks ayat, nomor, terjemahan, serta basmalah tetap mengikuti sumber bacaan. Pilihan ini mengubah bantuan membaca, bukan isi Al-Qur’an.",
-                "Verse text, numbering, translations and basmalahs retain their source. These options change reading aids, not the Qur’an itself."),
-                style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-        }
+
     }
 }
 

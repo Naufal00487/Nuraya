@@ -88,7 +88,13 @@ class Revision163Test {
     }
 
     @Test fun indonesianQueriesOpenTheirOwnSurahsAndVoiceHasNoRecitationModelStep() {
-        openApp()
+        val app = openApp()
+        // Navigation should not depend on a remote page download finishing during a UI assertion.
+        val bytes = javaClass.getResourceAsStream("/mushaf/indonesia-562.png")!!.use { it.readBytes() }
+        val images = com.nuraya.app.quranreading.MushafImages(app,
+            com.nuraya.app.quranreading.MushafEdition.INDONESIA, com.nuraya.app.quranreading.PrintedMushafEdition.INDONESIA)
+        assertTrue(images.verified(562, bytes))
+        File(app.filesDir, "printed-id-saved-v1/562.png").apply { parentFile!!.mkdirs(); writeBytes(bytes) }
         compose.onNodeWithTag("home_search_learn").performScrollTo().performClick()
         await("learning_screen")
         compose.onNodeWithTag("learning_voice_search").performScrollTo().performClick()

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.qa.LearningPresentationTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-16T05:54:17" hostname="8c1fdd39b7f5" time="2.548">
+  <properties/>
+  <testcase name="quizPausesWithFeedbackResumesAndReviewsMistakesBeforeSingleXpAward" classname="com.nuraya.app.qa.LearningPresentationTest" time="1.035"/>
+  <testcase name="shortSurahPracticeUsesActualAyatAndRequiresRevealBeforeSelfRating" classname="com.nuraya.app.qa.LearningPresentationTest" time="0.851"/>
+  <testcase name="largeTextKeepsLevelChoicesAndLessonActionsReachable" classname="com.nuraya.app.qa.LearningPresentationTest" time="0.249"/>
+  <testcase name="optionalGoalCanBeEnabledChangedAndDisabledWithoutChangingXp" classname="com.nuraya.app.qa.LearningPresentationTest" time="0.163"/>
+  <testcase name="allLevelsAreOpenImmediatelyAndAdvancedPreviewKeepsTheNurayaTheme" classname="com.nuraya.app.qa.LearningPresentationTest" time="0.25"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

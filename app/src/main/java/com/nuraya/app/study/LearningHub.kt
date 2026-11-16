@@ -107,7 +107,6 @@ internal fun LearningPath(course: LearningCourse, progress: PracticeProgress, la
                 Icon(Icons.Outlined.Tune,null);Spacer(Modifier.width(10.dp));Text(label(language,"Pilih rentang ayat sendiri","Choose your own verse range"))
             }
         }
-        item { Text(label(language,"Pelengkap waktu belajarmu. Tidak ada materi yang terkunci atau batas kesalahan.","A companion to your own pace. No locked material or mistake limits."),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant) }
     }
 }
 

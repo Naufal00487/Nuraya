@@ -1,15 +1,11 @@
 package com.nuraya.app.ui
 
 import com.nuraya.app.ui.icons.AppIcons as Icons
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -19,10 +15,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.nuraya.app.NurayaApplication
-import com.nuraya.app.data.Qari
-import com.nuraya.app.data.Surah
 import com.nuraya.app.media.PlaybackState
 import com.nuraya.app.storage.DownloadEntity
 import com.nuraya.app.storage.UserEntry
@@ -31,7 +24,7 @@ import java.util.Locale
 @Composable
 @OptIn(ExperimentalLayoutApi::class)
 fun MurottalScreen(app: NurayaApplication, language: String, qariId: String, onQari: (String) -> Unit,
-    entries: List<UserEntry>, downloads: List<DownloadEntity>, playback: PlaybackState, perform: (suspend () -> Unit) -> Unit) {
+    entries: List<UserEntry>, downloads: List<DownloadEntity>, playback: PlaybackState, perform: (suspend () -> Unit) -> Unit, onOpenPlayer: () -> Unit = {}) {
     var query by rememberSaveable(qariId) { mutableStateOf("") }
     val qari = app.quran.qaris.firstOrNull { it.id == qariId }
     val savedSettings by app.settings.settings.collectAsState(initial = com.nuraya.app.storage.UserSettings())
@@ -43,32 +36,16 @@ fun MurottalScreen(app: NurayaApplication, language: String, qariId: String, onQ
             if (qari != null) {
                 QariPortrait(qari.id, qari.name, language, Modifier.size(112.dp))
                 Spacer(Modifier.height(8.dp))
-                QariPortraitCredit(qari.id, language)
                 Spacer(Modifier.height(12.dp))
             }
             if(qari==null) SectionArtwork("murottal","Murottal",label(language,"Temukan lantunan pilihan Anda.","Find your favourite recitation."))
             else Text(qari.name,style=MaterialTheme.typography.headlineMedium)
             Spacer(Modifier.height(8.dp))
             Text(if (qari == null) label(language,"${choices.size} pilihan rekaman · 114 surah per pilihan","${choices.size} recitation editions · 114 surahs each") else label(language,"114 surah · pilih untuk mendengarkan","114 surahs · choose one to listen"), color = MaterialTheme.colorScheme.onSurfaceVariant)
-            if (qari != null) Text(qari.description, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             Spacer(Modifier.height(18.dp))
             OutlinedTextField(value = query, onValueChange = { query = it.take(150) }, modifier = Modifier.fillMaxWidth(), singleLine = true,
                 shape = RoundedCornerShape(16.dp), leadingIcon = { Icon(Icons.Outlined.Search,null) },
                 label = { Text(if (qari == null) label(language,"Cari qari","Search reciters") else label(language,"Cari surah","Search surahs")) })
-        }
-        if(qari!=null) item {
-            QariAboutCard(qari,language)
-        }
-        if (qari != null) item {
-            Surface(color = MaterialTheme.colorScheme.secondaryContainer, shape = RoundedCornerShape(16.dp)) {
-                Row(Modifier.padding(16.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    Icon(Icons.Outlined.Headphones, null, tint = MaterialTheme.colorScheme.onSecondaryContainer)
-                    Text(label(language,
-                        "Ketuk surah untuk memutar melalui internet. Gunakan tombol unduh agar rekaman qari ini dapat didengarkan offline setelah unduhan selesai.",
-                        "Tap a surah to stream over the internet. Use the download button to listen to this reciter offline once the download finishes."),
-                        style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSecondaryContainer)
-                }
-            }
         }
         if (qari == null) {
             val qaris = choices.filter { it.name.contains(query,true) }
@@ -87,8 +64,6 @@ fun MurottalScreen(app: NurayaApplication, language: String, qariId: String, onQ
                 }
             }
             if (qaris.isEmpty()) item { EmptyState(Icons.Outlined.SearchOff, label(language,"Qari tidak ditemukan","No reciters found"),label(language,"Coba kata pencarian lain.","Try a different search.")) }
-            item { Text(label(language,"Foto berasal dari Quran.com dan dokumen penyusun. Foto yang belum tersedia atau perlu verifikasi ditampilkan dengan inisial.", "Photographs come from Quran.com and the maintainer’s document. Unavailable or unconfirmed photographs use initials."), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
-            item { Text(label(language,"Sumber rekaman: MP3Quran. Internet diperlukan untuk streaming. Audio yang selesai diunduh dapat diputar offline.","Recordings from MP3Quran. Streaming requires internet. Completed downloads can be played offline."), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
         } else {
             items(matches, key = { it.id }) { surah ->
                 val key = "${qari.id}:${surah.id}"
@@ -97,7 +72,7 @@ fun MurottalScreen(app: NurayaApplication, language: String, qariId: String, onQ
                 val active = !playback.verseMode && playback.qariId == qari.id && playback.surahId == surah.id
                 Surface(shape = RoundedCornerShape(18.dp), color = if (active) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surfaceContainerLow) {
                     Column {
-                        Row(Modifier.fillMaxWidth().clickable { onQari(qari.id); app.playback.play(surah,qari) }.padding(start=16.dp,top=12.dp,bottom=12.dp,end=4.dp),verticalAlignment=Alignment.CenterVertically) {
+                        Row(Modifier.fillMaxWidth().clickable { onQari(qari.id); app.playback.play(surah,qari); onOpenPlayer() }.padding(start=16.dp,top=12.dp,bottom=12.dp,end=4.dp),verticalAlignment=Alignment.CenterVertically) {
                             Box(Modifier.size(36.dp),contentAlignment=Alignment.Center) {
                                 if (active && playback.isPlaying) Icon(Icons.Outlined.GraphicEq,null) else Text("${surah.id}",style=MaterialTheme.typography.labelLarge)
                             }
@@ -107,7 +82,7 @@ fun MurottalScreen(app: NurayaApplication, language: String, qariId: String, onQ
                             }
                         }
                         FlowRow(Modifier.fillMaxWidth().padding(horizontal=12.dp), horizontalArrangement=Arrangement.spacedBy(8.dp)) {
-                            Button(onClick={onQari(qari.id); app.playback.play(surah,qari)}) {
+                            Button(onClick={onQari(qari.id); app.playback.play(surah,qari); onOpenPlayer()}) {
                                 Icon(Icons.Outlined.PlayArrow,null,Modifier.size(22.dp)); Spacer(Modifier.width(6.dp))
                                 Text(label(language,"Dengarkan","Listen"))
                             }
@@ -154,104 +129,6 @@ fun MiniPlayer(state: PlaybackState, language: String, onOpen: () -> Unit, onTog
     }
 }
 
-@Composable
-@OptIn(ExperimentalLayoutApi::class)
-fun FullPlayer(app: NurayaApplication, language: String, state: PlaybackState, entries: List<UserEntry>, downloads: List<DownloadEntity>, perform: (suspend () -> Unit) -> Unit, onClose: () -> Unit, onRead: (Int, Int) -> Unit = { _, _ -> }) {
-    val surah = app.quran.surahs.firstOrNull { it.id==state.surahId }
-    val qari = app.quran.qaris.firstOrNull { it.id==state.qariId }
-    val key = "${state.qariId}:${state.surahId}"
-    val favorite = entries.any { it.type=="audio_favorite" && it.key==key }
-    val inCollection = entries.any { it.type=="playlist" && it.key==key }
-    val download = downloads.firstOrNull { it.id==key }
-    var seeking by remember { mutableStateOf<Float?>(null) }
-    Column(Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(horizontal=28.dp,vertical=12.dp),horizontalAlignment=Alignment.CenterHorizontally,verticalArrangement=Arrangement.spacedBy(16.dp)) {
-        Text(label(language,"SEDANG DIDENGARKAN","NOW LISTENING"),style=MaterialTheme.typography.labelMedium,letterSpacing=2.sp,color=MaterialTheme.colorScheme.secondary)
-        QariPortrait(state.qariId, state.qari, language, Modifier.size(144.dp))
-        QariPortraitCredit(state.qariId, language)
-        Text(surah?.arabicName ?: "Nuraya",fontFamily=QuranArabicFont,fontSize=38.sp,color=MaterialTheme.colorScheme.primary,textAlign=TextAlign.Center)
-        Column(horizontalAlignment=Alignment.CenterHorizontally) {
-            Text(state.title,style=MaterialTheme.typography.headlineMedium,textAlign=TextAlign.Center)
-            Text(state.qari,color=MaterialTheme.colorScheme.onSurfaceVariant,textAlign=TextAlign.Center)
-            if (!state.verseMode && download?.status=="complete") Text(label(language,"Audio tersimpan di perangkat","Audio saved on this device"),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.primary)
-            if (state.verseMode) {
-                val range = if (state.rangeStartSurah > 0 && state.rangeStartSurah != state.rangeEndSurah)
-                    "${state.rangeStartSurah}:${state.rangeStart}–${state.rangeEndSurah}:${state.rangeEnd}" else "${state.rangeStart}–${state.rangeEnd}"
-                Text(label(language, "Ayat ${state.ayahId} · rentang $range", "Verse ${state.ayahId} · range $range"), style = MaterialTheme.typography.bodySmall)
-                if(state.verseMode&&state.rangePasses>1)Text(label(language,"Putaran ${state.rangePass} / ${state.rangePasses}","Pass ${state.rangePass} / ${state.rangePasses}"),style=MaterialTheme.typography.titleMedium)
-                TextButton(onClick = { onRead(state.surahId, state.ayahId.coerceAtLeast(1)) }) {
-                    Icon(Icons.Outlined.MenuBook, null, Modifier.size(18.dp))
-                    Spacer(Modifier.width(6.dp))
-                    Text(label(language, "Ikuti teks bacaan", "Follow the recitation text"))
-                }
-            }
-        }
-        if (!state.verseMode && surah != null) {
-            com.nuraya.app.media.CuratedReciters.verseIdFor(state.qariId)?.let { verseId ->
-                OutlinedButton(onClick = {
-                    perform { app.settings.setReaderQari(verseId) }
-                    app.playback.playVerseRange(surah.id, 1, surah.ayahCount, verseId)
-                    onRead(surah.id, 1)
-                }, modifier = Modifier.fillMaxWidth().testTag("player_read_from_start")) {
-                    Icon(Icons.Outlined.MenuBook, null); Spacer(Modifier.width(8.dp))
-                    Text(label(language,"Baca & dengarkan dari awal", "Read & listen from the start"))
-                }
-            }
-        }
-        if(state.error!=null) Surface(color=MaterialTheme.colorScheme.errorContainer,shape=RoundedCornerShape(12.dp)) {
-            Column(Modifier.padding(12.dp)) {
-                Text(localizedError(state.error,language),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onErrorContainer)
-                if (state.verseMode) TextButton(onClick = {
-                    app.playback.playVerseSpan(state.surahId, state.ayahId.coerceAtLeast(1), state.rangeEndSurah.takeIf { it > 0 } ?: state.surahId, state.rangeEnd.coerceAtLeast(1), state.qariId)
-                }) { Text(label(language, "Coba lagi", "Try again")) }
-                else if(surah!=null && qari!=null) TextButton(onClick={app.playback.play(surah,qari)}) { Text(label(language,"Coba lagi","Try again")) }
-            }
-        }
-        Column {
-            Slider(value=seeking ?: state.positionMs.toFloat().coerceIn(0f,state.durationMs.coerceAtLeast(1).toFloat()),
-                onValueChange={seeking=it},onValueChangeFinished={seeking?.let{app.playback.seekTo(it.toLong())};seeking=null},
-                valueRange=0f..state.durationMs.coerceAtLeast(1).toFloat(),enabled=state.durationMs>0)
-            Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween) { Text(formatDuration(state.positionMs),style=MaterialTheme.typography.labelMedium);Text(formatDuration(state.durationMs),style=MaterialTheme.typography.labelMedium) }
-        }
-        Button(onClick={app.playback.toggle()},modifier=Modifier.fillMaxWidth().heightIn(min=64.dp)) {
-            if(state.loading)CircularProgressIndicator(Modifier.size(26.dp),color=MaterialTheme.colorScheme.onPrimary,strokeWidth=2.dp)
-            else Icon(if(state.isPlaying)Icons.Outlined.Pause else Icons.Outlined.PlayArrow,null,modifier=Modifier.size(32.dp))
-            Spacer(Modifier.width(10.dp)); Text(label(language,if(state.isPlaying)"Jeda" else "Putar",if(state.isPlaying)"Pause" else "Play"))
-        }
-        FlowRow(horizontalArrangement=Arrangement.spacedBy(10.dp)) {
-            OutlinedButton(onClick={app.playback.previous()}) {
-                Icon(Icons.Outlined.SkipPrevious,null,Modifier.size(24.dp)); Spacer(Modifier.width(6.dp))
-                Text(label(language,"Sebelumnya","Previous"))
-            }
-            OutlinedButton(onClick={app.playback.next()}) {
-                Text(label(language,"Berikutnya","Next")); Spacer(Modifier.width(6.dp)); Icon(Icons.Outlined.SkipNext,null,Modifier.size(24.dp))
-            }
-        }
-        FlowRow(horizontalArrangement=Arrangement.spacedBy(10.dp)) {
-            FilterChip(selected=state.repeat,onClick={app.playback.setRepeat(!state.repeat)},label={Text(label(language,"Ulangi","Repeat"))},leadingIcon={Icon(Icons.Outlined.RepeatOne,null,Modifier.size(18.dp))})
-            AssistChip(onClick={ val speeds=listOf(.75f,1f,1.25f,1.5f,2f);app.playback.setSpeed(speeds[(speeds.indexOf(state.speed)+1).mod(speeds.size)]) },label={Text("${state.speed}×")},leadingIcon={Icon(Icons.Outlined.Speed,null,Modifier.size(18.dp))})
-            if (!state.verseMode) OutlinedButton(onClick={if(surah!=null && qari!=null)perform { app.library.toggle("audio_favorite",key,surah.name,qari.name,qari.id) }}) {
-                Icon(if(favorite)Icons.Outlined.Favorite else Icons.Outlined.FavoriteBorder,null,Modifier.size(20.dp))
-                Spacer(Modifier.width(6.dp)); Text(label(language,if(favorite)"Favorit tersimpan" else "Favoritkan",if(favorite)"Favourited" else "Favourite"))
-            }
-        }
-        if(!state.verseMode && surah!=null && qari!=null) {
-            Row(horizontalArrangement=Arrangement.spacedBy(12.dp)) {
-                OutlinedButton(onClick={perform{app.downloads.enqueue(surah,qari)}},enabled=download?.status !in listOf("complete","queued","downloading"),modifier=Modifier.weight(1f)) {
-                    Icon(Icons.Outlined.Download,null,Modifier.size(18.dp));Spacer(Modifier.width(6.dp))
-                    Text(if(download?.status=="complete")label(language,"Tersimpan","Saved") else label(language,"Unduh","Download"))
-                }
-                OutlinedButton(onClick={perform{app.library.toggle("playlist",key,surah.name,qari.name,qari.id)}},modifier=Modifier.weight(1f)) {
-                    Icon(if(inCollection)Icons.Outlined.PlaylistAddCheck else Icons.Outlined.PlaylistAdd,null,Modifier.size(18.dp));Spacer(Modifier.width(6.dp));Text(label(language,"Koleksi","Collection"))
-                }
-            }
-            if(download?.status in listOf("queued","downloading")) Text("${label(language,"Mengunduh","Downloading")} ${download?.progress ?: 0}%",style=MaterialTheme.typography.bodySmall)
-        }
-        Text(if (state.verseMode) "${state.source}\n${label(language, "Mode sinkron · membutuhkan internet", "Synchronized mode · requires internet")}" else if (qari?.numberPadding == 3) "MP3Quran · mp3quran.net" else "Islamic Network · alquran.cloud",style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant, textAlign = TextAlign.Center)
-        TextButton(onClick={app.playback.stop();onClose()}) { Text(label(language,"Tutup pemutar","Close player")) }
-        Spacer(Modifier.height(12.dp))
-    }
-}
-
 fun formatDuration(ms:Long):String = String.format(Locale.ROOT,"%d:%02d",(ms/1000)/60,(ms/1000)%60)
 fun localizedError(message:String,language:String):String = message.split(" / ",limit=2).let { if(language=="en")it.last() else it.first() }
 
@@ -260,25 +137,5 @@ fun localizedError(message:String,language:String):String = message.split(" / ",
         Icon(icon,null,modifier=Modifier.size(44.dp),tint=MaterialTheme.colorScheme.primary)
         Text(title,style=MaterialTheme.typography.titleLarge,textAlign=TextAlign.Center)
         Text(description,style=MaterialTheme.typography.bodyMedium,textAlign=TextAlign.Center,color=MaterialTheme.colorScheme.onSurfaceVariant)
-    }
-}
-
-
-@Composable
-private fun QariAboutCard(qari:Qari,language:String){
-    var expanded by rememberSaveable(qari.id){mutableStateOf(true)}
-    OutlinedCard(shape=RoundedCornerShape(24.dp),modifier=Modifier.fillMaxWidth().testTag("qari_about")) {
-        Column(Modifier.padding(20.dp),verticalArrangement=Arrangement.spacedBy(10.dp)) {
-            Row(verticalAlignment=Alignment.CenterVertically){
-                Text(label(language,"Tentang qari & rekaman","About this reciter & recording"),Modifier.weight(1f),style=MaterialTheme.typography.titleMedium)
-                IconButton(onClick={expanded=!expanded}){Icon(if(expanded)Icons.Outlined.ExpandLess else Icons.Outlined.ExpandMore,label(language,"Rincian","Details"))}
-            }
-            if(expanded){
-                Text(qari.name,style=MaterialTheme.typography.titleLarge)
-                Text(qari.description,style=MaterialTheme.typography.bodyLarge)
-                Text(label(language,"Katalog rekaman Al-Qur’an berbahasa Arab dengan 114 surah. Pilih surah di bawah untuk mendengarkan lantunan atau menyimpannya di perangkat.","An Arabic Qur’an recording collection covering 114 surahs. Choose a surah below to listen or save it on your device."),style=MaterialTheme.typography.bodyMedium)
-                Text(label(language,"Sumber rekaman: MP3Quran · mp3quran.net. Keterangan edisi mengikuti metadata penyedia.","Recording source: MP3Quran · mp3quran.net. Edition descriptions follow provider metadata."),style=MaterialTheme.typography.bodySmall,color=MaterialTheme.colorScheme.onSurfaceVariant)
-            }
-        }
     }
 }

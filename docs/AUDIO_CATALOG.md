@@ -1,5 +1,16 @@
 # Katalog audio Nuraya 1.6.2
 
+## Pilihan aktif 1.7.1
+
+**28 qari** tetap tersedia di Murottal serta Quran/hafalan. Hanya Ali Jaber dan Abdullah Al-Matrood dikeluarkan sesuai revisi penyusun. ID, URL rekaman, antrean dan timing qari lainnya tidak diubah. Semua pilihan mendapat foto; [asal foto](QARI_PORTRAITS.md). Angka 30 pada audit di bawah adalah katalog historis sebelum penghapusan ini.
+
+Pemeriksaan terbaru: **201/201 respons sampel mengandung header MP3**: enam rujukan ayat pada masing-masing 28 qari (1:1, 2:6, 36:1, 67:1, 112:4, 114:6) serta tiga rekaman berpasangan pada masing-masing 11 qari bertiming. [Bukti](validation/1.7.1/audio-probes.json). Ini GET Range dari host, bukan dekode penuh, pemeriksaan telinga, pengujian seluruh ayat atau pemutaran Android. Pengguna melaporkan semua pilihan saat ini bekerja; tidak ada qari lain yang dibatasi.
+
+Pemutar penuh memiliki foto besar, kontrol utama dan bilah durasi. Mengecilkan atau menekan Kembali mempertahankan sesi murottal; Hentikan audio ada di menu pemutar. Tombol Baca & dengarkan dari awal memulai mode ayat dengan qari yang sama. Pemisahan audio pembaca (berhenti saat keluar) dan Murottal (boleh di latar belakang) tetap berlaku.
+
+## Audit katalog historis 30 qari
+
+
 Daftar aktif menampilkan **30 orang qari berbeda**, masing-masing satu edisi Hafs. Nama yang sama tidak ditampilkan berulang sebagai orang lain. Metadata lama tetap disimpan untuk favorit dan unduhan lama.
 
 Rekaman surah berasal dari MP3Quran V3; seluruh 30 manifest mencantumkan 114 surah. Audio ayat menggunakan Islamic Network yang sebelumnya telah diperiksa atau EveryAyah untuk tambahan baru. Pilihan pada Murottal dipasangkan ke pilihan Quran/hafalan dengan ID eksplisit. Pengaturan juga menyediakan daftar 30 qari yang sama. Foto yang tersedia memiliki atribusi Quran.com; 22 qari tanpa foto terverifikasi memakai inisial.

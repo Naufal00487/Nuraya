@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "retrievedAt": "2026-10-28",
-  "provider": "Quran.com source portraits",
+  "provider": "Quran.com and maintainer-supplied reciter portraits",
   "rightsNotice": "Small attributed profile images are used to identify the reciters whose audio is available in Nuraya. The source repository declares MIT for its project; this is not treated as an independent CC/public-domain grant for each photograph. Rights remain with their respective owners.",
-  "identityMapping": "Explicit Quran.com reciter profile IDs mapped to specific Nuraya edition IDs; names are not fuzzy-matched.",
+  "identityMapping": "Explicit chapter and verse edition IDs; supplied photographs follow document labels. No fuzzy name matching or independent face-identity certification.",
   "portraits": [
     {
       "id": "alafasy",
@@ -139,7 +139,313 @@
       "bytes": 39525,
       "sha256": "4215efdab7c9981a2a716af6661cfd388bf81d580be11bcc88a7e6a3dce23f20",
       "rights": "Public profile photograph from Quran.com; copyright remains with its respective photographer/rightsholder. No per-photo open license is asserted."
+    },
+    {
+      "id": "user_mahermuaiqly",
+      "name": "Maher Al-Muaiqly",
+      "qariIds": [
+        "ar.mahermuaiqly"
+      ],
+      "asset": "portraits/user_mahermuaiqly.png",
+      "sourceName": "Dokumen foto qari dari penyusun",
+      "sourcePage": "bentarr lagi selesai 02.docx · Maher Al-Muaiqly",
+      "sourceDocument": "bentarr lagi selesai 02.docx",
+      "sourceImage": "image1.png",
+      "bytes": 118706,
+      "sha256": "3c25e73e45f8991cc882716fd09b0995dba081bf964fd1d00b778435dcbbc53f",
+      "rights": "Photograph supplied by the maintainer for this reciter. No separate open license or authorship of the photograph is asserted. Rights remain with its respective owner."
+    },
+    {
+      "id": "user_ahmedalajmi",
+      "name": "Ahmed Al-Ajmi",
+      "qariIds": [
+        "ar.ahmedalajmi",
+        "ar.ahmedajamy"
+      ],
+      "asset": "portraits/user_ahmedalajmi.jpeg",
+      "sourceName": "Dokumen foto qari dari penyusun",
+      "sourcePage": "bentarr lagi selesai 02.docx · Ahmed Al-Ajmi",
+      "sourceDocument": "bentarr lagi selesai 02.docx",
+      "sourceImage": "image2.jpeg",
+      "bytes": 16993,
+      "sha256": "e25e5ce53752aa67ed59374730fbefe806aba26a463097e46f97fe4aa7fd27c4",
+      "rights": "Photograph supplied by the maintainer for this reciter. No separate open license or authorship of the photograph is asserted. Rights remain with its respective owner."
+    },
+    {
+      "id": "user_saadalghamdi",
+      "name": "Saad Al-Ghamdi",
+      "qariIds": [
+        "ar.saadalghamdi"
+      ],
+      "asset": "portraits/user_saadalghamdi.jpeg",
+      "sourceName": "Dokumen foto qari dari penyusun",
+      "sourcePage": "bentarr lagi selesai 02.docx · Saad Al-Ghamdi",
+      "sourceDocument": "bentarr lagi selesai 02.docx",
+      "sourceImage": "image3.jpeg",
+      "bytes": 20972,
+      "sha256": "d894d3f7961a79ff3309db70a73fe80b3ca99f7fa8d6fbaa85cb79a8be1cc341",
+      "rights": "Photograph supplied by the maintainer for this reciter. No separate open license or authorship of the photograph is asserted. Rights remain with its respective owner."
+    },
+    {
+      "id": "user_yasseraldossari",
+      "name": "Yasser Al-Dossari",
+      "qariIds": [
+        "ar.yasseraldossari"
+      ],
+      "asset": "portraits/user_yasseraldossari.jpeg",
+      "sourceName": "Dokumen foto qari dari penyusun",
+      "sourcePage": "bentarr lagi selesai 02.docx · Yasser Al-Dossari",
+      "sourceDocument": "bentarr lagi selesai 02.docx",
+      "sourceImage": "image4.jpeg",
+      "bytes": 71761,
+      "sha256": "e40efa52a840529d1c2b751afb06145378c3949eac1dd8a46a8726b24e8ac602",
+      "rights": "Photograph supplied by the maintainer for this reciter. No separate open license or authorship of the photograph is asserted. Rights remain with its respective owner."
+    },
+    {
+      "id": "user_nasseralqatami",
+      "name": "Nasser Al-Qatami",
+      "qariIds": [
+        "ar.nasseralqatami"
+      ],
+      "asset": "portraits/user_nasseralqatami.jpeg",
+      "sourceName": "Dokumen foto qari dari penyusun",
+      "sourcePage": "bentarr lagi selesai 02.docx · Nasser Al-Qatami",
+      "sourceDocument": "bentarr lagi selesai 02.docx",
+      "sourceImage": "image5.jpeg",
+      "bytes": 49396,
+      "sha256": "cb9fda8270d23b607536c3ebd7a1d2dacce8ba96700f24121e180f967a52a457",
+      "rights": "Photograph supplied by the maintainer for this reciter. No separate open license or authorship of the photograph is asserted. Rights remain with its respective owner."
+    },
+    {
+      "id": "user_faresabbad",
+      "name": "Fares Abbad",
+      "qariIds": [
+        "ar.faresabbad"
+      ],
+      "asset": "portraits/user_faresabbad.jpeg",
+      "sourceName": "Dokumen foto qari dari penyusun",
+      "sourcePage": "bentarr lagi selesai 02.docx · Fares Abbad",
+      "sourceDocument": "bentarr lagi selesai 02.docx",
+      "sourceImage": "image6.jpeg",
+      "bytes": 24464,
+      "sha256": "c22b3fc6ab1e04f8195d1017430faa462040a5cf67482be4ee68b711d4bce8b4",
+      "rights": "Photograph supplied by the maintainer for this reciter. No separate open license or authorship of the photograph is asserted. Rights remain with its respective owner."
+    },
+    {
+      "id": "user_aliabdurrahmanalhuthaify",
+      "name": "Ali Abdurrahman Al-Hudhaify",
+      "qariIds": [
+        "ar.aliabdurrahmanalhuthaify",
+        "ar.hudhaify"
+      ],
+      "asset": "portraits/user_aliabdurrahmanalhuthaify.jpeg",
+      "sourceName": "Dokumen foto qari dari penyusun",
+      "sourcePage": "bentarr lagi selesai 02.docx · Ali Abdurrahman Al-Hudhaify",
+      "sourceDocument": "bentarr lagi selesai 02.docx",
+      "sourceImage": "image7.jpeg",
+      "bytes": 25419,
+      "sha256": "085e3754fce49fbab4a112632ce8fa5e0a84549e0a962fa26d969dd49643d74c",
+      "rights": "Photograph supplied by the maintainer for this reciter. No separate open license or authorship of the photograph is asserted. Rights remain with its respective owner."
+    },
+    {
+      "id": "user_abdullahbasfar",
+      "name": "Abdullah Basfar",
+      "qariIds": [
+        "ar.abdullahbasfar"
+      ],
+      "asset": "portraits/user_abdullahbasfar.jpeg",
+      "sourceName": "Dokumen foto qari dari penyusun",
+      "sourcePage": "bentarr lagi selesai 02.docx · Abdullah Basfar",
+      "sourceDocument": "bentarr lagi selesai 02.docx",
+      "sourceImage": "image8.jpeg",
+      "bytes": 44436,
+      "sha256": "85fd3456a654789491b4e6e4afee76c241cbae03043b1afb9f2b5f5b19559981",
+      "rights": "Photograph supplied by the maintainer for this reciter. No separate open license or authorship of the photograph is asserted. Rights remain with its respective owner."
+    },
+    {
+      "id": "user_muhammadayyub",
+      "name": "Muhammad Ayyub",
+      "qariIds": [
+        "ar.muhammadayyub",
+        "ar.muhammadayyoub"
+      ],
+      "asset": "portraits/user_muhammadayyub.jpeg",
+      "sourceName": "Dokumen foto qari dari penyusun",
+      "sourcePage": "bentarr lagi selesai 02.docx · Muhammad Ayyub",
+      "sourceDocument": "bentarr lagi selesai 02.docx",
+      "sourceImage": "image9.jpeg",
+      "bytes": 15926,
+      "sha256": "f882bbbbb1f82f48c0a6c986a30f3c529fb3f86b108fb7bdaa65981e3add72c9",
+      "rights": "Photograph supplied by the maintainer for this reciter. No separate open license or authorship of the photograph is asserted. Rights remain with its respective owner."
+    },
+    {
+      "id": "user_muhammadjibreel",
+      "name": "Muhammad Jibreel",
+      "qariIds": [
+        "ar.muhammadjibreel"
+      ],
+      "asset": "portraits/user_muhammadjibreel.jpeg",
+      "sourceName": "Dokumen foto qari dari penyusun",
+      "sourcePage": "bentarr lagi selesai 02.docx · Muhammad Jibreel",
+      "sourceDocument": "bentarr lagi selesai 02.docx",
+      "sourceImage": "image10.jpeg",
+      "bytes": 46098,
+      "sha256": "0cb84f30b3f837e004abb6f5b4c7cdd1267355b30352a8211c3882fa4d2b22c7",
+      "rights": "Photograph supplied by the maintainer for this reciter. No separate open license or authorship of the photograph is asserted. Rights remain with its respective owner."
+    },
+    {
+      "id": "user_ibrahimalakhdar",
+      "name": "Ibrahim Akhdar",
+      "qariIds": [
+        "ar.ibrahimalakhdar",
+        "ar.ibrahimakhbar"
+      ],
+      "asset": "portraits/user_ibrahimalakhdar.jpeg",
+      "sourceName": "Dokumen foto qari dari penyusun",
+      "sourcePage": "bentarr lagi selesai 02.docx · Ibrahim Akhdar",
+      "sourceDocument": "bentarr lagi selesai 02.docx",
+      "sourceImage": "image11.jpeg",
+      "bytes": 19022,
+      "sha256": "71a10004118c6343c270d242bcb9c07d51e269b3a9fea40bc8141cc73393d48f",
+      "rights": "Photograph supplied by the maintainer for this reciter. No separate open license or authorship of the photograph is asserted. Rights remain with its respective owner."
+    },
+    {
+      "id": "user_aymanswed",
+      "name": "Ayman Sowaid",
+      "qariIds": [
+        "ar.aymanswed",
+        "ar.aymanswoaid"
+      ],
+      "asset": "portraits/user_aymanswed.jpeg",
+      "sourceName": "Dokumen foto qari dari penyusun",
+      "sourcePage": "bentarr lagi selesai 02.docx · Ayman Sowaid",
+      "sourceDocument": "bentarr lagi selesai 02.docx",
+      "sourceImage": "image12.jpeg",
+      "bytes": 15657,
+      "sha256": "57fdbd50a6ee0d8c7d5c076cb1f3157f7d28549234863ebf1cfe850f38c444c3",
+      "rights": "Photograph supplied by the maintainer for this reciter. No separate open license or authorship of the photograph is asserted. Rights remain with its respective owner."
+    },
+    {
+      "id": "user_abdullahawadaljuhani",
+      "name": "Abdullah Awad Al-Juhani",
+      "qariIds": [
+        "ar.abdullahawadaljuhani"
+      ],
+      "asset": "portraits/user_abdullahawadaljuhani.jpeg",
+      "sourceName": "Dokumen foto qari dari penyusun",
+      "sourcePage": "bentarr lagi selesai 02.docx · Abdullah Awad Al-Juhani",
+      "sourceDocument": "bentarr lagi selesai 02.docx",
+      "sourceImage": "image13.jpeg",
+      "bytes": 36759,
+      "sha256": "ce6168ed7774615d138f075a8e3c66f2c2393572af8b37c1e3ddae6ddbfcc77c",
+      "rights": "Photograph supplied by the maintainer for this reciter. No separate open license or authorship of the photograph is asserted. Rights remain with its respective owner."
+    },
+    {
+      "id": "user_abdulmohsenalqasim",
+      "name": "Abdul Muhsin Al-Qasim",
+      "qariIds": [
+        "ar.abdulmohsenalqasim"
+      ],
+      "asset": "portraits/user_abdulmohsenalqasim.jpeg",
+      "sourceName": "Dokumen foto qari dari penyusun",
+      "sourcePage": "bentarr lagi selesai 02.docx · Abdul Muhsin Al-Qasim",
+      "sourceDocument": "bentarr lagi selesai 02.docx",
+      "sourceImage": "image14.jpeg",
+      "bytes": 45186,
+      "sha256": "8027d4db53482f7459e2fad22eeaf0a73c2b3f40c3f24553c9907b8e9762e147",
+      "rights": "Photograph supplied by the maintainer for this reciter. No separate open license or authorship of the photograph is asserted. Rights remain with its respective owner."
+    },
+    {
+      "id": "user_salahalbudair",
+      "name": "Salah Al-Budair",
+      "qariIds": [
+        "ar.salahalbudair"
+      ],
+      "asset": "portraits/user_salahalbudair.jpeg",
+      "sourceName": "Dokumen foto qari dari penyusun",
+      "sourcePage": "bentarr lagi selesai 02.docx · Salah Al-Budair",
+      "sourceDocument": "bentarr lagi selesai 02.docx",
+      "sourceImage": "image15.jpeg",
+      "bytes": 106813,
+      "sha256": "1a3fd1704d0393af6babbe71d60d136566d47e14f8169b570700449c9950dbde",
+      "rights": "Photograph supplied by the maintainer for this reciter. No separate open license or authorship of the photograph is asserted. Rights remain with its respective owner."
+    },
+    {
+      "id": "user_mahmoudalialbanna",
+      "name": "Mahmoud Ali Al-Banna",
+      "qariIds": [
+        "ar.mahmoudalialbanna"
+      ],
+      "asset": "portraits/user_mahmoudalialbanna.jpeg",
+      "sourceName": "Dokumen foto qari dari penyusun",
+      "sourcePage": "bentarr lagi selesai 02.docx · Mahmoud Ali Al-Banna",
+      "sourceDocument": "bentarr lagi selesai 02.docx",
+      "sourceImage": "image16.jpeg",
+      "bytes": 31527,
+      "sha256": "e7c20a505d6f64a41771b8c4b6c815967af3fd4534a4e7836248efa4007eab7f",
+      "rights": "Photograph supplied by the maintainer for this reciter. No separate open license or authorship of the photograph is asserted. Rights remain with its respective owner."
+    },
+    {
+      "id": "user_khalifaaltunaiji",
+      "name": "Khalifa Al-Tunaiji",
+      "qariIds": [
+        "ar.khalifaaltunaiji"
+      ],
+      "asset": "portraits/user_khalifaaltunaiji.png",
+      "sourceName": "Dokumen foto qari dari penyusun",
+      "sourcePage": "bentarr lagi selesai 02.docx · Khalifa Al-Tunaiji",
+      "sourceDocument": "bentarr lagi selesai 02.docx",
+      "sourceImage": "image17.png",
+      "bytes": 50811,
+      "sha256": "cedfe2b29f768691262d191457234c197b4bbaaaa554de02887d49b226b9f4fc",
+      "rights": "Photograph supplied by the maintainer for this reciter. No separate open license or authorship of the photograph is asserted. Rights remain with its respective owner."
+    },
+    {
+      "id": "user_mohamedtablawi",
+      "name": "Muhammad At-Tablawi",
+      "qariIds": [
+        "ar.mohamedtablawi"
+      ],
+      "asset": "portraits/user_mohamedtablawi.jpeg",
+      "sourceName": "Dokumen foto qari dari penyusun",
+      "sourcePage": "bentarr lagi selesai 02.docx · Muhammad At-Tablawi",
+      "sourceDocument": "bentarr lagi selesai 02.docx",
+      "sourceImage": "image18.jpeg",
+      "bytes": 25528,
+      "sha256": "5884b3f82c119143c41187ac62c5896b7ee1ed18928fecffcd2e716753184aea",
+      "rights": "Photograph supplied by the maintainer for this reciter. No separate open license or authorship of the photograph is asserted. Rights remain with its respective owner."
+    },
+    {
+      "id": "user_salahbukhatir",
+      "name": "Salah Bukhatir",
+      "qariIds": [
+        "ar.salahbukhatir"
+      ],
+      "asset": "portraits/user_salahbukhatir.jpeg",
+      "sourceName": "Dokumen foto qari dari penyusun",
+      "sourcePage": "bentarr lagi selesai 02.docx · Salah Bukhatir",
+      "sourceDocument": "bentarr lagi selesai 02.docx",
+      "sourceImage": "image19.jpeg",
+      "bytes": 88691,
+      "sha256": "3bd40b14a5f369e8935c19c547d10178eeddf236f255761b36e3bb8c0e713218",
+      "rights": "Photograph supplied by the maintainer for this reciter. No separate open license or authorship of the photograph is asserted. Rights remain with its respective owner."
+    },
+    {
+      "id": "user_khaledalqahtani",
+      "name": "Khalid Al-Qahtani",
+      "qariIds": [
+        "ar.khaledalqahtani"
+      ],
+      "asset": "portraits/user_khaledalqahtani.png",
+      "sourceName": "Dokumen foto qari dari penyusun",
+      "sourcePage": "bentarr lagi selesai 02.docx · Khalid Al-Qahtani",
+      "sourceDocument": "bentarr lagi selesai 02.docx",
+      "sourceImage": "image20.png",
+      "bytes": 173562,
+      "sha256": "7faa1546ce6dc1b65a8ce181197d1cad464f15aff6fcf5bd515b22f34bcc160f",
+      "rights": "Photograph supplied by the maintainer for this reciter. No separate open license or authorship of the photograph is asserted. Rights remain with its respective owner."
     }
   ],
-  "curationNote": "Only eight Quran.com-attributed portraits are shown. Compiler-provided portraits have been removed from distribution."
+  "curationNote": "Eight Quran.com portraits and twenty original images supplied in bentarr lagi selesai 02.docx. Identity mappings follow the explicit labels in that document. All 28 selectable reciters have a portrait; Ali Jaber and Abdullah Al-Matrood are excluded from selections.",
+  "updatedAt": "2026-11-16"
 }

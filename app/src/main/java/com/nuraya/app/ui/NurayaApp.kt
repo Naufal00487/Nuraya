@@ -240,7 +240,7 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
                                 if (readerFrom != "mushaf") mushafFrom = "reader"
                                 screen = "mushaf"
                             })
-                        "murottal" -> MurottalScreen(app, language, qariId, onQari = chooseQari, entries, downloads, playback, perform)
+                        "murottal" -> MurottalScreen(app, language, qariId, onQari = chooseQari, entries, downloads, playback, perform, onOpenPlayer = { playerVisible = true })
                         "prayer" -> PrayerScreen(language)
                         "location" -> PrayerScreen(language,"location")
                         "qibla" -> QiblaScreen(language,onManualLocation={screen="location"})
@@ -267,7 +267,8 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
     com.nuraya.app.reminders.NotificationPermissionNotice(language, allowedToShow = screen=="home"&&!locationPromptVisible&&!playerVisible&&offlineEvent==null)
     com.nuraya.app.reminders.OfflineNotice(language, allowedToShow = !locationPromptVisible)
     if (playerVisible && !loading && !loadError) {
-        ModalBottomSheet(onDismissRequest = { playerVisible = false }) {
+        androidx.compose.ui.window.Dialog(onDismissRequest = { playerVisible = false },
+            properties = androidx.compose.ui.window.DialogProperties(usePlatformDefaultWidth = false, decorFitsSystemWindows = false)) {
             FullPlayer(app, language, playback, entries, downloads, perform, onClose = { playerVisible = false },
                 onRead = { surah, ayah -> playerVisible = false; openVerse(surah, ayah) })
         }

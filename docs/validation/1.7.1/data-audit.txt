@@ -1,0 +1,8 @@
+python3 scripts/import_quran.py --verify
+Verified: 114 surahs, 6,236 aligned Arabic/Indonesian/English verses, 30 juz, all 114 first ayat and 112 separate opening spans, asset SHA-256
+python3 scripts/import_printed_mushaf.py --verify
+Verified: seven 604-page editions, all indexes, six complete verse maps, 42 unchanged bundled PNGs, unchanged canonical Quran.
+python3 scripts/import_semantic_index.py --verify
+Verified local semantic model and all 115 corpus source hashes.
+python3 scripts/verify_curated_reciters.py
+Verified 28 active unique people against historical 30-reciter evidence, chapter/verse mappings, 114-surah manifests, 6236-verse directory evidence and 120 directory/chapter samples plus 45 actual Islamic Network clips decoded.

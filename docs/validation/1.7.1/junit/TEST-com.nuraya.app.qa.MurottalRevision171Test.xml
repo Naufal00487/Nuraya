@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.qa.MurottalRevision171Test" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-16T05:54:20" hostname="8c1fdd39b7f5" time="1.541">
+  <properties/>
+  <testcase name="errorsStayActionableAndUnknownDurationCannotBeSeeked" classname="com.nuraya.app.qa.MurottalRevision171Test" time="0.192"/>
+  <testcase name="smallScreenLargeFontDarkPlayerKeepsEveryControlReachable" classname="com.nuraya.app.qa.MurottalRevision171Test" time="0.176"/>
+  <testcase name="readFromStartRetainsMatchingReaderVoiceAndSurah" classname="com.nuraya.app.qa.MurottalRevision171Test" time="0.129"/>
+  <testcase name="suppliedPortraitAliasesCoverEveryRetainedVoiceAndOnlyTwoRequestedRecitersDisappear" classname="com.nuraya.app.qa.MurottalRevision171Test" time="0.03"/>
+  <testcase name="reciterDetailOpensPlayerWithoutSourceClutter" classname="com.nuraya.app.qa.MurottalRevision171Test" time="0.104"/>
+  <testcase name="sourcesShowCorrectDesignAndPhotoCredits" classname="com.nuraya.app.qa.MurottalRevision171Test" time="0.155"/>
+  <testcase name="fullScreenPlayerFromMiniPlayerKeepsAudioWhenCollapsedAndStopsExplicitly" classname="com.nuraya.app.qa.MurottalRevision171Test" time="0.755"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

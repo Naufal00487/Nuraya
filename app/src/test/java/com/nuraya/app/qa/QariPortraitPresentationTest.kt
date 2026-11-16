@@ -35,7 +35,7 @@ class QariPortraitPresentationTest {
             MurottalScreen(app, "id", "", { selected = it }, emptyList(), emptyList(), PlaybackState(), {})
         } } }
         compose.waitUntil(10_000) {
-            compose.onAllNodesWithContentDescription("Foto Mishary Rashid Alafasy. Sumber Quran.com.", useUnmergedTree = true)
+            compose.onAllNodesWithContentDescription("Foto Mishary Rashid Alafasy", useUnmergedTree = true)
                 .fetchSemanticsNodes().isNotEmpty()
         }
         compose.onNodeWithTag("qari_ar.alafasy").performClick()

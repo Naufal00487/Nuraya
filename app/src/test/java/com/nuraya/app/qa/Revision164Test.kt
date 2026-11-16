@@ -140,6 +140,9 @@ class Revision164Test {
         assertEquals("learn",destination)
     }
     @Test fun largeFontPermissionCardKeepsItsActionsVisibleAndOfflineCardDismisses() {
+        // Exercise a fresh prompt, independently of the weekly-dismissal tests.
+        app.getSharedPreferences("nuraya_permission_prompts", 0).edit().clear().commit()
+        assertTrue(PermissionPromptStore(app).notificationDue())
         Shadows.shadowOf(app.getSystemService(NotificationManager::class.java)).setNotificationsEnabled(false)
         var showNotification by mutableStateOf(true)
         compose.setContent{NurayaTheme(false){CompositionLocalProvider(LocalDensity provides Density(LocalDensity.current.density,1.5f)){
