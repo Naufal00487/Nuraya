@@ -1,0 +1,9 @@
+Nuraya/Resources/Content/
+.build/
+**/.build/
+DerivedData/
+.build-native/
+*.xcuserstate
+xcuserdata/
+*.ipa
+*.xcarchive
