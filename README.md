@@ -1,8 +1,8 @@
 # Nuraya
 
-Source aplikasi Android Nuraya **1.6.4** untuk dibuka dan direvisi langsung. Pembaca Quran memakai tujuh edisi gambar asli, masing-masing 604 halaman, mengikuti referensi yang diberikan.
+Source aplikasi Android Nuraya **1.7.0** untuk dibuka dan direvisi langsung. Pembaca Quran memakai tujuh edisi gambar asli, masing-masing 604 halaman, mengikuti referensi yang diberikan.
 
-**[Unduh APK terbaru — 1.6.4](https://raw.githubusercontent.com/Naufal00487/Nuraya/HEAD/artifacts/Nuraya-1.6.4.apk)** · [Perubahan](docs/UPDATE_1.6.4.md) · [Audit Quran dan audio](docs/AUDIT_1.3.1.md) · [Validasi](docs/BUILD_VALIDATION.md)
+**[Unduh APK terbaru — 1.7.0](https://raw.githubusercontent.com/Naufal00487/Nuraya/HEAD/artifacts/Nuraya-1.7.0.apk)** · [Perubahan](docs/UPDATE_1.7.0.md) · [Audit Quran dan audio](docs/AUDIT_1.3.1.md) · [Validasi](docs/BUILD_VALIDATION.md)
 
 Android 8.0 atau lebih baru. APK memakai paket dan sertifikat distribusi yang sama, sehingga dapat dipasang sebagai pembaruan. Folder `artifacts/` hanya menyediakan APK terbaru dan checksum-nya. Source dapat diunduh melalui **Code → Download ZIP**.
 
@@ -10,7 +10,7 @@ Android 8.0 atau lebih baru. APK memakai paket dan sertifikat distribusi yang sa
 
 1. Clone repo dengan `git clone https://github.com/Naufal00487/Nuraya.git`, atau unduh ZIP source.
 2. Buka folder proyek yang berisi `settings.gradle.kts` melalui Android Studio, lalu tunggu Gradle Sync.
-3. Ubah source, jalankan pengujian yang relevan, lalu build APK baru. APK yang disertakan adalah hasil rilis 1.6.4 dan tidak berubah otomatis ketika source diedit.
+3. Ubah source, jalankan pengujian yang relevan, lalu build APK baru. APK yang disertakan adalah hasil rilis 1.7.0 dan tidak berubah otomatis ketika source diedit.
 
 | Lokasi | Isi |
 | --- | --- |
@@ -35,6 +35,8 @@ Untuk cloud Linux yang menyediakan toolchain proyek, tersedia `bash scripts/setu
 
 ## Fitur dan batasnya
 
+- [Belajar tajwid dan hafalan](docs/LEARNING.md): 25 pelajaran dengan pilihan level yang seluruhnya terbuka, latihan singkat, pembahasan jawaban, XP, lencana dan progres pribadi. Target harian opsional; sesi dapat disimpan dan dilanjutkan. Tanpa maskot, kompetisi, nyawa atau kewajiban belajar.
+
 - Tema biru dengan lanskap asli tanpa lapisan hijau; bilah sistem dan navigasi utama transparan. Audio Quran berhenti saat keluar dari pembaca/aplikasi; Murottal tetap dapat berjalan di latar belakang.
 - Navigasi Beranda, Al-Qur’an, Murottal dan Ibadah dengan tombol berlabel. Video/Shorts sudah dihapus.
 - Lokasi otomatis setelah izin Android disetujui; jam, Hijriah, jadwal/hitung mundur salat dan kiblat. Koordinat tersimpan di HP tanpa pelacakan latar belakang.
@@ -55,4 +57,4 @@ Untuk cloud Linux yang menyediakan toolchain proyek, tersedia `bash scripts/setu
 
 Rincian ada di [fitur dan batas tiap mode](docs/FEATURES.md), [AI bacaan](docs/RECITATION_ASSISTANT.md), [model AI](docs/QURAN_AI_MODEL.md), [lokasi/salat/kiblat](docs/PRAYER.md), [sumber Quran](docs/DATA_SOURCES.md), [audio](docs/AUDIO_CATALOG.md), dan [gambar mushaf](docs/MUSHAF_IMAGES.md).
 
-Rilis 1.6.4 diperiksa dengan tes JVM/Compose, lint, audit data, dan pemeriksaan APK. Cakupan serta hasil akhir ada di [laporan validasi](docs/BUILD_VALIDATION.md). GPS, mikrofon, kompas dan suara azan belum diuji pada HP fisik dalam rilis ini. Perubahan manual berikutnya perlu diuji ulang.
+Rilis 1.7.0 diperiksa dengan tes JVM/Compose, lint, audit data, dan pemeriksaan APK. Cakupan serta hasil akhir ada di [laporan validasi](docs/BUILD_VALIDATION.md). GPS, mikrofon, kompas dan suara azan belum diuji pada HP fisik dalam rilis ini. Perubahan manual berikutnya perlu diuji ulang.

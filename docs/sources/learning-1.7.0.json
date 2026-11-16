@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "description": "Editorial Indonesian learning material, with canonical Quran examples and no Duolingo assets or code.",
+  "learningAsset": "app/src/main/assets/learning_course.json",
+  "learningAssetSha256": "9be78b62a4557dea6504a913a3f3bd07d0936ac163864cbe9e5f76e6d6935637",
+  "referenceApk": {
+    "name": "Duolingo",
+    "version": "6.105.2",
+    "versionCode": 2497,
+    "inspection": "Static resource/layout inspection only; not executed. User-supplied APK kept outside source and APK artifacts.",
+    "bytes": 166749992
+  },
+  "lessons": [
+    {
+      "lesson": "tajwid_ghunnah",
+      "reference": "108:3",
+      "sourceTitle": "About Tajweed · The Ghunnah",
+      "sourceUrl": "https://www.abouttajweed.com/index.php/tajweed-rules/46-the-ghunnah-and-its-ranks/18-the-ghunnah"
+    },
+    {
+      "lesson": "tajwid_madd_natural",
+      "reference": "1:4",
+      "sourceTitle": "About Tajweed · The Mudood (Lengthenings) Part 1",
+      "sourceUrl": "https://www.abouttajweed.com/index.php/tajweed-rules/49-the-mudood-the-lengthenings/101-the-mudood-lengthenings-part-1"
+    },
+    {
+      "lesson": "tajwid_qalqalah",
+      "reference": "112:3",
+      "sourceTitle": "About Tajweed · The Qalqalah Mechanism",
+      "sourceUrl": "https://www.abouttajweed.com/index.php/tajweed-rules/50-the-qalqalah/46-the-qalqalah-mechanism"
+    },
+    {
+      "lesson": "tajwid_lam_shamsiyyah",
+      "reference": "1:3",
+      "sourceTitle": "About Tajweed · Laam saakinah rules, part 1",
+      "sourceUrl": "https://www.abouttajweed.com/index.php/tajweed-rules/48-the-laam-saakinah/44-laam-saakinah-rules-part-1-laam-of-the-definite-article-the"
+    },
+    {
+      "lesson": "tajwid_izhar_halqi",
+      "reference": "112:4",
+      "sourceTitle": "About Tajweed · Nun saakinah and tanween",
+      "sourceUrl": "https://www.abouttajweed.com/"
+    },
+    {
+      "lesson": "tajwid_idgham_ghunnah",
+      "reference": "105:4",
+      "sourceTitle": "About Tajweed · Merging of the noon saakinah and tanween part 2",
+      "sourceUrl": "https://www.abouttajweed.com/index.php/tajweed-rules/47-the-noon-saakinah-and-tanween/37-merging-of-the-noon-saakinah-and-tanween-part-2"
+    },
+    {
+      "lesson": "tajwid_idgham_no_ghunnah",
+      "reference": "112:4",
+      "sourceTitle": "About Tajweed · Merging of the noon saakinah and tanween part 1",
+      "sourceUrl": "https://www.abouttajweed.com/index.php/tajweed-rules/47-the-noon-saakinah-and-tanween/36-merging-of-the-noon-saakinah-and-tanween-part-1"
+    },
+    {
+      "lesson": "tajwid_iqlab",
+      "reference": "2:10",
+      "sourceTitle": "About Tajweed · Changing (iqlaab) rule of the noon saakinah and tanween",
+      "sourceUrl": "https://www.abouttajweed.com/index.php/tajweed-rules/47-the-noon-saakinah-and-tanween/39-changing-iqlaab-rule-of-the-noon-saakinah-and-tanween"
+    },
+    {
+      "lesson": "tajwid_ikhfa",
+      "reference": "113:2",
+      "sourceTitle": "About Tajweed · Concealment (ikhfa') rule of the noon saakinah and tanween",
+      "sourceUrl": "https://www.abouttajweed.com/index.php/tajweed-rules/47-the-noon-saakinah-and-tanween/40-hiding-ikhfa-rule-of-the-noon-saakinah-and-tanween"
+    },
+    {
+      "lesson": "tajwid_mim_sukun",
+      "reference": "105:4",
+      "sourceTitle": "About Tajweed · Meem saakinah",
+      "sourceUrl": "https://www.abouttajweed.com/"
+    },
+    {
+      "lesson": "tajwid_madd_hamzah",
+      "reference": "108:1",
+      "sourceTitle": "About Tajweed · The mudood",
+      "sourceUrl": "https://www.abouttajweed.com/"
+    },
+    {
+      "lesson": "tajwid_waqaf",
+      "reference": "112:1",
+      "sourceTitle": "About Tajweed · Stopping and starting",
+      "sourceUrl": "https://www.abouttajweed.com/"
+    },
+    {
+      "lesson": "hafalan_108",
+      "reference": "108:1",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/"
+    },
+    {
+      "lesson": "hafalan_112",
+      "reference": "112:1",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/"
+    },
+    {
+      "lesson": "hafalan_113",
+      "reference": "113:1",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/"
+    },
+    {
+      "lesson": "hafalan_114",
+      "reference": "114:1",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/"
+    },
+    {
+      "lesson": "hafalan_103",
+      "reference": "103:1",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/"
+    },
+    {
+      "lesson": "hafalan_110",
+      "reference": "110:1",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/"
+    },
+    {
+      "lesson": "hafalan_109",
+      "reference": "109:1",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/"
+    },
+    {
+      "lesson": "hafalan_106",
+      "reference": "106:1",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/"
+    },
+    {
+      "lesson": "hafalan_107",
+      "reference": "107:1",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/"
+    },
+    {
+      "lesson": "hafalan_105",
+      "reference": "105:1",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/"
+    },
+    {
+      "lesson": "hafalan_104",
+      "reference": "104:1",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/"
+    },
+    {
+      "lesson": "hafalan_102",
+      "reference": "102:1",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/"
+    },
+    {
+      "lesson": "hafalan_99",
+      "reference": "99:1",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/"
+    }
+  ],
+  "independentTajwidTeacherReview": false
+}

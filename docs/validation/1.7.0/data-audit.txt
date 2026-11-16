@@ -1,0 +1,3 @@
+Verified: 114 surahs, 6,236 aligned Arabic/Indonesian/English verses, 30 juz, all 114 first ayat and 112 separate opening spans, asset SHA-256
+Verified: seven 604-page editions, all indexes, six complete verse maps, 42 unchanged bundled PNGs, unchanged canonical Quran.
+Verified local semantic model and all 115 corpus source hashes.

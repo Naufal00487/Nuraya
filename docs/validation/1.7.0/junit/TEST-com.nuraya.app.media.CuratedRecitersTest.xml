@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.media.CuratedRecitersTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-11-16T00:06:14" hostname="2a07a094f08b" time="0.738">
+  <properties/>
+  <testcase name="everyNewVerseUrlMatchesAll6236CanonicalReferencesIncludingTawbah" classname="com.nuraya.app.media.CuratedRecitersTest" time="0.717"/>
+  <testcase name="thirtyDistinctPeopleHaveBothChapterAndVerseSources" classname="com.nuraya.app.media.CuratedRecitersTest" time="0.021"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

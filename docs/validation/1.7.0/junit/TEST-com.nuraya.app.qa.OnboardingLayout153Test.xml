@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.qa.OnboardingLayout153Test" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-16T00:06:26" hostname="2a07a094f08b" time="1.292">
+  <properties/>
+  <testcase name="settingsSectionsDoNotOverlapAtLargeTextSize" classname="com.nuraya.app.qa.OnboardingLayout153Test" time="0.171"/>
+  <testcase name="prayerArtworkAndCalendarAreSeparateAndAllTimesStayReadable" classname="com.nuraya.app.qa.OnboardingLayout153Test" time="0.309"/>
+  <testcase name="freshInstallRequiresANameBeforeHomeAndKeepsTheProfileLocally" classname="com.nuraya.app.qa.OnboardingLayout153Test" time="0.812"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,46 @@
+{
+  "version": "1.7.0",
+  "versionCode": 19,
+  "checkedAt": "2026-11-16T07:09:22.957494+07:00",
+  "junit": {
+    "tests": 277,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "debug": {
+      "Fatal": 0,
+      "Error": 0,
+      "Warning": 79,
+      "Information": 0
+    },
+    "release": {
+      "Fatal": 0,
+      "Error": 0,
+      "Warning": 79,
+      "Information": 0
+    }
+  },
+  "apk": {
+    "bytes": 103090468,
+    "sha256": "eb744088783c1b967e5a64d366673df8ddf7c8258bd3ddabb4e52ff1dde2a50c",
+    "file": "artifacts/Nuraya-1.7.0.apk",
+    "buildType": "release"
+  },
+  "learning": {
+    "lessons": 25,
+    "tajwid": 12,
+    "shortSurahs": 13,
+    "editorialQuestions": 48,
+    "levelsAllUnlocked": true,
+    "goalDefaultEnabled": false,
+    "competition": false,
+    "mascot": false,
+    "xpFirstCompletion": 20,
+    "xpRepeat": 5,
+    "selfRecallCoversEveryVerse": true
+  },
+  "physicalDeviceTested": false,
+  "referenceApkRuntimeTested": false
+}

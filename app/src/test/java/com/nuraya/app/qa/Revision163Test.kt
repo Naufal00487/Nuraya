@@ -108,6 +108,12 @@ class Revision163Test {
         await("learning_open_67_1")
         compose.onNodeWithTag("learning_open_67_1").performScrollTo().performClick()
         await("mushaf_page_image")
+        // The bitmap node is composed before its asynchronous layout is placed.
+        // Wait for the exact page to occupy visible space, then assert visibility.
+        compose.waitUntil(10_000) {
+            compose.onAllNodesWithContentDescription("Mushaf Indonesia halaman 562").fetchSemanticsNodes()
+                .any { it.boundsInRoot.width > 0f && it.boundsInRoot.height > 0f }
+        }
         compose.onNodeWithContentDescription("Mushaf Indonesia halaman 562").assertIsDisplayed()
     }
 

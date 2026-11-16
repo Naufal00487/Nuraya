@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.media.VerseSpanTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-16T00:06:23" hostname="2a07a094f08b" time="0.191">
+  <properties/>
+  <testcase name="crossSurahRepeatsKeepCanonicalOrderAndDoNotAddNumberedBasmalah" classname="com.nuraya.app.media.VerseSpanTest" time="0.085"/>
+  <testcase name="sameSurahRangeRemainsCompatibleWithExistingQueueOrder" classname="com.nuraya.app.media.VerseSpanTest" time="0.084"/>
+  <testcase name="crossChapterFollowingRequiresAnExplicitlyStartedBookQueue" classname="com.nuraya.app.media.VerseSpanTest" time="0.021"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

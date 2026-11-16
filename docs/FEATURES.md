@@ -94,3 +94,8 @@ Audio per ayat pembaca berhenti saat meninggalkan pembaca atau aplikasi; menukar
 ## Finishing 1.6.4
 
 Kiblat biru, banner otomatis/manual, tiga avatar asli terbaru, ikon tindakan ayat, dan pernyataan akademik/sumber di Tentang Nuraya. Pengingat Quran dua kali sehari acak 08.00–20.00; pengingat salat memakai template penyusun dan pilihan 5/10/15/30 menit. Suara azan opsional/default mati, terpisah dari izin notifikasi. Kartu izin dan koneksi berukuran kecil. [Perubahan](UPDATE_1.6.4.md) · [Pengingat dan batas Android](REMINDERS.md).
+
+
+## Belajar 1.7.0
+
+Menu Hafalan, tajwid & kuis kini berisi Belajar, Hafalan, Latihan, dan Progres. Pilih langsung level Dasar/Menengah/Lanjutan; seluruh pelajaran terbuka tanpa tes penempatan. Jalur belajar memakai tema biru Nuraya, kartu besar, pengukur sesi, pembahasan jawaban, serta empat bentuk latihan. Dua belas materi tajwid dan tiga belas surah pendek tersedia lokal. XP, hari beruntun dan enam lencana hanya mencatat kemajuan pribadi; target harian mati sampai diaktifkan. Hafalan rentang bebas tetap tersedia. [Panduan dan batas](LEARNING.md) · [Perubahan](UPDATE_1.7.0.md).

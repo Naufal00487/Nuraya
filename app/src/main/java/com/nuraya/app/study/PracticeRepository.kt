@@ -64,6 +64,72 @@ class PracticeRepository internal constructor(
         it.copy(quizAnswered = it.quizAnswered + 1, quizCorrect = it.quizCorrect + if (correct) 1 else 0)
     }
 
+    suspend fun setLearningGoal(goal: Int, enabled: Boolean) {
+        require(goal in 1..3)
+        update { it.copy(learning=it.learning.copy(goal=goal,goalEnabled=enabled)) }
+    }
+
+    suspend fun startLesson(lessonId: String, baseCount: Int, seed: Int = kotlin.random.Random.nextInt()) {
+        require(lessonId.matches(Regex("(tajwid_[a-z_]+|hafalan_[0-9]{1,3})")) && baseCount in 1..12)
+        update { previous ->
+            if(previous.learning.active?.lessonId==lessonId) previous
+            else previous.copy(learning=previous.learning.copy(active=LearningSession(java.util.UUID.randomUUID().toString(),lessonId,seed,baseCount),result=null))
+        }
+    }
+
+    /** A checked answer is durable before feedback appears; duplicate/stale taps cannot count twice. */
+    suspend fun submitLearningAnswer(sessionId: String, expectedStep: Int, exercise: LearningExercise, response: List<String>) {
+        require(response.isNotEmpty() && response.distinct().size==response.size)
+        if(exercise.kind==ExerciseKind.RECALL) require(response.size==1 && response.single() in RecallRating.entries.map { it.name })
+        else {
+            require(response.size==exercise.expected.size && response.all { value -> exercise.options.any { it.id==value } })
+        }
+        val date=today()
+        update { previous ->
+            val session=previous.learning.active
+            if(session==null || session.id!=sessionId || session.step!=expectedStep || session.checked) return@update previous
+            require(exercise.id.startsWith(session.lessonId+"_"))
+            val correct=exercise.correct(response)
+            val retries=if(!correct && !session.reviewing) session.retryIndices+session.step else session.retryIndices
+            val next=session.copy(answers=session.answers+LearningAnswer(correct,response,exercise.scored),retryIndices=retries)
+            var state=previous.copy(learning=previous.learning.copy(active=next))
+            if(!session.reviewing && exercise.scored) state=state.copy(quizAnswered=state.quizAnswered+1,quizCorrect=state.quizCorrect+if(correct)1 else 0)
+            if(exercise.kind==ExerciseKind.RECALL && !session.reviewing) {
+                val surah=requireNotNull(exercise.surah);val ayah=requireNotNull(exercise.ayah)
+                require(isVerse(surah,ayah))
+                val rating=RecallRating.valueOf(response.single())
+                val old=state.reviews.firstOrNull { it.surah==surah&&it.ayah==ayah }
+                val interval=when(rating) { RecallRating.AGAIN->0;RecallRating.ASSISTED->1;RecallRating.CONFIDENT->if(old?.rating==RecallRating.CONFIDENT)(old.intervalDays*2).coerceIn(3,60) else 3 }
+                val review=MemorizationReview(surah,ayah,rating,(old?.reviews?:0)+1,interval,date.toString(),date.plusDays(interval.toLong()).toString())
+                state=state.copy(reviews=state.reviews.filterNot { it.reference==review.reference }+review,
+                    dailyCounts=(state.dailyCounts+(date.toString() to (state.countOn(date)+1))).filterKeys { LocalDate.parse(it)>=date.minusDays(365) },totalReviews=state.totalReviews+1)
+            }
+            state
+        }
+    }
+
+    /** Completion, XP, daily target and record update are one transaction, including after a restart. */
+    suspend fun advanceLesson(sessionId: String, expectedStep: Int) {
+        val date=today()
+        update { previous ->
+            val learning=previous.learning;val session=learning.active
+            if(session==null||session.id!=sessionId||session.step!=expectedStep||!session.checked) return@update previous
+            if(session.step+1<session.totalSteps) return@update previous.copy(learning=learning.copy(active=session.copy(step=session.step+1)))
+            val first=session.answers.take(session.baseCount).filter { it.scored }
+            val correct=first.count { it.correct };val total=first.size
+            val old=learning.records.firstOrNull { it.lessonId==session.lessonId }
+            val xp=if(old==null)20 else 5
+            val record=LessonRecord(session.lessonId,(old?.attempts?:0)+1,maxOf(old?.bestCorrect?:0,correct),total,date.toString())
+            previous.copy(completedSessions=previous.completedSessions+if(session.lessonId.startsWith("hafalan_"))1 else 0,
+                learning=learning.copy(xp=learning.xp+xp,active=null,
+                    records=learning.records.filterNot { it.lessonId==record.lessonId }+record,
+                    dailyLessons=(learning.dailyLessons+(date.toString() to (learning.countOn(date)+1))).filterKeys { LocalDate.parse(it)>=date.minusDays(365) },
+                    result=LearningResult(session.id,session.lessonId,correct,total,xp,session.retryIndices.size)))
+        }
+    }
+    suspend fun dismissLearningResult() = update { it.copy(learning=it.learning.copy(result=null)) }
+    suspend fun discardLearningSession() = update { it.copy(learning=it.learning.copy(active=null)) }
+
     private suspend fun update(transform: (PracticeProgress) -> PracticeProgress) {
         store.edit { prefs -> prefs[stateKey] = encode(transform(decode(prefs[stateKey]))) }
     }
@@ -82,11 +148,12 @@ class PracticeRepository internal constructor(
         return PracticeProgress(data.getInt("dailyGoal"), reviews,
             days.keys().asSequence().associateWith { days.getInt(it) }, data.getInt("totalReviews"),
             data.getInt("completedSessions"), data.getInt("quizAnswered"), data.getInt("quizCorrect"),
-            (0 until lessons.length()).map { lessons.getString(it) }.toSet())
+            (0 until lessons.length()).map { lessons.getString(it) }.toSet(), LearningCodec.decode(data.optJSONObject("learning")))
     }
 
     private fun encode(state: PracticeProgress): String = JSONObject().apply {
         put("schemaVersion", 1)
+        put("learning", LearningCodec.encode(state.learning))
         put("dailyGoal", state.dailyGoal)
         put("reviews", JSONArray().apply { state.reviews.forEach { review -> put(JSONObject().apply {
             put("surah", review.surah); put("ayah", review.ayah); put("rating", review.rating.name)

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.quranreading.MushafImagesTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-16T00:07:10" hostname="2a07a094f08b" time="1.051">
+  <properties/>
+  <testcase name="allCanonicalVersesHaveOneValidMadinahPageAndEveryPageIsAddressable" classname="com.nuraya.app.quranreading.MushafImagesTest" time="0.091"/>
+  <testcase name="explicitlySavedPageRetainsTheExactVerifiedSourceBytes" classname="com.nuraya.app.quranreading.MushafImagesTest" time="0.169"/>
+  <testcase name="indonesiaPagesKeepTheirSourceIdentityAndNeverOverwriteSavedMadinahPages" classname="com.nuraya.app.quranreading.MushafImagesTest" time="0.284"/>
+  <testcase name="bundledOriginalPagesMatchPinnedTreeAndCorruptionIsRejected" classname="com.nuraya.app.quranreading.MushafImagesTest" time="0.507"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

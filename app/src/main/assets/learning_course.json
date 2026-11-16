@@ -1,0 +1,849 @@
+{
+  "schemaVersion": 1,
+  "language": "id",
+  "notes": "Editorial exercises, not an automated tajwid or memorization assessment. All levels are freely accessible. Arabic prompts/options are resolved from the canonical Quran; no generated or deliberately corrupted Quran text.",
+  "lessons": [
+    {
+      "id": "tajwid_ghunnah",
+      "topic": "ghunnah",
+      "title": "Ghunnah pada nun dan mim bertasydid",
+      "summary": "Dengung pada nun/mim bertasydid",
+      "level": 0,
+      "kind": "tajwid",
+      "explanation": "Nun atau mim yang bertasydid dibaca dengan dengung yang ditahan. Pada contoh ini, perhatikan nun bertasydid di awal ayat. Dengung berasal dari rongga hidung; pelajari lama dan cara membacanya dengan guru, lalu dengarkan contoh qari.",
+      "surah": 108,
+      "ayah": 3,
+      "sourceTitle": "About Tajweed · The Ghunnah",
+      "sourceUrl": "https://www.abouttajweed.com/index.php/tajweed-rules/46-the-ghunnah-and-its-ranks/18-the-ghunnah",
+      "questions": [
+        {
+          "prompt": "Huruf apa yang diperhatikan pada ghunnah bertasydid?",
+          "options": [
+            "Nun dan mim",
+            "Lam dan ra",
+            "Qaf dan dal"
+          ],
+          "correct": 0,
+          "explanation": "Nun dan mim yang bertasydid dibaca dengan ghunnah atau dengung."
+        },
+        {
+          "prompt": "Dengung ghunnah berasal dari…",
+          "options": [
+            "Rongga hidung",
+            "Ujung gigi",
+            "Bibir yang ditiup"
+          ],
+          "correct": 0,
+          "explanation": "Tempat keluarnya ghunnah adalah rongga hidung (khaisyum)."
+        },
+        {
+          "prompt": "Pada contoh ayat ini, nun bertasydid perlu dibaca…",
+          "options": [
+            "Dengan dengung",
+            "Tanpa dengung sama sekali",
+            "Dengan vokal tambahan"
+          ],
+          "correct": 0,
+          "explanation": "Perhatikan nun bertasydid dalam contoh ayat. Dengungnya tidak dihilangkan."
+        },
+        {
+          "prompt": "Cara berlatih ghunnah yang tepat adalah…",
+          "options": [
+            "Dengarkan contoh dan latih dengung bersama guru",
+            "Tambahkan huruf setelah nun",
+            "Ubah bunyi nun menjadi ra"
+          ],
+          "correct": 0,
+          "explanation": "Contoh qari membantu mendengar pola; guru membantu memperbaiki pengucapan."
+        }
+      ]
+    },
+    {
+      "id": "tajwid_madd_natural",
+      "topic": "madd_natural",
+      "title": "Mad asli: dua harakat",
+      "summary": "Panjang dua harakat",
+      "level": 0,
+      "kind": "tajwid",
+      "explanation": "Mad asli memanjangkan bunyi huruf mad selama dua harakat, tanpa sebab hamzah atau sukun yang menjadikannya mad lain. Pada contoh ini, alif kecil setelah mim menunjukkan bunyi panjang. Satu harakat mengikuti tempo bacaan, bukan jumlah detik yang tetap.",
+      "surah": 1,
+      "ayah": 4,
+      "sourceTitle": "About Tajweed · The Mudood (Lengthenings) Part 1",
+      "sourceUrl": "https://www.abouttajweed.com/index.php/tajweed-rules/49-the-mudood-the-lengthenings/101-the-mudood-lengthenings-part-1",
+      "questions": [
+        {
+          "prompt": "Panjang mad asli adalah…",
+          "options": [
+            "Dua harakat",
+            "Satu harakat",
+            "Selalu enam harakat"
+          ],
+          "correct": 0,
+          "explanation": "Mad asli atau mad thabi’i dibaca dua harakat."
+        },
+        {
+          "prompt": "Apakah satu harakat selalu satu detik?",
+          "options": [
+            "Tidak, mengikuti tempo bacaan",
+            "Ya, selalu satu detik",
+            "Hanya ketika membaca cepat"
+          ],
+          "correct": 0,
+          "explanation": "Harakat adalah ukuran relatif terhadap tempo bacaan, bukan detik tetap."
+        },
+        {
+          "prompt": "Saat membaca mad asli, yang diperpanjang adalah…",
+          "options": [
+            "Bunyi vokal huruf mad",
+            "Jumlah huruf dalam ayat",
+            "Jeda diam di tengah kata"
+          ],
+          "correct": 0,
+          "explanation": "Bunyi vokal dipanjangkan tanpa menambah huruf baru."
+        },
+        {
+          "prompt": "Agar panjang mad konsisten, sebaiknya…",
+          "options": [
+            "Jaga tempo dan dengarkan contoh",
+            "Perpanjang sesuka hati setiap kata",
+            "Hilangkan semua bunyi panjang"
+          ],
+          "correct": 0,
+          "explanation": "Ukuran harakat dijaga sesuai tempo, dengan contoh bacaan dan bimbingan guru."
+        }
+      ]
+    },
+    {
+      "id": "tajwid_qalqalah",
+      "topic": "qalqalah",
+      "title": "Qalqalah: pantulan tanpa vokal tambahan",
+      "summary": "Pantulan huruf ketika sukun",
+      "level": 0,
+      "kind": "tajwid",
+      "explanation": "Qalqalah terdengar pada huruf qaf, ta (ط), ba, jim, atau dal ketika sukun, termasuk sukun karena berhenti. Dalam contoh ini, kedua dal bersukun. Lepaskan bunyinya dengan jelas tanpa menambah bunyi a, i, atau u; dengarkan perbedaannya dengan bimbingan guru.",
+      "surah": 112,
+      "ayah": 3,
+      "sourceTitle": "About Tajweed · The Qalqalah Mechanism",
+      "sourceUrl": "https://www.abouttajweed.com/index.php/tajweed-rules/50-the-qalqalah/46-the-qalqalah-mechanism",
+      "questions": [
+        {
+          "prompt": "Kapan huruf qalqalah dipantulkan?",
+          "options": [
+            "Ketika hurufnya sukun",
+            "Setiap kali ada fathah",
+            "Hanya saat ada tanwin"
+          ],
+          "correct": 0,
+          "explanation": "Qalqalah berlaku pada hurufnya ketika sukun, termasuk sukun karena berhenti."
+        },
+        {
+          "prompt": "Kelompok huruf qalqalah adalah…",
+          "options": [
+            "ق ط ب ج د",
+            "ي ر م ل و ن",
+            "ء ه ع ح غ خ"
+          ],
+          "correct": 0,
+          "explanation": "Huruf qalqalah ialah qaf, tha, ba, jim, dan dal."
+        },
+        {
+          "prompt": "Pantulan qalqalah berarti menambahkan vokal baru?",
+          "options": [
+            "Tidak",
+            "Ya, selalu menambah a",
+            "Ya, selalu menambah u"
+          ],
+          "correct": 0,
+          "explanation": "Pantulan tidak mengubah huruf sukun menjadi suku kata dengan vokal baru."
+        },
+        {
+          "prompt": "Saat berhenti pada kata yang berakhir dal, latihan yang tepat adalah…",
+          "options": [
+            "Pantulkan dal tanpa menambah vokal",
+            "Hilangkan bunyi dal",
+            "Ubah dal menjadi ra"
+          ],
+          "correct": 0,
+          "explanation": "Dal yang menjadi sukun ketika waqaf dibaca dengan qalqalah."
+        }
+      ]
+    },
+    {
+      "id": "tajwid_lam_shamsiyyah",
+      "topic": "lam_shamsiyyah",
+      "title": "Alif lam syamsiyyah",
+      "summary": "Lam melebur ke huruf syamsiyyah",
+      "level": 0,
+      "kind": "tajwid",
+      "explanation": "Lam pada kata sandang al- melebur ke huruf syamsiyyah sesudahnya. Huruf sesudah lam dibaca bertasydid, sementara lam tidak dibaca tersendiri. Dalam contoh ini, lam melebur ke ra. Perhatikan tasydid pada ra saat mendengarkan.",
+      "surah": 1,
+      "ayah": 3,
+      "sourceTitle": "About Tajweed · Laam saakinah rules, part 1",
+      "sourceUrl": "https://www.abouttajweed.com/index.php/tajweed-rules/48-the-laam-saakinah/44-laam-saakinah-rules-part-1-laam-of-the-definite-article-the",
+      "questions": [
+        {
+          "prompt": "Bagaimana lam pada alif lam syamsiyyah dibaca?",
+          "options": [
+            "Melebur ke huruf berikutnya",
+            "Selalu dibaca jelas terpisah",
+            "Diubah menjadi bunyi mim"
+          ],
+          "correct": 0,
+          "explanation": "Lam melebur pada huruf syamsiyyah yang mengikutinya."
+        },
+        {
+          "prompt": "Pada contoh ayat ini, huruf yang menerima peleburan lam adalah…",
+          "options": [
+            "Ra",
+            "Mim",
+            "Nun"
+          ],
+          "correct": 0,
+          "explanation": "Ra termasuk huruf syamsiyyah. Perhatikan tasydid pada ra."
+        },
+        {
+          "prompt": "Tasydid pada huruf setelah alif lam membantu mengenali…",
+          "options": [
+            "Alif lam syamsiyyah",
+            "Semua mad enam harakat",
+            "Tanda akhir juz"
+          ],
+          "correct": 0,
+          "explanation": "Tasydid pada huruf syamsiyyah menunjukkan peleburan lam ke huruf tersebut."
+        },
+        {
+          "prompt": "Apa pembeda alif lam qamariyyah dari syamsiyyah?",
+          "options": [
+            "Lam qamariyyah dibaca jelas",
+            "Lam qamariyyah selalu hilang",
+            "Keduanya menambah huruf baru"
+          ],
+          "correct": 0,
+          "explanation": "Lam pada qamariyyah dibaca jelas; pada syamsiyyah melebur."
+        }
+      ]
+    },
+    {
+      "id": "tajwid_izhar_halqi",
+      "topic": "izhar_halqi",
+      "title": "Izhar halqi",
+      "summary": "Nun/tanwin jelas di huruf tenggorokan",
+      "level": 1,
+      "kind": "tajwid",
+      "explanation": "Nun sukun atau tanwin dibaca jelas ketika bertemu salah satu huruf tenggorokan: ء ه ع ح غ خ. Bunyi nun tidak dilebur ke huruf sesudahnya. Dengarkan contoh dan latih pengucapannya bersama guru.",
+      "surah": 112,
+      "ayah": 4,
+      "sourceTitle": "About Tajweed · Nun saakinah and tanween",
+      "sourceUrl": "https://www.abouttajweed.com/",
+      "questions": [
+        {
+          "prompt": "Izhar halqi terjadi ketika nun sukun atau tanwin bertemu…",
+          "options": [
+            "Huruf tenggorokan",
+            "Semua huruf tanpa kecuali",
+            "Hanya ba"
+          ],
+          "correct": 0,
+          "explanation": "Enam huruf izhar halqi adalah ء ه ع ح غ خ."
+        },
+        {
+          "prompt": "Pada izhar halqi, bunyi nun atau tanwin…",
+          "options": [
+            "Dibaca jelas",
+            "Dilebur ke lam",
+            "Diubah menjadi mim"
+          ],
+          "correct": 0,
+          "explanation": "Izhar berarti jelas. Jangan meleburkan bunyi nun ke huruf berikutnya."
+        },
+        {
+          "prompt": "Tanwin bertemu hamzah pada contoh ini termasuk…",
+          "options": [
+            "Izhar halqi",
+            "Iqlab",
+            "Idgham tanpa dengung"
+          ],
+          "correct": 0,
+          "explanation": "Hamzah termasuk enam huruf tenggorokan pemicu izhar halqi."
+        },
+        {
+          "prompt": "Manakah kelompok huruf izhar halqi?",
+          "options": [
+            "ء ه ع ح غ خ",
+            "ق ط ب ج د",
+            "ل ر"
+          ],
+          "correct": 0,
+          "explanation": "Enam huruf tenggorokan menjadi huruf izhar halqi."
+        }
+      ]
+    },
+    {
+      "id": "tajwid_idgham_ghunnah",
+      "topic": "idgham_ghunnah",
+      "title": "Idgham dengan dengung",
+      "summary": "Nun/tanwin melebur dengan dengung",
+      "level": 1,
+      "kind": "tajwid",
+      "explanation": "Dalam bacaan sambung, nun sukun atau tanwin di akhir kata umumnya melebur dengan dengung bila kata berikutnya dimulai dengan ya, nun, mim, atau waw. Dalam contoh ini, tanwin pada akhir kata pertama bertemu mim. Dengarkan peleburan dengan dengung; pelajari ketepatan bunyinya dari guru.",
+      "surah": 105,
+      "ayah": 4,
+      "sourceTitle": "About Tajweed · Merging of the noon saakinah and tanween part 2",
+      "sourceUrl": "https://www.abouttajweed.com/index.php/tajweed-rules/47-the-noon-saakinah-and-tanween/37-merging-of-the-noon-saakinah-and-tanween-part-2",
+      "questions": [
+        {
+          "prompt": "Idgham bighunnah berarti…",
+          "options": [
+            "Melebur dengan dengung",
+            "Melebur tanpa dengung",
+            "Memantulkan huruf sukun"
+          ],
+          "correct": 0,
+          "explanation": "Bighunnah berarti dengan dengung."
+        },
+        {
+          "prompt": "Huruf idgham dengan dengung adalah…",
+          "options": [
+            "ي ن م و",
+            "ل ر",
+            "ء ه ع ح غ خ"
+          ],
+          "correct": 0,
+          "explanation": "Ya, nun, mim, dan wau merupakan huruf idgham bighunnah."
+        },
+        {
+          "prompt": "Pada idgham bighunnah, apakah dengung dipertahankan?",
+          "options": [
+            "Ya",
+            "Tidak",
+            "Hanya jika akhir halaman"
+          ],
+          "correct": 0,
+          "explanation": "Peleburan ini disertai ghunnah atau dengung."
+        },
+        {
+          "prompt": "Nun sukun di akhir kata bertemu mim di awal kata berikutnya dibaca…",
+          "options": [
+            "Melebur dengan dengung",
+            "Melebur tanpa dengung",
+            "Dengan qalqalah"
+          ],
+          "correct": 0,
+          "explanation": "Pertemuan nun sukun dan mim antar kata termasuk idgham bighunnah."
+        }
+      ]
+    },
+    {
+      "id": "tajwid_idgham_no_ghunnah",
+      "topic": "idgham_no_ghunnah",
+      "title": "Idgham tanpa dengung",
+      "summary": "Nun/tanwin melebur tanpa dengung",
+      "level": 1,
+      "kind": "tajwid",
+      "explanation": "Dalam bacaan sambung, nun sukun atau tanwin di akhir kata melebur ke lam atau ra pada awal kata berikutnya tanpa dengung nun. Pada contoh ini, nun di akhir kata pertama bertemu lam. Langsung masuk ke lam yang bertasydid, tanpa menahan bunyi nun.",
+      "surah": 112,
+      "ayah": 4,
+      "sourceTitle": "About Tajweed · Merging of the noon saakinah and tanween part 1",
+      "sourceUrl": "https://www.abouttajweed.com/index.php/tajweed-rules/47-the-noon-saakinah-and-tanween/36-merging-of-the-noon-saakinah-and-tanween-part-1",
+      "questions": [
+        {
+          "prompt": "Idgham bilaghunnah berarti…",
+          "options": [
+            "Melebur tanpa dengung",
+            "Melebur dengan dengung",
+            "Memperpanjang enam detik"
+          ],
+          "correct": 0,
+          "explanation": "Bilaghunnah berarti tanpa dengung."
+        },
+        {
+          "prompt": "Huruf idgham tanpa dengung adalah…",
+          "options": [
+            "Lam dan ra",
+            "Mim dan ba",
+            "Qaf dan tha"
+          ],
+          "correct": 0,
+          "explanation": "Nun sukun/tanwin yang bertemu lam atau ra dilebur tanpa ghunnah."
+        },
+        {
+          "prompt": "Pada idgham bilaghunnah, dengung nun/tanwin…",
+          "options": [
+            "Tidak dipertahankan",
+            "Diperpanjang sesuka hati",
+            "Diganti dengan pantulan"
+          ],
+          "correct": 0,
+          "explanation": "Bunyi melebur ke lam atau ra tanpa mempertahankan dengung nun/tanwin."
+        },
+        {
+          "prompt": "Tanwin bertemu lam pada kata berikutnya termasuk…",
+          "options": [
+            "Idgham bilaghunnah",
+            "Iqlab",
+            "Izhar halqi"
+          ],
+          "correct": 0,
+          "explanation": "Lam adalah salah satu dari dua huruf idgham tanpa dengung."
+        }
+      ]
+    },
+    {
+      "id": "tajwid_iqlab",
+      "topic": "iqlab",
+      "title": "Iqlab sebelum ba",
+      "summary": "Nun/tanwin berubah ke bunyi mim",
+      "level": 1,
+      "kind": "tajwid",
+      "explanation": "Bila nun sukun atau tanwin bertemu ba dalam bacaan sambung, bunyinya berubah menjadi mim yang disamarkan dengan dengung. Pada contoh ini, tanwin bertemu ba pada kata berikutnya. Mim kecil adalah petunjuk bacaan; perubahan ini pada pelafalan, bukan perubahan teks Al-Qur’an.",
+      "surah": 2,
+      "ayah": 10,
+      "sourceTitle": "About Tajweed · Changing (iqlaab) rule of the noon saakinah and tanween",
+      "sourceUrl": "https://www.abouttajweed.com/index.php/tajweed-rules/47-the-noon-saakinah-and-tanween/39-changing-iqlaab-rule-of-the-noon-saakinah-and-tanween",
+      "questions": [
+        {
+          "prompt": "Iqlab terjadi ketika nun sukun atau tanwin bertemu…",
+          "options": [
+            "Ba",
+            "Ra",
+            "Hamzah"
+          ],
+          "correct": 0,
+          "explanation": "Huruf pemicu iqlab adalah ba."
+        },
+        {
+          "prompt": "Bunyi nun sukun/tanwin pada iqlab berubah menuju…",
+          "options": [
+            "Bunyi mim dengan dengung",
+            "Bunyi ra tanpa dengung",
+            "Bunyi qaf yang dipantulkan"
+          ],
+          "correct": 0,
+          "explanation": "Iqlab mengubah bunyi nun sukun/tanwin menjadi mim yang disamarkan disertai dengung."
+        },
+        {
+          "prompt": "Iqlab dibaca tanpa dengung?",
+          "options": [
+            "Tidak, disertai dengung",
+            "Ya, selalu tanpa dengung",
+            "Tergantung nomor ayat"
+          ],
+          "correct": 0,
+          "explanation": "Iqlab tetap disertai ghunnah."
+        },
+        {
+          "prompt": "Mim kecil pada tanda iqlab membantu menunjukkan…",
+          "options": [
+            "Perubahan bunyi nun/tanwin menuju mim",
+            "Tambahan kata baru dalam ayat",
+            "Akhir surah"
+          ],
+          "correct": 0,
+          "explanation": "Mim kecil merupakan tanda bantu baca; teks ayat tidak ditambah kata baru."
+        }
+      ]
+    },
+    {
+      "id": "tajwid_ikhfa",
+      "topic": "ikhfa",
+      "title": "Ikhfa pada nun sukun dan tanwin",
+      "summary": "Nun/tanwin disamarkan dengan dengung",
+      "level": 1,
+      "kind": "tajwid",
+      "explanation": "Ikhfa menyamarkan bunyi nun sukun atau tanwin sebelum salah satu dari 15 huruf ikhfa, sambil mempertahankan dengung. Pada contoh ini, nun bertemu syin. Bunyi ini berada di antara bacaan nun yang jelas dan peleburan penuh; pelajari posisi lidah dan durasinya dengan guru.",
+      "surah": 113,
+      "ayah": 2,
+      "sourceTitle": "About Tajweed · Concealment (ikhfa') rule of the noon saakinah and tanween",
+      "sourceUrl": "https://www.abouttajweed.com/index.php/tajweed-rules/47-the-noon-saakinah-and-tanween/40-hiding-ikhfa-rule-of-the-noon-saakinah-and-tanween",
+      "questions": [
+        {
+          "prompt": "Ikhfa berarti…",
+          "options": [
+            "Menyamarkan",
+            "Memantulkan",
+            "Memotong ayat"
+          ],
+          "correct": 0,
+          "explanation": "Ikhfa haqiqi menyamarkan bunyi nun sukun/tanwin dengan ghunnah."
+        },
+        {
+          "prompt": "Nun sukun/tanwin bertemu salah satu huruf ikhfa dibaca…",
+          "options": [
+            "Samar dengan dengung",
+            "Melebur tanpa dengung ke ra",
+            "Dengan vokal tambahan"
+          ],
+          "correct": 0,
+          "explanation": "Bunyi dibaca samar disertai dengung, dengan kesiapan menuju huruf berikutnya."
+        },
+        {
+          "prompt": "Berapa huruf ikhfa haqiqi?",
+          "options": [
+            "Lima belas",
+            "Dua",
+            "Lima"
+          ],
+          "correct": 0,
+          "explanation": "Ikhfa haqiqi memiliki lima belas huruf."
+        },
+        {
+          "prompt": "Bagaimana melatih perpindahan dari dengung ikhfa ke huruf berikutnya?",
+          "options": [
+            "Dengarkan contoh lalu praktik dengan guru",
+            "Selalu berhenti di tengah kata",
+            "Hilangkan huruf setelah dengung"
+          ],
+          "correct": 0,
+          "explanation": "Contoh dan bimbingan membantu penyamaran serta perpindahan yang tepat."
+        }
+      ]
+    },
+    {
+      "id": "tajwid_mim_sukun",
+      "topic": "mim_sukun",
+      "title": "Tiga hukum mim sukun",
+      "summary": "Mim sukun: ikhfa, idgham, izhar",
+      "level": 2,
+      "kind": "tajwid",
+      "explanation": "Mim sukun bertemu ba dibaca ikhfa syafawi dengan dengung. Jika bertemu mim, dibaca idgham mimi dengan dengung. Jika bertemu huruf selain mim dan ba, dibaca izhar syafawi atau jelas. Latih gerak bibir bersama guru.",
+      "surah": 105,
+      "ayah": 4,
+      "sourceTitle": "About Tajweed · Meem saakinah",
+      "sourceUrl": "https://www.abouttajweed.com/",
+      "questions": [
+        {
+          "prompt": "Mim sukun bertemu ba dibaca…",
+          "options": [
+            "Ikhfa syafawi",
+            "Izhar halqi",
+            "Idgham bilaghunnah"
+          ],
+          "correct": 0,
+          "explanation": "Mim sukun bertemu ba dibaca samar disertai dengung: ikhfa syafawi."
+        },
+        {
+          "prompt": "Mim sukun bertemu mim dibaca…",
+          "options": [
+            "Idgham mimi",
+            "Qalqalah",
+            "Mad wajib muttasil"
+          ],
+          "correct": 0,
+          "explanation": "Dua mim bertemu dengan mim pertama sukun dilebur disertai dengung."
+        },
+        {
+          "prompt": "Mim sukun bertemu selain mim dan ba dibaca…",
+          "options": [
+            "Izhar syafawi",
+            "Selalu ikhfa syafawi",
+            "Selalu iqlab"
+          ],
+          "correct": 0,
+          "explanation": "Selain mim dan ba, hukum mim sukun adalah izhar syafawi."
+        },
+        {
+          "prompt": "Pada pertemuan mim sukun dan ba di contoh ayat ini, bacalah…",
+          "options": [
+            "Dengan ikhfa syafawi dan dengung",
+            "Dengan memantulkan mim",
+            "Dengan menghilangkan ba"
+          ],
+          "correct": 0,
+          "explanation": "Pada contoh ayat ini, mim sukun bertemu ba. Latih ikhfa syafawi dengan contoh qari."
+        }
+      ]
+    },
+    {
+      "id": "tajwid_madd_hamzah",
+      "topic": "madd_hamzah",
+      "title": "Mad dan pertemuan hamzah",
+      "summary": "Kenali hamzah dalam atau antar kata",
+      "level": 2,
+      "kind": "tajwid",
+      "explanation": "Mad wajib muttasil terjadi ketika huruf mad dan hamzah berada dalam satu kata. Mad jaiz munfasil terjadi ketika huruf mad berada di akhir kata dan hamzah di awal kata berikutnya. Panjang bacaan mengikuti riwayat dan jalur bacaan yang dipelajari; jangan mengubahnya menjadi hitungan detik tetap.",
+      "surah": 108,
+      "ayah": 1,
+      "sourceTitle": "About Tajweed · The mudood",
+      "sourceUrl": "https://www.abouttajweed.com/",
+      "questions": [
+        {
+          "prompt": "Huruf mad bertemu hamzah dalam satu kata disebut…",
+          "options": [
+            "Mad wajib muttasil",
+            "Mad jaiz munfasil",
+            "Qalqalah"
+          ],
+          "correct": 0,
+          "explanation": "Muttasil berarti bersambung: mad dan hamzah berada dalam satu kata."
+        },
+        {
+          "prompt": "Huruf mad di akhir kata bertemu hamzah pada awal kata berikutnya disebut…",
+          "options": [
+            "Mad jaiz munfasil",
+            "Mad wajib muttasil",
+            "Izhar syafawi"
+          ],
+          "correct": 0,
+          "explanation": "Munfasil berarti terpisah: mad dan hamzah berada pada dua kata."
+        },
+        {
+          "prompt": "Pertemuan mad dan hamzah pada contoh ayat ini berada pada…",
+          "options": [
+            "Dua kata",
+            "Satu kata",
+            "Tidak ada hamzah"
+          ],
+          "correct": 0,
+          "explanation": "Mad di akhir kata pertama bertemu hamzah di awal kata berikutnya: mad jaiz munfasil."
+        },
+        {
+          "prompt": "Saat mempelajari panjang mad, sebaiknya…",
+          "options": [
+            "Ikuti riwayat dan jalur bacaan dengan bimbingan guru",
+            "Tetapkan semua mad menjadi satu detik",
+            "Campurkan panjang mad sesuka hati"
+          ],
+          "correct": 0,
+          "explanation": "Panjang mad dipelajari sesuai riwayat/jalur bacaan dan tempo, bukan detik tetap."
+        }
+      ]
+    },
+    {
+      "id": "tajwid_waqaf",
+      "topic": "waqaf",
+      "title": "Waqaf dan memulai kembali",
+      "summary": "Berhenti dan mulai dengan menjaga makna",
+      "level": 2,
+      "kind": "tajwid",
+      "explanation": "Waqaf berarti menghentikan suara bacaan sejenak untuk mengambil napas dengan niat melanjutkan. Ibtida adalah memulai bacaan. Pilih tempat berhenti dan memulai yang menjaga makna. Tanda م mengarahkan berhenti, ج membolehkan berhenti atau lanjut, dan لا mengarahkan agar tidak berhenti di tempat itu. Jika terpaksa berhenti karena napas, ulangi dari tempat yang sesuai agar maknanya utuh; pelajari bersama guru.",
+      "surah": 112,
+      "ayah": 1,
+      "sourceTitle": "About Tajweed · Stopping and starting",
+      "sourceUrl": "https://www.abouttajweed.com/",
+      "questions": [
+        {
+          "prompt": "Waqaf adalah…",
+          "options": [
+            "Berhenti sejenak untuk bernapas dengan niat melanjutkan",
+            "Menambah kata di akhir ayat",
+            "Mengganti huruf yang sulit"
+          ],
+          "correct": 0,
+          "explanation": "Waqaf adalah menghentikan suara bacaan untuk mengambil napas, dengan niat melanjutkan."
+        },
+        {
+          "prompt": "Tanda ج pada mushaf mengarahkan…",
+          "options": [
+            "Boleh berhenti atau melanjutkan",
+            "Harus mengulang seluruh surah",
+            "Menambah vokal baru"
+          ],
+          "correct": 0,
+          "explanation": "Tanda jim menunjukkan waqaf jaiz: berhenti atau melanjutkan diperbolehkan."
+        },
+        {
+          "prompt": "Jika terpaksa berhenti karena kehabisan napas, saat melanjutkan…",
+          "options": [
+            "Mulai dari tempat yang menjaga makna",
+            "Selalu mulai dari huruf terakhir saja",
+            "Boleh mengubah urutan kata"
+          ],
+          "correct": 0,
+          "explanation": "Pilih awal bacaan yang menjaga makna. Pelajari waqaf dan ibtida dengan guru."
+        },
+        {
+          "prompt": "Tanda لا di tengah bacaan mengarahkan agar…",
+          "options": [
+            "Tidak berhenti di tempat itu",
+            "Memanjangkan setiap huruf",
+            "Membaca tanpa harakat"
+          ],
+          "correct": 0,
+          "explanation": "Tanda la mengarahkan agar tidak berhenti di tempat itu. Bila terpaksa berhenti, mulai kembali dari tempat yang sesuai."
+        }
+      ]
+    },
+    {
+      "id": "hafalan_108",
+      "topic": "",
+      "title": "Al-Kautsar",
+      "summary": "Dengarkan, ingat urutan, lalu periksa bacaanmu",
+      "level": 0,
+      "kind": "memorize",
+      "surah": 108,
+      "ayah": 1,
+      "explanation": "Dengarkan contoh bacaan, coba dari ingatan, lalu periksa dengan teks asli. Latihan urutan membantu mengingat susunan ayat. Catatan lancar atau perlu mengulang adalah penilaianmu sendiri.",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/",
+      "questions": []
+    },
+    {
+      "id": "hafalan_112",
+      "topic": "",
+      "title": "Al-Ikhlas",
+      "summary": "Dengarkan, ingat urutan, lalu periksa bacaanmu",
+      "level": 0,
+      "kind": "memorize",
+      "surah": 112,
+      "ayah": 1,
+      "explanation": "Dengarkan contoh bacaan, coba dari ingatan, lalu periksa dengan teks asli. Latihan urutan membantu mengingat susunan ayat. Catatan lancar atau perlu mengulang adalah penilaianmu sendiri.",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/",
+      "questions": []
+    },
+    {
+      "id": "hafalan_113",
+      "topic": "",
+      "title": "Al-Falaq",
+      "summary": "Dengarkan, ingat urutan, lalu periksa bacaanmu",
+      "level": 0,
+      "kind": "memorize",
+      "surah": 113,
+      "ayah": 1,
+      "explanation": "Dengarkan contoh bacaan, coba dari ingatan, lalu periksa dengan teks asli. Latihan urutan membantu mengingat susunan ayat. Catatan lancar atau perlu mengulang adalah penilaianmu sendiri.",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/",
+      "questions": []
+    },
+    {
+      "id": "hafalan_114",
+      "topic": "",
+      "title": "An-Nas",
+      "summary": "Dengarkan, ingat urutan, lalu periksa bacaanmu",
+      "level": 0,
+      "kind": "memorize",
+      "surah": 114,
+      "ayah": 1,
+      "explanation": "Dengarkan contoh bacaan, coba dari ingatan, lalu periksa dengan teks asli. Latihan urutan membantu mengingat susunan ayat. Catatan lancar atau perlu mengulang adalah penilaianmu sendiri.",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/",
+      "questions": []
+    },
+    {
+      "id": "hafalan_103",
+      "topic": "",
+      "title": "Al-Asr",
+      "summary": "Dengarkan, ingat urutan, lalu periksa bacaanmu",
+      "level": 0,
+      "kind": "memorize",
+      "surah": 103,
+      "ayah": 1,
+      "explanation": "Dengarkan contoh bacaan, coba dari ingatan, lalu periksa dengan teks asli. Latihan urutan membantu mengingat susunan ayat. Catatan lancar atau perlu mengulang adalah penilaianmu sendiri.",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/",
+      "questions": []
+    },
+    {
+      "id": "hafalan_110",
+      "topic": "",
+      "title": "An-Nasr",
+      "summary": "Dengarkan, ingat urutan, lalu periksa bacaanmu",
+      "level": 1,
+      "kind": "memorize",
+      "surah": 110,
+      "ayah": 1,
+      "explanation": "Dengarkan contoh bacaan, coba dari ingatan, lalu periksa dengan teks asli. Latihan urutan membantu mengingat susunan ayat. Catatan lancar atau perlu mengulang adalah penilaianmu sendiri.",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/",
+      "questions": []
+    },
+    {
+      "id": "hafalan_109",
+      "topic": "",
+      "title": "Al-Kafirun",
+      "summary": "Dengarkan, ingat urutan, lalu periksa bacaanmu",
+      "level": 1,
+      "kind": "memorize",
+      "surah": 109,
+      "ayah": 1,
+      "explanation": "Dengarkan contoh bacaan, coba dari ingatan, lalu periksa dengan teks asli. Latihan urutan membantu mengingat susunan ayat. Catatan lancar atau perlu mengulang adalah penilaianmu sendiri.",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/",
+      "questions": []
+    },
+    {
+      "id": "hafalan_106",
+      "topic": "",
+      "title": "Quraisy",
+      "summary": "Dengarkan, ingat urutan, lalu periksa bacaanmu",
+      "level": 1,
+      "kind": "memorize",
+      "surah": 106,
+      "ayah": 1,
+      "explanation": "Dengarkan contoh bacaan, coba dari ingatan, lalu periksa dengan teks asli. Latihan urutan membantu mengingat susunan ayat. Catatan lancar atau perlu mengulang adalah penilaianmu sendiri.",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/",
+      "questions": []
+    },
+    {
+      "id": "hafalan_107",
+      "topic": "",
+      "title": "Al-Maun",
+      "summary": "Dengarkan, ingat urutan, lalu periksa bacaanmu",
+      "level": 1,
+      "kind": "memorize",
+      "surah": 107,
+      "ayah": 1,
+      "explanation": "Dengarkan contoh bacaan, coba dari ingatan, lalu periksa dengan teks asli. Latihan urutan membantu mengingat susunan ayat. Catatan lancar atau perlu mengulang adalah penilaianmu sendiri.",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/",
+      "questions": []
+    },
+    {
+      "id": "hafalan_105",
+      "topic": "",
+      "title": "Al-Fil",
+      "summary": "Dengarkan, ingat urutan, lalu periksa bacaanmu",
+      "level": 2,
+      "kind": "memorize",
+      "surah": 105,
+      "ayah": 1,
+      "explanation": "Dengarkan contoh bacaan, coba dari ingatan, lalu periksa dengan teks asli. Latihan urutan membantu mengingat susunan ayat. Catatan lancar atau perlu mengulang adalah penilaianmu sendiri.",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/",
+      "questions": []
+    },
+    {
+      "id": "hafalan_104",
+      "topic": "",
+      "title": "Al-Humazah",
+      "summary": "Dengarkan, ingat urutan, lalu periksa bacaanmu",
+      "level": 2,
+      "kind": "memorize",
+      "surah": 104,
+      "ayah": 1,
+      "explanation": "Dengarkan contoh bacaan, coba dari ingatan, lalu periksa dengan teks asli. Latihan urutan membantu mengingat susunan ayat. Catatan lancar atau perlu mengulang adalah penilaianmu sendiri.",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/",
+      "questions": []
+    },
+    {
+      "id": "hafalan_102",
+      "topic": "",
+      "title": "At-Takatsur",
+      "summary": "Dengarkan, ingat urutan, lalu periksa bacaanmu",
+      "level": 2,
+      "kind": "memorize",
+      "surah": 102,
+      "ayah": 1,
+      "explanation": "Dengarkan contoh bacaan, coba dari ingatan, lalu periksa dengan teks asli. Latihan urutan membantu mengingat susunan ayat. Catatan lancar atau perlu mengulang adalah penilaianmu sendiri.",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/",
+      "questions": []
+    },
+    {
+      "id": "hafalan_99",
+      "topic": "",
+      "title": "Az-Zalzalah",
+      "summary": "Dengarkan, ingat urutan, lalu periksa bacaanmu",
+      "level": 2,
+      "kind": "memorize",
+      "surah": 99,
+      "ayah": 1,
+      "explanation": "Dengarkan contoh bacaan, coba dari ingatan, lalu periksa dengan teks asli. Latihan urutan membantu mengingat susunan ayat. Catatan lancar atau perlu mengulang adalah penilaianmu sendiri.",
+      "sourceTitle": "Tanzil · Teks Utsmani; contoh qari mengikuti pilihan Nuraya",
+      "sourceUrl": "https://tanzil.net/",
+      "questions": []
+    }
+  ]
+}

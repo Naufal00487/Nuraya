@@ -191,6 +191,10 @@ class SeniorNavigationTest {
         com.nuraya.app.profile.ProfileStore(app).save("Naufal",2)
         compose.onNodeWithTag("home_menu").performScrollToNode(hasTestTag("home_practice"))
         compose.onNodeWithTag("home_practice").performClick()
+        awaitTag("learning_path")
+        compose.onNodeWithTag("practice_tab_0").performClick()
+        compose.onNodeWithTag("learning_path").performScrollToNode(hasTestTag("hafalan_custom"))
+        compose.onNodeWithTag("hafalan_custom").performClick()
         awaitTag("practice_start")
         compose.onNodeWithTag("practice_end").performScrollTo().performTextClearance()
         compose.onNodeWithTag("practice_end").performTextInput("5")
@@ -198,7 +202,7 @@ class SeniorNavigationTest {
         compose.onNodeWithText("Ayat awal hingga akhir diputar, lalu rentang diulang. Berhenti setelah 3 putaran.").performScrollTo().assertIsDisplayed()
         saveHostImage("memorization-range-large-text.png")
         compose.onNodeWithTag("practice_tab_2").performClick()
-        compose.onNodeWithText("Naufal").assertIsDisplayed()
+        compose.onNodeWithText("Latihan pilihanmu").assertIsDisplayed()
         saveHostImage("quiz-personal.png")
     }
 

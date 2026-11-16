@@ -23,14 +23,16 @@ data class PracticeProgress(
     val quizAnswered: Int = 0,
     val quizCorrect: Int = 0,
     val completedLessons: Set<String> = emptySet(),
+    val learning: LearningProgress = LearningProgress(),
 ) {
     fun countOn(date: LocalDate): Int = dailyCounts[date.toString()] ?: 0
     fun dueOn(date: LocalDate): List<MemorizationReview> = reviews.filter { LocalDate.parse(it.nextReviewOn) <= date }
         .sortedWith(compareBy({ it.nextReviewOn }, { it.surah }, { it.ayah }))
     fun streakOn(date: LocalDate): Int {
-        var cursor = if (countOn(date) > 0) date else date.minusDays(1)
+        fun active(day: LocalDate) = countOn(day) > 0 || learning.countOn(day) > 0
+        var cursor = if (active(date)) date else date.minusDays(1)
         var count = 0
-        while (countOn(cursor) > 0) { count++; cursor = cursor.minusDays(1) }
+        while (active(cursor)) { count++; cursor = cursor.minusDays(1) }
         return count
     }
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nuraya.app.study.LearningProgressTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-11-16T00:07:25" hostname="2a07a094f08b" time="0.947">
+  <properties/>
+  <testcase name="duplicateChecksAndFinishesCannotAwardExtraPointsOrAnswers" classname="com.nuraya.app.study.LearningProgressTest" time="0.168"/>
+  <testcase name="completionUsesActualLocalDayAndAPracticeBreakNeverRemovesXp" classname="com.nuraya.app.study.LearningProgressTest" time="0.145"/>
+  <testcase name="incompleteOrDuplicateOrderAnswersCannotBeSubmitted" classname="com.nuraya.app.study.LearningProgressTest" time="0.095"/>
+  <testcase name="shortSurahSessionsSaveSelfRatingsSeparatelyFromKnowledgeScore" classname="com.nuraya.app.study.LearningProgressTest" time="0.106"/>
+  <testcase name="oldProgressMigratesWithoutGivingInventedXpOrDeletingRecallHistory" classname="com.nuraya.app.study.LearningProgressTest" time="0.09"/>
+  <testcase name="interruptedSessionRestoresSeedChoicesAnswerFeedbackAndRetryQueue" classname="com.nuraya.app.study.LearningProgressTest" time="0.108"/>
+  <testcase name="targetsAreOptionalAndBadgesCountOnlyPersonalCompletedActivity" classname="com.nuraya.app.study.LearningProgressTest" time="0.118"/>
+  <testcase name="errorsAreRevisitedOnceWithoutLivesPenaltyOrBlockingOtherLessons" classname="com.nuraya.app.study.LearningProgressTest" time="0.117"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

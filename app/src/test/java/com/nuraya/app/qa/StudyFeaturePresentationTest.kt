@@ -51,12 +51,15 @@ class StudyFeaturePresentationTest {
         compose.setContent {
             NurayaTheme {
                 Surface {
-                    PracticeScreen(app, "id", onRead = { _, _ -> }, onPracticeRange = { surah, start, end, repeats ->
+                    PracticeScreen(app, "id", initialTab = 0, onRead = { _, _ -> }, onPracticeRange = { surah, start, end, repeats ->
                         audioRange = listOf(surah, start, end, repeats)
                     })
                 }
             }
         }
+        compose.waitUntil(30_000) { compose.onAllNodes(hasTestTag("learning_path")).fetchSemanticsNodes().isNotEmpty() }
+        compose.onNodeWithTag("learning_path").performScrollToNode(hasTestTag("hafalan_custom"))
+        compose.onNodeWithTag("hafalan_custom").performClick()
         compose.onNodeWithTag("practice_start").performTextReplacement("2")
         compose.onNodeWithText("Dengarkan rentang").performScrollTo().performClick()
         assertEquals(listOf(1, 2, 3, 3), audioRange)

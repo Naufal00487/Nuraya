@@ -45,6 +45,7 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
     var aboutFrom by rememberSaveable { mutableStateOf("profile") }
     var learningFrom by rememberSaveable { mutableStateOf("home") }
     var playerVisible by rememberSaveable { mutableStateOf(false) }
+    var learningSessionVisible by remember { mutableStateOf(false) }
     var loading by remember { mutableStateOf(!app.launchArtworkShown) }
     var loadError by remember { mutableStateOf(false) }
     var retry by remember { mutableIntStateOf(0) }
@@ -166,7 +167,7 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
         contentWindowInsets = if (screen == "home") WindowInsets(0, 0, 0, 0) else ScaffoldDefaults.contentWindowInsets,
         snackbarHost = { SnackbarHost(snackbar) },
         topBar = {
-            if (screen !in setOf("home", "mushaf", "reader")) TopAppBar(title = { Text(titles[screen].orEmpty(), style = MaterialTheme.typography.titleLarge, maxLines = 2, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis) },
+            if (screen !in setOf("home", "mushaf", "reader") && !learningSessionVisible) TopAppBar(title = { Text(titles[screen].orEmpty(), style = MaterialTheme.typography.titleLarge, maxLines = 2, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis) },
                 navigationIcon = {
                     if (screen !in listOf("home", "quran", "murottal", "prayer") || screen == "murottal" && qariId.isNotEmpty()) {
                         TextButton(onClick = back, modifier = Modifier.testTag("back_button")) {
@@ -182,7 +183,7 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
         },
         bottomBar = {
             Column {
-                if (playback.surahId > 0 && screen !in setOf("mushaf", "reader")) MiniPlayer(playback, language, onOpen = { playerVisible = true }, onToggle = { app.playback.toggle() })
+                if (playback.surahId > 0 && screen !in setOf("mushaf", "reader") && !learningSessionVisible) MiniPlayer(playback, language, onOpen = { playerVisible = true }, onToggle = { app.playback.toggle() })
                 if (screen !in listOf("reader", "mushaf", "learn", "hadith", "practice", "progress", "recitation", "qibla")) NavigationBar(containerColor = androidx.compose.ui.graphics.Color.Transparent, tonalElevation = 0.dp) {
                     val items = listOf(
                         Triple("home", label(language, "Beranda", "Home"), Icons.Outlined.Home),
@@ -249,7 +250,7 @@ fun NurayaApp(app: NurayaApplication, settings: UserSettings) {
                         "settings" -> SettingsScreen(app, settings, perform, onLearn = { learningFrom = "settings"; screen = "learn" }, onAbout = { aboutFrom="settings";screen = "about" })
                         "learn" -> LearningScreen(language, onRead = openVerse)
                         "hadith" -> com.nuraya.app.hadith.HadithScreen(language)
-                        "practice", "progress" -> PracticeScreen(app, language, onRead = openVerse, initialTab = if(screen=="progress")3 else 0,
+                        "practice", "progress" -> PracticeScreen(app, language, onRead = openVerse, initialTab = if(screen=="progress")3 else 1, onSessionVisibility={learningSessionVisible=it},
                             onPracticeRange = { surah, start, end, repeats ->
                                 app.playback.playVerseRange(surah, start, end, settings.readerQariId, repeats)
                                 openVerse(surah, start)
