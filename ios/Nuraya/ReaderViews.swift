@@ -29,7 +29,7 @@ struct ReaderView:View {
         .confirmationDialog("Ayat \(reference.id)",isPresented:$actions,titleVisibility:.visible){Button("Putar ayat ini"){audio.verses(qari:state.selectedQari,start:reference,end:reference)};Button("Arti, per kata & tafsir"){panel=true};Button("Tandai / hapus penanda"){state.mark(reference)};Button("Salin ayat"){if let v=state.content.corpus.verse(reference){UIPasteboard.general.string=v.text+"\n"+v.indonesian+"\nQS "+reference.id}}}
         .sheet(isPresented:$info){NavigationStack{PageContainer(dark:false){Text("Tajwid & sumber").font(.title.bold());Text("Gambar halaman mengikuti edisi sumber yang dipatok Nuraya. Warna asli cetak tidak selalu memakai legenda panel teks yang sama.");Text("Sumber: agusibrahim/quran-image. Terjemahan panel: Kemenag RI melalui QuranEnc. Arti per kata: Quran.com. Latin: eQuran.id.");if target.mode=="waqaf",let signs=try? state.content.decode("waqaf_guide.json",[WaqafItem].self){ForEach(signs){s in Text(s.mark+" — "+s.name).font(.title2);Text(s.explanation)}};Text("Halaman: \(page)/604. Ketuk halaman untuk menampilkan kontrol; geser kanan untuk lanjut; tekan lama ayat pada edisi berpeta.")}.toolbar{Button("Tutup"){info=false}}}}
         .onAppear{reference=target.reference;if let edition=edition {do{page=try state.content.index(edition).page(for:reference)}catch{self.error="Halaman rujukan tidak ditemukan."}}}
-        .onDisappear{audio.stopReader();rotate(false)}
+        .onDisappear{downloadingEdition=false;audio.stopReader();rotate(false)}
         .onChange(of:audio.track?.id){_ in guard state.settings.followAudio,audio.context == .reader,let r=audio.track?.verse?.reference else{return};reference=r;state.recordReading(r);if let edition=edition,let n=try? state.content.index(edition).page(for:r){page=n}}
     }
     func book(_ edition:MushafEdition)->some View {ZStack{
@@ -45,7 +45,7 @@ struct ReaderView:View {
     }
     func turn(_ delta:Int){guard (1...604).contains(page+delta) else{return};page+=delta;zoom=1;updateReference()}
     func updateReference(){if let edition=edition,let index=try? state.content.index(edition),let r=index.references(on:page).first {reference=r;state.recordReading(r)}}
-    func loadPage(_ edition:MushafEdition) async {loading=true;error=nil;let n=page;do{let i=try await state.downloads.page(edition,n);if page==n{image=i}}catch{if page==n{self.error="Halaman belum terbuka: \(error.localizedDescription)"}};if page==n{loading=false}}
+    func loadPage(_ edition:MushafEdition) async {loading=true;error=nil;image=nil;let n=page;do{let i=try await state.downloads.page(edition,n);if page==n{image=i}}catch{if page==n{self.error="Halaman belum terbuka: \(error.localizedDescription)"}};if page==n{loading=false}}
     func downloadEdition(){guard let edition=edition else{return};downloadingEdition=true;Task{for n in 1...604{guard downloadingEdition else{return};do{_=try await state.downloads.page(edition,n);downloadCount=n}catch{self.error="Unduhan berhenti pada halaman \(n). Halaman yang selesai tetap tersimpan.";downloadingEdition=false;return}};downloadingEdition=false}}
     func rotate(_ landscape:Bool){guard let scene=UIApplication.shared.connectedScenes.first as? UIWindowScene else{return};scene.requestGeometryUpdate(.iOS(interfaceOrientations:landscape ? .landscapeRight:.portrait))}
 }

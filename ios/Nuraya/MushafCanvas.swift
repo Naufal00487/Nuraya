@@ -22,7 +22,7 @@ final class PageCanvas:UIView,UIScrollViewDelegate,UIGestureRecognizerDelegate {
     func viewForZooming(in scrollView:UIScrollView)->UIView?{picture}
     func scrollViewDidZoom(_ scrollView:UIScrollView){let x=max(0,(scroll.bounds.width-picture.frame.width)/2),y=max(0,(scroll.bounds.height-picture.frame.height)/2);picture.center=CGPoint(x:scroll.contentSize.width/2+x,y:scroll.contentSize.height/2+y)}
     private func paintHighlight(){guard let image=picture.image else {return};let p=UIBezierPath();if let selected=selected,let region=regions.first(where:{$0.reference==selected}) {let sx=picture.bounds.width/image.size.width,sy=picture.bounds.height/image.size.height;for box in region.rects where box.count==4 {p.append(UIBezierPath(rect:CGRect(x:box[0]*sx,y:box[1]*sy,width:(box[2]-box[0])*sx,height:(box[3]-box[1])*sy)))}};highlight.path=p.cgPath}
-    func gestureRecognizerShouldBegin(_ gestureRecognizer:UIGestureRecognizer)->Bool {!(gestureRecognizer is UISwipeGestureRecognizer) || scroll.zoomScale<=1.01}
+    override func gestureRecognizerShouldBegin(_ gestureRecognizer:UIGestureRecognizer)->Bool {!(gestureRecognizer is UISwipeGestureRecognizer) || scroll.zoomScale<=1.01}
     @objc func tap(){tapAction?()}
     @objc func doubleTap(){doubleAction?()}
     @objc func swipe(_ gesture:UISwipeGestureRecognizer){if scroll.zoomScale<=1.01 {turnAction?(gesture.direction == .right ? 1:-1)}}

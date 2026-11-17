@@ -29,7 +29,7 @@ struct AppSettings:Codable {
         audio.onTrack={ [weak self] track in self?.recordAudio(track) }
     }
     func save() {do {let data=try JSONEncoder().encode(settings);try data.write(to:storage.appendingPathComponent("settings.json"),options:[.atomic,.completeFileProtectionUntilFirstUserAuthentication])}catch {self.error="Pengaturan belum tersimpan: \(error.localizedDescription)"}}
-    func open(_ reference:Reference,mode:String="standard") {guard content.corpus.verse(reference) != nil else {error="Rujukan ayat tidak ditemukan.";return};reader=ReaderDestination(reference:reference,mode:mode);recordReading(reference)}
+    func open(_ reference:Reference,mode:String="standard") {guard content.corpus.verse(reference) != nil else {error="Rujukan ayat tidak ditemukan.";return};if fullPlayer {fullPlayer=false;Task{try? await Task.sleep(nanoseconds:400_000_000);reader=ReaderDestination(reference:reference,mode:mode)}}else{reader=ReaderDestination(reference:reference,mode:mode)};recordReading(reference)}
     var selectedQari:ReciterSelection {content.qaris.first {$0.id==settings.qari} ?? content.qaris[0]}
     func mark(_ ref:Reference) {
         let exists=settings.entries.contains {$0.kind=="bookmark" && $0.key==ref.id}
