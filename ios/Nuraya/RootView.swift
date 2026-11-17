@@ -63,6 +63,7 @@ struct RootView:View {
             Button{path=[];tab=index}label:{
                 VStack(spacing:6){AppIcon(name:["home","book-quran","headphones","compass-alt"][index],size:26);Text([state.translated("Beranda","Home"),"Al-Qur’an","Murottal",state.translated("Ibadah","Prayer")][index]).font(.system(size:14,weight:tab==index ? .semibold:.regular))}
                     .foregroundStyle(tab==index ? palette.primary:palette.secondary).frame(maxWidth:.infinity,minHeight:62)
+                    .background(tab==index ? palette.raised:Color.clear,in:RoundedRectangle(cornerRadius:24))
             }.buttonStyle(.plain).accessibilityIdentifier("tab_\(index)")
         }}.padding(.horizontal,10).padding(.top,6).background(.ultraThinMaterial)
     }

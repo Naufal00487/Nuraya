@@ -21,7 +21,7 @@ struct SettingsView:View {
                 toggle(tr("Ikuti lantunan ayat","Follow recitation"),tr("Halaman mengikuti ayat yang diputar","Follow the verse being recited"),"waveform-path",$state.settings.followAudio)
             }
             SettingsGroup(title:tr("Tampilan","Appearance"),dark:state.settings.dark){
-                toggle(tr("Tampilan gelap","Dark appearance"),tr("Warna nyaman untuk malam hari","Comfortable colors for evening reading"),"moon",$state.settings.dark)
+                toggle(tr("Tampilan gelap","Dark appearance"),tr("Warna nyaman untuk malam hari","Comfortable colors for evening reading"),"moon",$state.settings.dark).accessibilityIdentifier("settings_dark")
                 separator
                 menu(tr("Bahasa aplikasi","App language"),state.settings.language=="en" ? "English":"Indonesia","globe"){panel="language"}
             }
