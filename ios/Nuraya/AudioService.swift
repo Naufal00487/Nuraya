@@ -3,7 +3,12 @@ import AVFoundation
 import MediaPlayer
 import NurayaCore
 struct AudioTrack:Identifiable {
-    let id=UUID(),url:URL,qari:ReciterSelection,surah:Int,verse:Verse?,timing:VerseTiming?
+    let id=UUID()
+    let url:URL
+    let qari:ReciterSelection
+    let surah:Int
+    let verse:Verse?
+    let timing:VerseTiming?
     var start:Double {timing?.start ?? 0}
     var end:Double? {timing?.end}
 }

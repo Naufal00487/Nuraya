@@ -42,15 +42,39 @@ public struct LessonSession:Codable,Identifiable {
     public mutating func next() {if checked {step+=1}}
 }
 public struct LessonRecord:Codable {public var attempts:Int,bestCorrect:Int,total:Int,lastDate:String}
+public struct MemorizationReview:Codable,Identifiable {
+    public let reference:Reference,rating:String,attempts:Int,intervalDays:Int,lastDate:String,nextDate:String
+    public var id:String {reference.id}
+}
 public struct LearningProgress:Codable {
     public var xp=0,goal=1,goalEnabled=false,daily=[String:Int](),records=[String:LessonRecord](),session:LessonSession?,completedSessions=Set<String>()
+    public var reviews:[String:MemorizationReview]?
     public init() {}
     public mutating func finish(_ session:LessonSession,date:String) {
         guard session.complete,!completedSessions.contains(session.id) else {return}
         let scored=session.answers.prefix(session.exercises.count).filter(\.scored),correct=scored.filter(\.correct).count
         let old=records[session.lessonID];xp += old == nil ? 20:5;daily[date,default:0]+=1
         records[session.lessonID]=LessonRecord(attempts:(old?.attempts ?? 0)+1,bestCorrect:max(old?.bestCorrect ?? 0,correct),total:scored.count,lastDate:date)
+        for (exercise,answer) in zip(session.exercises,session.answers) where exercise.kind == .recall {
+            if let reference=exercise.reference,let rating=answer.response.first {review(reference,rating:rating,date:date)}
+        }
         completedSessions.insert(session.id);self.session=nil
+    }
+    public mutating func review(_ reference:Reference,rating:String,date:String) {
+        guard ["again","help","fluent"].contains(rating),let day=Self.dateFormatter.date(from:date) else{return}
+        let old=reviews?[reference.id]
+        let interval=rating=="again" ? 0:rating=="help" ? 1:old?.rating=="fluent" ? min(60,max(3,(old?.intervalDays ?? 0)*2)):3
+        let next=Self.dateFormatter.string(from:day.addingTimeInterval(Double(interval)*86400))
+        if reviews==nil {reviews=[:]}
+        reviews?[reference.id]=MemorizationReview(reference:reference,rating:rating,attempts:(old?.attempts ?? 0)+1,intervalDays:interval,lastDate:date,nextDate:next)
+    }
+    private static var dateFormatter:DateFormatter {let f=DateFormatter();f.calendar=Calendar(identifier:.gregorian);f.locale=Locale(identifier:"en_US_POSIX");f.timeZone=TimeZone(secondsFromGMT:0);f.dateFormat="yyyy-MM-dd";return f}
+    public func streak(today:String)->Int {
+        guard var date=Self.dateFormatter.date(from:today) else{return 0}
+        if daily[today]==nil {date=date.addingTimeInterval(-86400)}
+        var count=0
+        while daily[Self.dateFormatter.string(from:date)] != nil {count+=1;date=date.addingTimeInterval(-86400)}
+        return count
     }
     public var badges:[String] {
         var b=[String]();if !records.isEmpty {b.append("Langkah pertama")};if records.keys.filter({$0.hasPrefix("tajwid_")}).count>=3 {b.append("Tiga tajwid")};if records.keys.filter({$0.hasPrefix("hafalan_")}).count>=3 {b.append("Tiga surah")};if daily.count>=3 {b.append("Tiga hari belajar")};if xp>=100 {b.append("100 XP")};if records.values.contains(where:{$0.attempts>=3}) {b.append("Rajin mengulang")};return b

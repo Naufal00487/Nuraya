@@ -93,19 +93,64 @@ struct MiniPlayer:View {
     var body:some View {if let t=audio.track {HStack(spacing:12){Button{state.fullPlayer=true}label:{HStack(spacing:12){QariPhoto(content:state.content,qari:t.qari,size:48,rounded:12);VStack(alignment:.leading,spacing:4){Text(state.content.corpus.surahs[t.surah-1].name).font(.headline);Text(t.qari.name).font(.caption).lineLimit(1)};Spacer()}}.buttonStyle(.plain);Button{audio.toggle()}label:{AppIcon(name:audio.playing ? "pause":"play").frame(width:48,height:48)};Button{audio.stop()}label:{AppIcon(name:"cross",size:20).frame(width:44,height:48)}}.padding(.horizontal,16).padding(.vertical,8).background(Palette(dark:state.settings.dark).raised)}}
 }
 struct PlayerView:View {
-    @ObservedObject var state:AppState;@ObservedObject var audio:AudioService
+    @ObservedObject var state:AppState
+    @ObservedObject var audio:AudioService
     @Environment(\.dismiss) var dismiss
     @State private var saving=false
-    var body:some View {NavigationStack{PageContainer(dark:state.settings.dark){if let t=audio.track {
-        QariPhoto(content:state.content,qari:t.qari,size:250,rounded:28).frame(maxWidth:.infinity)
-        Text(state.content.corpus.surahs[t.surah-1].name).font(.system(size:30,weight:.bold)).frame(maxWidth:.infinity)
-        Text(t.qari.name).font(.system(size:20)).frame(maxWidth:.infinity)
-        if let error=audio.error {Text(error).foregroundStyle(.red);PrimaryButton(title:"Coba lagi"){audio.retry()}}
-        Slider(value:Binding(get:{min(audio.position,max(audio.duration,0.1))},set:{audio.seek($0)}),in:0...max(audio.duration,0.1)).disabled(audio.duration<=0)
-        HStack{Text(timeText(audio.position));Spacer();Text(timeText(audio.duration))}.monospacedDigit().font(.system(size:16))
-        HStack(spacing:30){Button{audio.previous()}label:{AppIcon(name:"step-backward",size:30).frame(width:56,height:56)};Button{audio.toggle()}label:{AppIcon(name:audio.playing ? "pause":"play",size:30).frame(width:76,height:76).foregroundStyle(.white).background(Color.nuraya,in:Circle())};Button{audio.next(force:true)}label:{AppIcon(name:"step-forward",size:30).frame(width:56,height:56)}}.frame(maxWidth:.infinity)
-        HStack{Menu{ForEach([Float(0.75),1,1.25,1.5,2],id:\.self){r in Button("\(r,specifier:"%.2g")×"){audio.setSpeed(r)}}}label:{VStack{AppIcon(name:"tachometer-fast");Text("\(audio.speed,specifier:"%.2g")×").font(.caption)}};Spacer();Button{audio.repeatMode=(audio.repeatMode+1)%3}label:{VStack{AppIcon(name:"arrows-repeat-1");Text(["Ulang mati","Ulang satu","Ulang semua"][audio.repeatMode]).font(.caption)}};Spacer();Button{state.favorite(t.qari.id,t.surah)}label:{VStack{AppIcon(name:"heart");Text("Favorit").font(.caption)}};Spacer();Button{Task{saving=true;defer{saving=false};do{_=try await state.downloads.fetch(t.url)}catch{state.error=error.localizedDescription}}}label:{VStack{if saving{ProgressView()}else{AppIcon(name:"download")};Text(state.downloads.cached(t.url)==nil ? "Unduh":"Tersimpan").font(.caption)}}.disabled(saving)}.frame(minHeight:60)
-        PrimaryButton(title:"Baca & dengarkan dari awal",icon:"book-open-cover"){let q=t.qari;state.settings.qari=q.id;dismiss();Task{try? await Task.sleep(nanoseconds:400_000_000);state.open(Reference(t.surah,1));audio.verses(qari:q,start:Reference(t.surah,1),end:Reference(t.surah,state.content.corpus.surahs[t.surah-1].ayahCount))}}
-        NavigationLink {QariSurahsView(state:state,qari:t.qari)}label:{MenuRow(title:"Daftar surah",icon:"list-music",dark:state.settings.dark)}
-    }else {Text("Belum ada audio yang diputar.");PrimaryButton(title:"Kembali"){dismiss()}}}.navigationTitle("Murottal").navigationBarTitleDisplayMode(.inline).toolbar{ToolbarItem(placement:.navigationBarLeading){Button{dismiss()}label:{AppIcon(name:"angle-down").frame(width:44,height:44).accessibilityLabel("Kecilkan pemutar")}};ToolbarItem(placement:.navigationBarTrailing){Menu{Button("Hentikan audio",role:.destructive){audio.stop();dismiss()};if let t=audio.track {Button(state.settings.entries.contains(where:{$0.kind=="playlist" && $0.key==t.qari.id+"|\(t.surah)"}) ? "Hapus dari daftar putar":"Tambah ke daftar putar"){state.playlist(t.qari.id,t.surah)}};NavigationLink("Koleksi saya"){LibraryView(state:state)}}label:{AppIcon(name:"menu-dots-vertical").frame(width:44,height:44)}}}}}
+    private var palette:Palette {Palette(dark:state.settings.dark)}
+    var body:some View {
+        NavigationStack {
+            ScrollView {
+                VStack(spacing:24){
+                    if let track=audio.track {
+                        QariPhoto(content:state.content,qari:track.qari,size:min(300,UIScreen.main.bounds.width-96),rounded:28).padding(.top,12)
+                        VStack(spacing:6){Text(state.content.corpus.surahs[track.surah-1].name).font(.system(size:24,weight:.semibold));Text(track.qari.name).font(.system(size:20)).foregroundStyle(palette.secondary)}
+                        if let error=audio.error {Text(error).foregroundStyle(.red);PrimaryButton(title:"Coba lagi"){audio.retry()}}
+                        VStack(spacing:8){
+                            Slider(value:Binding(get:{min(audio.position,max(audio.duration,0.1))},set:{audio.seek($0)}),in:0...max(audio.duration,0.1)).disabled(audio.duration<=0).accessibilityLabel("Posisi audio")
+                            HStack{Text(timeText(audio.position));Spacer();Text(timeText(audio.duration))}.monospacedDigit().font(.system(size:15))
+                        }.padding(.top,8)
+                        playbackControls
+                        collectionControls(track)
+                        Button {readFromStart(track)}label:{HStack{AppIcon(name:"book-quran",size:20);Text("Baca & dengarkan dari awal").font(.system(size:16,weight:.semibold))}.frame(maxWidth:.infinity,minHeight:48).overlay(Capsule().stroke(palette.primary.opacity(0.45)))}.padding(.vertical,8)
+                    }else {Text("Belum ada audio yang diputar.");PrimaryButton(title:"Kembali"){dismiss()}}
+                }.padding(.horizontal,24).padding(.bottom,24).frame(maxWidth:600).frame(maxWidth:.infinity)
+            }.foregroundStyle(palette.text).background(LinearGradient(colors:[palette.raised,palette.background],startPoint:.top,endPoint:.bottom).ignoresSafeArea())
+            .navigationTitle("Murottal").navigationBarTitleDisplayMode(.inline)
+            .toolbar{
+                ToolbarItem(placement:.navigationBarLeading){Button{dismiss()}label:{AppIcon(name:"angle-down").frame(width:44,height:44)}.accessibilityLabel("Kecilkan pemutar")}
+                ToolbarItem(placement:.navigationBarTrailing){Menu{
+                    if let track=audio.track {NavigationLink("Daftar surah"){QariSurahsView(state:state,qari:track.qari)}}
+                    NavigationLink("Koleksi saya"){LibraryView(state:state)}
+                    Button("Hentikan audio",role:.destructive){audio.stop();dismiss()}
+                }label:{AppIcon(name:"menu-dots-vertical").frame(width:44,height:44)}.accessibilityLabel("Menu pemutar")}
+            }
+        }
+    }
+    private var playbackControls:some View {
+        HStack(spacing:12){
+            Button{audio.repeatMode=(audio.repeatMode+1)%3}label:{AppIcon(name:"arrows-repeat-1").foregroundStyle(audio.repeatMode==0 ? palette.secondary:palette.primary).frame(width:44,height:56)}.accessibilityLabel(["Ulang mati","Ulang satu","Ulang semua"][audio.repeatMode])
+            Spacer(minLength:0)
+            Button{audio.previous()}label:{AppIcon(name:"step-backward",size:28).frame(width:44,height:56)}.accessibilityLabel("Surah sebelumnya")
+            Button{audio.toggle()}label:{AppIcon(name:audio.playing ? "pause":"play",size:32).frame(width:76,height:76).foregroundStyle(.white).background(Color.nuraya,in:Circle())}.accessibilityLabel(audio.playing ? "Jeda":"Putar")
+            Button{audio.next(force:true)}label:{AppIcon(name:"step-forward",size:28).frame(width:44,height:56)}.accessibilityLabel("Surah berikutnya")
+            Spacer(minLength:0)
+            Menu{ForEach([Float(0.75),1,1.25,1.5,2],id:\.self){rate in Button("\(rate,specifier:"%.2g")×"){audio.setSpeed(rate)}}}label:{Text("\(audio.speed,specifier:"%.2g")×").font(.system(size:16,weight:.medium)).frame(width:44,height:56)}.accessibilityLabel("Kecepatan pemutaran")
+        }
+    }
+    private func collectionControls(_ track:AudioTrack)->some View {
+        let key=track.qari.id+"|\(track.surah)"
+        return HStack(spacing:12){
+            Button{state.favorite(track.qari.id,track.surah)}label:{actionLabel(state.settings.entries.contains(where:{$0.kind=="favorite" && $0.key==key}) ? "Difavoritkan":"Favorit","heart")}
+            Spacer()
+            Button{Task{saving=true;defer{saving=false};do{_=try await state.downloads.fetch(track.url)}catch{state.error=error.localizedDescription}}}label:{if saving {ProgressView().frame(width:80,height:64)}else{actionLabel(state.downloads.cached(track.url)==nil ? "Unduh":"Tersimpan","download")}}.disabled(saving)
+            Spacer()
+            Button{state.playlist(track.qari.id,track.surah)}label:{actionLabel(state.settings.entries.contains(where:{$0.kind=="playlist" && $0.key==key}) ? "Di koleksi":"Koleksi","list-music")}
+        }.padding(.horizontal,12)
+    }
+    private func actionLabel(_ title:String,_ icon:String)->some View {VStack(spacing:8){AppIcon(name:icon,size:25);Text(title).font(.system(size:14,weight:.medium))}.frame(minWidth:72,minHeight:64)}
+    private func readFromStart(_ track:AudioTrack){
+        state.settings.qari=track.qari.id;dismiss()
+        Task {try? await Task.sleep(nanoseconds:400_000_000);state.open(Reference(track.surah,1));audio.verses(qari:track.qari,start:Reference(track.surah,1),end:Reference(track.surah,state.content.corpus.surahs[track.surah-1].ayahCount))}
+    }
 }

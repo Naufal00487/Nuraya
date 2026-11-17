@@ -7,7 +7,7 @@ struct SavedEntry:Codable,Identifiable {
 struct AppSettings:Codable {
     var name="",avatar=0,dark=false,language="id",qari="ar.alafasy",translation="id",arabicSize=30.0,tajwid=true,followAudio=true
     var latitude:Double?,longitude:Double?,locationName="",timeZone=TimeZone.current.identifier,hijriCorrection=0,prayerCorrection=2
-    var quranReminders=false,prayerReminders=false,prayerLead=10,adhanSound=false,enabledPrayers=["fajr","dhuhr","asr","maghrib","isha"]
+    var quranReminders=true,prayerReminders=true,prayerLead=10,adhanSound=false,enabledPrayers=["fajr","dhuhr","asr","maghrib","isha"]
     var entries=[SavedEntry](),learning=LearningProgress(),lastRead:Reference?
 }
 @MainActor final class AppState:ObservableObject {

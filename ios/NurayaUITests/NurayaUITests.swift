@@ -2,7 +2,7 @@ import XCTest
 final class NurayaUITests:XCTestCase {
     override func setUpWithError() throws {continueAfterFailure=false}
     private func home()->XCUIApplication {
-        let app=XCUIApplication();app.launch()
+        let app=XCUIApplication();app.launchArguments=["--ui-testing"];app.launch()
         let name=app.textFields["Nama panggilan"]
         if name.waitForExistence(timeout:8){name.tap();name.typeText("Penguji Nuraya");app.buttons["Mulai menggunakan Nuraya"].tap()}
         return app

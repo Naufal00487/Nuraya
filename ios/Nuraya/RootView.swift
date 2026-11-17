@@ -5,7 +5,7 @@ struct RootView:View {
     @ObservedObject var state:AppState
     @ObservedObject private var reminders=ReminderService.shared
     @Environment(\.scenePhase) var scenePhase
-    @State private var tab=0;@State private var path=[Route]()
+    @State private var tab=0;@State private var path=[Route]();@State private var locationSetup=false
     var palette:Palette {Palette(dark:state.settings.dark)}
     var body:some View {
         Group {
@@ -34,6 +34,18 @@ struct RootView:View {
             }
             }
         }.tint(palette.primary).preferredColorScheme(state.settings.dark ? .dark:.light)
+        .task(id:state.settings.name){
+            guard !state.settings.name.trimmingCharacters(in:.whitespacesAndNewlines).isEmpty,state.settings.latitude==nil else{return}
+            #if DEBUG
+            if ProcessInfo.processInfo.arguments.contains("--ui-testing"){return}
+            #endif
+            locationSetup=true
+        }
+        .sheet(isPresented:$locationSetup,onDismiss:{Task{if (try? await ReminderService.shared.request())==true {try? await ReminderService.shared.schedule(state:state)}}}){
+            NavigationStack{LocationView(state:state,location:state.location)}.interactiveDismissDisabled()
+                .onAppear{state.location.request()}
+                .onChange(of:state.settings.latitude){_ in if state.settings.latitude != nil && state.settings.longitude != nil {locationSetup=false}}
+        }
         .fullScreenCover(item:$state.reader,onDismiss:{state.audio.stopReader()}){target in ReaderView(state:state,target:target,audio:state.audio)}
         .fullScreenCover(isPresented:$state.fullPlayer){PlayerView(state:state,audio:state.audio)}
         .alert("Nuraya",isPresented:Binding(get:{state.error != nil},set:{if !$0 {state.error=nil}})){Button("Tutup",role:.cancel){state.error=nil}}message:{Text(state.error ?? "")}

@@ -3,7 +3,7 @@ import CoreLocation
 import UserNotifications
 import Adhan
 import NurayaCore
-@MainActor final class LocationService:NSObject,ObservableObject,CLLocationManagerDelegate {
+@MainActor final class LocationService:NSObject,ObservableObject,@preconcurrency CLLocationManagerDelegate {
     private let manager=CLLocationManager()
     @Published var coordinate:CLLocationCoordinate2D?;@Published var name="";@Published var heading:Double?;@Published var accuracy:Double?;@Published var error:String?;@Published var busy=false
     override init() {super.init();manager.delegate=self;manager.desiredAccuracy=kCLLocationAccuracyHundredMeters;manager.headingFilter=1}
@@ -60,6 +60,9 @@ enum PrayerService {
         var calendar=Calendar(identifier:.gregorian);calendar.timeZone=TimeZone(identifier:settings.timeZone) ?? .current
         struct Quote:Decodable {let id:Int,text:String,ref:String}
         let quotes=try state.content.decode("notifications/quran.json",[Quote].self)
+        struct Template:Decodable {let title:String,body:String}
+        struct Templates:Decodable {let umum:[Template],per_salat:[String:[Template]],jumat:[Template],ramadan:[String:[Template]]}
+        let templates=try state.content.decode("notifications/prayer.json",Templates.self)
         var requests=[(Date,UNNotificationRequest)]();let now=Date()
         func add(_ id:String,_ title:String,_ body:String,_ date:Date,sound:Bool=false,info:[String:String]=[:]) {
             guard date>now else {return}
@@ -83,7 +86,14 @@ enum PrayerService {
             }
             if settings.prayerReminders {
                 for p in PrayerService.day(day,settings:settings) where settings.enabledPrayers.contains(p.id) {
-                    add("prayer.\(dayID).\(p.id).before","\(settings.prayerLead) menit lagi \(p.name)","Yuk bersiap wudu dan salat tepat waktu.",p.date.addingTimeInterval(-Double(settings.prayerLead)*60),info:["destination":"prayer"])
+                    let key=["fajr":"subuh","dhuhr":"dzuhur","asr":"ashar","maghrib":"maghrib","isha":"isya"][p.id] ?? p.id
+                    var hijri=Calendar(identifier:.islamicUmmAlQura);hijri.timeZone=calendar.timeZone
+                    let ramadan=hijri.component(.month,from:day.addingTimeInterval(Double(settings.hijriCorrection)*86400))==9
+                    let options=(ramadan ? templates.ramadan[key]:nil) ?? (calendar.component(.weekday,from:day)==6 && p.id=="dhuhr" ? templates.jumat:nil) ?? templates.per_salat[key] ?? templates.umum
+                    if let template=options.enumerated().first(where:{$0.offset==(tag.day!+offset)%max(1,options.count)})?.element {
+                        func fill(_ text:String)->String {text.replacingOccurrences(of:"{minutes}",with:String(settings.prayerLead)).replacingOccurrences(of:"{salat}",with:p.name)}
+                        add("prayer.\(dayID).\(p.id).before",fill(template.title),fill(template.body),p.date.addingTimeInterval(-Double(settings.prayerLead)*60),info:["destination":"prayer"])
+                    }
                     add("prayer.\(dayID).\(p.id).at","Waktu \(p.name) telah tiba","Semoga Allah memudahkan ibadahmu.",p.date,sound:settings.adhanSound,info:["destination":"prayer"])
                 }
             }

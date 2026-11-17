@@ -12,5 +12,6 @@ JSON
 # Local-notification audio must be <30 seconds on iOS. The full original remains in Content.
 ffmpeg -hide_banner -loglevel error -y -i "$ios_dir/../app/src/main/res/raw/adhan_mecca.mp3" -t 28 -ac 1 -ar 22050 -c:a pcm_s16le "$ios_dir/Nuraya/Resources/adhan_short.caf"
 cp "$ios_dir/../app/src/main/res/raw/adhan_mecca.mp3" "$ios_dir/Nuraya/Resources/Content/adhan_mecca.mp3"
+mkdir -p "$ios_dir/.build/TestFixtures"
 cd "$ios_dir"
 xcodegen generate
