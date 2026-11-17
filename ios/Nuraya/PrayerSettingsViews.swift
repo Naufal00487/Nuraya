@@ -13,24 +13,66 @@ struct LocationView:View {
     func save(){guard valid else{return};state.settings.locationName=name;state.settings.latitude=Double(latitude);state.settings.longitude=Double(longitude);state.settings.timeZone=zone;Task{try? await ReminderService.shared.schedule(state:state)}}
 }
 struct QiblaView:View {
-    @ObservedObject var state:AppState;@ObservedObject var location:LocationService
-    var bearing:Double? {PrayerService.bearing(settings:state.settings)}
-    var body:some View {PageContainer(dark:true){Text("Arah kiblat").font(.system(size:30,weight:.bold));Text(state.settings.locationName.isEmpty ? "Pilih lokasi terlebih dahulu":state.settings.locationName).font(.title3)
-        GeometryReader{geo in let size=min(geo.size.width,340.0),center=size/2
-            ZStack{Circle().fill(Color(hex:0x263955)).overlay(Circle().stroke(Color(hex:0x536D99),lineWidth:7));Canvas{ctx,canvas in let radius=min(canvas.width,canvas.height)/2
-                for tick in 0..<72 {let angle=Double(tick)*5*Double.pi/180;let outside=radius-17,inside=outside-(tick%6==0 ? 17:8);var path=Path();path.move(to:CGPoint(x:radius+sin(angle)*inside,y:radius-cos(angle)*inside));path.addLine(to:CGPoint(x:radius+sin(angle)*outside,y:radius-cos(angle)*outside));ctx.stroke(path,with:.color(.white.opacity(0.7)),lineWidth:tick%6==0 ? 2:1)}
-            }.rotationEffect(.degrees(-(location.heading ?? 0)))
-                ForEach(Array(["U","T","S","B"].enumerated()),id:\.offset){i,title in Text(title).font(.title3.bold()).foregroundStyle(.white).position(x:center+sin(Double(i)*Double.pi/2-(location.heading ?? 0)*Double.pi/180)*(center-50),y:center-cos(Double(i)*Double.pi/2-(location.heading ?? 0)*Double.pi/180)*(center-50))}
-                if let bearing=bearing,let heading=location.heading{VStack(spacing:0){AppIcon(name:"kaaba",size:28).foregroundStyle(Color(hex:0xF1C057)).frame(width:48,height:48).background(Color(hex:0x1A2841),in:Circle());Path{p in p.move(to:CGPoint(x:8,y:0));p.addLine(to:CGPoint(x:0,y:96));p.addLine(to:CGPoint(x:16,y:96));p.closeSubpath()}.fill(Color(hex:0xF1C057)).frame(width:16,height:96);Spacer().frame(height:120)}.frame(height:264).rotationEffect(.degrees(bearing-heading))}
-                Circle().fill(Color(hex:0xF1C057)).frame(width:16,height:16)
-            }.frame(width:size,height:size).frame(maxWidth:.infinity)
-        }.frame(height:350)
-        if let b=bearing{Text("\(b,specifier:"%.1f")° dari utara sejati").font(.title2.bold());if location.heading==nil{Text("Arah numerik tersedia; kompas menunggu sensor dan lokasi.")}};if let a=location.accuracy,a>25 || a<0{Text("Kalibrasikan kompas dengan gerakan angka delapan, lalu jauhkan dari magnet/logam.").foregroundStyle(.orange)};if let e=location.error{Text(e)};Text("Letakkan iPhone mendatar. Arah sensor dapat dipengaruhi benda logam dan lingkungan.").font(.callout);NavigationLink(value:Route.location){Text("Ubah lokasi")}
-    }.navigationTitle("Kiblat").onAppear{location.startCompass()}.onDisappear{location.stopCompass()}}
-}
-struct SettingsView:View {
     @ObservedObject var state:AppState
-    var body:some View {Form{Section("Profil"){NavigationLink(value:Route.profile){Label("Profil saya",systemImage:"person")}};Section("Al-Qur’an"){Picker("Qari pilihan",selection:$state.settings.qari){ForEach(state.content.qaris){Text($0.name).tag($0.id)}};Picker("Terjemahan",selection:$state.settings.translation){Text("Indonesia").tag("id");Text("English").tag("en");Text("Tanpa terjemahan").tag("none")};Stepper("Ukuran Arab: \(Int(state.settings.arabicSize))",value:$state.settings.arabicSize,in:22...54,step:2);ArabicText(text:OpeningPolicy.basmalah,size:state.settings.arabicSize);Toggle("Warna tajwid",isOn:$state.settings.tajwid);Toggle("Ikuti lantunan",isOn:$state.settings.followAudio)};Section("Tampilan"){Toggle("Tema gelap",isOn:$state.settings.dark);Picker("Bahasa",selection:$state.settings.language){Text("Indonesia").tag("id");Text("English").tag("en")}};Section("Ibadah"){NavigationLink(value:Route.location){Text("Lokasi salat & kiblat")};NavigationLink{ReminderSettingsView(state:state)}label:{Text("Notifikasi & suara azan")}};Section("Aplikasi"){NavigationLink(value:Route.library){Text("Koleksi & unduhan")};NavigationLink(value:Route.sources){Text("Sumber & Atribusi")};NavigationLink{PageContainer(dark:state.settings.dark){Text("Privasi & penyimpanan").font(.title.bold());Text("Nama, avatar, pilihan, penanda dan progres berada di iPhone ini. Nuraya tidak memakai akun cloud. Menghapus aplikasi dapat menghapus data pribadi dan unduhan.");Text("AI lokal memproses suara dalam memori dan tidak menyimpan rekaman atau transkrip. Layanan dikte Apple dapat menggunakan jaringan setelah persetujuan. Streaming, unduhan dan nama daerah juga memerlukan koneksi.");Text("Unduhan: \(Double(state.downloads.size())/1_000_000,specifier:"%.1f") MB")}}label:{Text("Privasi & penyimpanan")};NavigationLink{PageContainer(dark:state.settings.dark){AssetImage(content:state.content,path:"brand/logo.jpg",fit:true).frame(height:160);Text("Nuraya").font(.largeTitle.bold());Text("Pendamping membaca Al-Qur’an, belajar, dan ibadah.");Text("Kami penyusun aplikasi tidak mengambil keuntungan dari aplikasi ini.");Text("Desain visual dan rancangan fitur: Naufal Irfan Ramadhan.");Text("Acuan konten: Android 1.7.1. Versi iOS untuk pengujian pribadi.").font(.footnote)}}label:{Text("Tentang Nuraya")}}}.scrollContentBackground(.hidden).background(Palette(dark:state.settings.dark).background).navigationTitle("Pengaturan")}
+    @ObservedObject var location:LocationService
+    private var bearing:Double? {PrayerService.bearing(settings:state.settings)}
+    var body:some View {
+        PageContainer(dark:true){
+            Text("Arah kiblat").font(.system(size:30,weight:.bold))
+            Text(state.settings.locationName.isEmpty ? "Pilih lokasi terlebih dahulu":state.settings.locationName).font(.title3)
+            CompassDial(heading:location.heading,bearing:bearing).frame(height:350)
+            directionDescription
+            if let accuracy=location.accuracy,accuracy>25 || accuracy<0 {
+                Text("Kalibrasikan kompas dengan gerakan angka delapan, lalu jauhkan dari magnet/logam.").foregroundStyle(.orange)
+            }
+            if let error=location.error {Text(error)}
+            Text("Letakkan iPhone mendatar. Arah sensor dapat dipengaruhi benda logam dan lingkungan.").font(.callout)
+            NavigationLink(value:Route.location){Text("Ubah lokasi")}
+        }.navigationTitle("Kiblat").onAppear{location.startCompass()}.onDisappear{location.stopCompass()}
+    }
+    @ViewBuilder private var directionDescription:some View {
+        if let bearing=bearing {
+            Text("\(bearing,specifier:"%.1f")° dari utara sejati").font(.title2.bold())
+            if location.heading==nil {Text("Arah numerik tersedia; kompas menunggu sensor dan lokasi.")}
+        }
+    }
+}
+private struct CompassDial:View {
+    let heading:Double?,bearing:Double?
+    private let gold=Color(hex:0xF1C057)
+    var body:some View {
+        GeometryReader {geometry in
+            let size=min(geometry.size.width,340)
+            ZStack {
+                Circle().fill(Color(hex:0x263955)).overlay(Circle().stroke(Color(hex:0x536D99),lineWidth:7))
+                markings
+                if let bearing=bearing,let heading=heading {
+                    VStack(spacing:0){
+                        AppIcon(name:"kaaba",size:28).foregroundStyle(gold).frame(width:48,height:48).background(Color(hex:0x1A2841),in:Circle())
+                        Path{path in path.move(to:CGPoint(x:8,y:0));path.addLine(to:CGPoint(x:0,y:96));path.addLine(to:CGPoint(x:16,y:96));path.closeSubpath()}.fill(gold).frame(width:16,height:96)
+                        Spacer().frame(height:120)
+                    }.frame(height:264).rotationEffect(.degrees(bearing-heading))
+                }
+                Circle().fill(gold).frame(width:16,height:16)
+            }.frame(width:size,height:size).frame(maxWidth:.infinity)
+        }
+    }
+    private var markings:some View {
+        Canvas {context,size in
+            let radius=min(size.width,size.height)/2
+            for tick in 0..<72 {
+                let angle=(Double(tick)*5-(heading ?? 0))*Double.pi/180
+                let outside=radius-17,inside=outside-CGFloat(tick%6==0 ? 17:8)
+                var path=Path();path.move(to:point(angle,inside,radius));path.addLine(to:point(angle,outside,radius))
+                context.stroke(path,with:.color(.white.opacity(0.7)),lineWidth:tick%6==0 ? 2:1)
+            }
+            for (index,title) in ["U","T","S","B"].enumerated() {
+                let angle=(Double(index)*90-(heading ?? 0))*Double.pi/180
+                context.draw(Text(title).font(.title3.bold()).foregroundColor(.white),at:point(angle,radius-50,radius))
+            }
+        }
+    }
+    private func point(_ angle:Double,_ distance:CGFloat,_ center:CGFloat)->CGPoint {CGPoint(x:center+CGFloat(sin(angle))*distance,y:center-CGFloat(cos(angle))*distance)}
 }
 struct ReminderSettingsView:View {
     @ObservedObject var state:AppState;@State private var status="";@State private var saving=false
