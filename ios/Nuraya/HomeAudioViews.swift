@@ -12,7 +12,7 @@ struct HomeView:View {
         LazyVGrid(columns:[GridItem(.flexible()),GridItem(.flexible())],spacing:12){
             Button{selectTab(1)}label:{tile("Baca Al-Qur’an","book-open-cover")}
             NavigationLink(value:Route.recitation){tile("AI bacaan Al-Qur’an","microphone")}
-            NavigationLink(value:Route.learning){tile("Hafalan, tajwid & kuis","graduation-cap")}
+            NavigationLink(value:Route.learning){tile("Hafalan, tajwid & kuis","graduation-cap")}.accessibilityIdentifier("home_learning")
             NavigationLink(value:Route.search){tile("Cari ayat & makna","books")}
             Button{selectTab(2)}label:{tile("Dengarkan murottal","headphones")}
             NavigationLink(value:Route.library){tile("Koleksi saya","bookmark")}
@@ -38,7 +38,7 @@ struct PrayerHeader:View {
                     }
                     Spacer(minLength:4)
                     if home {
-                        NavigationLink(value:Route.settings){AppIcon(name:"settings",size:24).frame(width:44,height:44)}
+                        NavigationLink(value:Route.settings){AppIcon(name:"settings",size:24).frame(width:44,height:44)}.accessibilityLabel("Pengaturan").accessibilityIdentifier("home_settings")
                         NavigationLink(value:Route.profile){AssetImage(content:state.content,path:"brand/avatars/avatar_\(state.settings.avatar).png",fit:true).frame(width:42,height:42).clipShape(Circle())}
                     }else {
                         NavigationLink {ReminderSettingsView(state:state)}label:{AppIcon(name:"bell").frame(width:44,height:44).accessibilityLabel("Pengaturan azan")}

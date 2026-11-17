@@ -34,7 +34,7 @@ struct LearningView:View {
     }
     private var tabs:some View {
         HStack(spacing:0){ForEach(0..<4){index in
-            Button{tab=index}label:{VStack(spacing:12){Text(["Belajar","Hafalan","Latihan","Progres"][index]).font(.system(size:17,weight:.semibold));Rectangle().fill(tab==index ? palette.primary:palette.raised).frame(height:3)}.frame(maxWidth:.infinity,minHeight:44)}
+            Button{tab=index}label:{VStack(spacing:12){Text(["Belajar","Hafalan","Latihan","Progres"][index]).font(.system(size:17,weight:.semibold));Rectangle().fill(tab==index ? palette.primary:palette.raised).frame(height:3)}.frame(maxWidth:.infinity,minHeight:44)}.accessibilityIdentifier("learning_tab_\(index)")
         }}
     }
     private func chip(_ title:String,_ icon:String)->some View {HStack(spacing:6){AppIcon(name:icon,size:19);Text(title).font(.system(size:14,weight:.medium))}.padding(.horizontal,12).padding(.vertical,9).background(palette.raised,in:RoundedRectangle(cornerRadius:14))}
@@ -65,7 +65,7 @@ struct LearningView:View {
         VStack(alignment:.leading,spacing:18){
             Text("Latihan sesuai kebutuhan").font(.title2.bold())
             Button{lesson=state.content.lessons.filter {$0.kind=="tajwid"}.randomElement()}label:{MenuRow(title:"Acak materi tajwid",subtitle:"Satu materi, lima langkah singkat",icon:"compass-alt",dark:state.settings.dark)}
-            Button{freePractice=true}label:{MenuRow(title:"Hafalan rentang bebas",subtitle:"Pilih sendiri surah, ayat, dan pengulangan",icon:"book-open-cover",dark:state.settings.dark)}
+            Button{freePractice=true}label:{MenuRow(title:"Hafalan rentang bebas",subtitle:"Pilih sendiri surah, ayat, dan pengulangan",icon:"book-open-cover",dark:state.settings.dark)}.accessibilityIdentifier("learning_free_practice")
             NavigationLink(value:Route.recitation){MenuRow(title:"AI bacaan Al-Qur’an",subtitle:"Periksa perkiraan kata yang terdengar",icon:"microphone",dark:state.settings.dark)}
         }
     }
@@ -79,7 +79,7 @@ struct LearningView:View {
             if state.settings.learning.badges.isEmpty {Text("Lencana muncul dari kegiatan belajarmu. Tidak ada kompetisi.")}
             ForEach(state.settings.learning.badges,id:\.self){badge in HStack{AppIcon(name:"badge-check");Text(badge)}}
             Text("Hari aktif: \(state.settings.learning.daily.count)")
-            Text("\(state.settings.learning.reviews?.count ?? 0) ayat pernah dinilai mandiri")
+            Text("\(state.settings.learning.reviews?.count ?? 0) ayat pernah dinilai mandiri").accessibilityIdentifier("learning_review_count")
             Text("XP mencatat aktivitas. Penilaian hafalan mandiri bukan pengukuran suara otomatis.").font(.footnote).foregroundStyle(palette.secondary)
         }
     }
