@@ -19,17 +19,18 @@ struct ReaderView:View {
     @ObservedObject var state:AppState;let target:ReaderDestination;@ObservedObject var audio:AudioService
     @Environment(\.dismiss) var dismiss
     @State private var page=1;@State private var reference=Reference(1,1);@State private var controls=false;@State private var image:UIImage?;@State private var error:String?;@State private var loading=false;@State private var zoom=1.0;@State private var hidden=false;@State private var landscape=false;@State private var tikrar=0
-    @State private var panel=false;@State private var jump=false;@State private var audioSettings=false;@State private var actions=false;@State private var info=false;@State private var downloadingEdition=false;@State private var downloadCount=0
+    @State private var panel=false;@State private var jump=false;@State private var audioSettings=false;@State private var actions=false;@State private var share=false;@State private var info=false;@State private var downloadingEdition=false;@State private var downloadCount=0
     var mode:ReadingMode? {state.content.modes.first {$0.id==target.mode}}
     var edition:MushafEdition? {mode?.edition}
     var body:some View {Group {if let edition=edition {book(edition)}else {textReader}}
         .sheet(isPresented:$panel){NavigationStack{StudyPanel(state:state,reference:reference,audio:audio).toolbar{ToolbarItem(placement:.navigationBarTrailing){Button("Tutup"){panel=false}}}}}
         .sheet(isPresented:$jump){JumpSheet(state:state,edition:edition,onSelect:{r in reference=r;if let edition=edition {do {page=try state.content.index(edition).page(for:r)}catch{self.error="Rujukan tidak ditemukan."}};jump=false},onPage:{n in page=n;updateReference();jump=false})}
         .sheet(isPresented:$audioSettings){AudioRangeSheet(state:state,start:reference,onPlay:{a,b,e,p in audio.verses(qari:state.selectedQari,start:a,end:b,each:e,passes:p);audioSettings=false;controls=true})}
-        .confirmationDialog("Ayat \(reference.id)",isPresented:$actions,titleVisibility:.visible){Button("Putar ayat ini"){audio.verses(qari:state.selectedQari,start:reference,end:reference)};Button("Arti, per kata & tafsir"){panel=true};Button("Tandai / hapus penanda"){state.mark(reference)};Button("Salin ayat"){if let v=state.content.corpus.verse(reference){UIPasteboard.general.string=v.text+"\n"+v.indonesian+"\nQS "+reference.id}}}
+        .confirmationDialog("Ayat \(reference.id)",isPresented:$actions,titleVisibility:.visible){Button("Putar ayat ini"){audio.verses(qari:state.selectedQari,start:reference,end:reference)};Button("Arti, per kata & tafsir"){panel=true};Button("Tandai / hapus penanda"){state.mark(reference)};Button("Bagikan ayat"){share=true};Button("Salin ayat"){if let v=state.content.corpus.verse(reference){UIPasteboard.general.string=v.text+"\n"+v.indonesian+"\nQS "+reference.id}}}
+        .sheet(isPresented:$share){if let verse=state.content.corpus.verse(reference){ShareSheet(text:verse.text+"\n"+verse.indonesian+"\nQS "+reference.id)}}
         .sheet(isPresented:$info){NavigationStack{PageContainer(dark:false){Text("Tajwid & sumber").font(.title.bold());Text("Gambar halaman mengikuti edisi sumber yang dipatok Nuraya. Warna asli cetak tidak selalu memakai legenda panel teks yang sama.");Text("Sumber: agusibrahim/quran-image. Terjemahan panel: Kemenag RI melalui QuranEnc. Arti per kata: Quran.com. Latin: eQuran.id.");if target.mode=="waqaf",let signs=try? state.content.decode("waqaf_guide.json",[WaqafItem].self){ForEach(signs){s in Text(s.mark+" — "+s.name).font(.title2);Text(s.explanation)}};Text("Halaman: \(page)/604. Ketuk halaman untuk menampilkan kontrol; geser kanan untuk lanjut; tekan lama ayat pada edisi berpeta.")}.toolbar{Button("Tutup"){info=false}}}}
         .onAppear{reference=target.reference;if let edition=edition {do{page=try state.content.index(edition).page(for:reference)}catch{self.error="Halaman rujukan tidak ditemukan."}}}
-        .onDisappear{audio.stopReader();rotate(false)}
+        .onDisappear{downloadingEdition=false;audio.stopReader();rotate(false)}
         .onChange(of:audio.track?.id){_ in guard state.settings.followAudio,audio.context == .reader,let r=audio.track?.verse?.reference else{return};reference=r;state.recordReading(r);if let edition=edition,let n=try? state.content.index(edition).page(for:r){page=n}}
     }
     func book(_ edition:MushafEdition)->some View {ZStack{
@@ -41,11 +42,53 @@ struct ReaderView:View {
         if controls {VStack{HStack(spacing:10){Button{dismiss()}label:{AppIcon(name:"arrow-left").frame(width:44,height:44).accessibilityHidden(false).accessibilityLabel("Tutup Quran")};VStack(alignment:.leading){Text(mode?.titleId ?? edition.title).font(.system(size:15,weight:.semibold));Text("Halaman \(page) / 604").font(.system(size:13))};Spacer();Button{panel=true}label:{AppIcon(name:"language").frame(width:40,height:44)};Button{jump=true}label:{AppIcon(name:"search").frame(width:40,height:44)};readerMenu}.padding(.horizontal,8).background(Color(hex:0xF4ECD7));Spacer();if downloadingEdition {Text("Mengunduh edisi: \(downloadCount)/604").padding(12).background(Color(hex:0xF4ECD7));Button("Hentikan unduhan"){downloadingEdition=false}.padding(8).background(Color(hex:0xF4ECD7))};HStack(spacing:12){Button{info=true}label:{AppIcon(name:"info").frame(width:44,height:48)};Button{state.mark(reference)}label:{AppIcon(name:"bookmark").frame(width:44,height:48)};Button{audioSettings=true}label:{HStack{AppIcon(name:"settings-sliders");Text(state.selectedQari.name).font(.system(size:13)).lineLimit(2);Spacer();AppIcon(name:"angle-down",size:18)}};if audio.context == .reader,audio.track != nil {Button{audio.toggle()}label:{AppIcon(name:audio.playing ? "pause":"play").frame(width:44,height:48)}}}.padding(.horizontal,10).background(Color(hex:0xF4ECD7))}.foregroundStyle(Color(hex:0x625331))}
     }.statusBarHidden(!controls).task(id:page){await loadPage(edition)}}
     var readerMenu:some View {Menu{Button("Halaman berikutnya"){turn(1)};Button("Halaman sebelumnya"){turn(-1)};Button("Lanskap / potret"){landscape.toggle();rotate(landscape)};Button("Perbesar halaman"){zoom=min(3,zoom+0.5)};Button("Ukuran halaman semula"){zoom=1};Button("Layar baca penuh"){controls=false};Button("Simpan halaman offline"){if let edition=edition {Task{await loadPage(edition)}}};Button("Unduh 604 halaman edisi ini"){downloadEdition()};if target.mode=="hafalan_8"{Button("Uji hafalan tanpa melihat"){hidden.toggle()}};if target.mode=="tikrar" {Button("Catat pengulangan: \(tikrar)"){tikrar+=1};Button("Atur pengulangan audio"){audioSettings=true}};Button("Info tajwid & sumber"){info=true}}label:{AppIcon(name:"menu-dots-vertical").frame(width:40,height:44)}}
-    var textReader:some View {NavigationStack{ScrollViewReader{proxy in ScrollView{LazyVStack(spacing:20){ForEach(state.content.corpus.chapter(reference.surah)){v in VStack(alignment:.leading,spacing:16){HStack{Text("\(state.content.corpus.surahs[v.surah-1].name) · \(v.ayah)").font(.headline);Spacer();Button{reference=v.reference;actions=true}label:{AppIcon(name:"menu-dots-vertical").frame(width:44,height:44)}};if let opening=v.opening {ArabicText(text:opening,size:state.settings.arabicSize).padding(.vertical,12)};ArabicText(text:v.text,size:state.settings.arabicSize,study:state.content.study(v.reference),color:state.settings.tajwid,highlight:audio.track?.verse?.reference==v.reference ? audio.word:nil);if state.settings.translation != "none" {Text(state.settings.translation=="en" ? v.english:v.indonesian).font(.system(size:19)).textSelection(.enabled)};HStack{Button("Arti & tafsir"){reference=v.reference;panel=true};Spacer();Button{audio.verses(qari:state.selectedQari,start:v.reference,end:v.reference)}label:{AppIcon(name:"play").frame(width:48,height:48)}}}.padding(20).background(Palette(dark:state.settings.dark).card,in:RoundedRectangle(cornerRadius:22)).id(v.ayah)};HStack{if reference.surah>1 {Button("Surah sebelumnya"){reference=Reference(reference.surah-1,1);state.recordReading(r)eference}};Spacer();if reference.surah<114{Button("Surah berikutnya"){reference=Reference(reference.surah+1,1);state.recordReading(r)eference}}}}.padding(20)}.background(Palette(dark:state.settings.dark).background).onChange(of:reference){r in withAnimation{proxy.scrollTo(r.ayah,anchor:.top)}}.onAppear{DispatchQueue.main.asyncAfter(deadline:.now()+0.3){proxy.scrollTo(target.reference.ayah,anchor:.top)}}}.navigationTitle(state.content.corpus.surahs[reference.surah-1].name).navigationBarTitleDisplayMode(.inline).toolbar{ToolbarItem(placement:.navigationBarLeading){Button{dismiss()}label:{AppIcon(name:"arrow-left")}};ToolbarItemGroup(placement:.navigationBarTrailing){Button{jump=true}label:{AppIcon(name:"search")};Button{audioSettings=true}label:{AppIcon(name:"settings-sliders")}}}}
+    var textReader:some View {
+        NavigationStack {
+            ScrollViewReader {proxy in
+                ScrollView {
+                    LazyVStack(spacing:20){
+                        ForEach(state.content.corpus.chapter(reference.surah)){verse in verseCard(verse).id(verse.ayah)}
+                        HStack {
+                            if reference.surah>1 {Button("Surah sebelumnya"){changeSurah(reference.surah-1)}}
+                            Spacer()
+                            if reference.surah<114 {Button("Surah berikutnya"){changeSurah(reference.surah+1)}}
+                        }
+                    }.padding(20)
+                }.background(Palette(dark:state.settings.dark).background)
+                    .onChange(of:reference){ref in withAnimation{proxy.scrollTo(ref.ayah,anchor:.top)}}
+                    .onAppear{DispatchQueue.main.asyncAfter(deadline:.now()+0.3){proxy.scrollTo(target.reference.ayah,anchor:.top)}}
+            }.navigationTitle(state.content.corpus.surahs[reference.surah-1].name)
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar{
+                    ToolbarItem(placement:.navigationBarLeading){Button{dismiss()}label:{AppIcon(name:"arrow-left")}.accessibilityLabel("Tutup Quran")}
+                    ToolbarItemGroup(placement:.navigationBarTrailing){
+                        Button{jump=true}label:{AppIcon(name:"search")}.accessibilityLabel("Pindah surah")
+                        Button{audioSettings=true}label:{AppIcon(name:"settings-sliders")}.accessibilityLabel("Audio bacaan")
+                    }
+                }
+        }
+    }
+    private func changeSurah(_ number:Int){reference=Reference(number,1);state.recordReading(reference)}
+    private func verseCard(_ verse:Verse)->some View {
+        VStack(alignment:.leading,spacing:16){
+            HStack{
+                Text("\(state.content.corpus.surahs[verse.surah-1].name) · \(verse.ayah)").font(.headline)
+                Spacer()
+                Button{reference=verse.reference;actions=true}label:{AppIcon(name:"menu-dots-vertical").frame(width:44,height:44)}.accessibilityLabel("Pilihan ayat \(verse.ayah)")
+            }
+            if let opening=verse.opening {ArabicText(text:opening,size:state.settings.arabicSize).padding(.vertical,12)}
+            ArabicText(text:verse.text,size:state.settings.arabicSize,study:state.content.study(verse.reference),color:state.settings.tajwid,highlight:audio.track?.verse?.reference==verse.reference ? audio.word:nil)
+            if state.settings.translation != "none" {Text(state.settings.translation=="en" ? verse.english:verse.indonesian).font(.system(size:19)).textSelection(.enabled)}
+            HStack{
+                Button("Arti & tafsir"){reference=verse.reference;panel=true}
+                Spacer()
+                Button{audio.verses(qari:state.selectedQari,start:verse.reference,end:verse.reference)}label:{AppIcon(name:"play").frame(width:48,height:48)}.accessibilityLabel("Putar ayat \(verse.ayah)")
+            }
+        }.padding(20).background(Palette(dark:state.settings.dark).card,in:RoundedRectangle(cornerRadius:22))
     }
     func turn(_ delta:Int){guard (1...604).contains(page+delta) else{return};page+=delta;zoom=1;updateReference()}
     func updateReference(){if let edition=edition,let index=try? state.content.index(edition),let r=index.references(on:page).first {reference=r;state.recordReading(r)}}
-    func loadPage(_ edition:MushafEdition) async {loading=true;error=nil;let n=page;do{let i=try await state.downloads.page(edition,n);if page==n{image=i}}catch{if page==n{self.error="Halaman belum terbuka: \(error.localizedDescription)"}};if page==n{loading=false}}
+    func loadPage(_ edition:MushafEdition) async {loading=true;error=nil;image=nil;let n=page;do{let i=try await state.downloads.page(edition,n);if page==n{image=i}}catch{if page==n{self.error="Halaman belum terbuka: \(error.localizedDescription)"}};if page==n{loading=false}}
     func downloadEdition(){guard let edition=edition else{return};downloadingEdition=true;Task{for n in 1...604{guard downloadingEdition else{return};do{_=try await state.downloads.page(edition,n);downloadCount=n}catch{self.error="Unduhan berhenti pada halaman \(n). Halaman yang selesai tetap tersimpan.";downloadingEdition=false;return}};downloadingEdition=false}}
     func rotate(_ landscape:Bool){guard let scene=UIApplication.shared.connectedScenes.first as? UIWindowScene else{return};scene.requestGeometryUpdate(.iOS(interfaceOrientations:landscape ? .landscapeRight:.portrait))}
 }

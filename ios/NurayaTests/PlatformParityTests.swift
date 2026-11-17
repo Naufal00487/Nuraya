@@ -33,6 +33,28 @@ final class PlatformParityTests:XCTestCase {
         XCTAssertEqual(try XCTUnwrap(PrayerService.bearing(settings:settings)),295.2,accuracy:1)
         XCTAssertTrue(PrayerService.hijri(date,settings:settings).contains("1448"))
     }
+    @MainActor func testReadingAudioHasFiniteRepeatsAndStopsWithoutStoppingMurottal() throws {
+        let store=try content()
+        let directory=FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer {try? FileManager.default.removeItem(at:directory)}
+        let downloads=try DownloadStore(directory:directory,content:store)
+        let audio=AudioService(content:store,downloads:downloads)
+        let qari=try XCTUnwrap(store.qaris.first)
+        audio.chapter(qari,112)
+        let chapter=try XCTUnwrap(audio.track?.id)
+        audio.stopReader()
+        XCTAssertEqual(audio.track?.id,chapter)
+        audio.repeatMode=1
+        audio.verses(qari:qari,start:Reference(112,1),end:Reference(112,2))
+        XCTAssertEqual(audio.track?.verse?.reference,Reference(112,1))
+        audio.next()
+        XCTAssertEqual(audio.track?.verse?.reference,Reference(112,2))
+        audio.next()
+        XCTAssertNil(audio.track)
+        audio.verses(qari:qari,start:Reference(112,1),end:Reference(112,1))
+        audio.stopReader()
+        XCTAssertNil(audio.track)
+    }
     func testNativeSpeechSilenceCancellationAndKnownQuranRecording() throws {
         let bundle=Bundle(for:Self.self)
         let fixture=try XCTUnwrap(bundle.resourceURL).appendingPathComponent("TestFixtures")

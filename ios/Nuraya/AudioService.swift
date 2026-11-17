@@ -99,8 +99,8 @@ struct AudioTrack:Identifiable {
     func seek(_ seconds:Double) {guard let t=track else {return};player.seek(to:CMTime(seconds:t.start+max(0,min(duration,seconds)),preferredTimescale:600),toleranceBefore:.zero,toleranceAfter:.zero)}
     func next(force:Bool=false) {
         guard !queue.isEmpty else {return}
-        if repeatMode==1 && !force {load();return}
-        if cursor+1<queue.count {cursor+=1;load()}else if repeatMode==2 {cursor=0;load()}else {stop()}
+        if context == .murottal && repeatMode==1 && !force {load();return}
+        if cursor+1<queue.count {cursor+=1;load()}else if context == .murottal && repeatMode==2 {cursor=0;load()}else {stop()}
     }
     func previous() {if position>3 {seek(0)}else if cursor>0 {cursor-=1;load()}else {seek(0)}}
     func retry() {load()}

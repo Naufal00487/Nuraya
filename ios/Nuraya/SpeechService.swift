@@ -4,11 +4,13 @@ import AVFoundation
 import NurayaCore
 @MainActor final class SpeechService:ObservableObject {
     @Published var text="";@Published var recording=false;@Published var error:String?
+    private var generation=0
     private var engine:AVAudioEngine?,request:SFSpeechAudioBufferRecognitionRequest?,task:SFSpeechRecognitionTask?,timeout:Task<Void,Never>?
     func start(locale:String="id-ID",allowNetwork:Bool=false) async {
-        stop();text="";error=nil
+        stop();let token=generation;text="";error=nil
         let authorized=await withCheckedContinuation {c in SFSpeechRecognizer.requestAuthorization {c.resume(returning:$0 == .authorized)}}
         let microphone=await withCheckedContinuation {c in AVAudioSession.sharedInstance().requestRecordPermission {c.resume(returning:$0)}}
+        guard generation==token else{return}
         guard authorized,microphone else {error="Izinkan mikrofon dan pengenalan ucapan melalui Pengaturan iPhone.";return}
         guard let recognizer=SFSpeechRecognizer(locale:Locale(identifier:locale)),recognizer.isAvailable else {error="Pengenal ucapan bahasa ini belum tersedia di iPhone.";return}
         guard recognizer.supportsOnDeviceRecognition || allowNetwork else {error="Model dikte lokal belum tersedia. Aktifkan izin layanan suara Apple atau gunakan ketikan.";return}
@@ -18,6 +20,7 @@ import NurayaCore
             let input=e.inputNode,format=input.outputFormat(forBus:0);guard format.sampleRate>0,format.channelCount>0 else {throw URLError(.cannotDecodeRawData)}
             input.installTap(onBus:0,bufferSize:1024,format:format){buffer,_ in r.append(buffer)}
             engine=e;request=r;task=recognizer.recognitionTask(with:r){[weak self] result,error in Task {@MainActor in
+                guard self?.generation==token else{return}
                 if let result=result {self?.text=result.bestTranscription.formattedString;if result.isFinal {self?.stop()}}
                 if let error=error,self?.recording==true {self?.error=error.localizedDescription;self?.stop()}
             }}
@@ -26,12 +29,18 @@ import NurayaCore
         }catch {self.error=error.localizedDescription;stop()}
     }
     func finish() {engine?.stop();engine?.inputNode.removeTap(onBus:0);engine=nil;request?.endAudio();recording=false;timeout?.cancel();timeout=Task {try? await Task.sleep(nanoseconds:15_000_000_000);if !Task.isCancelled {stop()}}}
-    func stop() {timeout?.cancel();timeout=nil;engine?.stop();engine?.inputNode.removeTap(onBus:0);engine=nil;request?.endAudio();task?.cancel();task=nil;request=nil;recording=false;try? AVAudioSession.sharedInstance().setActive(false,options:.notifyOthersOnDeactivation)}
+    func stop() {generation+=1;timeout?.cancel();timeout=nil;engine?.stop();engine?.inputNode.removeTap(onBus:0);engine=nil;request?.endAudio();task?.cancel();task=nil;request=nil;recording=false;try? AVAudioSession.sharedInstance().setActive(false,options:.notifyOthersOnDeactivation)}
 }
 private final class PCMBuffer {
     private let lock=NSLock();private var samples=[Float]()
     func append(_ values:UnsafeBufferPointer<Float>){lock.lock();defer {lock.unlock()};samples.append(contentsOf:values.prefix(max(0,16000*90-samples.count)))}
     func snapshot()->[Float]{lock.lock();defer {lock.unlock()};return samples}
+    func meter()->(seconds:Double,level:Double) {
+        lock.lock();defer{lock.unlock()}
+        let tail=samples.suffix(3200)
+        let energy=tail.reduce(0.0){$0+Double($1*$1)}
+        return (Double(samples.count)/16000,tail.isEmpty ? 0:sqrt(energy/Double(tail.count)))
+    }
     func clear(){lock.lock();defer {lock.unlock()};samples.removeAll(keepingCapacity:false)}
 }
 struct QuranModelSpec:Decodable {let url:String,bytes:Int,sha256:String,fileName:String}
@@ -77,10 +86,9 @@ struct QuranModelSpec:Decodable {let url:String,bytes:Int,sha256:String,fileName
             pulse=Task {
                 while !Task.isCancelled && recording {
                     try? await Task.sleep(nanoseconds:200_000_000);if Task.isCancelled {return}
-                    let pcm=samples.snapshot();seconds=Double(pcm.count)/16000
-                    let tail=pcm.suffix(3200);level=tail.isEmpty ? 0:sqrt(tail.reduce(0){$0+Double($1*$1)}/Double(tail.count))
+                    let meter=samples.meter();seconds=meter.seconds;level=meter.level
                     if seconds >= (micOnly ? 5:90) {finish();return}
-                    if !micOnly,seconds-lastPartial>=6,!processing {lastPartial=seconds;recognize(pcm,final:false)}
+                    if !micOnly,seconds-lastPartial>=6,!processing {lastPartial=seconds;recognize(samples.snapshot(),final:false)}
                 }
             }
         }catch {processing=false;self.error=error.localizedDescription;stopCapture()}

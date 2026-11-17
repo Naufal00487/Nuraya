@@ -27,12 +27,15 @@ targets:
     sources:
       - path: Nuraya
         excludes: ['Resources']
-    resources:
       - path: Nuraya/Resources/Content
         type: folder
+        buildPhase: resources
       - path: Nuraya/Resources/Assets.xcassets
+        buildPhase: resources
       - path: Config/PrivacyInfo.xcprivacy
+        buildPhase: resources
       - path: Nuraya/Resources/adhan_short.caf
+        buildPhase: resources
     info:
       path: Config/Info.plist
       properties:
@@ -78,16 +81,18 @@ targets:
   NurayaTests:
     type: bundle.unit-test
     platform: iOS
-    sources: [NurayaTests]
-    resources:
+    sources:
+      - path: NurayaTests
       - path: .build/TestFixtures
         type: folder
+        buildPhase: resources
     dependencies:
       - target: Nuraya
       - package: NurayaCore
     settings:
       base:
         GENERATE_INFOPLIST_FILE: YES
+        SWIFT_OBJC_BRIDGING_HEADER: Nuraya/Native/BridgingHeader.h
 schemes:
   Nuraya:
     build:
