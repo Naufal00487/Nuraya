@@ -4,7 +4,7 @@ import UIKit
 import NurayaCore
 @MainActor final class DownloadStore:ObservableObject {
     let directory:URL,content:ContentStore
-    @Published var tasks=[String:Double](),error:String?
+    @Published var tasks=[String:Double]();@Published var error:String?
     private var active=[String:Task<URL,Error>]()
     init(directory:URL,content:ContentStore)throws {self.directory=directory;self.content=content;try FileManager.default.createDirectory(at:directory,withIntermediateDirectories:true);var d=directory;var values=URLResourceValues();values.isExcludedFromBackup=true;try d.setResourceValues(values)}
     func key(_ url:URL)->String {SHA256.hash(data:Data(url.absoluteString.utf8)).map {String(format:"%02x",$0)}.joined()}

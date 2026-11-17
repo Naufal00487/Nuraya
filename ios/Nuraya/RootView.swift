@@ -4,7 +4,7 @@ enum Route:Hashable {case settings,profile,search,hadith,learning,recitation,lib
 struct RootView:View {
     @ObservedObject var state:AppState
     @Environment(\.scenePhase) var scenePhase
-    @State private var tab=0,path=[Route]()
+    @State private var tab=0;@State private var path=[Route]()
     var palette:Palette {Palette(dark:state.settings.dark)}
     var body:some View {
         Group {
@@ -39,7 +39,7 @@ struct RootView:View {
     }
 }
 struct ProfileSetup:View {
-    @ObservedObject var state:AppState;@State private var name="",avatar=0
+    @ObservedObject var state:AppState;@State private var name="";@State private var avatar=0
     var body:some View {PageContainer(dark:state.settings.dark){AssetImage(content:state.content,path:"brand/logo.jpg",fit:true).frame(height:150).clipShape(RoundedRectangle(cornerRadius:24));Text("Selamat datang di Nuraya").font(.system(size:30,weight:.bold));Text("Lengkapi profil pribadimu untuk mulai membaca dan belajar.").font(.system(size:19));AvatarPicker(state:state,selected:$avatar);TextField("Nama panggilan",text:$name).textContentType(.nickname).padding(18).background(Palette(dark:state.settings.dark).raised,in:RoundedRectangle(cornerRadius:16));PrimaryButton(title:"Mulai menggunakan Nuraya",icon:"arrow-right"){state.settings.avatar=avatar;state.settings.name=String(name.trimmingCharacters(in:.whitespacesAndNewlines).prefix(60))}.disabled(name.trimmingCharacters(in:.whitespacesAndNewlines).isEmpty);Text("Profil disimpan di iPhone ini. Tidak memerlukan akun online.").font(.callout).foregroundStyle(.secondary)}}
 }
 struct AvatarPicker:View {

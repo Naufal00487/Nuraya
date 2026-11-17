@@ -5,7 +5,7 @@ struct RecitationView:View {
     @StateObject private var local:QuranRecitationService
     @ObservedObject var speech:SpeechService
     @Environment(\.scenePhase) var scenePhase
-    @State private var surah=112,ayah=1,mode=0,allowNetwork=false,resultRecorded=false
+    @State private var surah=112;@State private var ayah=1;@State private var mode=0;@State private var allowNetwork=false;@State private var resultRecorded=false
     init(state:AppState){self.state=state;_local=StateObject(wrappedValue:QuranRecitationService(state:state));speech=state.speech}
     var verse:Verse? {state.content.corpus.verse(Reference(surah,ayah))}
     var text:String {mode==0 ? local.transcript:speech.text}

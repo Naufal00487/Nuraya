@@ -1,7 +1,7 @@
 import SwiftUI
 import CoreText
 @main struct NurayaApp:App {
-    @State private var state:AppState?,loadError:String?
+    @State private var state:AppState?;@State private var loadError:String?
     var body:some Scene {WindowGroup {Group {
         if let state=state {RootView(state:state)}
         else {VStack(spacing:24){if let base=Bundle.main.resourceURL,let image=UIImage(contentsOfFile:base.appendingPathComponent("Content/brand/logo.jpg").path){Image(uiImage:image).resizable().scaledToFit().frame(width:130,height:130).clipShape(RoundedRectangle(cornerRadius:28))};Text("Nuraya").font(.largeTitle.bold());if let error=loadError{Text(error).multilineTextAlignment(.center)}else {ProgressView("Menyiapkan bacaan…")}}.padding(28).frame(maxWidth:.infinity,maxHeight:.infinity).background(Color(hex:0xF6F8FC))}

@@ -3,7 +3,7 @@ import Speech
 import AVFoundation
 import NurayaCore
 @MainActor final class SpeechService:ObservableObject {
-    @Published var text="",recording=false,error:String?
+    @Published var text="";@Published var recording=false;@Published var error:String?
     private var engine:AVAudioEngine?,request:SFSpeechAudioBufferRecognitionRequest?,task:SFSpeechRecognitionTask?,timeout:Task<Void,Never>?
     func start(locale:String="id-ID",allowNetwork:Bool=false) async {
         stop();text="";error=nil
@@ -36,7 +36,7 @@ private final class PCMBuffer {
 }
 struct QuranModelSpec:Decodable {let url:String,bytes:Int,sha256:String,fileName:String}
 @MainActor final class QuranRecitationService:ObservableObject {
-    @Published var ready=false,downloading=false,recording=false,processing=false,seconds=0.0,level=0.0,transcript="",error:String?,final=false,micOnly=false
+    @Published var ready=false;@Published var downloading=false;@Published var recording=false;@Published var processing=false;@Published var seconds=0.0;@Published var level=0.0;@Published var transcript="";@Published var error:String?;@Published var final=false;@Published var micOnly=false
     let state:AppState
     private let samples=PCMBuffer(),inference=DispatchQueue(label:"nuraya.whisper.inference",qos:.userInitiated)
     private var engine:AVAudioEngine?,native:NurayaWhisper?,pulse:Task<Void,Never>?,generation=0,lastPartial=0.0

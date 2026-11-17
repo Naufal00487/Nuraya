@@ -10,7 +10,7 @@ struct AudioTrack:Identifiable {
 @MainActor final class AudioService:ObservableObject {
     enum Context {case murottal,reader}
     let player=AVPlayer(),content:ContentStore,downloads:DownloadStore
-    @Published var track:AudioTrack?,playing=false,position=0.0,duration=0.0,speed:Float=1,repeatMode=0,error:String?,word:Int?
+    @Published var track:AudioTrack?;@Published var playing=false;@Published var position=0.0;@Published var duration=0.0;@Published var speed:Float=1;@Published var repeatMode=0;@Published var error:String?;@Published var word:Int?
     private(set) var context:Context = .murottal
     private var queue=[AudioTrack](),cursor=0,generation=0,advancing=false
     private var tick:Any?,endToken:NSObjectProtocol?,interruptToken:NSObjectProtocol?,routeToken:NSObjectProtocol?,status:NSKeyValueObservation?

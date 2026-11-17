@@ -5,7 +5,7 @@ import Adhan
 import NurayaCore
 @MainActor final class LocationService:NSObject,ObservableObject,CLLocationManagerDelegate {
     private let manager=CLLocationManager()
-    @Published var coordinate:CLLocationCoordinate2D?,name="",heading:Double?,accuracy:Double?,error:String?,busy=false
+    @Published var coordinate:CLLocationCoordinate2D?;@Published var name="";@Published var heading:Double?;@Published var accuracy:Double?;@Published var error:String?;@Published var busy=false
     override init() {super.init();manager.delegate=self;manager.desiredAccuracy=kCLLocationAccuracyHundredMeters;manager.headingFilter=1}
     func request() {
         error=nil;busy=true
