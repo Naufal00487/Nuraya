@@ -7,7 +7,7 @@ import NurayaCore
 final class ContentStore {
     let root:URL,corpus:QuranCorpus,qaris:[ReciterSelection],chapterReciters:[ChapterReciter],verseReciters:[VerseReciter],portraits:[Portrait],modes:[ReadingMode],lessons:[Lesson],themes:[QuranTheme],manifest:MushafManifest
     private var studyCache=[Int:StudyChapter](),latinCache=[Int:LatinChapter](),indexCache=[String:PageIndex](),mapCache=[String:MushafMap]()
-    lazy var search:QuranSearch? = try? QuranSearch(corpus:corpus,lexical:Data(contentsOf:root.appendingPathComponent("learning_index.bin")),semantic:Data(contentsOf:root.appendingPathComponent("semantic_index.bin")),metadata:Data(contentsOf:root.appendingPathComponent("semantic_index_sources.json")))
+    lazy var search:QuranSearch? = try? QuranSearch(corpus:corpus,lexical:Data(contentsOf:root.appendingPathComponent("learning_index.bin")),semantic:Data(contentsOf:root.appendingPathComponent("semantic_index.bin")),metadata:Data(contentsOf:root.appendingPathComponent("semantic_index_sources.json")),names:Data(contentsOf:root.appendingPathComponent("surah_aliases.json")))
     init(root:URL) throws {
         self.root=root
         func decode<T:Decodable>(_ path:String,_ type:T.Type) throws -> T {try JSONDecoder().decode(type,from:Data(contentsOf:root.appendingPathComponent(path)))}
@@ -38,7 +38,7 @@ final class ContentStore {
         return mapCache[mapping]?.pages.first {$0.page==page}?.verses ?? []
     }
     func timing(_ qari:ReciterSelection,surah:Int)->TimedChapter? {
-        guard let r=verseReciters.first(where:{$0.id==qari.verseId}),let folder=r.timingFolder,r.supportsWordSync==true,let t=try? decode("audio_timing/\(folder)/\(surah).json",TimedChapter.self),t.surah==surah,t.reciterId==qari.verseId,t.sourceSlug==folder,let u=URL(string:t.audioUrl),u.scheme=="https",["download.quranicaudio.com","audio-cdn.tarteel.ai","cdn.mp3quran.net"].contains(u.host ?? "") else {return nil}
+        guard let r=verseReciters.first(where:{$0.id==qari.verseId}),let folder=r.timingFolder,r.supportsWordSync==true,let t=try? decode("audio_timing/\(folder)/\(surah).json",TimedChapter.self),t.surah==surah,t.matches(r),let u=URL(string:t.audioUrl),u.scheme=="https",["download.quranicaudio.com","audio-cdn.tarteel.ai","cdn.mp3quran.net"].contains(u.host ?? "") else {return nil}
         return t
     }
     func image(_ path:String)->UIImage? {UIImage(contentsOfFile:root.appendingPathComponent(path).path)}

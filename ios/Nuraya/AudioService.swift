@@ -11,6 +11,7 @@ struct AudioTrack:Identifiable {
     enum Context {case murottal,reader}
     let player=AVPlayer(),content:ContentStore,downloads:DownloadStore
     @Published var track:AudioTrack?;@Published var playing=false;@Published var position=0.0;@Published var duration=0.0;@Published var speed:Float=1;@Published var repeatMode=0;@Published var error:String?;@Published var word:Int?
+    var onTrack:((AudioTrack)->Void)?
     private(set) var context:Context = .murottal
     private var queue=[AudioTrack](),cursor=0,generation=0,advancing=false
     private var artwork:MPMediaItemArtwork?,artworkQari="",lastNowPlaying=Date.distantPast
@@ -37,6 +38,14 @@ struct AudioTrack:Identifiable {
     func chapter(_ qari:ReciterSelection,_ surah:Int) {
         guard let edition=content.chapterReciters.first(where:{$0.id==qari.chapterId}) else {error="Audio qari tidak ditemukan.";return}
         context = .murottal;queue=(surah...114).compactMap {n in edition.url(n).map {AudioTrack(url:$0,qari:qari,surah:n,verse:nil,timing:nil)}};cursor=0;load()
+    }
+    func collection(_ entries:[SavedEntry]) {
+        let tracks=entries.compactMap {entry -> AudioTrack? in
+            let pieces=entry.key.split(separator:"|")
+            guard pieces.count==2,let q=content.qaris.first(where:{$0.id==pieces[0]}),let s=Int(pieces[1]),let reciter=content.chapterReciters.first(where:{$0.id==q.chapterId}),let url=reciter.url(s) else{return nil}
+            return AudioTrack(url:url,qari:q,surah:s,verse:nil,timing:nil)
+        }
+        guard !tracks.isEmpty else {return};context = .murottal;queue=tracks;cursor=0;load()
     }
     func verses(qari:ReciterSelection,start:Reference,end:Reference,each:Int=1,passes:Int=1) {
         do {
@@ -68,7 +77,7 @@ struct AudioTrack:Identifiable {
                 guard self.generation==currentGeneration else {return};self.advancing=false;self.resume()
             }
         }}
-        nowPlaying()
+        onTrack?(t);nowPlaying()
     }
     private func update(_ seconds:Double) {
         guard let t=track,seconds.isFinite else {return}

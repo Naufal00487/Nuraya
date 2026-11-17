@@ -12,6 +12,10 @@ def export():
  qaris=[dict(zip(['chapterId','verseId','name'],x)) for x in re.findall(r'Selection\("([^"]+)", "([^"]+)", "([^"]+)"\)',data)]
  assert len(qaris)==28 and len({q['chapterId'] for q in qaris})==28
  (DEST/'curated_reciters.json').write_text(json.dumps(qaris,ensure_ascii=False))
+ names_source=(CORE/'learning/QuranReferenceSearch.kt').read_text().split('private val indonesianNames = listOf(',1)[1].split(')',1)[0]
+ names=re.findall(r'"([^"]+)"',names_source)
+ assert len(names)==114
+ (DEST/'surah_aliases.json').write_text(json.dumps([n.split('|') for n in names],ensure_ascii=False))
  data=(CORE/'quranreading/QuranReadingModes.kt').read_text()
  modes=[dict(zip(['id','titleId','titleEn','descriptionId','descriptionEn'],x)) for x in re.findall(r'QuranReadingMode\("([^"]+)", "([^"]+)", "([^"]+)", "([^"]+)", "([^"]+)"\)',data)]
  assert len(modes)==11

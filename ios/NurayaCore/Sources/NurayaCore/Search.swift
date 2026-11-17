@@ -15,11 +15,14 @@ private struct BinaryReader {
 public struct SearchResult { public let verses: [Verse], surahs: [Surah], approximate: Bool, invalid: Bool }
 public final class QuranSearch {
     private let corpus: QuranCorpus
+    private let surahAliases:[[String]]
     private var lengths=[Int](),postings=[String:[(Int,Double)]]()
     private struct Term {let idf:Float,scale:Float,vector:[Int8]}
     private var terms=[String:Term](),docs=[[Int8]](),scales=[Float](),stop=Set<String>(),aliases=[String:String]()
-    public init(corpus:QuranCorpus,lexical:Data,semantic:Data,metadata:Data) throws {
+    public init(corpus:QuranCorpus,lexical:Data,semantic:Data,metadata:Data,names:Data) throws {
         self.corpus=corpus
+        surahAliases=try JSONDecoder().decode([[String]].self,from:names)
+        guard surahAliases.count==114 else {throw ContentError.invalidIndex}
         var a=BinaryReader(bytes:Array(lexical))
         guard try a.uint(4)==0x4e4c4931,try a.uint(2)==6236 else {throw ContentError.invalidIndex}
         let count=Int(try a.uint(4));guard (1...100000).contains(count) else {throw ContentError.invalidIndex}
@@ -80,13 +83,20 @@ public final class QuranSearch {
         if let i=words.firstIndex(of:"ayat"),i+1<words.count,let n=Int(words[i+1]) {ayah=n;words.removeSubrange(i...i+1)}
         let clean=words.filter {!["cari","carikan","tolong","buka","surat","surah","qs","quran","al","alquran"].contains($0)}.joined()
         guard !clean.isEmpty else {return nil}
-        let compact: (String)->String = { Normalization.words($0).filter {$0 != "al"}.joined() }
+        let compact: (String)->String = { value in
+            var words=Normalization.words(value)
+            if let first=words.first,["al","an","at","as","asy","ash","az","ad","ar"].contains(first) {words.removeFirst()}
+            var key=words.joined().replacingOccurrences(of:"ee",with:"i").replacingOccurrences(of:"oo",with:"u").replacingOccurrences(of:"([aiu])\\1+",with:"$1",options:.regularExpression)
+            if key.hasSuffix("h"){key.removeLast()};return key
+        }
+        let name=compact(clean)
+        func names(_ s:Surah)->[String] {([s.name,s.arabicName]+surahAliases[s.id-1]).map(compact)}
         var approximate=false
-        var matches=corpus.surahs.filter {String($0.id)==clean || compact($0.name)==clean || compact($0.arabicName)==clean}
+        var matches=corpus.surahs.filter {String($0.id)==clean || names($0).contains(name)}
         if matches.isEmpty,clean.count>=4 {
-            matches=corpus.surahs.filter {compact($0.name).contains(clean)}
+            matches=corpus.surahs.filter {names($0).contains(where:{$0.contains(name)})}
             if matches.isEmpty && (words.contains("surat") || words.contains("surah") || ayah != nil) {
-                matches=corpus.surahs.filter {editDistance(compact($0.name),clean)<=max(1,clean.count/5)}
+                matches=corpus.surahs.filter {names($0).contains(where:{editDistance($0,name)<=max(1,name.count/5)})}
                 approximate = !matches.isEmpty
             }
         }

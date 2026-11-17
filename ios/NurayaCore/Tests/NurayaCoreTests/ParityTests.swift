@@ -51,7 +51,7 @@ final class ParityTests: XCTestCase {
     }
     func testTypedAndIndonesianSpokenSearchUseSameReferences() throws {
         let c=try corpus()
-        let search=try QuranSearch(corpus:c,lexical:Data(contentsOf:assets.appendingPathComponent("learning_index.bin")),semantic:Data(contentsOf:assets.appendingPathComponent("semantic_index.bin")),metadata:Data(contentsOf:assets.appendingPathComponent("semantic_index_sources.json")))
+        let search=try QuranSearch(corpus:c,lexical:Data(contentsOf:assets.appendingPathComponent("learning_index.bin")),semantic:Data(contentsOf:assets.appendingPathComponent("semantic_index.bin")),metadata:Data(contentsOf:assets.appendingPathComponent("semantic_index_sources.json")),names:Data(contentsOf:assets.appendingPathComponent("surah_aliases.json")))
         for s in c.surahs {
             let result=search.find("surat \(s.name) ayat 1")
             XCTAssertTrue(result.verses.contains {$0.reference==Reference(s.id,1)},s.name)
@@ -92,13 +92,14 @@ final class ParityTests: XCTestCase {
     func testOnlyElevenMatchingRecordingsEnableWordTiming() throws {
         struct Catalog:Decodable {let reciters:[VerseReciter]}
         let catalog=try JSONDecoder().decode(Catalog.self,from:Data(contentsOf:assets.appendingPathComponent("verse_reciters.json")))
-        let timed=catalog.reciters.filter {$0.supportsWordSync==true}
+        let curated=try JSONDecoder().decode([ReciterSelection].self,from:Data(contentsOf:assets.appendingPathComponent("curated_reciters.json")))
+        let timed=catalog.reciters.filter {q in q.supportsWordSync==true && curated.contains(where:{$0.verseId==q.id})}
         XCTAssertEqual(timed.count,11)
         for qari in timed {
             let folder=try XCTUnwrap(qari.timingFolder)
             for s in 1...114 {
                 let chapter=try JSONDecoder().decode(TimedChapter.self,from:Data(contentsOf:assets.appendingPathComponent("audio_timing/\(folder)/\(s).json")))
-                XCTAssertEqual(chapter.reciterId,qari.id);XCTAssertEqual(chapter.sourceSlug,folder);XCTAssertEqual(chapter.surah,s)
+                XCTAssertTrue(chapter.matches(qari));XCTAssertEqual(chapter.surah,s)
                 XCTAssertTrue(chapter.audioUrl.hasPrefix("https://"))
                 for v in chapter.verses {XCTAssertGreaterThan(v.end,v.start)}
             }

@@ -117,13 +117,17 @@ public struct VerseReciter: Decodable, Identifiable {
     }
 }
 public struct VerseTiming: Decodable {
-    public let ayah: Int, from: Double, to: Double, segments: [[Double]]; public let clipFrom: Double?, clipTo: Double?, usable: Bool?
-    public var start: Double { (clipFrom ?? from)/1000 }
-    public var end: Double { (clipTo ?? to)/1000 }
+    public let ayah: Int, clipFrom: Double, clipTo: Double, segments: [[Double]], usable: Bool
+    public var start: Double { clipFrom/1000 }
+    public var end: Double { clipTo/1000 }
     public func word(at seconds: Double) -> Int? {
         guard usable != false else { return nil }
         return segments.first { $0.count == 3 && seconds*1000 >= $0[1] && seconds*1000 < $0[2] }.map { Int($0[0]) }
     }
 }
-public struct TimedChapter: Decodable { public let surah: Int, audioUrl: String, reciterId: String, sourceSlug: String, verses: [VerseTiming] }
+public struct TimedChapter: Decodable { public let surah: Int, audioUrl: String, verses: [VerseTiming]; public let reciterId: String?, sourceSlug: String?, recitationId: Int?
+    public func matches(_ reciter:VerseReciter)->Bool {
+        if reciter.id=="ar.alafasy" {return recitationId==7 && audioUrl=="https://download.quranicaudio.com/qdc/mishari_al_afasy/murattal/\(surah).mp3"}
+        return reciterId==reciter.id && sourceSlug==reciter.timingFolder
+    } }
 public struct Portrait: Decodable, Identifiable { public let id: String, name: String, qariIds: [String], asset: String, sourceName: String, sourcePage: String }
