@@ -30,6 +30,7 @@ import NurayaCore
     }
     func finish() {engine?.stop();engine?.inputNode.removeTap(onBus:0);engine=nil;request?.endAudio();recording=false;timeout?.cancel();timeout=Task {try? await Task.sleep(nanoseconds:15_000_000_000);if !Task.isCancelled {stop()}}}
     func stop() {generation+=1;timeout?.cancel();timeout=nil;engine?.stop();engine?.inputNode.removeTap(onBus:0);engine=nil;request?.endAudio();task?.cancel();task=nil;request=nil;recording=false;try? AVAudioSession.sharedInstance().setActive(false,options:.notifyOthersOnDeactivation)}
+    func clearResult() {stop();text="";error=nil}
 }
 private final class PCMBuffer {
     private let lock=NSLock();private var samples=[Float]()
@@ -50,6 +51,7 @@ struct QuranModelSpec:Decodable {let url:String,bytes:Int,sha256:String,fileName
     private let samples=PCMBuffer(),inference=DispatchQueue(label:"nuraya.whisper.inference",qos:.userInitiated)
     private var engine:AVAudioEngine?,native:NurayaWhisper?,pulse:Task<Void,Never>?,generation=0,lastPartial=0.0
     private var currentTask:Task<Void,Never>?
+    private var loudestLevel=0.0
     init(state:AppState){self.state=state}
     private func spec()throws->QuranModelSpec {try state.content.decode("quran_model.json")}
     func inspect() {do {let s=try spec();ready=URL(string:s.url).flatMap {state.downloads.cached($0)} != nil}catch {self.error=error.localizedDescription}}
@@ -58,7 +60,7 @@ struct QuranModelSpec:Decodable {let url:String,bytes:Int,sha256:String,fileName
         do {let s=try spec();guard let url=URL(string:s.url) else {throw ContentError.invalidModel};_=try await state.downloads.fetch(url,sha256:s.sha256,bytes:s.bytes);ready=true}catch {self.error="Model belum siap: \(error.localizedDescription)"}
     }
     func start(microphoneOnly:Bool=false) async {
-        cancel();generation+=1;let startToken=generation;error=nil;transcript="";final=false;seconds=0;level=0;micOnly=microphoneOnly;samples.clear();lastPartial=0
+        cancel();generation+=1;let startToken=generation;error=nil;transcript="";final=false;seconds=0;level=0;loudestLevel=0;micOnly=microphoneOnly;samples.clear();lastPartial=0
         let permitted=await withCheckedContinuation {c in AVAudioSession.sharedInstance().requestRecordPermission {c.resume(returning:$0)}}
         guard generation==startToken else {return}
         guard permitted else {error="Izin mikrofon belum aktif. Buka Pengaturan iPhone.";return}
@@ -86,7 +88,7 @@ struct QuranModelSpec:Decodable {let url:String,bytes:Int,sha256:String,fileName
             pulse=Task {
                 while !Task.isCancelled && recording {
                     try? await Task.sleep(nanoseconds:200_000_000);if Task.isCancelled {return}
-                    let meter=samples.meter();seconds=meter.seconds;level=meter.level
+                    let meter=samples.meter();seconds=meter.seconds;level=meter.level;loudestLevel=max(loudestLevel,meter.level)
                     if seconds >= (micOnly ? 5:90) {finish();return}
                     if !micOnly,seconds-lastPartial>=6,!processing {lastPartial=seconds;recognize(samples.snapshot(),final:false)}
                 }
@@ -94,7 +96,7 @@ struct QuranModelSpec:Decodable {let url:String,bytes:Int,sha256:String,fileName
         }catch {processing=false;self.error=error.localizedDescription;stopCapture()}
     }
     private func stopCapture(){pulse?.cancel();pulse=nil;engine?.stop();engine?.inputNode.removeTap(onBus:0);engine=nil;recording=false;try? AVAudioSession.sharedInstance().setActive(false,options:.notifyOthersOnDeactivation)}
-    func finish(){stopCapture();if micOnly {final=true;transcript=level>0.001 ? "Mikrofon menerima suara. Cek ini bukan penilaian bacaan.":"Suara terlalu kecil. Periksa mikrofon dan coba lagi.";samples.clear();return};native?.cancel();recognize(samples.snapshot(),final:true)}
+    func finish(){stopCapture();if micOnly {final=true;transcript=loudestLevel>0.001 ? "Mikrofon menerima suara. Cek ini bukan penilaian bacaan.":"Suara terlalu kecil. Periksa mikrofon dan coba lagi.";samples.clear();return};native?.cancel();recognize(samples.snapshot(),final:true)}
     private func recognize(_ pcm:[Float],final:Bool) {
         guard let native=native,pcm.count>=1600 else {if final {error="Rekaman terlalu pendek."};return}
         processing=true;let token=generation;let nativeToken=native.generation()
@@ -108,4 +110,5 @@ struct QuranModelSpec:Decodable {let url:String,bytes:Int,sha256:String,fileName
         }
     }
     func cancel(){generation+=1;native?.cancel();currentTask?.cancel();currentTask=nil;stopCapture();processing=false;samples.clear()}
+    func clearResult(){cancel();transcript="";error=nil;final=false;micOnly=false;seconds=0;level=0;loudestLevel=0}
 }

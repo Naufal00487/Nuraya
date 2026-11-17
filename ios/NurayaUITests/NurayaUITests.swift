@@ -19,6 +19,24 @@ final class NurayaUITests:XCTestCase {
         XCTAssertTrue(link.waitForExistence(timeout:15));reveal(link,in:app);link.tap()
         XCTAssertTrue(app.buttons["learning_tab_0"].waitForExistence(timeout:5))
     }
+    func testVoiceSearchDoesNotReuseAnAbandonedTranscript() throws {
+        let app=home()
+        let search=app.buttons["Cari Ayat"]
+        XCTAssertTrue(search.waitForExistence(timeout:15));search.tap()
+        let voice=app.buttons["search_voice"]
+        XCTAssertTrue(voice.waitForExistence(timeout:5));voice.tap()
+        let transcript=app.textViews["voice_transcript"]
+        XCTAssertTrue(transcript.waitForExistence(timeout:5))
+        transcript.tap();transcript.typeText("cari surat yasin")
+        XCTAssertTrue((transcript.value as? String ?? "").contains("yasin"))
+        app.buttons["voice_close"].tap()
+        XCTAssertTrue(voice.waitForExistence(timeout:5));voice.tap()
+        XCTAssertTrue(transcript.waitForExistence(timeout:5))
+        XCTAssertEqual(transcript.value as? String ?? "","")
+        capture(app,"Pencarian suara Indonesia iOS")
+        app.buttons["voice_close"].tap()
+        XCTAssertFalse((app.textFields["Cari surah, ayat, atau makna"].value as? String ?? "").contains("yasin"))
+    }
     func testSettingsKeepsNavigationAndChangesAppearance() throws {
         let app=home()
         let settings=app.buttons["home_settings"]
