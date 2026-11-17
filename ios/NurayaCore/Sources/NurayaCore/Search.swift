@@ -72,7 +72,9 @@ public final class QuranSearch {
         return SearchResult(verses:ranked.prefix(20).map {corpus.verses[$0.0]},surahs:[],approximate:false,invalid:false)
     }
     private func reference(_ raw:String) -> SearchResult? {
-        let direct=try! NSRegularExpression(pattern:"^\\s*(\\d{1,3})\\s*[:.]\\s*(\\d{1,3})\\s*$")
+        if raw.range(of:"(?:^|\\b(?:surat|surah|ayat)\\s+|:)\\s*-\\s*\\d",options:[.regularExpression,.caseInsensitive]) != nil {return SearchResult(verses:[],surahs:[],approximate:false,invalid:true)}
+        if Normalization.search(raw).range(of:"\\bayat(?:ul)? kursi\\b",options:.regularExpression) != nil,let verse=corpus.verse(Reference(2,255)){return SearchResult(verses:[verse],surahs:[],approximate:false,invalid:false)}
+        let direct=try! NSRegularExpression(pattern:"(?<!\\d)(\\d{1,4})\\s*[:.]\\s*(\\d{1,4})(?!\\d)")
         let ns=raw as NSString
         if let m=direct.firstMatch(in:raw,range:NSRange(location:0,length:ns.length)) {
             let r=Reference(Int(ns.substring(with:m.range(at:1)))!,Int(ns.substring(with:m.range(at:2)))!)

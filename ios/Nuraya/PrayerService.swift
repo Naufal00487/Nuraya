@@ -5,6 +5,9 @@ import Adhan
 import NurayaCore
 @MainActor final class LocationService:NSObject,ObservableObject,@preconcurrency CLLocationManagerDelegate {
     private let manager=CLLocationManager()
+    var onCoordinates:((CLLocationCoordinate2D)->Void)?
+    var onPlaceName:((CLLocationCoordinate2D,String)->Void)?
+    private var locationRequest=0
     @Published var coordinate:CLLocationCoordinate2D?;@Published var name="";@Published var heading:Double?;@Published var accuracy:Double?;@Published var error:String?;@Published var busy=false
     override init() {super.init();manager.delegate=self;manager.desiredAccuracy=kCLLocationAccuracyHundredMeters;manager.headingFilter=1}
     func request() {
@@ -18,8 +21,15 @@ import NurayaCore
     func locationManagerDidChangeAuthorization(_ manager:CLLocationManager) {if busy && [.authorizedAlways,.authorizedWhenInUse].contains(manager.authorizationStatus) {manager.requestLocation()}else if manager.authorizationStatus == .denied {busy=false;error="Izin lokasi tidak diberikan."}}
     func locationManager(_ manager:CLLocationManager,didUpdateLocations locations:[CLLocation]) {
         guard let last=locations.last,abs(last.timestamp.timeIntervalSinceNow)<300,last.horizontalAccuracy>=0 else {busy=false;error="Koordinat terkini belum tersedia. Coba lagi.";return}
-        coordinate=last.coordinate;busy=false
-        CLGeocoder().reverseGeocodeLocation(last) {[weak self] places,_ in Task {@MainActor in self?.name=places?.first?.subAdministrativeArea ?? places?.first?.locality ?? "Lokasi HP"}}
+        let requested=busy;coordinate=last.coordinate;busy=false
+        guard requested else{return}
+        locationRequest+=1;let request=locationRequest;name=""
+        onCoordinates?(last.coordinate)
+        CLGeocoder().reverseGeocodeLocation(last) {[weak self] places,_ in Task {@MainActor in
+            guard let self=self,self.locationRequest==request else{return}
+            let name=places?.first?.subAdministrativeArea ?? places?.first?.locality ?? "Lokasi HP"
+            self.name=name;self.onPlaceName?(last.coordinate,name)
+        }}
     }
     func locationManager(_ manager:CLLocationManager,didFailWithError error:Error) {busy=false;self.error="Lokasi belum didapat: \(error.localizedDescription)"}
     func startCompass() {guard CLLocationManager.headingAvailable() else {error="Sensor kompas tidak tersedia. Gunakan arah numerik.";return};if [.authorizedAlways,.authorizedWhenInUse].contains(manager.authorizationStatus){manager.startUpdatingLocation()};manager.startUpdatingHeading()}

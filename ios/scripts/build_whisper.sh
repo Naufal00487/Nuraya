@@ -15,7 +15,8 @@ arch_key="${arch// /-}"
 cmake_arches="${arch// /;}"
 build_dir="$ios_dir/.build-native/$platform/$arch_key"
 lib_dir="$ios_dir/.build-native/$platform/lib"
-if [[ -f "$lib_dir/libwhisper.a" && -f "$lib_dir/.arch-$arch_key" ]]; then exit 0; fi
+# Let CMake/Ninja check source changes on every build. A shared lib directory can
+# switch between universal simulator, host simulator and device architectures.
 cmake -S "$ios_dir/Native" -B "$build_dir" -G Ninja \
   -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_OSX_SYSROOT="$(xcrun --sdk "$platform" --show-sdk-path)" \
   -DCMAKE_OSX_ARCHITECTURES="$cmake_arches" -DCMAKE_OSX_DEPLOYMENT_TARGET=16.0 \
@@ -26,4 +27,3 @@ cmake -S "$ios_dir/Native" -B "$build_dir" -G Ninja \
 cmake --build "$build_dir" --config Release --parallel 3
 mkdir -p "$lib_dir"
 find "$build_dir" -name 'lib*.a' -exec cp '{}' "$lib_dir/" \;
-touch "$lib_dir/.arch-$arch_key"

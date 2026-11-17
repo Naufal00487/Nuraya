@@ -59,6 +59,9 @@ final class ParityTests: XCTestCase {
         XCTAssertEqual(search.find("cari surat Al Baqarah ayat dua ratus lima puluh lima").verses.first?.reference,Reference(2,255))
         XCTAssertEqual(search.find("2:255").verses.first?.reference,Reference(2,255))
         XCTAssertTrue(search.find("114:7").invalid)
+        XCTAssertTrue(search.find("surat 2 ayat -1").invalid)
+        XCTAssertEqual(search.find("cari ayat kursi").verses.first?.reference,Reference(2,255))
+        XCTAssertEqual(search.find("cari QS 2:255").verses.first?.reference,Reference(2,255))
         XCTAssertFalse(search.find("sabar menghadapi ujian").verses.isEmpty)
         XCTAssertFalse(search.find("tolong cari surat yasinn").surahs.isEmpty)
     }
@@ -104,5 +107,21 @@ final class ParityTests: XCTestCase {
                 for v in chapter.verses {XCTAssertGreaterThan(v.end,v.start)}
             }
         }
+    }
+    func testLearningDatesAndSelfAssessmentStaySeparateFromQuizScores() throws {
+        var progress=LearningProgress()
+        progress.daily=["2026-11-14":1,"2026-11-15":2,"2026-11-16":1]
+        XCTAssertEqual(progress.streak(today:"2026-11-17"),3)
+        XCTAssertEqual(progress.streak(today:"2026-11-18"),0)
+        progress.review(Reference(112,1),rating:"help",date:"2026-11-17")
+        XCTAssertEqual(progress.reviews?["112:1"]?.nextDate,"2026-11-18")
+        progress.review(Reference(112,1),rating:"fluent",date:"2026-11-18")
+        XCTAssertEqual(progress.reviews?["112:1"]?.nextDate,"2026-11-21")
+        progress.review(Reference(112,1),rating:"fluent",date:"2026-11-21")
+        XCTAssertEqual(progress.reviews?["112:1"]?.nextDate,"2026-11-27")
+        XCTAssertEqual(progress.xp,0)
+        XCTAssertTrue(progress.records.isEmpty)
+        let restored=try JSONDecoder().decode(LearningProgress.self,from:JSONEncoder().encode(progress))
+        XCTAssertEqual(restored.reviews?["112:1"]?.attempts,3)
     }
 }
