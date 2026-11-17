@@ -12,7 +12,9 @@ concurrency:
 jobs:
   verify:
     runs-on: macos-15
-    timeout-minutes: 30
+    timeout-minutes: 55
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: 1
     steps:
       - uses: actions/checkout@v4
       - name: Package unchanged Android content
@@ -20,3 +22,35 @@ jobs:
       - name: Test Quran references, audio queues and recitation comparison
         working-directory: ios/NurayaCore
         run: swift test
+      - name: Install build tools
+        run: brew install xcodegen cmake ninja ffmpeg
+      - name: Prepare native speech test fixtures
+        run: python3 ios/scripts/prepare_test_fixtures.py
+      - name: Generate Xcode project and native resources
+        run: bash ios/scripts/prepare_macos.sh
+      - name: Build iOS simulator app
+        working-directory: ios
+        run: xcodebuild -project Nuraya.xcodeproj -scheme Nuraya -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' -derivedDataPath DerivedData CODE_SIGNING_ALLOWED=NO build
+      - name: Build unsigned iPhone package
+        run: bash ios/scripts/build_unsigned.sh
+      - name: Test on iPhone XR simulator
+        run: bash ios/scripts/test_simulator.sh
+      - name: Export simulator evidence
+        if: always()
+        run: |
+          if [ -d ios/.build/SimulatorTests.xcresult ]; then
+            xcrun xcresulttool export attachments --path ios/.build/SimulatorTests.xcresult --output-path ios/.build/screenshots
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Nuraya-iOS-simulator-evidence
+          path: |
+            ios/.build/SimulatorTests.xcresult
+            ios/.build/screenshots
+          if-no-files-found: ignore
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Nuraya-iOS-XR-unsigned
+          path: ios/.build/Nuraya-iOS-XR-unsigned.ipa
+          retention-days: 14

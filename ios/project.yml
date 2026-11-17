@@ -1,0 +1,99 @@
+name: Nuraya
+options:
+  bundleIdPrefix: com.nuraya
+  deploymentTarget:
+    iOS: '16.0'
+  xcodeVersion: '16.4'
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: '5.0'
+    MARKETING_VERSION: '1.7.1'
+    CURRENT_PROJECT_VERSION: '1'
+    TARGETED_DEVICE_FAMILY: '1,2'
+    ENABLE_USER_SCRIPT_SANDBOXING: NO
+    CLANG_CXX_LANGUAGE_STANDARD: c++17
+    IPHONEOS_DEPLOYMENT_TARGET: '16.0'
+packages:
+  NurayaCore:
+    path: NurayaCore
+  Adhan:
+    url: https://github.com/batoulapps/adhan-swift
+    exactVersion: 1.5.0
+targets:
+  Nuraya:
+    type: application
+    platform: iOS
+    sources:
+      - path: Nuraya
+        excludes: ['Resources']
+    resources:
+      - path: Nuraya/Resources/Content
+        type: folder
+      - path: Nuraya/Resources/Assets.xcassets
+      - path: Config/PrivacyInfo.xcprivacy
+      - path: Nuraya/Resources/adhan_short.caf
+    info:
+      path: Config/Info.plist
+      properties:
+        CFBundleDisplayName: Nuraya
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        ITSAppUsesNonExemptEncryption: false
+        NSMicrophoneUsageDescription: Nuraya memakai mikrofon ketika kamu memilih dikte pencarian atau latihan bacaan Al-Qur’an.
+        NSSpeechRecognitionUsageDescription: Nuraya memakai pengenal ucapan untuk mengubah perintah Indonesia atau bacaan Arab menjadi teks setelah kamu memilihnya.
+        NSLocationWhenInUseUsageDescription: Koordinat iPhone digunakan untuk menghitung jadwal salat dan arah kiblat. Tidak ada pelacakan latar belakang.
+        UIBackgroundModes: [audio]
+        UIRequiresFullScreen: true
+        UILaunchScreen:
+          UIColorName: ''
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+        UIAppFonts: ['Content/amiri_quran.ttf']
+        UIApplicationSupportsIndirectInputEvents: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.nuraya.app
+        SWIFT_OBJC_BRIDGING_HEADER: Nuraya/Native/BridgingHeader.h
+        HEADER_SEARCH_PATHS: ['$(inherited)', '$(SRCROOT)/../app/src/main/cpp/vendor/whisper/include', '$(SRCROOT)/../app/src/main/cpp/vendor/whisper/ggml/include']
+        LIBRARY_SEARCH_PATHS: ['$(inherited)', '$(SRCROOT)/.build-native/$(PLATFORM_NAME)/lib']
+        OTHER_LDFLAGS: ['$(inherited)', '-lwhisper', '-lggml', '-lggml-base', '-lggml-cpu', '-lc++', '-lsqlite3', '-framework', Accelerate]
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        GENERATE_INFOPLIST_FILE: NO
+    dependencies:
+      - package: NurayaCore
+      - package: Adhan
+    preBuildScripts:
+      - name: Build the local Quran speech engine
+        script: bash "$SRCROOT/scripts/build_whisper.sh"
+        basedOnDependencyAnalysis: false
+  NurayaUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [NurayaUITests]
+    dependencies:
+      - target: Nuraya
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+  NurayaTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [NurayaTests]
+    resources:
+      - path: .build/TestFixtures
+        type: folder
+    dependencies:
+      - target: Nuraya
+      - package: NurayaCore
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  Nuraya:
+    build:
+      targets:
+        Nuraya: all
+        NurayaUITests: [test]
+        NurayaTests: [test]
+    test:
+      targets: [NurayaTests, NurayaUITests]

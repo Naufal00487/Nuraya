@@ -7,3 +7,7 @@ DerivedData/
 xcuserdata/
 *.ipa
 *.xcarchive
+Nuraya/Resources/Assets.xcassets/
+Nuraya/Resources/adhan_short.caf
+Nuraya.xcodeproj/
+Config/Info.plist
