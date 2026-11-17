@@ -15,8 +15,10 @@ final class NurayaUITests:XCTestCase {
         attachment.name=name;attachment.lifetime = .keepAlways;add(attachment)
     }
     private func openLearning(_ app:XCUIApplication) {
+        XCTAssertTrue(app.buttons["home_settings"].waitForExistence(timeout:15))
         let link=app.buttons["home_learning"]
-        XCTAssertTrue(link.waitForExistence(timeout:15));reveal(link,in:app);link.tap()
+        // SwiftUI creates this lazy-grid row only after it approaches the viewport.
+        reveal(link,in:app);XCTAssertTrue(link.isHittable);link.tap()
         XCTAssertTrue(app.buttons["learning_tab_0"].waitForExistence(timeout:5))
     }
     func testVoiceSearchDoesNotReuseAnAbandonedTranscript() throws {
