@@ -21,6 +21,7 @@ struct AppSettings:Codable {
         self.content=content
         storage=try FileManager.default.url(for:.applicationSupportDirectory,in:.userDomainMask,appropriateFor:nil,create:true).appendingPathComponent("Nuraya",isDirectory:true)
         try FileManager.default.createDirectory(at:storage,withIntermediateDirectories:true)
+        var privateDirectory=storage;var values=URLResourceValues();values.isExcludedFromBackup=true;try privateDirectory.setResourceValues(values)
         let file=storage.appendingPathComponent("settings.json")
         if FileManager.default.fileExists(atPath:file.path) {settings=try JSONDecoder().decode(AppSettings.self,from:Data(contentsOf:file))}else {settings=AppSettings()}
         downloads=try DownloadStore(directory:storage.appendingPathComponent("offline"),content:content)

@@ -22,8 +22,8 @@ import NurayaCore
         CLGeocoder().reverseGeocodeLocation(last) {[weak self] places,_ in Task {@MainActor in self?.name=places?.first?.subAdministrativeArea ?? places?.first?.locality ?? "Lokasi HP"}}
     }
     func locationManager(_ manager:CLLocationManager,didFailWithError error:Error) {busy=false;self.error="Lokasi belum didapat: \(error.localizedDescription)"}
-    func startCompass() {guard CLLocationManager.headingAvailable() else {error="Sensor kompas tidak tersedia. Gunakan arah numerik.";return};manager.startUpdatingHeading()}
-    func stopCompass() {manager.stopUpdatingHeading()}
+    func startCompass() {guard CLLocationManager.headingAvailable() else {error="Sensor kompas tidak tersedia. Gunakan arah numerik.";return};if [.authorizedAlways,.authorizedWhenInUse].contains(manager.authorizationStatus){manager.startUpdatingLocation()};manager.startUpdatingHeading()}
+    func stopCompass() {manager.stopUpdatingHeading();manager.stopUpdatingLocation()}
     func locationManager(_ manager:CLLocationManager,didUpdateHeading newHeading:CLHeading) {accuracy=newHeading.headingAccuracy;heading=newHeading.trueHeading>=0 ? newHeading.trueHeading:nil}
     func locationManagerShouldDisplayHeadingCalibration(_ manager:CLLocationManager)->Bool {true}
 }
@@ -50,7 +50,7 @@ enum PrayerService {
         let f=DateFormatter();f.calendar=Calendar(identifier:.islamicUmmAlQura);f.locale=Locale(identifier:settings.language=="en" ? "en_US":"id_ID");f.timeZone=TimeZone(identifier:settings.timeZone);f.dateFormat="d MMMM yyyy 'H'";return f.string(from:date.addingTimeInterval(Double(settings.hijriCorrection)*86400))
     }
 }
-@MainActor final class ReminderService:NSObject,UNUserNotificationCenterDelegate {
+@MainActor final class ReminderService:NSObject,ObservableObject,UNUserNotificationCenterDelegate {
     static let shared=ReminderService()
     private var generation=0
     func request() async throws -> Bool {try await UNUserNotificationCenter.current().requestAuthorization(options:[.alert,.sound,.badge])}
@@ -93,5 +93,10 @@ enum PrayerService {
         // iOS caps pending local requests. Refill when the app opens; do not claim indefinite alarms.
         for (_,request) in requests.sorted(by:{$0.0<$1.0}).prefix(60) {guard token==generation else {return};try await center.add(request)}
     }
+    func userNotificationCenter(_ center:UNUserNotificationCenter,didReceive response:UNNotificationResponse) async {
+        guard let route=response.notification.request.content.userInfo["destination"] as? String else {return}
+        pendingDestination=route
+    }
+    @Published var pendingDestination:String?
     func userNotificationCenter(_ center:UNUserNotificationCenter,willPresent notification:UNNotification) async -> UNNotificationPresentationOptions {[.banner,.sound]}
 }

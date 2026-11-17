@@ -19,7 +19,7 @@ struct AppVector:Shape {
     let name:String
     static let records:[String:VectorRecord] = {
         guard let base=Bundle.main.resourceURL,let data=try? Data(contentsOf:base.appendingPathComponent("Content/ui_vectors.json")),let values=try? JSONDecoder().decode([VectorRecord].self,from:data) else {return [:]}
-        return Dictionary(values.map {($0.id,$0)},uniquingKeysWith:{$0})
+        return Dictionary(values.map {($0.id,$0)},uniquingKeysWith:{first,_ in first})
     }()
     func path(in rect:CGRect)->Path {
         guard let r=Self.records[name] else {return Path()}

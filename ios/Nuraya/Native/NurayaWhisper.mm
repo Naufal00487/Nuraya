@@ -20,11 +20,12 @@ static NSError* failure(NSString*reason){return [NSError errorWithDomain:@"Nuray
     }catch(...){if(error)*error=failure(@"Memori tidak cukup untuk membuka model AI.");return nil;}
     return self;
 }
-- (NSString*)transcribePCM:(NSData*)pcm error:(NSError**)error {
+- (uint64_t)generation {return _session ? _session->generation.load():0;}
+- (NSString*)transcribePCM:(NSData*)pcm generation:(uint64_t)generation error:(NSError**)error {
     if(!_session){if(error)*error=failure(@"Mesin bacaan belum siap.");return nil;}
-    const auto generation=_session->generation.load();
     std::lock_guard<std::mutex> lock(_session->mutex);
     Request request{_session.get(),generation,std::chrono::steady_clock::now()};
+    if(abortInference(&request)){if(error)*error=failure(@"Pengenalan dibatalkan.");return nil;}
     if(pcm.length%sizeof(float)||pcm.length<1600*sizeof(float)||pcm.length>16000*90*sizeof(float)){if(error)*error=failure(@"Durasi rekaman harus 0,1–90 detik.");return nil;}
     try {
         auto samples=(const float*)pcm.bytes;auto count=(int)(pcm.length/sizeof(float));double energy=0;float peak=0;

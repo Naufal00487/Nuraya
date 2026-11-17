@@ -125,5 +125,5 @@ public struct VerseTiming: Decodable {
         return segments.first { $0.count == 3 && seconds*1000 >= $0[1] && seconds*1000 < $0[2] }.map { Int($0[0]) }
     }
 }
-public struct TimedChapter: Decodable { public let surah: Int, audioUrl: String, verses: [VerseTiming] }
+public struct TimedChapter: Decodable { public let surah: Int, audioUrl: String, reciterId: String, sourceSlug: String, verses: [VerseTiming] }
 public struct Portrait: Decodable, Identifiable { public let id: String, name: String, qariIds: [String], asset: String, sourceName: String, sourcePage: String }

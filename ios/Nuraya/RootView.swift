@@ -3,6 +3,7 @@ import NurayaCore
 enum Route:Hashable {case settings,profile,search,hadith,learning,recitation,library,qari(String),qibla,location,sources}
 struct RootView:View {
     @ObservedObject var state:AppState
+    @ObservedObject private var reminders=ReminderService.shared
     @Environment(\.scenePhase) var scenePhase
     @State private var tab=0;@State private var path=[Route]()
     var palette:Palette {Palette(dark:state.settings.dark)}
@@ -35,6 +36,7 @@ struct RootView:View {
         .fullScreenCover(item:$state.reader,onDismiss:{state.audio.stopReader()}){target in ReaderView(state:state,target:target,audio:state.audio)}
         .fullScreenCover(isPresented:$state.fullPlayer){PlayerView(state:state,audio:state.audio)}
         .alert("Nuraya",isPresented:Binding(get:{state.error != nil},set:{if !$0 {state.error=nil}})){Button("Tutup",role:.cancel){state.error=nil}}message:{Text(state.error ?? "")}
+        .onChange(of:reminders.pendingDestination){route in guard let route=route else{return};state.reader=nil;state.fullPlayer=false;path=[];tab=route=="prayer" ? 3:1;reminders.pendingDestination=nil}
         .onChange(of:scenePhase){phase in if phase != .active {state.audio.stopReader();state.speech.stop()}else {Task {try? await ReminderService.shared.schedule(state:state)}}}
     }
 }

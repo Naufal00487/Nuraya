@@ -49,4 +49,59 @@ final class ParityTests: XCTestCase {
         XCTAssertEqual(rows.first { $0.chapterId == "ar.abdulbasitmurattal" }?.verseId,"ar.abdulsamad")
         XCTAssertFalse(rows.contains { $0.name.contains("Matrood") || $0.name.contains("Jaber") })
     }
+    func testTypedAndIndonesianSpokenSearchUseSameReferences() throws {
+        let c=try corpus()
+        let search=try QuranSearch(corpus:c,lexical:Data(contentsOf:assets.appendingPathComponent("learning_index.bin")),semantic:Data(contentsOf:assets.appendingPathComponent("semantic_index.bin")),metadata:Data(contentsOf:assets.appendingPathComponent("semantic_index_sources.json")))
+        for s in c.surahs {
+            let result=search.find("surat \(s.name) ayat 1")
+            XCTAssertTrue(result.verses.contains {$0.reference==Reference(s.id,1)},s.name)
+        }
+        XCTAssertEqual(search.find("cari surat Al Baqarah ayat dua ratus lima puluh lima").verses.first?.reference,Reference(2,255))
+        XCTAssertEqual(search.find("2:255").verses.first?.reference,Reference(2,255))
+        XCTAssertTrue(search.find("114:7").invalid)
+        XCTAssertFalse(search.find("sabar menghadapi ujian").verses.isEmpty)
+        XCTAssertFalse(search.find("tolong cari surat yasinn").surahs.isEmpty)
+    }
+    func testLessonsResumeWithoutChangingAnswersOrAwardingDoubleXP() throws {
+        let c=try corpus(),course=try JSONDecoder().decode(LearningCourse.self,from:Data(contentsOf:assets.appendingPathComponent("learning_course.json"))).lessons
+        var kinds=Set<ExerciseKind>()
+        for lesson in course {
+            var session=LessonSession(lesson:lesson,course:course,corpus:c)
+            XCTAssertFalse(session.exercises.isEmpty)
+            for ex in session.exercises {
+                kinds.insert(ex.kind)
+                XCTAssertEqual(Set(ex.options.map(\.id)).count,ex.options.count)
+                XCTAssertEqual(Set(ex.options.map(\.text)).count,ex.options.count)
+                if ex.kind == .order {XCTAssertEqual(ex.expected.compactMap(Int.init),ex.expected.compactMap(Int.init).sorted())}
+            }
+            var guardSteps=0
+            while let ex=session.current {
+                session.submit(ex.kind == .recall ? ["fluent"]:ex.expected)
+                // A checked answer must survive an interrupted/closed application.
+                session=try JSONDecoder().decode(LessonSession.self,from:JSONEncoder().encode(session))
+                XCTAssertTrue(session.checked);session.next();guardSteps+=1
+                XCTAssertLessThan(guardSteps,100)
+                if guardSteps>=100 {break}
+            }
+            var progress=LearningProgress();progress.finish(session,date:"2026-11-17")
+            XCTAssertEqual(progress.xp,20);progress.finish(session,date:"2026-11-17")
+            XCTAssertEqual(progress.xp,20);XCTAssertEqual(progress.daily["2026-11-17"],1)
+        }
+        XCTAssertEqual(kinds,[.choice,.match,.order,.recall])
+    }
+    func testOnlyElevenMatchingRecordingsEnableWordTiming() throws {
+        struct Catalog:Decodable {let reciters:[VerseReciter]}
+        let catalog=try JSONDecoder().decode(Catalog.self,from:Data(contentsOf:assets.appendingPathComponent("verse_reciters.json")))
+        let timed=catalog.reciters.filter {$0.supportsWordSync==true}
+        XCTAssertEqual(timed.count,11)
+        for qari in timed {
+            let folder=try XCTUnwrap(qari.timingFolder)
+            for s in 1...114 {
+                let chapter=try JSONDecoder().decode(TimedChapter.self,from:Data(contentsOf:assets.appendingPathComponent("audio_timing/\(folder)/\(s).json")))
+                XCTAssertEqual(chapter.reciterId,qari.id);XCTAssertEqual(chapter.sourceSlug,folder);XCTAssertEqual(chapter.surah,s)
+                XCTAssertTrue(chapter.audioUrl.hasPrefix("https://"))
+                for v in chapter.verses {XCTAssertGreaterThan(v.end,v.start)}
+            }
+        }
+    }
 }

@@ -49,8 +49,9 @@ struct QuranModelSpec:Decodable {let url:String,bytes:Int,sha256:String,fileName
         do {let s=try spec();guard let url=URL(string:s.url) else {throw ContentError.invalidModel};_=try await state.downloads.fetch(url,sha256:s.sha256,bytes:s.bytes);ready=true}catch {self.error="Model belum siap: \(error.localizedDescription)"}
     }
     func start(microphoneOnly:Bool=false) async {
-        cancel();generation+=1;error=nil;transcript="";final=false;seconds=0;level=0;micOnly=microphoneOnly;samples.clear();lastPartial=0
+        cancel();generation+=1;let startToken=generation;error=nil;transcript="";final=false;seconds=0;level=0;micOnly=microphoneOnly;samples.clear();lastPartial=0
         let permitted=await withCheckedContinuation {c in AVAudioSession.sharedInstance().requestRecordPermission {c.resume(returning:$0)}}
+        guard generation==startToken else {return}
         guard permitted else {error="Izin mikrofon belum aktif. Buka Pengaturan iPhone.";return}
         state.audio.stop()
         do {
@@ -60,6 +61,7 @@ struct QuranModelSpec:Decodable {let url:String,bytes:Int,sha256:String,fileName
                 let file=try await state.downloads.fetch(u,sha256:s.sha256,bytes:s.bytes)
                 if native==nil {processing=true;let engine:NurayaWhisper=try await withCheckedThrowingContinuation {c in inference.async {do {let n=try NurayaWhisper(modelPath:file.path);c.resume(returning:n)}catch {c.resume(throwing:error)}}};native=engine;processing=false}
             }
+            guard generation==startToken else {processing=false;return}
             let session=AVAudioSession.sharedInstance();try session.setCategory(.record,mode:.measurement);try session.setActive(true)
             let e=AVAudioEngine(),input=e.inputNode,source=input.outputFormat(forBus:0)
             guard source.sampleRate>0,source.channelCount>0,let target=AVAudioFormat(commonFormat:.pcmFormatFloat32,sampleRate:16000,channels:1,interleaved:false),let converter=AVAudioConverter(from:source,to:target) else {throw ContentError.invalidModel}
@@ -87,14 +89,14 @@ struct QuranModelSpec:Decodable {let url:String,bytes:Int,sha256:String,fileName
     func finish(){stopCapture();if micOnly {final=true;transcript=level>0.001 ? "Mikrofon menerima suara. Cek ini bukan penilaian bacaan.":"Suara terlalu kecil. Periksa mikrofon dan coba lagi.";samples.clear();return};native?.cancel();recognize(samples.snapshot(),final:true)}
     private func recognize(_ pcm:[Float],final:Bool) {
         guard let native=native,pcm.count>=1600 else {if final {error="Rekaman terlalu pendek."};return}
-        processing=true;let token=generation
+        processing=true;let token=generation;let nativeToken=native.generation()
         let data=pcm.withUnsafeBufferPointer {Data(buffer:$0)}
         currentTask=Task {
-            do {let text:String=try await withCheckedThrowingContinuation {c in inference.async {do {c.resume(returning:try native.transcribePCM(data))}catch {c.resume(throwing:error)}}}
-                guard generation==token else {return};transcript=text.trimmingCharacters(in:.whitespacesAndNewlines);self.final=final
+            do {let text:String=try await withCheckedThrowingContinuation {c in inference.async {do {c.resume(returning:try native.transcribePCM(data,generation:nativeToken))}catch {c.resume(throwing:error)}}}
+                guard generation==token,native.generation()==nativeToken else {return};transcript=text.trimmingCharacters(in:.whitespacesAndNewlines);self.final=final
                 if final && transcript.isEmpty {error="Belum ada kata yang dikenali. Bacalah lebih dekat dan jelas."}
-            }catch {if generation==token && final {self.error=error.localizedDescription}}
-            if generation==token {processing=false;if final {samples.clear()}}
+            }catch {if generation==token && native.generation()==nativeToken && final {self.error=error.localizedDescription}}
+            if generation==token && native.generation()==nativeToken {processing=false;if final {samples.clear()}}
         }
     }
     func cancel(){generation+=1;native?.cancel();currentTask?.cancel();currentTask=nil;stopCapture();processing=false;samples.clear()}

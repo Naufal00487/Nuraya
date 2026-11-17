@@ -27,15 +27,57 @@ struct HomeView:View {
 }
 struct PrayerHeader:View {
     @ObservedObject var state:AppState
-    var body:some View {TimelineView(.periodic(from:.now,by:1)){context in
-        let date=context.date,hour=Calendar.current.component(.hour,from:date),landscape=hour>=5 && hour<=10 ? "morning":hour<=14 && hour>=11 ? "day":hour>=15 && hour<=17 ? "evening":"night"
-        VStack(spacing:18){HStack(alignment:.top,spacing:18){VStack(alignment:.leading,spacing:8){Text(PrayerService.time(date,settings:state.settings)).font(.system(size:42,weight:.bold)).monospacedDigit();if let next=PrayerService.next(date,settings:state.settings){Text(next.name+" − "+timeText(next.date.timeIntervalSince(date))).font(.system(size:16)).monospacedDigit()}else {Text("Atur lokasi salat").font(.system(size:16))};Text(PrayerService.hijri(date,settings:state.settings)).font(.system(size:16))}.frame(maxWidth:.infinity,alignment:.leading)
-            Rectangle().fill(.white.opacity(0.65)).frame(width:1)
-            VStack(alignment:.leading,spacing:14){HStack{NavigationLink(value:Route.qibla){HStack{AppIcon(name:"kaaba");Text("Arah Kiblat").font(.system(size:16,weight:.semibold))}};Spacer();NavigationLink(value:Route.profile){AppIcon(name:"user")}};NavigationLink(value:Route.location){Text(state.settings.locationName.isEmpty ? "Gunakan lokasi HP":state.settings.locationName).font(.system(size:16)).lineLimit(2)};Text(date.formatted(.dateTime.day().month(.wide).year().locale(Locale(identifier:"id_ID")))).font(.system(size:16))}.frame(maxWidth:.infinity,alignment:.leading)}.fixedSize(horizontal:false,vertical:true).foregroundStyle(.white).shadow(color:.black.opacity(0.65),radius:2,y:1)
-            let moments=PrayerService.day(date,settings:state.settings).filter {$0.id != "sunrise"}
-            if !moments.isEmpty {HStack(spacing:3){ForEach(moments){p in VStack(spacing:5){Text(p.name).font(.system(size:14));Text(PrayerService.time(p.date,settings:state.settings)).font(.system(size:16,weight:.bold))}.frame(maxWidth:.infinity).padding(.vertical,10).background(PrayerService.next(date,settings:state.settings)?.id==p.id ? Color.nuraya:Color.clear,in:RoundedRectangle(cornerRadius:12))}}.padding(6).foregroundStyle(.white).background(Color(hex:0x19263E),in:RoundedRectangle(cornerRadius:20))}
-        }.padding(20).background{AssetImage(content:state.content,path:"brand/\(landscape).jpg").clipped()}.clipped()
-    }}
+    var home=true
+    var body:some View {
+        TimelineView(.periodic(from:.now,by:1)){context in
+            let date=context.date
+            VStack(spacing:20){
+                HStack(spacing:10){
+                    NavigationLink(value:Route.location){
+                        HStack(spacing:6){AppIcon(name:"marker",size:18);Text(state.settings.locationName.isEmpty ? "Pilih lokasi":state.settings.locationName).font(.system(size:17,weight:.semibold)).lineLimit(2);AppIcon(name:"angle-down",size:16)}
+                    }
+                    Spacer(minLength:4)
+                    if home {
+                        NavigationLink(value:Route.settings){AppIcon(name:"settings",size:24).frame(width:44,height:44)}
+                        NavigationLink(value:Route.profile){AssetImage(content:state.content,path:"brand/avatars/avatar_\(state.settings.avatar).png",fit:true).frame(width:42,height:42).clipShape(Circle())}
+                    }else {
+                        NavigationLink {ReminderSettingsView(state:state)}label:{AppIcon(name:"bell").frame(width:44,height:44).accessibilityLabel("Pengaturan azan")}
+                    }
+                }
+                HStack(alignment:.top,spacing:18){
+                    VStack(alignment:.leading,spacing:7){
+                        Text(PrayerService.time(date,settings:state.settings)).font(.system(size:46,weight:.bold)).monospacedDigit()
+                        if let next=PrayerService.next(date,settings:state.settings){
+                            Text("Menuju "+next.name).font(.system(size:16))
+                            Text(countdown(next.date.timeIntervalSince(date))).font(.system(size:22,weight:.semibold)).monospacedDigit()
+                        }else {Text("Atur lokasi salat").font(.system(size:16))}
+                        Text(PrayerService.hijri(date,settings:state.settings)).font(.system(size:15)).fixedSize(horizontal:false,vertical:true)
+                    }.frame(maxWidth:.infinity,alignment:.leading)
+                    VStack(alignment:.trailing,spacing:14){
+                        NavigationLink(value:Route.qibla){HStack(spacing:6){AppIcon(name:"kaaba",size:21);Text("Arah Kiblat").font(.system(size:15,weight:.semibold))}.padding(12).background(Color(hex:0x25395B),in:Capsule())}
+                        Text(formatted(date,"EEEE")).font(.system(size:19,weight:.semibold))
+                        Text(formatted(date,"d MMMM yyyy")).font(.system(size:16)).multilineTextAlignment(.trailing)
+                    }.frame(maxWidth:.infinity,alignment:.trailing)
+                }.shadow(color:.black.opacity(0.45),radius:2,y:1)
+                prayerStrip(date)
+            }.foregroundStyle(.white).padding(20).background{
+                if home {AssetImage(content:state.content,path:"brand/\(landscape(date)).jpg").clipped()}
+                else {LinearGradient(colors:[Color.nuraya,Color(hex:0x17253B)],startPoint:.topLeading,endPoint:.bottomTrailing)}
+            }.clipped()
+        }
+    }
+    private func prayerStrip(_ date:Date)->some View {
+        let moments=PrayerService.day(date,settings:state.settings)
+        let next=PrayerService.next(date,settings:state.settings)?.id
+        let labels=[("fajr","Subuh"),("dhuhr","Zuhur"),("asr","Asar"),("maghrib","Magrib"),("isha","Isya")]
+        return HStack(spacing:2){ForEach(labels,id:\.0){id,name in
+            VStack(spacing:6){Text(name).font(.system(size:14));Text(moments.first{$0.id==id}.map{PrayerService.time($0.date,settings:state.settings)} ?? "—:—").font(.system(size:16,weight:.bold)).monospacedDigit()}
+                .frame(maxWidth:.infinity).padding(.vertical,11).background(next==id ? Color(hex:0x486CA2):Color.clear,in:RoundedRectangle(cornerRadius:12))
+        }}.padding(5).background(Color(hex:0x17253B),in:RoundedRectangle(cornerRadius:20))
+    }
+    private func formatted(_ date:Date,_ pattern:String)->String {let f=DateFormatter();f.locale=Locale(identifier:state.settings.language=="en" ? "en_US":"id_ID");f.timeZone=TimeZone(identifier:state.settings.timeZone);f.dateFormat=pattern;return f.string(from:date)}
+    private func landscape(_ date:Date)->String {var c=Calendar.current;c.timeZone=TimeZone(identifier:state.settings.timeZone) ?? .current;switch c.component(.hour,from:date){case 5...10:return "morning";case 11...14:return "day";case 15...17:return "evening";default:return "night"}}
+    private func countdown(_ seconds:Double)->String {let n=max(0,Int(seconds));return String(format:"%02d:%02d:%02d",n/3600,(n%3600)/60,n%60)}
 }
 struct MurottalView:View {
     @ObservedObject var state:AppState;@State private var query=""
@@ -63,7 +105,7 @@ struct PlayerView:View {
         HStack{Text(timeText(audio.position));Spacer();Text(timeText(audio.duration))}.monospacedDigit().font(.system(size:16))
         HStack(spacing:30){Button{audio.previous()}label:{AppIcon(name:"step-backward",size:30).frame(width:56,height:56)};Button{audio.toggle()}label:{AppIcon(name:audio.playing ? "pause":"play",size:30).frame(width:76,height:76).foregroundStyle(.white).background(Color.nuraya,in:Circle())};Button{audio.next(force:true)}label:{AppIcon(name:"step-forward",size:30).frame(width:56,height:56)}}.frame(maxWidth:.infinity)
         HStack{Menu{ForEach([Float(0.75),1,1.25,1.5,2],id:\.self){r in Button("\(r,specifier:"%.2g")×"){audio.setSpeed(r)}}}label:{VStack{AppIcon(name:"tachometer-fast");Text("\(audio.speed,specifier:"%.2g")×").font(.caption)}};Spacer();Button{audio.repeatMode=(audio.repeatMode+1)%3}label:{VStack{AppIcon(name:"arrows-repeat-1");Text(["Ulang mati","Ulang satu","Ulang semua"][audio.repeatMode]).font(.caption)}};Spacer();Button{state.favorite(t.qari.id,t.surah)}label:{VStack{AppIcon(name:"heart");Text("Favorit").font(.caption)}};Spacer();Button{Task{saving=true;defer{saving=false};do{_=try await state.downloads.fetch(t.url)}catch{state.error=error.localizedDescription}}}label:{VStack{if saving{ProgressView()}else{AppIcon(name:"download")};Text(state.downloads.cached(t.url)==nil ? "Unduh":"Tersimpan").font(.caption)}}.disabled(saving)}.frame(minHeight:60)
-        PrimaryButton(title:"Baca & dengarkan dari awal",icon:"book-open-cover"){let q=t.qari;state.settings.qari=q.id;dismiss();state.open(Reference(t.surah,1));audio.verses(qari:q,start:Reference(t.surah,1),end:Reference(t.surah,state.content.corpus.surahs[t.surah-1].ayahCount))}
+        PrimaryButton(title:"Baca & dengarkan dari awal",icon:"book-open-cover"){let q=t.qari;state.settings.qari=q.id;dismiss();Task{try? await Task.sleep(nanoseconds:400_000_000);state.open(Reference(t.surah,1));audio.verses(qari:q,start:Reference(t.surah,1),end:Reference(t.surah,state.content.corpus.surahs[t.surah-1].ayahCount))}}
         NavigationLink {QariSurahsView(state:state,qari:t.qari)}label:{MenuRow(title:"Daftar surah",icon:"list-music",dark:state.settings.dark)}
-    }else {Text("Belum ada audio yang diputar.");PrimaryButton(title:"Kembali"){dismiss()}}}.navigationTitle("Murottal").navigationBarTitleDisplayMode(.inline).toolbar{ToolbarItem(placement:.navigationBarLeading){Button{dismiss()}label:{AppIcon(name:"angle-down").frame(width:44,height:44).accessibilityLabel("Kecilkan pemutar")}};ToolbarItem(placement:.navigationBarTrailing){Menu{Button("Hentikan audio",role:.destructive){audio.stop();dismiss()};Button("Koleksi saya"){dismiss()}}label:{AppIcon(name:"menu-dots-vertical").frame(width:44,height:44)}}}}}
+    }else {Text("Belum ada audio yang diputar.");PrimaryButton(title:"Kembali"){dismiss()}}}.navigationTitle("Murottal").navigationBarTitleDisplayMode(.inline).toolbar{ToolbarItem(placement:.navigationBarLeading){Button{dismiss()}label:{AppIcon(name:"angle-down").frame(width:44,height:44).accessibilityLabel("Kecilkan pemutar")}};ToolbarItem(placement:.navigationBarTrailing){Menu{Button("Hentikan audio",role:.destructive){audio.stop();dismiss()};NavigationLink("Koleksi saya"){LibraryView(state:state)}}label:{AppIcon(name:"menu-dots-vertical").frame(width:44,height:44)}}}}}
 }

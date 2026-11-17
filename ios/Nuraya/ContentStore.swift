@@ -38,7 +38,7 @@ final class ContentStore {
         return mapCache[mapping]?.pages.first {$0.page==page}?.verses ?? []
     }
     func timing(_ qari:ReciterSelection,surah:Int)->TimedChapter? {
-        guard let r=verseReciters.first(where:{$0.id==qari.verseId}),let folder=r.timingFolder,r.supportsWordSync==true,let t=try? decode("audio_timing/\(folder)/\(surah).json",TimedChapter.self),t.surah==surah,let u=URL(string:t.audioUrl),u.scheme=="https",["download.quranicaudio.com","audio-cdn.tarteel.ai","cdn.mp3quran.net"].contains(u.host ?? "") else {return nil}
+        guard let r=verseReciters.first(where:{$0.id==qari.verseId}),let folder=r.timingFolder,r.supportsWordSync==true,let t=try? decode("audio_timing/\(folder)/\(surah).json",TimedChapter.self),t.surah==surah,t.reciterId==qari.verseId,t.sourceSlug==folder,let u=URL(string:t.audioUrl),u.scheme=="https",["download.quranicaudio.com","audio-cdn.tarteel.ai","cdn.mp3quran.net"].contains(u.host ?? "") else {return nil}
         return t
     }
     func image(_ path:String)->UIImage? {UIImage(contentsOfFile:root.appendingPathComponent(path).path)}

@@ -13,6 +13,7 @@ struct AudioTrack:Identifiable {
     @Published var track:AudioTrack?;@Published var playing=false;@Published var position=0.0;@Published var duration=0.0;@Published var speed:Float=1;@Published var repeatMode=0;@Published var error:String?;@Published var word:Int?
     private(set) var context:Context = .murottal
     private var queue=[AudioTrack](),cursor=0,generation=0,advancing=false
+    private var artwork:MPMediaItemArtwork?,artworkQari="",lastNowPlaying=Date.distantPast
     private var tick:Any?,endToken:NSObjectProtocol?,interruptToken:NSObjectProtocol?,routeToken:NSObjectProtocol?,status:NSKeyValueObservation?
     init(content:ContentStore,downloads:DownloadStore) {
         self.content=content;self.downloads=downloads
@@ -75,7 +76,7 @@ struct AudioTrack:Identifiable {
         if let end=t.end,seconds>=end-0.02,playing,!advancing {next();return}
         word=t.timing?.word(at:seconds)
         if t.end==nil,let d=player.currentItem?.duration.seconds,d.isFinite {duration=d}
-        nowPlaying()
+        if Date().timeIntervalSince(lastNowPlaying)>=1 {nowPlaying()}
     }
     func resume() {guard track != nil else {return};playing=true;player.playImmediately(atRate:speed);nowPlaying()}
     func pause() {player.pause();playing=false;nowPlaying()}
@@ -94,7 +95,9 @@ struct AudioTrack:Identifiable {
     private func nowPlaying() {
         guard let t=track else {return}
         var data:[String:Any]=[MPMediaItemPropertyTitle:content.corpus.surahs[t.surah-1].name+(t.verse.map {" · Ayat \($0.ayah)"} ?? ""),MPMediaItemPropertyArtist:t.qari.name,MPMediaItemPropertyPlaybackDuration:duration,MPNowPlayingInfoPropertyElapsedPlaybackTime:position,MPNowPlayingInfoPropertyPlaybackRate:playing ? speed:0]
-        if let image=content.portrait(t.qari.id) {data[MPMediaItemPropertyArtwork]=MPMediaItemArtwork(boundsSize:image.size){_ in image}}
+        if artworkQari != t.qari.id {artworkQari=t.qari.id;artwork=content.portrait(t.qari.id).map {image in MPMediaItemArtwork(boundsSize:image.size){_ in image}}}
+        if let artwork=artwork {data[MPMediaItemPropertyArtwork]=artwork}
+        lastNowPlaying=Date()
         MPNowPlayingInfoCenter.default().nowPlayingInfo=data
     }
 }
