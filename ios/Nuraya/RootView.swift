@@ -14,8 +14,9 @@ struct RootView:View {
                 NavigationStack(path:$path){VStack(spacing:0){
                     Group {switch tab {case 1:QuranModesView(state:state);case 2:MurottalView(state:state);case 3:PrayerView(state:state);default:HomeView(state:state,selectTab:{tab=$0})}}
                     MiniPlayer(state:state,audio:state.audio)
-                    HStack(spacing:0){ForEach(0..<4){i in Button{path=[];tab=i}{VStack(spacing:6){AppIcon(name:["home","book-open-cover","headphones","kaaba"][i],size:27);Text([state.translated("Beranda","Home"),"Al-Qur’an","Murottal",state.translated("Ibadah","Prayer")][i]).font(.system(size:14,weight:tab==i ? .semibold:.regular))}.foregroundStyle(tab==i ? palette.primary:palette.secondary).frame(maxWidth:.infinity,minHeight:66).background(tab==i ? palette.raised:Color.clear,in:RoundedRectangle(cornerRadius:22))}.buttonStyle(.plain)}}.padding(.horizontal,10).padding(.top,7).background(.ultraThinMaterial)
+                    HStack(spacing:0){ForEach(0..<4){i in Button{path=[];tab=i}label:{VStack(spacing:6){AppIcon(name:["home","book-open-cover","headphones","kaaba"][i],size:27);Text([state.translated("Beranda","Home"),"Al-Qur’an","Murottal",state.translated("Ibadah","Prayer")][i]).font(.system(size:14,weight:tab==i ? .semibold:.regular))}.foregroundStyle(tab==i ? palette.primary:palette.secondary).frame(maxWidth:.infinity,minHeight:66).background(tab==i ? palette.raised:Color.clear,in:RoundedRectangle(cornerRadius:22))}.buttonStyle(.plain)}}.padding(.horizontal,10).padding(.top,7).background(.ultraThinMaterial)
                 }.background(palette.background).navigationTitle(["Nuraya","Al-Qur’an","Murottal",state.translated("Ibadah","Prayer")][tab]).navigationBarTitleDisplayMode(.inline)
+                .toolbar(tab==0 && path.isEmpty ? .hidden:.visible,for:.navigationBar)
                 .toolbar {ToolbarItem(placement:.navigationBarTrailing){NavigationLink(value:Route.settings){AppIcon(name:"settings-sliders").frame(width:44,height:44).accessibilityLabel("Pengaturan")}}}
                 .navigationDestination(for:Route.self){route in switch route {
                 case .settings:SettingsView(state:state)
@@ -46,5 +47,5 @@ struct ProfileSetup:View {
 }
 struct AvatarPicker:View {
     @ObservedObject var state:AppState;@Binding var selected:Int
-    var body:some View {HStack(spacing:18){ForEach(0..<3){i in Button{selected=i}{AssetImage(content:state.content,path:"brand/avatars/avatar_\(i).png",fit:true).frame(width:78,height:78).clipShape(Circle()).overlay(Circle().stroke(selected==i ? Color.nuraya:Color.clear,lineWidth:3))}.accessibilityLabel("Avatar \(i+1)")}}.frame(maxWidth:.infinity)}
+    var body:some View {HStack(spacing:18){ForEach(0..<3){i in Button{selected=i}label:{AssetImage(content:state.content,path:"brand/avatars/avatar_\(i).png",fit:true).frame(width:78,height:78).clipShape(Circle()).overlay(Circle().stroke(selected==i ? Color.nuraya:Color.clear,lineWidth:3))}.accessibilityLabel("Avatar \(i+1)")}}.frame(maxWidth:.infinity)}
 }

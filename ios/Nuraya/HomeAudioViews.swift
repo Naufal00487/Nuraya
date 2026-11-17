@@ -4,10 +4,10 @@ struct HomeView:View {
     @ObservedObject var state:AppState;let selectTab:(Int)->Void
     @State private var banner=0
     var body:some View {ScrollView{VStack(alignment:.leading,spacing:20){
-        PrayerHeader(state:state)
+        PrayerHeader(state:state).clipShape(RoundedRectangle(cornerRadius:26))
         HStack(spacing:12){NavigationLink(value:Route.search){searchCard("Cari Ayat")};NavigationLink(value:Route.hadith){searchCard("Cari Hadis")}}.padding(.horizontal,20)
         VStack(alignment:.leading,spacing:4){Text("Assalamualaikum,").font(.system(size:19));Text(state.settings.name).font(.system(size:24,weight:.bold))}.padding(.horizontal,20)
-        TabView(selection:$banner){ForEach(0..<2){i in NavigationLink(value:i==0 ? Route.learning:Route.search){AssetImage(content:state.content,path:"brand/banners/\(i==0 ? "learn":"explore").png",fit:true).clipShape(RoundedRectangle(cornerRadius:18))}.tag(i)}}.tabViewStyle(.page(indexDisplayMode:.always)).frame(height:150).padding(.horizontal,20)
+        TabView(selection:$banner){ForEach(0..<2){i in NavigationLink(value:i==0 ? Route.learning:Route.search){AssetImage(content:state.content,path:"brand/banners/\(i==0 ? "learn":"explore").png",fit:true).clipShape(RoundedRectangle(cornerRadius:18))}.tag(i)}}.tabViewStyle(.page(indexDisplayMode:.always)).frame(height:110).padding(.horizontal,20)
         Text("Temani langkah belajarmu").font(.system(size:22,weight:.semibold)).padding(.horizontal,20)
         LazyVGrid(columns:[GridItem(.flexible()),GridItem(.flexible())],spacing:12){
             Button{selectTab(1)}label:{tile("Baca Al-Qur’an","book-open-cover")}
@@ -90,7 +90,7 @@ struct QariSurahsView:View {
 }
 struct MiniPlayer:View {
     @ObservedObject var state:AppState;@ObservedObject var audio:AudioService
-    var body:some View {if let t=audio.track {HStack(spacing:12){Button{state.fullPlayer=true}{HStack(spacing:12){QariPhoto(content:state.content,qari:t.qari,size:48,rounded:12);VStack(alignment:.leading,spacing:4){Text(state.content.corpus.surahs[t.surah-1].name).font(.headline);Text(t.qari.name).font(.caption).lineLimit(1)};Spacer()}}.buttonStyle(.plain);Button{audio.toggle()}label:{AppIcon(name:audio.playing ? "pause":"play").frame(width:48,height:48)};Button{audio.stop()}label:{AppIcon(name:"cross",size:20).frame(width:44,height:48)}}.padding(.horizontal,16).padding(.vertical,8).background(Palette(dark:state.settings.dark).raised)}}
+    var body:some View {if let t=audio.track {HStack(spacing:12){Button{state.fullPlayer=true}label:{HStack(spacing:12){QariPhoto(content:state.content,qari:t.qari,size:48,rounded:12);VStack(alignment:.leading,spacing:4){Text(state.content.corpus.surahs[t.surah-1].name).font(.headline);Text(t.qari.name).font(.caption).lineLimit(1)};Spacer()}}.buttonStyle(.plain);Button{audio.toggle()}label:{AppIcon(name:audio.playing ? "pause":"play").frame(width:48,height:48)};Button{audio.stop()}label:{AppIcon(name:"cross",size:20).frame(width:44,height:48)}}.padding(.horizontal,16).padding(.vertical,8).background(Palette(dark:state.settings.dark).raised)}}
 }
 struct PlayerView:View {
     @ObservedObject var state:AppState;@ObservedObject var audio:AudioService
