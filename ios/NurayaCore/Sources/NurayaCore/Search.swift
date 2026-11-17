@@ -81,7 +81,7 @@ public final class QuranSearch {
         let spoken=Normalization.spoken(raw);var words=spoken.split(separator:" ").map(String.init)
         var ayah:Int?
         if let i=words.firstIndex(of:"ayat"),i+1<words.count,let n=Int(words[i+1]) {ayah=n;words.removeSubrange(i...i+1)}
-        let clean=words.filter {!["cari","carikan","tolong","buka","surat","surah","qs","quran","al","alquran"].contains($0)}.joined()
+        let clean=words.filter {!["cari","carikan","tolong","buka","surat","surah","qs","quran","al","alquran"].contains($0)}.joined(separator:" ")
         guard !clean.isEmpty else {return nil}
         let compact: (String)->String = { value in
             var words=Normalization.words(value)

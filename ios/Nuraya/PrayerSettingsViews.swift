@@ -46,11 +46,57 @@ struct SourcesView:View {
     var licensePaths:[String]{((try? FileManager.default.contentsOfDirectory(atPath:state.content.root.appendingPathComponent("licenses").path)) ?? []).sorted()}
 }
 struct LibraryView:View {
-    @ObservedObject var state:AppState;@ObservedObject var downloads:DownloadStore
-    @State private var tab=0;@State private var confirm=false
+    @ObservedObject var state:AppState
+    @ObservedObject var downloads:DownloadStore
+    @State private var tab=0
+    @State private var confirm=false
     init(state:AppState){self.state=state;downloads=state.downloads}
-    var body:some View {PageContainer(dark:state.settings.dark){Picker("Koleksi",selection:$tab){Text("Penanda").tag(0);Text("Favorit").tag(1);Text("Riwayat").tag(2);Text("Unduh").tag(3)}.pickerStyle(.segmented);if tab<3 {let entries=state.settings.entries.filter {tab==0 ? $0.kind=="bookmark":tab==1 ? $0.kind=="favorite":$0.kind=="audio_history"}.sorted {$0.date>$1.date};if entries.isEmpty{Text("Belum ada koleksi pada bagian ini.")};ForEach(entries){e in HStack{Button{open(e)}label:{MenuRow(title:e.title,subtitle:e.subtitle,icon:tab==0 ? "bookmark":"play",dark:state.settings.dark)};Button(role:.destructive){state.settings.entries.removeAll {$0.id==e.id}}label:{AppIcon(name:"trash").frame(width:44,height:44)}}}}else {Text("Audio surah tersimpan").font(.title2.bold());ForEach(offline,id:\.key){row in HStack{Button{state.audio.chapter(row.qari,row.surah);state.fullPlayer=true}label:{MenuRow(title:state.content.corpus.surahs[row.surah-1].name,subtitle:row.qari.name,icon:"play",dark:state.settings.dark)};Button(role:.destructive){do{try downloads.remove(row.url)}catch{state.error=error.localizedDescription}}label:{AppIcon(name:"trash").frame(width:44,height:44)}}};Text("Ruang unduhan: \(Double(downloads.size())/1_000_000,specifier:"%.1f") MB").font(.footnote);Text("Halaman mushaf yang dibuka dan model AI tersimpan terpisah dari daftar audio surah.").font(.footnote)};if tab==2{Button("Bersihkan riwayat",role:.destructive){confirm=true}}}.navigationTitle("Koleksi saya").confirmationDialog("Hapus riwayat mendengarkan?",isPresented:$confirm){Button("Hapus riwayat",role:.destructive){state.settings.entries.removeAll {$0.kind=="audio_history"}}}}
+    var entries:[SavedEntry] {state.settings.entries.filter {e in
+        switch tab {case 0:return e.kind=="bookmark";case 1:return e.kind=="favorite";case 2:return e.kind.hasSuffix("history");case 3:return e.kind=="playlist";default:return false}
+    }.sorted {$0.date>$1.date}}
+    var body:some View {
+        PageContainer(dark:state.settings.dark){
+            Picker("Koleksi",selection:$tab){Text("Penanda").tag(0);Text("Favorit").tag(1);Text("Riwayat").tag(2);Text("Daftar putar").tag(3);Text("Unduhan").tag(4)}
+                .pickerStyle(.menu)
+            if tab<4 {
+                if entries.isEmpty {Text("Belum ada koleksi pada bagian ini.")}
+                if tab==3,!entries.isEmpty {PrimaryButton(title:"Putar koleksi",icon:"play"){state.audio.collection(entries.reversed());state.fullPlayer=true}}
+                ForEach(entries){entry in
+                    HStack(spacing:8){
+                        Button{open(entry)}label:{MenuRow(title:entry.title,subtitle:entry.subtitle,icon:entry.kind=="bookmark" || entry.kind=="read_history" ? "bookmark":"play",dark:state.settings.dark)}
+                        Button(role:.destructive){state.settings.entries.removeAll {$0.id==entry.id}}label:{AppIcon(name:"trash").frame(width:44,height:48).accessibilityLabel("Hapus "+entry.title)}
+                    }
+                }
+            }else {offlineSection}
+            if tab==2 {Button("Bersihkan riwayat",role:.destructive){confirm=true}}
+        }.navigationTitle("Koleksi saya")
+        .confirmationDialog("Hapus riwayat membaca dan mendengarkan?",isPresented:$confirm){Button("Hapus riwayat",role:.destructive){state.settings.entries.removeAll {$0.kind.hasSuffix("history")}}}
+    }
+    var offlineSection:some View {
+        VStack(alignment:.leading,spacing:16){
+            Text("Audio surah tersimpan").font(.title2.bold())
+            if offline.isEmpty {Text("Unduh surah dari pemutar agar bisa didengarkan tanpa internet.")}
+            ForEach(offline,id:\.key){row in
+                HStack{
+                    Button{state.audio.chapter(row.qari,row.surah);state.fullPlayer=true}label:{MenuRow(title:state.content.corpus.surahs[row.surah-1].name,subtitle:row.qari.name,icon:"play",dark:state.settings.dark)}
+                    Button(role:.destructive){do {try downloads.remove(row.url)}catch {state.error=error.localizedDescription}}label:{AppIcon(name:"trash").frame(width:44,height:48).accessibilityLabel("Hapus unduhan")}
+                }
+            }
+            Text("Ruang unduhan: \(Double(downloads.size())/1_000_000,specifier:"%.1f") MB").font(.footnote)
+            Text("Halaman mushaf yang dibuka dan model AI tersimpan terpisah dari daftar audio surah.").font(.footnote)
+        }
+    }
     struct OfflineRow{let key:String,qari:ReciterSelection,surah:Int,url:URL}
-    var offline:[OfflineRow]{state.content.qaris.flatMap{q in guard let r=state.content.chapterReciters.first(where:{$0.id==q.id}) else{return [OfflineRow]()};return (1...114).compactMap{s in guard let u=r.url(s),downloads.cached(u) != nil else{return nil};return OfflineRow(key:q.id+"|\(s)",qari:q,surah:s,url:u)}}}
-    func open(_ e:SavedEntry){if e.kind=="bookmark" {let p=e.key.split(separator:":");if p.count==2,let s=Int(p[0]),let a=Int(p[1]){state.open(Reference(s,a))}}else{let p=e.key.split(separator:"|");if p.count==2,let q=state.content.qaris.first(where:{$0.id==p[0]}),let s=Int(p[1]){state.audio.chapter(q,s);state.fullPlayer=true}}}
+    var offline:[OfflineRow]{state.content.qaris.flatMap {q in
+        guard let r=state.content.chapterReciters.first(where:{$0.id==q.chapterId}) else{return [OfflineRow]()}
+        return (1...114).compactMap {s in guard let u=r.url(s),downloads.cached(u) != nil else{return nil};return OfflineRow(key:q.id+"|\(s)",qari:q,surah:s,url:u)}
+    }}
+    func reference(_ value:String)->Reference? {let p=value.split(separator:":");guard p.count==2,let s=Int(p[0]),let a=Int(p[1]),state.content.corpus.verse(Reference(s,a)) != nil else{return nil};return Reference(s,a)}
+    func open(_ entry:SavedEntry){
+        if entry.kind=="bookmark" || entry.kind=="read_history" {if let ref=reference(entry.key){state.open(ref)};return}
+        let parts=entry.key.split(separator:"|").map(String.init)
+        guard parts.count==2,let qari=state.content.qaris.first(where:{$0.id==parts[0]}) else{return}
+        if entry.kind=="verse_audio_history",let ref=reference(parts[1]) {state.settings.qari=qari.id;state.open(ref);state.audio.verses(qari:qari,start:ref,end:ref)}
+        else if let surah=Int(parts[1]),(1...114).contains(surah){state.audio.chapter(qari,surah);state.fullPlayer=true}
+    }
 }

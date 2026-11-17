@@ -75,11 +75,25 @@ targets:
     settings:
       base:
         GENERATE_INFOPLIST_FILE: YES
+  NurayaTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [NurayaTests]
+    resources:
+      - path: .build/TestFixtures
+        type: folder
+    dependencies:
+      - target: Nuraya
+      - package: NurayaCore
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
 schemes:
   Nuraya:
     build:
       targets:
         Nuraya: all
         NurayaUITests: [test]
+        NurayaTests: [test]
     test:
-      targets: [NurayaUITests]
+      targets: [NurayaTests, NurayaUITests]
