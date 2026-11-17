@@ -41,7 +41,49 @@ struct ReaderView:View {
         if controls {VStack{HStack(spacing:10){Button{dismiss()}label:{AppIcon(name:"arrow-left").frame(width:44,height:44).accessibilityHidden(false).accessibilityLabel("Tutup Quran")};VStack(alignment:.leading){Text(mode?.titleId ?? edition.title).font(.system(size:15,weight:.semibold));Text("Halaman \(page) / 604").font(.system(size:13))};Spacer();Button{panel=true}label:{AppIcon(name:"language").frame(width:40,height:44)};Button{jump=true}label:{AppIcon(name:"search").frame(width:40,height:44)};readerMenu}.padding(.horizontal,8).background(Color(hex:0xF4ECD7));Spacer();if downloadingEdition {Text("Mengunduh edisi: \(downloadCount)/604").padding(12).background(Color(hex:0xF4ECD7));Button("Hentikan unduhan"){downloadingEdition=false}.padding(8).background(Color(hex:0xF4ECD7))};HStack(spacing:12){Button{info=true}label:{AppIcon(name:"info").frame(width:44,height:48)};Button{state.mark(reference)}label:{AppIcon(name:"bookmark").frame(width:44,height:48)};Button{audioSettings=true}label:{HStack{AppIcon(name:"settings-sliders");Text(state.selectedQari.name).font(.system(size:13)).lineLimit(2);Spacer();AppIcon(name:"angle-down",size:18)}};if audio.context == .reader,audio.track != nil {Button{audio.toggle()}label:{AppIcon(name:audio.playing ? "pause":"play").frame(width:44,height:48)}}}.padding(.horizontal,10).background(Color(hex:0xF4ECD7))}.foregroundStyle(Color(hex:0x625331))}
     }.statusBarHidden(!controls).task(id:page){await loadPage(edition)}}
     var readerMenu:some View {Menu{Button("Halaman berikutnya"){turn(1)};Button("Halaman sebelumnya"){turn(-1)};Button("Lanskap / potret"){landscape.toggle();rotate(landscape)};Button("Perbesar halaman"){zoom=min(3,zoom+0.5)};Button("Ukuran halaman semula"){zoom=1};Button("Layar baca penuh"){controls=false};Button("Simpan halaman offline"){if let edition=edition {Task{await loadPage(edition)}}};Button("Unduh 604 halaman edisi ini"){downloadEdition()};if target.mode=="hafalan_8"{Button("Uji hafalan tanpa melihat"){hidden.toggle()}};if target.mode=="tikrar" {Button("Catat pengulangan: \(tikrar)"){tikrar+=1};Button("Atur pengulangan audio"){audioSettings=true}};Button("Info tajwid & sumber"){info=true}}label:{AppIcon(name:"menu-dots-vertical").frame(width:40,height:44)}}
-    var textReader:some View {NavigationStack{ScrollViewReader{proxy in ScrollView{LazyVStack(spacing:20){ForEach(state.content.corpus.chapter(reference.surah)){v in VStack(alignment:.leading,spacing:16){HStack{Text("\(state.content.corpus.surahs[v.surah-1].name) · \(v.ayah)").font(.headline);Spacer();Button{reference=v.reference;actions=true}label:{AppIcon(name:"menu-dots-vertical").frame(width:44,height:44)}};if let opening=v.opening {ArabicText(text:opening,size:state.settings.arabicSize).padding(.vertical,12)};ArabicText(text:v.text,size:state.settings.arabicSize,study:state.content.study(v.reference),color:state.settings.tajwid,highlight:audio.track?.verse?.reference==v.reference ? audio.word:nil);if state.settings.translation != "none" {Text(state.settings.translation=="en" ? v.english:v.indonesian).font(.system(size:19)).textSelection(.enabled)};HStack{Button("Arti & tafsir"){reference=v.reference;panel=true};Spacer();Button{audio.verses(qari:state.selectedQari,start:v.reference,end:v.reference)}label:{AppIcon(name:"play").frame(width:48,height:48)}}}.padding(20).background(Palette(dark:state.settings.dark).card,in:RoundedRectangle(cornerRadius:22)).id(v.ayah)};HStack{if reference.surah>1 {Button("Surah sebelumnya"){reference=Reference(reference.surah-1,1);state.recordReading(r)eference}};Spacer();if reference.surah<114{Button("Surah berikutnya"){reference=Reference(reference.surah+1,1);state.recordReading(r)eference}}}}.padding(20)}.background(Palette(dark:state.settings.dark).background).onChange(of:reference){r in withAnimation{proxy.scrollTo(r.ayah,anchor:.top)}}.onAppear{DispatchQueue.main.asyncAfter(deadline:.now()+0.3){proxy.scrollTo(target.reference.ayah,anchor:.top)}}}.navigationTitle(state.content.corpus.surahs[reference.surah-1].name).navigationBarTitleDisplayMode(.inline).toolbar{ToolbarItem(placement:.navigationBarLeading){Button{dismiss()}label:{AppIcon(name:"arrow-left")}};ToolbarItemGroup(placement:.navigationBarTrailing){Button{jump=true}label:{AppIcon(name:"search")};Button{audioSettings=true}label:{AppIcon(name:"settings-sliders")}}}}
+    var textReader:some View {
+        NavigationStack {
+            ScrollViewReader {proxy in
+                ScrollView {
+                    LazyVStack(spacing:20){
+                        ForEach(state.content.corpus.chapter(reference.surah)){verse in verseCard(verse).id(verse.ayah)}
+                        HStack {
+                            if reference.surah>1 {Button("Surah sebelumnya"){changeSurah(reference.surah-1)}}
+                            Spacer()
+                            if reference.surah<114 {Button("Surah berikutnya"){changeSurah(reference.surah+1)}}
+                        }
+                    }.padding(20)
+                }.background(Palette(dark:state.settings.dark).background)
+                    .onChange(of:reference){ref in withAnimation{proxy.scrollTo(ref.ayah,anchor:.top)}}
+                    .onAppear{DispatchQueue.main.asyncAfter(deadline:.now()+0.3){proxy.scrollTo(target.reference.ayah,anchor:.top)}}
+            }.navigationTitle(state.content.corpus.surahs[reference.surah-1].name)
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar{
+                    ToolbarItem(placement:.navigationBarLeading){Button{dismiss()}label:{AppIcon(name:"arrow-left")}.accessibilityLabel("Tutup Quran")}
+                    ToolbarItemGroup(placement:.navigationBarTrailing){
+                        Button{jump=true}label:{AppIcon(name:"search")}.accessibilityLabel("Pindah surah")
+                        Button{audioSettings=true}label:{AppIcon(name:"settings-sliders")}.accessibilityLabel("Audio bacaan")
+                    }
+                }
+        }
+    }
+    private func changeSurah(_ number:Int){reference=Reference(number,1);state.recordReading(reference)}
+    private func verseCard(_ verse:Verse)->some View {
+        VStack(alignment:.leading,spacing:16){
+            HStack{
+                Text("\(state.content.corpus.surahs[verse.surah-1].name) · \(verse.ayah)").font(.headline)
+                Spacer()
+                Button{reference=verse.reference;actions=true}label:{AppIcon(name:"menu-dots-vertical").frame(width:44,height:44)}.accessibilityLabel("Pilihan ayat \(verse.ayah)")
+            }
+            if let opening=verse.opening {ArabicText(text:opening,size:state.settings.arabicSize).padding(.vertical,12)}
+            ArabicText(text:verse.text,size:state.settings.arabicSize,study:state.content.study(verse.reference),color:state.settings.tajwid,highlight:audio.track?.verse?.reference==verse.reference ? audio.word:nil)
+            if state.settings.translation != "none" {Text(state.settings.translation=="en" ? verse.english:verse.indonesian).font(.system(size:19)).textSelection(.enabled)}
+            HStack{
+                Button("Arti & tafsir"){reference=verse.reference;panel=true}
+                Spacer()
+                Button{audio.verses(qari:state.selectedQari,start:verse.reference,end:verse.reference)}label:{AppIcon(name:"play").frame(width:48,height:48)}.accessibilityLabel("Putar ayat \(verse.ayah)")
+            }
+        }.padding(20).background(Palette(dark:state.settings.dark).card,in:RoundedRectangle(cornerRadius:22))
     }
     func turn(_ delta:Int){guard (1...604).contains(page+delta) else{return};page+=delta;zoom=1;updateReference()}
     func updateReference(){if let edition=edition,let index=try? state.content.index(edition),let r=index.references(on:page).first {reference=r;state.recordReading(r)}}

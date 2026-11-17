@@ -35,6 +35,12 @@ private final class PCMBuffer {
     private let lock=NSLock();private var samples=[Float]()
     func append(_ values:UnsafeBufferPointer<Float>){lock.lock();defer {lock.unlock()};samples.append(contentsOf:values.prefix(max(0,16000*90-samples.count)))}
     func snapshot()->[Float]{lock.lock();defer {lock.unlock()};return samples}
+    func meter()->(seconds:Double,level:Double) {
+        lock.lock();defer{lock.unlock()}
+        let tail=samples.suffix(3200)
+        let energy=tail.reduce(0.0){$0+Double($1*$1)}
+        return (Double(samples.count)/16000,tail.isEmpty ? 0:sqrt(energy/Double(tail.count)))
+    }
     func clear(){lock.lock();defer {lock.unlock()};samples.removeAll(keepingCapacity:false)}
 }
 struct QuranModelSpec:Decodable {let url:String,bytes:Int,sha256:String,fileName:String}
@@ -80,10 +86,9 @@ struct QuranModelSpec:Decodable {let url:String,bytes:Int,sha256:String,fileName
             pulse=Task {
                 while !Task.isCancelled && recording {
                     try? await Task.sleep(nanoseconds:200_000_000);if Task.isCancelled {return}
-                    let pcm=samples.snapshot();seconds=Double(pcm.count)/16000
-                    let tail=pcm.suffix(3200);level=tail.isEmpty ? 0:sqrt(tail.reduce(0){$0+Double($1*$1)}/Double(tail.count))
+                    let meter=samples.meter();seconds=meter.seconds;level=meter.level
                     if seconds >= (micOnly ? 5:90) {finish();return}
-                    if !micOnly,seconds-lastPartial>=6,!processing {lastPartial=seconds;recognize(pcm,final:false)}
+                    if !micOnly,seconds-lastPartial>=6,!processing {lastPartial=seconds;recognize(samples.snapshot(),final:false)}
                 }
             }
         }catch {processing=false;self.error=error.localizedDescription;stopCapture()}

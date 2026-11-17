@@ -6,6 +6,7 @@ import NurayaCore
 
 final class ContentStore {
     let root:URL,corpus:QuranCorpus,qaris:[ReciterSelection],chapterReciters:[ChapterReciter],verseReciters:[VerseReciter],portraits:[Portrait],modes:[ReadingMode],lessons:[Lesson],themes:[QuranTheme],manifest:MushafManifest
+    private let imageCache:NSCache<NSString,UIImage> = {let cache=NSCache<NSString,UIImage>();cache.totalCostLimit=64*1024*1024;cache.countLimit=64;return cache}()
     private var studyCache=[Int:StudyChapter](),latinCache=[Int:LatinChapter](),indexCache=[String:PageIndex](),mapCache=[String:MushafMap]()
     lazy var search:QuranSearch? = try? QuranSearch(corpus:corpus,lexical:Data(contentsOf:root.appendingPathComponent("learning_index.bin")),semantic:Data(contentsOf:root.appendingPathComponent("semantic_index.bin")),metadata:Data(contentsOf:root.appendingPathComponent("semantic_index_sources.json")),names:Data(contentsOf:root.appendingPathComponent("surah_aliases.json")))
     init(root:URL) throws {
@@ -41,7 +42,7 @@ final class ContentStore {
         guard let r=verseReciters.first(where:{$0.id==qari.verseId}),let folder=r.timingFolder,r.supportsWordSync==true,let t=try? decode("audio_timing/\(folder)/\(surah).json",TimedChapter.self),t.surah==surah,t.matches(r),let u=URL(string:t.audioUrl),u.scheme=="https",["download.quranicaudio.com","audio-cdn.tarteel.ai","cdn.mp3quran.net"].contains(u.host ?? "") else {return nil}
         return t
     }
-    func image(_ path:String)->UIImage? {UIImage(contentsOfFile:root.appendingPathComponent(path).path)}
+    func image(_ path:String)->UIImage? {if let image=imageCache.object(forKey:path as NSString){return image};guard let image=UIImage(contentsOfFile:root.appendingPathComponent(path).path) else{return nil};imageCache.setObject(image,forKey:path as NSString,cost:Int(image.size.width*image.size.height*image.scale*image.scale*4));return image}
     func portrait(_ qari:String)->UIImage? {portraits.first {$0.qariIds.contains(qari)}.flatMap {image($0.asset)}}
     func pageMetadata(_ edition:MushafEdition,_ page:Int)->MushafPage? {manifest.editions.first {$0.id==edition.id}?.pages.first {$0.page==page}}
 }
