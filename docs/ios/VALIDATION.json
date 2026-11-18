@@ -1,0 +1,25 @@
+{
+  "source_commit": "0c3dab2c0874bd1542ef837a486e59f2b3fcec48",
+  "workflow": "https://github.com/Naufal00487/Nuraya/actions/runs/44146205960",
+  "checked_on": "2026-11-18 Asia/Jakarta",
+  "tests": {
+    "core": 10,
+    "platform": 4,
+    "ui": 5,
+    "failures": 0
+  },
+  "ipa": {
+    "file": "Nuraya-iOS-XR-unsigned.ipa",
+    "bytes": 100171923,
+    "sha256": "10ba9300c3de2f4291678cc478cf1cba4e14ad3f0261fd09134bd7c7be9b7f5f",
+    "architecture": "arm64",
+    "minimum_ios": "16.0",
+    "version": "1.7.1",
+    "build": "1",
+    "provisioning_profile": false,
+    "unchanged_android_assets": 1740,
+    "zip_integrity": "passed"
+  },
+  "android_apk_sha256": "793c09d7c8b5c0abb7ca5c1103141522533373efdd5fee750a01961acf3c50c6",
+  "physical_iphone_tested": false
+}
