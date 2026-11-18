@@ -27,6 +27,8 @@ Akun Apple gratis biasanya memberi masa berlaku penandatanganan tujuh hari dan b
 
 Ini jalur pengujian pribadi, bukan publikasi App Store. Publikasi App Store membutuhkan Apple Developer Program, identitas penerbit, konfigurasi signing, App Store Connect, kebijakan privasi, serta pemeriksaan perangkat dan proses review Apple.
 
+Lihat [panduan pemasangan dan urutan uji iPhone XR](../docs/ios/UJI_IPHONE_XR.md) untuk langkah pemeriksaan per fitur.
+
 ## Build pada Mac/Xcode
 
 ```sh
@@ -53,6 +55,8 @@ Untuk pengembangan lewat Xcode, buka `ios/Nuraya.xcodeproj` yang dihasilkan Xcod
 - Profil, penanda, koleksi, dan progres disimpan di direktori pribadi aplikasi, dikecualikan dari backup. Rekaman dan transkrip latihan lokal tidak disimpan. Menghapus aplikasi dapat menghapus data dan unduhan.
 
 ## Perbedaan iOS yang perlu diketahui
+
+Gambar, sampul, foto qari, ikon sumber, dan warna dasar memakai aset Android. Antarmuka dibuat ulang dengan SwiftUI: bentuk kontrol sistem dan font antarmuka iOS dapat berbeda dari Android. Font Quran memakai sumber Amiri yang sama. Bahasa utama saat ini Indonesia; sebagian layar sudah memiliki pilihan English, tetapi terjemahan seluruh antarmuka belum lengkap. Versi uji ini belum merupakan klaim kesamaan tampilan piksel demi piksel.
 
 Suara notifikasi khusus saat aplikasi tertutup dibatasi kurang dari 30 detik oleh iOS. Nuraya menggunakan cuplikan azan 28 detik, default mati. iOS juga membatasi jumlah permintaan notifikasi lokal yang menunggu; jadwal diisi ulang saat aplikasi dibuka, sehingga belum boleh dijanjikan alarm tanpa batas waktu jika aplikasi tidak pernah dibuka lagi. Izin notifikasi, suara perangkat, dan mode Fokus tetap berlaku.
 
