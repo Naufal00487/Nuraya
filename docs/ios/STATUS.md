@@ -10,7 +10,7 @@ Lima uji UI mencakup profil/navigasi awal, pembukaan An-Nas pada halaman 604, pe
 
 Paket `Nuraya-iOS-XR-unsigned.ipa` berukuran **100.171.923 byte (100,2 MB)**. Pemeriksaan ZIP, arsitektur ARM64, minimum iOS 16.0, sumber aset, serta ketiadaan model rekaman uji dan profil provisioning di bundle berhasil. Rincian tercatat di [VALIDATION.json](VALIDATION.json).
 
-Unduh melalui [rilis uji iOS di GitHub](https://github.com/Naufal00487/Nuraya/releases/tag/ios-v1.7.1-preview.1), lalu ikuti [panduan Windows dan iPhone XR](UJI_IPHONE_XR.md).
+Unduh melalui [halaman unduh iOS di GitHub](https://github.com/Naufal00487/Nuraya/tree/downloads/nuraya-ios-preview), lalu ikuti [panduan Windows dan iPhone XR](UJI_IPHONE_XR.md).
 
 | Bagian | Bukti yang diperiksa |
 | --- | --- |

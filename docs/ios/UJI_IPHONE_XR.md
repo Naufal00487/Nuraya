@@ -9,7 +9,7 @@ Siapkan iPhone XR, kabel USB, komputer Windows, koneksi internet, dan Apple ID m
 1. Ikuti [panduan resmi AltStore Classic untuk Windows](https://faq.altstore.io/altstore-classic/how-to-install-altstore-windows). Panduan tersebut memuat tautan iTunes dan iCloud versi Apple yang diperlukan, pemasangan AltServer, serta pengaturan sinkronisasi Wi-Fi.
 2. Sambungkan iPhone ke Windows, buka kuncinya, lalu pilih **Percayai/Trust** jika diminta. Jalankan AltServer dan gunakan **Install AltStore → iPhone**. Masukkan Apple ID hanya pada alat pemasangan di komputer sendiri.
 3. Pada iPhone, percayai profil pengembang melalui **Pengaturan → Umum → VPN & Manajemen Perangkat**. Aktifkan **Pengaturan → Privasi & Keamanan → Mode Pengembang**, kemudian ikuti permintaan mulai ulang. Nama menu dapat berbeda mengikuti bahasa iOS.
-4. Unduh `Nuraya-iOS-XR-unsigned.ipa` dari bagian **Assets** pada rilis uji iOS Nuraya. Simpan berkas IPA di aplikasi **Files/File** pada iPhone. Jika diunduh dari Windows, pindahkan berkas tersebut ke Files.
+4. Unduh `Nuraya-iOS-XR-unsigned.ipa` dari [halaman unduh iOS Nuraya](https://github.com/Naufal00487/Nuraya/tree/downloads/nuraya-ios-preview). Simpan berkas IPA di aplikasi **Files/File** pada iPhone. Jika diunduh dari Windows, pindahkan berkas tersebut ke Files.
 5. Buka **AltStore → My Apps → +**, pilih IPA Nuraya, lalu tunggu proses penandatanganan dan pemasangan. Biarkan AltServer aktif dan komputer serta iPhone tersambung selama proses.
 6. Buka Nuraya, isi nama profil, lalu izinkan lokasi untuk menghitung jadwal salat dan kiblat. Jika lokasi tidak tersedia, layar pengaturan lokasi menyediakan pilihan manual.
 
