@@ -1,0 +1,26 @@
+NURAYA iOS — UJI IPHONE XR
+
+File: Nuraya-iOS-XR-unsigned.ipa
+Minimum: iOS 16.0
+Paket ini dipasang melalui AltStore; belum merupakan rilis App Store.
+Versi Android tetap tersedia di GitHub.
+
+PASANG MELALUI WINDOWS
+1. Ikuti panduan AltStore Classic untuk menyiapkan AltServer, iTunes, dan iCloud:
+   https://faq.altstore.io/altstore-classic/how-to-install-altstore-windows
+2. Sambungkan iPhone ke Windows melalui USB dan pilih Trust/Percayai.
+3. Dari AltServer, pilih Install AltStore lalu iPhone milikmu. Gunakan Apple ID sendiri pada komputer sendiri.
+4. Ikuti petunjuk mempercayai profil pengembang dan mengaktifkan Developer Mode pada iPhone.
+5. Simpan IPA Nuraya di aplikasi Files/File pada iPhone.
+6. Buka AltStore > My Apps > +, pilih IPA, lalu tunggu sampai selesai. Biarkan AltServer aktif dan terhubung.
+7. Buka Nuraya, isi nama profil, dan atur izin lokasi untuk jadwal salat serta kiblat.
+
+Akun Apple gratis biasanya membutuhkan Refresh All melalui AltStore/AltServer sebelum tujuh hari. Tidak perlu mengirim kata sandi atau kode verifikasi Apple kepada pengembang Nuraya.
+
+Panduan lengkap dan urutan uji fitur:
+https://github.com/Naufal00487/Nuraya/blob/feature/nuraya-ios-xr/docs/ios/UJI_IPHONE_XR.md
+
+Status pengujian dan batas versi uji:
+https://github.com/Naufal00487/Nuraya/blob/feature/nuraya-ios-xr/docs/ios/STATUS.md
+
+Mikrofon, sensor kompas, kinerja AI pada A12, dan audio layar terkunci perlu diuji langsung di perangkat. AI memeriksa perkiraan kata, belum mengesahkan tajwid atau makhraj. Suara notifikasi azan menggunakan cuplikan 28 detik mengikuti batas iOS.
