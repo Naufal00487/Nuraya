@@ -1,9 +1,13 @@
 NURAYA iOS — UJI IPHONE XR
 
 File: Nuraya-iOS-XR-unsigned.ipa
+Versi: 1.7.1 (iOS build 2)
 Minimum: iOS 16.0
 Paket ini dipasang melalui AltStore; belum merupakan rilis App Store.
 Versi Android tetap tersedia di GitHub.
+
+MEMPERBARUI APLIKASI YANG SUDAH TERPASANG
+Pilih IPA baru melalui AltStore dengan Apple ID yang sama, tanpa menghapus Nuraya. Pastikan Pengaturan menampilkan iOS build 2.
 
 PASANG MELALUI WINDOWS
 1. Ikuti panduan AltStore Classic untuk menyiapkan AltServer, iTunes, dan iCloud:
