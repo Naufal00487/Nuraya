@@ -22,7 +22,7 @@ import UserNotifications
                 // Match Android's 700 ms launch artwork, without delaying a slower load.
                 var minimum=0.7
                 #if DEBUG
-                if ProcessInfo.processInfo.arguments.contains("--capture-launch"){minimum=3}
+                if ProcessInfo.processInfo.arguments.contains("--capture-launch"){minimum=8}
                 #endif
                 let remaining=minimum-Date().timeIntervalSince(started)
                 if remaining>0 {try await Task.sleep(nanoseconds:UInt64(remaining*1_000_000_000))}
