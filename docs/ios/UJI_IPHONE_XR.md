@@ -15,6 +15,8 @@ Siapkan iPhone XR, kabel USB, komputer Windows, koneksi internet, dan Apple ID m
 
 IPA berlabel **unsigned** ditandatangani oleh AltStore menggunakan akunmu saat dipasang. Jangan mengubah ekstensi IPA menjadi APK atau ZIP untuk memasangnya.
 
+Untuk memperbarui pemasangan yang sudah ada, pilih IPA baru melalui AltStore menggunakan Apple ID yang sama. Jangan hapus Nuraya lebih dahulu. Setelah pembaruan, periksa nomor **iOS build 2** di bagian bawah Pengaturan; profil dan koleksi yang ada seharusnya tetap tersedia.
+
 Akun Apple gratis biasanya memerlukan **Refresh All** di AltStore sebelum tujuh hari dan memiliki batas aplikasi aktif. Biarkan AltServer tersedia pada komputer ketika memperbarui. Ketentuan terbaru mengikuti panduan resmi AltStore dan Apple. Hapus aplikasi hanya jika siap kehilangan data lokal; penanda, profil, progres, dan unduhan berada di penyimpanan aplikasi.
 
 ## Urutan uji di perangkat
@@ -23,6 +25,11 @@ Pengujian simulator sudah mencakup data, mesin pengenal bacaan dengan rekaman uj
 
 | Bagian | Langkah | Hasil yang perlu diperiksa |
 | --- | --- | --- |
+| Splash | Tutup proses Nuraya lalu buka kembali | Gambar dua maskot asli tampil saat aplikasi dimulai; bukan hanya logo kecil. |
+| Pergantian tab | Al-Qur’an → Quran per ayat → sebelum memilih surah, tekan tab Murottal; ulangi dari mode Madinah dan Tematik | Halaman Murottal tampil dan dapat ditekan. Daftar surah atau tema tidak menutupi tab baru. |
+| Header | Buka tab Al-Qur’an dan Murottal dalam tema terang dan gelap | Gambar atas memenuhi lebar konten seperti header Android, dengan judul dan keterangan terbaca. |
+| Koleksi Saya | Buka dari Beranda, pilih Penanda, Favorit, Daftar putar, Unduhan, Riwayat | Kelima kategori terlihat tanpa menu tersembunyi. Bagian kosong memiliki petunjuk; entri yang ada dapat dibuka, diputar atau dihapus sesuai jenisnya. |
+| Melanjutkan bacaan | Buka An-Nas dalam Quran per ayat, maju satu ayat, tandai, tutup. Buka Lanjutkan bacaan dan penanda di Koleksi | Keduanya kembali ke An-Nas ayat 2 dalam mode Quran per ayat. Ulangi dengan mushaf Madinah agar pilihan edisi juga tetap. |
 | Profil dan lokasi | Isi nama, izinkan lokasi, buka Beranda dan Ibadah | Nama tersimpan, nama daerah muncul, tanggal Hijriah dan jadwal salat terbaca. |
 | Mushaf | Buka Quran Madinah; pilih An-Nas, lalu surah di bagian tengah Quran | An-Nas menuju halaman 604. Surah lain menuju halaman awal sesuai indeksnya. Ketuk halaman untuk menyembunyikan/menampilkan tombol; coba cubit untuk zoom dan geser halaman. |
 | Mode Quran | Buka per ayat, per kata/tajwid, terjemahan, dan mushaf cetak | Mode menampilkan sumber dan panel yang sesuai; gambar mushaf dapat dibuka setelah unduhan bila belum tersimpan. |

@@ -4,11 +4,11 @@ Acuan: Android **1.7.1**, commit `7b9f23e0bfbc80a24b6265108deaa42785452063`. Pro
 
 ## Hasil build yang telah diperiksa
 
-Diperiksa pada **18 November 2026 (WIB)**. Commit aplikasi `0c3dab2c0874bd1542ef837a486e59f2b3fcec48` berhasil pada [workflow macOS dan simulator iPhone XR](https://github.com/Naufal00487/Nuraya/actions/runs/44146205960): **19 pengujian lulus**, terdiri dari 10 pengujian core, empat pengujian platform, dan lima pengujian UI. Build simulator, build Release untuk iPhone, serta pemeriksaan isi bundle berhasil.
+Diperiksa pada **23 November 2026 (WIB)**. Commit aplikasi `6154d5efd7c997f07d0b24ceabc111810f7a0fd9` berhasil pada [workflow macOS dan simulator iPhone XR](https://github.com/Naufal00487/Nuraya/actions/runs/45176273487): **26 pengujian lulus**, terdiri dari 11 pengujian core, lima pengujian platform, dan sepuluh pengujian UI. Build simulator, build Release untuk iPhone, serta pemeriksaan isi bundle berhasil.
 
-Lima uji UI mencakup profil/navigasi awal, pembukaan An-Nas pada halaman 604, pengaturan dan pergantian tema, penyimpanan hafalan setelah aplikasi dibuka ulang, serta pembersihan transkrip pencarian yang dibatalkan.
+Build **1.7.1 (2)** memperbaiki layar pilihan surah yang menutupi tab baru, header Quran/Murottal, splash dua maskot dan Koleksi Saya. Sepuluh uji UI mencakup empat laporan itu, pembaca satu ayat beserta lanjut baca/penanda, profil, An-Nas halaman 604, pengaturan/tema, penyimpanan hafalan, dan pembersihan transkrip pencarian. Uji platform juga memeriksa bahwa pengaturan serta penanda build sebelumnya tetap terbaca. Rincian perubahan ada pada [REVISI_BUILD_2.md](REVISI_BUILD_2.md).
 
-Paket `Nuraya-iOS-XR-unsigned.ipa` berukuran **100.171.923 byte (100,2 MB)**. Pemeriksaan ZIP, arsitektur ARM64, minimum iOS 16.0, sumber aset, serta ketiadaan model rekaman uji dan profil provisioning di bundle berhasil. Rincian tercatat di [VALIDATION.json](VALIDATION.json).
+Paket `Nuraya-iOS-XR-unsigned.ipa` berukuran **100.296.648 byte (100,3 MB)**. Pemeriksaan ZIP, arsitektur ARM64, minimum iOS 16.0, sumber aset, serta ketiadaan model rekaman uji dan profil provisioning di bundle berhasil. Rincian tercatat di [VALIDATION.json](VALIDATION.json).
 
 Unduh melalui [halaman unduh iOS di GitHub](https://github.com/Naufal00487/Nuraya/tree/downloads/nuraya-ios-preview), lalu ikuti [panduan Windows dan iPhone XR](UJI_IPHONE_XR.md).
 
@@ -26,7 +26,12 @@ Unduh melalui [halaman unduh iOS di GitHub](https://github.com/Naufal00487/Nuray
 
 ## Screenshot simulator
 
-Screenshot berikut berasal dari pengujian aplikasi, bukan gambar rancangan:
+Screenshot berikut berasal dari pengujian build 2, bukan gambar rancangan:
+
+- [Header Al-Qur’an](screenshots/quran-header.png), [header Murottal](screenshots/murottal-header.png), dan [Murottal setelah berpindah dari pilihan surah](screenshots/tab-switch-murottal.png).
+- [Splash dua maskot](screenshots/splash.png).
+- [Koleksi kosong](screenshots/collection-empty.png), [penanda tersimpan](screenshots/collection-bookmark.png), dan [unduhan](screenshots/collection-downloads.png).
+- [Pembaca per ayat](screenshots/quran-per-ayat.png).
 
 - [Beranda](screenshots/home.png) dan [tema biru gelap](screenshots/home-dark.png).
 - [Mushaf Madinah halaman 604](screenshots/madinah-604.png).
