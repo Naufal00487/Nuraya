@@ -15,9 +15,9 @@ struct HomeView:View {
             NavigationLink(value:Route.learning){tile("Hafalan, tajwid & kuis","graduation-cap")}.accessibilityIdentifier("home_learning")
             NavigationLink(value:Route.search){tile("Cari ayat & makna","books")}
             Button{selectTab(2)}label:{tile("Dengarkan murottal","headphones")}
-            NavigationLink(value:Route.library){tile("Koleksi saya","bookmark")}
+            NavigationLink(value:Route.library){tile("Koleksi saya","bookmark")}.accessibilityIdentifier("home_library")
         }.padding(.horizontal,20)
-        if let last=state.settings.lastRead {Button{state.open(last)}label:{MenuRow(title:"Lanjutkan bacaan",subtitle:state.content.corpus.surahs[last.surah-1].name+" · Ayat \(last.ayah)",icon:"bookmark",dark:state.settings.dark)}.padding(.horizontal,20)}
+        if let last=state.settings.lastRead {Button{state.resumeReading()}label:{MenuRow(title:"Lanjutkan bacaan",subtitle:state.content.corpus.surahs[last.surah-1].name+" · Ayat \(last.ayah)",icon:"bookmark",dark:state.settings.dark)}.accessibilityIdentifier("home_resume").padding(.horizontal,20)}
         HStack{Text("Lantunan pilihan").font(.system(size:22,weight:.semibold));Spacer();Button("Lihat semua"){selectTab(2)}}.padding(.horizontal,20)
         ScrollView(.horizontal,showsIndicators:false){HStack(alignment:.top,spacing:18){ForEach(state.content.qaris.prefix(12)){q in NavigationLink(value:Route.qari(q.id)){VStack(spacing:8){QariPhoto(content:state.content,qari:q,size:88,rounded:44);Text(q.name).font(.system(size:16,weight:.semibold)).multilineTextAlignment(.center).lineLimit(3)}.frame(width:112)}}}.padding(.horizontal,20)}
         NavigationLink(value:Route.settings){Label{Text("Pengaturan membaca")}icon:{AppIcon(name:"settings")}}.frame(maxWidth:.infinity)
@@ -81,7 +81,7 @@ struct PrayerHeader:View {
 }
 struct MurottalView:View {
     @ObservedObject var state:AppState;@State private var query=""
-    var body:some View {PageContainer(dark:state.settings.dark){AssetImage(content:state.content,path:"brand/murottal_\(state.settings.dark ? "dark":"light").jpg",fit:true).frame(height:160).clipShape(RoundedRectangle(cornerRadius:22));Text("Pilih qari").font(.system(size:26,weight:.semibold));Text("28 qari · dengarkan, simpan, dan ulangi surah pilihanmu.").font(.system(size:18));TextField("Cari nama qari",text:$query).textFieldStyle(.roundedBorder);ForEach(state.content.qaris.filter {query.isEmpty || Normalization.search($0.name).contains(Normalization.search(query))}){q in NavigationLink(value:Route.qari(q.id)){HStack(spacing:16){QariPhoto(content:state.content,qari:q,size:70,rounded:35);Text(q.name).font(.system(size:20,weight:.semibold));Spacer();AppIcon(name:"angle-right")}.padding(16).frame(maxWidth:.infinity,alignment:.leading).background(Palette(dark:state.settings.dark).card,in:RoundedRectangle(cornerRadius:22))}}}}
+    var body:some View {PageContainer(dark:state.settings.dark){SectionArtwork(content:state.content,section:"murottal",title:"Murottal",subtitle:"Dengarkan ayat yang menenangkan hati.",dark:state.settings.dark);Text("Pilih qari").font(.system(size:26,weight:.semibold));Text("28 qari · dengarkan, simpan, dan ulangi surah pilihanmu.").font(.system(size:18));TextField("Cari nama qari",text:$query).textFieldStyle(.roundedBorder);ForEach(state.content.qaris.filter {query.isEmpty || Normalization.search($0.name).contains(Normalization.search(query))}){q in NavigationLink(value:Route.qari(q.id)){HStack(spacing:16){QariPhoto(content:state.content,qari:q,size:70,rounded:35);Text(q.name).font(.system(size:20,weight:.semibold));Spacer();AppIcon(name:"angle-right")}.padding(16).frame(maxWidth:.infinity,alignment:.leading).background(Palette(dark:state.settings.dark).card,in:RoundedRectangle(cornerRadius:22))}}}}
 }
 struct QariSurahsView:View {
     @ObservedObject var state:AppState;let qari:ReciterSelection

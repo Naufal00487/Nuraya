@@ -9,7 +9,7 @@ settings:
   base:
     SWIFT_VERSION: '5.0'
     MARKETING_VERSION: '1.7.1'
-    CURRENT_PROJECT_VERSION: '1'
+    CURRENT_PROJECT_VERSION: '2'
     TARGETED_DEVICE_FAMILY: '1,2'
     ENABLE_USER_SCRIPT_SANDBOXING: NO
     CLANG_CXX_LANGUAGE_STANDARD: c++17
@@ -34,6 +34,8 @@ targets:
         buildPhase: resources
       - path: Config/PrivacyInfo.xcprivacy
         buildPhase: resources
+      - path: Config/LaunchScreen.storyboard
+        buildPhase: resources
       - path: Nuraya/Resources/adhan_short.caf
         buildPhase: resources
     info:
@@ -48,8 +50,7 @@ targets:
         NSLocationWhenInUseUsageDescription: Koordinat iPhone digunakan untuk menghitung jadwal salat dan arah kiblat. Tidak ada pelacakan latar belakang.
         UIBackgroundModes: [audio]
         UIRequiresFullScreen: true
-        UILaunchScreen:
-          UIColorName: ''
+        UILaunchStoryboardName: LaunchScreen
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
         UIAppFonts: ['Content/amiri_quran.ttf']
         UIApplicationSupportsIndirectInputEvents: true

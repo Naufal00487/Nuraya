@@ -6,6 +6,43 @@ final class PlatformParityTests:XCTestCase {
     func content() throws -> ContentStore {
         try ContentStore(root:try XCTUnwrap(Bundle.main.resourceURL).appendingPathComponent("Content"))
     }
+    @MainActor func testReadingModeAndBookmarksSurviveUpgradeAndRelaunch() throws {
+        let directory=FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer {try? FileManager.default.removeItem(at:directory)}
+        let store=try content()
+        let state=try AppState(content:store,storageDirectory:directory)
+        state.settings.name="Penguji"
+        state.settings.dark=true
+        state.open(Reference(114,1),mode:"madinah")
+        state.mark(Reference(114,1))
+        state.reader=nil
+        let reloaded=try AppState(content:store,storageDirectory:directory)
+        reloaded.resumeReading()
+        XCTAssertEqual(reloaded.reader?.reference,Reference(114,1))
+        XCTAssertEqual(reloaded.reader?.mode,"madinah")
+        XCTAssertEqual(reloaded.settings.entries.first(where:{$0.kind=="bookmark"})?.reading?.mode,"madinah")
+        reloaded.open(Reference(114,1))
+        XCTAssertEqual(reloaded.reader?.mode,"madinah")
+        reloaded.open(Reference(78,1),mode:"standard",juz:30)
+        let restored=try AppState(content:store,storageDirectory:directory)
+        restored.resumeReading()
+        XCTAssertEqual(restored.reader?.juz,30)
+
+        // Build 1 has neither lastReading nor SavedEntry.reading. Preserve its data.
+        var legacy=try XCTUnwrap(JSONSerialization.jsonObject(with:JSONEncoder().encode(state.settings)) as? [String:Any])
+        legacy.removeValue(forKey:"lastReading")
+        var entries=try XCTUnwrap(legacy["entries"] as? [[String:Any]])
+        for i in entries.indices {entries[i].removeValue(forKey:"reading")}
+        legacy["entries"]=entries
+        try JSONSerialization.data(withJSONObject:legacy).write(to:directory.appendingPathComponent("settings.json"))
+        let upgraded=try AppState(content:store,storageDirectory:directory)
+        XCTAssertEqual(upgraded.settings.name,"Penguji")
+        XCTAssertTrue(upgraded.settings.dark)
+        XCTAssertEqual(upgraded.settings.entries.filter {$0.kind=="bookmark"}.count,1)
+        upgraded.resumeReading()
+        XCTAssertEqual(upgraded.reader?.reference,Reference(114,1))
+        XCTAssertEqual(upgraded.reader?.mode,"indonesia")
+    }
     func testPackagedSourcesOpenAndMatchAllCuratedVoices() throws {
         let store=try content()
         XCTAssertEqual(store.corpus.verses.count,6236)

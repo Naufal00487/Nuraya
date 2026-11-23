@@ -21,6 +21,84 @@ final class NurayaUITests:XCTestCase {
         reveal(link,in:app);XCTAssertTrue(link.isHittable);link.tap()
         XCTAssertTrue(app.buttons["learning_tab_0"].waitForExistence(timeout:5))
     }
+    func testSwitchingTabsDismissesTheSurahSelectionLayer() throws {
+        let app=home()
+        for mode in ["standard","madinah","thematic"] {
+            app.buttons["tab_1"].tap()
+            let choice=app.buttons["mode_"+mode]
+            reveal(choice,in:app);XCTAssertTrue(choice.isHittable);choice.tap()
+            if mode != "thematic" {XCTAssertTrue(app.textFields["Cari surah atau nomor"].waitForExistence(timeout:5))}
+            app.buttons["tab_2"].tap()
+            XCTAssertTrue(app.textFields["Cari nama qari"].waitForExistence(timeout:5))
+            XCTAssertFalse(app.textFields["Cari surah atau nomor"].exists)
+            XCTAssertFalse(app.staticTexts["Pilihan rujukan per tema. Buka ayat untuk membaca konteks dan tafsirnya."].exists)
+            if mode=="standard" {capture(app,"Murottal setelah keluar dari pilihan surah")}
+        }
+        app.buttons["tab_0"].tap()
+        XCTAssertTrue(app.buttons["home_settings"].waitForExistence(timeout:5))
+    }
+    func testSectionArtworkFillsAvailableWidth() throws {
+        let app=home()
+        for (tab,section) in [(1,"quran"),(2,"murottal")] {
+            app.buttons["tab_\(tab)"].tap()
+            let artwork=app.descendants(matching:.any)["artwork_"+section].firstMatch
+            XCTAssertTrue(artwork.waitForExistence(timeout:5))
+            XCTAssertGreaterThanOrEqual(artwork.frame.width,app.frame.width-44)
+            XCTAssertGreaterThanOrEqual(artwork.frame.height,190)
+            XCTAssertEqual(artwork.frame.minX,20,accuracy:2)
+            capture(app,"Header penuh "+section)
+        }
+    }
+    func testLaunchDisplaysBothOriginalMascots() throws {
+        let app=XCUIApplication();app.launchArguments=["--ui-testing","--capture-launch"];app.launch()
+        let artwork=app.images["launch_artwork"]
+        XCTAssertTrue(artwork.waitForExistence(timeout:5))
+        XCTAssertGreaterThan(artwork.frame.height,app.frame.height*0.8)
+        capture(app,"Splash dua maskot Nuraya")
+    }
+    func testCollectionCategoriesAreVisibleAndExplainEmptyStates() throws {
+        let app=home()
+        let library=app.buttons["home_library"];reveal(library,in:app);XCTAssertTrue(library.isHittable);library.tap()
+        for category in ["bookmark","favorite","playlist","download","history"] {
+            let filter=app.buttons["library_filter_"+category]
+            XCTAssertTrue(filter.waitForExistence(timeout:5));XCTAssertTrue(filter.isHittable)
+            filter.tap()
+            if ["favorite","playlist","download"].contains(category) {
+                XCTAssertTrue(app.descendants(matching:.any)["library_empty_"+category].firstMatch.waitForExistence(timeout:5))
+            }
+            if category=="bookmark" || category=="download" {capture(app,"Koleksi "+category)}
+        }
+    }
+    func testPerAyatNavigationBookmarkAndResumeKeepTheReadingMode() throws {
+        let app=home();app.buttons["tab_1"].tap()
+        let mode=app.buttons["mode_standard"];reveal(mode,in:app);mode.tap()
+        let search=app.textFields["Cari surah atau nomor"]
+        XCTAssertTrue(search.waitForExistence(timeout:5));search.tap();search.typeText("114")
+        app.buttons["surah_114"].tap()
+        let ref=app.staticTexts["reader_reference"]
+        XCTAssertTrue(ref.waitForExistence(timeout:5));XCTAssertEqual(ref.label,"114:1")
+        app.buttons["reader_menu"].tap()
+        XCTAssertTrue(app.buttons["reader_next"].waitForExistence(timeout:5))
+        XCTAssertFalse(app.buttons["reader_previous"].isEnabled)
+        app.buttons["reader_next"].tap()
+        let bookmark=app.buttons["reader_bookmark"]
+        reveal(bookmark,in:app)
+        if !bookmark.label.contains("Hapus penanda") {bookmark.tap()}
+        app.buttons["reader_menu_close"].tap()
+        XCTAssertEqual(ref.label,"114:2")
+        capture(app,"Quran per ayat An-Nas")
+        app.buttons["reader_menu"].tap();app.buttons["reader_close"].tap()
+        XCTAssertTrue(search.waitForExistence(timeout:5))
+        app.buttons["tab_0"].tap()
+        let resume=app.buttons["home_resume"];reveal(resume,in:app);XCTAssertTrue(resume.isHittable);resume.tap()
+        XCTAssertTrue(ref.waitForExistence(timeout:5));XCTAssertEqual(ref.label,"114:2")
+        app.buttons["reader_menu"].tap();app.buttons["reader_close"].tap()
+        app.buttons["tab_0"].tap();app.swipeDown();app.swipeDown()
+        let library=app.buttons["home_library"];reveal(library,in:app);library.tap()
+        let entry=app.buttons["library_entry_bookmark_114:2"]
+        XCTAssertTrue(entry.waitForExistence(timeout:5));capture(app,"Koleksi penanda Quran per ayat")
+        entry.tap();XCTAssertTrue(ref.waitForExistence(timeout:5));XCTAssertEqual(ref.label,"114:2")
+    }
     func testVoiceSearchDoesNotReuseAnAbandonedTranscript() throws {
         let app=home()
         let search=app.buttons["Cari Ayat"]

@@ -3,6 +3,27 @@ import XCTest
 final class ParityTests: XCTestCase {
     var assets: URL { URL(fileURLWithPath:ProcessInfo.processInfo.environment["NURAYA_CONTENT"] ?? "../Nuraya/Resources/Content",isDirectory:true) }
     func corpus() throws -> QuranCorpus { try QuranCorpus.load(Data(contentsOf:assets.appendingPathComponent("quran.json"))) }
+    func testTextReadingRespectsEverySurahAndJuzBoundary() throws {
+        let c=try corpus()
+        for surah in c.surahs {
+            let first=Reference(surah.id,1),last=Reference(surah.id,surah.ayahCount)
+            let sequence=ReadingSequence(corpus:c,reference:first)
+            XCTAssertEqual(sequence.references.count,surah.ayahCount)
+            XCTAssertNil(sequence.neighbor(of:first,offset:-1))
+            XCTAssertNil(sequence.neighbor(of:last,offset:1))
+        }
+        for juz in 1...30 {
+            let verses=c.verses.filter {$0.juz==juz}
+            let first=try XCTUnwrap(verses.first?.reference)
+            let sequence=ReadingSequence(corpus:c,reference:first,juz:juz)
+            XCTAssertEqual(sequence.references,verses.map(\.reference))
+            for pair in zip(verses,verses.dropFirst()) {
+                XCTAssertEqual(sequence.neighbor(of:pair.0.reference,offset:1),pair.1.reference)
+            }
+            XCTAssertNil(sequence.neighbor(of:first,offset:-1))
+            XCTAssertNil(sequence.neighbor(of:try XCTUnwrap(verses.last?.reference),offset:1))
+        }
+    }
     func testCanonicalReferencesAndOpeningPolicyForEverySurah() throws {
         let c=try corpus();var separated=0
         for s in c.surahs {

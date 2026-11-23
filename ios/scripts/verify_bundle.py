@@ -14,6 +14,8 @@ assert info['CFBundleIdentifier']=='com.nuraya.app'
 assert float(info['MinimumOSVersion'])<=18.0
 assert 1 in info['UIDeviceFamily']
 assert 'audio' in info['UIBackgroundModes']
+assert info['UILaunchStoryboardName']=='LaunchScreen'
+assert (bundle/'LaunchScreen.storyboardc').is_dir(),'Missing system launch artwork'
 for name in ['Assets.car','PrivacyInfo.xcprivacy','adhan_short.caf','Content/amiri_quran.ttf','Content/hadith/hadith.sqlite']:
     assert (bundle/name).is_file(),f'Missing app resource: {name}'
 assert not (bundle/'TestFixtures').exists(),'Test model leaked into application bundle'

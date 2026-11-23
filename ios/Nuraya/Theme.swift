@@ -55,6 +55,31 @@ struct QariPhoto:View {
     let content:ContentStore,qari:ReciterSelection;var size:CGFloat=80;var rounded:CGFloat=40
     var body:some View {Group {if let ui=content.portrait(qari.id){Image(uiImage:ui).resizable().scaledToFill()}else {Text(qari.name.split(separator:" ").prefix(2).compactMap(\.first).map(String.init).joined()).font(.title)}}.frame(width:size,height:size).background(Color.nuraya.opacity(0.1)).clipShape(RoundedRectangle(cornerRadius:rounded)).accessibilityLabel("Foto "+qari.name)}
 }
+/// Uses the same artwork, full-width crop and blue caption as Android's SectionArtwork.
+struct SectionArtwork:View {
+    let content:ContentStore,section:String,title:String,subtitle:String
+    var dark=false
+    var body:some View {
+        VStack(alignment:.leading,spacing:8){
+            Spacer(minLength:80)
+            Text(title).font(.system(size:28,weight:.bold))
+            Text(subtitle).font(.system(size:16)).fixedSize(horizontal:false,vertical:true)
+        }.padding(22).frame(maxWidth:.infinity,minHeight:190,alignment:.bottomLeading)
+            .foregroundStyle(.white)
+            .background {
+                GeometryReader {geometry in
+                    AssetImage(content:content,path:"brand/\(section)_\(dark ? "dark":"light").jpg")
+                        .frame(width:geometry.size.width,height:geometry.size.height).clipped()
+                        .overlay(LinearGradient(colors:[Color(hex:0x152339).opacity(0.13),Color(hex:0x223556).opacity(0.88)],startPoint:.top,endPoint:.bottom))
+                }
+            }
+            .background(Color.nuraya)
+            .clipShape(RoundedRectangle(cornerRadius:24))
+            .accessibilityElement(children:.ignore)
+            .accessibilityLabel(title+". "+subtitle)
+            .accessibilityIdentifier("artwork_"+section)
+    }
+}
 struct PrimaryButton:View {
     let title:String;var icon:String?=nil;var action:()->Void
     var body:some View {Button(action:action){HStack(spacing:12){if let icon=icon{AppIcon(name:icon)};Text(title).font(.system(size:18,weight:.semibold))}.frame(maxWidth:.infinity,minHeight:56).padding(.horizontal,14)}.buttonStyle(.plain).foregroundStyle(.white).background(Color.nuraya,in:RoundedRectangle(cornerRadius:18))}
@@ -79,6 +104,6 @@ struct ArabicText:View {
         if let position=highlight,let w=study?.words.first(where:{$0.position==position}),let a=w.start,let b=w.end,a>=0,b>a,b<=ns.length {ns.addAttribute(.backgroundColor,value:UIColor.systemYellow.withAlphaComponent(0.35),range:NSRange(location:a,length:b-a))}
         return (try? AttributedString(ns,including:\.uiKit)) ?? AttributedString(source)
     }
-    var body:some View {Text(attributed()).font(.custom("AmiriQuran-Regular",size:size)).lineSpacing(12).multilineTextAlignment(.trailing).frame(maxWidth:.infinity,alignment:.trailing).environment(\.layoutDirection,.rightToLeft).textSelection(.enabled)}
+    var body:some View {Text(attributed()).font(.custom("AmiriQuran-Regular",size:size)).lineSpacing(12).multilineTextAlignment(.leading).frame(maxWidth:.infinity,alignment:.leading).environment(\.layoutDirection,.rightToLeft).textSelection(.enabled)}
 }
 func timeText(_ seconds:Double)->String {guard seconds.isFinite else {return "0:00"};let n=max(0,Int(seconds));return String(format:"%d:%02d",n/60,n%60)}
