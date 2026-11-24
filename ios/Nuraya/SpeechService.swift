@@ -5,6 +5,9 @@ import NurayaCore
 @MainActor final class SpeechService:ObservableObject {
     @Published var text="";@Published var recording=false;@Published var error:String?
     private var generation=0
+    private let audioSession:AudioSessionController
+    private var sessionLease:UUID?
+    init(audioSession:AudioSessionController?=nil){self.audioSession=audioSession ?? .shared}
     private var engine:AVAudioEngine?,request:SFSpeechAudioBufferRecognitionRequest?,task:SFSpeechRecognitionTask?,timeout:Task<Void,Never>?
     func start(locale:String="id-ID",allowNetwork:Bool=false) async {
         stop();let token=generation;text="";error=nil
@@ -15,7 +18,7 @@ import NurayaCore
         guard let recognizer=SFSpeechRecognizer(locale:Locale(identifier:locale)),recognizer.isAvailable else {error="Pengenal ucapan bahasa ini belum tersedia di iPhone.";return}
         guard recognizer.supportsOnDeviceRecognition || allowNetwork else {error="Model dikte lokal belum tersedia. Aktifkan izin layanan suara Apple atau gunakan ketikan.";return}
         do {
-            let session=AVAudioSession.sharedInstance();try session.setCategory(.record,mode:.measurement,options:.duckOthers);try session.setActive(true)
+            sessionLease=try audioSession.recording(duckOthers:true)
             let e=AVAudioEngine(),r=SFSpeechAudioBufferRecognitionRequest();r.shouldReportPartialResults=true;r.requiresOnDeviceRecognition=recognizer.supportsOnDeviceRecognition
             let input=e.inputNode,format=input.outputFormat(forBus:0);guard format.sampleRate>0,format.channelCount>0 else {throw URLError(.cannotDecodeRawData)}
             input.installTap(onBus:0,bufferSize:1024,format:format){buffer,_ in r.append(buffer)}
@@ -28,8 +31,8 @@ import NurayaCore
             timeout=Task {try? await Task.sleep(nanoseconds:30_000_000_000);if !Task.isCancelled {finish()}}
         }catch {self.error=error.localizedDescription;stop()}
     }
-    func finish() {engine?.stop();engine?.inputNode.removeTap(onBus:0);engine=nil;request?.endAudio();recording=false;timeout?.cancel();timeout=Task {try? await Task.sleep(nanoseconds:15_000_000_000);if !Task.isCancelled {stop()}}}
-    func stop() {generation+=1;timeout?.cancel();timeout=nil;engine?.stop();engine?.inputNode.removeTap(onBus:0);engine=nil;request?.endAudio();task?.cancel();task=nil;request=nil;recording=false;try? AVAudioSession.sharedInstance().setActive(false,options:.notifyOthersOnDeactivation)}
+    func finish() {engine?.stop();engine?.inputNode.removeTap(onBus:0);engine=nil;request?.endAudio();recording=false;audioSession.release(sessionLease);sessionLease=nil;timeout?.cancel();timeout=Task {try? await Task.sleep(nanoseconds:15_000_000_000);if !Task.isCancelled {stop()}}}
+    func stop() {generation+=1;timeout?.cancel();timeout=nil;engine?.stop();engine?.inputNode.removeTap(onBus:0);engine=nil;request?.endAudio();task?.cancel();task=nil;request=nil;recording=false;audioSession.release(sessionLease);sessionLease=nil}
     func clearResult() {stop();text="";error=nil}
 }
 private final class PCMBuffer {
@@ -52,6 +55,7 @@ struct QuranModelSpec:Decodable {let url:String,bytes:Int,sha256:String,fileName
     private var engine:AVAudioEngine?,native:NurayaWhisper?,pulse:Task<Void,Never>?,generation=0,lastPartial=0.0
     private var currentTask:Task<Void,Never>?
     private var loudestLevel=0.0
+    private var sessionLease:UUID?
     init(state:AppState){self.state=state}
     private func spec()throws->QuranModelSpec {try state.content.decode("quran_model.json")}
     func inspect() {do {let s=try spec();ready=URL(string:s.url).flatMap {state.downloads.cached($0)} != nil}catch {self.error=error.localizedDescription}}
@@ -73,7 +77,7 @@ struct QuranModelSpec:Decodable {let url:String,bytes:Int,sha256:String,fileName
                 if native==nil {processing=true;let engine:NurayaWhisper=try await withCheckedThrowingContinuation {c in inference.async {do {let n=try NurayaWhisper(modelPath:file.path);c.resume(returning:n)}catch {c.resume(throwing:error)}}};native=engine;processing=false}
             }
             guard generation==startToken else {processing=false;return}
-            let session=AVAudioSession.sharedInstance();try session.setCategory(.record,mode:.measurement);try session.setActive(true)
+            sessionLease=try state.audioSession.recording()
             let e=AVAudioEngine(),input=e.inputNode,source=input.outputFormat(forBus:0)
             guard source.sampleRate>0,source.channelCount>0,let target=AVAudioFormat(commonFormat:.pcmFormatFloat32,sampleRate:16000,channels:1,interleaved:false),let converter=AVAudioConverter(from:source,to:target) else {throw ContentError.invalidModel}
             let buffer=samples
@@ -95,7 +99,7 @@ struct QuranModelSpec:Decodable {let url:String,bytes:Int,sha256:String,fileName
             }
         }catch {processing=false;self.error=error.localizedDescription;stopCapture()}
     }
-    private func stopCapture(){pulse?.cancel();pulse=nil;engine?.stop();engine?.inputNode.removeTap(onBus:0);engine=nil;recording=false;try? AVAudioSession.sharedInstance().setActive(false,options:.notifyOthersOnDeactivation)}
+    private func stopCapture(){pulse?.cancel();pulse=nil;engine?.stop();engine?.inputNode.removeTap(onBus:0);engine=nil;recording=false;state.audioSession.release(sessionLease);sessionLease=nil}
     func finish(){stopCapture();if micOnly {final=true;transcript=loudestLevel>0.001 ? "Mikrofon menerima suara. Cek ini bukan penilaian bacaan.":"Suara terlalu kecil. Periksa mikrofon dan coba lagi.";samples.clear();return};native?.cancel();recognize(samples.snapshot(),final:true)}
     private func recognize(_ pcm:[Float],final:Bool) {
         guard let native=native,pcm.count>=1600 else {if final {error="Rekaman terlalu pendek."};return}

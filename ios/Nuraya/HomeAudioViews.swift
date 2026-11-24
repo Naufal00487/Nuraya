@@ -81,12 +81,12 @@ struct PrayerHeader:View {
 }
 struct MurottalView:View {
     @ObservedObject var state:AppState;@State private var query=""
-    var body:some View {PageContainer(dark:state.settings.dark){SectionArtwork(content:state.content,section:"murottal",title:"Murottal",subtitle:"Dengarkan ayat yang menenangkan hati.",dark:state.settings.dark);Text("Pilih qari").font(.system(size:26,weight:.semibold));Text("28 qari · dengarkan, simpan, dan ulangi surah pilihanmu.").font(.system(size:18));TextField("Cari nama qari",text:$query).textFieldStyle(.roundedBorder);ForEach(state.content.qaris.filter {query.isEmpty || Normalization.search($0.name).contains(Normalization.search(query))}){q in NavigationLink(value:Route.qari(q.id)){HStack(spacing:16){QariPhoto(content:state.content,qari:q,size:70,rounded:35);Text(q.name).font(.system(size:20,weight:.semibold));Spacer();AppIcon(name:"angle-right")}.padding(16).frame(maxWidth:.infinity,alignment:.leading).background(Palette(dark:state.settings.dark).card,in:RoundedRectangle(cornerRadius:22))}}}}
+    var body:some View {PageContainer(dark:state.settings.dark){SectionArtwork(content:state.content,section:"murottal",title:"Murottal",subtitle:"Dengarkan ayat yang menenangkan hati.",dark:state.settings.dark);Text("Pilih qari").font(.system(size:26,weight:.semibold));Text("28 qari · dengarkan, simpan, dan ulangi surah pilihanmu.").font(.system(size:18));TextField("Cari nama qari",text:$query).textFieldStyle(.roundedBorder);ForEach(state.content.qaris.filter {query.isEmpty || Normalization.search($0.name).contains(Normalization.search(query))}){q in NavigationLink(value:Route.qari(q.id)){HStack(spacing:16){QariPhoto(content:state.content,qari:q,size:70,rounded:35);Text(q.name).font(.system(size:20,weight:.semibold));Spacer();AppIcon(name:"angle-right")}.padding(16).frame(maxWidth:.infinity,alignment:.leading).background(Palette(dark:state.settings.dark).card,in:RoundedRectangle(cornerRadius:22))}.accessibilityIdentifier("murottal_qari_"+q.id)}}}
 }
 struct QariSurahsView:View {
     @ObservedObject var state:AppState;let qari:ReciterSelection
     @State private var query=""
-    var body:some View {PageContainer(dark:state.settings.dark){HStack(spacing:16){QariPhoto(content:state.content,qari:qari,size:96,rounded:24);Text(qari.name).font(.system(size:24,weight:.semibold))};TextField("Cari surah",text:$query).textFieldStyle(.roundedBorder);ForEach(state.content.corpus.surahs.filter {query.isEmpty || Normalization.search($0.name).contains(Normalization.search(query)) || String($0.id)==query}){s in Button {state.audio.chapter(qari,s.id);state.history(qari.id,s.id);state.fullPlayer=true}label:{MenuRow(title:"\(s.id). \(s.name)",subtitle:"\(s.ayahCount) ayat · Dengarkan",icon:"play",dark:state.settings.dark)}}}.navigationTitle("Surah murottal")}
+    var body:some View {PageContainer(dark:state.settings.dark){HStack(spacing:16){QariPhoto(content:state.content,qari:qari,size:96,rounded:24);Text(qari.name).font(.system(size:24,weight:.semibold))};TextField("Cari surah",text:$query).textFieldStyle(.roundedBorder);ForEach(state.content.corpus.surahs.filter {query.isEmpty || Normalization.search($0.name).contains(Normalization.search(query)) || String($0.id)==query}){s in Button {state.audio.chapter(qari,s.id);state.history(qari.id,s.id);state.fullPlayer=true}label:{MenuRow(title:"\(s.id). \(s.name)",subtitle:"\(s.ayahCount) ayat · Dengarkan",icon:"play",dark:state.settings.dark)}.accessibilityIdentifier("murottal_surah_\(s.id)")}}.navigationTitle("Surah murottal")}
 }
 struct MiniPlayer:View {
     @ObservedObject var state:AppState;@ObservedObject var audio:AudioService
@@ -108,7 +108,7 @@ struct PlayerView:View {
                         if let error=audio.error {Text(error).foregroundStyle(.red);PrimaryButton(title:"Coba lagi"){audio.retry()}}
                         VStack(spacing:8){
                             Slider(value:Binding(get:{min(audio.position,max(audio.duration,0.1))},set:{audio.seek($0)}),in:0...max(audio.duration,0.1)).disabled(audio.duration<=0).accessibilityLabel("Posisi audio")
-                            HStack{Text(timeText(audio.position));Spacer();Text(timeText(audio.duration))}.monospacedDigit().font(.system(size:15))
+                            HStack{Text(timeText(audio.position)).accessibilityIdentifier("player_elapsed");Spacer();Text(timeText(audio.duration))}.monospacedDigit().font(.system(size:15))
                         }.padding(.top,8)
                         playbackControls
                         collectionControls(track)
@@ -132,7 +132,7 @@ struct PlayerView:View {
             Button{audio.repeatMode=(audio.repeatMode+1)%3}label:{AppIcon(name:"arrows-repeat-1").foregroundStyle(audio.repeatMode==0 ? palette.secondary:palette.primary).frame(width:44,height:56)}.accessibilityLabel(["Ulang mati","Ulang satu","Ulang semua"][audio.repeatMode])
             Spacer(minLength:0)
             Button{audio.previous()}label:{AppIcon(name:"step-backward",size:28).frame(width:44,height:56)}.accessibilityLabel("Surah sebelumnya")
-            Button{audio.toggle()}label:{AppIcon(name:audio.playing ? "pause":"play",size:32).frame(width:76,height:76).foregroundStyle(.white).background(Color.nuraya,in:Circle())}.accessibilityLabel(audio.playing ? "Jeda":"Putar")
+            Button{audio.toggle()}label:{AppIcon(name:audio.playing ? "pause":"play",size:32).frame(width:76,height:76).foregroundStyle(.white).background(Color.nuraya,in:Circle())}.accessibilityLabel(audio.playing ? "Jeda":"Putar").accessibilityIdentifier("player_toggle")
             Button{audio.next(force:true)}label:{AppIcon(name:"step-forward",size:28).frame(width:44,height:56)}.accessibilityLabel("Surah berikutnya")
             Spacer(minLength:0)
             Menu{ForEach([Float(0.75),1,1.25,1.5,2],id:\.self){rate in Button("\(rate,specifier:"%.2g")×"){audio.setSpeed(rate)}}}label:{Text("\(audio.speed,specifier:"%.2g")×").font(.system(size:16,weight:.medium)).frame(width:44,height:56)}.accessibilityLabel("Kecepatan pemutaran")

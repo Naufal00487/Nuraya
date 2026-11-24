@@ -23,16 +23,22 @@ struct AppSettings:Codable {
     @Published var error:String?
     @Published var reader:ReaderDestination?
     @Published var fullPlayer=false
-    let audio:AudioService;let downloads:DownloadStore;let location=LocationService();let speech=SpeechService()
-    init(content:ContentStore,storageDirectory:URL?=nil) throws {
+    let audio:AudioService;let downloads:DownloadStore;let location=LocationService();let speech:SpeechService
+    let audioSession:AudioSessionController
+    init(content:ContentStore,storageDirectory:URL?=nil,audioSession:AudioSessionController?=nil) throws {
         self.content=content
+        let session=audioSession ?? AudioSessionController.shared
+        self.audioSession=session;speech=SpeechService(audioSession:session)
         storage=try storageDirectory ?? FileManager.default.url(for:.applicationSupportDirectory,in:.userDomainMask,appropriateFor:nil,create:true).appendingPathComponent("Nuraya",isDirectory:true)
         try FileManager.default.createDirectory(at:storage,withIntermediateDirectories:true)
         var privateDirectory=storage;var values=URLResourceValues();values.isExcludedFromBackup=true;try privateDirectory.setResourceValues(values)
         let file=storage.appendingPathComponent("settings.json")
         if FileManager.default.fileExists(atPath:file.path) {settings=try JSONDecoder().decode(AppSettings.self,from:Data(contentsOf:file))}else {settings=AppSettings()}
         downloads=try DownloadStore(directory:storage.appendingPathComponent("offline"),content:content)
-        audio=AudioService(content:content,downloads:downloads)
+        #if DEBUG
+        try UITestAudio.configure(content:content,storage:storage,downloads:downloads)
+        #endif
+        audio=AudioService(content:content,downloads:downloads,audioSession:session)
         audio.onTrack={ [weak self] track in self?.recordAudio(track) }
         location.onCoordinates={ [weak self] coordinate in
             guard let self=self else{return};var updated=self.settings
@@ -45,6 +51,7 @@ struct AppSettings:Codable {
             self.settings.locationName=name
         }
     }
+    func enterBackground(){audio.stopReader();speech.stop()}
     func save() {do {let data=try JSONEncoder().encode(settings);try data.write(to:storage.appendingPathComponent("settings.json"),options:[.atomic,.completeFileProtectionUntilFirstUserAuthentication])}catch {self.error="Pengaturan belum tersimpan: \(error.localizedDescription)"}}
     func open(_ reference:Reference,mode:String?=nil,juz:Int?=nil) {
         guard let verse=content.corpus.verse(reference) else {error="Rujukan ayat tidak ditemukan.";return}

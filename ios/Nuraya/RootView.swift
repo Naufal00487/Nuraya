@@ -46,7 +46,8 @@ struct RootView:View {
             .onChange(of:reminders.pendingDestination){_ in routeNotification()}
             .onAppear{routeNotification()}
             .onChange(of:scenePhase){phase in
-                if phase != .active {state.audio.stopReader();if phase == .background {state.speech.stop()}}
+                if phase == .background {state.enterBackground()}
+                else if phase == .inactive {state.audio.stopReader()}
                 else {Task{try? await ReminderService.shared.schedule(state:state)}}
             }
     }

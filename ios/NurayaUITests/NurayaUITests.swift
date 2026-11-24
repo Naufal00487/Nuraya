@@ -1,8 +1,8 @@
 import XCTest
 final class NurayaUITests:XCTestCase {
     override func setUpWithError() throws {continueAfterFailure=false}
-    private func home()->XCUIApplication {
-        let app=XCUIApplication();app.launchArguments=["--ui-testing"];app.launch()
+    private func home(arguments:[String]=[])->XCUIApplication {
+        let app=XCUIApplication();app.launchArguments=["--ui-testing"]+arguments;app.launch()
         let name=app.textFields["Nama panggilan"]
         if name.waitForExistence(timeout:8){name.tap();name.typeText("Penguji Nuraya");app.buttons["Mulai menggunakan Nuraya"].tap()}
         return app
@@ -20,6 +20,49 @@ final class NurayaUITests:XCTestCase {
         // SwiftUI creates this lazy-grid row only after it approaches the viewport.
         reveal(link,in:app);XCTAssertTrue(link.isHittable);link.tap()
         XCTAssertTrue(app.buttons["learning_tab_0"].waitForExistence(timeout:5))
+    }
+    func testMurottalAdvancesInBackgroundAndPausedAudioStaysPaused() throws {
+        let app=home(arguments:["--ui-testing-audio"])
+        app.buttons["tab_2"].tap()
+        let qari=app.buttons["murottal_qari_ar.alafasy"]
+        reveal(qari,in:app);XCTAssertTrue(qari.isHittable);qari.tap()
+        let surah=app.buttons["murottal_surah_1"]
+        XCTAssertTrue(surah.waitForExistence(timeout:5));surah.tap()
+        let elapsed=app.staticTexts["player_elapsed"]
+        let toggle=app.buttons["player_toggle"]
+        XCTAssertTrue(elapsed.waitForExistence(timeout:5))
+        XCTAssertTrue(app.buttons["Tersimpan"].exists,"The actual Alafasy recording must be cached; this test must not stream from the network.")
+        let moving=XCTNSPredicateExpectation(predicate:NSPredicate {_,_ in
+            self.elapsedSeconds(elapsed.label)>=2 && toggle.label=="Jeda"
+        },object:nil)
+        XCTAssertEqual(XCTWaiter.wait(for:[moving],timeout:10),.completed)
+        let before=elapsedSeconds(elapsed.label)
+        capture(app,"Murottal sebelum masuk Home")
+        XCUIDevice.shared.press(.home)
+        XCTAssertTrue(app.wait(for:.runningBackground,timeout:5))
+        // Measure actual AVPlayer time across a real background interval, rather
+        // than trusting the UI's playing flag or just checking that a track exists.
+        Thread.sleep(forTimeInterval:8)
+        app.activate()
+        XCTAssertTrue(elapsed.waitForExistence(timeout:5))
+        XCTAssertEqual(toggle.label,"Jeda")
+        XCTAssertGreaterThanOrEqual(elapsedSeconds(elapsed.label)-before,7)
+        capture(app,"Murottal tetap berjalan setelah Home")
+
+        toggle.tap()
+        XCTAssertEqual(toggle.label,"Putar")
+        let pausedAt=elapsedSeconds(elapsed.label)
+        XCUIDevice.shared.press(.home)
+        XCTAssertTrue(app.wait(for:.runningBackground,timeout:5))
+        Thread.sleep(forTimeInterval:4)
+        app.activate()
+        XCTAssertTrue(elapsed.waitForExistence(timeout:5))
+        XCTAssertEqual(toggle.label,"Putar")
+        XCTAssertEqual(elapsedSeconds(elapsed.label),pausedAt,accuracy:1)
+    }
+    private func elapsedSeconds(_ text:String)->Double {
+        let parts=text.split(separator:":").compactMap {Double($0)}
+        return parts.count==2 ? parts[0]*60+parts[1]:0
     }
     func testSwitchingTabsDismissesTheSurahSelectionLayer() throws {
         let app=home()

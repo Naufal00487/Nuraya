@@ -18,11 +18,13 @@ struct AudioTrack:Identifiable {
     @Published var track:AudioTrack?;@Published var playing=false;@Published var position=0.0;@Published var duration=0.0;@Published var speed:Float=1;@Published var repeatMode=0;@Published var error:String?;@Published var word:Int?
     var onTrack:((AudioTrack)->Void)?
     private(set) var context:Context = .murottal
+    private let audioSession:AudioSessionController
+    private var sessionLease:UUID?
     private var queue=[AudioTrack](),cursor=0,generation=0,advancing=false
     private var artwork:MPMediaItemArtwork?,artworkQari="",lastNowPlaying=Date.distantPast
     private var tick:Any?,endToken:NSObjectProtocol?,interruptToken:NSObjectProtocol?,routeToken:NSObjectProtocol?,status:NSKeyValueObservation?
-    init(content:ContentStore,downloads:DownloadStore) {
-        self.content=content;self.downloads=downloads
+    init(content:ContentStore,downloads:DownloadStore,audioSession:AudioSessionController?=nil) {
+        self.content=content;self.downloads=downloads;self.audioSession=audioSession ?? .shared
         tick=player.addPeriodicTimeObserver(forInterval:CMTime(seconds:0.06,preferredTimescale:600),queue:.main) {[weak self] t in Task {@MainActor in self?.update(t.seconds)}}
         endToken=NotificationCenter.default.addObserver(forName:.AVPlayerItemDidPlayToEndTime,object:nil,queue:.main){[weak self] n in Task {@MainActor in guard let self=self,n.object as? AVPlayerItem === self.player.currentItem else {return};self.next()}}
         interruptToken=NotificationCenter.default.addObserver(forName:AVAudioSession.interruptionNotification,object:nil,queue:.main){[weak self] n in
@@ -71,7 +73,7 @@ struct AudioTrack:Identifiable {
         guard queue.indices.contains(cursor) else {stop();return}
         generation+=1;let currentGeneration=generation;advancing=true;error=nil;playing=false;player.pause();status=nil
         let t=queue[cursor];track=t;position=0;duration=t.end.map {$0-t.start} ?? 0;word=nil
-        do {try AVAudioSession.sharedInstance().setCategory(.playback,mode:.default);try AVAudioSession.sharedInstance().setActive(true)}catch {self.error=error.localizedDescription;return}
+        do {sessionLease=try audioSession.playback()}catch {self.error=error.localizedDescription;advancing=false;return}
         let item=AVPlayerItem(url:downloads.cached(t.url) ?? t.url);player.replaceCurrentItem(with:item)
         status=item.observe(\.status,options:[.initial,.new]) {[weak self] item,_ in Task {@MainActor in
             guard let self=self,self.generation==currentGeneration else {return}
@@ -92,7 +94,12 @@ struct AudioTrack:Identifiable {
         if t.end==nil,let d=player.currentItem?.duration.seconds,d.isFinite {duration=d}
         if Date().timeIntervalSince(lastNowPlaying)>=1 {nowPlaying()}
     }
-    func resume() {guard track != nil else {return};playing=true;player.playImmediately(atRate:speed);nowPlaying()}
+    func resume() {
+        guard track != nil else {return}
+        // Explicit play must reactivate playback after a system interruption.
+        do {sessionLease=try audioSession.playback();playing=true;player.playImmediately(atRate:speed);nowPlaying()}
+        catch {self.error=error.localizedDescription;playing=false}
+    }
     func pause() {player.pause();playing=false;nowPlaying()}
     func toggle() {playing ? pause():resume()}
     func setSpeed(_ rate:Float) {speed=rate;if playing {player.rate=rate}}
@@ -105,7 +112,7 @@ struct AudioTrack:Identifiable {
     func previous() {if position>3 {seek(0)}else if cursor>0 {cursor-=1;load()}else {seek(0)}}
     func retry() {load()}
     func stopReader() {if context == .reader {stop()}}
-    func stop() {generation+=1;player.pause();player.replaceCurrentItem(with:nil);status=nil;queue=[];cursor=0;track=nil;playing=false;word=nil;advancing=false;MPNowPlayingInfoCenter.default().nowPlayingInfo=nil;try? AVAudioSession.sharedInstance().setActive(false,options:.notifyOthersOnDeactivation)}
+    func stop() {generation+=1;player.pause();player.replaceCurrentItem(with:nil);status=nil;queue=[];cursor=0;track=nil;playing=false;word=nil;advancing=false;MPNowPlayingInfoCenter.default().nowPlayingInfo=nil;audioSession.release(sessionLease);sessionLease=nil}
     private func nowPlaying() {
         guard let t=track else {return}
         var data:[String:Any]=[MPMediaItemPropertyTitle:content.corpus.surahs[t.surah-1].name+(t.verse.map {" · Ayat \($0.ayah)"} ?? ""),MPMediaItemPropertyArtist:t.qari.name,MPMediaItemPropertyPlaybackDuration:duration,MPNowPlayingInfoPropertyElapsedPlaybackTime:position,MPNowPlayingInfoPropertyPlaybackRate:playing ? speed:0]
