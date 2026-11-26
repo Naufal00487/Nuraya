@@ -29,7 +29,11 @@ import NurayaCore
                 self.enqueueUpcoming()
             }
         }
-        tick=player.addPeriodicTimeObserver(forInterval:CMTime(seconds:0.06,preferredTimescale:600),queue:.main) {[weak self] t in Task {@MainActor in self?.update(t.seconds)}}
+        tick=player.addPeriodicTimeObserver(forInterval:CMTime(seconds:0.06,preferredTimescale:600),queue:.main) {[weak self] _ in Task {@MainActor in
+            guard let self=self else {return}
+            // A queued callback can outlive its item; always read the current clock.
+            self.update(self.player.currentTime().seconds)
+        }}
         endToken=NotificationCenter.default.addObserver(forName:.AVPlayerItemDidPlayToEndTime,object:nil,queue:.main){[weak self] n in
             guard let item=n.object as? AVPlayerItem else {return}
             Task {@MainActor in self?.finished(item)}
@@ -74,10 +78,10 @@ import NurayaCore
         itemRuns[ObjectIdentifier(item)]=run
         return item
     }
-    private func load() {
+    private func load(autoplay:Bool=true) {
         guard queue.indices.contains(cursor) else {stop();return}
         generation+=1;status=nil;activeItem=nil;itemRuns.removeAll();player.pause();player.removeAllItems()
-        wantsPlayback=true;playing=false;error=nil
+        wantsPlayback=autoplay;playing=false;error=nil
         do {sessionLease=try audioSession.playback()}
         catch {self.error=error.localizedDescription;wantsPlayback=false;track=nil;return}
         let run=AudioTrack.run(in:queue,from:cursor),item=makeItem(run)
@@ -131,7 +135,7 @@ import NurayaCore
         if successorQueued {return}
         guard item === activeItem else {return}
         cursor=run.upperBound-1
-        next()
+        next(autoplay:wantsPlayback)
     }
     private func update(_ seconds:Double) {
         guard !advancing,activeItem === player.currentItem,track != nil,seconds.isFinite else {return}
@@ -159,10 +163,10 @@ import NurayaCore
     func toggle() {playing ? pause():resume()}
     func setSpeed(_ rate:Float) {speed=rate;if playing {player.rate=rate}}
     func seek(_ seconds:Double) {guard let t=track else {return};player.seek(to:CMTime(seconds:t.start+max(0,min(duration,seconds)),preferredTimescale:600),toleranceBefore:.zero,toleranceAfter:.zero)}
-    func next(force:Bool=false) {
+    func next(force:Bool=false,autoplay:Bool=true) {
         guard !queue.isEmpty else {return}
-        if context == .murottal && repeatMode==1 && !force {load();return}
-        if cursor+1<queue.count {cursor+=1;load()}else if context == .murottal && repeatMode==2 {cursor=0;load()}else {stop()}
+        if context == .murottal && repeatMode==1 && !force {load(autoplay:autoplay);return}
+        if cursor+1<queue.count {cursor+=1;load(autoplay:autoplay)}else if context == .murottal && repeatMode==2 {cursor=0;load(autoplay:autoplay)}else {stop()}
     }
     func previous() {if position>3 {seek(0)}else if cursor>0 {cursor-=1;load()}else {seek(0)}}
     func retry() {load()}
