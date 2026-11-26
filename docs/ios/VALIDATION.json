@@ -1,25 +1,29 @@
 {
-  "source_commit": "6154d5efd7c997f07d0b24ceabc111810f7a0fd9",
-  "workflow": "https://github.com/Naufal00487/Nuraya/actions/runs/45176273487",
-  "checked_on": "2026-11-23 Asia/Jakarta",
+  "source_commit": "50be7ab9f38d3e2b6382a3dd5eace5b67424580d",
+  "workflow": "https://github.com/Naufal00487/Nuraya/actions/runs/45427575713",
+  "checked_on": "2026-11-24 Asia/Jakarta",
   "tests": {
     "core": 11,
-    "platform": 5,
-    "ui": 10,
+    "platform": 8,
+    "ui": 11,
     "failures": 0
   },
   "ipa": {
     "file": "Nuraya-iOS-XR-unsigned.ipa",
-    "bytes": 100296648,
-    "sha256": "6c558d0fe7d12abde4568c4a2acc3f7b1f5986f463353c6d9bf51194d6e6904b",
+    "bytes": 100302612,
+    "sha256": "53719abc1cbcfe6ca220c4f77f3834e210423f482d724d14688fee1e16ab3f6a",
     "architecture": "arm64",
     "minimum_ios": "16.0",
     "version": "1.7.1",
-    "build": "2",
+    "build": "3",
     "provisioning_profile": false,
     "unchanged_android_assets": 1740,
     "zip_integrity": "passed",
-    "launch_storyboard": "LaunchScreen"
+    "launch_storyboard": "LaunchScreen",
+    "background_modes": [
+      "audio"
+    ],
+    "test_recording_packaged": false
   },
   "android_apk_sha256": "793c09d7c8b5c0abb7ca5c1103141522533373efdd5fee750a01961acf3c50c6",
   "physical_iphone_tested": false

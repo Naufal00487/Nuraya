@@ -15,9 +15,22 @@ Siapkan iPhone XR, kabel USB, komputer Windows, koneksi internet, dan Apple ID m
 
 IPA berlabel **unsigned** ditandatangani oleh AltStore menggunakan akunmu saat dipasang. Jangan mengubah ekstensi IPA menjadi APK atau ZIP untuk memasangnya.
 
-Untuk memperbarui pemasangan yang sudah ada, pilih IPA baru melalui AltStore menggunakan Apple ID yang sama. Jangan hapus Nuraya lebih dahulu. Setelah pembaruan, periksa nomor **iOS build 2** di bagian bawah Pengaturan; profil dan koleksi yang ada seharusnya tetap tersedia.
+Untuk memperbarui pemasangan yang sudah ada, pilih IPA baru melalui AltStore menggunakan Apple ID yang sama. Jangan hapus Nuraya lebih dahulu. Setelah pembaruan, periksa nomor **iOS build 3** di bagian bawah Pengaturan; profil dan koleksi yang ada seharusnya tetap tersedia.
 
 Akun Apple gratis biasanya memerlukan **Refresh All** di AltStore sebelum tujuh hari dan memiliki batas aplikasi aktif. Biarkan AltServer tersedia pada komputer ketika memperbarui. Ketentuan terbaru mengikuti panduan resmi AltStore dan Apple. Hapus aplikasi hanya jika siap kehilangan data lokal; penanda, profil, progres, dan unduhan berada di penyimpanan aplikasi.
+
+## Pemasangan dan pembaruan dari Ubuntu
+
+[iloader](https://github.com/nab138/iloader) mendukung Linux dan **Import IPA**. Panduan Linux juga tersedia di [dokumentasi SideStore](https://docs.sidestore.io/docs/installation/prerequisites); untuk memasang Nuraya langsung, gunakan Import IPA pada iloader.
+
+1. Pasang `usbmuxd` dan `libimobiledevice-utils` melalui APT, lalu pasang paket DEB iloader dari repositori resminya sesuai arsitektur Ubuntu (`amd64` untuk Intel/AMD, `arm64` untuk ARM).
+2. Sambungkan iPhone melalui USB, buka kuncinya, dan terima dialog **Trust/Percayai**. Perintah `idevicepair pair` seharusnya berakhir dengan `SUCCESS: Paired with device ...` setelah kepercayaan disetujui.
+3. Unduh IPA terbaru dari [halaman unduh Nuraya](https://github.com/Naufal00487/Nuraya/tree/downloads/nuraya-ios-preview). Buka iloader, masuk dengan Apple ID yang sama, pilih iPhone, lalu **Import IPA** dan pilih berkas baru tersebut. Jangan menghapus aplikasi yang lama terlebih dahulu.
+4. Ikuti permintaan kepercayaan profil dan Mode Pengembang pada iPhone, kemudian periksa **iOS build 3** di Pengaturan Nuraya.
+
+Jika iloader menampilkan error NVIDIA/GBM seperti `DRM_IOCTL_MODE_CREATE_DUMB failed` atau jendela kosong, jalankan sebagai pengguna biasa dengan `WEBKIT_DISABLE_DMABUF_RENDERER=1 iloader`. Bila masih gagal, gunakan `GDK_BACKEND=x11 LIBGL_ALWAYS_SOFTWARE=1 WEBKIT_DISABLE_DMABUF_RENDERER=1 iloader`. Ini hanya mengubah rendering untuk proses tersebut.
+
+Akun Apple gratis tetap memerlukan penandatanganan ulang sebelum masa berlaku sekitar tujuh hari habis, termasuk jika memasang melalui iloader.
 
 ## Urutan uji di perangkat
 
@@ -34,7 +47,7 @@ Pengujian simulator sudah mencakup data, mesin pengenal bacaan dengan rekaman uj
 | Mushaf | Buka Quran Madinah; pilih An-Nas, lalu surah di bagian tengah Quran | An-Nas menuju halaman 604. Surah lain menuju halaman awal sesuai indeksnya. Ketuk halaman untuk menyembunyikan/menampilkan tombol; coba cubit untuk zoom dan geser halaman. |
 | Mode Quran | Buka per ayat, per kata/tajwid, terjemahan, dan mushaf cetak | Mode menampilkan sumber dan panel yang sesuai; gambar mushaf dapat dibuka setelah unduhan bila belum tersimpan. |
 | Audio Quran | Pilih qari, putar rentang dua ayat, tutup pembaca | Audio bacaan berhenti. Dengan qari yang memiliki timing kata, sorotan mengikuti rekaman yang sama. Qari lainnya memakai audio per ayat. |
-| Murottal | Pilih qari dan surah, kecilkan pemutar, kunci layar | Audio tetap berjalan; tombol jeda/lanjut pada layar terkunci bekerja. Coba headset serta interupsi panggilan. |
+| Murottal | Pilih qari dan surah, tekan Home selama 15 detik, kembali, lalu kunci layar selama satu menit | Audio tetap berjalan tanpa harus membuka Nuraya. Posisi terus bertambah. Audio yang dijeda tetap diam. Coba juga tombol layar terkunci, headset serta interupsi panggilan. |
 | Unduhan | Unduh satu audio, putus koneksi, putar dari Koleksi | Audio tersimpan dapat diputar tanpa mengunduh ulang. |
 | Pencarian Indonesia | Cari `Yasin`, `2:255`, dan `ayat kursi`; coba dikte “cari surat Yasin” | Hasil dikte tetap menjadi pencarian Indonesia. Jika layanan suara lokal Apple tidak tersedia, gunakan pilihan layanan daring atau ketik. |
 | AI lokal | Buka AI bacaan, lakukan cek mikrofon lima detik, unduh model, pilih Al-Ikhlas ayat 1, lalu mulai membaca | Indikator suara bergerak dan perkiraan kata muncul. Catat waktu proses setelah **Selesai membaca**, suhu perangkat, dan hasil transkrip. |
@@ -49,4 +62,4 @@ Notifikasi dijadwalkan beberapa hari ke depan karena batas permintaan lokal iOS,
 
 ## Jika menemui masalah
 
-Untuk masalah pemasangan, catat **pesan error lengkap dari AltStore/AltServer**, versi iOS, dan pada langkah mana error muncul. Untuk masalah aplikasi, sebutkan menu, surah/ayat atau nama qari, langkah pemicu, serta apakah sedang online. Screenshot atau rekaman layar singkat membantu menunjukkan letak masalah; jangan menyertakan kata sandi atau kode verifikasi Apple ID.
+Untuk masalah pemasangan, catat **pesan error lengkap dari iloader atau AltStore/AltServer**, versi iOS, dan pada langkah mana error muncul. Untuk masalah aplikasi, sebutkan menu, surah/ayat atau nama qari, langkah pemicu, serta apakah sedang online. Screenshot atau rekaman layar singkat membantu menunjukkan letak masalah; jangan menyertakan kata sandi atau kode verifikasi Apple ID.
