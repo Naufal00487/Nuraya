@@ -39,7 +39,7 @@ final class ContentStore {
         return mapCache[mapping]?.pages.first {$0.page==page}?.verses ?? []
     }
     func timing(_ qari:ReciterSelection,surah:Int)->TimedChapter? {
-        guard let r=verseReciters.first(where:{$0.id==qari.verseId}),let folder=r.timingFolder,r.supportsWordSync==true,let t=try? decode("audio_timing/\(folder)/\(surah).json",TimedChapter.self),t.surah==surah,t.matches(r),t.hasOrderedVerseRanges(ayahCount:corpus.surahs[surah-1].ayahCount),let u=URL(string:t.audioUrl),u.scheme=="https",["download.quranicaudio.com","audio-cdn.tarteel.ai","cdn.mp3quran.net"].contains(u.host ?? "") else {return nil}
+        guard let r=verseReciters.first(where:{$0.id==qari.verseId}),let folder=r.timingFolder,r.supportsWordSync==true,let t=try? decode("audio_timing/\(folder)/\(surah).json",TimedChapter.self),t.surah==surah,t.matches(r),t.hasReliableVerseRanges(ayahCount:corpus.surahs[surah-1].ayahCount),let u=URL(string:t.audioUrl),u.scheme=="https",["download.quranicaudio.com","audio-cdn.tarteel.ai","cdn.mp3quran.net"].contains(u.host ?? "") else {return nil}
         return t
     }
     func image(_ path:String)->UIImage? {if let image=imageCache.object(forKey:path as NSString){return image};guard let image=UIImage(contentsOfFile:root.appendingPathComponent(path).path) else{return nil};imageCache.setObject(image,forKey:path as NSString,cost:Int(image.size.width*image.size.height*image.scale*image.scale*4));return image}

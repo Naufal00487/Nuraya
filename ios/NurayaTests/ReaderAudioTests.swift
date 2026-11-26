@@ -26,7 +26,7 @@ final class ReaderAudioTests:XCTestCase {
     }
     func testEveryTimedChapterIsOneContinuousRunAndInvalidBoundariesFallBack() throws {
         let store=try content()
-        let rejected:Set<String>=["ar.alafasy/14","ar.alafasy/29","ar.ahmedalajmi/26","ar.haniarrifai/6"]
+        let rejected=Set([3,4,6,13,14,20,23,26,27,29,33,37,59,60,66,70,84,93,98,101,113].map {"ar.alafasy/\($0)"}+["ar.ahmedalajmi/26","ar.haniarrifai/6"])
         var checked=0
         for qari in store.qaris {
             let reciter=try XCTUnwrap(store.verseReciters.first {$0.id==qari.verseId})
