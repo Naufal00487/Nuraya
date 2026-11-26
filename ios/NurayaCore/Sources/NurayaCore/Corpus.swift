@@ -126,6 +126,19 @@ public struct VerseTiming: Decodable {
     }
 }
 public struct TimedChapter: Decodable { public let surah: Int, audioUrl: String, verses: [VerseTiming]; public let reciterId: String?, sourceSlug: String?, recitationId: Int?
+    /// Reject incomplete/backward boundaries rather than seeking into another ayah
+    /// or treating a placeholder (for example 0...1 ms) as an actual recitation.
+    public func hasOrderedVerseRanges(ayahCount:Int)->Bool {
+        guard verses.map(\.ayah)==Array(1...ayahCount) else {return false}
+        for (index,verse) in verses.enumerated() {
+            guard verse.start.isFinite,verse.end.isFinite,verse.start>=0,verse.end>verse.start else {return false}
+            if index>0 {
+                let previous=verses[index-1]
+                guard verse.start>=previous.start,verse.end>previous.end else {return false}
+            }
+        }
+        return true
+    }
     public func matches(_ reciter:VerseReciter)->Bool {
         if reciter.id=="ar.alafasy" {return recitationId==7 && audioUrl=="https://download.quranicaudio.com/qdc/mishari_al_afasy/murattal/\(surah).mp3"}
         return reciterId==reciter.id && sourceSlug==reciter.timingFolder

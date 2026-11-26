@@ -19,5 +19,6 @@ assert (bundle/'LaunchScreen.storyboardc').is_dir(),'Missing system launch artwo
 for name in ['Assets.car','PrivacyInfo.xcprivacy','adhan_short.caf','Content/amiri_quran.ttf','Content/hadith/hadith.sqlite']:
     assert (bundle/name).is_file(),f'Missing app resource: {name}'
 assert not (bundle/'TestFixtures').exists(),'Test model leaked into application bundle'
+assert not list(bundle.rglob('reader-*.mp3')),'Reader test recordings leaked into application bundle'
 assert not list(bundle.rglob('alafasy1.mp3')),'UI test recording leaked into application bundle'
 print(f'PASS: {len(manifest)} original assets verified inside {bundle.name}; required native resources present.')
