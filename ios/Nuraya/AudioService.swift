@@ -154,9 +154,12 @@ import NurayaCore
     func resume() {
         guard track != nil else {return}
         wantsPlayback=true
-        guard !advancing else {return}
-        // Explicit play must reactivate playback after a system interruption.
-        do {sessionLease=try audioSession.playback();playing=true;player.playImmediately(atRate:speed);nowPlaying()}
+        // Explicit play must reactivate playback even while a seek is finishing.
+        do {
+            sessionLease=try audioSession.playback()
+            guard !advancing else {return}
+            playing=true;player.playImmediately(atRate:speed);nowPlaying()
+        }
         catch {self.error=error.localizedDescription;wantsPlayback=false;playing=false}
     }
     func pause() {wantsPlayback=false;player.pause();playing=false;nowPlaying()}

@@ -56,7 +56,7 @@ final class ReaderAudioTests:XCTestCase {
             runs.append(tracks[run].compactMap {$0.verse?.ayah});index=run.upperBound
         }
         XCTAssertEqual(runs,[[1],[1,2],[2,3],[3],[1],[1,2],[2,3],[3]])
-        let crossing=try AudioTrack.reading(content:store,qari:qari,start:Reference(112,4),end:Reference(113,2),each:1,passes:1)
+        let crossing=try AudioTrack.reading(content:store,qari:qari,start:Reference(111,5),end:Reference(112,2),each:1,passes:1)
         XCTAssertEqual(AudioTrack.run(in:crossing,from:0),0..<1)
         XCTAssertEqual(AudioTrack.run(in:crossing,from:1),1..<3)
     }
