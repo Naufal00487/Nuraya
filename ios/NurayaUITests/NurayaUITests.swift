@@ -151,7 +151,10 @@ final class NurayaUITests:XCTestCase {
         let transcript=app.textViews["voice_transcript"]
         XCTAssertTrue(transcript.waitForExistence(timeout:5))
         transcript.tap();transcript.typeText("cari surat yasin")
-        XCTAssertTrue((transcript.value as? String ?? "").contains("yasin"))
+        // TextEditor can draw before its accessibility value reflects the edit.
+        // Wait for the typed value instead of reading a stale AX snapshot once.
+        let typed=XCTNSPredicateExpectation(predicate:NSPredicate(format:"value CONTAINS[c] %@","yasin"),object:transcript)
+        XCTAssertEqual(XCTWaiter.wait(for:[typed],timeout:5),.completed,"Typed transcript: \(String(describing:transcript.value))")
         app.buttons["voice_close"].tap()
         XCTAssertTrue(voice.waitForExistence(timeout:5));voice.tap()
         XCTAssertTrue(transcript.waitForExistence(timeout:5))
