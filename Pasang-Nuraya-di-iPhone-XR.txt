@@ -1,20 +1,21 @@
 NURAYA iOS — UJI IPHONE XR
 
 File: Nuraya-iOS-XR-unsigned.ipa
-Versi: 1.7.1 (iOS build 3)
+Versi: 1.7.1 (iOS build 4)
 Minimum: iOS 16.0
 Paket ini dipasang melalui iloader (Ubuntu) atau AltStore (Windows); belum merupakan rilis App Store.
 Versi Android tetap tersedia di GitHub.
 
 MEMPERBARUI APLIKASI YANG SUDAH TERPASANG
-Pilih IPA baru melalui iloader/AltStore dengan Apple ID yang sama, tanpa menghapus Nuraya. Pastikan Pengaturan menampilkan iOS build 3.
+Pilih IPA baru melalui iloader/AltStore dengan Apple ID yang sama, tanpa menghapus Nuraya. Pastikan Pengaturan menampilkan iOS build 4.
 
 PASANG ATAU PERBARUI MELALUI UBUNTU
 1. Sambungkan iPhone melalui USB, buka kunci, lalu pilih Trust/Percayai jika diminta.
 2. Unduh IPA terbaru, kemudian buka iloader dari https://github.com/nab138/iloader.
 3. Masuk dengan Apple ID yang sama, pilih iPhone, lalu Import IPA dan pilih file baru.
-4. Jangan hapus Nuraya yang lama. Periksa iOS build 3 di bagian bawah Pengaturan.
-5. Putar dari tab Murottal, kembali ke Home selama 15 detik, lalu coba kunci layar satu menit.
+4. Jangan hapus Nuraya yang lama. Periksa iOS build 4 di bagian bawah Pengaturan.
+5. Dari pembaca Quran, buka Qari & pengulangan lalu putar Al-Fatihah beberapa ayat. Coba juga rentang dari tengah surah serta pengulangan.
+6. Putar dari tab Murottal, kembali ke Home selama 15 detik, lalu coba kunci layar satu menit.
 Jika iloader terkena error NVIDIA/GBM, jalankan sebagai pengguna biasa:
 WEBKIT_DISABLE_DMABUF_RENDERER=1 iloader
 
