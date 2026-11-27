@@ -1,0 +1,37 @@
+[
+  {
+    "file": "reader-alafasy-1.mp3",
+    "url": "https://download.quranicaudio.com/qdc/mishari_al_afasy/murattal/1.mp3",
+    "qari": "ar.alafasy",
+    "surah": 1,
+    "sha256": "1e82007d1dc37fa879c217db756c379f348e8414a4749b07eddac14b007394d2",
+    "bytes": 793327
+  },
+  {
+    "file": "reader-jibreel-112-1.mp3",
+    "url": "https://cdn.islamic.network/quran/audio/128/ar.muhammadjibreel/6222.mp3",
+    "qari": "ar.muhammadjibreel",
+    "surah": 112,
+    "ayah": 1,
+    "sha256": "90663e5dda6048c9388102560ed55604b1d0b5fba52b369126149085a9a3b7d1",
+    "bytes": 24645
+  },
+  {
+    "file": "reader-jibreel-112-2.mp3",
+    "url": "https://cdn.islamic.network/quran/audio/128/ar.muhammadjibreel/6223.mp3",
+    "qari": "ar.muhammadjibreel",
+    "surah": 112,
+    "ayah": 2,
+    "sha256": "a420d5bfc47d228efd4cc97e711bc800005550ec729a4a6fd5ccac01b2ab4d6a",
+    "bytes": 21093
+  },
+  {
+    "file": "reader-jibreel-112-3.mp3",
+    "url": "https://cdn.islamic.network/quran/audio/128/ar.muhammadjibreel/6224.mp3",
+    "qari": "ar.muhammadjibreel",
+    "surah": 112,
+    "ayah": 3,
+    "sha256": "40770ae6098cb65ccdfdacf0e005e7a6602cc7e8a9d0872cce43de39f16b177e",
+    "bytes": 25063
+  }
+]

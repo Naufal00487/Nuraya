@@ -1,6 +1,6 @@
 import SwiftUI
 import NurayaCore
-enum Route:Hashable {case settings,profile,search,hadith,learning,recitation,library,qari(String),qibla,location,sources}
+enum Route:Hashable {case settings,profile,search,hadith,learning,recitation,library,qari(String),qibla,location,sources,readingMode(String)}
 struct RootView:View {
     @ObservedObject var state:AppState
     @ObservedObject private var reminders=ReminderService.shared
@@ -21,7 +21,7 @@ struct RootView:View {
                             .toolbar(tab==0 && path.isEmpty ? .hidden:.visible,for:.navigationBar)
                             .toolbar{ToolbarItem(placement:.navigationBarTrailing){NavigationLink(value:Route.settings){AppIcon(name:"settings-sliders").frame(width:44,height:44)}.accessibilityLabel("Pengaturan")}}
                             .navigationDestination(for:Route.self){destination($0)}
-                    }
+                    }.id(tab)
                     MiniPlayer(state:state,audio:state.audio)
                     tabBar
                 }.background(palette.background)
@@ -46,7 +46,8 @@ struct RootView:View {
             .onChange(of:reminders.pendingDestination){_ in routeNotification()}
             .onAppear{routeNotification()}
             .onChange(of:scenePhase){phase in
-                if phase != .active {state.audio.stopReader();if phase == .background {state.speech.stop()}}
+                if phase == .background {state.enterBackground()}
+                else if phase == .inactive {state.audio.stopReader()}
                 else {Task{try? await ReminderService.shared.schedule(state:state)}}
             }
     }
@@ -55,17 +56,22 @@ struct RootView:View {
         case 1:QuranModesView(state:state)
         case 2:MurottalView(state:state)
         case 3:PrayerView(state:state)
-        default:HomeView(state:state,selectTab:{tab=$0})
+        default:HomeView(state:state,selectTab:selectTab)
         }
     }
     private var tabBar:some View {
         HStack(spacing:0){ForEach(0..<4){index in
-            Button{path=[];tab=index}label:{
+            Button{selectTab(index)}label:{
                 VStack(spacing:6){AppIcon(name:["home","book-quran","headphones","compass-alt"][index],size:26);Text([state.translated("Beranda","Home"),"Al-Qur’an","Murottal",state.translated("Ibadah","Prayer")][index]).font(.system(size:14,weight:tab==index ? .semibold:.regular))}
                     .foregroundStyle(tab==index ? palette.primary:palette.secondary).frame(maxWidth:.infinity,minHeight:62)
                     .background(tab==index ? palette.raised:Color.clear,in:RoundedRectangle(cornerRadius:24))
             }.buttonStyle(.plain).accessibilityIdentifier("tab_\(index)")
         }}.padding(.horizontal,10).padding(.top,6).background(.ultraThinMaterial)
+    }
+    private func selectTab(_ index:Int){
+        // Reset the whole stack, including destination-based links deeper in a tab.
+        // Changing only the root content leaves SwiftUI's pushed screen above it.
+        path=[];tab=index
     }
     @ViewBuilder private func destination(_ route:Route)->some View {
         switch route {
@@ -80,6 +86,8 @@ struct RootView:View {
         case .qibla:QiblaView(state:state,location:state.location)
         case .location:LocationView(state:state,location:state.location)
         case .sources:SourcesView(state:state)
+        case .readingMode(let mode):
+            if mode=="thematic" {ThemesView(state:state)}else {SurahList(state:state,mode:mode)}
         }
     }
     private func routeNotification(){guard let route=reminders.pendingDestination else{return};state.reader=nil;state.fullPlayer=false;path=[];tab=route=="prayer" ? 3:1;reminders.pendingDestination=nil}

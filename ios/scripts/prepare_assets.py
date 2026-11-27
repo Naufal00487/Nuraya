@@ -8,6 +8,11 @@ def export():
  DEST.mkdir(parents=True,exist_ok=True)
  shutil.copytree(SOURCE,DEST,dirs_exist_ok=True)
  shutil.copy2(ROOT/'app/src/main/res/font/amiri_quran.ttf',DEST/'amiri_quran.ttf')
+ # The system launch screen needs an asset-catalog image before ContentStore loads.
+ launch=ROOT/'ios/Nuraya/Resources/Assets.xcassets/LaunchArtwork.imageset'
+ launch.mkdir(parents=True,exist_ok=True)
+ shutil.copy2(SOURCE/'brand/splash.jpg',launch/'splash.jpg')
+ (launch/'Contents.json').write_text(json.dumps({'images':[{'idiom':'universal','filename':'splash.jpg'}],'info':{'author':'xcode','version':1}}))
  data= (CORE/'media/CuratedReciters.kt').read_text()
  qaris=[dict(zip(['chapterId','verseId','name'],x)) for x in re.findall(r'Selection\("([^"]+)", "([^"]+)", "([^"]+)"\)',data)]
  assert len(qaris)==28 and len({q['chapterId'] for q in qaris})==28

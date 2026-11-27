@@ -39,7 +39,7 @@ struct SettingsView:View {
                 separator
                 menu(tr("Tentang Nuraya","About Nuraya"),tr("Kenali aplikasi dan penyusunnya","About the app and its team"),"info"){panel="about"}
             }
-            Text("Nuraya 1.7.1 · iOS").font(.footnote).foregroundStyle(palette.secondary).frame(maxWidth:.infinity)
+            Text("Nuraya \(Bundle.main.object(forInfoDictionaryKey:"CFBundleShortVersionString") as? String ?? "1.7.1") · iOS build \(Bundle.main.object(forInfoDictionaryKey:"CFBundleVersion") as? String ?? "—")").font(.footnote).foregroundStyle(palette.secondary).frame(maxWidth:.infinity)
         }.navigationTitle(tr("Pengaturan","Settings"))
             .sheet(isPresented:Binding(get:{panel != nil},set:{if !$0{panel=nil}})){
                 NavigationStack{PageContainer(dark:state.settings.dark){panelContent}.toolbar{ToolbarItem(placement:.navigationBarTrailing){Button(tr("Tutup","Close")){panel=nil}}}}
