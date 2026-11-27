@@ -1,21 +1,15 @@
 {
-  "source_commit": "50be7ab9f38d3e2b6382a3dd5eace5b67424580d",
-  "workflow": "https://github.com/Naufal00487/Nuraya/actions/runs/45427575713",
-  "checked_on": "2026-11-24 Asia/Jakarta",
-  "tests": {
-    "core": 11,
-    "platform": 8,
-    "ui": 11,
-    "failures": 0
-  },
+  "source_commit": "745a3752443a2ca9b8eb9000ce481818d5707d1a",
+  "workflow": "https://github.com/Naufal00487/Nuraya/actions/runs/45947277501",
+  "checked_on": "2026-11-27 Asia/Jakarta",
   "ipa": {
     "file": "Nuraya-iOS-XR-unsigned.ipa",
-    "bytes": 100302612,
-    "sha256": "53719abc1cbcfe6ca220c4f77f3834e210423f482d724d14688fee1e16ab3f6a",
+    "bytes": 100307229,
+    "sha256": "81e3748a0e9838dc6df7dcf19b4d908c9971180a4e76de113a88bf6a92de160f",
     "architecture": "arm64",
     "minimum_ios": "16.0",
     "version": "1.7.1",
-    "build": "3",
+    "build": "4",
     "provisioning_profile": false,
     "unchanged_android_assets": 1740,
     "zip_integrity": "passed",
@@ -26,5 +20,17 @@
     "test_recording_packaged": false
   },
   "android_apk_sha256": "793c09d7c8b5c0abb7ca5c1103141522533373efdd5fee750a01961acf3c50c6",
-  "physical_iphone_tested": false
+  "physical_iphone_tested": false,
+  "tests": {
+    "core": 11,
+    "platform": 13,
+    "ui": 11,
+    "failures": 0
+  },
+  "reader_audio": {
+    "timed_qari_chapters_checked": 1254,
+    "continuous_timed_chapters": 1231,
+    "chapters_using_verse_fallback": 23,
+    "natural_recording_pauses_preserved": true
+  }
 }
